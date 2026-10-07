@@ -391,7 +391,7 @@ function curTeam(){for(var i=0;i<D.teams.length;i++)if(D.teams[i].name===team)re
 function roster(){return curTeam().pl.map(function(x){var p=P(x.id);return {id:String(x.id),c:x.c,n:p.n,t:p.t,r:p.r,p:p.p,f:p.f}})}
 function fxOf(t,r){var l=(D.fx||{})[r]||[];for(var i=0;i<l.length;i++){if(l[i][0]===t)return {o:l[i][1],h:1,w:l[i][2]};if(l[i][1]===t)return {o:l[i][0],h:0,w:l[i][2]}}return null}
 function diff(o){var k=(D.rank||{})[o]||10;return k<=7?'h':k<=14?'m':'e'}
-function fxChips(t){var h='';[D.round,D.round+1,D.round+2].forEach(function(r){var f=fxOf(t,r);if(f)h+='<span class="fx '+diff(f.o)+'" title="G'+r+' '+esc(f.w)+'">G'+r+' '+esc(f.o.slice(0,3).toUpperCase())+(f.h?' (c)':' (t)')+'</span>'});return h}
+function fxChips(t){var h='';[D.round,D.round+1,D.round+2].forEach(function(r){var f=fxOf(t,r);if(f)h+='<span class="fx '+diff(f.o)+'" title="G'+r+' '+esc(f.w)+'">G'+r+' '+esc(f.o.slice(0,3).toUpperCase())+(f.h?' (C)':' (T)')+'</span>'});return h}
 function badge(id){var s=nxt(id);return '<span class="stb s-'+s.s+'" title="'+esc(s.n||'')+'">'+NXT[s.s]+'</span>'}
 function faStat(id){return (D.fas||{})[id]||{}}
 function maxF(r){var m=1;D.fa.forEach(function(i){var p=P(i);if(p.r===r&&(p.f||0)>m)m=p.f});return m}
@@ -428,22 +428,22 @@ function vRosa(){
   bench.sort(function(a,b){return (nxt(a.id).s==='I')-(nxt(b.id).s==='I')||sch(b)-sch(a)});
   var h='<div class="rosa"><div><div class="tools" style="margin-bottom:10px"><label for="mod" class="modlab">Modulo</label><select id="mod" class="pick" data-mod="1">'+Object.keys(MODS).slice(0,7).map(function(k){return '<option'+(k===mod?' selected':'')+'>'+k+'</option>'}).join('')+'</select></div>'+
   '<div class="field">'+['A','C','D','P'].map(function(ro){return '<div class="frow">'+rows[ro].map(function(p){return pp(p)}).join('')+'</div>'}).join('')+'</div>'+
-  '<div class="hint">Undici più schierabile per la giornata '+D.round+'. La riga colorata sotto il nome è lo stato: verde titolare, blu ballottaggio, giallo in dubbio, rosso fuori.</div>'+
+  '<div class="hint">L\'undici migliore da schierare nella '+D.round+'ª giornata. La barretta colorata sotto il nome indica lo stato del giocatore: verde titolare, blu in ballottaggio, giallo in dubbio, grigio in panchina, rosso fuori.</div>'+
   '<h2 class="sec">Panchina</h2><div class="bench">'+bench.map(function(p){return pp(p,nxt(p.id).s==='I')}).join('')+'</div></div>';
   h+='<div style="min-width:0"><h2 class="sec" style="margin-top:0">Rosa completa</h2><div class="tw"><table class="rt"><thead><tr><th style="text-align:left">Giocatore</th><th>Quo</th><th>MV</th><th>FMV</th><th data-s="Pg">Partite</th><th>Gol</th><th data-s="Ass">Assist</th><th>G'+D.round+'</th><th data-s="Sc.">Scambio</th></tr></thead><tbody>';
   r.sort(function(a,b){return RO[a.r]-RO[b.r]||sch(b)-sch(a)}).forEach(function(p){
     var s=(D.ps||{})[p.id]||{},pc=pct(p.id),f=fxOf(p.t,D.round),pr=prob(p.id),v=function(x){return x==null?'–':x};
     h+='<tr class="'+(xi[p.id]?'xi':'')+'"><td class="n"><span class="rb '+p.r+'">'+p.r+'</span> <span class="nm">'+esc(p.n)+'</span><div class="pb"><i class="b-'+nxt(p.id).s+'" style="width:'+pc+'%"></i></div><span class="meta">'+pc+'% · '+NXT[nxt(p.id).s]+'</span></td>'+
-    '<td>'+esc(P(p.id).q)+'</td><td>'+v(s.mv)+'</td><td>'+v(s.fmv)+'</td><td>'+v(s.pg)+'</td><td>'+v(s.g)+'</td><td>'+v(s.as)+'</td><td>'+(f?'<span class="fx '+diff(f.o)+'">'+esc(f.o.slice(0,3).toUpperCase())+(f.h?' (c)':' (t)')+'</span>':'–')+'</td><td><span class="isb" style="background:'+(pr<35?'var(--ok)':pr<60?'var(--warn)':'var(--bad)')+';color:#111">'+pr+'%</span></td></tr>';
+    '<td>'+esc(P(p.id).q)+'</td><td>'+v(s.mv)+'</td><td>'+v(s.fmv)+'</td><td>'+v(s.pg)+'</td><td>'+v(s.g)+'</td><td>'+v(s.as)+'</td><td>'+(f?'<span class="fx '+diff(f.o)+'">'+esc(f.o.slice(0,3).toUpperCase())+(f.h?' (C)':' (T)')+'</span>':'–')+'</td><td><span class="isb" style="background:'+(pr<35?'var(--ok)':pr<60?'var(--warn)':'var(--bad)')+';color:#111">'+pr+'%</span></td></tr>';
   });
-  h+='</tbody></table></div><div class="hint">'+(D.ps&&Object.keys(D.ps).length?'Medie, partite, gol e assist dalle statistiche di Fantacalcio al '+new Date(D.psDate||D.updated).toLocaleDateString('it-IT')+'. Trattino: non ha ancora giocato.':'Medie e presenze non ancora disponibili.')+'</div></div></div>';
+  h+='</tbody></table></div><div class="hint">'+(D.ps&&Object.keys(D.ps).length?'Medie, presenze, gol e assist sono tratti dalle statistiche di Fantacalcio aggiornate al '+new Date(D.psDate||D.updated).toLocaleDateString('it-IT')+'. Il trattino indica che il giocatore non è ancora sceso in campo.':'Medie e presenze non sono ancora disponibili.')+'</div></div></div>';
   return h;
 }
 function vDay(){
   var r=roster(),c={T:0,B:0,X:0,I:0};
   r.forEach(function(p){var s=nxt(p.id).s;if(s==='T')c.T++;else if(s==='B')c.B++;else if(s==='I')c.I++;else c.X++});
   var h='<div class="kpi"><div><b>'+c.T+'</b><span>Titolari sicuri</span></div><div><b>'+c.B+'</b><span>Titolari in ballottaggio</span></div><div><b>'+c.X+'</b><span>Panchina o in dubbio</span></div><div><b>'+c.I+'</b><span>Fuori</span></div></div>';
-  h+='<div class="note">Probabili formazioni per la giornata '+D.round+' di Serie A. Le caselle a destra sono le prossime tre partite. Il colore dice quanto è forte l\'avversario sulla carta: verde più debole, giallo medio, rosso più forte. (c) in casa, (t) in trasferta.</div>';
+  h+='<div class="note">Probabili formazioni della '+D.round+'ª giornata di Serie A. Le caselle a destra indicano le prossime tre partite e il colore la difficoltà dell\'avversario sulla carta: verde abbordabile, giallo di medio livello, rosso impegnativo. Tra parentesi, (C) sta per casa e (T) per trasferta.</div>';
   ['P','D','C','A'].forEach(function(ro){
     var l=r.filter(function(p){return p.r===ro});if(!l.length)return;
     var ord={T:0,B:1,R:2,D:3,P:4,I:5};l.sort(function(a,b){return ord[nxt(a.id).s]-ord[nxt(b.id).s]||b.f-a.f});
@@ -465,7 +465,7 @@ function vLega(){
   var mine=[];['lega','cup'].forEach(function(c){K[c].forEach(function(r){var f=norm(c,r).filter(function(x){return x.a===me||x.b===me})[0];if(f)mine.push({c:c,n:r.n,sa:r.sa,x:f});else if(c==='cup'&&(r.rest||[]).some(function(z){return z[1]===me}))mine.push({c:c,n:r.n,sa:r.sa,rest:1})})});
   mine.sort(function(p,q){return p.sa-q.sa||(p.c==='lega'?-1:1)});
   var next=mine.filter(function(e){return e.sa>=D.round&&!(e.x&&played(e.x))});
-  var h='<div class="note">Calendario completo di '+CN.lega+' e '+CN.cup+'. La tua partita è sempre evidenziata. I risultati arrivano da Leghe e possono essere indietro di qualche giorno: per quelli in tempo reale apri Leghe.</div>';
+  var h='<div class="note">Il calendario completo di '+CN.lega+' e '+CN.cup+', con la tua partita sempre in evidenza. I risultati arrivano da Leghe e possono essere in ritardo di qualche giorno: per seguirli in tempo reale apri Leghe.</div>';
   ['lega','cup'].forEach(function(c){var e=next.filter(function(z){return z.c===c})[0];if(!e)return;
     h+='<div class="card nextme"><span class="tagme">'+CN[c]+' · La tua prossima</span>'+(e.rest?'<div class="vs"><span class="nm"><span class="me">'+esc(me)+'</span> riposa</span></div>':'<div class="vs"><span class="nm">'+nm(e.x.a)+'</span><i>vs</i><span class="nm">'+nm(e.x.b)+'</span></div>')+'<div class="meta">Giornata '+e.n+(c==='cup'&&e.x?' · Girone '+esc(e.x.g):'')+' · G'+e.sa+' di Serie A'+(e.rest?'':' · '+(e.x.a===me?'In casa':'In trasferta'))+'</div></div>'});
   // tutte le partite, una giornata alla volta
@@ -483,7 +483,7 @@ function vLega(){
   // il percorso
   h+='<h2 class="sec">Il tuo percorso</h2><div class="card">';
   mine.forEach(function(e){var pl=e.x&&played(e.x),opp=e.x?(e.x.a===me?e.x.b:e.x.a):'';
-    h+='<div class="gr"><div style="min-width:0"><span class="fx '+(e.c==='cup'?'m':'e')+'">'+(e.c==='cup'?'Coppa':'Lega')+' '+e.n+'</span> <span class="meta">G'+e.sa+'</span> <span class="nm">'+(e.rest?'Riposo':esc(opp)+' <span class="meta">'+(e.x.a===me?'(c)':'(t)')+'</span>')+'</span></div>'+(pl?'<span style="display:flex;gap:6px;align-items:center">'+esito(e.x)+'<span class="res">'+esc(e.x.res.replace('-',' – '))+'</span></span>':(e.sa===D.round?'<span class="stb s-B">Prossima</span>':''))+'</div>'});
+    h+='<div class="gr"><div style="min-width:0"><span class="fx '+(e.c==='cup'?'m':'e')+'">'+(e.c==='cup'?'Coppa':'Lega')+' '+e.n+'</span> <span class="meta">G'+e.sa+'</span> <span class="nm">'+(e.rest?'Riposo':esc(opp)+' <span class="meta">'+(e.x.a===me?'(C)':'(T)')+'</span>')+'</span></div>'+(pl?'<span style="display:flex;gap:6px;align-items:center">'+esito(e.x)+'<span class="res">'+esc(e.x.res.replace('-',' – '))+'</span></span>':(e.sa===D.round?'<span class="stb s-B">Prossima</span>':''))+'</div>'});
   return h+'</div>';
 }
 function vInj(){
@@ -491,7 +491,7 @@ function vInj(){
   var inj=(D.inj||[]).filter(function(e){return e.id&&own[e.id]}).sort(function(a,b){return a.t.localeCompare(b.t)});
   function rows(l){return l.length?l.map(function(e){return '<div class="gr"><div style="min-width:0"><span class="nm">'+esc(P(e.id).n)+'</span> <span class="meta">'+esc(e.t)+'</span><div class="meta">'+esc(e.w)+' · Rientro: '+esc(e.b)+'</div></div><span class="stb '+(e.k==='sì'?'s-I':'s-D')+'">'+(e.k==='sì'?'Salta G'+D.round:'In dubbio')+'</span></div>'}).join(''):'<div class="meta">Nessuno.</div>'}
   var a=inj.filter(function(e){return mine[e.id]}),b=inj.filter(function(e){return !mine[e.id]});
-  var h='<div class="note">Infortunati e acciaccati per la giornata '+D.round+'. Sono notizie pubbliche: qui non compare di chi è ogni giocatore.</div><h2 class="sec">I tuoi</h2><div class="card">'+rows(a)+'</div>';
+  var h='<div class="note">Infortunati e acciaccati in vista della '+D.round+'ª giornata. Sono notizie pubbliche e qui non viene indicato a quale squadra della lega appartiene ogni giocatore.</div><h2 class="sec">I tuoi</h2><div class="card">'+rows(a)+'</div>';
   if(D.teams.length>1)h+='<h2 class="sec">Altri giocatori nelle rose della lega</h2><div class="card">'+rows(b)+'</div>';
   return h;
 }
@@ -513,7 +513,7 @@ function vSwap(){
   var list=roster().map(function(p){p.pr=prob(p.id);return p});
   if(filter!=='ALL')list=list.filter(function(p){return p.r===filter});
   list.sort(function(a,b){return b.pr-a.pr||b.c-a.c});
-  var h='<div class="note">Percentuale di scambio per gennaio. Parte dal valore del giocatore, sale se resta in panchina o fuori e scende se gioca titolare. Tocca un giocatore per vedere le giornate.</div>';
+  var h='<div class="note">La percentuale di scambio in vista del mercato di gennaio. Parte dal valore del giocatore, sale quando resta in panchina o è indisponibile e scende quando gioca titolare. Tocca un giocatore per vedere le sue ultime giornate.</div>';
   h+='<div class="seg">'+['ALL','P','D','C','A'].map(function(r){return '<button aria-pressed="'+(filter===r)+'" data-f="'+r+'">'+(r==='ALL'?'Tutti':ROLES[r].slice(0,3)+'.')+'</button>'}).join('')+'</div><div class="list">';
   list.forEach(function(p){
     var v=verdict(p.pr),isO=open===p.id;
@@ -535,7 +535,7 @@ function editor(p){
   return h+'</div>';
 }
 function vFa(){
-  var h='<div class="note">Svincolati della lega. Il punteggio unisce valore del giocatore e stato per la prossima giornata; quando arrivano titolarità e fantamedia reali passa a «dati reali».</div>';
+  var h='<div class="note">Gli svincolati della lega. Il punteggio tiene conto del valore del giocatore e del suo stato per la prossima giornata; quando sono disponibili titolarità e fantamedia reali, compare la dicitura «Dati reali».</div>';
   h+='<div class="seg">'+['P','D','C','A'].map(function(r){return '<button aria-pressed="'+(role===r)+'" data-role="'+r+'">'+{P:'Portieri',D:'Difensori',C:'Centrocampisti',A:'Attaccanti'}[r]+'</button>'}).join('')+'<span style="flex:1"></span>'+
   [['score','Punteggio'],['tit','Giocherà di più'],['fm','Vota meglio']].map(function(x){return '<button aria-pressed="'+(sortBy===x[0])+'" data-sort="'+x[0]+'">'+x[1]+'</button>'}).join('')+'</div>';
   var ord={T:0,B:1,R:2,D:3,P:4,I:5};
@@ -547,18 +547,18 @@ function vFa(){
     return b.sc-a.sc});
   h+='<div class="list">';
   l.slice(0,25).forEach(function(f,i){
-    h+='<article class="card fa"><div class="rank">'+(i+1)+'</div>'+fig(f.t,cfg.shirtNew,f.id,null)+'<div style="min-width:0"><div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap"><span class="rb '+role+'">'+role+'</span><span class="name">'+esc(f.n)+'</span>'+badge(f.id)+'</div><div class="meta">'+esc(f.t)+' · '+esc(f.p)+' · Qt '+esc(f.q)+' · FVM '+esc(f.f)+' <span class="tag">'+(f.tit!=null?'dati reali':'stima')+'</span></div>'+
+    h+='<article class="card fa"><div class="rank">'+(i+1)+'</div>'+fig(f.t,cfg.shirtNew,f.id,null)+'<div style="min-width:0"><div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap"><span class="rb '+role+'">'+role+'</span><span class="name">'+esc(f.n)+'</span>'+badge(f.id)+'</div><div class="meta">'+esc(f.t)+' · '+esc(f.p)+' · Qt '+esc(f.q)+' · FVM '+esc(f.f)+' <span class="tag">'+(f.tit!=null?'Dati reali':'Stima')+'</span></div>'+
     '<div class="mini"><span>Voto</span><b style="color:var(--ink)">'+(f.fm!=null?esc(f.fm):'n.d.')+'</b><span>Prossime</span><div class="fxs">'+fxChips(f.t)+'</div></div></div><div class="score">'+f.sc+'</div></article>';
   });
   return h+'</div>';
 }
 function vPitch(){
   var all=roster().map(function(p){p.pr=prob(p.id);return p}),used={},any=false;
-  var h='<div class="note">Scambi suggeriti per gennaio, divisi per ruolo: chi cedere dalla tua rosa e il miglior svincolato dello stesso ruolo adesso. Compaiono i giocatori dal 20% in su.</div>';
+  var h='<div class="note">Gli scambi suggeriti per gennaio, divisi per ruolo: chi cedere dalla tua rosa e il miglior svincolato disponibile nello stesso ruolo. Sono inclusi i giocatori con una percentuale di scambio dal 20% in su.</div>';
   ['P','D','C','A'].forEach(function(ro){
     var risk=all.filter(function(p){return p.r===ro&&p.pr>=20&&!isKeep(p.id)}).sort(function(a,b){return b.pr-a.pr}).slice(0,3);
     h+='<h2 class="sec">'+{P:'Portieri',D:'Difensori',C:'Centrocampisti',A:'Attaccanti'}[ro]+'</h2>';
-    if(!risk.length){h+='<div class="hint" style="margin:0 0 6px">Nessuno a rischio in questo ruolo.</div>';return}
+    if(!risk.length){h+='<div class="hint" style="margin:0 0 6px">Nessun giocatore a rischio in questo ruolo.</div>';return}
     any=true;h+='<div class="swaps">';
     risk.forEach(function(p){
       var c=D.fa.map(String).filter(function(i){return P(i).r===p.r&&!used[i]}).map(function(i){return {id:i,sc:score(i)}}).sort(function(a,b){return b.sc-a.sc})[0];
@@ -578,7 +578,7 @@ function vSet(){
   h+='<div class="card" style="margin-top:10px"><h3 style="margin-bottom:10px">Aspetto (solo su questo dispositivo)</h3><div class="list" style="gap:10px"><label class="fld"><span>Stile maglie</span><select id="c0" data-cfg="kit" style="padding:6px;border-radius:6px;border:2px solid var(--line);background:var(--card);color:var(--ink)"><option value="club"'+(cfg.kit==='club'?' selected':'')+'>Colori dei club</option><option value="solid"'+(cfg.kit==='solid'?' selected':'')+'>Colore unico</option></select></label>'+
   '<label class="fld"><span>Colore unico: la rosa</span><input type="color" id="c1" data-cfg="shirt" value="'+col(cfg.shirt)+'"></label><label class="fld"><span>Colore unico: i candidati</span><input type="color" id="c2" data-cfg="shirtNew" value="'+col(cfg.shirtNew)+'"></label></div></div>';
   function sec(title,intro,rows){return '<details class="card help" style="margin-top:10px"><summary><h3 style="display:inline">'+title+'</h3></summary><p>'+intro+'</p>'+(rows.length?'<dl class="kv">'+rows.map(function(r){return '<dt>'+r[0]+'</dt><dd>'+r[1]+'</dd>'}).join('')+'</dl>':'')+'</details>'}
-  h+='<h2 class="sec">Come si legge la pagina</h2><div class="note">Tocca una voce per aprirla. In breve: la pagina ti dice chi schierare questa giornata e chi conviene cambiare a gennaio.</div>';
+  h+='<h2 class="sec">Come si legge la pagina</h2><div class="note">Tocca una voce per aprirla. In breve: la pagina ti aiuta a scegliere chi schierare in questa giornata e chi conviene cambiare a gennaio.</div>';
   h+=sec('Rosa','La tua squadra a colpo d\'occhio: il campo con l\'undici migliore per la prossima giornata, la panchina e la tabella con i numeri di tutti.',[
     ['Campo','L\'undici lo sceglie la pagina tra chi ha più probabilità di giocare. Il modulo lo cambi dal menu.'],
     ['Riga colorata','Sotto ogni nome. Verde: titolare. Blu: titolare ma in ballottaggio. Giallo: in dubbio o riserva. Grigio: panchina. Rosso: fuori.'],
@@ -588,7 +588,7 @@ function vSet(){
     ['MV','Media voto: la media dei voti in pagella, senza bonus e malus.'],
     ['FMV','Fantamedia: la media dei voti con bonus e malus (gol, assist, cartellini). È il numero che conta di più.'],
     ['Partite, Gol, Assist','Quante partite ha giocato con voto, e quanti gol e assist ha fatto.'],
-    ['G'+D.round,'L\'avversario della prossima giornata. (c) in casa, (t) in trasferta.'],
+    ['G'+D.round,'L\'avversario della prossima giornata: (C) in casa, (T) in trasferta.'],
     ['Scambio','La percentuale di scambio, spiegata sotto in «Chi scambiare».']]);
   h+=sec('Giornata','Serve per fare la formazione: per ogni tuo giocatore dice se giocherà e contro chi.',[
     ['I quattro numeri in alto','Quanti titolari sicuri hai, quanti in ballottaggio, quanti in panchina o in dubbio e quanti fuori.'],
@@ -598,7 +598,7 @@ function vSet(){
     ['In dubbio','Ha un problema fisico e non si sa se recupera.'],
     ['Panchina','Non è previsto tra i titolari.'],
     ['Fuori','Infortunato, squalificato o non disponibile.'],
-    ['Caselle colorate','Le prossime tre partite. Il colore dice quanto è forte l\'avversario sulla carta. Verde: tra i più deboli. Giallo: di media forza. Rosso: tra i più forti.'],
+    ['Caselle colorate','Le prossime tre partite. Il colore indica la difficoltà dell\'avversario sulla carta: verde abbordabile, giallo di medio livello, rosso impegnativo.'],
     ['Sulla carta','La forza è una stima dal valore di mercato dei migliori giocatori di ogni squadra. Non guarda classifica né stato di forma, e il risultato può sempre andare diversamente.']]);
   h+=sec('Chi scambiare','Dice quali giocatori conviene cedere al mercato di gennaio. Più la percentuale è alta, più ha senso cambiarlo.',[
     ['L\'anello','La percentuale di scambio, da 3% a 97%.'],
@@ -625,7 +625,7 @@ function vSet(){
   h+=sec('Calendario','Tutte le partite della nostra lega nelle due competizioni: Classic League (il campionato) e Champions Cup (la coppa a gironi).',[
     ['La tua prossima','In alto, la tua prossima partita in campionato e in coppa. In coppa può capitare il turno di riposo.'],
     ['Tutte le partite','Scegli la competizione e scorri le giornate con le frecce. La tua partita è evidenziata.'],
-    ['Il tuo percorso','L\'elenco di tutte le tue partite in ordine di data, con (c) in casa e (t) in trasferta.'],
+    ['Il tuo percorso','L\'elenco di tutte le tue partite in ordine di data, con (C) per le gare in casa e (T) per quelle in trasferta.'],
     ['G6, G7...','La giornata di Serie A in cui si gioca quella partita. Campionato e coppa possono cadere nella stessa giornata.'],
     ['Punteggi','I due numeri sotto un risultato sono i punteggi di squadra che hanno deciso i gol.'],
     ['Aggiornamento','Il calendario è fisso. I risultati vengono letti da Leghe quando è possibile, quindi possono essere indietro.']]);

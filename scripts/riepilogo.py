@@ -69,9 +69,9 @@ def punteggio_svincolato(pid):
 def partita(squadra, giornata):
     for casa, fuori, quando in D.get("fx", {}).get(str(giornata), []):
         if casa == squadra:
-            return f"{fuori} (c)"
+            return f"{fuori} (C)"
         if fuori == squadra:
-            return f"{casa} (t)"
+            return f"{casa} (T)"
     return "-"
 
 
