@@ -588,63 +588,65 @@ function vSet(){
   '<label class="fld"><span>Colore unico: la rosa</span><input type="color" id="c1" data-cfg="shirt" value="'+col(cfg.shirt)+'"></label><label class="fld"><span>Colore unico: i candidati</span><input type="color" id="c2" data-cfg="shirtNew" value="'+col(cfg.shirtNew)+'"></label></div></div>';
   function sec(title,intro,rows){return '<details class="card help" style="margin-top:10px"><summary><h3 style="display:inline">'+title+'</h3></summary><p>'+intro+'</p>'+(rows.length?'<dl class="kv">'+rows.map(function(r){return '<dt>'+r[0]+'</dt><dd>'+r[1]+'</dd>'}).join('')+'</dl>':'')+'</details>'}
   h+='<h2 class="sec">Come si legge la pagina</h2><div class="note">Tocca una voce per aprirla. In breve: la pagina ti aiuta a scegliere chi schierare in questa giornata e chi conviene cambiare a gennaio.</div>';
-  h+=sec('Rosa','La tua squadra a colpo d\'occhio: il campo con l\'undici migliore per la prossima giornata, la panchina e la tabella con i numeri di tutti.',[
-    ['Campo','L\'undici lo sceglie la pagina tra chi ha più probabilità di giocare. Il modulo lo cambi dal menu.'],
-    ['Riga colorata','Sotto ogni nome. Verde: titolare. Blu: titolare ma in ballottaggio. Giallo: in dubbio o riserva. Grigio: panchina. Rosso: fuori.'],
-    ['Percentuale sotto il nome','Quanto è probabile che parta titolare. 95% è quasi certo, 50% è un ballottaggio, 5% è quasi impossibile.'],
-    ['Perché mai 0% o 100%','Nel calcio niente è sicuro: un infortunato può recuperare all\'ultimo e un titolare può fermarsi nel riscaldamento. Per questo la scala va da 5% a 95%.'],
-    ['Quo','Quotazione attuale del giocatore al Fantacalcio.'],
+  h+=sec('Rosa','La tua squadra a colpo d\'occhio: il campo con l\'undici migliore per la prossima giornata, la panchina e la tabella con le statistiche di tutti i giocatori.',[
+    ['Campo','L\'undici viene scelto dalla pagina tra i giocatori con più probabilità di scendere in campo. Il modulo si cambia dal menu in alto.'],
+    ['Barretta colorata','Sotto ogni nome, indica lo stato del giocatore: verde titolare, blu titolare in ballottaggio, giallo in dubbio o riserva, grigio in panchina, rosso indisponibile.'],
+    ['Percentuale sotto il nome','La probabilità che parta titolare: 95% vuol dire quasi certo, 50% ballottaggio aperto, 5% molto improbabile.'],
+    ['Perché mai 0% o 100%','Nel calcio non c\'è nulla di sicuro: un infortunato può recuperare all\'ultimo e un titolare può fermarsi nel riscaldamento. Per questo la scala va dal 5% al 95%.'],
+    ['Quo','La quotazione attuale del giocatore su Fantacalcio.'],
     ['MV','Media voto: la media dei voti in pagella, senza bonus e malus.'],
-    ['FMV','Fantamedia: la media dei voti con bonus e malus (gol, assist, cartellini). È il numero che conta di più.'],
-    ['Partite, Gol, Assist','Quante partite ha giocato con voto, e quanti gol e assist ha fatto.'],
+    ['FMV','Fantamedia: la media dei voti con bonus e malus (gol, assist, cartellini). È il dato più importante per il fantacalcio.'],
+    ['Partite, Gol, Assist','Le partite giocate con voto, i gol segnati e gli assist serviti.'],
     ['G'+D.round,'L\'avversario della prossima giornata: (C) in casa, (T) in trasferta.'],
-    ['Scambio','La percentuale di scambio, spiegata sotto in «Chi scambiare».']]);
-  h+=sec('Giornata','Serve per fare la formazione: per ogni tuo giocatore dice se giocherà e contro chi.',[
-    ['I quattro numeri in alto','Quanti titolari sicuri hai, quanti in ballottaggio, quanti in panchina o in dubbio e quanti fuori.'],
-    ['Titolare','Dato nell\'undici di partenza.'],
-    ['Titolare, ballottaggio','Parte favorito, ma un compagno può prendergli il posto.'],
-    ['Riserva, ballottaggio','Parte dietro, ma può giocare al posto del titolare.'],
-    ['In dubbio','Ha un problema fisico e non si sa se recupera.'],
+    ['Scambio','La percentuale di scambio, spiegata più sotto alla voce «Chi scambiare».']]);
+  h+=sec('Giornata','Serve per preparare la formazione: per ogni tuo giocatore indica se dovrebbe giocare e contro quale avversario.',[
+    ['I quattro numeri in alto','Il riepilogo della tua rosa: titolari sicuri, titolari in ballottaggio, giocatori in panchina o in dubbio, indisponibili.'],
+    ['Titolare','È previsto nell\'undici di partenza.'],
+    ['Titolare, ballottaggio','Parte favorito, ma un compagno gli contende il posto.'],
+    ['Riserva, ballottaggio','Parte in svantaggio, ma può scavalcare il titolare.'],
+    ['In dubbio','Ha un problema fisico e il suo recupero è incerto.'],
     ['Panchina','Non è previsto tra i titolari.'],
-    ['Fuori','Infortunato, squalificato o non disponibile.'],
+    ['Fuori','È infortunato, squalificato o comunque indisponibile.'],
     ['Caselle colorate','Le prossime tre partite. Il colore indica la difficoltà dell\'avversario sulla carta: verde abbordabile, giallo di medio livello, rosso impegnativo.'],
-    ['Sulla carta','La forza è una stima dal valore di mercato dei migliori giocatori di ogni squadra. Non guarda classifica né stato di forma, e il risultato può sempre andare diversamente.']]);
-  h+=sec('Chi scambiare','Dice quali giocatori conviene cedere al mercato di gennaio. Più la percentuale è alta, più ha senso cambiarlo.',[
-    ['L\'anello','La percentuale di scambio, da 3% a 97%.'],
-    ['Tieni','Sotto il 35%: va bene così.'],
-    ['Osserva','Dal 35% al 59%: tienilo d\'occhio.'],
-    ['Da scambiare','Dal 60% in su: gioca poco o vale poco.'],
-    ['Secondo portiere','Il portiere di riserva della stessa squadra del tuo titolare non viene segnalato: non gioca, ma ti copre se il titolare salta.'],
-    ['Come si calcola','Parte dal valore del giocatore: più vale, più è bassa. Poi sale di '+D.w.P+' punti per ogni panchina e di '+D.w.I+' per ogni partita saltata, e scende di '+Math.abs(D.w.T)+' ogni volta che gioca titolare. Le ultime giornate pesano di più.'],
-    ['Pagato','Quanti crediti hai speso all\'asta.'],
+    ['Sulla carta','La difficoltà è una stima basata sul valore di mercato dei giocatori migliori di ogni squadra. Non tiene conto della classifica né dello stato di forma, e il campo può sempre dire altro.']]);
+  h+=sec('Chi scambiare','Indica quali giocatori conviene cedere al mercato di gennaio. Più la percentuale è alta, più ha senso cambiarlo.',[
+    ['L\'anello','La percentuale di scambio, dal 3% al 97%. La calcola la pagina: non si imposta a mano.'],
+    ['Tieni','Sotto il 35%: il giocatore va bene così.'],
+    ['Osserva','Dal 35% al 59%: è da tenere d\'occhio nelle prossime giornate.'],
+    ['Da scambiare','Dal 60% in su: gioca poco oppure vale poco.'],
+    ['Secondo portiere','Il portiere di riserva dello stesso club del tuo titolare non viene segnalato: non gioca, ma ti copre se il titolare salta una partita.'],
+    ['Come si calcola','Si parte dal valore del giocatore: più vale, più la percentuale è bassa. Poi sale di '+D.w.P+' punti per ogni partita non giocata e di '+D.w.I+' per ogni assenza per infortunio o squalifica, mentre scende di '+Math.abs(D.w.T)+' a ogni partita da titolare. Le giornate più recenti pesano di più.'],
+    ['Pagato','I crediti spesi all\'asta per quel giocatore.'],
     ['FVM','Fantavalore di mercato: quanto vale oggi il giocatore secondo Fantacalcio.'],
-    ['Quadratini T, S, P, I','Le giornate di Serie A giocate fin qui: Titolare, Subentrato, P se non ha giocato, I se era infortunato o squalificato. Si aggiornano da sole dopo ogni giornata.']]);
-  h+=sec('Svincolati','I giocatori liberi che nessuno ha in rosa, dal migliore in giù.',[
-    ['Punteggio','Il numero a destra. Più è alto, più conviene prenderlo. Unisce quanto vale e quanto gioca.'],
-    ['Stima','Il punteggio è calcolato solo da quotazione e probabile formazione, perché mancano ancora i suoi voti.'],
-    ['Dati reali','Il punteggio usa presenze e voti veri.'],
-    ['Giocherà di più','Mette in cima chi ha più probabilità di essere titolare.'],
-    ['Vota meglio','Mette in cima chi ha la fantamedia più alta, quando è disponibile.']]);
+    ['Quadratini T, S, P, I','Le giornate di Serie A disputate fin qui: T titolare, S subentrato, P non ha giocato, I infortunato o squalificato. Si aggiornano da soli dopo ogni giornata.'],
+    ['Grafico','L\'andamento della percentuale di scambio dall\'inizio del campionato. Tocca un punto per vedere il valore di quella giornata.']]);
+  h+=sec('Svincolati','I giocatori liberi, che nessuna squadra della lega ha in rosa, ordinati dal più interessante.',[
+    ['Punteggio','Il numero a destra: più è alto, più conviene prenderlo. Tiene conto di quanto vale il giocatore e di quanto gioca.'],
+    ['Stima','Il punteggio si basa solo su quotazione e probabile formazione, perché il giocatore non ha ancora voti.'],
+    ['Dati reali','Il punteggio si basa su presenze e voti effettivi.'],
+    ['Giocherà di più','Ordina la lista mettendo in cima chi ha più probabilità di giocare titolare.'],
+    ['Vota meglio','Ordina la lista mettendo in cima chi ha la fantamedia più alta, quando è disponibile.']]);
   h+=sec('Sostituzioni','Per ogni tuo giocatore a rischio propone il miglior svincolato dello stesso ruolo.',[
-    ['Cedi','Il tuo giocatore con la percentuale di scambio più alta.'],
-    ['Prendi','Lo svincolato con il punteggio più alto in quel ruolo.'],
-    ['Scambio','La percentuale di scambio del giocatore che cedi.'],
-    ['Punti svincolato','Il punteggio del giocatore che prendi.']]);
-  h+=sec('Infortunati','Chi è fermo o acciaccato, con il motivo e il rientro previsto. Prima i tuoi, poi gli altri giocatori delle rose della lega, senza dire di chi sono.',[
-    ['Salta G'+D.round,'Non gioca la prossima giornata.'],['In dubbio','Può recuperare, da ricontrollare prima della partita.']]);
-  h+=sec('Calendario','Tutte le partite della nostra lega nelle due competizioni: Classic League (il campionato) e Champions Cup (la coppa a gironi).',[
-    ['La tua prossima','In alto, la tua prossima partita in campionato e in coppa. In coppa può capitare il turno di riposo.'],
-    ['Tutte le partite','Scegli la competizione e scorri le giornate con le frecce. La tua partita è evidenziata.'],
+    ['Cedi','Il tuo giocatore con la percentuale di scambio più alta in quel ruolo.'],
+    ['Prendi','Lo svincolato con il punteggio più alto nello stesso ruolo.'],
+    ['Scambio','La percentuale di scambio del giocatore da cedere.'],
+    ['Punti svincolato','Il punteggio del giocatore da prendere.']]);
+  h+=sec('Infortunati','I giocatori fermi o acciaccati, con il motivo e i tempi di rientro previsti. Prima i tuoi, poi quelli delle altre rose della lega, senza indicare a chi appartengono.',[
+    ['Salta G'+D.round,'Non sarà disponibile per la prossima giornata.'],
+    ['In dubbio','Può recuperare: conviene ricontrollare a ridosso della partita.']]);
+  h+=sec('Calendario','Tutte le partite della nostra lega nelle due competizioni: Classic League, il campionato, e Champions Cup, la coppa a gironi.',[
+    ['La tua prossima','In alto trovi la tua prossima partita di campionato e di coppa. In coppa può capitare un turno di riposo.'],
+    ['Tutte le partite','Scegli la competizione e scorri le giornate con le frecce. La tua partita è sempre in evidenza.'],
     ['Il tuo percorso','L\'elenco di tutte le tue partite in ordine di data, con (C) per le gare in casa e (T) per quelle in trasferta.'],
-    ['G6, G7...','La giornata di Serie A in cui si gioca quella partita. Campionato e coppa possono cadere nella stessa giornata.'],
-    ['Punteggi','I due numeri sotto un risultato sono i punteggi di squadra che hanno deciso i gol.'],
-    ['Aggiornamento','Il calendario è fisso. I risultati vengono letti da Leghe quando è possibile, quindi possono essere indietro.']]);
-  h+=sec('Aggiornamenti e fonti','La pagina si aggiorna da sola due volte a settimana. Non è in tempo reale durante le partite.',[
-    ['Venerdì','Probabili formazioni e infortunati per la giornata in arrivo.'],
-    ['Martedì','Chi ha giocato nella giornata appena finita.'],
-    ['Se manca un dato','Compare in alto in «Correzioni da controllare».'],
-    ['Le tue modifiche','Modulo, stile e foto che scegli tu restano solo sul tuo telefono o computer.'],
-    ['Fonti','Quotazioni di Fantacalcio, rose di Leghe Fantacalcio, probabili e infortunati da Fantamaster e TuttoFantacalcio, calendario da Sky Sport. La difficoltà degli avversari è una stima.']]);
+    ['G6, G7...','La giornata di Serie A in cui si disputa la partita. Campionato e coppa possono cadere nella stessa giornata.'],
+    ['Punteggi','I due numeri sotto il risultato sono i punteggi di squadra da cui derivano i gol.'],
+    ['Aggiornamento','Il calendario è fisso. I risultati vengono letti da Leghe quando è possibile, quindi possono arrivare in ritardo.']]);
+  h+=sec('Aggiornamenti e fonti','La pagina si aggiorna da sola due volte a settimana. Durante le partite non è in tempo reale.',[
+    ['Venerdì','Probabili formazioni e infortunati in vista della giornata.'],
+    ['Martedì','Chi è sceso in campo nella giornata appena conclusa.'],
+    ['Se manca un dato','Viene segnalato in alto, nel riquadro «Correzioni da controllare».'],
+    ['Le tue scelte','Modulo, stile grafico e foto restano salvati solo sul tuo telefono o computer.'],
+    ['Fonti','Quotazioni, statistiche e tabellini da Fantacalcio, rose e calendari da Leghe Fantacalcio, probabili formazioni e infortunati da Fantamaster e TuttoFantacalcio, calendario di Serie A da Sky Sport. La difficoltà degli avversari è una stima.']]);
   return h;
 }
 document.getElementById('skin').addEventListener('click',function(e){var b=e.target.closest('button');if(b){LS.skin=b.dataset.skin;save();render()}});
