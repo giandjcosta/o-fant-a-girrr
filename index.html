@@ -251,6 +251,37 @@ header .btn{color:var(--head-ink);border-color:currentColor;background:transpare
 .calnav .btn:disabled{opacity:.35;cursor:default}
 .grp{font:700 .72rem var(--fb);letter-spacing:.08em;text-transform:uppercase;color:var(--mute);margin:10px 0 2px}
 .grp:first-child{margin-top:0}
+/* tabella rosa: sempre dentro la colonna, niente scorrimento laterale */
+.wrap{max-width:1040px}
+.rosa{grid-template-columns:minmax(0,320px) minmax(0,1fr)}
+@media (max-width:980px){.rosa{grid-template-columns:1fr}}
+table.rt{min-width:0;table-layout:auto}
+.rt th,.rt td{padding-inline:4px}
+.rt td.n{min-width:0;max-width:0;width:40%;overflow:hidden;text-overflow:ellipsis;padding-left:8px}
+.rt td.n .meta{display:block;overflow:hidden;text-overflow:ellipsis}
+.rt th:first-child{padding-left:8px}
+.rt td:last-child,.rt th:last-child{padding-right:8px}
+:root[data-skin="campo"] .rt td{font-size:.8rem}
+:root[data-skin="campo"] .rt td.n .nm{font-size:.9rem}
+@media (max-width:480px){
+.rt th,.rt td{padding-inline:2px}
+.rt td{font-size:.78rem}
+.rt td.n{width:34%;padding-left:6px}
+.rt td.n .nm{font-size:.84rem}
+.rt td.n .meta{font-size:.62rem}
+.rt td .fx,.rt td .isb{font-size:.62rem;padding:2px 4px}
+.rt th{font-size:.6rem}
+.rt th[data-s]{font-size:0}
+.rt th[data-s]::after{content:attr(data-s);font-size:.6rem}
+:root[data-skin="campo"] .rt td{font-size:.7rem}
+:root[data-skin="campo"] .rt td.n .nm{font-size:.74rem}
+}
+@media (max-width:480px){
+:root .rt td.n .nm{font-size:.74rem!important;letter-spacing:0}
+.rt td.n{width:38%;padding-left:5px}
+.rt td.n .rb{width:15px;height:15px;font-size:.55rem;line-height:15px;vertical-align:1px}
+.rt td .fx,.rt td .isb{padding:2px 3px}
+}
 
 .pick{font:700 1.05rem var(--fh);text-transform:var(--tt);padding:10px 12px;border-radius:12px;border:1px solid var(--or);background:var(--card2);color:var(--ink);max-width:100%}
 .stb{font:700 .72rem var(--fb);text-transform:uppercase;letter-spacing:.05em;padding:2px 7px;border-radius:4px;white-space:nowrap}
@@ -389,7 +420,7 @@ function vRosa(){
   '<div class="field">'+['A','C','D','P'].map(function(ro){return '<div class="frow">'+rows[ro].map(function(p){return pp(p)}).join('')+'</div>'}).join('')+'</div>'+
   '<div class="meta" style="margin-top:8px">Undici più schierabile per la giornata '+D.round+'. La riga colorata sotto il nome è lo stato: verde titolare, blu ballottaggio, giallo in dubbio, rosso fuori.</div>'+
   '<h2 class="sec">Panchina</h2><div class="bench">'+bench.map(function(p){return pp(p,nxt(p.id).s==='I')}).join('')+'</div></div>';
-  h+='<div style="min-width:0"><h2 class="sec" style="margin-top:0">Rosa completa</h2><div class="tw"><table class="rt"><thead><tr><th style="text-align:left">Giocatore</th><th>Quo</th><th>MV</th><th>FMV</th><th>Partite</th><th>Gol</th><th>Assist</th><th>G'+D.round+'</th><th>Scambio</th></tr></thead><tbody>';
+  h+='<div style="min-width:0"><h2 class="sec" style="margin-top:0">Rosa completa</h2><div class="tw"><table class="rt"><thead><tr><th style="text-align:left">Giocatore</th><th>Quo</th><th>MV</th><th>FMV</th><th data-s="Pg">Partite</th><th>Gol</th><th data-s="Ass">Assist</th><th>G'+D.round+'</th><th data-s="Sc.">Scambio</th></tr></thead><tbody>';
   r.sort(function(a,b){return RO[a.r]-RO[b.r]||sch(b)-sch(a)}).forEach(function(p){
     var s=(D.ps||{})[p.id]||{},pc=pct(p.id),f=fxOf(p.t,D.round),pr=prob(p.id),v=function(x){return x==null?'–':x};
     h+='<tr class="'+(xi[p.id]?'xi':'')+'"><td class="n"><span class="rb '+p.r+'">'+p.r+'</span> <span class="nm">'+esc(p.n)+'</span><div class="pb"><i class="b-'+nxt(p.id).s+'" style="width:'+pc+'%"></i></div><span class="meta">'+pc+'% · '+NXT[nxt(p.id).s]+'</span></td>'+
