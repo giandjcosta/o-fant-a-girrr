@@ -15,23 +15,30 @@ Lega O FANT A GIRRR. Dati aggiornati al 2026-10-07.
 - Atalanta - Venezia (lun 12/10 18:30)
 - Torino - Udinese (lun 12/10 20:45)
 
-## Calendario della lega (letto da Leghe il 2026-10-07)
+## Classic League: ultima giornata (1ª, G5 di Serie A)
 
-### Ultima giornata di lega (1ª)
+- Mariana Coneja 3 - 2 Grodah (punteggi 80.5 - 71)
+- Apo team 3 - 1 The Blue brothers (punteggi 77 - 70.5)
+- Atletico ma non troppo 1 - 5 Oranje VC (punteggi 67.5 - 89)
+- stif dc 1 - 3 AFA SELECCION (punteggi 68.5 - 76)
+- Real Madrink 3 - 2 WOA (punteggi 78 - 74.5)
 
-- Mariana Coneja 3 - 2 Grodah (punteggi 80.5 - 71.0)
-- Apo team 3 - 1 The Blue brothers (punteggi 77.0 - 70.5)
-- Atletico ma non troppo 1 - 5 Oranje VC (punteggi 67.5 - 89.0)
-- stif dc 1 - 3 AFA SELECCION (punteggi 68.5 - 76.0)
-- Real Madrink 3 - 2 WOA (punteggi 78.0 - 74.5)
-
-### Prossima giornata di lega (2ª)
+## Classic League: prossima giornata (2ª, G6 di Serie A)
 
 - The Blue brothers - Mariana Coneja
 - AFA SELECCION - Real Madrink
 - Oranje VC - stif dc
 - Grodah - Atletico ma non troppo
 - WOA - Apo team
+
+## Champions Cup: prossima giornata (1ª, G6 di Serie A)
+
+- Girone A: Mariana Coneja - The Blue brothers
+- Girone A: stif dc - Real Madrink
+- Girone B: Grodah - WOA
+- Girone B: Oranje VC - AFA SELECCION
+- Girone A: riposa Apo team
+- Girone B: riposa Atletico ma non troppo
 
 ## Infortunati tra i giocatori delle rose
 

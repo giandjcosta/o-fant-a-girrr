@@ -85,19 +85,29 @@ def riepilogo_generale():
         r.append(f"- {casa} - {fuori} ({quando})")
     r.append("")
 
-    lg = D.get("lg")
-    if lg:
-        r += [f"## Calendario della lega (letto da Leghe il {lg['date']})", ""]
-        if lg.get("last"):
-            r += [f"### Ultima giornata di lega ({lg['last']['n']}ª)", ""]
-            for m in lg["last"]["m"]:
-                r.append(f"- {m[0]} {m[1]} - {m[4]} {m[3]} (punteggi {m[2]} - {m[5]})")
-            r.append("")
-        if lg.get("next"):
-            r += [f"### Prossima giornata di lega ({lg['next']['n']}ª)", ""]
-            for m in lg["next"]["m"]:
-                r.append(f"- {m[0]} - {m[1]}")
-            r.append("")
+    cal = D.get("cal")
+    if cal:
+        nomi = {"lega": "Classic League", "cup": "Champions Cup"}
+        for comp in ("lega", "cup"):
+            giocate = [x for x in cal[comp] if any(m[-1] != "-" for m in x["m"])]
+            future = [x for x in cal[comp] if x["sa"] >= g and not any(m[-1] != "-" for m in x["m"])]
+            if giocate:
+                u = giocate[-1]
+                r += [f"## {nomi[comp]}: ultima giornata ({u['n']}ª, G{u['sa']} di Serie A)", ""]
+                for m in u["m"]:
+                    if comp == "cup":
+                        r.append(f"- Girone {m[0]}: {m[1]} {m[5].replace('-', ' - ')} {m[4]} (punteggi {m[2]} - {m[3]})")
+                    else:
+                        r.append(f"- {m[0]} {m[4].replace('-', ' - ')} {m[3]} (punteggi {m[1]} - {m[2]})")
+                r.append("")
+            if future:
+                n = future[0]
+                r += [f"## {nomi[comp]}: prossima giornata ({n['n']}ª, G{n['sa']} di Serie A)", ""]
+                for m in n["m"]:
+                    r.append(f"- Girone {m[0]}: {m[1]} - {m[4]}" if comp == "cup" else f"- {m[0]} - {m[3]}")
+                for girone, squadra in n.get("rest", []):
+                    r.append(f"- Girone {girone}: riposa {squadra}")
+                r.append("")
 
     in_rosa = {p["id"] for t in D["teams"] for p in t["pl"]}
     inf = [e for e in D.get("inj", []) if e.get("id") in in_rosa]
