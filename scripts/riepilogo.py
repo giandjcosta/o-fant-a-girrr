@@ -30,11 +30,32 @@ def stato(pid):
     return D.get("st", {}).get(str(pid), {"s": "P"})
 
 
+def _secondi_portieri():
+    """Portieri di riserva dello stesso club del titolare in rosa: non vanno segnalati."""
+    out = set()
+    for t in D["teams"]:
+        por = [(str(x["id"]), giocatore(str(x["id"]))) for x in t["pl"]]
+        por = [(i, g) for i, g in por if g.get("r") == "P"]
+        for i, a in por:
+            for j, b in por:
+                if i != j and a.get("t") == b.get("t") and (a.get("f") or 0) < (b.get("f") or 0):
+                    out.add(i)
+    return out
+
+
+SECONDI = None
+
+
 def percentuale_scambio(pid):
     """Stessa formula della pagina: valore del giocatore, ultime 6 giornate, stato."""
+    global SECONDI
+    if SECONDI is None:
+        SECONDI = _secondi_portieri()
     pid = str(pid)
     fvm = giocatore(pid).get("f") or 0
     base = round(min(45, max(3, 50 - 12 * math.log(1 + fvm))))
+    if pid in SECONDI:
+        return min(base, 20)
     log = D.get("log", {}).get(pid, {})
     tenuto = int(pid) in D.get("keep", [])
     giornate = sorted((int(g) for g in log if log[g]), reverse=True)[:6]
@@ -42,7 +63,7 @@ def percentuale_scambio(pid):
     for g in giornate:
         esito = log[str(g)]
         punti = D["w"].get(esito, 0)
-        if tenuto and esito == "I":
+        if tenuto and punti > 0:
             punti = 0
         somma += punti * peso
         peso *= D.get("decay", 0.85)
