@@ -521,7 +521,7 @@ function vSwap(){
   var list=roster().map(function(p){p.pr=prob(p.id);return p});
   if(filter!=='ALL')list=list.filter(function(p){return p.r===filter});
   list.sort(function(a,b){return b.pr-a.pr||b.c-a.c});
-  var h='<div class="note">La percentuale di scambio in vista del mercato di gennaio. Parte dal valore del giocatore, sale quando resta in panchina o è indisponibile e scende quando gioca titolare. Il giudizio (Tieni, Osserva, Da scambiare) lo calcola la pagina. Tocca un giocatore per vedere le sue giornate.</div>';
+  var h='<div class="note">La percentuale di scambio in vista del mercato di gennaio. Si parte dal valore del giocatore: la percentuale sale quando resta in panchina o è indisponibile e scende quando gioca titolare. Il giudizio (Tieni, Osserva, Da scambiare) lo calcola la pagina. Tocca un giocatore per vedere le sue giornate.</div>';
   h+='<div class="seg">'+['ALL','P','D','C','A'].map(function(r){return '<button aria-pressed="'+(filter===r)+'" data-f="'+r+'">'+(r==='ALL'?'Tutti':ROLES[r].slice(0,3)+'.')+'</button>'}).join('')+'</div><div class="list">';
   list.forEach(function(p){
     var v=verdict(p.pr),isO=open===p.id;
