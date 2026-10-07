@@ -283,6 +283,9 @@ table.rt{min-width:0;table-layout:auto}
 .rt td .fx,.rt td .isb{padding:2px 3px}
 }
 
+.modlab{font:700 .95rem var(--fb);color:var(--ink);letter-spacing:.02em}
+:root[data-skin="seriea"] .modlab{color:#fff}
+
 .pick{font:700 1.05rem var(--fh);text-transform:var(--tt);padding:10px 12px;border-radius:12px;border:1px solid var(--or);background:var(--card2);color:var(--ink);max-width:100%}
 .stb{font:700 .72rem var(--fb);text-transform:uppercase;letter-spacing:.05em;padding:2px 7px;border-radius:4px;white-space:nowrap}
 .stb{border-radius:999px}.s-T{background:var(--ok);color:#0b2200}.s-B{background:var(--mid);color:#001a33}.s-R{background:var(--warn);color:#1b1300}.s-D{background:var(--warn);color:#1b1300}.s-P{background:var(--line);color:var(--ink)}.s-I{background:var(--bad);color:#2b0008}
@@ -416,7 +419,7 @@ function vRosa(){
   var r=roster(),mod=MODS[LS.mod]?LS.mod:'3-5-2',m=MODS[mod],need={P:1,D:m[0],C:m[1],A:m[2]},xi={},rows={P:[],D:[],C:[],A:[]},bench=[];
   r.slice().sort(function(a,b){return sch(b)-sch(a)}).forEach(function(p){if(rows[p.r].length<need[p.r]&&nxt(p.id).s!=='I'){rows[p.r].push(p);xi[p.id]=1}else bench.push(p)});
   bench.sort(function(a,b){return (nxt(a.id).s==='I')-(nxt(b.id).s==='I')||sch(b)-sch(a)});
-  var h='<div class="rosa"><div><div class="tools" style="margin-bottom:10px"><label for="mod" class="meta">Modulo</label><select id="mod" class="pick" data-mod="1">'+Object.keys(MODS).slice(0,7).map(function(k){return '<option'+(k===mod?' selected':'')+'>'+k+'</option>'}).join('')+'</select></div>'+
+  var h='<div class="rosa"><div><div class="tools" style="margin-bottom:10px"><label for="mod" class="modlab">Modulo</label><select id="mod" class="pick" data-mod="1">'+Object.keys(MODS).slice(0,7).map(function(k){return '<option'+(k===mod?' selected':'')+'>'+k+'</option>'}).join('')+'</select></div>'+
   '<div class="field">'+['A','C','D','P'].map(function(ro){return '<div class="frow">'+rows[ro].map(function(p){return pp(p)}).join('')+'</div>'}).join('')+'</div>'+
   '<div class="meta" style="margin-top:8px">Undici più schierabile per la giornata '+D.round+'. La riga colorata sotto il nome è lo stato: verde titolare, blu ballottaggio, giallo in dubbio, rosso fuori.</div>'+
   '<h2 class="sec">Panchina</h2><div class="bench">'+bench.map(function(p){return pp(p,nxt(p.id).s==='I')}).join('')+'</div></div>';
