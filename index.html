@@ -217,6 +217,7 @@ details.help h3{margin:0;font-size:1.15rem}
 @keyframes pop{from{opacity:0;transform:scale(.7)}to{opacity:1;transform:none}}
 @keyframes draw{from{stroke-dashoffset:1}to{stroke-dashoffset:0}}
 .ta,.tp,.tg{pointer-events:none}
+.enter .swaps>*{animation:rise .45s cubic-bezier(.2,.8,.2,1) both}
 
 .pick{font:700 1.05rem var(--fh);text-transform:var(--tt);padding:10px 12px;border-radius:12px;border:1px solid var(--or);background:var(--card2);color:var(--ink);max-width:100%}
 .stb{font:700 .72rem var(--fb);text-transform:uppercase;letter-spacing:.05em;padding:2px 7px;border-radius:4px;white-space:nowrap}
@@ -454,18 +455,24 @@ function vFa(){
   return h+'</div>';
 }
 function vPitch(){
-  var risk=roster().map(function(p){p.pr=prob(p.id);return p}).filter(function(p){return p.pr>=20&&!isKeep(p.id)}).sort(function(a,b){return b.pr-a.pr}).slice(0,6);
-  if(!risk.length)return '<div class="empty">Nessun giocatore sopra il 20%. Quando le percentuali salgono, qui compaiono i possibili cambi.</div>';
-  var used={},h='<div class="note">Scambi suggeriti per gennaio: chi cedere dalla tua rosa e il miglior svincolato dello stesso ruolo adesso.</div><div class="swaps">';
-  risk.forEach(function(p){
-    var c=D.fa.map(String).filter(function(i){return P(i).r===p.r&&!used[i]}).map(function(i){return {id:i,sc:score(i)}}).sort(function(a,b){return b.sc-a.sc})[0];
-    if(c)used[c.id]=1;
-    h+='<article class="card swap"><div class="pair"><div class="cedi"><div class="lb">Cedi</div>'+fig(p.t,cfg.shirt,p.id,LS.photo[p.id])+'<div class="nm">'+esc(p.n)+'</div><div class="sm">'+esc(p.t)+'</div></div>'+
-    '<svg class="spin" viewBox="0 0 36 36" aria-hidden="true"><path d="M8 14 A11 11 0 0 1 28 12" fill="none" stroke="var(--ok)" stroke-width="3.5" stroke-linecap="round"/><polygon points="30,5 31,15 22,12" fill="var(--ok)"/><path d="M28 22 A11 11 0 0 1 8 24" fill="none" stroke="var(--or)" stroke-width="3.5" stroke-linecap="round"/><polygon points="6,31 5,21 14,24" fill="var(--or)"/></svg>'+
-    (c?'<div class="prendi"><div class="lb">Prendi</div>'+fig(P(c.id).t,cfg.shirtNew,c.id,null)+'<div class="nm">'+esc(P(c.id).n)+'</div><div class="sm">'+esc(P(c.id).t)+'</div></div>':'<div class="sm">Nessun candidato</div>')+'</div>'+
-    '<div class="foot"><span>'+esc(ROLES[p.r])+' · Scambio <b>'+p.pr+'%</b></span><span>'+(c?'Punti svincolato <b>'+c.sc+'</b>':'')+'</span></div></article>';
+  var all=roster().map(function(p){p.pr=prob(p.id);return p}),used={},any=false;
+  var h='<div class="note">Scambi suggeriti per gennaio, divisi per ruolo: chi cedere dalla tua rosa e il miglior svincolato dello stesso ruolo adesso. Compaiono i giocatori dal 20% in su.</div>';
+  ['P','D','C','A'].forEach(function(ro){
+    var risk=all.filter(function(p){return p.r===ro&&p.pr>=20&&!isKeep(p.id)}).sort(function(a,b){return b.pr-a.pr}).slice(0,3);
+    h+='<h2 class="sec">'+{P:'Portieri',D:'Difensori',C:'Centrocampisti',A:'Attaccanti'}[ro]+'</h2>';
+    if(!risk.length){h+='<div class="meta" style="margin-bottom:6px">Nessuno a rischio in questo ruolo.</div>';return}
+    any=true;h+='<div class="swaps">';
+    risk.forEach(function(p){
+      var c=D.fa.map(String).filter(function(i){return P(i).r===p.r&&!used[i]}).map(function(i){return {id:i,sc:score(i)}}).sort(function(a,b){return b.sc-a.sc})[0];
+      if(c)used[c.id]=1;
+      h+='<article class="card swap"><div class="pair"><div class="cedi"><div class="lb">Cedi</div>'+fig(p.t,cfg.shirt,p.id,LS.photo[p.id])+'<div class="nm">'+esc(p.n)+'</div><div class="sm">'+esc(p.t)+'</div></div>'+
+      '<svg class="spin" viewBox="0 0 36 36" aria-hidden="true"><path d="M8 14 A11 11 0 0 1 28 12" fill="none" stroke="var(--ok)" stroke-width="3.5" stroke-linecap="round"/><polygon points="30,5 31,15 22,12" fill="var(--ok)"/><path d="M28 22 A11 11 0 0 1 8 24" fill="none" stroke="var(--or)" stroke-width="3.5" stroke-linecap="round"/><polygon points="6,31 5,21 14,24" fill="var(--or)"/></svg>'+
+      (c?'<div class="prendi"><div class="lb">Prendi</div>'+fig(P(c.id).t,cfg.shirtNew,c.id,null)+'<div class="nm">'+esc(P(c.id).n)+'</div><div class="sm">'+esc(P(c.id).t)+'</div></div>':'<div class="sm">Nessun candidato</div>')+'</div>'+
+      '<div class="foot"><span>Scambio <b>'+p.pr+'%</b></span><span>'+(c?'Punti svincolato <b>'+c.sc+'</b>':'')+'</span></div></article>';
+    });
+    h+='</div>';
   });
-  return h+'</div>';
+  return h;
 }
 function vSet(){
   var m=D.manual||[],h='';
