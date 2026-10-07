@@ -294,6 +294,21 @@ table.rt{min-width:0;table-layout:auto}
 :root[data-skin="campo"] .field .pp .sb.b-T{background-color:#8dffa6}
 .edit .chips .chip{cursor:default}
 
+.why{margin-top:8px;font:500 .8rem/1.45 var(--fb);color:var(--ink)}
+.why b{font-weight:800;color:var(--ink);margin-right:2px}
+.why b::after{content:":"}
+.cmp{display:grid;grid-template-columns:70px 1fr 1fr;gap:4px 8px;font-size:.78rem;border-top:1px solid var(--line);padding-top:8px;align-items:start}
+.cmp>span,.cmp>b{min-width:0;overflow-wrap:anywhere}
+.cmp .lab{color:var(--mute);font-size:.72rem}
+.cmp .c1{color:var(--or);font:700 .8rem var(--fb)}.cmp .c2{color:var(--ok);font:700 .8rem var(--fb)}
+.cmp .nd{color:var(--mute);opacity:.8}
+.cmp .fxs{display:flex;flex-wrap:wrap;gap:3px}
+.cmp .fx{font-size:.62rem;padding:1px 4px}
+.vts{margin-top:8px;display:grid;gap:3px}
+.vt{display:grid;grid-template-columns:34px 38px 38px 1fr;gap:6px;font-size:.8rem;align-items:baseline}
+.vt span{color:var(--mute)}.vt b{font-variant-numeric:tabular-nums}.vt em{font-style:normal;color:var(--mute);font-size:.74rem}
+:root[data-skin="seriea"] .why,:root[data-skin="seriea"] .cmp{color:var(--ink)}
+
 .pick{font:700 1.05rem var(--fh);text-transform:var(--tt);padding:10px 12px;border-radius:12px;border:1px solid var(--or);background:var(--card2);color:var(--ink);max-width:100%}
 .stb{font:700 .72rem var(--fb);text-transform:uppercase;letter-spacing:.05em;padding:2px 7px;border-radius:4px;white-space:nowrap}
 .stb{border-radius:999px}.s-T{background:var(--ok);color:#0b2200}.s-B{background:var(--mid);color:#001a33}.s-R{background:var(--warn);color:#1b1300}.s-D{background:var(--warn);color:#1b1300}.s-P{background:var(--line);color:var(--ink)}.s-I{background:var(--bad);color:#2b0008}
@@ -512,6 +527,55 @@ function vGate(){
   '<input id="gc" aria-label="Codice" placeholder="Codice" autocomplete="off" autocapitalize="characters" maxlength="8" style="font:700 1.2rem var(--fb);letter-spacing:.2em;padding:10px;border-radius:6px;border:2px solid var(--line);background:var(--card);color:var(--ink);text-transform:uppercase">'+
   (gateErr?'<div style="color:var(--bad);font-weight:600">Codice non valido per questa squadra. Controlla maiuscole e numeri.</div>':'')+'<button class="btn pri" data-enter="1">Entra</button></div>';
 }
+function plur(n,s,p){return n+' '+(n===1?s:p)}
+function saldoOf(c,id){var f=P(id).f;return (c==null||f==null)?null:f-c}
+function why(p){
+  var id=p.id,log=logOf(id),rs=D.rounds.filter(function(r){return log[r]}),n=rs.length,k={T:0,S:0,P:0,I:0},out=[],st=nxt(id),nn=st.n||'',m,tail='',s=(D.ps||{})[id]||{};
+  rs.forEach(function(r){k[log[r]]++});
+  var cv=coverOf(id),pl=k.T+k.S;
+  if(cv)out.push('Secondo portiere di '+cv+': serve da copertura');
+  else if(n){
+    if(!pl)out.push(k.I===n?'Assente per infortunio o squalifica in tutte le '+n+' giornate':'Non ha mai giocato nelle prime '+n+' giornate'+(k.I?' (indisponibile in '+k.I+')':''));
+    else out.push((pl===n?(n===1?'Ha giocato la prima giornata':'Ha giocato tutte le '+n+' giornate'):'Ha giocato '+pl+(pl===1?' giornata':' giornate')+' su '+n)+(k.T?' (titolare in '+k.T+')':'')+(k.I?', indisponibile in '+k.I:''));
+  }
+  var parts=nn.split(' · ');if(parts.length>1)tail=' ('+parts.slice(1).join('; ').toLowerCase()+')';
+  if(!cv){
+    if(st.s==='B'&&(m=parts[0].match(/^In vantaggio su (.+)$/)))out.push('In ballottaggio: per ora è davanti a '+m[1]+tail);
+    else if(st.s==='R'&&(m=parts[0].match(/^Insidia (.+)$/)))out.push('Parte dietro a '+m[1]+' ma può scavalcarlo'+tail);
+    else if(st.s==='I'&&nn)out.push('Fuori: '+parts[0].charAt(0).toLowerCase()+parts[0].slice(1)+tail);
+    else if(st.s==='D'&&nn)out.push('In dubbio: '+parts[0].charAt(0).toLowerCase()+parts[0].slice(1)+tail);
+    else if(st.s==='T'&&nn)out.push(parts[0].charAt(0).toLowerCase()+parts[0].slice(1)+tail);
+    else if(st.s==='P'&&pl)out.push('Per la prossima giornata è in panchina');
+  }
+  if(s.pg>0&&s.fmv!=null)out.push('Fantamedia '+s.fmv+' in '+plur(s.pg,'partita','partite'));
+  var d=saldoOf(p.c,id);
+  if(d!=null&&d<=-3)out.push('Oggi vale '+plur(-d,'credito','crediti')+' in meno di quanto l\'hai pagato');
+  else if(d!=null&&d>=3)out.push('Oggi vale '+plur(d,'credito','crediti')+' in più di quanto l\'hai pagato');
+  return out.length?'<div class="why"><b>Perché</b> '+out.map(esc).join(' · ')+'</div>':'';
+}
+function saldoChip(p){
+  var d=saldoOf(p.c,p.id);if(d==null)return '';
+  return '<span class="stat" title="Valore di oggi (FVM) meno i crediti spesi all\'asta">Saldo<b style="color:'+(d>0?'var(--ok)':d<0?'var(--bad)':'var(--ink)')+'">'+(d>0?'+':d<0?'−':'')+Math.abs(d)+'</b></span>';
+}
+var SHORT={T:'Titolare',B:'Ballottaggio',R:'Riserva',D:'In dubbio',P:'Panchina',I:'Fuori'};
+function statsOf(id){
+  var s=(D.ps||{})[id],f=faStat(id);
+  if(s)return {pg:s.pg,fm:s.fmv,ga:s.g+' · '+s.as};
+  return {pg:null,fm:f.fm!=null?f.fm:null,ga:null};
+}
+function cmpBlock(p,c){
+  var a=statsOf(p.id),b=statsOf(c.id),nd=function(x){return x==null?'<span class="nd">n.d.</span>':esc(x)};
+  var rows=[['Stato',esc(SHORT[nxt(p.id).s]),esc(SHORT[nxt(c.id).s])],
+    ['Partite',nd(a.pg),nd(b.pg)],['Fantamedia',nd(a.fm),nd(b.fm)],['Gol · Assist',nd(a.ga),nd(b.ga)],
+    ['FVM',nd(P(p.id).f),nd(P(c.id).f)],['Pagato',nd(p.c),'<span class="nd">–</span>'],
+    ['Prossime','<div class="fxs">'+fxChips(p.t)+'</div>','<div class="fxs">'+fxChips(P(c.id).t)+'</div>']];
+  return '<div class="cmp"><span></span><b class="c1">Cedi</b><b class="c2">Prendi</b>'+rows.map(function(r){return '<span class="lab">'+r[0]+'</span><span>'+r[1]+'</span><span>'+r[2]+'</span>'}).join('')+'</div>';
+}
+function votesBlock(id){
+  var v=(D.votes||{})[id]||{},rs=D.rounds.filter(function(r){return v[r]}),f=function(x){return x==null?'–':x};
+  if(!rs.length)return '';
+  return '<div class="vts"><div class="meta">Voti giornata per giornata: voto, fantavoto e bonus.</div>'+rs.map(function(r){var x=v[r];return '<div class="vt"><span>G'+r+'</span><b>'+esc(f(x.v))+'</b><b>'+esc(f(x.f))+'</b><em>'+esc((x.b||[]).join(', '))+'</em></div>'}).join('')+'</div>';
+}
 function chipsRO(id){
   var log=logOf(id),l=D.rounds.filter(function(r){return log[r]}).slice(-8);
   if(!l.length)return '';
@@ -528,7 +592,7 @@ function vSwap(){
     var cl=p.pr<35?'var(--ok)':p.pr<60?'var(--warn)':'var(--bad)';
     h+='<article class="card"><div class="row" data-o="'+p.id+'" tabindex="0" role="button" aria-expanded="'+isO+'">'+fig(p.t,cfg.shirt,p.id,LS.photo[p.id])+
     '<div style="min-width:0"><div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap"><span class="rb '+p.r+'">'+p.r+'</span><span class="name">'+esc(p.n)+'</span><span class="verdict '+v[1]+'">'+v[0]+'</span></div>'+
-    '<div class="meta">'+esc(ROLES[p.r])+' · '+esc(p.t)+'</div><div class="stats"><span class="stat">Pagato<b>'+esc(p.c)+'</b></span><span class="stat">FVM<b>'+esc(p.f)+'</b></span><span class="stat">G'+D.round+'<b>'+NXT[nxt(p.id).s]+'</b></span></div>'+chipsRO(p.id)+'</div>'+
+    '<div class="meta">'+esc(ROLES[p.r])+' · '+esc(p.t)+'</div><div class="stats"><span class="stat">Pagato<b>'+esc(p.c)+'</b></span><span class="stat">FVM<b>'+esc(p.f)+'</b></span>'+saldoChip(p)+'<span class="stat">G'+D.round+'<b>'+NXT[nxt(p.id).s]+'</b></span></div>'+chipsRO(p.id)+why(p)+'</div>'+
     '<svg class="ring" viewBox="0 0 68 68" role="img" aria-label="Probabilità di scambio '+p.pr+'%"><circle cx="34" cy="34" r="28" fill="none" stroke="var(--line)" stroke-width="7"/><circle class="arc" cx="34" cy="34" r="28" fill="none" stroke="'+cl+'" stroke-width="7" stroke-linecap="round" stroke-dasharray="'+(p.pr/100*175.9).toFixed(1)+' 175.9" transform="rotate(-90 34 34)"/><text x="34" y="41" text-anchor="middle">'+p.pr+'%</text></svg></div>';
     if(isO)h+=editor(p);
     h+='</article>';
@@ -539,7 +603,7 @@ function editor(p){
   var log=logOf(p.id),h='<div class="edit">'+(coverOf(p.id)?'<div class="meta" style="margin-bottom:8px"><b>Secondo portiere di '+esc(coverOf(p.id))+'.</b> È normale che non giochi: serve da copertura, quindi la percentuale resta bassa.</div>':'')+'<div class="meta">Le sue giornate di Serie A fin qui: T titolare, S subentrato, P non ha giocato, I infortunato o squalificato. Sono lette dai tabellini e servono a calcolare la percentuale.</div><div class="chips">';
   D.rounds.filter(function(r){return log[r]}).forEach(function(r){var s=log[r];h+='<span class="chip" data-s="'+esc(s)+'">G'+r+'<b>'+s+'</b></span>'});
   if(!D.rounds.some(function(r){return log[r]}))h+='<span class="meta">Nessuna giornata ancora registrata.</span>';
-  h+='</div>'+trend(p.id)+'';
+  h+='</div>'+votesBlock(p.id)+trend(p.id)+'';
   h+='<div class="tools"><label class="btn">Foto<input type="file" accept="image/*" hidden data-photo="'+p.id+'" id="f_'+p.id+'"></label>'+(LS.photo[p.id]?'<button class="btn" data-nophoto="'+p.id+'">Togli foto</button>':'')+'</div>';
   return h+'</div>';
 }
@@ -565,7 +629,7 @@ function vPitch(){
   var all=roster().map(function(p){p.pr=prob(p.id);return p}),used={},any=false;
   var h='<div class="note">Gli scambi suggeriti per gennaio, divisi per ruolo: chi cedere dalla tua rosa e il miglior svincolato disponibile nello stesso ruolo. Sono inclusi i giocatori con una percentuale di scambio dal 20% in su.</div>';
   ['P','D','C','A'].forEach(function(ro){
-    var risk=all.filter(function(p){return p.r===ro&&p.pr>=20&&!isKeep(p.id)}).sort(function(a,b){return b.pr-a.pr}).slice(0,3);
+    var risk=all.filter(function(p){return p.r===ro&&p.pr>=20&&!isKeep(p.id)&&!coverOf(p.id)}).sort(function(a,b){return b.pr-a.pr}).slice(0,3);
     h+='<h2 class="sec">'+{P:'Portieri',D:'Difensori',C:'Centrocampisti',A:'Attaccanti'}[ro]+'</h2>';
     if(!risk.length){h+='<div class="hint" style="margin:0 0 6px">Nessun giocatore a rischio in questo ruolo.</div>';return}
     any=true;h+='<div class="swaps">';
@@ -575,7 +639,7 @@ function vPitch(){
       h+='<article class="card swap"><div class="pair"><div class="cedi"><div class="lb">Cedi</div>'+fig(p.t,cfg.shirt,p.id,LS.photo[p.id])+'<div class="nm">'+esc(p.n)+'</div><div class="sm">'+esc(p.t)+'</div></div>'+
       '<svg class="spin" viewBox="0 0 36 36" aria-hidden="true"><path d="M8 14 A11 11 0 0 1 28 12" fill="none" stroke="var(--ok)" stroke-width="3.5" stroke-linecap="round"/><polygon points="30,5 31,15 22,12" fill="var(--ok)"/><path d="M28 22 A11 11 0 0 1 8 24" fill="none" stroke="var(--or)" stroke-width="3.5" stroke-linecap="round"/><polygon points="6,31 5,21 14,24" fill="var(--or)"/></svg>'+
       (c?'<div class="prendi"><div class="lb">Prendi</div>'+fig(P(c.id).t,cfg.shirtNew,c.id,null)+'<div class="nm">'+esc(P(c.id).n)+'</div><div class="sm">'+esc(P(c.id).t)+'</div></div>':'<div class="sm">Nessun candidato</div>')+'</div>'+
-      '<div class="foot"><span>Scambio <b>'+p.pr+'%</b></span><span>'+(c?'Punti svincolato <b>'+c.sc+'</b>':'')+'</span></div></article>';
+      (c?cmpBlock(p,c):'')+'<div class="foot"><span>Scambio <b>'+p.pr+'%</b></span><span>'+(c?'Punti svincolato <b>'+c.sc+'</b>':'')+'</span></div></article>';
     });
     h+='</div>';
   });
@@ -618,6 +682,9 @@ function vSet(){
     ['Come si calcola','Si parte dal valore del giocatore: più vale, più la percentuale è bassa. Poi sale di '+D.w.P+' punti per ogni partita non giocata e di '+D.w.I+' per ogni assenza per infortunio o squalifica, mentre scende di '+Math.abs(D.w.T)+' a ogni partita da titolare. Le giornate più recenti pesano di più.'],
     ['Pagato','I crediti spesi all\'asta per quel giocatore.'],
     ['FVM','Fantavalore di mercato: quanto vale oggi il giocatore secondo Fantacalcio.'],
+    ['Perché','La riga sotto le statistiche spiega da cosa nasce la percentuale: giornate giocate, chi gli contende il posto, tipo di infortunio e differenza tra valore di oggi e crediti spesi.'],
+    ['Saldo','La differenza tra il valore di oggi (FVM) e i crediti spesi all\'asta. In verde chi vale più di quanto l\'hai pagato, in rosso chi vale meno. È una stima, perché l\'FVM cambia nel tempo.'],
+    ['Voti giornata per giornata','Aprendo un giocatore compaiono voto, fantavoto e bonus di ogni partita, quando i dati sono disponibili.'],
     ['Quadratini T, S, P, I','Le giornate di Serie A disputate fin qui: T titolare, S subentrato, P non ha giocato, I infortunato o squalificato. Si aggiornano da soli dopo ogni giornata.'],
     ['Grafico','L\'andamento della percentuale di scambio dall\'inizio del campionato. Tocca un punto per vedere il valore di quella giornata.']]);
   h+=sec('Svincolati','I giocatori liberi, che nessuna squadra della lega ha in rosa, ordinati dal più interessante.',[
@@ -630,7 +697,8 @@ function vSet(){
     ['Cedi','Il tuo giocatore con la percentuale di scambio più alta in quel ruolo.'],
     ['Prendi','Lo svincolato con il punteggio più alto nello stesso ruolo.'],
     ['Scambio','La percentuale di scambio del giocatore da cedere.'],
-    ['Punti svincolato','Il punteggio del giocatore da prendere.']]);
+    ['Punti svincolato','Il punteggio del giocatore da prendere.'],
+    ['Confronto','Sotto ogni coppia, i due giocatori a confronto: stato per la prossima giornata, partite, fantamedia, gol e assist, FVM e prossimi avversari. Dove un dato non è ancora disponibile c\'è «n.d.».']]);
   h+=sec('Infortunati','I giocatori fermi o acciaccati, con il motivo e i tempi di rientro previsti. Prima i tuoi, poi quelli delle altre rose della lega, senza indicare a chi appartengono.',[
     ['Salta G'+D.round,'Non sarà disponibile per la prossima giornata.'],
     ['In dubbio','Può recuperare: conviene ricontrollare a ridosso della partita.']]);
