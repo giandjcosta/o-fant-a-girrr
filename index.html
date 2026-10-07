@@ -13,7 +13,7 @@
 <style>
 /* Layout: night-stadium app. Header + tile tabs, glowing violet cards, swap cards (cedi/prendi), ring gauges.
    Single dark look by choice. Palette: deep indigo ground, violet cards, orange = cedi/risk, lime = prendi/ok, gold = gauge. */
-:root{--fieldA:#2a1a7a;--fieldB:#1a0f55;color-scheme:dark;--fh:Rajdhani,'Saira Condensed',system-ui,sans-serif;--fb:Rajdhani,system-ui,sans-serif;--tt:none;--rad:16px;--tileA:#2c1873;--tileB:#1a0e47;--accA:#b3246f;--accB:#5c1c8f;--acc-ink:#ffffff;--acc-line:#e85aa8;--halo:124,92,255;--head:transparent;--head-ink:#f3efff;--body:radial-gradient(1200px 600px at 80% -10%,#3a1d8a 0%,transparent 60%),radial-gradient(900px 500px at -10% 30%,#2a1470 0%,transparent 55%);--sel:#b3246f;--sel-ink:#ffffff;--num:#ffc63a;--bg:#0e0730;--bg2:#1a0f45;--card:#22135a;--card2:#170c40;--ink:#f3efff;--mute:#a99fd0;--line:#4a2bd6;--glow:#7c5cff;--or:#ff5fa2;--or-ink:#1c0b00;--ok:#9cf24a;--mid:#4aa8ff;--warn:#ffc63a;--bad:#ff4f6d;--skin:#d9cdea;--skin2:#b3a3d6;--hair:#1c1238;--out:#0a0520;--chalk:#f3efff}
+:root{--fieldA:#2a1a7a;--hl:#ffc63a;--hl-ink:#2b1d00;--hl-bg:rgba(255,198,58,.13);--hl-name:#ffc63a;--fieldB:#1a0f55;color-scheme:dark;--fh:Rajdhani,'Saira Condensed',system-ui,sans-serif;--fb:Rajdhani,system-ui,sans-serif;--tt:none;--rad:16px;--tileA:#2c1873;--tileB:#1a0e47;--accA:#b3246f;--accB:#5c1c8f;--acc-ink:#ffffff;--acc-line:#e85aa8;--halo:124,92,255;--head:transparent;--head-ink:#f3efff;--body:radial-gradient(1200px 600px at 80% -10%,#3a1d8a 0%,transparent 60%),radial-gradient(900px 500px at -10% 30%,#2a1470 0%,transparent 55%);--sel:#b3246f;--sel-ink:#ffffff;--num:#ffc63a;--bg:#0e0730;--bg2:#1a0f45;--card:#22135a;--card2:#170c40;--ink:#f3efff;--mute:#a99fd0;--line:#4a2bd6;--glow:#7c5cff;--or:#ff5fa2;--or-ink:#1c0b00;--ok:#9cf24a;--mid:#4aa8ff;--warn:#ffc63a;--bad:#ff4f6d;--skin:#d9cdea;--skin2:#b3a3d6;--hair:#1c1238;--out:#0a0520;--chalk:#f3efff}
 html{background:var(--bg)}
 body{font-size:16px;background:var(--body),var(--bg);background-attachment:fixed;color:var(--ink);font-family:var(--fb);min-height:100%}
 *{box-sizing:border-box}
@@ -86,9 +86,9 @@ button:focus-visible,input:focus-visible,select:focus-visible,[role=button]:focu
 @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
 @media (max-width:480px){h1{font-size:1.8rem}.row{grid-template-columns:58px 1fr 58px;gap:10px}.row .pf{width:58px}.ring{width:58px;height:58px}}
 /* Skin 2: chiaro azzurro */
-:root[data-skin="azzurro"]{--fieldA:#0c2f9c;--fieldB:#081c66;--fh:Lato,system-ui,sans-serif;--fb:Lato,system-ui,sans-serif;--tt:none;color-scheme:light;--rad:18px;--bg:#e9effb;--bg2:#d5e4ff;--card:#ffffff;--card2:#f4f8ff;--ink:#0b2a6b;--mute:#56698f;--line:#c7d8fb;--glow:#0a5bff;--or:#f26a1b;--ok:#18a04a;--mid:#0a5bff;--warn:#e59a00;--bad:#e0304e;--skin:#e6dccf;--skin2:#c9bba8;--hair:#2b2622;--out:#0b1c40;--chalk:#ffffff;--tileA:#ffffff;--tileB:#f1f6ff;--accA:#0a53e4;--accB:#0a3fc0;--acc-ink:#ffffff;--acc-line:#0646d6;--halo:10,91,255;--head:radial-gradient(140% 120% at 110% 120%,#19a8ff 0 30%,transparent 31%),radial-gradient(120% 110% at -10% -40%,#0a3fc0 0 45%,transparent 46%),#0a53e4;--head-ink:#ffffff;--body:repeating-linear-gradient(125deg,rgba(255,255,255,.55) 0 120px,transparent 120px 260px);--sel:#0a5bff;--sel-ink:#ffffff;--num:#0646d6}
+:root[data-skin="azzurro"]{--hl:#0a53e4;--hl-ink:#ffffff;--hl-bg:#e8f0ff;--hl-name:#0a53e4;--fieldA:#0c2f9c;--fieldB:#081c66;--fh:Lato,system-ui,sans-serif;--fb:Lato,system-ui,sans-serif;--tt:none;color-scheme:light;--rad:18px;--bg:#e9effb;--bg2:#d5e4ff;--card:#ffffff;--card2:#f4f8ff;--ink:#0b2a6b;--mute:#56698f;--line:#c7d8fb;--glow:#0a5bff;--or:#f26a1b;--ok:#18a04a;--mid:#0a5bff;--warn:#e59a00;--bad:#e0304e;--skin:#e6dccf;--skin2:#c9bba8;--hair:#2b2622;--out:#0b1c40;--chalk:#ffffff;--tileA:#ffffff;--tileB:#f1f6ff;--accA:#0a53e4;--accB:#0a3fc0;--acc-ink:#ffffff;--acc-line:#0646d6;--halo:10,91,255;--head:radial-gradient(140% 120% at 110% 120%,#19a8ff 0 30%,transparent 31%),radial-gradient(120% 110% at -10% -40%,#0a3fc0 0 45%,transparent 46%),#0a53e4;--head-ink:#ffffff;--body:repeating-linear-gradient(125deg,rgba(255,255,255,.55) 0 120px,transparent 120px 260px);--sel:#0a5bff;--sel-ink:#ffffff;--num:#0646d6}
 /* Skin 3: Serie A (colori e atmosfera del sito e delle grafiche di campionato, senza loghi) */
-:root[data-skin="seriea"]{--fieldA:#12854b;--fieldB:#0c6638;--fh:Sora,system-ui,sans-serif;--fb:Sora,system-ui,sans-serif;--tt:uppercase;color-scheme:light;--rad:10px;--bg:#1b56b3;--bg2:#2aa3cf;--card:#ffffff;--card2:#f6f4f1;--ink:#0a1f5c;--mute:#51618c;--line:#d9e2f2;--glow:#17dccb;--or:#f0642a;--ok:#12a66a;--mid:#1c4fb0;--warn:#e7a400;--bad:#e2324f;--skin:#e6dccf;--skin2:#c9bba8;--hair:#2b2622;--out:#0a1433;--chalk:#ffffff;--tileA:#ffffff;--tileB:#ffffff;--accA:#17dccb;--accB:#17dccb;--acc-ink:#0a1f5c;--acc-line:#17dccb;--halo:28,79,176;--head:linear-gradient(100deg,#0a1f5c 0 58%,#1c4fb0 58% 100%);--head-ink:#ffffff;--body:linear-gradient(115deg,transparent 0 46%,rgba(255,255,255,.07) 46% 60%,transparent 60%),linear-gradient(245deg,transparent 0 46%,rgba(255,255,255,.07) 46% 60%,transparent 60%),linear-gradient(180deg,#1b56b3 0%,#2a8fd0 55%,#63dcd9 100%);--sel:#0a1f5c;--sel-ink:#ffffff;--num:#1c4fb0;--navbg:transparent}
+:root[data-skin="seriea"]{--hl:#17dccb;--hl-ink:#0a1f5c;--hl-bg:rgba(23,220,203,.16);--hl-name:#1c4fb0;--fieldA:#12854b;--fieldB:#0c6638;--fh:Sora,system-ui,sans-serif;--fb:Sora,system-ui,sans-serif;--tt:uppercase;color-scheme:light;--rad:10px;--bg:#1b56b3;--bg2:#2aa3cf;--card:#ffffff;--card2:#f6f4f1;--ink:#0a1f5c;--mute:#51618c;--line:#d9e2f2;--glow:#17dccb;--or:#f0642a;--ok:#12a66a;--mid:#1c4fb0;--warn:#e7a400;--bad:#e2324f;--skin:#e6dccf;--skin2:#c9bba8;--hair:#2b2622;--out:#0a1433;--chalk:#ffffff;--tileA:#ffffff;--tileB:#ffffff;--accA:#17dccb;--accB:#17dccb;--acc-ink:#0a1f5c;--acc-line:#17dccb;--halo:28,79,176;--head:linear-gradient(100deg,#0a1f5c 0 58%,#1c4fb0 58% 100%);--head-ink:#ffffff;--body:linear-gradient(115deg,transparent 0 46%,rgba(255,255,255,.07) 46% 60%,transparent 60%),linear-gradient(245deg,transparent 0 46%,rgba(255,255,255,.07) 46% 60%,transparent 60%),linear-gradient(180deg,#1b56b3 0%,#2a8fd0 55%,#63dcd9 100%);--sel:#0a1f5c;--sel-ink:#ffffff;--num:#1c4fb0;--navbg:transparent}
 :root[data-skin="seriea"] h1{font-size:1.7rem;letter-spacing:0}
 :root[data-skin="seriea"] .name,:root[data-skin="seriea"] .swap .nm,:root[data-skin="seriea"] .gr .nm{font-size:1.05rem;font-weight:800;letter-spacing:0}
 :root[data-skin="seriea"] nav button{font-size:.82rem;font-weight:700;color:#0a1f5c;border-color:transparent;box-shadow:0 2px 8px rgba(10,31,92,.18)}
@@ -101,7 +101,7 @@ button:focus-visible,input:focus-visible,select:focus-visible,[role=button]:focu
 :root[data-skin="seriea"] .verdict,:root[data-skin="seriea"] .stb{border-radius:4px}
 :root[data-skin="seriea"] .empty{background:rgba(255,255,255,.93)}
 /* Skin 4: album di figurine */
-:root[data-skin="campo"]{--fh:'Archivo Black','Arial Black',sans-serif;--fb:Archivo,system-ui,sans-serif;--tt:uppercase;--navbg:transparent;color-scheme:light;--fieldA:#2f9e4f;--fieldB:#268a43;--rad:6px;--bg:#f4ecd2;--bg2:#eadfbc;--card:#ffffff;--card2:#ffffff;--ink:#172a63;--mute:#5b6485;--line:#172a63;--glow:#e2001a;--or:#e2001a;--ok:#1c9a48;--mid:#1d5fd1;--warn:#f0a800;--bad:#e2001a;--out:#101b40;--chalk:#ffffff;--tileA:#ffd400;--tileB:#ffd400;--accA:#e2001a;--accB:#e2001a;--acc-ink:#ffffff;--acc-line:#172a63;--halo:23,42,99;--head:linear-gradient(180deg,#e2001a 0 calc(100% - 12px),#ffd400 calc(100% - 12px) 100%);--head-ink:#ffffff;--body:radial-gradient(rgba(23,42,99,.10) 1px,transparent 1.5px) 0 0/14px 14px;--sel:#172a63;--sel-ink:#ffd400;--num:#e2001a}
+:root[data-skin="campo"]{--hl:#e2001a;--hl-ink:#ffffff;--hl-bg:#fff3b8;--hl-name:#e2001a;--fh:'Archivo Black','Arial Black',sans-serif;--fb:Archivo,system-ui,sans-serif;--tt:uppercase;--navbg:transparent;color-scheme:light;--fieldA:#2f9e4f;--fieldB:#268a43;--rad:6px;--bg:#f4ecd2;--bg2:#eadfbc;--card:#ffffff;--card2:#ffffff;--ink:#172a63;--mute:#5b6485;--line:#172a63;--glow:#e2001a;--or:#e2001a;--ok:#1c9a48;--mid:#1d5fd1;--warn:#f0a800;--bad:#e2001a;--out:#101b40;--chalk:#ffffff;--tileA:#ffd400;--tileB:#ffd400;--accA:#e2001a;--accB:#e2001a;--acc-ink:#ffffff;--acc-line:#172a63;--halo:23,42,99;--head:linear-gradient(180deg,#e2001a 0 calc(100% - 12px),#ffd400 calc(100% - 12px) 100%);--head-ink:#ffffff;--body:radial-gradient(rgba(23,42,99,.10) 1px,transparent 1.5px) 0 0/14px 14px;--sel:#172a63;--sel-ink:#ffd400;--num:#e2001a}
 :root[data-skin="campo"] header{border:3px solid #172a63;box-shadow:4px 4px 0 #172a63;padding-bottom:26px}
 :root[data-skin="campo"] h1{color:#ffd400;text-shadow:2px 2px 0 #172a63;letter-spacing:0;font-size:1.7rem}
 :root[data-skin="campo"] nav button{border:2px solid #172a63;color:#172a63;font-size:.8rem;box-shadow:3px 3px 0 #172a63;letter-spacing:0}
@@ -227,6 +227,25 @@ header .btn{color:var(--head-ink);border-color:currentColor;background:transpare
 :root[data-skin="campo"] .b-P{background:#8a8f9c}
 :root[data-skin="campo"] .chip{color:#fff}
 :root[data-skin="campo"] .chip[data-s=P]{color:#2b1d00}
+/* Calendario: la partita della propria squadra */
+.me{color:var(--hl-name)}
+.tagme{display:inline-block;font:700 .66rem var(--fb);letter-spacing:.07em;text-transform:uppercase;background:var(--hl);color:var(--hl-ink);padding:2px 9px;border-radius:999px;margin-bottom:5px;vertical-align:middle}
+.gr .tagme+.stb{vertical-align:middle;margin-bottom:5px;display:inline-block}
+.gr.mine{background:var(--hl-bg);border:1.5px solid var(--hl);border-radius:calc(var(--rad) - 2px);padding:11px 12px;margin:8px -4px;box-shadow:0 0 16px rgba(var(--halo),.18)}
+.gr.mine .nm{font-size:1.2rem}
+.gr.mine .res{background:var(--hl);color:var(--hl-ink)}
+.nextme{background:linear-gradient(var(--hl-bg),var(--hl-bg)),linear-gradient(160deg,var(--card),var(--card2));border:1.5px solid var(--hl);margin-bottom:14px;text-align:center}
+.vs{display:flex;align-items:center;justify-content:center;gap:10px 14px;flex-wrap:wrap;margin:6px 0 4px}
+.vs .nm{font:700 1.5rem var(--fh);text-transform:var(--tt);line-height:1.1;overflow-wrap:anywhere}
+.vs i{font:700 .8rem var(--fb);font-style:normal;color:var(--mute);border:1px solid var(--line);border-radius:999px;padding:2px 8px;text-transform:uppercase}
+:root[data-skin="campo"] .gr.mine,:root[data-skin="campo"] .nextme{border-width:2px;box-shadow:3px 3px 0 #172a63}
+:root[data-skin="campo"] .nextme{background:#fff3b8}
+:root[data-skin="campo"] .vs .nm,:root[data-skin="seriea"] .vs .nm{font-size:1.15rem}
+:root[data-skin="seriea"] .gr.mine{box-shadow:none}
+:root[data-skin="seriea"] .nextme{background:linear-gradient(rgba(23,220,203,.16),rgba(23,220,203,.16)),#fff;border-color:#17dccb}
+:root[data-skin="seriea"] .gr.mine .nm,:root[data-skin="campo"] .gr.mine .nm{font-size:1.05rem}
+:root[data-skin="azzurro"] .gr.mine{box-shadow:none}
+.enter .nextme{animation:pop .5s cubic-bezier(.2,.9,.3,1.2) both}
 
 .pick{font:700 1.05rem var(--fh);text-transform:var(--tt);padding:10px 12px;border-radius:12px;border:1px solid var(--or);background:var(--card2);color:var(--ink);max-width:100%}
 .stb{font:700 .72rem var(--fb);text-transform:uppercase;letter-spacing:.05em;padding:2px 7px;border-radius:4px;white-space:nowrap}
@@ -391,8 +410,12 @@ function vDay(){
 function vLega(){
   var L=D.lg;if(!L)return '<div class="empty">Calendario della lega non ancora caricato.</div>';
   var me=team,h='<div class="note">Calendario della nostra lega: la prossima giornata e gli ultimi risultati, letti da Leghe Fantacalcio il '+new Date(L.date).toLocaleDateString('it-IT',{day:'numeric',month:'long'})+'. La classifica la trovi su Leghe.</div>';
-  if(L.next){var nx=L.next.m.filter(function(m){return m[0]===me||m[1]===me})[0];if(nx)h+='<div class="card" style="margin-bottom:14px"><div class="meta">Prossima partita · Giornata '+L.next.n+' (G'+L.next.sa+' di Serie A)</div><div class="name" style="margin-top:4px">'+esc(nx[0])+' – '+esc(nx[1])+'</div></div>'}
-  function box(title,ms,played){var o='<h2 class="sec">'+title+'</h2><div class="card">';ms.forEach(function(m){var mine=m[0]===me||m[played?3:1]===me;o+='<div class="gr"'+(mine?' style="font-weight:700"':'')+'><div style="min-width:0"><span class="nm">'+esc(m[0])+' – '+esc(m[played?3:1])+'</span>'+(played?'<div class="meta">Punteggi: '+m[2]+' – '+m[5]+'</div>':'')+'</div>'+(played?'<span class="res">'+m[1]+' – '+m[4]+'</span>':'')+'</div>'});return o+'</div>'}
+  function nm(x){return x===me?'<span class="me">'+esc(x)+'</span>':esc(x)}
+  if(L.next){var nx=L.next.m.filter(function(m){return m[0]===me||m[1]===me})[0];if(nx)h+='<div class="card nextme"><span class="tagme">La tua prossima partita</span><div class="vs"><span class="nm">'+nm(nx[0])+'</span><i>vs</i><span class="nm">'+nm(nx[1])+'</span></div><div class="meta">Giornata '+L.next.n+' di lega · G'+L.next.sa+' di Serie A · '+(nx[0]===me?'In casa':'In trasferta')+'</div></div>'}
+  function box(title,ms,played){var o='<h2 class="sec">'+title+'</h2><div class="card">';ms.forEach(function(m){
+    var a=m[0],b=m[played?3:1],mine=a===me||b===me,es='';
+    if(mine&&played){var mg=a===me?m[1]:m[4],og=a===me?m[4]:m[1];es=mg>og?'<span class="stb s-T">Vinta</span>':mg<og?'<span class="stb s-I">Persa</span>':'<span class="stb s-D">Pareggiata</span>'}
+    o+='<div class="gr'+(mine?' mine':'')+'"><div style="min-width:0">'+(mine?'<span class="tagme">La tua partita</span> '+es+'<br>':'')+'<span class="nm">'+nm(a)+' – '+nm(b)+'</span>'+(played?'<div class="meta">Punteggi: '+m[2]+' – '+m[5]+'</div>':'')+'</div>'+(played?'<span class="res">'+m[1]+' – '+m[4]+'</span>':'')+'</div>'});return o+'</div>'}
   if(L.last)h+=box('Ultima giornata · '+L.last.n+'ª (G'+L.last.sa+' di Serie A)',L.last.m,true);
   if(L.next)h+=box('Prossima giornata · '+L.next.n+'ª (G'+L.next.sa+' di Serie A)',L.next.m,false);
   return h;
