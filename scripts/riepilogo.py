@@ -87,11 +87,7 @@ def riepilogo_generale():
 
     lg = D.get("lg")
     if lg:
-        r += [f"## Classifica della lega (al {lg['date']})", "",
-              "| # | Squadra | Pt | G | V | N | P | GF | GS | Pt totali |", "|---|---|---|---|---|---|---|---|---|---|"]
-        for i, t in enumerate(lg["table"], 1):
-            r.append(f"| {i} | {t['t']} | {t['pt']} | {t['g']} | {t['v']} | {t['n']} | {t['p']} | {t['gf']} | {t['gs']} | {t['tot']} |")
-        r.append("")
+        r += [f"## Calendario della lega (letto da Leghe il {lg['date']})", ""]
         if lg.get("last"):
             r += [f"### Ultima giornata di lega ({lg['last']['n']}ª)", ""]
             for m in lg["last"]["m"]:
@@ -118,7 +114,7 @@ def riepilogo_generale():
 
     r += ["## Migliori svincolati", "",
           "Punteggio: piu' e' alto, piu' conviene. Unisce valore e probabilita' di giocare.", ""]
-    for ruolo in ("D", "C", "A"):
+    for ruolo in ("P", "D", "C", "A"):
         liberi = sorted((i for i in D["fa"] if giocatore(i)["r"] == ruolo),
                         key=punteggio_svincolato, reverse=True)[:5]
         r += [f"### {RUOLI[ruolo]}", "", "| Giocatore | Squadra | Stato | Avversario | Punteggio |", "|---|---|---|---|---|"]
@@ -148,8 +144,7 @@ def riepilogo_squadra(nome):
             p = giocatore(i)
             r.append(f"| {p['n']} | {p['t']} | {STATI[stato(i)['s']]} | {partita(p['t'], g)} | {percentuale_scambio(i)}% |")
         r.append("")
-    rischio = sorted((p["id"] for p in squadra["pl"] if giocatore(p["id"])["r"] != "P"),
-                     key=percentuale_scambio, reverse=True)[:5]
+    rischio = sorted((p["id"] for p in squadra["pl"]), key=percentuale_scambio, reverse=True)[:5]
     r += ["## Da tenere d'occhio per gennaio", ""]
     usati = set()
     for i in rischio:

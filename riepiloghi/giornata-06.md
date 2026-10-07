@@ -15,20 +15,7 @@ Lega O FANT A GIRRR. Dati aggiornati al 2026-10-07.
 - Atalanta - Venezia (lun 12/10 18:30)
 - Torino - Udinese (lun 12/10 20:45)
 
-## Classifica della lega (al 2026-10-07)
-
-| # | Squadra | Pt | G | V | N | P | GF | GS | Pt totali |
-|---|---|---|---|---|---|---|---|---|---|
-| 1 | Oranje VC | 3 | 1 | 1 | 0 | 0 | 5 | 1 | 89.0 |
-| 2 | Mariana Coneja | 3 | 1 | 1 | 0 | 0 | 3 | 2 | 80.5 |
-| 3 | Real Madrink | 3 | 1 | 1 | 0 | 0 | 3 | 2 | 78.0 |
-| 4 | Apo team | 3 | 1 | 1 | 0 | 0 | 3 | 1 | 77.0 |
-| 5 | AFA SELECCION | 3 | 1 | 1 | 0 | 0 | 3 | 1 | 76.0 |
-| 6 | WOA | 0 | 1 | 0 | 0 | 1 | 2 | 3 | 74.5 |
-| 7 | Grodah | 0 | 1 | 0 | 0 | 1 | 2 | 3 | 71.0 |
-| 8 | The Blue brothers | 0 | 1 | 0 | 0 | 1 | 1 | 3 | 70.5 |
-| 9 | stif dc | 0 | 1 | 0 | 0 | 1 | 1 | 3 | 68.5 |
-| 10 | Atletico ma non troppo | 0 | 1 | 0 | 0 | 1 | 1 | 5 | 67.5 |
+## Calendario della lega (letto da Leghe il 2026-10-07)
 
 ### Ultima giornata di lega (1ª)
 
@@ -88,6 +75,16 @@ Notizie pubbliche, senza indicare di chi e' ogni giocatore.
 ## Migliori svincolati
 
 Punteggio: piu' e' alto, piu' conviene. Unisce valore e probabilita' di giocare.
+
+### Portieri
+
+| Giocatore | Squadra | Stato | Avversario | Punteggio |
+|---|---|---|---|---|
+| Perri | Torino | Titolare | Udinese (c) | 68 |
+| Tornqvist | Monza | Titolare | Lazio (t) | 45 |
+| Turati | Sassuolo | Titolare | Milan (c) | 21 |
+| Thiam | Monza | Panchina | Lazio (t) | 6 |
+| Daffara | Parma | Panchina | Inter (t) | 3 |
 
 ### Difensori
 
