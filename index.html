@@ -528,7 +528,6 @@ function vGate(){
   (gateErr?'<div style="color:var(--bad);font-weight:600">Codice non valido per questa squadra. Controlla maiuscole e numeri.</div>':'')+'<button class="btn pri" data-enter="1">Entra</button></div>';
 }
 function plur(n,s,p){return n+' '+(n===1?s:p)}
-function saldoOf(c,id){var f=P(id).f;return (c==null||f==null)?null:f-c}
 function why(p){
   var id=p.id,log=logOf(id),rs=D.rounds.filter(function(r){return log[r]}),n=rs.length,k={T:0,S:0,P:0,I:0},out=[],st=nxt(id),nn=st.n||'',m,tail='',s=(D.ps||{})[id]||{};
   rs.forEach(function(r){k[log[r]]++});
@@ -548,14 +547,7 @@ function why(p){
     else if(st.s==='P'&&pl)out.push('Per la prossima giornata è in panchina');
   }
   if(s.pg>0&&s.fmv!=null)out.push('Fantamedia '+s.fmv+' in '+plur(s.pg,'partita','partite'));
-  var d=saldoOf(p.c,id);
-  if(d!=null&&d<=-3)out.push('Oggi vale '+plur(-d,'credito','crediti')+' in meno di quanto l\'hai pagato');
-  else if(d!=null&&d>=3)out.push('Oggi vale '+plur(d,'credito','crediti')+' in più di quanto l\'hai pagato');
   return out.length?'<div class="why"><b>Perché</b> '+out.map(esc).join(' · ')+'</div>':'';
-}
-function saldoChip(p){
-  var d=saldoOf(p.c,p.id);if(d==null)return '';
-  return '<span class="stat" title="Valore di oggi (FVM) meno i crediti spesi all\'asta">Saldo<b style="color:'+(d>0?'var(--ok)':d<0?'var(--bad)':'var(--ink)')+'">'+(d>0?'+':d<0?'−':'')+Math.abs(d)+'</b></span>';
 }
 var SHORT={T:'Titolare',B:'Ballottaggio',R:'Riserva',D:'In dubbio',P:'Panchina',I:'Fuori'};
 function statsOf(id){
@@ -592,7 +584,7 @@ function vSwap(){
     var cl=p.pr<35?'var(--ok)':p.pr<60?'var(--warn)':'var(--bad)';
     h+='<article class="card"><div class="row" data-o="'+p.id+'" tabindex="0" role="button" aria-expanded="'+isO+'">'+fig(p.t,cfg.shirt,p.id,LS.photo[p.id])+
     '<div style="min-width:0"><div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap"><span class="rb '+p.r+'">'+p.r+'</span><span class="name">'+esc(p.n)+'</span><span class="verdict '+v[1]+'">'+v[0]+'</span></div>'+
-    '<div class="meta">'+esc(ROLES[p.r])+' · '+esc(p.t)+'</div><div class="stats"><span class="stat">Pagato<b>'+esc(p.c)+'</b></span><span class="stat">FVM<b>'+esc(p.f)+'</b></span>'+saldoChip(p)+'<span class="stat">G'+D.round+'<b>'+NXT[nxt(p.id).s]+'</b></span></div>'+chipsRO(p.id)+why(p)+'</div>'+
+    '<div class="meta">'+esc(ROLES[p.r])+' · '+esc(p.t)+'</div><div class="stats"><span class="stat">Pagato<b>'+esc(p.c)+'</b></span><span class="stat">FVM<b>'+esc(p.f)+'</b></span>'+'<span class="stat">G'+D.round+'<b>'+NXT[nxt(p.id).s]+'</b></span></div>'+chipsRO(p.id)+why(p)+'</div>'+
     '<svg class="ring" viewBox="0 0 68 68" role="img" aria-label="Probabilità di scambio '+p.pr+'%"><circle cx="34" cy="34" r="28" fill="none" stroke="var(--line)" stroke-width="7"/><circle class="arc" cx="34" cy="34" r="28" fill="none" stroke="'+cl+'" stroke-width="7" stroke-linecap="round" stroke-dasharray="'+(p.pr/100*175.9).toFixed(1)+' 175.9" transform="rotate(-90 34 34)"/><text x="34" y="41" text-anchor="middle">'+p.pr+'%</text></svg></div>';
     if(isO)h+=editor(p);
     h+='</article>';
@@ -682,8 +674,7 @@ function vSet(){
     ['Come si calcola','Si parte dal valore del giocatore: più vale, più la percentuale è bassa. Poi sale di '+D.w.P+' punti per ogni partita non giocata e di '+D.w.I+' per ogni assenza per infortunio o squalifica, mentre scende di '+Math.abs(D.w.T)+' a ogni partita da titolare. Le giornate più recenti pesano di più.'],
     ['Pagato','I crediti spesi all\'asta per quel giocatore.'],
     ['FVM','Fantavalore di mercato: quanto vale oggi il giocatore secondo Fantacalcio.'],
-    ['Perché','La riga sotto le statistiche spiega da cosa nasce la percentuale: giornate giocate, chi gli contende il posto, tipo di infortunio e differenza tra valore di oggi e crediti spesi.'],
-    ['Saldo','La differenza tra il valore di oggi (FVM) e i crediti spesi all\'asta. In verde chi vale più di quanto l\'hai pagato, in rosso chi vale meno. È una stima, perché l\'FVM cambia nel tempo.'],
+    ['Perché','La riga sotto le statistiche spiega da cosa nasce la percentuale: giornate giocate, chi gli contende il posto, tipo di infortunio e fantamedia.'],
     ['Voti giornata per giornata','Aprendo un giocatore compaiono voto, fantavoto e bonus di ogni partita, quando i dati sono disponibili.'],
     ['Quadratini T, S, P, I','Le giornate di Serie A disputate fin qui: T titolare, S subentrato, P non ha giocato, I infortunato o squalificato. Si aggiornano da soli dopo ogni giornata.'],
     ['Grafico','L\'andamento della percentuale di scambio dall\'inizio del campionato. Tocca un punto per vedere il valore di quella giornata.']]);
