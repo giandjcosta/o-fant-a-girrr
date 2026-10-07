@@ -5,7 +5,8 @@ Uso:
     python3 scripts/riepilogo.py                 riepilogo generale della lega
     python3 scripts/riepilogo.py "Oranje VC"     aggiunge la parte della tua squadra (solo a schermo)
 
-Il riepilogo generale viene scritto in riepiloghi/giornata-NN.md e in RIEPILOGO.md.
+Il riepilogo generale viene scritto in riepiloghi/giornata-NN.md, in RIEPILOGO.md e come
+pagina da condividere in riepilogo.html.
 La parte di una singola squadra viene solo stampata, cosi' non finisce nel repository pubblico.
 """
 import json
@@ -166,13 +167,70 @@ def riepilogo_squadra(nome):
     return "\n".join(r)
 
 
+def in_html(md):
+    """Trasforma il riepilogo in una pagina leggibile dal telefono, da condividere con un link."""
+    import html
+    righe, out, in_lista, in_tab = md.split("\n"), [], False, False
+
+    def chiudi():
+        nonlocal in_lista, in_tab
+        if in_lista:
+            out.append("</ul>")
+            in_lista = False
+        if in_tab:
+            out.append("</tbody></table></div>")
+            in_tab = False
+
+    for riga in righe:
+        t = html.escape(riga)
+        if riga.startswith("|"):
+            celle = [c.strip() for c in t.strip("|").split("|")]
+            if set(riga.replace("|", "").strip()) <= {"-"}:
+                continue
+            if not in_tab:
+                chiudi()
+                out.append('<div class="tw"><table><thead><tr>' + "".join(f"<th>{c}</th>" for c in celle) + "</tr></thead><tbody>")
+                in_tab = True
+            else:
+                out.append("<tr>" + "".join(f"<td>{c}</td>" for c in celle) + "</tr>")
+        elif riga.startswith("- "):
+            if not in_lista:
+                chiudi()
+                out.append("<ul>")
+                in_lista = True
+            out.append(f"<li>{t[2:]}</li>")
+        elif riga.startswith("#"):
+            chiudi()
+            livello = len(riga) - len(riga.lstrip("#"))
+            out.append(f"<h{livello}>{html.escape(riga[livello:].strip())}</h{livello}>")
+        elif riga.strip():
+            chiudi()
+            out.append(f"<p>{t}</p>")
+    chiudi()
+    stile = ("body{margin:0;background:#0e0730;color:#f3efff;font:16px/1.5 system-ui,sans-serif}"
+             "main{max-width:760px;margin:0 auto;padding:20px 16px 48px}"
+             "h1{font-size:1.6rem;line-height:1.2}h2{font-size:1.2rem;margin-top:28px;color:#ffc63a}h3{font-size:1rem;margin-top:18px}"
+             "p,li{color:#cfc6ee}a{color:#ffc63a}"
+             ".tw{overflow-x:auto;border:1px solid #4a2bd6;border-radius:12px;margin:10px 0}"
+             "table{border-collapse:collapse;width:100%;font-size:.9rem}"
+             "th,td{padding:7px 9px;text-align:left;white-space:nowrap;border-bottom:1px solid #2c1873}"
+             "th{color:#a99fd0;font-weight:600}tr:last-child td{border-bottom:0}")
+    return ("<!doctype html>\n<html lang=\"it\"><head><meta charset=\"utf-8\">"
+            "<meta name=\"viewport\" content=\"width=device-width,initial-scale=1\"><meta name=\"robots\" content=\"noindex\">"
+            f"<title>Riepilogo giornata {D['round']}</title><style>{stile}</style></head><body><main>"
+            + "\n".join(out) + '<p><a href="./">Apri il sito della lega</a></p></main></body></html>\n')
+
+
 if __name__ == "__main__":
     testo = riepilogo_generale()
     cartella = ROOT / "riepiloghi"
     cartella.mkdir(exist_ok=True)
     (cartella / f"giornata-{D['round']:02d}.md").write_text(testo, encoding="utf-8")
     (ROOT / "RIEPILOGO.md").write_text(testo, encoding="utf-8")
-    print(f"Scritto riepiloghi/giornata-{D['round']:02d}.md e RIEPILOGO.md")
+    pagina = in_html(testo)
+    (ROOT / "riepilogo.html").write_text(pagina, encoding="utf-8")
+    (cartella / f"giornata-{D['round']:02d}.html").write_text(pagina.replace('href="./"', 'href="../"'), encoding="utf-8")
+    print(f"Scritto riepiloghi/giornata-{D['round']:02d}.md, RIEPILOGO.md e riepilogo.html")
     if len(sys.argv) > 1:
         print()
         print(riepilogo_squadra(" ".join(sys.argv[1:])))
