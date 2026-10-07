@@ -583,8 +583,8 @@ function vPitch(){
 }
 function vSet(){
   var m=D.manual||[],h='';
-  h+='<div class="card '+(m.length?'todo':'')+'"><h3 style="margin-bottom:6px">Correzioni da controllare</h3>'+(m.length?'<ul style="margin:0;padding-left:18px">'+m.map(function(x){return '<li>'+esc(x)+'</li>'}).join('')+'</ul>':'<div class="meta">Nessuna correzione in sospeso.</div>')+'</div>';
-  h+='<div class="card" style="margin-top:10px"><h3 style="margin-bottom:10px">Aspetto (solo su questo dispositivo)</h3><div class="list" style="gap:10px"><label class="fld"><span>Stile maglie</span><select id="c0" data-cfg="kit" style="padding:6px;border-radius:6px;border:2px solid var(--line);background:var(--card);color:var(--ink)"><option value="club"'+(cfg.kit==='club'?' selected':'')+'>Colori dei club</option><option value="solid"'+(cfg.kit==='solid'?' selected':'')+'>Colore unico</option></select></label>'+
+  if(m.length)h+='<div class="card todo" style="margin-bottom:10px"><h3 style="margin-bottom:6px">Correzioni da controllare</h3><ul style="margin:0;padding-left:18px">'+m.map(function(x){return '<li>'+esc(x)+'</li>'}).join('')+'</ul></div>';
+  h+='<div class="card"><h3 style="margin-bottom:10px">Aspetto (solo su questo dispositivo)</h3><div class="list" style="gap:10px"><label class="fld"><span>Stile maglie</span><select id="c0" data-cfg="kit" style="padding:6px;border-radius:6px;border:2px solid var(--line);background:var(--card);color:var(--ink)"><option value="club"'+(cfg.kit==='club'?' selected':'')+'>Colori dei club</option><option value="solid"'+(cfg.kit==='solid'?' selected':'')+'>Colore unico</option></select></label>'+
   '<label class="fld"><span>Colore unico: la rosa</span><input type="color" id="c1" data-cfg="shirt" value="'+col(cfg.shirt)+'"></label><label class="fld"><span>Colore unico: i candidati</span><input type="color" id="c2" data-cfg="shirtNew" value="'+col(cfg.shirtNew)+'"></label></div></div>';
   function sec(title,intro,rows){return '<details class="card help" style="margin-top:10px"><summary><h3 style="display:inline">'+title+'</h3></summary><p>'+intro+'</p>'+(rows.length?'<dl class="kv">'+rows.map(function(r){return '<dt>'+r[0]+'</dt><dd>'+r[1]+'</dd>'}).join('')+'</dl>':'')+'</details>'}
   h+='<h2 class="sec">Come si legge la pagina</h2><div class="note">Tocca una voce per aprirla. In breve: la pagina ti aiuta a scegliere chi schierare in questa giornata e chi conviene cambiare a gennaio.</div>';
@@ -644,7 +644,7 @@ function vSet(){
   h+=sec('Aggiornamenti e fonti','La pagina si aggiorna da sola due volte a settimana. Durante le partite non è in tempo reale.',[
     ['Venerdì','Probabili formazioni e infortunati in vista della giornata.'],
     ['Martedì','Chi è sceso in campo nella giornata appena conclusa.'],
-    ['Se manca un dato','Viene segnalato in alto, nel riquadro «Correzioni da controllare».'],
+    ['Se manca un dato','Viene segnalato in cima a questa scheda, nel riquadro «Correzioni da controllare», che compare solo quando serve.'],
     ['Le tue scelte','Modulo, stile grafico e foto restano salvati solo sul tuo telefono o computer.'],
     ['Fonti','Quotazioni, statistiche e tabellini da Fantacalcio, rose e calendari da Leghe Fantacalcio, probabili formazioni e infortunati da Fantamaster e TuttoFantacalcio, calendario di Serie A da Sky Sport. La difficoltà degli avversari è una stima.']]);
   return h;
