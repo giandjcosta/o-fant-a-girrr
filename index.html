@@ -286,6 +286,10 @@ table.rt{min-width:0;table-layout:auto}
 .modlab{font:700 .95rem var(--fb);color:var(--ink);letter-spacing:.02em}
 :root[data-skin="seriea"] .modlab{color:#fff}
 
+.hint{margin-top:8px;font:500 .84rem/1.45 var(--fb);color:var(--ink);opacity:.9}
+:root[data-skin="seriea"] .hint{color:#fff;opacity:1}
+:root[data-skin="seriea"] .hint{font-weight:600;text-shadow:0 1px 2px rgba(10,31,92,.6)}
+
 .pick{font:700 1.05rem var(--fh);text-transform:var(--tt);padding:10px 12px;border-radius:12px;border:1px solid var(--or);background:var(--card2);color:var(--ink);max-width:100%}
 .stb{font:700 .72rem var(--fb);text-transform:uppercase;letter-spacing:.05em;padding:2px 7px;border-radius:4px;white-space:nowrap}
 .stb{border-radius:999px}.s-T{background:var(--ok);color:#0b2200}.s-B{background:var(--mid);color:#001a33}.s-R{background:var(--warn);color:#1b1300}.s-D{background:var(--warn);color:#1b1300}.s-P{background:var(--line);color:var(--ink)}.s-I{background:var(--bad);color:#2b0008}
@@ -421,7 +425,7 @@ function vRosa(){
   bench.sort(function(a,b){return (nxt(a.id).s==='I')-(nxt(b.id).s==='I')||sch(b)-sch(a)});
   var h='<div class="rosa"><div><div class="tools" style="margin-bottom:10px"><label for="mod" class="modlab">Modulo</label><select id="mod" class="pick" data-mod="1">'+Object.keys(MODS).slice(0,7).map(function(k){return '<option'+(k===mod?' selected':'')+'>'+k+'</option>'}).join('')+'</select></div>'+
   '<div class="field">'+['A','C','D','P'].map(function(ro){return '<div class="frow">'+rows[ro].map(function(p){return pp(p)}).join('')+'</div>'}).join('')+'</div>'+
-  '<div class="meta" style="margin-top:8px">Undici più schierabile per la giornata '+D.round+'. La riga colorata sotto il nome è lo stato: verde titolare, blu ballottaggio, giallo in dubbio, rosso fuori.</div>'+
+  '<div class="hint">Undici più schierabile per la giornata '+D.round+'. La riga colorata sotto il nome è lo stato: verde titolare, blu ballottaggio, giallo in dubbio, rosso fuori.</div>'+
   '<h2 class="sec">Panchina</h2><div class="bench">'+bench.map(function(p){return pp(p,nxt(p.id).s==='I')}).join('')+'</div></div>';
   h+='<div style="min-width:0"><h2 class="sec" style="margin-top:0">Rosa completa</h2><div class="tw"><table class="rt"><thead><tr><th style="text-align:left">Giocatore</th><th>Quo</th><th>MV</th><th>FMV</th><th data-s="Pg">Partite</th><th>Gol</th><th data-s="Ass">Assist</th><th>G'+D.round+'</th><th data-s="Sc.">Scambio</th></tr></thead><tbody>';
   r.sort(function(a,b){return RO[a.r]-RO[b.r]||sch(b)-sch(a)}).forEach(function(p){
@@ -429,7 +433,7 @@ function vRosa(){
     h+='<tr class="'+(xi[p.id]?'xi':'')+'"><td class="n"><span class="rb '+p.r+'">'+p.r+'</span> <span class="nm">'+esc(p.n)+'</span><div class="pb"><i class="b-'+nxt(p.id).s+'" style="width:'+pc+'%"></i></div><span class="meta">'+pc+'% · '+NXT[nxt(p.id).s]+'</span></td>'+
     '<td>'+esc(P(p.id).q)+'</td><td>'+v(s.mv)+'</td><td>'+v(s.fmv)+'</td><td>'+v(s.pg)+'</td><td>'+v(s.g)+'</td><td>'+v(s.as)+'</td><td>'+(f?'<span class="fx '+diff(f.o)+'">'+esc(f.o.slice(0,3).toUpperCase())+(f.h?' (c)':' (t)')+'</span>':'–')+'</td><td><span class="isb" style="background:'+(pr<35?'var(--ok)':pr<60?'var(--warn)':'var(--bad)')+';color:#111">'+pr+'%</span></td></tr>';
   });
-  h+='</tbody></table></div><div class="meta" style="margin-top:8px">'+(D.ps&&Object.keys(D.ps).length?'Medie, partite, gol e assist dalle statistiche di Fantacalcio al '+new Date(D.psDate||D.updated).toLocaleDateString('it-IT')+'. Trattino: non ha ancora giocato.':'Medie e presenze non ancora disponibili.')+'</div></div></div>';
+  h+='</tbody></table></div><div class="hint">'+(D.ps&&Object.keys(D.ps).length?'Medie, partite, gol e assist dalle statistiche di Fantacalcio al '+new Date(D.psDate||D.updated).toLocaleDateString('it-IT')+'. Trattino: non ha ancora giocato.':'Medie e presenze non ancora disponibili.')+'</div></div></div>';
   return h;
 }
 function vDay(){
@@ -551,7 +555,7 @@ function vPitch(){
   ['P','D','C','A'].forEach(function(ro){
     var risk=all.filter(function(p){return p.r===ro&&p.pr>=20&&!isKeep(p.id)}).sort(function(a,b){return b.pr-a.pr}).slice(0,3);
     h+='<h2 class="sec">'+{P:'Portieri',D:'Difensori',C:'Centrocampisti',A:'Attaccanti'}[ro]+'</h2>';
-    if(!risk.length){h+='<div class="meta" style="margin-bottom:6px">Nessuno a rischio in questo ruolo.</div>';return}
+    if(!risk.length){h+='<div class="hint" style="margin:0 0 6px">Nessuno a rischio in questo ruolo.</div>';return}
     any=true;h+='<div class="swaps">';
     risk.forEach(function(p){
       var c=D.fa.map(String).filter(function(i){return P(i).r===p.r&&!used[i]}).map(function(i){return {id:i,sc:score(i)}}).sort(function(a,b){return b.sc-a.sc})[0];
