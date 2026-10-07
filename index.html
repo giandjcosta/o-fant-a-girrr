@@ -218,6 +218,12 @@ details.help h3{margin:0;font-size:1.15rem}
 @keyframes draw{from{stroke-dashoffset:1}to{stroke-dashoffset:0}}
 .ta,.tp,.tg{pointer-events:none}
 .enter .swaps>*{animation:rise .45s cubic-bezier(.2,.8,.2,1) both}
+.res{font:800 1rem var(--fh);padding:3px 10px;border-radius:8px;background:var(--sel);color:var(--sel-ink);white-space:nowrap;font-variant-numeric:tabular-nums}
+header .btn{color:var(--head-ink);border-color:currentColor;background:transparent}
+:root[data-skin="campo"] .s-P{background:#e7e2cf;color:#172a63}
+:root[data-skin="campo"] .b-P{background:#8a8f9c}
+:root[data-skin="campo"] .chip{color:#fff}
+:root[data-skin="campo"] .chip[data-s=P]{color:#2b1d00}
 
 .pick{font:700 1.05rem var(--fh);text-transform:var(--tt);padding:10px 12px;border-radius:12px;border:1px solid var(--or);background:var(--card2);color:var(--ink);max-width:100%}
 .stb{font:700 .72rem var(--fb);text-transform:uppercase;letter-spacing:.05em;padding:2px 7px;border-radius:4px;white-space:nowrap}
@@ -287,7 +293,7 @@ function P(id){var p=D.P[id]||{n:'?',t:'',r:'C',p:'',q:0,f:0};return p}
 function nxt(id){var s=(D.st||{})[id];return s?s:{s:'P'}}
 function logOf(id){var o={},a=(D.log||{})[id]||{},b=LS.log[id]||{},k;for(k in a)o[k]=a[k];for(k in b){if(b[k])o[k]=b[k];else delete o[k]}return o}
 function isKeep(id){return (D.keep||[]).indexOf(+id)>=0}
-function base(id){if(LS.base[id]!=null)return LS.base[id];var f=P(id).f||0;return Math.round(Math.min(45,Math.max(3,50-12*Math.log(1+f))))}
+function base(id){var f=P(id).f||0;return Math.round(Math.min(45,Math.max(3,50-12*Math.log(1+f))))}
 function prob(id){
   var w=D.w,d=D.decay||0.85,log=logOf(id),k=1,s=0,keep=isKeep(id);
   D.rounds.filter(function(r){return log[r]}).sort(function(a,b){return b-a}).slice(0,6).forEach(function(r){var c=w[log[r]]||0;if(keep&&log[r]==='I')c=0;s+=c*k;k*=d});
@@ -383,7 +389,7 @@ function vLega(){
   var L=D.lg;if(!L)return '<div class="empty">Calendario della lega non ancora caricato.</div>';
   var me=team,h='<div class="note">Calendario della nostra lega: la prossima giornata e gli ultimi risultati, letti da Leghe Fantacalcio il '+new Date(L.date).toLocaleDateString('it-IT',{day:'numeric',month:'long'})+'. La classifica la trovi su Leghe.</div>';
   if(L.next){var nx=L.next.m.filter(function(m){return m[0]===me||m[1]===me})[0];if(nx)h+='<div class="card" style="margin-bottom:14px"><div class="meta">Prossima partita · Giornata '+L.next.n+' (G'+L.next.sa+' di Serie A)</div><div class="name" style="margin-top:4px">'+esc(nx[0])+' – '+esc(nx[1])+'</div></div>'}
-  function box(title,ms,played){var o='<h2 class="sec">'+title+'</h2><div class="card">';ms.forEach(function(m){var mine=m[0]===me||m[played?3:1]===me;o+='<div class="gr"'+(mine?' style="font-weight:700"':'')+'><div style="min-width:0"><span class="nm">'+esc(m[0])+' – '+esc(m[played?3:1])+'</span>'+(played?'<div class="meta">Punteggi: '+m[2]+' – '+m[5]+'</div>':'')+'</div>'+(played?'<span class="stb s-P">'+m[1]+' – '+m[4]+'</span>':'')+'</div>'});return o+'</div>'}
+  function box(title,ms,played){var o='<h2 class="sec">'+title+'</h2><div class="card">';ms.forEach(function(m){var mine=m[0]===me||m[played?3:1]===me;o+='<div class="gr"'+(mine?' style="font-weight:700"':'')+'><div style="min-width:0"><span class="nm">'+esc(m[0])+' – '+esc(m[played?3:1])+'</span>'+(played?'<div class="meta">Punteggi: '+m[2]+' – '+m[5]+'</div>':'')+'</div>'+(played?'<span class="res">'+m[1]+' – '+m[4]+'</span>':'')+'</div>'});return o+'</div>'}
   if(L.last)h+=box('Ultima giornata · '+L.last.n+'ª (G'+L.last.sa+' di Serie A)',L.last.m,true);
   if(L.next)h+=box('Prossima giornata · '+L.next.n+'ª (G'+L.next.sa+' di Serie A)',L.next.m,false);
   return h;
@@ -432,7 +438,7 @@ function vSwap(){
 function editor(p){
   var log=logOf(p.id),h='<div class="edit"><div class="meta">Presenze giornata per giornata. Le correzioni che fai qui restano solo su questo dispositivo. Tocca più volte: vuoto, T titolare, S subentrato, P panchina, I fuori.</div><div class="chips">';
   D.rounds.forEach(function(r){var s=log[r]||'';h+='<button class="chip" data-s="'+esc(s)+'" data-c="'+p.id+'" data-r="'+r+'">G'+r+'<b>'+(s||'·')+'</b></button>'});
-  h+='</div>'+trend(p.id)+'<label class="fld"><span>Rischio di partenza</span><span style="display:flex;gap:8px;align-items:center"><input type="range" min="0" max="80" step="5" value="'+base(p.id)+'" data-base="'+p.id+'" style="flex:1" id="b_'+p.id+'"><b>'+base(p.id)+'</b></span></label>';
+  h+='</div>'+trend(p.id)+'';
   h+='<div class="tools"><label class="btn">Foto<input type="file" accept="image/*" hidden data-photo="'+p.id+'" id="f_'+p.id+'"></label>'+(LS.photo[p.id]?'<button class="btn" data-nophoto="'+p.id+'">Togli foto</button>':'')+'</div>';
   return h+'</div>';
 }
@@ -531,7 +537,7 @@ function vSet(){
     ['Venerdì','Probabili formazioni e infortunati per la giornata in arrivo.'],
     ['Martedì','Chi ha giocato nella giornata appena finita.'],
     ['Se manca un dato','Compare in alto in «Correzioni da controllare».'],
-    ['Le tue modifiche','Presenze, rischio di partenza, modulo, stile e foto che cambi tu restano solo sul tuo telefono o computer.'],
+    ['Le tue modifiche','Presenze, modulo, stile e foto che cambi tu restano solo sul tuo telefono o computer.'],
     ['Fonti','Quotazioni di Fantacalcio, rose di Leghe Fantacalcio, probabili e infortunati da Fantamaster e TuttoFantacalcio, calendario da Sky Sport. La difficoltà degli avversari è una stima.']]);
   return h;
 }
