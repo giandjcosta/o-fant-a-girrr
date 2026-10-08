@@ -325,6 +325,12 @@ details.help .mk{margin-top:10px}
 
 .mko{margin-top:8px}
 
+.mkchips{display:flex;flex-wrap:wrap;gap:6px;margin-top:6px}
+.mkchip{display:inline-flex;align-items:center;gap:6px;padding:6px 10px 6px 6px;border-radius:999px;border:1.5px solid var(--line);background:linear-gradient(160deg,var(--card),var(--card2));color:var(--ink);font:700 .86rem var(--fb);cursor:pointer}
+.mkchip .rb{width:18px;height:18px;font-size:.62rem}
+.mkchip.on{background:var(--hl);border-color:var(--hl);color:var(--hl-ink);box-shadow:0 2px 10px rgba(var(--halo),.35)}
+.mkv .fld{display:grid;gap:6px}
+
 .pick{font:700 1.05rem var(--fh);text-transform:var(--tt);padding:10px 12px;border-radius:12px;border:1px solid var(--or);background:var(--card2);color:var(--ink);max-width:100%}
 .stb{font:700 .72rem var(--fb);text-transform:uppercase;letter-spacing:.05em;padding:2px 7px;border-radius:4px;white-space:nowrap}
 .stb{border-radius:999px}.s-T{background:var(--ok);color:#0b2200}.s-B{background:var(--mid);color:#001a33}.s-R{background:var(--warn);color:#1b1300}.s-D{background:var(--warn);color:#1b1300}.s-P{background:var(--line);color:var(--ink)}.s-I{background:var(--bad);color:#2b0008}
@@ -711,8 +717,27 @@ function mkView(h){
   return {res:out,top:top.slice(0,3)};
 }
 function mkPl(v){var id=v.id,p=P(id),q=(D.ps||{})[id]||{};return '<span class="mkp"><i class="rb '+v.r+'">'+v.r+'</i><span><b>'+esc(p.n)+'</b><small>'+esc(p.t)+' · Titolare al '+pct(id)+'%'+(q.fmv!=null?' · FM '+String(q.fmv.toFixed?q.fmv.toFixed(2):q.fmv).replace('.',','):'')+'</small></span></span>'}
+function mkLab(a,b){return a>=0.05&&b>=0.05?'Equilibrato':a>=0.05?(b>=-0.02?'Per te, lui non ci perde':b>=-0.3?'Per te, lui ci perde poco':'Per te, lui ci perde'):b>=0.05?(a>=-0.02?'Per lui, tu non ci perdi':'Per lui, tu ci perdi'):a>-0.05&&b>-0.05?'Alla pari':'Non conviene a nessuno'}
+var mkV='c',mkT='',mkSG=[],mkSR=[];
+function mkValuta(){
+  var others=D.teams.filter(function(t){return t.name!==team});if(!mkT||!others.some(function(t){return t.name===mkT}))mkT=others[0].name;
+  var rb=roleBase(),mf={P:1,D:1,C:1,A:1,q:{P:1,D:1,C:1,A:1}};Object.keys(D.P).forEach(function(i){var p=D.P[i];if((p.f||0)>mf[p.r])mf[p.r]=p.f;if((p.q||0)>mf.q[p.r])mf.q[p.r]=p.q});
+  var T=others.filter(function(t){return t.name===mkT})[0],Ab=mkVals(curTeam(),'b',rb,mf),Al=mkVals(curTeam(),'l',rb,mf),Bb=mkVals(T,'b',rb,mf),Bl=mkVals(T,'l',rb,mf);
+  mkSG=mkSG.filter(function(i){return Ab.some(function(v){return v.id===i&&!v.third})});mkSR=mkSR.filter(function(i){return Bb.some(function(v){return v.id===i&&!v.third})});
+  function chips(V,sel,att){var o=[];['P','D','C','A'].forEach(function(r){V.filter(function(v){return v.r===r&&!v.third}).sort(function(a,b){return b.e-a.e}).forEach(function(v){var pl=P(v.id);o.push('<button class="mkchip'+(sel.indexOf(v.id)>=0?' on':'')+'" '+att+'="'+v.id+'" aria-pressed="'+(sel.indexOf(v.id)>=0)+'"><i class="rb '+r+'">'+r+'</i><span>'+esc(pl.n)+'</span></button>')})});return '<div class="mkchips">'+o.join('')+'</div>'}
+  var h='<div class="card mkv"><label class="fld"><span>Squadra con cui tratti</span><select data-mt style="padding:8px;border-radius:8px;border:2px solid var(--line);background:var(--card);color:var(--ink);font:inherit">'+others.map(function(t){return '<option value="'+esc(t.name)+'"'+(t.name===mkT?' selected':'')+'>'+esc(t.name)+'</option>'}).join('')+'</select></label>'+
+   '<span class="mkl" style="display:block;margin-top:12px">Dai</span>'+chips(Ab,mkSG,'data-mg')+'<span class="mkl" style="display:block;margin-top:12px">Ricevi da '+esc(mkT)+'</span>'+chips(Bb,mkSR,'data-mr')+'</div>';
+  var G=mkSG,R=mkSR;
+  if(!G.length&&!R.length)return h+'<div class="empty">Scegli i giocatori che dai e quelli che ricevi: la pagina ti dice subito quanto conviene a ciascuno.</div>';
+  function cnt(ids,V){var c={P:0,D:0,C:0,A:0};ids.forEach(function(i){var v=V.filter(function(y){return y.id===i})[0];if(v)c[v.r]++});return c}
+  if(G.length!==R.length||!G.length)return h+'<div class="note" style="margin-top:12px">Uno scambio vale solo se i giocatori sono lo stesso numero da entrambe le parti: ora ne dai '+G.length+' e ne ricevi '+R.length+'.</div>';
+  var dg=cnt(G,Ab),dr=cnt(R,Bb),ok=true;['P','D','C','A'].forEach(function(r){if(dg[r]!==dr[r])ok=false});
+  if(!ok)return h+'<div class="note" style="margin-top:12px">La rosa deve restare valida: si cedono e si ricevono gli stessi ruoli. Ora dai '+['P','D','C','A'].map(function(r){return dg[r]+' '+r}).join(' · ')+' e ricevi '+['P','D','C','A'].map(function(r){return dr[r]+' '+r}).join(' · ')+'.</div>';
+  var gb=mkGain(Ab,Bb,G,R),gl=mkGain(Al,Bl,G,R),cur=mkH==='b'?gb:gl,oth=mkH==='b'?gl:gb;
+  return h+'<div style="margin-top:12px">'+mkCard({G:G.map(function(i){return Ab.filter(function(v){return v.id===i})[0]}),R:R.map(function(i){return Bb.filter(function(v){return v.id===i})[0]}),k:G.length,gA:cur.gA,gB:cur.gB,o:oth},mkT)+'</div>';
+}
 function mkCard(x,tn){
-  var a=mkConv(x.gA),b=mkConv(x.gB),a2=mkConv(x.o.gA),b2=mkConv(x.o.gB),cl=function(n){return n>=65?'var(--ok)':n>=50?'var(--warn)':'var(--bad)'},lab=x.gB>=0.05?'Equilibrato':x.gB>=-0.02?'Per te, lui non ci perde':'Per te, lui ci perde poco',oh=mkH==='b'?'lungo':'breve';
+  var a=mkConv(x.gA),b=mkConv(x.gB),a2=mkConv(x.o.gA),b2=mkConv(x.o.gB),cl=function(n){return n>=65?'var(--ok)':n>=50?'var(--warn)':'var(--bad)'},lab=mkLab(x.gA,x.gB),oh=mkH==='b'?'lungo':'breve';
   return '<div class="card mk"><div class="mkh"><span class="tagme">'+lab+'</span><span class="meta">'+x.k+(x.k===1?' giocatore per 1':' contro '+x.k)+'</span></div>'+
   '<div class="mkc"><div class="mkcol"><span class="mkl">Dai</span>'+x.G.map(mkPl).join('')+'</div><div class="mkarr" aria-hidden="true">⇄</div><div class="mkcol"><span class="mkl">Ricevi da '+esc(tn)+'</span>'+x.R.map(mkPl).join('')+'</div></div>'+
   '<div class="mkb"><div><span>Conviene a te</span><b style="color:'+cl(a)+'">'+a+'%</b><i><u style="width:'+a+'%;background:'+cl(a)+'"></u></i></div><div><span>Conviene a '+esc(tn)+'</span><b style="color:'+cl(b)+'">'+b+'%</b><i><u style="width:'+b+'%;background:'+cl(b)+'"></u></i></div></div>'+
@@ -730,10 +755,12 @@ function mkHtml(R){
 }
 function vMkt(){
   var key=D.updated+'|'+D.round+'|'+team,ready=!!MKC[key];
-  var h='<div class="note">Le proposte di scambio per la tua squadra, ricalcolate dopo ogni giornata. «Equilibrato» significa che l\'operazione conviene a entrambe le parti: l\'altro allenatore vede la stessa proposta. Con Breve e Lungo termine vedi come cambia la resa dello stesso scambio.</div>';
+  var h='<div class="note">'+(mkV==='c'?'Le proposte di scambio per la tua squadra, ricalcolate dopo ogni giornata. «Equilibrato» significa che l\'operazione conviene a entrambe le parti: l\'altro allenatore vede la stessa proposta. Con Breve e Lungo termine vedi come cambia la resa dello stesso scambio.':'Hai una proposta sul tavolo o un\'idea tua? Scegli la squadra, poi i giocatori che dai e quelli che ricevi: la pagina calcola subito quanto conviene a ciascuno.')+'</div>';
+  h+='<div class="seg">'+[['c','Consigliati'],['v','Valuta uno scambio']].map(function(x){return '<button aria-pressed="'+(mkV===x[0])+'" data-mv="'+x[0]+'">'+x[1]+'</button>'}).join('')+'</div>';
   h+='<div class="seg">'+[['b','Breve termine'],['l','Lungo termine']].map(function(x){return '<button aria-pressed="'+(mkH===x[0])+'" data-mh="'+x[0]+'">'+x[1]+'</button>'}).join('')+'</div>';
+  if(mkV==='v')return h+'<div id="mkres">'+mkValuta()+'</div>';
   h+='<div id="mkres">'+(ready?mkHtml(mkView(mkH)):'<div class="empty">Sto cercando gli scambi migliori…</div>')+'</div>';
-  if(!ready)setTimeout(function(){if(tab!=='mkt')return;mkCompute();var e=document.getElementById('mkres');if(e)e.innerHTML=mkHtml(mkView(mkH))},40);
+  if(!ready)setTimeout(function(){if(tab!=='mkt'||mkV!=='c')return;mkCompute();var e=document.getElementById('mkres');if(e)e.innerHTML=mkHtml(mkView(mkH))},40);
   return h;
 }
 function vFa(){
@@ -847,6 +874,8 @@ function vSet(){
     ['I 3 scambi migliori','Le tre operazioni più convenienti per te tra tutte le squadre, in cima alla scheda.'],
     ['Squadra per squadra','Le proposte con ogni avversario. Dove c\'è scritto «Niente di interessante» non c\'è un\'occasione utile e la pagina non forza la trattativa.'],
     ['Dai e Ricevi','A sinistra i tuoi giocatori in uscita, a destra quelli in arrivo dall\'altra squadra. Sotto ogni nome trovi il club, la titolarità e la fantamedia.'],
+    ['Alla pari','Nessuna delle due squadre guadagna o perde in modo apprezzabile: si tratta di uno scambio neutro, che si fa solo se c\'è un motivo tuo.'],
+    ['Per lui','Se prova uno scambio tuo e la pagina scrive «Per lui, tu non ci perdi» o «Per lui, tu ci perdi», significa che il vantaggio è dell\'altra squadra.'],
     ['Equilibrato','L\'operazione migliora l\'undici di entrambe le squadre. L\'altro allenatore vede la stessa proposta: è quella con più possibilità di andare in porto.'],
     ['Per te, lui non ci perde','Il vantaggio è soprattutto tuo, ma per l\'altra squadra l\'operazione è neutra: la sua resa resta praticamente la stessa.'],
     ['Per te, lui ci perde poco','Il vantaggio è tuo e l\'altra squadra cede qualcosa, ma poco. È la più difficile da far accettare: serve un buon argomento.'],
@@ -855,6 +884,7 @@ function vSet(){
     ['Breve termine','Guarda alle prossime giornate: contano chi parte titolare e la fantamedia dei voti già presi.'],
     ['Lungo termine','Guarda la stagione intera: pesa di più il valore di partenza del giocatore, cioè quotazione e FVM, e meno il momento.'],
     ['L\'anno scorso','Entrano la fantamedia e le presenze del 2025/26 in Serie A: più partite ha giocato un giocatore, più il suo rendimento passato pesa. Chi arriva da un altro campionato, è stato promosso o non ha giocato non viene né premiato né penalizzato: si parte dal suo valore di lista, quotazione e FVM, e i voti di quest\'anno lo correggono giornata dopo giornata.'],
+    ['Valuta uno scambio','Hai una proposta sul tavolo? Scegli la squadra, i giocatori che dai e quelli che ricevi: la pagina calcola subito le percentuali per te e per l\'altro. Se il numero dei giocatori o i ruoli non tornano, te lo segnala.'],
     ['Scambi multipli','Si può trattare 1 contro 1, 2 contro 2 o 3 contro 3. A scambio fatto la rosa resta valida: si cedono e si ricevono gli stessi ruoli.'],
     ['Cosa non conta','Il prezzo d\'asta e il terzo portiere restano fuori dal calcolo.']]);
   h+=sec('Calendario','Tutte le partite della nostra lega nelle due competizioni: Classic League, il campionato, e Champions Cup, la coppa a gironi.',[
@@ -877,6 +907,9 @@ document.getElementById('tabs').addEventListener('click',function(e){var b=e.tar
 document.getElementById('who').addEventListener('click',function(e){if(e.target.id==='out'){LS.code='';save();gateErr=false;render()}});
 app.addEventListener('click',function(e){
   var t=e.target,b=t.closest('[data-enter]');if(b){team=document.getElementById('gt').value;LS.team=team;LS.code=document.getElementById('gc').value.trim().toUpperCase();gateErr=!authed();save();render();trackOpen();return}
+  b=t.closest('[data-mv]');if(b){mkV=b.dataset.mv;render();return}
+  b=t.closest('[data-mg]');if(b){var i=mkSG.indexOf(b.dataset.mg);if(i>=0)mkSG.splice(i,1);else mkSG.push(b.dataset.mg);render();return}
+  b=t.closest('[data-mr]');if(b){var j=mkSR.indexOf(b.dataset.mr);if(j>=0)mkSR.splice(j,1);else mkSR.push(b.dataset.mr);render();return}
   b=t.closest('[data-mh]');if(b){mkH=b.dataset.mh;LS.mkh=mkH;save();render();return}
   b=t.closest('[data-f]');if(b){filter=b.dataset.f;render();return}
   b=t.closest('[data-role]');if(b){role=b.dataset.role;render();return}
@@ -891,6 +924,7 @@ app.addEventListener('click',function(e){
 app.addEventListener('keydown',function(e){if((e.key==='Enter'||e.key===' ')&&e.target.dataset&&e.target.dataset.o){e.preventDefault();open=open===e.target.dataset.o?null:e.target.dataset.o;render()}});
 app.addEventListener('change',function(e){
   var t=e.target,d=t.dataset;
+  if(d.mt!==undefined){mkT=t.value;mkSR=[];render();return}
   if(d.mod){LS.mod=t.value;LS.modUser=D.round;save();render();return}
   if(d.base){LS.base[d.base]=+t.value;save();render()}
   else if(d.photo&&t.files[0]){shrink(t.files[0],function(u){LS.photo[d.photo]=u;save();render()})}
