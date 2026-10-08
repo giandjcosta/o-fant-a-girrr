@@ -129,9 +129,9 @@ def costruisci(testi):
     h = [f"<style>{CSS}</style>"]
 
     # --- pagina 1
-    h.append('<section class="pg"><div class="top"><div class="kick">Il riepilogo della settimana</div>'
+    h.append(f'<section class="pg"><div class="top"><div class="kick">Il riepilogo della settimana · N° {n}</div>'
              f'<h1>O Fant <span>a Girrr</span></h1><div class="sub">{esc(testi.get("titolo") or "")}'
-             f'{" · " if testi.get("titolo") else ""}Giornata {n} di campionato · Dati al {esc(quando)}</div></div><div class="in">')
+             f'{" · " if testi.get("titolo") else ""}Giornata {n} di campionato</div></div><div class="in">')
     if testi.get("apertura"):
         h.append(f'<p class="lead">{esc(testi["apertura"])}</p>')
     if ult:
@@ -156,7 +156,7 @@ def costruisci(testi):
         pb = testi.get("premi")
         if pb:
             h.append(f'<p class="bat">{esc(pb)}</p>')
-    h.append("</div>" f'<div class="foot"><span>O Fant A Girrr · Lo Spogliatoio</span><span>1 / 2</span></div></section>')
+    h.append("</div>" f'<div class="foot"><span>O Fant A Girrr · Lo Spogliatoio · Dati al {esc(quando)}</span><span>1 / 2</span></div></section>')
 
     # --- pagina 2
     h.append('<section class="pg"><div class="top" style="padding-bottom:7mm"><div class="kick">Cosa ci aspetta</div>'
