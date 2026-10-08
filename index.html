@@ -313,6 +313,16 @@ table.rt{min-width:0;table-layout:auto}
 .vt span{color:var(--mute)}.vt b{font-variant-numeric:tabular-nums}.vt em{font-style:normal;color:var(--mute);font-size:.74rem}
 :root[data-skin="seriea"] .why,:root[data-skin="seriea"] .cmp{color:var(--ink)}
 
+.mk{margin-bottom:10px}.mkh{display:flex;gap:8px;align-items:center;margin-bottom:8px}.mkh .tagme{margin:0}
+.mkc{display:grid;grid-template-columns:1fr auto 1fr;gap:8px;align-items:center}.mkcol{display:grid;gap:8px;min-width:0}
+.mkl{font:700 .68rem var(--fb);letter-spacing:.07em;text-transform:uppercase;color:var(--mute)}
+.mkp{display:flex;gap:7px;align-items:flex-start;min-width:0}.mkp>span:last-child{min-width:0}.mkp b{display:block;font:700 .98rem var(--fh);text-transform:var(--tt);overflow-wrap:anywhere;line-height:1.1}.mkp small{display:block;font-size:.72rem;color:var(--mute);line-height:1.25}
+.mkarr{font-size:1.3rem;color:var(--mute)}
+.mkb{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:10px;padding-top:10px;border-top:1px solid var(--line)}
+.mkb span{display:block;font-size:.72rem;color:var(--mute)}.mkb b{font:800 1.4rem var(--fh)}.mkb i{display:block;height:6px;border-radius:3px;background:var(--line);margin-top:4px;overflow:hidden}.mkb u{display:block;height:100%;border-radius:3px}
+@media(max-width:420px){.mkc{grid-template-columns:1fr;gap:6px}.mkarr{text-align:center;transform:rotate(90deg);height:20px}}
+details.help .mk{margin-top:10px}
+
 .pick{font:700 1.05rem var(--fh);text-transform:var(--tt);padding:10px 12px;border-radius:12px;border:1px solid var(--or);background:var(--card2);color:var(--ink);max-width:100%}
 .stb{font:700 .72rem var(--fb);text-transform:uppercase;letter-spacing:.05em;padding:2px 7px;border-radius:4px;white-space:nowrap}
 .stb{border-radius:999px}.s-T{background:var(--ok);color:#0b2200}.s-B{background:var(--mid);color:#001a33}.s-R{background:var(--warn);color:#1b1300}.s-D{background:var(--warn);color:#1b1300}.s-P{background:var(--line);color:var(--ink)}.s-I{background:var(--bad);color:#2b0008}
@@ -342,6 +352,7 @@ h2.sec{font-size:1.35rem;margin-block:18px 8px}
 <button role="tab" data-t="rosa" aria-selected="true">Rosa</button>
 <button role="tab" data-t="day" aria-selected="false">Giornata</button>
 <button role="tab" data-t="swap" aria-selected="false">Chi scambiare</button>
+<button role="tab" data-t="mkt" aria-selected="false">Mercato Scambi</button>
 <button role="tab" data-t="fa" aria-selected="false">Svincolati</button>
 <button role="tab" data-t="pitch" aria-selected="false">Sostituzioni</button>
 <button role="tab" data-t="inj" aria-selected="false">Infortunati</button>
@@ -440,7 +451,7 @@ function render(){
   [].forEach.call(document.querySelectorAll('#tabs button'),function(b){b.setAttribute('aria-selected',b.dataset.t===tab);if(b.dataset.t==='stat')b.hidden=team!=='Oranje VC'});
   uid=0;
   app.classList.toggle('enter',enter);
-  app.innerHTML=tab==='rosa'?vRosa():tab==='day'?vDay():tab==='swap'?vSwap():tab==='fa'?vFa():tab==='pitch'?vPitch():tab==='inj'?vInj():tab==='lega'?vLega():tab==='stat'?vStat():vSet();
+  app.innerHTML=tab==='rosa'?vRosa():tab==='day'?vDay():tab==='swap'?vSwap():tab==='mkt'?vMkt():tab==='fa'?vFa():tab==='pitch'?vPitch():tab==='inj'?vInj():tab==='lega'?vLega():tab==='stat'?vStat():vSet();
   if(enter&&!(window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches)){
     [].forEach.call(app.querySelectorAll('.ring text,.score,.kpi b'),function(el){var m=el.textContent.match(/^(\d+)(%?)$/);if(!m)return;var to=+m[1],suf=m[2],t0=null;function step(ts){if(t0===null)t0=ts;var k=Math.min(1,(ts-t0)/700),e=1-Math.pow(1-k,3);el.textContent=Math.round(to*e)+suf;if(k<1)requestAnimationFrame(step)}el.textContent='0'+suf;requestAnimationFrame(step)});
   }
@@ -614,6 +625,102 @@ function editor(p){
   h+='<div class="tools"><label class="btn">Foto<input type="file" accept="image/*" hidden data-photo="'+p.id+'" id="f_'+p.id+'"></label>'+(LS.photo[p.id]?'<button class="btn" data-nophoto="'+p.id+'">Togli foto</button>':'')+'</div>';
   return h+'</div>';
 }
+var mkH=LS.mkh==='l'?'l':'b';
+var MKC={},MKSTRICT=true;
+function mkVals(T,hz,rb,mf){
+  var out=T.pl.map(function(x){var id=String(x.id),p=P(id),q=(D.ps||{})[id]||{},n=q.pg||0,b=rb[p.r],pc=pct(id)/100,s=nxt(id).s;
+    var fb=q.fmv!=null?(q.fmv*n+b*3)/(n+3):b,eb=pc*fb;
+    var prior=b*(0.88+0.24*Math.min(1,(p.f||0)/mf[p.r])),fl=q.fmv!=null?(q.fmv*n+prior*8)/(n+8):prior,el=(0.5*pc+0.5*0.75)*fl;
+    return {id:id,r:p.r,f:p.f||0,m:mvEff(p,rb),q:hz==='b'?0.8*fb+0.2*fl:fl,e:hz==='b'?0.8*eb+0.2*el:el}});
+  var gk=out.filter(function(v){return v.r==='P'}).sort(function(a,b){return b.e-a.e});if(gk[2])gk[2].third=true;
+  return out;
+}
+function mkTeam(vals){
+  var by={P:[],D:[],C:[],A:[]},i,best=-1;
+  for(i=0;i<vals.length;i++)by[vals[i].r].push(vals[i]);
+  ['P','D','C','A'].forEach(function(k){by[k].sort(function(a,b){return b.e-a.e})});
+  var M=['3-5-2','4-4-2','4-3-3','3-4-3','4-5-1','5-3-2','5-4-1'];
+  for(var mi=0;mi<7;mi++){var m=MODS[M[mi]],need={D:m[0],C:m[1],A:m[2]},t=0,k,j;
+    if(by.P[0])t+=by.P[0].e;
+    for(k in need)for(j=0;j<need[k]&&j<by[k].length;j++)t+=by[k][j].e;
+    if(m[0]>=4&&by.P.length&&by.D.length>=4){var ds=by.D.slice(0,m[0]).map(function(v){return v.m}).sort(function(a,b){return b-a});t+=modBonus((by.P[0].m+ds[0]+ds[1]+ds[2])/4)}
+    for(k in need){if(by[k][need[k]])t+=0.12*by[k][need[k]].q;if(by[k][need[k]+1])t+=0.05*by[k][need[k]+1].q}
+    if(by.P[1])t+=0.06*by.P[1].q;
+    if(t>best)best=t}
+  return best;
+}
+function mkComb(a,k,fn,i,cur){if(cur.length===k){fn(cur);return}for(var j=i;j<a.length;j++){cur.push(a[j]);mkComb(a,k,fn,j+1,cur);cur.pop()}}
+function mkPair(A,B){
+  var vA=mkTeam(A),vB=mkTeam(B),out=[];
+  var tA=A.filter(function(x){return !x.third}),tB=B.filter(function(x){return !x.third});
+  function cand(S,own,oth,vS,vO){return S.map(function(p){return {p:p,s:(mkTeam(oth.concat(p))-vO)-(vS-mkTeam(own.filter(function(y){return y!==p})))}}).sort(function(a,b){return b.s-a.s}).map(function(x){return x.p})}
+  var gc=cand(tA,A,B,vA,vB),rc=cand(tB,B,A,vB,vA);
+  function cnt(S){var c={P:0,D:0,C:0,A:0};S.forEach(function(v){c[v.r]++});return c}
+  var cA=cnt(A),cB=cnt(B),LIM={D:[6,10],C:[6,10],A:[4,8]};
+  [[1,9],[2,9],[3,7]].forEach(function(kn){var k=kn[0];
+    mkComb(gc.slice(0,kn[1]),k,function(G0){var G=G0.slice(),dg=cnt(G),sg=0;G.forEach(function(v){sg+=v.f});
+      mkComb(rc.slice(0,kn[1]),k,function(R){var dr=cnt(R),sr=0,eR=0,eG=0,ok=dg.P===dr.P,r;if(!ok)return;
+        for(r in LIM){if(MKSTRICT?dg[r]!==dr[r]:(cA[r]-dg[r]+dr[r]<LIM[r][0]||cA[r]-dg[r]+dr[r]>LIM[r][1]||cB[r]+dg[r]-dr[r]<LIM[r][0]||cB[r]+dg[r]-dr[r]>LIM[r][1]))return}
+        R.forEach(function(v){sr+=v.f;eR+=v.e});G.forEach(function(v){eG+=v.e});if(eG<0.75*eR||eR<0.75*eG)return;if(sr>1.4*sg+3||sg>1.4*sr+3)return;
+        var A2=A.filter(function(x){return G.indexOf(x)<0}).concat(R),B2=B.filter(function(x){return R.indexOf(x)<0}).concat(G);
+        var gA=mkTeam(A2)-vA,gB=mkTeam(B2)-vB;
+        if(gA>=0.05&&gB>=-0.1)out.push({G:G,R:R.slice(),k:k,gA:gA,gB:gB})},0,[])},0,[])});
+  return out;
+}
+function mkConv(g){return Math.round(100/(1+Math.exp(-g/0.6)))}
+function mkPick(list){
+  var used={},res=[];
+  function free(x){return x.G.concat(x.R).every(function(v){return !used[v.id]})}
+  function take(x,kind){x.G.concat(x.R).forEach(function(v){used[v.id]=1});x.kind=kind;res.push(x)}
+  var mir=list.filter(function(x){return x.gA>=0.05&&x.gB>=0.05&&Math.min(x.gA,x.gB)/Math.max(x.gA,x.gB)>=0.3});
+  mir.forEach(function(x){x.s=Math.min(x.gA,x.gB)+0.3*Math.max(x.gA,x.gB)-0.05*(x.k-1)});
+  mir.sort(function(a,b){return b.s-a.s});var n=0;
+  mir.forEach(function(x){if(n<2&&free(x)){take(x,'m');n++}});
+  var per=list.filter(function(x){return x.gA>=0.1&&x.gB>=-0.1});
+  per.forEach(function(x){x.s=x.gA+Math.min(0,x.gB)*2-0.05*(x.k-1)});
+  per.sort(function(a,b){return b.s-a.s});n=0;
+  per.forEach(function(x){if(n<2&&free(x)){take(x,'p');n++}});
+  return res;
+}
+function mkCompute(hz){
+  var key=D.updated+'|'+D.round+'|'+hz+'|'+team;if(MKC[key])return MKC[key];
+  var rb=roleBase(),mf={P:1,D:1,C:1,A:1};Object.keys(D.P).forEach(function(i){var p=D.P[i];if((p.f||0)>mf[p.r])mf[p.r]=p.f});
+  var me=curTeam(),A=mkVals(me,hz,rb,mf),res=[];
+  D.teams.forEach(function(T){if(T.name===team)return;var B=mkVals(T,hz,rb,mf);var pk=mkPick(mkPair(A,B));
+    var best=pk.reduce(function(m,x){return Math.max(m,x.kind==='m'?x.s+10:x.s)},-99);res.push({t:T.name,pk:pk,best:best})});
+  res.sort(function(a,b){return b.best-a.best});
+  var top=[];res.forEach(function(r){r.pk.forEach(function(x){if(x.kind==='m')top.push({t:r.t,x:x})})});
+  top.sort(function(a,b){return b.x.s-a.x.s});top=top.slice(0,3);
+  if(top.length<3){var ps=[];res.forEach(function(r){r.pk.forEach(function(x){if(x.kind==='p')ps.push({t:r.t,x:x})})});ps.sort(function(a,b){return b.x.s-a.x.s});top=top.concat(ps.slice(0,3-top.length))}
+  return MKC[key]={res:res,top:top};
+}
+function mkPl(v){var id=v.id,p=P(id),q=(D.ps||{})[id]||{};return '<span class="mkp"><i class="rb '+v.r+'">'+v.r+'</i><span><b>'+esc(p.n)+'</b><small>'+esc(p.t)+' · titolare al '+pct(id)+'%'+(q.fmv!=null?' · FM '+String(q.fmv.toFixed?q.fmv.toFixed(2):q.fmv).replace('.',','):'')+'</small></span></span>'}
+function mkCard(x,tn){
+  var a=mkConv(x.gA),b=mkConv(x.gB),cl=function(n){return n>=65?'var(--ok)':n>=50?'var(--warn)':'var(--bad)'};
+  return '<div class="card mk"><div class="mkh"><span class="tagme">'+(x.kind==='m'?'Equilibrato':'Per te')+'</span><span class="meta">'+x.k+(x.k===1?' giocatore per 1':' contro '+x.k)+'</span></div>'+
+  '<div class="mkc"><div class="mkcol"><span class="mkl">Dai</span>'+x.G.map(mkPl).join('')+'</div><div class="mkarr" aria-hidden="true">⇄</div><div class="mkcol"><span class="mkl">Ricevi da '+esc(tn)+'</span>'+x.R.map(mkPl).join('')+'</div></div>'+
+  '<div class="mkb"><div><span>Conviene a te</span><b style="color:'+cl(a)+'">'+a+'%</b><i><u style="width:'+a+'%;background:'+cl(a)+'"></u></i></div><div><span>Conviene a '+esc(tn)+'</span><b style="color:'+cl(b)+'">'+b+'%</b><i><u style="width:'+b+'%;background:'+cl(b)+'"></u></i></div></div></div>';
+}
+function mkHtml(R){
+  var h='';
+  h+='<h2 class="sec">I 3 scambi migliori</h2>';
+  if(!R.top.length)h+='<div class="empty">Per questa giornata non c\'è nessuno scambio che convenga davvero a entrambi: meglio non forzare.</div>';
+  else h+=R.top.map(function(z){return mkCard(z.x,z.t)}).join('');
+  h+='<h2 class="sec">Squadra per squadra</h2>';
+  R.res.forEach(function(r){
+    var n=r.pk.length;
+    h+='<details class="card help"><summary><h3 style="display:inline">'+esc(r.t)+'</h3> <span class="meta">'+(n?plur(n,'proposta','proposte'):'niente di interessante')+'</span></summary>'+
+    (n?r.pk.map(function(x){return mkCard(x,r.t)}).join(''):'<p>Con questa squadra non c\'è uno scambio che valga la pena: meglio non forzare.</p>')+'</details>';
+  });
+  return h;
+}
+function vMkt(){
+  var h='<div class="note">Gli scambi che conviene proporre agli altri, ricalcolati dopo ogni giornata. «Equilibrato» vuol dire che conviene a tutti e due: l\'altro allenatore vede la stessa proposta. «Per te» pende un po\' dalla tua parte ma resta fattibile. Le percentuali sono stime, non garanzie: l\'ultima parola è tua e sua.</div>';
+  h+='<div class="seg">'+[['b','Breve termine'],['l','Lungo termine']].map(function(x){return '<button aria-pressed="'+(mkH===x[0])+'" data-mh="'+x[0]+'">'+x[1]+'</button>'}).join('')+'</div>';
+  h+='<div id="mkres">'+(MKC[D.updated+'|'+D.round+'|'+mkH+'|'+team]?mkHtml(mkCompute(mkH)):'<div class="empty">Sto cercando gli scambi migliori…</div>')+'</div>';
+  if(!MKC[D.updated+'|'+D.round+'|'+mkH+'|'+team])setTimeout(function(){if(tab!=='mkt')return;var R=mkCompute(mkH),e=document.getElementById('mkres');if(e)e.innerHTML=mkHtml(R)},40);
+  return h;
+}
 function vFa(){
   var h='<div class="note">Gli svincolati della lega. Il punteggio tiene conto del valore del giocatore e del suo stato per la prossima giornata; quando sono disponibili titolarità e fantamedia reali, compare la dicitura «Dati reali».</div>';
   h+='<div class="seg">'+['P','D','C','A'].map(function(r){return '<button aria-pressed="'+(role===r)+'" data-role="'+r+'">'+{P:'Portieri',D:'Difensori',C:'Centrocampisti',A:'Attaccanti'}[r]+'</button>'}).join('')+'<span style="flex:1"></span>'+
@@ -657,7 +764,7 @@ function track(){trackOpen();try{if(window.goatcounter&&goatcounter.count&&authe
 var opened=false;
 function ev1(p,t){try{goatcounter.count({path:p,title:t,event:true})}catch(e){}}
 function trackOpen(n){if(opened||!authed())return;if(!(window.goatcounter&&goatcounter.count)){if((n||0)<20)setTimeout(function(){trackOpen((n||0)+1)},500);return}opened=true;ev1('apertura','Apertura');var nw=false;try{nw=!localStorage.getItem('dv');if(nw)localStorage.setItem('dv','1')}catch(e){}if(nw)ev1('dispositivo-nuovo','Dispositivo nuovo')}
-var TABN={rosa:'Rosa',day:'Giornata',swap:'Chi scambiare',fa:'Svincolati',pitch:'Sostituzioni',inj:'Infortunati',lega:'Calendario',set:'Info',stat:'Statistiche'};
+var TABN={rosa:'Rosa',day:'Giornata',swap:'Chi scambiare',mkt:'Mercato Scambi',fa:'Svincolati',pitch:'Sostituzioni',inj:'Infortunati',lega:'Calendario',set:'Info',stat:'Statistiche'};
 function gcn(p){return fetch(GC+'/counter/'+encodeURIComponent(p)+'.json',{cache:'no-store'}).then(function(r){return r.ok?r.json():null}).then(function(j){return j?+j.count||0:0}).catch(function(){return null})}
 function vStat(){
   gcn('apertura').then(function(n){var e=document.getElementById('gcn');if(e&&n!==null)e.textContent=n});
@@ -721,6 +828,13 @@ function vSet(){
   h+=sec('Infortunati','I giocatori fermi o acciaccati, con il motivo e i tempi di rientro previsti. Prima i tuoi, poi quelli delle altre rose della lega, senza indicare a chi appartengono.',[
     ['Salta G'+D.round,'Non sarà disponibile per la prossima giornata.'],
     ['In dubbio','Può recuperare: conviene ricontrollare a ridosso della partita.']]);
+  h+=sec('Mercato Scambi','Le proposte di scambio con le altre squadre, ricalcolate dopo ogni giornata. Se non c\'è niente di interessante, la pagina non forza nulla.',[
+    ['Equilibrato','Lo scambio conviene a tutti e due e l\'altro allenatore vede la stessa proposta. È il tipo che ha più possibilità di essere accettato.'],
+    ['Per te','Pende un po\' dalla tua parte ma resta fattibile: l\'altro non ci perde in modo evidente.'],
+    ['Percentuale','Indica quanto lo scambio conviene a ciascuno: 50% è pari, sopra conviene, sotto no. Misura quanto sale l\'undici migliore della squadra, panchina compresa.'],
+    ['Scambi multipli','Si può scambiare 1 contro 1, 2 contro 2 o 3 contro 3. Dopo lo scambio la rosa deve restare valida: i ruoli dati e ricevuti sono gli stessi.'],
+    ['Breve e lungo termine','Il breve guarda le prossime giornate: titolarità e fantamedia. Il lungo dà più peso al valore del giocatore e meno al momento.'],
+    ['Cosa non conta','Il prezzo pagato all\'asta e il terzo portiere non entrano nel calcolo.']]);
   h+=sec('Calendario','Tutte le partite della nostra lega nelle due competizioni: Classic League, il campionato, e Champions Cup, la coppa a gironi.',[
     ['La tua prossima','In alto trovi la tua prossima partita di campionato e di coppa. In coppa può capitare un turno di riposo.'],
     ['Tutte le partite','Scegli la competizione e scorri le giornate con le frecce. La tua partita è sempre in evidenza.'],
@@ -741,6 +855,7 @@ document.getElementById('tabs').addEventListener('click',function(e){var b=e.tar
 document.getElementById('who').addEventListener('click',function(e){if(e.target.id==='out'){LS.code='';save();gateErr=false;render()}});
 app.addEventListener('click',function(e){
   var t=e.target,b=t.closest('[data-enter]');if(b){team=document.getElementById('gt').value;LS.team=team;LS.code=document.getElementById('gc').value.trim().toUpperCase();gateErr=!authed();save();render();trackOpen();return}
+  b=t.closest('[data-mh]');if(b){mkH=b.dataset.mh;LS.mkh=mkH;save();render();return}
   b=t.closest('[data-f]');if(b){filter=b.dataset.f;render();return}
   b=t.closest('[data-role]');if(b){role=b.dataset.role;render();return}
   b=t.closest('[data-sort]');if(b){sortBy=b.dataset.sort;render();return}
