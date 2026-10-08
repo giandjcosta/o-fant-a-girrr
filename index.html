@@ -638,7 +638,7 @@ var MKC={},MKSTRICT=true;
 function mkVals(T,hz,rb,mf){
   var out=T.pl.map(function(x){var id=String(x.id),p=P(id),q=(D.ps||{})[id]||{},n=q.pg||0,b=rb[p.r],pc=pct(id)/100,s=nxt(id).s;
     var yl=(D.ly||{})[id],wy=yl?yl[0]/(yl[0]+12):0,lf=yl?(yl[2]*yl[0]+b*6)/(yl[0]+6):b,pb=b+(lf-b)*wy*0.5,fb=q.fmv!=null?(q.fmv*n+pb*3)/(n+3):pb,eb=pc*fb;
-    var pr0=b*(0.88+0.24*Math.min(1,0.5*(p.f||0)/mf[p.r]+0.5*(p.q||0)/mf.q[p.r])),prior=wy*lf+(1-wy)*pr0,fl=q.fmv!=null?(q.fmv*n+prior*8)/(n+8):prior,el=(0.5*pc+0.5*0.75)*fl;
+    var pr0=b*(0.88+0.24*Math.min(1,0.5*(p.f||0)/mf[p.r]+0.5*(p.q||0)/mf.q[p.r])),prior=wy*lf+(1-wy)*pr0,fl=q.fmv!=null?(q.fmv*n+prior*8)/(n+8):prior,qr=Math.min(1,0.3+0.7*(p.q||0)/mf.q[p.r]),pp=yl?0.7*Math.min(1,yl[0]/34)+0.3*qr:qr,el=(0.7*pc+0.3*pp)*fl;
     return {id:id,r:p.r,f:p.f||0,m:mvEff(p,rb),q:hz==='b'?0.8*fb+0.2*fl:fl,e:hz==='b'?0.8*eb+0.2*el:el}});
   var gk=out.filter(function(v){return v.r==='P'}).sort(function(a,b){return b.e-a.e});if(gk[2])gk[2].third=true;
   return out;
@@ -882,7 +882,7 @@ function vSet(){
     ['Percentuali','Misurano di quanto cresce l\'undici ideale con lo scambio, panchina compresa. 50% è pari. Verde dal 65% in su, giallo tra 50% e 64%, rosso sotto il 50%.'],
     ['Nel breve o nel lungo termine','Il pulsante in alto passa da Breve a Lungo. La riga sotto ogni proposta mostra le percentuali dell\'altro orizzonte, così vedi come cambia lo stesso scambio.'],
     ['Breve termine','Guarda alle prossime giornate: contano chi parte titolare e la fantamedia dei voti già presi.'],
-    ['Lungo termine','Guarda la stagione intera: pesa di più il valore di partenza del giocatore, cioè quotazione e FVM, e meno il momento.'],
+    ['Lungo termine','Guarda la stagione intera: pesa di più il valore di partenza del giocatore, cioè quotazione e FVM. La titolarità di oggi conta ancora per circa il 70%; il resto è una stima di quanto giocherà, basata sulle presenze dell\'anno scorso e sulla quotazione.'],
     ['L\'anno scorso','Entrano la fantamedia e le presenze del 2025/26 in Serie A: più partite ha giocato un giocatore, più il suo rendimento passato pesa. Chi arriva da un altro campionato, è stato promosso o non ha giocato non viene né premiato né penalizzato: si parte dal suo valore di lista, quotazione e FVM, e i voti di quest\'anno lo correggono giornata dopo giornata.'],
     ['Valuta uno scambio','Hai una proposta sul tavolo? Scegli la squadra, i giocatori che dai e quelli che ricevi: la pagina calcola subito le percentuali per te e per l\'altro. Se il numero dei giocatori o i ruoli non tornano, te lo segnala.'],
     ['Scambi multipli','Si può trattare 1 contro 1, 2 contro 2 o 3 contro 3. A scambio fatto la rosa resta valida: si cedono e si ricevono gli stessi ruoli.'],
