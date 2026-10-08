@@ -451,13 +451,17 @@ var MODS={'3-5-2':[3,5,2],'4-4-2':[4,4,2],'4-3-3':[4,3,3],'3-4-3':[3,4,3],'4-5-1
 function pct(id){var s=(D.ps||{})[id];if(s&&s.pct!=null&&nxt(id).s!=='I')return s.pct;return {T:95,B:60,R:40,D:30,P:10,I:5}[nxt(id).s]}
 function sch(p){var ps=(D.ps||{})[p.id]||{};return pct(p.id)*2+(ps.fmv!=null?ps.fmv*6:0)+Math.min(40,(p.f||0)/4)}
 function pp(p,off){return '<div class="pp'+(off?' off':'')+'">'+fig(p.t,cfg.shirt,p.id,LS.photo[p.id])+'<span class="lab"><i class="rd '+p.r+'"></i>'+esc(p.n)+'</span><span class="sb b-'+nxt(p.id).s+'"></span></div>'}
+function roleBase(){var s={P:[0,0],D:[0,0],C:[0,0],A:[0,0]};Object.keys(D.ps||{}).forEach(function(id){var q=D.ps[id],p=P(id);if(p&&s[p.r]&&q.fmv!=null&&q.pg>=3){s[p.r][0]+=q.fmv;s[p.r][1]++}});var b={};['P','D','C','A'].forEach(function(r){b[r]=s[r][1]?s[r][0]/s[r][1]:6});return b}
+function ev(p,rb){var q=(D.ps||{})[p.id]||{},n=q.pg||0,b=rb[p.r],fm=q.fmv!=null?(q.fmv*n+b*3)/(n+3):b;return pct(p.id)/100*fm}
+function modRank(r,rb){var by={P:[],D:[],C:[],A:[]};r.forEach(function(p){if(nxt(p.id).s!=='I')by[p.r].push(ev(p,rb))});['P','D','C','A'].forEach(function(k){by[k].sort(function(a,b){return b-a})});
+  return Object.keys(MODS).slice(0,7).map(function(k){var m=MODS[k],need={P:1,D:m[0],C:m[1],A:m[2]},t=0;['P','D','C','A'].forEach(function(x){by[x].slice(0,need[x]).forEach(function(v){t+=v})});return {k:k,t:t}}).sort(function(a,b){return b.t-a.t})}
 function vRosa(){
-  var r=roster(),mod=MODS[LS.mod]?LS.mod:'3-5-2',m=MODS[mod],need={P:1,D:m[0],C:m[1],A:m[2]},xi={},rows={P:[],D:[],C:[],A:[]},bench=[];
-  r.slice().sort(function(a,b){return sch(b)-sch(a)}).forEach(function(p){if(rows[p.r].length<need[p.r]&&nxt(p.id).s!=='I'){rows[p.r].push(p);xi[p.id]=1}else bench.push(p)});
-  bench.sort(function(a,b){return (nxt(a.id).s==='I')-(nxt(b.id).s==='I')||sch(b)-sch(a)});
-  var h='<div class="rosa"><div><div class="tools" style="margin-bottom:10px"><label for="mod" class="modlab">Modulo</label><select id="mod" class="pick" data-mod="1">'+Object.keys(MODS).slice(0,7).map(function(k){return '<option'+(k===mod?' selected':'')+'>'+k+'</option>'}).join('')+'</select></div>'+
+  var r=roster(),rb=roleBase(),rk=modRank(r,rb),ord=rk.map(function(x){return x.k}),mod=(LS.modUser===D.round&&MODS[LS.mod])?LS.mod:ord[0],m=MODS[mod],need={P:1,D:m[0],C:m[1],A:m[2]},xi={},rows={P:[],D:[],C:[],A:[]},bench=[];
+  r.slice().sort(function(a,b){return ev(b,rb)-ev(a,rb)}).forEach(function(p){if(rows[p.r].length<need[p.r]&&nxt(p.id).s!=='I'){rows[p.r].push(p);xi[p.id]=1}else bench.push(p)});
+  bench.sort(function(a,b){return (nxt(a.id).s==='I')-(nxt(b.id).s==='I')||ev(b,rb)-ev(a,rb)});
+  var h='<div class="rosa"><div><div class="tools" style="margin-bottom:10px"><label for="mod" class="modlab">Modulo</label><select id="mod" class="pick" data-mod="1">'+ord.map(function(k){return '<option'+(k===mod?' selected':'')+'>'+k+'</option>'}).join('')+'</select></div>'+
   '<div class="field">'+['A','C','D','P'].map(function(ro){return '<div class="frow">'+rows[ro].map(function(p){return pp(p)}).join('')+'</div>'}).join('')+'</div>'+
-  '<div class="hint">L\'undici migliore da schierare nella '+D.round+'ª giornata. La barretta colorata sotto il nome indica lo stato del giocatore: verde titolare, blu in ballottaggio, giallo in dubbio, grigio in panchina, rosso fuori.</div>'+
+  '<div class="hint">L\'undici migliore da schierare nella '+D.round+'ª giornata. I moduli nel menu sono ordinati dal più al meno efficace per la tua rosa in questa giornata: se non ne scegli uno, la pagina usa il migliore. La barretta colorata sotto il nome indica lo stato del giocatore: verde titolare, blu in ballottaggio, giallo in dubbio, grigio in panchina, rosso fuori.</div>'+
   '<h2 class="sec">Panchina</h2><div class="bench">'+bench.map(function(p){return pp(p,nxt(p.id).s==='I')}).join('')+'</div></div>';
   h+='<div style="min-width:0"><h2 class="sec" style="margin-top:0">Rosa completa</h2><div class="tw"><table class="rt"><thead><tr><th style="text-align:left">Giocatore</th><th>Quo</th><th>MV</th><th>FMV</th><th data-s="Pg">Partite</th><th>Gol</th><th data-s="Ass">Assist</th><th>G'+D.round+'</th><th data-s="Sc.">Scambio</th></tr></thead><tbody>';
   r.sort(function(a,b){return RO[a.r]-RO[b.r]||sch(b)-sch(a)}).forEach(function(p){
@@ -738,7 +742,7 @@ app.addEventListener('click',function(e){
 app.addEventListener('keydown',function(e){if((e.key==='Enter'||e.key===' ')&&e.target.dataset&&e.target.dataset.o){e.preventDefault();open=open===e.target.dataset.o?null:e.target.dataset.o;render()}});
 app.addEventListener('change',function(e){
   var t=e.target,d=t.dataset;
-  if(d.mod){LS.mod=t.value;save();render();return}
+  if(d.mod){LS.mod=t.value;LS.modUser=D.round;save();render();return}
   if(d.base){LS.base[d.base]=+t.value;save();render()}
   else if(d.photo&&t.files[0]){shrink(t.files[0],function(u){LS.photo[d.photo]=u;save();render()})}
   else if(d.cfg){cfg[d.cfg]=t.value;LS[d.cfg]=t.value;save();render()}
