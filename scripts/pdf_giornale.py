@@ -38,6 +38,18 @@ def css_tema(nome):
 
 RUOLO = {"P": "Portiere", "D": "Difensore", "C": "Centrocampista", "A": "Attaccante"}
 
+import base64 as _b64
+from pathlib import Path as _P
+
+_ASSETS = _P(__file__).resolve().parent.parent / "assets" / "loghi"
+SPONSOR = ["sponsor-birra-contropiede", "sponsor-pizzeria-fuorigioco", "sponsor-bomber-gym-club", "sponsor-amaro-del-mister"]
+
+
+def logo_uri(nome):
+    f = _ASSETS / f"{nome}.png"
+    return "data:image/png;base64," + _b64.b64encode(f.read_bytes()).decode() if f.exists() else ""
+
+
 CSS = """
 @page { size: A4; margin: 0 }
 *{box-sizing:border-box;margin:0;padding:0}
@@ -49,8 +61,10 @@ body{font-family:'Bitstream Charter','TeX Gyre Pagella','DejaVu Serif',serif;col
 .hn{font-family:var(--hd);font-weight:700;text-transform:uppercase}
 .bar{display:flex;justify-content:space-between;font-family:'Inter',sans-serif;font-size:7.4pt;font-weight:700;letter-spacing:.12em;text-transform:uppercase;border-bottom:.3mm solid var(--rule);padding-bottom:1.4mm}
 .mast{text-align:center;padding:2.2mm 0 1.2mm;border-bottom:1.1mm solid var(--rule);position:relative}
-.mast h1{font-family:var(--mh);font-weight:var(--mhw);font-size:var(--mz,43pt);letter-spacing:var(--mls,-.01em);line-height:1.02}
+.mast h1{font-family:var(--mh);font-weight:var(--mhw);font-size:calc(var(--mz,43pt) * .8);letter-spacing:var(--mls,-.01em);line-height:1.02}
 .mast h1 span{color:var(--red)}
+.mast .lg{position:absolute;top:2.6mm;height:15.5mm}
+.spb{display:flex;align-items:center;justify-content:center;gap:5mm;margin-top:4mm;padding:2.4mm 0;border-top:.3mm solid var(--rule);border-bottom:.3mm solid var(--rule);font-family:'Inter',sans-serif;font-size:7.4pt;font-weight:800;letter-spacing:.18em;text-transform:uppercase}.spb img{height:14mm}
 .tag{background:var(--band);color:var(--bandink);text-align:center;font-family:'Inter',sans-serif;font-size:7.8pt;font-weight:800;letter-spacing:.2em;text-transform:uppercase;padding:1.3mm 0;margin-top:1.4mm}
 .mini{font-family:var(--hd);font-weight:700;text-transform:uppercase;font-size:8pt;letter-spacing:.14em;color:var(--red)}
 .occ{margin-top:4.5mm}
@@ -223,7 +237,7 @@ def costruisci(t, tema="classico"):
 
     h = [f"<style>{CSS}{css_tema(tema)}</style>"]
     # ---------- prima pagina
-    h.append(f'<section class="pg">{testata(1)}<div class="mast"><h1>O Giornale del <span>Girrr</span></h1></div>'
+    h.append(f'<section class="pg">{testata(1)}<div class="mast"><img class="lg" style="left:0" src="{logo_uri("logo-lega-o-fant-a-girrr")}"><img class="lg" style="right:0" src="{logo_uri("logo-lega-o-fant-a-girrr")}"><h1>O Giornale del <span>Girrr</span></h1></div>'
              '<div class="tag">Il settimanale sportivo della lega O Fant A Girrr</div>')
     h.append(f'<div class="mini occ">{esc(t.get("occhiello") or f"Campionato · {n}ª giornata")}</div>')
     h.append(f'<div class="tit">{esc(t.get("titolone") or t.get("titolo") or "Si comincia")}</div>')
@@ -331,6 +345,7 @@ def costruisci(t, tema="classico"):
     h.append("</div>")
     if t.get("chiusura"):
         h.append(f'<div class="taglio"><b>Taglio basso</b>{esc(t["chiusura"])}</div>')
+    h.append(f'<div class="spb"><span>Questo numero è offerto da</span><img src="{logo_uri(SPONSOR[(n - 1) % 4])}"></div>')
     h.append(piede(3) + "</section>")
     return "<!doctype html><html lang='it'><head><meta charset='utf-8'><title>O Giornale del Girrr</title></head><body>" + "".join(h) + "</body></html>", n
 
