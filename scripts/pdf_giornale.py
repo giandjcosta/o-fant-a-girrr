@@ -20,75 +20,91 @@ from pdf_settimana import D, cap, classifica, esc, giocata, premi, pt  # noqa: E
 ROOT = Path(__file__).resolve().parent.parent
 GIORNI = ["lunedì", "martedì", "mercoledì", "giovedì", "venerdì", "sabato", "domenica"]
 MESI = ["gennaio", "febbraio", "marzo", "aprile", "maggio", "giugno", "luglio", "agosto", "settembre", "ottobre", "novembre", "dicembre"]
+TEMI = {
+    # nome: (carta, inchiostro, accento, grigio, fascia, testo fascia, font titoli, peso, font testata, peso testata, dimensione titolo, dimensione testata)
+    "classico": ("#f3eee1", "#16130e", "#c8102e", "#6a6254", "#c8102e", "#ffffff", "'Inter Display','Inter',sans-serif", 900, "'DejaVu Serif',serif", 700, "35pt", "43pt"),
+    "arancio": ("#fbf5ea", "#1c1a17", "#f26a0c", "#6f665a", "#1c1a17", "#ffffff", "'Poppins','Inter',sans-serif", 700, "'Poppins','Inter',sans-serif", 700, "30pt", "36pt"),
+    "notte": ("#14171f", "#f1eee5", "#ffc933", "#9aa0ad", "#ffc933", "#14171f", "'Inter Display','Inter',sans-serif", 900, "'Inter Display','Inter',sans-serif", 900, "35pt", "40pt"),
+    "verde": ("#eef2e4", "#0f2a1a", "#1f7a3d", "#5d6c5f", "#0f2a1a", "#eef2e4", "'DejaVu Serif','Inter',serif", 700, "'GFS Baskerville','DejaVu Serif',serif", 700, "30pt", "45pt"),
+    "blu": ("#eef1f6", "#0d1b3a", "#1d5fd6", "#5a6784", "#1d5fd6", "#ffffff", "'Inter Display','Inter',sans-serif", 900, "'DejaVu Serif',serif", 700, "35pt", "43pt"),
+}
+
+
+def css_tema(nome):
+    c = TEMI.get(nome, TEMI["classico"])
+    return (f":root{{--paper:{c[0]};--ink:{c[1]};--rule:{c[1]};--red:{c[2]};--mute:{c[3]};--band:{c[4]};--bandink:{c[5]};"
+            f"--hd:{c[6]};--hw:{c[7]};--mh:{c[8]};--mhw:{c[9]};--tz:{c[10]};--mz:{c[11]};--soft:{c[3]}66{";--ts:.15pt" if nome == "verde" else ""}}}")
+
+
 RUOLO = {"P": "Portiere", "D": "Difensore", "C": "Centrocampista", "A": "Attaccante"}
 
 CSS = """
 @page { size: A4; margin: 0 }
 *{box-sizing:border-box;margin:0;padding:0}
-:root{--paper:#f3eee1;--ink:#16130e;--red:#c8102e;--mute:#6a6254;--rule:#16130e}
+:root{--paper:#f3eee1;--ink:#16130e;--red:#c8102e;--mute:#6a6254;--rule:#16130e;--soft:var(--soft);--band:#c8102e;--bandink:#fff;--hd:'Inter Display','Inter',sans-serif;--hw:900;--mh:'DejaVu Serif',serif;--mhw:700;--tz:35pt;--tls:-.02em}
 body{font-family:'Bitstream Charter','TeX Gyre Pagella','DejaVu Serif',serif;color:var(--ink);background:var(--paper);-webkit-print-color-adjust:exact;print-color-adjust:exact}
 .pg{width:210mm;height:297mm;padding:9mm 11mm 10mm;position:relative;overflow:hidden;page-break-after:always;background:var(--paper)}
 .pg:last-child{page-break-after:auto}
 .pg:before{content:"";position:absolute;inset:0;background:radial-gradient(rgba(0,0,0,.035) .35mm,transparent .4mm) 0 0/1.6mm 1.6mm;pointer-events:none}
-.hn{font-family:'TeX Gyre Heros Cn','Inter',sans-serif;font-weight:700;text-transform:uppercase}
+.hn{font-family:var(--hd);font-weight:700;text-transform:uppercase}
 .bar{display:flex;justify-content:space-between;font-family:'Inter',sans-serif;font-size:7.4pt;font-weight:700;letter-spacing:.12em;text-transform:uppercase;border-bottom:.3mm solid var(--rule);padding-bottom:1.4mm}
 .mast{text-align:center;padding:2.2mm 0 1.2mm;border-bottom:1.1mm solid var(--rule);position:relative}
-.mast h1{font-family:'GFS Baskerville','DejaVu Serif',serif;font-weight:700;font-size:45pt;letter-spacing:-.01em;line-height:1}
+.mast h1{font-family:var(--mh);font-weight:var(--mhw);font-size:var(--mz,43pt);letter-spacing:var(--mls,-.01em);line-height:1.02}
 .mast h1 span{color:var(--red)}
-.tag{background:var(--red);color:#fff;text-align:center;font-family:'Inter',sans-serif;font-size:7.8pt;font-weight:800;letter-spacing:.2em;text-transform:uppercase;padding:1.3mm 0;margin-top:1.4mm}
-.mini{font-family:'TeX Gyre Heros Cn','Inter',sans-serif;font-weight:700;text-transform:uppercase;font-size:8pt;letter-spacing:.14em;color:var(--red)}
+.tag{background:var(--band);color:var(--bandink);text-align:center;font-family:'Inter',sans-serif;font-size:7.8pt;font-weight:800;letter-spacing:.2em;text-transform:uppercase;padding:1.3mm 0;margin-top:1.4mm}
+.mini{font-family:var(--hd);font-weight:700;text-transform:uppercase;font-size:8pt;letter-spacing:.14em;color:var(--red)}
 .occ{margin-top:4.5mm}
-.tit{font-family:'TeX Gyre Heros Cn','Inter',sans-serif;font-weight:700;text-transform:uppercase;font-size:40pt;line-height:.93;letter-spacing:-.005em;margin-top:1mm}
+.tit{font-family:var(--hd);font-weight:var(--hw);text-transform:uppercase;font-size:var(--tz);line-height:.96;letter-spacing:var(--tls);margin-top:1mm;-webkit-text-stroke:var(--ts,.6pt) currentColor}
 .tit em{font-style:normal;color:var(--red)}
-.som{font-style:italic;font-size:11.4pt;line-height:1.35;margin-top:2.4mm;color:#2c261d;border-top:.3mm solid var(--rule);padding-top:2mm}
+.som{font-style:italic;font-size:11.4pt;line-height:1.35;margin-top:2.4mm;color:var(--ink);opacity:.85;border-top:.3mm solid var(--rule);padding-top:2mm}
 .g2{display:grid;grid-template-columns:1fr 56mm;gap:6mm;margin-top:3.5mm}
 .txt{font-size:9.6pt;line-height:1.42;text-align:justify;hyphens:auto}
 .txt:first-letter{float:left;font-family:'GFS Baskerville',serif;font-weight:700;font-size:34pt;line-height:.82;padding:.6mm 1.4mm 0 0;color:var(--red)}
 .box{border-top:1.1mm solid var(--rule);border-bottom:.3mm solid var(--rule);padding:1.6mm 0 1.8mm;margin-bottom:3.4mm}
-.box h3{font-family:'TeX Gyre Heros Cn','Inter',sans-serif;font-weight:700;text-transform:uppercase;font-size:11.5pt;letter-spacing:.04em;margin-bottom:1.4mm}
+.box h3{font-family:var(--hd);font-weight:700;text-transform:uppercase;font-size:11.5pt;letter-spacing:.04em;margin-bottom:1.4mm}
 .box h3 b{color:var(--red)}
 .tab{border-top:1.1mm solid var(--rule);margin-top:4.2mm}
-.tab h2{font-family:'TeX Gyre Heros Cn','Inter',sans-serif;font-weight:700;text-transform:uppercase;font-size:17pt;letter-spacing:.01em;margin:1.6mm 0 1.4mm}
+.tab h2{font-family:var(--hd);font-weight:700;text-transform:uppercase;font-size:17pt;letter-spacing:.01em;margin:1.6mm 0 1.4mm}
 .tab h2 b{color:var(--red)}
-.mt{display:grid;grid-template-columns:1fr 17mm 1fr;align-items:baseline;gap:1.5mm;padding:1.1mm 0 .2mm;border-top:.2mm solid #b9b09b}
+.mt{display:grid;grid-template-columns:1fr 17mm 1fr;align-items:baseline;gap:1.5mm;padding:1.1mm 0 .2mm;border-top:.2mm solid var(--soft)}
 .mt:first-of-type{border-top:0}
 .mt .a{font-weight:700;font-size:10.4pt}
 .mt .a.r{text-align:right}
 .mt .a.l{color:var(--mute);font-weight:400}
-.mt .s{text-align:center;font-family:'TeX Gyre Heros Cn','Inter',sans-serif;font-weight:700;font-size:15pt;background:var(--ink);color:var(--paper);padding:0 0 .4mm;letter-spacing:.04em}
+.mt .s{text-align:center;font-family:var(--hd);font-weight:var(--hw);font-size:14pt;background:var(--ink);color:var(--paper);padding:0 0 .4mm;letter-spacing:.04em}
 .mp{display:grid;grid-template-columns:1fr 17mm 1fr;font-size:7.4pt;color:var(--mute);font-family:'Inter',sans-serif}
 .mp i{font-style:normal}.mp i:first-child{text-align:right}.mp i:last-child{text-align:left}
-.cmm{font-style:italic;font-size:8.7pt;line-height:1.3;color:#3a3326;margin:.6mm 0 1.2mm;padding-left:1mm;border-left:.7mm solid var(--red)}
+.cmm{font-style:italic;font-size:8.7pt;line-height:1.3;color:var(--ink);opacity:.85;margin:.6mm 0 1.2mm;padding-left:1mm;border-left:.7mm solid var(--red)}
 .pal{list-style:none;font-size:8.6pt;line-height:1.28}
-.pal li{padding:1mm 0;border-top:.2mm solid #b9b09b}
+.pal li{padding:1mm 0;border-top:.2mm solid var(--soft)}
 .pal li:first-child{border-top:0}
-.pal b{display:block;font-family:'TeX Gyre Heros Cn','Inter',sans-serif;text-transform:uppercase;font-size:7.8pt;letter-spacing:.1em;color:var(--red)}
+.pal b{display:block;font-family:var(--hd);text-transform:uppercase;font-size:7.8pt;letter-spacing:.1em;color:var(--red)}
 .pal span{font-weight:700;font-size:9.4pt}
-.big{font-family:'TeX Gyre Heros Cn','Inter',sans-serif;font-weight:700;font-size:62pt;line-height:.9;color:var(--red);text-align:center;margin:1mm 0 1mm}
+.big{-webkit-text-stroke:.8pt currentColor;font-family:var(--hd);font-weight:var(--hw);font-size:62pt;line-height:.9;color:var(--red);text-align:center;margin:1mm 0 1mm}
 .bt{font-size:8.6pt;line-height:1.35;text-align:center}
 .fig{margin:0 0 3.4mm}
 .fig svg{width:100%;display:block;border:.3mm solid var(--rule)}
 .fig p{font-size:7.2pt;color:var(--mute);margin-top:.8mm;font-style:italic}
 table{width:100%;border-collapse:collapse;font-size:8.8pt}
 th{font-family:'Inter',sans-serif;font-size:6.8pt;letter-spacing:.1em;text-transform:uppercase;text-align:center;padding:1mm .8mm;border-bottom:.5mm solid var(--rule);color:var(--red);font-weight:800}
-td{padding:.95mm .8mm;border-bottom:.2mm solid #b9b09b;text-align:center}
+td{padding:.95mm .8mm;border-bottom:.2mm solid var(--soft);text-align:center}
 td:nth-child(2),th:nth-child(2){text-align:left}
-td.p{font-family:'TeX Gyre Heros Cn','Inter',sans-serif;font-weight:700;font-size:11pt}
+td.p{font-family:var(--hd);font-weight:700;font-size:11pt}
 td.pos{font-weight:700;color:var(--mute)}
 tr.pod td:nth-child(2){font-weight:700}
 tr.pod td.pos{color:var(--red)}
 .tp{font-size:8.5pt;line-height:1.28;margin:.5mm 0}
-.tp b{font-family:'TeX Gyre Heros Cn','Inter',sans-serif;text-transform:uppercase;letter-spacing:.03em}
+.tp b{font-family:var(--hd);text-transform:uppercase;letter-spacing:.03em}
 .tp i{color:var(--mute)}
-.gm{display:flex;justify-content:space-between;gap:2mm;font-size:9.6pt;font-weight:700;padding:1.1mm 0;border-bottom:.2mm solid #b9b09b}
+.gm{display:flex;justify-content:space-between;gap:2mm;font-size:9.6pt;font-weight:700;padding:1.1mm 0;border-bottom:.2mm solid var(--soft)}
 .gm em{font-style:normal;font-family:'Inter',sans-serif;font-size:7.4pt;color:var(--red);font-weight:800;align-self:center}
-.gr{font-family:'TeX Gyre Heros Cn','Inter',sans-serif;font-weight:700;text-transform:uppercase;font-size:9pt;letter-spacing:.12em;color:var(--red);margin:1.8mm 0 .6mm}
+.gr{font-family:var(--hd);font-weight:700;text-transform:uppercase;font-size:9pt;letter-spacing:.12em;color:var(--red);margin:1.8mm 0 .6mm}
 .nt{font-size:7.6pt;color:var(--mute);margin-top:1.2mm;line-height:1.35;font-style:italic}
 .cols{display:grid;grid-template-columns:1fr 1fr;gap:6mm}
 .st{font-family:'Inter',sans-serif;font-weight:800;font-size:6.8pt;letter-spacing:.06em;text-transform:uppercase;padding:.4mm 1.4mm;border:.3mm solid var(--rule)}
-.st.s{background:var(--red);color:#fff;border-color:var(--red)}
+.st.s{background:var(--red);color:var(--paper);border-color:var(--red)}
 .taglio{border:.5mm solid var(--rule);border-left:2.2mm solid var(--red);padding:3.2mm 4mm;margin-top:5mm;font-style:italic;font-size:10.8pt;line-height:1.4}
-.taglio b{font-style:normal;font-family:'TeX Gyre Heros Cn','Inter',sans-serif;text-transform:uppercase;font-size:8.2pt;letter-spacing:.14em;color:var(--red);display:block;margin-bottom:.8mm}
+.taglio b{font-style:normal;font-family:var(--hd);text-transform:uppercase;font-size:8.2pt;letter-spacing:.14em;color:var(--red);display:block;margin-bottom:.8mm}
 .foot{position:absolute;left:11mm;right:11mm;bottom:5mm;display:flex;justify-content:space-between;font-family:'Inter',sans-serif;font-size:7pt;color:var(--mute);border-top:.3mm solid var(--rule);padding-top:1.4mm}
 .fin{font-size:9pt;line-height:1.4;margin-top:3mm}
 """
@@ -132,7 +148,7 @@ def tab_cl(righe, completa=True):
     return "".join(h)
 
 
-def costruisci(t):
+def costruisci(t, tema="classico"):
     cal = D["cal"]
     gioc = [x for x in cal["lega"] if giocata(x)]
     ult = gioc[-1] if gioc else None
@@ -150,7 +166,7 @@ def costruisci(t):
     def piede(p):
         return f'<div class="foot"><span>Il Giornale del Girrr · O Fant A Girrr · Lo Spogliatoio</span><span>Pag. {p} di 3</span></div>'
 
-    h = [f"<style>{CSS}</style>"]
+    h = [f"<style>{CSS}{css_tema(tema)}</style>"]
     # ---------- prima pagina
     h.append(f'<section class="pg">{testata(1)}<div class="mast"><h1>Il Giornale del <span>Girrr</span></h1></div>'
              '<div class="tag">Il settimanale sportivo della lega O Fant A Girrr</div>')
@@ -230,7 +246,7 @@ def costruisci(t):
     if coppa:
         h.append(f'<div class="gr" style="margin-top:0">{coppa["n"]}ª giornata · Serie A G{coppa["sa"]}</div>')
         for gname in ("A", "B"):
-            h.append(f'<div class="gr" style="color:#16130e">Girone {gname}</div>')
+            h.append(f'<div class="gr" style="color:var(--ink)">Girone {gname}</div>')
             for gir, casa, _, _, fuori, _ in coppa["m"]:
                 if gir == gname:
                     h.append(f'<div class="gm"><span>{esc(cap(casa))}</span><em>VS</em><span>{esc(cap(fuori))}</span></div>')
@@ -261,10 +277,15 @@ def costruisci(t):
 
 
 def main():
+    tema = "classico"
+    if "--tema" in sys.argv:
+        k = sys.argv.index("--tema")
+        tema = sys.argv[k + 1]
+        del sys.argv[k:k + 2]
     t = {}
     if len(sys.argv) > 1 and Path(sys.argv[1]).exists():
         t = json.loads(Path(sys.argv[1]).read_text(encoding="utf-8"))
-    pagina, n = costruisci(t)
+    pagina, n = costruisci(t, tema)
     uscita = Path(sys.argv[2]) if len(sys.argv) > 2 else ROOT / "riepiloghi" / f"settimana-{n:02d}.pdf"
     uscita.parent.mkdir(parents=True, exist_ok=True)
     tmp = uscita.with_suffix(".html")
