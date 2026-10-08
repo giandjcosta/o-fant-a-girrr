@@ -117,6 +117,58 @@ PITCH = """<svg viewBox="0 0 100 62" xmlns="http://www.w3.org/2000/svg"><rect wi
 <path d="M66 31 C72 28 78 30 88 31" stroke="#ffd166" stroke-width=".9" fill="none" stroke-dasharray="1.8 1.4"/><circle cx="88.6" cy="31" r="1.5" fill="#fff" stroke="#111" stroke-width=".4"/></svg>"""
 
 
+MODULI = {"3-4-3": (3, 4, 3), "3-5-2": (3, 5, 2), "4-3-3": (4, 3, 3), "4-4-2": (4, 4, 2), "4-5-1": (4, 5, 1), "5-3-2": (5, 3, 2), "5-4-1": (5, 4, 1)}
+
+
+def formazione():
+    """Miglior undici della giornata di Serie A piu' recente fra i giocatori delle rose, per fantavoto."""
+    voti = D.get("votes", {})
+    in_rosa = {str(p["id"]) for t in D["teams"] for p in t["pl"]}
+    giornate = sorted({int(g) for s in voti.values() for g in s})
+    if not giornate:
+        return None
+    g = str(giornate[-1])
+    per_ruolo = {"P": [], "D": [], "C": [], "A": []}
+    for i in in_rosa:
+        x = voti.get(i, {}).get(g)
+        pl = D["P"].get(i)
+        if x and x.get("f") is not None and pl and pl["r"] in per_ruolo:
+            per_ruolo[pl["r"]].append((x["f"], pl["n"]))
+    for r in per_ruolo:
+        per_ruolo[r].sort(key=lambda z: (-z[0], z[1]))
+    if not per_ruolo["P"]:
+        return None
+    best = None
+    for nome, (d, c, a) in MODULI.items():
+        if len(per_ruolo["D"]) < d or len(per_ruolo["C"]) < c or len(per_ruolo["A"]) < a:
+            continue
+        sel = {"P": per_ruolo["P"][:1], "D": per_ruolo["D"][:d], "C": per_ruolo["C"][:c], "A": per_ruolo["A"][:a]}
+        tot = sum(z[0] for r in sel.values() for z in r)
+        if best is None or tot > best[0]:
+            best = (tot, nome, sel)
+    if not best:
+        return None
+    return int(g), best[1], best[2], best[0]
+
+
+def svg_formazione(sel):
+    """Campo orizzontale: portiere a sinistra, attacco a destra."""
+    cols = [("P", 11), ("D", 30), ("C", 53), ("A", 78)]
+    out = ['<svg viewBox="0 0 100 58" xmlns="http://www.w3.org/2000/svg"><rect width="100" height="58" fill="#2f6b3a"/>'
+           '<g fill="none" stroke="#e9f2e5" stroke-width=".5"><rect x="2" y="2" width="96" height="54"/><line x1="50" y1="2" x2="50" y2="56"/><circle cx="50" cy="29" r="8"/>'
+           '<rect x="2" y="15" width="13" height="28"/><rect x="85" y="15" width="13" height="28"/></g>']
+    for ruolo, x in cols:
+        gioc = sel[ruolo]
+        for k, (fv, nome) in enumerate(gioc):
+            y = 58 * (k + 1) / (len(gioc) + 1)
+            cognome = nome.split(" ")[0] if len(nome) > 11 else nome
+            out.append(f'<circle cx="{x}" cy="{y:.1f}" r="2.3" fill="#fff" stroke="var(--red)" stroke-width="1"/>'
+                       f'<text x="{x}" y="{y + 5.3:.1f}" font-family="Inter,sans-serif" font-weight="800" font-size="2.9" text-anchor="middle" fill="#fff">{html.escape(cognome)}</text>'
+                       f'<text x="{x}" y="{y + 1.0:.1f}" font-family="Inter,sans-serif" font-weight="900" font-size="{2.3 if len(pt(fv)) < 4 else 1.8}" text-anchor="middle" fill="var(--ink)">{pt(fv).replace(",", ".")}</text>')
+    out.append("</svg>")
+    return "".join(out)
+
+
 def migliori(n=4):
     voti = D.get("votes", {})
     in_rosa = {str(p["id"]) for t in D["teams"] for p in t["pl"]}
@@ -188,10 +240,12 @@ def costruisci(t, tema="classico"):
             if k < len(com) and com[k]:
                 h.append(f'<div class="cmm">{esc(com[k])}</div>')
         h.append("</div>")
-    if t.get("premi"):
-        h.append(f'<div class="taglio" style="margin-top:4mm"><b>Il commento</b>{esc(t["premi"])}</div>')
+    fz = formazione()
+    if fz:
+        gg, modulo, sel, tot = fz
+        h.append(f'<div class="tab" style="margin-top:2.6mm"><h2>L\'undici <b>della settimana</b></h2>'
+                 f'<div class="fig" style="margin:0;width:100mm">{svg_formazione(sel)}<p>Modulo {modulo} · i migliori fantavoti della {gg}ª di Serie A tra le rose</p></div></div>')
     h.append("</div><div>")
-    h.append(f'<div class="fig">{PITCH}<p>La lavagna della settimana.</p></div>')
     if t.get("numero"):
         nm = t["numero"]
         h.append(f'<div class="box"><h3>Il numero <b>della settimana</b></h3><div class="big">{esc(nm.get("valore", ""))}</div><div class="bt">{esc(nm.get("testo", ""))}</div></div>')
@@ -201,6 +255,8 @@ def costruisci(t, tema="classico"):
             h.append(f'<li><b>{esc(tit)}</b><span>{esc(chi)}</span><br>{esc(dett)}</li>')
         h.append("</ul>")
         h.append("</div>")
+    if t.get("premi"):
+        h.append(f'<div class="taglio" style="margin-top:3mm;padding:2.4mm 3mm;font-size:9.6pt"><b>Il commento</b>{esc(t["premi"])}</div>')
     h.append("</div></div>")
     h.append(f"{piede(1)}</section>")
 
