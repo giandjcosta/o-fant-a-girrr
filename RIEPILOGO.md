@@ -96,41 +96,41 @@ Punteggio: piu' e' alto, piu' conviene. Unisce valore e probabilita' di giocare.
 
 | Giocatore | Squadra | Stato | Avversario | Punteggio |
 |---|---|---|---|---|
-| Perri | Torino | Titolare | Udinese (C) | 21 |
-| Thiam | Monza | Panchina | Lazio (T) | 21 |
+| Perri | Torino | Titolare | Udinese (C) | 42 |
+| Thiam | Monza | Panchina | Lazio (T) | 42 |
+| Mascardi | Torino | Panchina | Udinese (C) | 28 |
 | Daffara | Parma | Panchina | Inter (T) | 15 |
 | Happonen | Bologna | Panchina | Lecce (T) | 15 |
-| Sherri | Cagliari | Panchina | Juventus (C) | 15 |
 
 ### Difensori
 
 | Giocatore | Squadra | Stato | Avversario | Punteggio |
 |---|---|---|---|---|
-| Hainaut | Venezia | Titolare | Atalanta (T) | 52 |
-| Abankwah | Udinese | Panchina | Torino (T) | 49 |
-| Zè Pedro | Cagliari | Titolare | Juventus (C) | 43 |
-| Cinquegrano | Sassuolo | Titolare | Milan (C) | 42 |
-| Rodriguez Ju. | Cagliari | Titolare | Juventus (C) | 42 |
+| Hainaut | Venezia | Titolare | Atalanta (T) | 87 |
+| Abankwah | Udinese | Panchina | Torino (T) | 84 |
+| Zè Pedro | Cagliari | Titolare | Juventus (C) | 78 |
+| Cinquegrano | Sassuolo | Titolare | Milan (C) | 77 |
+| Rodriguez Ju. | Cagliari | Titolare | Juventus (C) | 77 |
 
 ### Centrocampisti
 
 | Giocatore | Squadra | Stato | Avversario | Punteggio |
 |---|---|---|---|---|
-| Romano | Cagliari | Titolare | Juventus (C) | 55 |
-| Matic | Sassuolo | Titolare | Milan (C) | 49 |
-| Schmid | Frosinone | Titolare | Napoli (T) | 49 |
-| Gilmour | Napoli | Titolare | Frosinone (C) | 44 |
-| Winks | Cagliari | Titolare | Juventus (C) | 42 |
+| Romano | Cagliari | Titolare | Juventus (C) | 90 |
+| Matic | Sassuolo | Titolare | Milan (C) | 84 |
+| Schmid | Frosinone | Titolare | Napoli (T) | 84 |
+| Winks | Cagliari | Titolare | Juventus (C) | 77 |
+| Fitz-Jim | Torino | Titolare | Udinese (C) | 76 |
 
 ### Attaccanti
 
 | Giocatore | Squadra | Stato | Avversario | Punteggio |
 |---|---|---|---|---|
-| Robinson J. | Monza | Titolare | Lazio (T) | 47 |
-| Lontani | Parma | Titolare | Inter (T) | 44 |
+| Lontani | Parma | Titolare | Inter (T) | 72 |
+| Robinson J. | Monza | Titolare | Lazio (T) | 68 |
+| Ghedjemis | Frosinone | Titolare | Napoli (T) | 40 |
+| N'Dri | Lecce | Panchina | Bologna (C) | 31 |
 | Kulenovic | Torino | Panchina | Udinese (C) | 27 |
-| Ghedjemis | Frosinone | Titolare | Napoli (T) | 26 |
-| N'Dri | Lecce | Panchina | Bologna (C) | 17 |
 
 ## Correzioni da controllare
 
