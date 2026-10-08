@@ -4,6 +4,9 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="robots" content="noindex">
+<script>window.goatcounter={path:function(){return location.pathname}}</script>
+<script data-goatcounter="https://djcosta18.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
+
 <meta property="og:title" content="Spogliatoio · O Fant A Girrr">
 <meta property="og:description" content="Rosa, giornata, scambi, svincolati e infortunati della nostra lega di fantacalcio.">
 <meta name="description" content="Rosa, giornata, scambi, svincolati e infortunati della nostra lega di fantacalcio.">
@@ -344,6 +347,7 @@ h2.sec{font-size:1.35rem;margin-block:18px 8px}
 <button role="tab" data-t="inj" aria-selected="false">Infortunati</button>
 <button role="tab" data-t="lega" aria-selected="false">Calendario</button>
 <button role="tab" data-t="set" aria-selected="false">Info</button>
+<button role="tab" data-t="stat" aria-selected="false">Statistiche</button>
 </nav>
 <main id="app"></main>
 </div>
@@ -435,7 +439,7 @@ function render(){
   [].forEach.call(document.querySelectorAll('#tabs button'),function(b){b.setAttribute('aria-selected',b.dataset.t===tab)});
   uid=0;
   app.classList.toggle('enter',enter);
-  app.innerHTML=tab==='rosa'?vRosa():tab==='day'?vDay():tab==='swap'?vSwap():tab==='fa'?vFa():tab==='pitch'?vPitch():tab==='inj'?vInj():tab==='lega'?vLega():vSet();
+  app.innerHTML=tab==='rosa'?vRosa():tab==='day'?vDay():tab==='swap'?vSwap():tab==='fa'?vFa():tab==='pitch'?vPitch():tab==='inj'?vInj():tab==='lega'?vLega():tab==='stat'?vStat():vSet();
   if(enter&&!(window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches)){
     [].forEach.call(app.querySelectorAll('.ring text,.score,.kpi b'),function(el){var m=el.textContent.match(/^(\d+)(%?)$/);if(!m)return;var to=+m[1],suf=m[2],t0=null;function step(ts){if(t0===null)t0=ts;var k=Math.min(1,(ts-t0)/700),e=1-Math.pow(1-k,3);el.textContent=Math.round(to*e)+suf;if(k<1)requestAnimationFrame(step)}el.textContent='0'+suf;requestAnimationFrame(step)});
   }
@@ -638,6 +642,12 @@ function vPitch(){
   });
   return h;
 }
+var GC='https://djcosta18.goatcounter.com';
+function track(){try{if(window.goatcounter&&goatcounter.count&&authed())goatcounter.count({path:'scheda/'+tab,title:'Scheda '+tab,event:true})}catch(e){}}
+function vStat(){
+  fetch(GC+'/counter/TOTAL.json').then(function(r){return r.ok?r.json():null}).then(function(j){if(!j)return;var a=document.getElementById('gcn');if(a&&j.count!=null)a.textContent=j.count;var u=document.getElementById('gcu');if(u&&j.count_unique!=null)u.textContent=j.count_unique}).catch(function(){});
+  return '<div class="card"><h3 style="margin-bottom:6px">Quante volte è stato usato il sito</h3><p style="margin:0 0 12px;color:var(--mute)">Il conteggio è anonimo: non registra chi sei né il dispositivo, solo quante volte il sito viene aperto e quali schede si usano.</p><div class="kpi" style="grid-template-columns:repeat(2,1fr)"><div><b id="gcn">–</b><span>Aperture totali</span></div><div><b id="gcu">–</b><span>Visitatori diversi</span></div></div><a class="btn pri" href="'+GC+'" target="_blank" rel="noopener" style="display:block;text-align:center;text-decoration:none">Apri le statistiche complete</a></div><div class="hint">Nella pagina completa trovi le aperture per giorno, i visitatori diversi per giorno e le schede più usate.</div>';
+}
 function vSet(){
   var m=D.manual||[],h='';
   if(m.length)h+='<div class="card todo" style="margin-bottom:10px"><h3 style="margin-bottom:6px">Correzioni da controllare</h3><ul style="margin:0;padding-left:18px">'+m.map(function(x){return '<li>'+esc(x)+'</li>'}).join('')+'</ul></div>';
@@ -710,7 +720,7 @@ function vSet(){
   return h;
 }
 document.getElementById('skin').addEventListener('click',function(e){var b=e.target.closest('button');if(b){LS.skin=b.dataset.skin;save();render()}});
-document.getElementById('tabs').addEventListener('click',function(e){var b=e.target.closest('button');if(b){tab=b.dataset.t;enter=true;render()}});
+document.getElementById('tabs').addEventListener('click',function(e){var b=e.target.closest('button');if(b){tab=b.dataset.t;enter=true;render();track()}});
 document.getElementById('who').addEventListener('click',function(e){if(e.target.id==='out'){LS.code='';save();gateErr=false;render()}});
 app.addEventListener('click',function(e){
   var t=e.target,b=t.closest('[data-enter]');if(b){team=document.getElementById('gt').value;LS.team=team;LS.code=document.getElementById('gc').value.trim().toUpperCase();gateErr=!authed();save();render();return}
