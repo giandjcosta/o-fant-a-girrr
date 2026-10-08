@@ -58,6 +58,63 @@ def premi(partite):
     return out
 
 
+def classifica(giornate, coppa=False):
+    """Classifica da risultati: 3 punti vittoria, 1 pareggio. A pari punti: differenza reti, gol fatti, fantapunti."""
+    squadre = {}
+
+    def riga(nome):
+        return squadre.setdefault(nome, {"n": nome, "g": 0, "v": 0, "x": 0, "p": 0, "gf": 0, "gs": 0, "pt": 0, "fp": 0.0, "gir": ""})
+    for gi in giornate:
+        for m in gi["m"]:
+            if coppa:
+                gir, casa, pc, pf, fuori, ris = m
+            else:
+                casa, pc, pf, fuori, ris = m
+                gir = ""
+            a, b = riga(casa), riga(fuori)
+            a["gir"] = b["gir"] = gir
+            if ris == "-":
+                continue
+            gc, gf = [int(x) for x in ris.split("-")]
+            for r, fatti, subiti, fp in ((a, gc, gf, pc), (b, gf, gc, pf)):
+                r["g"] += 1
+                r["gf"] += fatti
+                r["gs"] += subiti
+                r["fp"] += fp
+                if fatti > subiti:
+                    r["v"] += 1
+                    r["pt"] += 3
+                elif fatti == subiti:
+                    r["x"] += 1
+                    r["pt"] += 1
+                else:
+                    r["p"] += 1
+        for gir, sq in gi.get("rest", []):
+            riga(sq)["gir"] = gir
+    return sorted(squadre.values(), key=lambda r: (-r["pt"], -(r["gf"] - r["gs"]), -r["gf"], -r["fp"], r["n"]))
+
+
+def tab_classifica(righe, completa=True):
+    h = ["<table class='cl'><tr><th>#</th><th>Squadra</th><th>G</th>"]
+    if completa:
+        h.append("<th>V</th><th>N</th><th>P</th><th>GF</th><th>GS</th><th>DR</th>")
+    h.append("<th>Pt</th>")
+    if completa:
+        h.append("<th>Fantapunti</th>")
+    h.append("</tr>")
+    for k, r in enumerate(righe, 1):
+        dr = r["gf"] - r["gs"]
+        h.append(f'<tr class="{"pod" if k <= 3 and completa else ""}"><td class="pos">{k}</td><td><b>{esc(cap(r["n"]))}</b></td><td>{r["g"]}</td>')
+        if completa:
+            h.append(f'<td>{r["v"]}</td><td>{r["x"]}</td><td>{r["p"]}</td><td>{r["gf"]}</td><td>{r["gs"]}</td><td>{dr:+d}</td>')
+        h.append(f'<td class="pt">{r["pt"]}</td>')
+        if completa:
+            h.append(f'<td>{pt(r["fp"])}</td>')
+        h.append("</tr>")
+    h.append("</table>")
+    return "".join(h)
+
+
 CSS = """
 @page { size: A4; margin: 0 }
 *{box-sizing:border-box;margin:0;padding:0}
@@ -108,6 +165,13 @@ td{padding:1.5mm 2.6mm;border-top:.25mm solid #e5ece7}
 .st.s{background:#fde3d3;color:#b0420a}
 .st.d{background:#fff0c9;color:#8a6200}
 .foot{position:absolute;left:14mm;right:14mm;bottom:6mm;font-size:8pt;color:#6b7c72;display:flex;justify-content:space-between;border-top:.3mm solid #d7e1da;padding-top:2mm}
+.cl td,.cl th{text-align:center}
+.cl td:nth-child(2),.cl th:nth-child(2){text-align:left}
+.cl .pos{font-weight:800;color:#6b7c72}
+.cl .pt{font-weight:900;color:#0b3d2a;font-size:10pt}
+.cl tr.pod td.pos{color:#ff7a1a}
+.cl tr.pod td:first-child{box-shadow:inset 1.2mm 0 0 #ff7a1a}
+.nota{margin-top:2mm;font-size:7.8pt;color:#6b7c72;line-height:1.4}
 .end{margin-top:6mm;background:#0b3d2a;color:#fff;border-radius:3mm;padding:4mm 5mm;font-size:10pt;line-height:1.5;font-weight:500}
 .end b{color:#ff9d4d}
 """
@@ -156,9 +220,31 @@ def costruisci(testi):
         pb = testi.get("premi")
         if pb:
             h.append(f'<p class="bat">{esc(pb)}</p>')
-    h.append("</div>" f'<div class="foot"><span>O Fant A Girrr · Lo Spogliatoio · Dati al {esc(quando)}</span><span>1 / 2</span></div></section>')
+    h.append("</div>" f'<div class="foot"><span>O Fant A Girrr · Lo Spogliatoio · Dati al {esc(quando)}</span><span>1 / 3</span></div></section>')
 
-    # --- pagina 2
+    # --- pagina classifiche
+    giocate_lega = [x for x in cal["lega"] if giocata(x)]
+    cl = classifica(giocate_lega)
+    h.append('<section class="pg"><div class="top" style="padding-bottom:7mm"><div class="kick">Dove siamo arrivati</div>'
+             '<h1 style="font-size:22pt">Le <span>classifiche</span></h1></div><div class="in">'
+             f'<h2>Campionato · dopo la {n}ª giornata</h2>{tab_classifica(cl)}'
+             '<div class="nota">Vittoria 3 punti, pareggio 1. A parità di punti: differenza reti, gol fatti, fantapunti totali.</div>')
+    giocate_cup = [x for x in cal["cup"] if giocata(x)]
+    cc = classifica(cal["cup"] if giocate_cup else cal["cup"][:1], coppa=True)
+    h.append("<h2>Champions Cup · gironi</h2>")
+    if giocate_cup:
+        h.append(f'<div class="nota" style="margin:-1mm 0 2mm">Dopo la {giocate_cup[-1]["n"]}ª giornata</div>')
+    else:
+        h.append('<div class="nota" style="margin:-1mm 0 2mm">Si parte con la prossima giornata: tutte a zero, ordine provvisorio.</div>')
+    h.append('<div class="cols">')
+    for g in ("A", "B"):
+        h.append(f'<div><div class="gr" style="color:#ff7a1a">Girone {g}</div>{tab_classifica([r for r in cc if r["gir"] == g], completa=False)}</div>')
+    h.append("</div>")
+    if testi.get("classifiche"):
+        h.append(f'<p class="bat">{esc(testi["classifiche"])}</p>')
+    h.append("</div>" '<div class="foot"><span>Classifiche calcolate dai risultati della lega</span><span>2 / 3</span></div></section>')
+
+    # --- pagina 3
     h.append('<section class="pg"><div class="top" style="padding-bottom:7mm"><div class="kick">Cosa ci aspetta</div>'
              f'<h1 style="font-size:22pt">Prossima <span>giornata</span></h1></div><div class="in"><div class="cols">')
     h.append('<div><h2>Campionato</h2>')
@@ -198,7 +284,7 @@ def costruisci(testi):
         h.append(f'<p class="bat">{esc(testi["infortunati"])}</p>')
     if testi.get("chiusura"):
         h.append(f'<div class="end">{esc(testi["chiusura"])}</div>')
-    h.append("</div>" '<div class="foot"><span>Notizie pubbliche: non indicano di chi sono i giocatori</span><span>2 / 2</span></div></section>')
+    h.append("</div>" '<div class="foot"><span>Notizie pubbliche: non indicano di chi sono i giocatori</span><span>3 / 3</span></div></section>')
     return "<!doctype html><html lang='it'><head><meta charset='utf-8'><title>Riepilogo O Fant A Girrr</title></head><body>" + "".join(h) + "</body></html>", n
 
 
