@@ -815,7 +815,7 @@ function vStat(){
     function tot(p){return by[p]?by[p].count:0}
     var ap=tot('apertura'),dv=tot('dispositivo-nuovo'),days={},hrs=[];for(var i=0;i<24;i++)hrs.push(0);
     ((by.apertura&&by.apertura.stats)||[]).forEach(function(d){var n=(d.hourly||[]).reduce(function(a,b){return a+b},0);days[d.day]=n;(d.hourly||[]).forEach(function(v,k){hrs[k]+=v})});
-    var today=new Date().toISOString().slice(0,10),ks=Object.keys(days).sort(),last7=ks.slice(-7).reduce(function(a,k){return a+days[k]},0);
+    var today=new Date().toISOString().slice(0,10),ks=Object.keys(days).filter(function(k){return k<=today}).sort(),last7=ks.slice(-7).reduce(function(a,k){return a+days[k]},0);
     var best=0;for(i=1;i<24;i++)if(hrs[i]>hrs[best])best=i;var off=new Date().getTimezoneOffset()/60,lh=((best-off)%24+24)%24;
     var set=function(id,v){var e=document.getElementById(id);if(e)e.textContent=v};
     set('gcn',ap);set('gcu',dv);set('gcd',days[today]||0);set('gc7',last7);set('gcr',dv?(ap/dv).toFixed(1).replace('.',','):'–');set('gch',ap?String(Math.floor(lh)).padStart(2,'0')+':00':'–');
