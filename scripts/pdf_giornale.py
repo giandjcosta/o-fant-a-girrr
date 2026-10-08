@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""PDF settimanale in stile giornale sportivo ("Il Giornale del Girrr").
+"""PDF settimanale in stile giornale sportivo ("O Giornale del Girrr").
 
 Uso:  python3 scripts/pdf_giornale.py [testi.json] [uscita.pdf]
 
@@ -216,14 +216,14 @@ def costruisci(t, tema="classico"):
     def testata(num):
         return (f'<div class="bar"><span>{esc(data)}</span><span>N° {n}</span><span>Prezzo: 1 fantagol</span></div>'
                 if num == 1 else
-                f'<div class="bar"><span>Il Giornale del Girrr</span><span>{esc(data)}</span><span>N° {n}</span></div>')
+                f'<div class="bar"><span>O Giornale del Girrr</span><span>{esc(data)}</span><span>N° {n}</span></div>')
 
     def piede(p):
-        return f'<div class="foot"><span>Il Giornale del Girrr · O Fant A Girrr · Lo Spogliatoio</span><span>Pag. {p} di 3</span></div>'
+        return f'<div class="foot"><span>O Giornale del Girrr · O Fant A Girrr · Lo Spogliatoio</span><span>Pag. {p} di 3</span></div>'
 
     h = [f"<style>{CSS}{css_tema(tema)}</style>"]
     # ---------- prima pagina
-    h.append(f'<section class="pg">{testata(1)}<div class="mast"><h1>Il Giornale del <span>Girrr</span></h1></div>'
+    h.append(f'<section class="pg">{testata(1)}<div class="mast"><h1>O Giornale del <span>Girrr</span></h1></div>'
              '<div class="tag">Il settimanale sportivo della lega O Fant A Girrr</div>')
     h.append(f'<div class="mini occ">{esc(t.get("occhiello") or f"Campionato · {n}ª giornata")}</div>')
     h.append(f'<div class="tit">{esc(t.get("titolone") or t.get("titolo") or "Si comincia")}</div>')
@@ -332,7 +332,7 @@ def costruisci(t, tema="classico"):
     if t.get("chiusura"):
         h.append(f'<div class="taglio"><b>Taglio basso</b>{esc(t["chiusura"])}</div>')
     h.append(piede(3) + "</section>")
-    return "<!doctype html><html lang='it'><head><meta charset='utf-8'><title>Il Giornale del Girrr</title></head><body>" + "".join(h) + "</body></html>", n
+    return "<!doctype html><html lang='it'><head><meta charset='utf-8'><title>O Giornale del Girrr</title></head><body>" + "".join(h) + "</body></html>", n
 
 
 def main():
