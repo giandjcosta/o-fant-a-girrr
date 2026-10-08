@@ -1,3 +1,9 @@
 stats 200 1768639
 voti5 200 1227355
+voti1 200 1236953
+voti2 200 1237057
+voti3 200 1237391
+voti4 200 1230047
+voti6 200 71781
+voti7 200 71781
 leghe 404 23258 https://leghe.fantacalcio.it/o-fant-a-girrr/view/dashboard
