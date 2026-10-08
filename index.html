@@ -323,6 +323,8 @@ table.rt{min-width:0;table-layout:auto}
 @media(max-width:420px){.mkc{grid-template-columns:1fr;gap:6px}.mkarr{text-align:center;transform:rotate(90deg);height:20px}}
 details.help .mk{margin-top:10px}
 
+.mko{margin-top:8px}
+
 .pick{font:700 1.05rem var(--fh);text-transform:var(--tt);padding:10px 12px;border-radius:12px;border:1px solid var(--or);background:var(--card2);color:var(--ink);max-width:100%}
 .stb{font:700 .72rem var(--fb);text-transform:uppercase;letter-spacing:.05em;padding:2px 7px;border-radius:4px;white-space:nowrap}
 .stb{border-radius:999px}.s-T{background:var(--ok);color:#0b2200}.s-B{background:var(--mid);color:#001a33}.s-R{background:var(--warn);color:#1b1300}.s-D{background:var(--warn);color:#1b1300}.s-P{background:var(--line);color:var(--ink)}.s-I{background:var(--bad);color:#2b0008}
@@ -682,43 +684,56 @@ function mkPick(list){
   per.forEach(function(x){if(n<2&&free(x)){take(x,'p');n++}});
   return res;
 }
-function mkCompute(hz){
-  var key=D.updated+'|'+D.round+'|'+hz+'|'+team;if(MKC[key])return MKC[key];
+function mkGain(Ab,Bb,G,R){
+  function sel(S,a,b){return S.filter(function(x){return a.indexOf(x.id)<0}).concat(S===Ab?R2(Bb,b):R2(Ab,b))}
+  function R2(S,ids){return S.filter(function(x){return ids.indexOf(x.id)>=0})}
+  var A2=Ab.filter(function(x){return G.indexOf(x.id)<0}).concat(R2(Bb,R)),B2=Bb.filter(function(x){return R.indexOf(x.id)<0}).concat(R2(Ab,G));
+  return {gA:mkTeam(A2)-mkTeam(Ab),gB:mkTeam(B2)-mkTeam(Bb)};
+}
+function mkSc(g){return g.gA>=0.05&&g.gB>=0.05?Math.min(g.gA,g.gB)+0.3*Math.max(g.gA,g.gB)+1:g.gA+2*Math.min(0,g.gB)}
+function mkCompute(){
+  var key=D.updated+'|'+D.round+'|'+team;if(MKC[key])return MKC[key];
   var rb=roleBase(),mf={P:1,D:1,C:1,A:1};Object.keys(D.P).forEach(function(i){var p=D.P[i];if((p.f||0)>mf[p.r])mf[p.r]=p.f});
-  var me=curTeam(),A=mkVals(me,hz,rb,mf),res=[];
-  D.teams.forEach(function(T){if(T.name===team)return;var B=mkVals(T,hz,rb,mf);var pk=mkPick(mkPair(A,B));
-    var best=pk.reduce(function(m,x){return Math.max(m,x.kind==='m'?x.s+10:x.s)},-99);res.push({t:T.name,pk:pk,best:best})});
-  res.sort(function(a,b){return b.best-a.best});
-  var top=[];res.forEach(function(r){r.pk.forEach(function(x){if(x.kind==='m')top.push({t:r.t,x:x})})});
-  top.sort(function(a,b){return b.x.s-a.x.s});top=top.slice(0,3);
-  if(top.length<3){var ps=[];res.forEach(function(r){r.pk.forEach(function(x){if(x.kind==='p')ps.push({t:r.t,x:x})})});ps.sort(function(a,b){return b.x.s-a.x.s});top=top.concat(ps.slice(0,3-top.length))}
-  return MKC[key]={res:res,top:top};
+  var me=curTeam(),Ab=mkVals(me,'b',rb,mf),Al=mkVals(me,'l',rb,mf),res=[];
+  D.teams.forEach(function(T){if(T.name===team)return;var Bb=mkVals(T,'b',rb,mf),Bl=mkVals(T,'l',rb,mf),seen={},L=[];
+    [[Ab,Bb],[Al,Bl]].forEach(function(ab){mkPick(mkPair(ab[0],ab[1])).forEach(function(x){
+      var G=x.G.map(function(v){return v.id}),R=x.R.map(function(v){return v.id}),k=G.slice().sort().join(',')+'>'+R.slice().sort().join(',');if(seen[k])return;seen[k]=1;
+      function es(V,W,ids){var t=0;ids.forEach(function(i){var v=V.concat(W).filter(function(y){return y.id===i})[0];t+=v?v.e:0});return t}
+      L.push({G:x.G,R:x.R,k:x.k,b:mkGain(Ab,Bb,G,R),l:mkGain(Al,Bl,G,R),rb:es(Ab,Bb,G)/es(Ab,Bb,R),rl:es(Al,Bl,G)/es(Al,Bl,R)})})});
+    res.push({t:T.name,L:L})});
+  return MKC[key]=res;
+}
+function mkView(h){
+  var R=mkCompute(),out=[],top=[];
+  R.forEach(function(r){var L=r.L.map(function(x){var g=x[h];return {G:x.G,R:x.R,k:x.k,gA:g.gA,gB:g.gB,o:x[h==='b'?'l':'b'],s:mkSc(g),q:x[h==='b'?'rb':'rl']}}).filter(function(x){return x.gA>0.05&&x.gB>=-0.1&&x.q>=0.75&&x.q<=1.34}).sort(function(a,b){return b.s-a.s}).slice(0,4);
+    out.push({t:r.t,pk:L,best:L.length?L[0].s:-99});L.forEach(function(x){top.push({t:r.t,x:x})})});
+  out.sort(function(a,b){return b.best-a.best});top.sort(function(a,b){return b.x.s-a.x.s});
+  return {res:out,top:top.slice(0,3)};
 }
 function mkPl(v){var id=v.id,p=P(id),q=(D.ps||{})[id]||{};return '<span class="mkp"><i class="rb '+v.r+'">'+v.r+'</i><span><b>'+esc(p.n)+'</b><small>'+esc(p.t)+' · titolare al '+pct(id)+'%'+(q.fmv!=null?' · FM '+String(q.fmv.toFixed?q.fmv.toFixed(2):q.fmv).replace('.',','):'')+'</small></span></span>'}
 function mkCard(x,tn){
-  var a=mkConv(x.gA),b=mkConv(x.gB),cl=function(n){return n>=65?'var(--ok)':n>=50?'var(--warn)':'var(--bad)'};
-  return '<div class="card mk"><div class="mkh"><span class="tagme">'+(x.kind==='m'?'Equilibrato':'Per te')+'</span><span class="meta">'+x.k+(x.k===1?' giocatore per 1':' contro '+x.k)+'</span></div>'+
+  var a=mkConv(x.gA),b=mkConv(x.gB),a2=mkConv(x.o.gA),b2=mkConv(x.o.gB),cl=function(n){return n>=65?'var(--ok)':n>=50?'var(--warn)':'var(--bad)'},lab=x.gA>=0.05&&x.gB>=0.05?'Equilibrato':x.gB>=0.05?'Per te':'Per te, lui ci perde poco',oh=mkH==='b'?'lungo':'breve';
+  return '<div class="card mk"><div class="mkh"><span class="tagme">'+lab+'</span><span class="meta">'+x.k+(x.k===1?' giocatore per 1':' contro '+x.k)+'</span></div>'+
   '<div class="mkc"><div class="mkcol"><span class="mkl">Dai</span>'+x.G.map(mkPl).join('')+'</div><div class="mkarr" aria-hidden="true">⇄</div><div class="mkcol"><span class="mkl">Ricevi da '+esc(tn)+'</span>'+x.R.map(mkPl).join('')+'</div></div>'+
-  '<div class="mkb"><div><span>Conviene a te</span><b style="color:'+cl(a)+'">'+a+'%</b><i><u style="width:'+a+'%;background:'+cl(a)+'"></u></i></div><div><span>Conviene a '+esc(tn)+'</span><b style="color:'+cl(b)+'">'+b+'%</b><i><u style="width:'+b+'%;background:'+cl(b)+'"></u></i></div></div></div>';
+  '<div class="mkb"><div><span>Conviene a te</span><b style="color:'+cl(a)+'">'+a+'%</b><i><u style="width:'+a+'%;background:'+cl(a)+'"></u></i></div><div><span>Conviene a '+esc(tn)+'</span><b style="color:'+cl(b)+'">'+b+'%</b><i><u style="width:'+b+'%;background:'+cl(b)+'"></u></i></div></div>'+
+  '<div class="meta mko">Nel '+oh+' termine: te '+a2+'% · '+esc(tn)+' '+b2+'%</div></div>';
 }
 function mkHtml(R){
-  var h='';
-  h+='<h2 class="sec">I 3 scambi migliori</h2>';
-  if(!R.top.length)h+='<div class="empty">Per questa giornata non c\'è nessuno scambio che convenga davvero a entrambi: meglio non forzare.</div>';
+  var h='<h2 class="sec">I 3 scambi migliori</h2>';
+  if(!R.top.length)h+='<div class="empty">Per questa giornata non c\'è nessuno scambio che convenga davvero: meglio non forzare.</div>';
   else h+=R.top.map(function(z){return mkCard(z.x,z.t)}).join('');
   h+='<h2 class="sec">Squadra per squadra</h2>';
-  R.res.forEach(function(r){
-    var n=r.pk.length;
+  R.res.forEach(function(r){var n=r.pk.length;
     h+='<details class="card help"><summary><h3 style="display:inline">'+esc(r.t)+'</h3> <span class="meta">'+(n?plur(n,'proposta','proposte'):'niente di interessante')+'</span></summary>'+
-    (n?r.pk.map(function(x){return mkCard(x,r.t)}).join(''):'<p>Con questa squadra non c\'è uno scambio che valga la pena: meglio non forzare.</p>')+'</details>';
-  });
+    (n?r.pk.map(function(x){return mkCard(x,r.t)}).join(''):'<p>Con questa squadra non c\'è uno scambio che valga la pena: meglio non forzare.</p>')+'</details>'});
   return h;
 }
 function vMkt(){
-  var h='<div class="note">Gli scambi che conviene proporre agli altri, ricalcolati dopo ogni giornata. «Equilibrato» vuol dire che conviene a tutti e due: l\'altro allenatore vede la stessa proposta. «Per te» pende un po\' dalla tua parte ma resta fattibile. Le percentuali sono stime, non garanzie: l\'ultima parola è tua e sua.</div>';
+  var key=D.updated+'|'+D.round+'|'+team,ready=!!MKC[key];
+  var h='<div class="note">Gli scambi che conviene proporre agli altri, ricalcolati dopo ogni giornata. «Equilibrato» vuol dire che conviene a tutti e due: l\'altro allenatore vede la stessa proposta. Premi Breve o Lungo termine per vedere come cambia la convenienza dello stesso scambio. Sono stime, non garanzie: l\'ultima parola è tua e sua.</div>';
   h+='<div class="seg">'+[['b','Breve termine'],['l','Lungo termine']].map(function(x){return '<button aria-pressed="'+(mkH===x[0])+'" data-mh="'+x[0]+'">'+x[1]+'</button>'}).join('')+'</div>';
-  h+='<div id="mkres">'+(MKC[D.updated+'|'+D.round+'|'+mkH+'|'+team]?mkHtml(mkCompute(mkH)):'<div class="empty">Sto cercando gli scambi migliori…</div>')+'</div>';
-  if(!MKC[D.updated+'|'+D.round+'|'+mkH+'|'+team])setTimeout(function(){if(tab!=='mkt')return;var R=mkCompute(mkH),e=document.getElementById('mkres');if(e)e.innerHTML=mkHtml(R)},40);
+  h+='<div id="mkres">'+(ready?mkHtml(mkView(mkH)):'<div class="empty">Sto cercando gli scambi migliori…</div>')+'</div>';
+  if(!ready)setTimeout(function(){if(tab!=='mkt')return;mkCompute();var e=document.getElementById('mkres');if(e)e.innerHTML=mkHtml(mkView(mkH))},40);
   return h;
 }
 function vFa(){
