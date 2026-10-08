@@ -96,6 +96,35 @@ def partita(squadra, giornata):
     return "-"
 
 
+def premi(partite):
+    """Premi goliardici della giornata di campionato, calcolati solo dai punteggi."""
+    righe = []
+    for casa, pc, pf, fuori, _ in partite:
+        righe.append((casa, pc, fuori, pf))
+        righe.append((fuori, pf, casa, pc))
+    if not righe or all(x[1] == 0 and x[3] == 0 for x in righe):
+        return []
+    migliore = max(righe, key=lambda x: x[1])
+    peggiore = min(righe, key=lambda x: x[1])
+    vinte = [x for x in righe if x[1] > x[3]]
+    perse = [x for x in righe if x[1] < x[3]]
+    r = ["### Premi della giornata", ""]
+    r.append(f"- Miglior formazione: {migliore[0]} con {migliore[1]} punti")
+    r.append(f"- Cucchiaio di legno: {peggiore[0]} con {peggiore[1]} punti")
+    if vinte:
+        largo = max(vinte, key=lambda x: x[1] - x[3])
+        corto = min(vinte, key=lambda x: x[1] - x[3])
+        r.append(f"- Vittoria più larga: {largo[0]} su {largo[2]} ({largo[1]} - {largo[3]})")
+        r.append(f"- Vittoria più sofferta: {corto[0]} su {corto[2]} ({corto[1]} - {corto[3]})")
+        fort = min(vinte, key=lambda x: x[1])
+        r.append(f"- Il più fortunato: {fort[0]} ha vinto con soli {fort[1]} punti")
+    if perse:
+        sfig = max(perse, key=lambda x: x[1])
+        r.append(f"- Il più sfortunato: {sfig[0]} ha perso nonostante {sfig[1]} punti")
+    r.append("")
+    return r
+
+
 def riepilogo_generale():
     g = D["round"]
     r = [f"# Riepilogo giornata {g} di Serie A", "",
@@ -121,6 +150,8 @@ def riepilogo_generale():
                     else:
                         r.append(f"- {m[0]} {m[4].replace('-', ' - ')} {m[3]} (punteggi {m[1]} - {m[2]})")
                 r.append("")
+                if comp == "lega":
+                    r += premi(u["m"])
             if future:
                 n = future[0]
                 r += [f"## {nomi[comp]}: prossima giornata ({n['n']}ª, G{n['sa']} di Serie A)", ""]

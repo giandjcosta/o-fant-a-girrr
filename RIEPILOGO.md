@@ -23,6 +23,15 @@ Lega O FANT A GIRRR. Dati aggiornati al 2026-10-07.
 - stif dc 1 - 3 AFA SELECCION (punteggi 68.5 - 76)
 - Real Madrink 3 - 2 WOA (punteggi 78 - 74.5)
 
+### Premi della giornata
+
+- Miglior formazione: Oranje VC con 89 punti
+- Cucchiaio di legno: Atletico ma non troppo con 67.5 punti
+- Vittoria più larga: Oranje VC su Atletico ma non troppo (89 - 67.5)
+- Vittoria più sofferta: Real Madrink su WOA (78 - 74.5)
+- Il più fortunato: AFA SELECCION ha vinto con soli 76 punti
+- Il più sfortunato: WOA ha perso nonostante 74.5 punti
+
 ## Classic League: prossima giornata (2ª, G6 di Serie A)
 
 - The Blue brothers - Mariana Coneja
