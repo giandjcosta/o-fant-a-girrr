@@ -268,7 +268,7 @@ def costruisci(t, tema="classico"):
     cc = classifica(cal["cup"] if giocate_cup else cal["cup"][:1], coppa=True)
     h.append('<div class="tab"><h2>Champions Cup · <b>i gironi</b></h2>')
     if not giocate_cup:
-        h.append('<p class="nt" style="margin:-.6mm 0 1mm">Si parte con la prossima giornata: tutte a zero, ordine provvisorio.</p>')
+        h.append('<p class="nt" style="margin:-.6mm 0 1mm">Si parte con la prossima giornata: tutte a zero.</p>')
     h.append('<div class="cols">')
     for g in ("A", "B"):
         h.append(f'<div><div class="gr">Girone {g}</div>{tab_cl([r for r in cc if r["gir"] == g], False)}</div>')

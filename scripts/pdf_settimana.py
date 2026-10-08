@@ -58,6 +58,11 @@ def premi(partite):
     return out
 
 
+# Ordine dei gironi come sulla classifica di Leghe a gironi ancora a zero (serve da ultimo criterio)
+ORDINE_COPPA = ["The Blue brothers", "Apo team", "Mariana Coneja", "stif dc", "Real Madrink",
+                "Atletico ma non troppo", "Oranje VC", "AFA SELECCION", "Grodah", "WOA"]
+
+
 def classifica(giornate, coppa=False):
     """Classifica da risultati: 3 punti vittoria, 1 pareggio. A pari punti: fantapunti totali."""
     squadre = {}
@@ -91,7 +96,7 @@ def classifica(giornate, coppa=False):
                     r["p"] += 1
         for gir, sq in gi.get("rest", []):
             riga(sq)["gir"] = gir
-    return sorted(squadre.values(), key=lambda r: (-r["pt"], -r["fp"], -(r["gf"] - r["gs"]), -r["gf"], r["n"]))
+    return sorted(squadre.values(), key=lambda r: (-r["pt"], -r["fp"], -(r["gf"] - r["gs"]), -r["gf"], ORDINE_COPPA.index(r["n"]) if r["n"] in ORDINE_COPPA else 99, r["n"]))
 
 
 def tab_classifica(righe, completa=True):
@@ -235,7 +240,7 @@ def costruisci(testi):
     if giocate_cup:
         h.append(f'<div class="nota" style="margin:-1mm 0 2mm">Dopo la {giocate_cup[-1]["n"]}ª giornata</div>')
     else:
-        h.append('<div class="nota" style="margin:-1mm 0 2mm">Si parte con la prossima giornata: tutte a zero, ordine provvisorio.</div>')
+        h.append('<div class="nota" style="margin:-1mm 0 2mm">Si parte con la prossima giornata: tutte a zero.</div>')
     h.append('<div class="cols">')
     for g in ("A", "B"):
         h.append(f'<div><div class="gr" style="color:#ff7a1a">Girone {g}</div>{tab_classifica([r for r in cc if r["gir"] == g], completa=False)}</div>')
