@@ -632,7 +632,7 @@ var MKC={},MKSTRICT=true;
 function mkVals(T,hz,rb,mf){
   var out=T.pl.map(function(x){var id=String(x.id),p=P(id),q=(D.ps||{})[id]||{},n=q.pg||0,b=rb[p.r],pc=pct(id)/100,s=nxt(id).s;
     var fb=q.fmv!=null?(q.fmv*n+b*3)/(n+3):b,eb=pc*fb;
-    var prior=b*(0.88+0.24*Math.min(1,(p.f||0)/mf[p.r])),fl=q.fmv!=null?(q.fmv*n+prior*8)/(n+8):prior,el=(0.5*pc+0.5*0.75)*fl;
+    var prior=b*(0.88+0.24*Math.min(1,0.5*(p.f||0)/mf[p.r]+0.5*(p.q||0)/mf.q[p.r])),fl=q.fmv!=null?(q.fmv*n+prior*8)/(n+8):prior,el=(0.5*pc+0.5*0.75)*fl;
     return {id:id,r:p.r,f:p.f||0,m:mvEff(p,rb),q:hz==='b'?0.8*fb+0.2*fl:fl,e:hz==='b'?0.8*eb+0.2*el:el}});
   var gk=out.filter(function(v){return v.r==='P'}).sort(function(a,b){return b.e-a.e});if(gk[2])gk[2].third=true;
   return out;
@@ -693,7 +693,7 @@ function mkGain(Ab,Bb,G,R){
 function mkSc(g){return g.gA>=0.05&&g.gB>=0.05?Math.min(g.gA,g.gB)+0.3*Math.max(g.gA,g.gB)+1:g.gA+2*Math.min(0,g.gB)}
 function mkCompute(){
   var key=D.updated+'|'+D.round+'|'+team;if(MKC[key])return MKC[key];
-  var rb=roleBase(),mf={P:1,D:1,C:1,A:1};Object.keys(D.P).forEach(function(i){var p=D.P[i];if((p.f||0)>mf[p.r])mf[p.r]=p.f});
+  var rb=roleBase(),mf={P:1,D:1,C:1,A:1,q:{P:1,D:1,C:1,A:1}};Object.keys(D.P).forEach(function(i){var p=D.P[i];if((p.f||0)>mf[p.r])mf[p.r]=p.f;if((p.q||0)>mf.q[p.r])mf.q[p.r]=p.q});
   var me=curTeam(),Ab=mkVals(me,'b',rb,mf),Al=mkVals(me,'l',rb,mf),res=[];
   D.teams.forEach(function(T){if(T.name===team)return;var Bb=mkVals(T,'b',rb,mf),Bl=mkVals(T,'l',rb,mf),seen={},L=[];
     [[Ab,Bb],[Al,Bl]].forEach(function(ab){mkPick(mkPair(ab[0],ab[1])).forEach(function(x){
@@ -712,7 +712,7 @@ function mkView(h){
 }
 function mkPl(v){var id=v.id,p=P(id),q=(D.ps||{})[id]||{};return '<span class="mkp"><i class="rb '+v.r+'">'+v.r+'</i><span><b>'+esc(p.n)+'</b><small>'+esc(p.t)+' · Titolare al '+pct(id)+'%'+(q.fmv!=null?' · FM '+String(q.fmv.toFixed?q.fmv.toFixed(2):q.fmv).replace('.',','):'')+'</small></span></span>'}
 function mkCard(x,tn){
-  var a=mkConv(x.gA),b=mkConv(x.gB),a2=mkConv(x.o.gA),b2=mkConv(x.o.gB),cl=function(n){return n>=65?'var(--ok)':n>=50?'var(--warn)':'var(--bad)'},lab=x.gA>=0.05&&x.gB>=0.05?'Equilibrato':x.gB>=0.05?'Per te':'Per te, lui ci perde poco',oh=mkH==='b'?'lungo':'breve';
+  var a=mkConv(x.gA),b=mkConv(x.gB),a2=mkConv(x.o.gA),b2=mkConv(x.o.gB),cl=function(n){return n>=65?'var(--ok)':n>=50?'var(--warn)':'var(--bad)'},lab=x.gB>=0.05?'Equilibrato':x.gB>=-0.02?'Per te, lui non ci perde':'Per te, lui ci perde poco',oh=mkH==='b'?'lungo':'breve';
   return '<div class="card mk"><div class="mkh"><span class="tagme">'+lab+'</span><span class="meta">'+x.k+(x.k===1?' giocatore per 1':' contro '+x.k)+'</span></div>'+
   '<div class="mkc"><div class="mkcol"><span class="mkl">Dai</span>'+x.G.map(mkPl).join('')+'</div><div class="mkarr" aria-hidden="true">⇄</div><div class="mkcol"><span class="mkl">Ricevi da '+esc(tn)+'</span>'+x.R.map(mkPl).join('')+'</div></div>'+
   '<div class="mkb"><div><span>Conviene a te</span><b style="color:'+cl(a)+'">'+a+'%</b><i><u style="width:'+a+'%;background:'+cl(a)+'"></u></i></div><div><span>Conviene a '+esc(tn)+'</span><b style="color:'+cl(b)+'">'+b+'%</b><i><u style="width:'+b+'%;background:'+cl(b)+'"></u></i></div></div>'+
@@ -730,7 +730,7 @@ function mkHtml(R){
 }
 function vMkt(){
   var key=D.updated+'|'+D.round+'|'+team,ready=!!MKC[key];
-  var h='<div class="note">Le proposte di scambio per la tua squadra, ricalcolate dopo ogni giornata. «Equilibrato» significa che l\'operazione conviene a entrambe le parti: l\'altro allenatore vede la stessa proposta. Con Breve e Lungo termine vedi come cambia la resa dello stesso scambio. Sono stime e non garanzie: la trattativa la chiudete voi.</div>';
+  var h='<div class="note">Le proposte di scambio per la tua squadra, ricalcolate dopo ogni giornata. «Equilibrato» significa che l\'operazione conviene a entrambe le parti: l\'altro allenatore vede la stessa proposta. Con Breve e Lungo termine vedi come cambia la resa dello stesso scambio.</div>';
   h+='<div class="seg">'+[['b','Breve termine'],['l','Lungo termine']].map(function(x){return '<button aria-pressed="'+(mkH===x[0])+'" data-mh="'+x[0]+'">'+x[1]+'</button>'}).join('')+'</div>';
   h+='<div id="mkres">'+(ready?mkHtml(mkView(mkH)):'<div class="empty">Sto cercando gli scambi migliori…</div>')+'</div>';
   if(!ready)setTimeout(function(){if(tab!=='mkt')return;mkCompute();var e=document.getElementById('mkres');if(e)e.innerHTML=mkHtml(mkView(mkH))},40);
@@ -844,11 +844,17 @@ function vSet(){
     ['Salta G'+D.round,'Non sarà disponibile per la prossima giornata.'],
     ['In dubbio','Può recuperare: conviene ricontrollare a ridosso della partita.']]);
   h+=sec('Mercato Scambi','Le trattative consigliate con le altre squadre, aggiornate dopo ogni giornata. Se l\'occasione non c\'è, la pagina non forza nulla.',[
-    ['Equilibrato','L\'operazione conviene a entrambe le squadre e l\'altro allenatore vede la stessa proposta: è quella con più possibilità di andare in porto.'],
-    ['Per te','Pende un po\' dalla tua parte ma resta fattibile: l\'altra squadra non ci rimette in modo evidente.'],
-    ['Percentuale','Misura quanto cresce l\'undici ideale con lo scambio, panchina compresa. 50% è pari, sopra l\'operazione conviene, sotto no.'],
+    ['I 3 scambi migliori','Le tre operazioni più convenienti per te tra tutte le squadre, in cima alla scheda.'],
+    ['Squadra per squadra','Le proposte con ogni avversario. Dove c\'è scritto «Niente di interessante» non c\'è un\'occasione utile e la pagina non forza la trattativa.'],
+    ['Dai e Ricevi','A sinistra i tuoi giocatori in uscita, a destra quelli in arrivo dall\'altra squadra. Sotto ogni nome trovi il club, la titolarità e la fantamedia.'],
+    ['Equilibrato','L\'operazione migliora l\'undici di entrambe le squadre. L\'altro allenatore vede la stessa proposta: è quella con più possibilità di andare in porto.'],
+    ['Per te, lui non ci perde','Il vantaggio è soprattutto tuo, ma per l\'altra squadra l\'operazione è neutra: la sua resa resta praticamente la stessa.'],
+    ['Per te, lui ci perde poco','Il vantaggio è tuo e l\'altra squadra cede qualcosa, ma poco. È la più difficile da far accettare: serve un buon argomento.'],
+    ['Percentuali','Misurano di quanto cresce l\'undici ideale con lo scambio, panchina compresa. 50% è pari. Verde dal 65% in su, giallo tra 50% e 64%, rosso sotto il 50%.'],
+    ['Nel breve o nel lungo termine','Il pulsante in alto passa da Breve a Lungo. La riga sotto ogni proposta mostra le percentuali dell\'altro orizzonte, così vedi come cambia lo stesso scambio.'],
+    ['Breve termine','Guarda alle prossime giornate: contano chi parte titolare e la fantamedia dei voti già presi.'],
+    ['Lungo termine','Guarda la stagione intera: pesa di più il valore di partenza del giocatore, cioè quotazione e FVM, che nascono in buona parte dal rendimento dell\'anno scorso, e meno il momento.'],
     ['Scambi multipli','Si può trattare 1 contro 1, 2 contro 2 o 3 contro 3. A scambio fatto la rosa resta valida: si cedono e si ricevono gli stessi ruoli.'],
-    ['Breve e lungo termine','Il breve guarda alle prossime giornate: titolarità e fantamedia. Il lungo pesa di più la qualità del giocatore e meno il momento.'],
     ['Cosa non conta','Il prezzo d\'asta e il terzo portiere restano fuori dal calcolo.']]);
   h+=sec('Calendario','Tutte le partite della nostra lega nelle due competizioni: Classic League, il campionato, e Champions Cup, la coppa a gironi.',[
     ['La tua prossima','In alto trovi la tua prossima partita di campionato e di coppa. In coppa può capitare un turno di riposo.'],
