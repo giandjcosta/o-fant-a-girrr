@@ -162,9 +162,9 @@ def svg_formazione(sel):
         for k, (fv, nome) in enumerate(gioc):
             y = 58 * (k + 1) / (len(gioc) + 1)
             cognome = nome.split(" ")[0] if len(nome) > 11 else nome
-            out.append(f'<circle cx="{x}" cy="{y:.1f}" r="2.3" fill="#fff" stroke="var(--red)" stroke-width="1"/>'
-                       f'<text x="{x}" y="{y + 5.3:.1f}" font-family="Inter,sans-serif" font-weight="800" font-size="2.9" text-anchor="middle" fill="#fff">{html.escape(cognome)}</text>'
-                       f'<text x="{x}" y="{y + 1.0:.1f}" font-family="Inter,sans-serif" font-weight="900" font-size="{2.3 if len(pt(fv)) < 4 else 1.8}" text-anchor="middle" fill="var(--ink)">{pt(fv).replace(",", ".")}</text>')
+            out.append(f'<rect x="{x - 4.4}" y="{y - 2.5:.1f}" width="8.8" height="5" rx="2.5" fill="#fff" stroke="var(--red)" stroke-width=".9"/>'
+                       f'<text x="{x}" y="{y + 1.15:.1f}" font-family="Inter,sans-serif" font-weight="900" font-size="3.1" text-anchor="middle" fill="#16130e">{html.escape(pt(fv))}</text>'
+                       f'<text x="{x}" y="{y + 6.4:.1f}" font-family="Inter,sans-serif" font-weight="800" font-size="2.9" text-anchor="middle" fill="#fff">{html.escape(cognome)}</text>')
     out.append("</svg>")
     return "".join(out)
 
