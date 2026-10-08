@@ -87,41 +87,41 @@ Punteggio: piu' e' alto, piu' conviene. Unisce valore e probabilita' di giocare.
 
 | Giocatore | Squadra | Stato | Avversario | Punteggio |
 |---|---|---|---|---|
-| Perri | Torino | Titolare | Udinese (C) | 68 |
-| Tornqvist | Monza | Titolare | Lazio (T) | 45 |
-| Turati | Sassuolo | Titolare | Milan (C) | 21 |
-| Thiam | Monza | Panchina | Lazio (T) | 6 |
-| Daffara | Parma | Panchina | Inter (T) | 3 |
+| Perri | Torino | Titolare | Udinese (C) | 21 |
+| Thiam | Monza | Panchina | Lazio (T) | 21 |
+| Daffara | Parma | Panchina | Inter (T) | 15 |
+| Happonen | Bologna | Panchina | Lecce (T) | 15 |
+| Sherri | Cagliari | Panchina | Juventus (C) | 15 |
 
 ### Difensori
 
 | Giocatore | Squadra | Stato | Avversario | Punteggio |
 |---|---|---|---|---|
-| Theate | Bologna | Titolare | Lecce (T) | 60 |
-| Alaba | Udinese | Riserva, ballottaggio | Torino (T) | 52 |
-| Mina | Cagliari | Titolare | Juventus (C) | 51 |
-| Lucchesi | Monza | Titolare | Lazio (T) | 49 |
-| Kouadio | Monza | Titolare | Lazio (T) | 47 |
+| Hainaut | Venezia | Titolare | Atalanta (T) | 52 |
+| Abankwah | Udinese | Panchina | Torino (T) | 49 |
+| Zè Pedro | Cagliari | Titolare | Juventus (C) | 43 |
+| Cinquegrano | Sassuolo | Titolare | Milan (C) | 42 |
+| Rodriguez Ju. | Cagliari | Titolare | Juventus (C) | 42 |
 
 ### Centrocampisti
 
 | Giocatore | Squadra | Stato | Avversario | Punteggio |
 |---|---|---|---|---|
-| Schmid | Frosinone | Titolare | Napoli (T) | 68 |
-| Romano | Cagliari | Titolare | Juventus (C) | 46 |
-| Milla | Como | Titolare, ballottaggio | Roma (C) | 41 |
-| Fitz-Jim | Torino | Titolare | Udinese (C) | 40 |
-| Frendrup | Genoa | Titolare | Fiorentina (C) | 40 |
+| Romano | Cagliari | Titolare | Juventus (C) | 55 |
+| Matic | Sassuolo | Titolare | Milan (C) | 49 |
+| Schmid | Frosinone | Titolare | Napoli (T) | 49 |
+| Gilmour | Napoli | Titolare | Frosinone (C) | 44 |
+| Winks | Cagliari | Titolare | Juventus (C) | 42 |
 
 ### Attaccanti
 
 | Giocatore | Squadra | Stato | Avversario | Punteggio |
 |---|---|---|---|---|
-| Ghedjemis | Frosinone | Titolare | Napoli (T) | 68 |
-| Lontani | Parma | Titolare | Inter (T) | 45 |
-| Robinson J. | Monza | Titolare | Lazio (T) | 41 |
-| Bobcek | Frosinone | Titolare | Napoli (T) | 35 |
-| Kulenovic | Torino | Panchina | Udinese (C) | 18 |
+| Robinson J. | Monza | Titolare | Lazio (T) | 47 |
+| Lontani | Parma | Titolare | Inter (T) | 44 |
+| Kulenovic | Torino | Panchina | Udinese (C) | 27 |
+| Ghedjemis | Frosinone | Titolare | Napoli (T) | 26 |
+| N'Dri | Lecce | Panchina | Bologna (C) | 17 |
 
 ## Correzioni da controllare
 
