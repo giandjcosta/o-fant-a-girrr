@@ -716,7 +716,7 @@ function mkCard(x,tn){
   return '<div class="card mk"><div class="mkh"><span class="tagme">'+lab+'</span><span class="meta">'+x.k+(x.k===1?' giocatore per 1':' contro '+x.k)+'</span></div>'+
   '<div class="mkc"><div class="mkcol"><span class="mkl">Dai</span>'+x.G.map(mkPl).join('')+'</div><div class="mkarr" aria-hidden="true">⇄</div><div class="mkcol"><span class="mkl">Ricevi da '+esc(tn)+'</span>'+x.R.map(mkPl).join('')+'</div></div>'+
   '<div class="mkb"><div><span>Conviene a te</span><b style="color:'+cl(a)+'">'+a+'%</b><i><u style="width:'+a+'%;background:'+cl(a)+'"></u></i></div><div><span>Conviene a '+esc(tn)+'</span><b style="color:'+cl(b)+'">'+b+'%</b><i><u style="width:'+b+'%;background:'+cl(b)+'"></u></i></div></div>'+
-  '<div class="meta mko">Nel '+oh+' termine: te '+a2+'% · '+esc(tn)+' '+b2+'%</div></div>';
+  '<div class="meta mko">Nel '+oh+' termine: Te '+a2+'% · '+esc(tn)+' '+b2+'%</div></div>';
 }
 function mkHtml(R){
   var h='<h2 class="sec">I 3 scambi migliori</h2>';
