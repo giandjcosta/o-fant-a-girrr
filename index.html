@@ -15,7 +15,8 @@
    Single dark look by choice. Palette: deep indigo ground, violet cards, orange = cedi/risk, lime = prendi/ok, gold = gauge. */
 :root{--fieldA:#2a1a7a;--hl:#ffc63a;--hl-ink:#2b1d00;--hl-bg:rgba(255,198,58,.13);--hl-name:#ffc63a;--fieldB:#1a0f55;color-scheme:dark;--fh:Rajdhani,'Saira Condensed',system-ui,sans-serif;--fb:Rajdhani,system-ui,sans-serif;--tt:none;--rad:16px;--tileA:#2c1873;--tileB:#1a0e47;--accA:#b3246f;--accB:#5c1c8f;--acc-ink:#ffffff;--acc-line:#e85aa8;--halo:124,92,255;--head:transparent;--head-ink:#f3efff;--body:radial-gradient(1200px 600px at 80% -10%,#3a1d8a 0%,transparent 60%),radial-gradient(900px 500px at -10% 30%,#2a1470 0%,transparent 55%);--sel:#b3246f;--sel-ink:#ffffff;--num:#ffc63a;--bg:#0e0730;--bg2:#1a0f45;--card:#22135a;--card2:#170c40;--ink:#f3efff;--mute:#a99fd0;--line:#4a2bd6;--glow:#7c5cff;--or:#ff5fa2;--or-ink:#1c0b00;--ok:#9cf24a;--mid:#4aa8ff;--warn:#ffc63a;--bad:#ff4f6d;--skin:#d9cdea;--skin2:#b3a3d6;--hair:#1c1238;--out:#0a0520;--chalk:#f3efff}
 html{background:var(--bg)}
-body{font-size:16px;background:var(--body),var(--bg);background-attachment:fixed;color:var(--ink);font-family:var(--fb);min-height:100%}
+body{font-size:16px;color:var(--ink);font-family:var(--fb);min-height:100%}
+body::before{content:'';position:fixed;inset:0;z-index:-1;pointer-events:none;background:var(--body),var(--bg)}
 *{box-sizing:border-box}
 .wrap{max-width:920px;margin:0 auto;padding-inline:16px;padding-block:18px 56px}
 h1,h2,h3,.disp{font-family:var(--fh);letter-spacing:.02em;text-transform:var(--tt);margin:0}
