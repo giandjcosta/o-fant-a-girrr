@@ -45,6 +45,27 @@ _ASSETS = _P(__file__).resolve().parent.parent / "assets" / "loghi"
 SPONSOR = ["sponsor-birra-contropiede", "sponsor-pizzeria-fuorigioco", "sponsor-bomber-gym-club", "sponsor-amaro-del-mister"]
 
 
+def scegli_sponsor(n):
+    """Sponsor del numero N: casuale ma mai uguale a quello della settimana prima. Salvato in riepiloghi/sponsor.json."""
+    import json
+    import random
+    f = _P(__file__).resolve().parent.parent / "riepiloghi" / "sponsor.json"
+    try:
+        d = json.loads(f.read_text(encoding="utf-8"))
+    except Exception:
+        d = {}
+    if str(n) in d:
+        return SPONSOR[d[str(n)]]
+    prev = d.get(str(n - 1))
+    i = random.choice([k for k in range(len(SPONSOR)) if k != prev])
+    d[str(n)] = i
+    try:
+        f.write_text(json.dumps(d, ensure_ascii=False, indent=1), encoding="utf-8")
+    except OSError:
+        pass
+    return SPONSOR[i]
+
+
 def logo_uri(nome):
     f = _ASSETS / f"{nome}.png"
     return "data:image/png;base64," + _b64.b64encode(f.read_bytes()).decode() if f.exists() else ""
@@ -63,7 +84,7 @@ body{font-family:'Bitstream Charter','TeX Gyre Pagella','DejaVu Serif',serif;col
 .mast{text-align:center;padding:2.2mm 0 1.2mm;border-bottom:1.1mm solid var(--rule);position:relative}
 .mast h1{font-family:var(--mh);font-weight:var(--mhw);font-size:calc(var(--mz,43pt) * .8);letter-spacing:var(--mls,-.01em);line-height:1.02}
 .mast h1 span{color:var(--red)}
-.mast .lg{position:absolute;top:2.6mm;height:15.5mm}
+.mast .lg{position:absolute;top:50%;transform:translateY(-50%);height:11.5mm}
 .spb{display:flex;align-items:center;justify-content:center;gap:5mm;margin-top:4mm;padding:2.4mm 0;border-top:.3mm solid var(--rule);border-bottom:.3mm solid var(--rule);font-family:'Inter',sans-serif;font-size:7.4pt;font-weight:800;letter-spacing:.18em;text-transform:uppercase}.spb img{height:14mm}
 .tag{background:var(--band);color:var(--bandink);text-align:center;font-family:'Inter',sans-serif;font-size:7.8pt;font-weight:800;letter-spacing:.2em;text-transform:uppercase;padding:1.3mm 0;margin-top:1.4mm}
 .mini{font-family:var(--hd);font-weight:700;text-transform:uppercase;font-size:8pt;letter-spacing:.14em;color:var(--red)}
@@ -345,7 +366,7 @@ def costruisci(t, tema="classico"):
     h.append("</div>")
     if t.get("chiusura"):
         h.append(f'<div class="taglio"><b>Taglio basso</b>{esc(t["chiusura"])}</div>')
-    h.append(f'<div class="spb"><span>Questo numero è offerto da</span><img src="{logo_uri(SPONSOR[(n - 1) % 4])}"></div>')
+    h.append(f'<div class="spb"><span>Questo numero è offerto da</span><img src="{logo_uri(scegli_sponsor(n))}"></div>')
     h.append(piede(3) + "</section>")
     return "<!doctype html><html lang='it'><head><meta charset='utf-8'><title>O Giornale del Girrr</title></head><body>" + "".join(h) + "</body></html>", n
 
