@@ -436,7 +436,8 @@ function render(){
   var ok=authed();document.getElementById('tabs').hidden=!ok;
   document.getElementById('who').innerHTML=ok?'<b class="name">'+esc(team)+'</b><button class="btn" id="out">Esci</button>':'';
   if(!ok){app.innerHTML=vGate();return}
-  [].forEach.call(document.querySelectorAll('#tabs button'),function(b){b.setAttribute('aria-selected',b.dataset.t===tab)});
+  if(tab==='stat'&&team!=='Oranje VC')tab='rosa';
+  [].forEach.call(document.querySelectorAll('#tabs button'),function(b){b.setAttribute('aria-selected',b.dataset.t===tab);if(b.dataset.t==='stat')b.hidden=team!=='Oranje VC'});
   uid=0;
   app.classList.toggle('enter',enter);
   app.innerHTML=tab==='rosa'?vRosa():tab==='day'?vDay():tab==='swap'?vSwap():tab==='fa'?vFa():tab==='pitch'?vPitch():tab==='inj'?vInj():tab==='lega'?vLega():tab==='stat'?vStat():vSet();
