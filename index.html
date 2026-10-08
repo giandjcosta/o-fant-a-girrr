@@ -532,7 +532,7 @@ function why(p){
   var id=p.id,log=logOf(id),rs=D.rounds.filter(function(r){return log[r]}),n=rs.length,k={T:0,S:0,P:0,I:0},out=[],st=nxt(id),nn=st.n||'',m,tail='',s=(D.ps||{})[id]||{};
   rs.forEach(function(r){k[log[r]]++});
   var cv=coverOf(id),pl=k.T+k.S;
-  if(cv)out.push('Secondo portiere di '+cv+': serve da copertura');
+  if(cv)out.push('Riserva di '+cv+' nel '+p.t+': gioca solo se il titolare si ferma');
   else if(n){
     if(!pl)out.push(k.I===n?'Assente per infortunio o squalifica in tutte le '+n+' giornate':'Non ha mai giocato nelle prime '+n+' giornate'+(k.I?' (indisponibile in '+k.I+')':''));
     else out.push((pl===n?(n===1?'Ha giocato la prima giornata':'Ha giocato tutte le '+n+' giornate'):'Ha giocato '+pl+(pl===1?' giornata':' giornate')+' su '+n)+(k.T?' (titolare in '+k.T+')':'')+(k.I?', indisponibile in '+k.I:''));
@@ -592,7 +592,7 @@ function vSwap(){
   return h+'</div>';
 }
 function editor(p){
-  var log=logOf(p.id),h='<div class="edit">'+(coverOf(p.id)?'<div class="meta" style="margin-bottom:8px"><b>Secondo portiere di '+esc(coverOf(p.id))+'.</b> È normale che non giochi: serve da copertura, quindi la percentuale resta bassa.</div>':'')+'<div class="meta">Le sue giornate di Serie A fin qui: T titolare, S subentrato, P non ha giocato, I infortunato o squalificato. Sono lette dai tabellini e servono a calcolare la percentuale.</div><div class="chips">';
+  var log=logOf(p.id),h='<div class="edit">'+(coverOf(p.id)?'<div class="meta" style="margin-bottom:8px"><b>Riserva di '+esc(coverOf(p.id))+' nel '+esc(p.t)+'.</b> È normale che non giochi: entra solo se il titolare si ferma, quindi la percentuale resta bassa.</div>':'')+'<div class="meta">Le sue giornate di Serie A fin qui: T titolare, S subentrato, P non ha giocato, I infortunato o squalificato. Sono lette dai tabellini e servono a calcolare la percentuale.</div><div class="chips">';
   D.rounds.filter(function(r){return log[r]}).forEach(function(r){var s=log[r];h+='<span class="chip" data-s="'+esc(s)+'">G'+r+'<b>'+s+'</b></span>'});
   if(!D.rounds.some(function(r){return log[r]}))h+='<span class="meta">Nessuna giornata ancora registrata.</span>';
   h+='</div>'+votesBlock(p.id)+trend(p.id)+'';
@@ -670,7 +670,7 @@ function vSet(){
     ['Tieni','Sotto il 35%: il giocatore va bene così.'],
     ['Osserva','Dal 35% al 59%: è da tenere d\'occhio nelle prossime giornate.'],
     ['Da scambiare','Dal 60% in su: gioca poco oppure vale poco.'],
-    ['Secondo portiere','Il portiere di riserva dello stesso club del tuo titolare non viene segnalato: non gioca, ma ti copre se il titolare salta una partita.'],
+    ['Portiere di riserva','Il portiere di riserva dello stesso club di un altro tuo portiere non viene segnalato come da cambiare: non gioca, ma ti copre se il titolare salta una partita.'],
     ['Come si calcola','Si parte dal valore del giocatore: più vale, più la percentuale è bassa. Poi sale di '+D.w.P+' punti per ogni partita non giocata e di '+D.w.I+' per ogni assenza per infortunio o squalifica, mentre scende di '+Math.abs(D.w.T)+' a ogni partita da titolare. Le giornate più recenti pesano di più.'],
     ['Pagato','I crediti spesi all\'asta per quel giocatore.'],
     ['FVM','Fantavalore di mercato: quanto vale oggi il giocatore secondo Fantacalcio.'],
