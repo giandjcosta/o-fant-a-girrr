@@ -1,5 +1,8 @@
 name: Prova rete
-on: workflow_dispatch
+on:
+  push:
+    branches: [gh-pages]
+    paths: [.github/workflows/prova-rete.yml]
 jobs:
   prova:
     runs-on: ubuntu-latest
