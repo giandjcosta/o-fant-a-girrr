@@ -1,0 +1,12 @@
+== https://www.fantacalcio.it/statistiche-serie-a/2025-26/italia/giocatori
+HTTP 200 bytes 1950774
+<!DOCTYPE html> <html lang="it"> <head>      <meta charset="utf-8" /> <meta name="viewport" content="width=device-width, initial-scale=1.0" />  <script>     (function () {         // La property e' l'
+0
+== https://www.fantacalcio.it/probabili-formazioni-serie-a
+HTTP 200 bytes 761481
+<!DOCTYPE html> <html lang="it"> <head>      <meta charset="utf-8" /> <meta name="viewport" content="width=device-width, initial-scale=1.0" />  <script>     (function () {         // La property e' l'
+0
+== https://www.fantacalcio.it/quotazioni-fantacalcio
+HTTP 200 bytes 1357643
+<!DOCTYPE html> <html lang="it"> <head>      <meta charset="utf-8" /> <meta name="viewport" content="width=device-width, initial-scale=1.0" />  <script>     (function () {         // La property e' l'
+0
