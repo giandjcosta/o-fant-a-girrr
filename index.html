@@ -28,7 +28,7 @@ h1{font-size:2.2rem;font-weight:800;line-height:1;text-shadow:0 0 22px rgba(var(
 .sub{color:var(--mute);font-size:.85rem}
 .live{display:inline-flex;gap:6px;align-items:center;font-size:.8rem;color:var(--mute)}
 .dot{width:8px;height:8px;border-radius:50%;background:var(--ok);box-shadow:0 0 8px var(--ok);animation:pulse 1.8s infinite}
-nav{display:flex;gap:8px;overflow-x:auto;margin-block:6px 18px;position:sticky;top:env(safe-area-inset-top,0px);padding-block:8px;z-index:5;background:var(--navbg,linear-gradient(var(--bg) 70%,transparent))}
+nav{display:flex;gap:8px;overflow-x:auto;padding-inline:14px;margin-inline:-14px;-webkit-mask-image:linear-gradient(90deg,transparent,#000 22px,#000 calc(100% - 22px),transparent);mask-image:linear-gradient(90deg,transparent,#000 22px,#000 calc(100% - 22px),transparent);margin-block:6px 18px;position:sticky;top:env(safe-area-inset-top,0px);padding-block:8px;z-index:5;background:var(--navbg,transparent);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px)}
 nav button{flex:1 0 auto;font:700 1.02rem var(--fh);text-transform:var(--tt);letter-spacing:.05em;padding:12px 14px;border:1px solid var(--line);background:linear-gradient(160deg,var(--tileA),var(--tileB));color:var(--ink);border-radius:var(--rad);cursor:pointer;box-shadow:inset 0 0 14px rgba(var(--halo),.25)}
 nav button[aria-selected=true]{background:linear-gradient(160deg,var(--accA),var(--accB));border-color:var(--acc-line);color:var(--acc-ink);box-shadow:0 4px 16px rgba(var(--halo),.45)}
 button:focus-visible,input:focus-visible,select:focus-visible,[role=button]:focus-visible{outline:3px solid var(--mid);outline-offset:2px}
@@ -199,7 +199,7 @@ details.help h3{margin:0;font-size:1.15rem}
 .kv dt{font:700 .9rem var(--fb);color:var(--ink)}
 .kv dd{margin:0;color:var(--mute);font-size:.9rem}
 @media (max-width:480px){.kv{grid-template-columns:1fr;gap:2px}.kv dd{margin-bottom:8px}}
-.rosa>*{min-width:0}main{overflow-x:clip}
+.rosa>*{min-width:0}main{overflow-x:clip;padding-inline:12px;margin-inline:-12px}
 .trend svg{width:100%;max-width:420px;height:auto;display:block;margin-top:4px;overflow:visible}
 .tg{stroke:var(--line);stroke-width:1;stroke-dasharray:3 4}
 .tl{font:600 9px var(--fb);fill:var(--mute)}
