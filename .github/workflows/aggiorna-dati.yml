@@ -1,0 +1,33 @@
+name: Aggiorna statistiche e voti
+# Gira ogni mattina (e a mano dal pulsante Run workflow). Legge le pagine pubbliche di Fantacalcio.it
+# e aggiorna data.json del ramo gh-pages solo se c'e' qualcosa di nuovo.
+on:
+  schedule:
+    - cron: "30 4 * * *"
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: aggiorna-dati
+jobs:
+  aggiorna:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: gh-pages
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Leggo statistiche e voti
+        run: python3 scripts/aggiorna_dati.py
+      - name: Rifaccio il riepilogo
+        run: python3 scripts/riepilogo.py
+      - name: Salvo se è cambiato
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data.json RIEPILOGO.md riepilogo.html riepiloghi
+          git diff --cached --quiet || git commit -m "Aggiorna statistiche e voti in automatico"
+          git pull --rebase origin gh-pages
+          git push origin gh-pages
