@@ -96,7 +96,10 @@ tr.pod td.pos{color:var(--red)}
 .tp{font-size:8.5pt;line-height:1.28;margin:.5mm 0}
 .tp b{font-family:var(--hd);text-transform:uppercase;letter-spacing:.03em}
 .tp i{color:var(--mute)}
-.gm{display:flex;justify-content:space-between;gap:2mm;font-size:9.6pt;font-weight:700;padding:1.1mm 0;border-bottom:.2mm solid var(--soft)}
+.gm{display:grid;grid-template-columns:1fr 8mm 1fr;align-items:center;gap:1mm;font-size:9.6pt;font-weight:700;padding:1.1mm 0;border-bottom:.2mm solid var(--soft)}
+.gm span:first-child{text-align:right}
+.gm span:last-child{text-align:left}
+.gm em{text-align:center}
 .gm em{font-style:normal;font-family:'Inter',sans-serif;font-size:7.4pt;color:var(--red);font-weight:800;align-self:center}
 .gr{font-family:var(--hd);font-weight:700;text-transform:uppercase;font-size:9pt;letter-spacing:.12em;color:var(--red);margin:1.8mm 0 .6mm}
 .nt{font-size:7.6pt;color:var(--mute);margin-top:1.2mm;line-height:1.35;font-style:italic}
