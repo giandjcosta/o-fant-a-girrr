@@ -3,15 +3,27 @@ on:
   push:
     branches: [gh-pages]
     paths: [.github/workflows/prova-rete.yml]
+permissions:
+  contents: write
 jobs:
   prova:
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v4
       - name: Raggiungo Fantacalcio?
         run: |
+          exec > /tmp/out.txt 2>&1
           for u in "https://www.fantacalcio.it/statistiche-serie-a/2025-26/italia/giocatori" "https://www.fantacalcio.it/probabili-formazioni-serie-a" "https://www.fantacalcio.it/quotazioni-fantacalcio"; do
             echo "== $u"
             curl -sS -o /tmp/p.html -w "HTTP %{http_code} bytes %{size_download}\n" -A "Mozilla/5.0" "$u" || true
             head -c 200 /tmp/p.html | tr '\n' ' '; echo
             grep -ci "cloudflare\|captcha\|just a moment" /tmp/p.html || true
           done
+      - name: Salvo l'esito
+        if: always()
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          cp /tmp/out.txt prova-rete.txt
+          git add prova-rete.txt
+          git commit -m "Esito prova rete" && git push
