@@ -59,7 +59,7 @@ def premi(partite):
 
 
 def classifica(giornate, coppa=False):
-    """Classifica da risultati: 3 punti vittoria, 1 pareggio. A pari punti: differenza reti, gol fatti, fantapunti."""
+    """Classifica da risultati: 3 punti vittoria, 1 pareggio. A pari punti: fantapunti totali."""
     squadre = {}
 
     def riga(nome):
@@ -91,13 +91,13 @@ def classifica(giornate, coppa=False):
                     r["p"] += 1
         for gir, sq in gi.get("rest", []):
             riga(sq)["gir"] = gir
-    return sorted(squadre.values(), key=lambda r: (-r["pt"], -(r["gf"] - r["gs"]), -r["gf"], -r["fp"], r["n"]))
+    return sorted(squadre.values(), key=lambda r: (-r["pt"], -r["fp"], -(r["gf"] - r["gs"]), -r["gf"], r["n"]))
 
 
 def tab_classifica(righe, completa=True):
     h = ["<table class='cl'><tr><th>#</th><th>Squadra</th><th>G</th>"]
     if completa:
-        h.append("<th>V</th><th>N</th><th>P</th><th>GF</th><th>GS</th><th>DR</th>")
+        h.append("<th>V</th><th>N</th><th>P</th><th>GF</th><th>GS</th>")
     h.append("<th>Pt</th>")
     if completa:
         h.append("<th>Fantapunti</th>")
@@ -106,7 +106,7 @@ def tab_classifica(righe, completa=True):
         dr = r["gf"] - r["gs"]
         h.append(f'<tr class="{"pod" if k <= 3 and completa else ""}"><td class="pos">{k}</td><td><b>{esc(cap(r["n"]))}</b></td><td>{r["g"]}</td>')
         if completa:
-            h.append(f'<td>{r["v"]}</td><td>{r["x"]}</td><td>{r["p"]}</td><td>{r["gf"]}</td><td>{r["gs"]}</td><td>{dr:+d}</td>')
+            h.append(f'<td>{r["v"]}</td><td>{r["x"]}</td><td>{r["p"]}</td><td>{r["gf"]}</td><td>{r["gs"]}</td>')
         h.append(f'<td class="pt">{r["pt"]}</td>')
         if completa:
             h.append(f'<td>{pt(r["fp"])}</td>')
@@ -228,7 +228,7 @@ def costruisci(testi):
     h.append('<section class="pg"><div class="top" style="padding-bottom:7mm"><div class="kick">Dove siamo arrivati</div>'
              '<h1 style="font-size:22pt">Le <span>classifiche</span></h1></div><div class="in">'
              f'<h2>Campionato · dopo la {n}ª giornata</h2>{tab_classifica(cl)}'
-             '<div class="nota">Vittoria 3 punti, pareggio 1. A parità di punti: differenza reti, gol fatti, fantapunti totali.</div>')
+             '<div class="nota">Vittoria 3 punti, pareggio 1. A parità di punti conta il totale dei fantapunti, come nella classifica di Leghe.</div>')
     giocate_cup = [x for x in cal["cup"] if giocata(x)]
     cc = classifica(cal["cup"] if giocate_cup else cal["cup"][:1], coppa=True)
     h.append("<h2>Champions Cup · gironi</h2>")
