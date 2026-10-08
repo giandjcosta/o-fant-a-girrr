@@ -653,10 +653,17 @@ function vPitch(){
   return h;
 }
 var GC='https://djcosta18.goatcounter.com';
-function track(){try{if(window.goatcounter&&goatcounter.count&&authed())goatcounter.count({path:'scheda/'+tab,title:'Scheda '+tab,event:true})}catch(e){}}
+function track(){trackOpen();try{if(window.goatcounter&&goatcounter.count&&authed())goatcounter.count({path:'scheda/'+tab,title:'Scheda '+tab,event:true})}catch(e){}}
+var opened=false;
+function ev1(p,t){try{goatcounter.count({path:p,title:t,event:true})}catch(e){}}
+function trackOpen(n){if(opened||!authed())return;if(!(window.goatcounter&&goatcounter.count)){if((n||0)<20)setTimeout(function(){trackOpen((n||0)+1)},500);return}opened=true;ev1('apertura','Apertura');var nw=false;try{nw=!localStorage.getItem('dv');if(nw)localStorage.setItem('dv','1')}catch(e){}if(nw)ev1('dispositivo-nuovo','Dispositivo nuovo')}
+var TABN={rosa:'Rosa',day:'Giornata',swap:'Chi scambiare',fa:'Svincolati',pitch:'Sostituzioni',inj:'Infortunati',cal:'Calendario',lega:'Info',stat:'Statistiche',set:'Impostazioni'};
+function gcn(p){return fetch(GC+'/counter/'+encodeURIComponent(p)+'.json',{cache:'no-store'}).then(function(r){return r.ok?r.json():null}).then(function(j){return j?+j.count||0:0}).catch(function(){return null})}
 function vStat(){
-  ['%2Fo-fant-a-girrr','%2Fo-fant-a-girrr%2F'].reduce(function(pr,pa){return pr.then(function(done){if(done)return done;return fetch(GC+'/counter/'+pa+'.json').then(function(r){return r.ok?r.json():null}).then(function(j){return j&&j.count!=null&&j.count!=='0'?j:null}).catch(function(){return null})})},Promise.resolve(null)).then(function(j){if(!j)return;var a=document.getElementById('gcn');if(a)a.textContent=j.count;var u=document.getElementById('gcu');if(u&&j.count_unique!=null)u.textContent=j.count_unique});
-  return '<div class="card"><h3 style="margin-bottom:6px">Quante volte è stato usato il sito</h3><p style="margin:0 0 12px;color:var(--mute)">Il conteggio è anonimo: non registra chi sei né il dispositivo, solo quante volte il sito viene aperto e quali schede si usano.</p><div class="kpi" style="grid-template-columns:repeat(2,1fr)"><div><b id="gcn">–</b><span>Aperture totali</span></div><div><b id="gcu">–</b><span>Visitatori diversi</span></div></div><a class="btn pri" href="'+GC+'" target="_blank" rel="noopener" style="display:block;text-align:center;text-decoration:none">Apri le statistiche complete</a></div><div class="hint">Nella pagina completa trovi le aperture per giorno, i visitatori diversi per giorno e le schede più usate.</div>';
+  gcn('apertura').then(function(n){var e=document.getElementById('gcn');if(e&&n!==null)e.textContent=n});
+  gcn('dispositivo-nuovo').then(function(n){var e=document.getElementById('gcu');if(e&&n!==null)e.textContent=n});
+  var ks=Object.keys(TABN);Promise.all(ks.map(function(k){return gcn('scheda/'+k)})).then(function(r){var e=document.getElementById('gct');if(!e)return;var a=ks.map(function(k,i){return [TABN[k],r[i]||0]}).sort(function(x,y){return y[1]-x[1]});var tot=a.reduce(function(s,x){return s+x[1]},0),mx=a[0][1]||1;e.innerHTML=a.map(function(x){return '<div style="display:flex;align-items:center;gap:8px;margin:5px 0"><span style="width:110px">'+x[0]+'</span><i style="display:block;height:10px;border-radius:5px;background:var(--acc,#e7a400);width:'+Math.round(x[1]/mx*100)+'%;min-width:3px"></i><b>'+x[1]+'</b></div>'}).join('');var t=document.getElementById('gcs');if(t)t.textContent=tot;var m=document.getElementById('gcm');if(m)m.textContent=a[0][1]?a[0][0]:'–'});
+  return '<div class="card"><h3 style="margin-bottom:6px">Quante volte è stato usato il sito</h3><p style="margin:0 0 12px;color:var(--mute)">Il conteggio è anonimo: non registra chi sei, solo quante volte il sito viene aperto e quali schede si usano. Parte dalla versione di oggi.</p><div class="kpi" style="grid-template-columns:repeat(2,1fr)"><div><b id="gcn">–</b><span>Aperture totali</span></div><div><b id="gcu">–</b><span>Dispositivi diversi</span></div><div><b id="gcs">–</b><span>Schede aperte</span></div><div><b id="gcm">–</b><span>Scheda più usata</span></div></div></div><div class="card" style="margin-top:10px"><h3 style="margin-bottom:6px">Schede più usate</h3><div id="gct" style="color:var(--mute)">…</div></div><div class="card" style="margin-top:10px"><a class="btn pri" href="'+GC+'" target="_blank" rel="noopener" style="display:block;text-align:center;text-decoration:none">Apri le statistiche complete</a></div><div class="hint">Un dispositivo nuovo si conta una sola volta; se rientra, sale solo il numero delle aperture. Nella pagina completa trovi anche paesi, browser e giorni.</div>';
 }
 function vSet(){
   var m=D.manual||[],h='';
@@ -733,7 +740,7 @@ document.getElementById('skin').addEventListener('click',function(e){var b=e.tar
 document.getElementById('tabs').addEventListener('click',function(e){var b=e.target.closest('button');if(b){tab=b.dataset.t;enter=true;render();track()}});
 document.getElementById('who').addEventListener('click',function(e){if(e.target.id==='out'){LS.code='';save();gateErr=false;render()}});
 app.addEventListener('click',function(e){
-  var t=e.target,b=t.closest('[data-enter]');if(b){team=document.getElementById('gt').value;LS.team=team;LS.code=document.getElementById('gc').value.trim().toUpperCase();gateErr=!authed();save();render();return}
+  var t=e.target,b=t.closest('[data-enter]');if(b){team=document.getElementById('gt').value;LS.team=team;LS.code=document.getElementById('gc').value.trim().toUpperCase();gateErr=!authed();save();render();trackOpen();return}
   b=t.closest('[data-f]');if(b){filter=b.dataset.f;render();return}
   b=t.closest('[data-role]');if(b){role=b.dataset.role;render();return}
   b=t.closest('[data-sort]');if(b){sortBy=b.dataset.sort;render();return}
@@ -755,7 +762,7 @@ app.addEventListener('change',function(e){
 function shrink(file,cb){var img=new Image(),url=URL.createObjectURL(file);img.onload=function(){var c=document.createElement('canvas');c.width=c.height=96;var x=c.getContext('2d'),s=Math.min(img.width,img.height);x.drawImage(img,(img.width-s)/2,(img.height-s)/2,s,s,0,0,96,96);URL.revokeObjectURL(url);cb(c.toDataURL('image/jpeg',0.72))};img.src=url}
 function byHash(){var k=(location.hash||'').replace('#','').trim().toUpperCase();if(!k||!D.lock)return;D.teams.forEach(function(x){if(hsh(x.name+'|'+k)===D.lock[x.name]){team=x.name;LS.team=team;LS.code=k;save()}})}
 byHash();render();
-fetch('data.json',{cache:'no-store'}).then(function(r){return r.ok?r.json():null}).then(function(j){if(j&&j.teams&&j.P&&(j.updated>=D.updated)){D=j;byHash();render()}}).catch(function(){});
+fetch('data.json',{cache:'no-store'}).then(function(r){return r.ok?r.json():null}).then(function(j){if(j&&j.teams&&j.P&&(j.updated>=D.updated)){D=j;byHash();render()}trackOpen()}).catch(function(){trackOpen()});
 })();
 </script>
 
