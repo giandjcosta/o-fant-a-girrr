@@ -16,11 +16,14 @@ jobs:
           UA="Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 Chrome/126 Safari/537.36"
           curl -sS -A "$UA" -o probe/stats.html -w "stats %{http_code} %{size_download}\n" "https://www.fantacalcio.it/statistiche-serie-a" > probe/log.txt 2>&1 || true
           curl -sS -A "$UA" -o probe/voti5.html -w "voti5 %{http_code} %{size_download}\n" "https://www.fantacalcio.it/voti-fantacalcio-serie-a/2026-27/5" >> probe/log.txt 2>&1 || true
+          for g in 1 2 3 4 6 7; do curl -sS -A "$UA" -o probe/voti$g.html -w "voti$g %{http_code} %{size_download}\n" "https://www.fantacalcio.it/voti-fantacalcio-serie-a/2026-27/$g" >> probe/log.txt 2>&1 || true; gzip -9 -f probe/voti$g.html; sleep 1; done
           curl -sS -A "$UA" -L -o probe/leghe.html -w "leghe %{http_code} %{size_download} %{url_effective}\n" "https://leghe.fantacalcio.it/o-fant-a-girrr/calendario" >> probe/log.txt 2>&1 || true
-          gzip -9 probe/stats.html probe/voti5.html probe/leghe.html
+          gzip -9 -f probe/stats.html probe/voti5.html probe/leghe.html
       - name: Salvo
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add probe
           git commit -m "Esito probe" && git push
+
+# v2
