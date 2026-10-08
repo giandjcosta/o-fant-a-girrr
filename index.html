@@ -238,7 +238,7 @@ header .btn{color:var(--head-ink);border-color:currentColor;background:transpare
 .gr.mine{background:var(--hl-bg);border:1.5px solid var(--hl);border-radius:calc(var(--rad) - 2px);padding:11px 12px;margin:8px -4px;box-shadow:0 0 16px rgba(var(--halo),.18)}
 .gr.mine .nm{font-size:1.2rem}
 .gr.mine .res{background:var(--hl);color:var(--hl-ink)}
-.nextme{background:linear-gradient(var(--hl-bg),var(--hl-bg)),linear-gradient(160deg,var(--card),var(--card2));border:1.5px solid var(--hl);margin-bottom:14px;text-align:center}
+.nextme{background:linear-gradient(var(--hl-bg),var(--hl-bg)),linear-gradient(160deg,var(--card),var(--card2));border:2px solid var(--hl);margin-bottom:14px;text-align:center}
 .vs{display:flex;align-items:center;justify-content:center;gap:10px 14px;flex-wrap:wrap;margin:6px 0 4px}
 .vs .nm{font:700 1.5rem var(--fh);text-transform:var(--tt);line-height:1.1;overflow-wrap:anywhere}
 .vs i{font:700 .8rem var(--fb);font-style:normal;color:var(--mute);border:1px solid var(--line);border-radius:999px;padding:2px 8px;text-transform:uppercase}
@@ -249,7 +249,7 @@ header .btn{color:var(--head-ink);border-color:currentColor;background:transpare
 :root[data-skin="seriea"] .nextme{background:linear-gradient(rgba(23,220,203,.16),rgba(23,220,203,.16)),#fff;border-color:#17dccb}
 :root[data-skin="seriea"] .gr.mine .nm,:root[data-skin="campo"] .gr.mine .nm{font-size:1.05rem}
 :root[data-skin="azzurro"] .gr.mine{box-shadow:none}
-.enter .nextme{animation:pop .5s cubic-bezier(.2,.9,.3,1.2) both}
+.enter .nextme{animation:rise .45s cubic-bezier(.2,.8,.2,1) both}
 .calnav{display:grid;grid-template-columns:auto 1fr auto;gap:10px;align-items:center;text-align:center;margin-bottom:10px}
 .calnav .btn{font:800 1.4rem var(--fh);width:46px;height:46px;padding:0;line-height:1}
 .calnav .btn:disabled{opacity:.35;cursor:default}
@@ -657,7 +657,7 @@ function track(){trackOpen();try{if(window.goatcounter&&goatcounter.count&&authe
 var opened=false;
 function ev1(p,t){try{goatcounter.count({path:p,title:t,event:true})}catch(e){}}
 function trackOpen(n){if(opened||!authed())return;if(!(window.goatcounter&&goatcounter.count)){if((n||0)<20)setTimeout(function(){trackOpen((n||0)+1)},500);return}opened=true;ev1('apertura','Apertura');var nw=false;try{nw=!localStorage.getItem('dv');if(nw)localStorage.setItem('dv','1')}catch(e){}if(nw)ev1('dispositivo-nuovo','Dispositivo nuovo')}
-var TABN={rosa:'Rosa',day:'Giornata',swap:'Chi scambiare',fa:'Svincolati',pitch:'Sostituzioni',inj:'Infortunati',cal:'Calendario',lega:'Info',stat:'Statistiche',set:'Impostazioni'};
+var TABN={rosa:'Rosa',day:'Giornata',swap:'Chi scambiare',fa:'Svincolati',pitch:'Sostituzioni',inj:'Infortunati',lega:'Calendario',set:'Info',stat:'Statistiche'};
 function gcn(p){return fetch(GC+'/counter/'+encodeURIComponent(p)+'.json',{cache:'no-store'}).then(function(r){return r.ok?r.json():null}).then(function(j){return j?+j.count||0:0}).catch(function(){return null})}
 function vStat(){
   gcn('apertura').then(function(n){var e=document.getElementById('gcn');if(e&&n!==null)e.textContent=n});
