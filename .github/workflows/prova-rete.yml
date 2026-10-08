@@ -1,0 +1,14 @@
+name: Prova rete
+on: workflow_dispatch
+jobs:
+  prova:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Raggiungo Fantacalcio?
+        run: |
+          for u in "https://www.fantacalcio.it/statistiche-serie-a/2025-26/italia/giocatori" "https://www.fantacalcio.it/probabili-formazioni-serie-a" "https://www.fantacalcio.it/quotazioni-fantacalcio"; do
+            echo "== $u"
+            curl -sS -o /tmp/p.html -w "HTTP %{http_code} bytes %{size_download}\n" -A "Mozilla/5.0" "$u" || true
+            head -c 200 /tmp/p.html | tr '\n' ' '; echo
+            grep -ci "cloudflare\|captcha\|just a moment" /tmp/p.html || true
+          done
