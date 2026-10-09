@@ -47,8 +47,9 @@ SPONSOR = ["sponsor-birra-contropiede", "sponsor-pizzeria-fuorigioco", "sponsor-
 SPONSOR_MEDICO = "sponsor-ouchguard-injury-insurance"   # fisso sotto il bollettino medico, fuori dalla rotazione
 
 
-def scegli_sponsor(n):
-    """Sponsor del numero N: casuale ma mai uguale a quello della settimana prima. Salvato in riepiloghi/sponsor.json."""
+def scegli_sponsor(n, quanti=2):
+    """Sponsor del numero N: `quanti` diversi tra loro, scelti a caso e mai tra quelli del numero prima.
+    Salvati in riepiloghi/sponsor.json come liste di indici (un vecchio valore singolo vale come lista di uno)."""
     import json
     import random
     f = _P(__file__).resolve().parent.parent / "riepiloghi" / "sponsor.json"
@@ -56,16 +57,20 @@ def scegli_sponsor(n):
         d = json.loads(f.read_text(encoding="utf-8"))
     except Exception:
         d = {}
+    uno = lambda v: v if isinstance(v, list) else [v]
     if str(n) in d:
-        return SPONSOR[d[str(n)]]
-    prev = d.get(str(n - 1))
-    i = random.choice([k for k in range(len(SPONSOR)) if k != prev])
-    d[str(n)] = i
+        return [SPONSOR[i] for i in uno(d[str(n)])]
+    prev = set(uno(d.get(str(n - 1), [])))
+    pool = [k for k in range(len(SPONSOR)) if k not in prev]
+    if len(pool) < quanti:
+        pool = list(range(len(SPONSOR)))
+    scelti = random.sample(pool, quanti)
+    d[str(n)] = scelti
     try:
         f.write_text(json.dumps(d, ensure_ascii=False, indent=1), encoding="utf-8")
     except OSError:
         pass
-    return SPONSOR[i]
+    return [SPONSOR[i] for i in scelti]
 
 
 def logo_uri(nome):
@@ -370,7 +375,7 @@ def costruisci(t, tema="classico"):
     h.append("</div>")
     if t.get("chiusura"):
         h.append(f'<div class="taglio"><b>Taglio basso</b>{esc(t["chiusura"])}</div>')
-    h.append(f'<div class="spb"><span>Questo numero è gentilmente offerto da</span><img src="{logo_uri(scegli_sponsor(n))}"></div>')
+    h.append('<div class="spb"><span>Questo numero è gentilmente offerto da</span>' + "".join(f'<img src="{logo_uri(x)}">' for x in scegli_sponsor(n)) + '</div>')
     h.append(piede(3) + "</section>")
     return "<!doctype html><html lang='it'><head><meta charset='utf-8'><title>O Giornale del Girrr</title></head><body>" + "".join(h) + "</body></html>", n
 
