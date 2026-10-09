@@ -80,9 +80,11 @@ tr.me td.n,tr.me td.pt{color:var(--hi)}
 .rip b{color:var(--hi)}
 tr.pod td.p{background:var(--acc);color:var(--chiaro);transition:background-color .8s}
 tr{animation:in .45s both}
-.sp{margin-top:26px;background:var(--chiaro);border-radius:14px;padding:12px 16px;display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:14px 22px;transition:background-color .8s}
+.sp{margin-top:26px;background:var(--chiaro);border-radius:14px;padding:14px 16px 16px;text-align:center;transition:background-color .8s}
+.sp .lg{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:10px;align-items:center;justify-items:center}
+@media(max-width:560px){.sp .lg{grid-template-columns:repeat(2,1fr);gap:10px 12px}}
 .sp span{font-weight:800;font-size:13px;letter-spacing:.06em;color:var(--bg)}
-.sp img{height:clamp(44px,7vw,66px)}
+.sp img{width:100%;max-width:230px;height:auto;display:block}
 .err{padding:30px;text-align:center;font-weight:700}
 .foot{margin-top:14px;text-align:center;font-size:12px;color:var(--sub);opacity:.8}
 body::before{content:'';position:fixed;inset:-120px;z-index:-1;pointer-events:none;background:repeating-linear-gradient(115deg,rgba(255,255,255,.04) 0 36px,transparent 36px 72px);animation:strisce 9s linear infinite}
@@ -104,7 +106,7 @@ body::before{content:'';position:fixed;inset:-120px;z-index:-1;pointer-events:no
     <section><div class="swap" id="board"></div></section>
     <aside class="panel"><div class="swap" id="tab"></div></aside>
   </div>
-  <div class="sp"><span>Gentilmente offerto da</span><img src="../assets/loghi/sponsor-birra-contropiede.png" alt=""><img src="../assets/loghi/sponsor-pizzeria-fuorigioco.png" alt=""><img src="../assets/loghi/sponsor-bomber-gym-club.png" alt=""><img src="../assets/loghi/sponsor-amaro-del-mister.png" alt=""></div>
+  <div class="sp"><span>Gentilmente offerto da</span><div class="lg"><img src="../assets/loghi/sponsor-birra-contropiede.png" alt=""><img src="../assets/loghi/sponsor-pizzeria-fuorigioco.png" alt=""><img src="../assets/loghi/sponsor-bomber-gym-club.png" alt=""><img src="../assets/loghi/sponsor-amaro-del-mister.png" alt=""></div></div>
   <div class="foot" id="foot">O Girrr · i dati arrivano dallo Spogliatoio</div>
 </div>
 <script>
@@ -197,6 +199,11 @@ fetch('../data.json',{cache:'no-store'}).then(function(r){return r.json()}).then
   document.getElementById('foot').textContent='Dati aggiornati al '+(d.cal.date||'');
 }).catch(function(){document.getElementById('board').innerHTML='<div class="err">Non riesco a leggere i dati.</div>'});
 })();
+</script>
+<script>
+(function(){var L=['sponsor-birra-contropiede', 'sponsor-pizzeria-fuorigioco', 'sponsor-bomber-gym-club', 'sponsor-amaro-del-mister', 'sponsor-la-camiseta', 'sponsor-turbo-werkstatt', 'sponsor-banque-premier-but', 'sponsor-tubarao-credito-facil', 'sponsor-wegwezen-reizen', 'sponsor-pixelbay-electronics', 'sponsor-velox-sportswear', 'sponsor-ouchguard-injury-insurance'];
+var a=L.slice();for(var i=a.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1));var t=a[i];a[i]=a[j];a[j]=t}
+var e=document.querySelector('.sp .lg');if(e)e.innerHTML=a.slice(0,4).map(function(n){return '<img src="../assets/loghi/'+n+'.png" alt="">'}).join('')})();
 </script>
 </body>
 </html>
