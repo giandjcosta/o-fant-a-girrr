@@ -128,7 +128,7 @@ function gate(){
 }
 function head(){
   var c=S.conto;
-  return '<a class="back" href="index.html">‹ O GIRRR</a><div class="top"><img src="../assets/logo-lega.png" alt=""><div class="t"><div class="k">O FANT A GIRRR</div><h1>Toto<span>girrr</span></h1></div><div class="bal"><small>FANTACREDITI</small><b>'+f2(c.crediti)+'</b></div></div>'+
+  return '<a class="back" href="index.html">‹ O GIRRR</a><div class="top"><img src="../assets/logo-lega.png" alt=""><div class="t"><div class="k">O FANT A GIRRR</div><h1>Toto<span>girrr</span></h1></div><div class="bal"><small>FANTACREDITI</small><b>'+f2(c.crediti)+'</b>'+(Number(c.debito)>0?'<small style="color:var(--hi)">DEBITO '+f2(c.debito)+'</small>':'')+'</div></div>'+
   '<div class="who">Squadra: <b>'+esc(team)+'</b><button class="x" id="out">Esci</button></div>'+
   '<nav>'+[['partite','Partite'],['mie','Le mie'],['class','Classifica'],['regole','Regole']].map(function(t){return '<button data-tab="'+t[0]+'" class="'+(tab===t[0]?'on':'')+'">'+t[1]+'</button>'}).join('')+'</nav>';
 }
@@ -160,13 +160,13 @@ function vMie(){
   }).join('');
 }
 function vClass(){
-  var rows=S.classifica.map(function(c,i){var tot=Number(c.crediti)+Number(c.ingioco);
+  var rows=S.classifica.map(function(c,i){var tot=Number(c.crediti)+Number(c.ingioco)-Number(c.debito||0);
     return '<tr class="'+(c.team===team?'me':'')+'"><td class="n">'+(i+1)+'</td><td>'+esc(c.team)+'</td><td>'+f0(c.crediti)+'</td><td>'+f0(tot)+'</td></tr>'}).join('');
-  return '<div class="card"><table class="lb"><tr><th></th><th>SQUADRA</th><th>LIBERI</th><th>TOTALE</th></tr>'+rows+'</table><p style="font-size:12px;color:var(--sub);margin-top:10px">Totale = fantacrediti liberi + quelli puntati su schedine ancora aperte. Chi non gioca non compare finché non entra la prima volta.</p></div>';
+  return '<div class="card"><table class="lb"><tr><th></th><th>SQUADRA</th><th>LIBERI</th><th>TOTALE</th></tr>'+rows+'</table><p style="font-size:12px;color:var(--sub);margin-top:10px">Totale = fantacrediti liberi + quelli puntati su schedine ancora aperte − eventuali debiti col banco. Chi non gioca non compare finché non entra la prima volta.</p></div>';
 }
 function vRegole(){
-  var su=S.sussidio_ok?'<button class="go" id="suss" style="margin-top:12px">Prendi il sussidio (porta a 50)</button>':'';
-  return '<div class="card regole"><b>Come funziona</b><ul><li>Si scommette solo con <b>fantacrediti</b>, soldi finti. Parti con <b>500</b>.</li><li>Scegli un esito (1 casa, X pari, 2 trasferta, Over/Under 4,5 gol totali) e premi su <b>Gioca</b>. Con più partite insieme fai una <b>multipla</b>: le quote si moltiplicano, ma devi indovinarle tutte (massimo 6).</li><li>Si può scommettere fino al <b>calcio d\'inizio della prima partita di Serie A</b> della giornata.</li><li>Puntata minima 5. Sulla <b>tua</b> partita il massimo è 100.</li><li>Le vincite arrivano da sole quando il risultato è in lega, di solito la mattina dopo.</li><li>Se scendi sotto i 50 fantacrediti puoi prendere il <b>sussidio</b>: ti riporta a 50, una volta a settimana.</li><li>Le quote nascono dalla forza delle squadre, con il banco che si tiene un po\' di margine. All\'inizio sono approssimative e migliorano giornata dopo giornata.</li></ul>'+su+'</div>';
+  var su=S.sussidio_ok?'<button class="go" id="suss" style="margin-top:12px">Chiedi il prestito al banco (porta a 50)</button>':'';
+  return '<div class="card regole"><b>Come funziona</b><ul><li>Si scommette solo con <b>fantacrediti</b>, soldi finti. Parti con <b>500</b>.</li><li>Scegli un esito (1 casa, X pari, 2 trasferta, Over/Under 4,5 gol totali) e premi su <b>Gioca</b>. Con più partite insieme fai una <b>multipla</b>: le quote si moltiplicano, ma devi indovinarle tutte (massimo 6).</li><li>Si può scommettere fino al <b>calcio d\'inizio della prima partita di Serie A</b> della giornata.</li><li>Puntata minima 5. Sulla <b>tua</b> partita il massimo è 100.</li><li>Le vincite arrivano da sole quando il risultato è in lega, di solito la mattina dopo.</li><li>Se scendi sotto i 50 fantacrediti puoi chiedere un <b>prestito al banco</b>: ti riporta a 50, ma una volta ogni due settimane. Il banco però vuole il <b>120%</b> indietro: sulle tue vincite si tiene il <b>40%</b> finché il debito non è saldato. Il debito conta in meno nella classifica.</li><li>Le quote nascono dalla forza delle squadre, con il banco che si tiene un po\' di margine. All\'inizio sono approssimative e migliorano giornata dopo giornata.</li></ul>'+su+'</div>';
 }
 function vSlip(){
   if(!slip.length||tab==='mie'&&0)return '';
@@ -200,7 +200,7 @@ document.addEventListener('click',function(e){
     var y=window.scrollY;render();window.scrollTo(0,y);return}
   if(b=t.closest('[data-st]')){setStake(b.getAttribute('data-st'));return}
   if(t.id==='svuota'){slip=[];render();return}
-  if(t.id==='suss'){rpc('toto_sussidio',{p_team:team,p_code:code}).then(function(){toast('Sussidio ricevuto: sei a 50');return carica()}).catch(function(e){toast(e.message,1)});return}
+  if(t.id==='suss'){rpc('toto_sussidio',{p_team:team,p_code:code}).then(function(r){toast('Prestito ricevuto: sei a 50, ne devi restituire '+f2(r.da_restituire));return carica()}).catch(function(e){toast(e.message,1)});return}
   if(t.id==='gioca'){
     var st=parseFloat(document.getElementById('stake').value);
     if(!(st>=5)){toast('Puntata minima 5',1);return}
