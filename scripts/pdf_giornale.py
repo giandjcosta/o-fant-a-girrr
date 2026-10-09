@@ -210,7 +210,8 @@ def svg_formazione(sel):
             cognome = nome.split(" ")[0] if len(nome) > 11 else nome
             out.append(f'<rect x="{x - 4.4}" y="{y - 2.5:.1f}" width="8.8" height="5" rx="2.5" fill="#fff" stroke="var(--red)" stroke-width=".9"/>'
                        f'<text x="{x}" y="{y + 1.15:.1f}" font-family="Inter,sans-serif" font-weight="900" font-size="3.1" text-anchor="middle" fill="#16130e">{html.escape(pt(fv))}</text>'
-                       f'<text x="{x}" y="{y + 6.4:.1f}" font-family="Inter,sans-serif" font-weight="800" font-size="2.9" text-anchor="middle" fill="#0a0a0a">{html.escape(cognome)}</text>')
+                       f'<rect x="{x - (len(cognome) * 0.92 + 1.4):.1f}" y="{y + 3.9:.1f}" width="{len(cognome) * 1.84 + 2.8:.1f}" height="3.7" rx="1.8" fill="#000" fill-opacity=".62"/>'
+                       f'<text x="{x}" y="{y + 6.4:.1f}" font-family="Inter,sans-serif" font-weight="800" font-size="2.9" text-anchor="middle" fill="#fff">{html.escape(cognome)}</text>')
     out.append("</svg>")
     return "".join(out)
 
