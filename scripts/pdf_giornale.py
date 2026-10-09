@@ -201,7 +201,7 @@ def svg_formazione(sel):
     """Campo orizzontale: portiere a sinistra, attacco a destra."""
     cols = [("P", 11), ("D", 30), ("C", 53), ("A", 78)]
     out = ['<svg viewBox="0 0 100 58" xmlns="http://www.w3.org/2000/svg"><rect width="100" height="58" fill="#2f6b3a"/>'
-           '<g fill="none" stroke="#e9f2e5" stroke-width=".5"><rect x="2" y="2" width="96" height="54"/><line x1="50" y1="2" x2="50" y2="56"/><circle cx="50" cy="29" r="8"/>'
+           '<g fill="none" stroke="#e9f2e5" stroke-opacity=".5" stroke-width=".5"><rect x="2" y="2" width="96" height="54"/><line x1="50" y1="2" x2="50" y2="56"/><circle cx="50" cy="29" r="8"/>'
            '<rect x="2" y="15" width="13" height="28"/><rect x="85" y="15" width="13" height="28"/></g>']
     for ruolo, x in cols:
         gioc = sel[ruolo]
@@ -210,8 +210,7 @@ def svg_formazione(sel):
             cognome = nome.split(" ")[0] if len(nome) > 11 else nome
             out.append(f'<rect x="{x - 4.4}" y="{y - 2.5:.1f}" width="8.8" height="5" rx="2.5" fill="#fff" stroke="var(--red)" stroke-width=".9"/>'
                        f'<text x="{x}" y="{y + 1.15:.1f}" font-family="Inter,sans-serif" font-weight="900" font-size="3.1" text-anchor="middle" fill="#16130e">{html.escape(pt(fv))}</text>'
-                       f'<text x="{x}" y="{y + 6.4:.1f}" font-family="Inter,sans-serif" font-weight="800" font-size="2.9" text-anchor="middle" fill="none" stroke="#111" stroke-width=".55" stroke-linejoin="round">{html.escape(cognome)}</text>'
-                       f'<text x="{x}" y="{y + 6.4:.1f}" font-family="Inter,sans-serif" font-weight="800" font-size="2.9" text-anchor="middle" fill="#fff">{html.escape(cognome)}</text>')
+                       f'<text x="{x}" y="{y + 6.4:.1f}" font-family="Inter,sans-serif" font-weight="800" font-size="2.9" text-anchor="middle" fill="#d4d4d4">{html.escape(cognome)}</text>')
     out.append("</svg>")
     return "".join(out)
 
