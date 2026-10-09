@@ -28,7 +28,7 @@ a{color:var(--hi)}
 .who{font-size:12px;color:var(--sub);margin-bottom:10px}
 .who button{margin-left:6px}
 nav{display:flex;gap:6px;margin-bottom:14px;position:sticky;top:0;z-index:5;padding:6px 0;background:linear-gradient(var(--bg) 70%,transparent)}
-nav button{flex:1;font:900 12px Inter;letter-spacing:.1em;text-transform:uppercase;padding:10px 4px;border:0;border-radius:10px;background:rgba(255,255,255,.1);color:var(--chiaro);cursor:pointer}
+nav button{flex:1;font:900 10.5px Inter;letter-spacing:.04em;text-transform:uppercase;padding:10px 4px;border:0;border-radius:10px;background:rgba(255,255,255,.1);color:var(--chiaro);cursor:pointer}
 nav button.on{background:var(--hi);color:var(--bg)}
 button{font-family:inherit;cursor:pointer}
 .card{background:rgba(255,255,255,.08);border-radius:14px;padding:14px;margin-bottom:12px}
@@ -139,6 +139,25 @@ nav button{transition:background-color .2s,color .2s,transform .15s}nav button:a
 .fc .q small{margin:0;text-align:left}
 .cd{color:var(--chiaro);font-variant-numeric:tabular-nums}.cd.warn{color:var(--hi)}.cd.hot{color:var(--ko);animation:glow 1.2s infinite}
 .rig{border:1px solid var(--hi)!important;color:var(--hi)!important;text-decoration:none!important;border-radius:999px;padding:5px 12px;margin-top:10px;font-weight:900;letter-spacing:.08em;font-size:11px}
+.card.m .mx{display:grid;grid-template-rows:0fr;transition:grid-template-rows .4s cubic-bezier(.2,.8,.2,1)}
+.card.m.open .mx{grid-template-rows:1fr}
+.card.m .mi{overflow:hidden;min-height:0;opacity:0;transition:opacity .3s}
+.card.m.open .mi{opacity:1;transition-delay:.08s}
+.mo{margin:2px 0 0;font-weight:800;font-size:12px}.mo i{display:inline-block;font-style:normal;transition:transform .35s}
+.card.m.open .mo i{transform:rotate(180deg)}
+.mi{padding-top:8px}
+.row.four{grid-template-columns:repeat(4,1fr)}
+.row.four .q{padding:6px 2px}.row.four .q small{font-size:11px;letter-spacing:.04em}.row.four .q b{font-size:14px}
+.eh{font-weight:900;font-size:10px;letter-spacing:.2em;color:var(--hi);margin:6px 2px}
+.vl{display:grid;gap:6px}
+.vq{display:flex;justify-content:space-between;align-items:center;padding:10px 12px;text-align:left}
+.vq span{font-weight:800;font-size:14px;overflow-wrap:anywhere}
+.stt{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:12px}
+.stt div{background:rgba(255,255,255,.08);border-radius:12px;padding:10px 6px;text-align:center}
+.stt small{display:block;font-weight:800;font-size:9px;letter-spacing:.14em;color:var(--sub)}
+.stt b{font-weight:900;font-size:19px}
+.colpo{background:linear-gradient(135deg,rgba(255,209,102,.25),rgba(255,255,255,.06));border:1px solid rgba(255,209,102,.4);border-radius:14px;padding:12px 14px;margin-bottom:12px;font-size:14px;font-weight:700}
+.colpo small{display:block;font-weight:900;font-size:10px;letter-spacing:.22em;color:var(--hi);margin-bottom:4px}
 .vuoto{text-align:center;color:var(--sub);padding:26px 8px;font-weight:600}
 body::before{content:'';position:fixed;inset:-120px;z-index:-1;pointer-events:none;background:repeating-linear-gradient(115deg,rgba(255,255,255,.04) 0 36px,transparent 36px 72px);animation:strisce 9s linear infinite}
 @keyframes strisce{to{transform:translate3d(79.45px,0,0)}}
@@ -157,17 +176,24 @@ var LS={};try{LS=JSON.parse(localStorage.getItem('fg')||'{}')||{}}catch(e){}
 function save(){try{localStorage.setItem('fg',JSON.stringify(LS))}catch(e){}}
 var DEMO=/[?&]demo\b/.test(location.search);
 var teams=[],team=DEMO?'Oranje VC':(LS.team||''),code=DEMO?'demo':(LS.code||''),S=null,tab='partite',slip=[],err='',busy=false;
-var MN={'1':'1','X':'X','2':'2','O':'Over 4,5','U':'Under 4,5'};
+var MORE={};
+function mlab(m){var t={'1':'1','X':'X','2':'2','O':'Over 4,5','U':'Under 4,5','O35':'Over 3,5','U35':'Under 3,5','O55':'Over 5,5','U55':'Under 5,5','GG':'Entrambe segnano','NG':'Non segnano entrambe'};if(t[m])return t[m];if(m.indexOf('T:')===0)return m.slice(2);if(m.indexOf('E:')===0)return 'Esatto '+m.slice(2).replace('-','–');return m}
+function esitoJS(m,a,b){var t=a+b;return m==='1'?a>b:m==='X'?a===b:m==='2'?a<b:m==='O'?t>=5:m==='U'?t<=4:m==='O35'?t>=4:m==='U35'?t<=3:m==='O55'?t>=6:m==='U55'?t<=5:m==='GG'?a>=1&&b>=1:m==='NG'?(a===0||b===0):m==='E:'+a+'-'+b}
+function nm(p){return p.comp==='vinc'?esc(p.casa):esc(p.casa)+' – '+esc(p.trasf)}
 
 var M=null;
 function mockInit(){
-  var t=Date.now()+3600e3,mk=function(i,c,tr,a,b,c2,d,e){return{id:'D'+i,comp:'lega',giornata:2,casa:c,trasf:tr,chiude:new Date(t).toISOString(),q1:a,qx:b,q2:c2,qo:d,qu:e,gc:null,gt:null,chiusa:false}};
+  var t=Date.now()+3600e3,mk=function(i,c,tr,a,b,c2,d,e){return{id:'D'+i,comp:'lega',giornata:2,casa:c,trasf:tr,chiude:new Date(t).toISOString(),q1:a,qx:b,q2:c2,qo:d,qu:e,gc:null,gt:null,chiusa:false,extra:{O35:1.3,U35:3.1,O55:2.0,U55:1.7,GG:1.3,NG:3.2,'E:2-1':19,'E:1-1':24,'E:3-1':21,'E:2-0':22,'E:3-2':24,'E:4-1':25}}};
   M={conto:{team:'Oranje VC',crediti:500,debito:0,ultimo_prestito:null},partite:[mk(1,'The Blue brothers','Mariana Coneja',2.55,6.15,1.83,1.67,2.0),mk(2,'AFA SELECCION','Real Madrink',2.21,6.27,2.05,1.59,2.12),mk(3,'Oranje VC','stif dc',1.59,6.71,3.12,1.54,2.22),mk(4,'Grodah','Atletico ma non troppo',2.05,5.46,2.33,1.99,1.67),mk(5,'WOA','Apo team',2.24,6.25,2.03,1.66,2.02)],schedine:[],n:0};
+  M.partite.push({id:'V-LEGA',comp:'vinc',giornata:0,casa:'Chi vince il campionato',trasf:'',chiude:new Date(t).toISOString(),q1:1,qx:1,q2:1,qo:1,qu:1,gc:null,gt:null,chiusa:false,extra:{'T:Oranje VC':3.66,'T:Mariana Coneja':5.53,'T:Apo team':7.07,'T:Real Madrink':7.15,'T:AFA SELECCION':7.17,'T:WOA':14.33,'T:The Blue brothers':16.83,'T:Grodah':19.32,'T:stif dc':19.91,'T:Atletico ma non troppo':22.88}});
 }
+function mockStat(){var f=M.schedine.filter(function(x){return x.stato!=='aperta'}),v=f.filter(function(x){return x.stato==='vinta'});
+  return{giocate:f.length,vinte:v.length,aperte:M.schedine.length-f.length,puntato:f.reduce(function(a,x){return a+x.puntata},0),vinto:v.reduce(function(a,x){return a+x.vincita},0),quota_media:M.schedine.length?M.schedine.reduce(function(a,x){return a+x.quota},0)/M.schedine.length:0,miglior_vincita:v.reduce(function(a,x){return Math.max(a,x.vincita)},0),multiple:M.schedine.filter(function(x){return x.sel.length>1}).length}}
+function mockColpo(){var v=M.schedine.filter(function(x){return x.stato==='vinta'}).sort(function(a,b){return b.vincita-a.vincita})[0];return v?{team:'Oranje VC',vincita:v.vincita,quota:v.quota}:null}
 function mockStato(){
   var c=M.conto,lib=c.crediti<50&&!c.ultimo_prestito;
   return{ora:new Date().toISOString(),conto:c,sussidio_ok:lib,partite:M.partite,schedine:M.schedine.slice().reverse(),
-   classifica:[{team:'Oranje VC',crediti:c.crediti,debito:c.debito,ingioco:M.schedine.filter(function(x){return x.stato==='aperta'}).reduce(function(a,x){return a+x.puntata},0)},{team:'stif dc',crediti:500,debito:0,ingioco:0},{team:'Grodah',crediti:500,debito:0,ingioco:0}]};
+   stat:mockStat(),colpo:mockColpo(),classifica:[{team:'Oranje VC',crediti:c.crediti,debito:c.debito,ingioco:M.schedine.filter(function(x){return x.stato==='aperta'}).reduce(function(a,x){return a+x.puntata},0)},{team:'stif dc',crediti:500,debito:0,ingioco:0},{team:'Grodah',crediti:500,debito:0,ingioco:0}]};
 }
 function mockRpc(name,b){
   if(!M)mockInit();
@@ -181,9 +207,10 @@ function mockRpc(name,b){
     return{id:M.n,quota:q,vincita_possibile:Math.round(st*q*100)/100};
   }
   if(name==='demo_simula'){
-    M.partite.forEach(function(p){if(!p.chiusa){p.gc=Math.floor(Math.random()*5);p.gt=Math.floor(Math.random()*5);p.chiusa=true}});
+    var win={};
+    M.partite.forEach(function(p){if(p.chiusa)return;p.chiusa=true;if(p.comp==='vinc'){var k=Object.keys(p.extra);win[p.id]='T:'+k[Math.floor(Math.random()*k.length)].slice(2)}else{p.gc=Math.floor(Math.random()*5);p.gt=Math.floor(Math.random()*5)}});
     M.schedine.forEach(function(s){if(s.stato!=='aperta')return;
-      s.sel.forEach(function(x){var p=M.partite.filter(function(y){return y.id===x.partita})[0],tot=p.gc+p.gt;x.esito=((x.mercato==='1'&&p.gc>p.gt)||(x.mercato==='X'&&p.gc===p.gt)||(x.mercato==='2'&&p.gc<p.gt)||(x.mercato==='O'&&tot>=5)||(x.mercato==='U'&&tot<=4))?'v':'p'});
+      s.sel.forEach(function(x){var p=M.partite.filter(function(y){return y.id===x.partita})[0];x.esito=(p.comp==='vinc'?x.mercato===win[p.id]:esitoJS(x.mercato,p.gc,p.gt))?'v':'p'});
       if(s.sel.some(function(x){return x.esito==='p'}))s.stato='persa';
       else{var v=Math.round(s.puntata*s.quota*100)/100,tr=Math.min(M.conto.debito,Math.round(v*40)/100);s.stato='vinta';s.vincita=v;M.conto.crediti=Math.round((M.conto.crediti+v-tr)*100)/100;M.conto.debito=Math.round((M.conto.debito-tr)*100)/100}});
     return 1;
@@ -205,7 +232,7 @@ function carica(){
     render()}).catch(function(e){busy=false;S=null;err=e.message;if(/Codice/.test(err)){LS.code='';code='';save()}render()});
 }
 function pm(id){return S&&S.partite.filter(function(p){return p.id===id})[0]}
-function quotaDi(p,m){return Number({'1':p.q1,'X':p.qx,'2':p.q2,'O':p.qo,'U':p.qu}[m])}
+function quotaDi(p,m){var f={'1':p.q1,'X':p.qx,'2':p.q2,'O':p.qo,'U':p.qu}[m];return Number(f!=null?f:(p.extra||{})[m])}
 function aperta(p){return !p.chiusa&&new Date(p.chiude)>new Date()}
 
 function gate(){
@@ -214,11 +241,11 @@ function gate(){
   '<select id="gt">'+o+'</select><input id="gc" placeholder="Codice squadra" autocomplete="off" autocapitalize="characters" value="'+esc(code)+'"><button class="go" id="enter">Entra</button><div class="err">'+esc(err)+'</div><p style="margin-top:22px"><a href="index.html">‹ Torna a O Girrr</a></p></div>';
 }
 function ticker(){
-  var it=S.partite.map(function(p){return p.chiusa?'<span><b>'+esc(p.casa)+'</b> <i>'+p.gc+'–'+p.gt+'</i> <b>'+esc(p.trasf)+'</b></span>':'<span><b>'+esc(p.casa)+'</b> – <b>'+esc(p.trasf)+'</b> <i>'+f2(p.q1)+' · '+f2(p.qx)+' · '+f2(p.q2)+'</i></span>'}).join('');
+  var it=S.partite.filter(function(p){return p.comp!=='vinc'}).map(function(p){return p.chiusa?'<span><b>'+esc(p.casa)+'</b> <i>'+p.gc+'–'+p.gt+'</i> <b>'+esc(p.trasf)+'</b></span>':'<span><b>'+esc(p.casa)+'</b> – <b>'+esc(p.trasf)+'</b> <i>'+f2(p.q1)+' · '+f2(p.qx)+' · '+f2(p.q2)+'</i></span>'}).join('');
   return it?'<div class="tick"><div class="tk">'+it+it+'</div></div>':'';
 }
 function evid(){
-  var ap=S.partite.filter(aperta);if(!ap.length)return '';
+  var ap=S.partite.filter(function(p){return aperta(p)&&p.comp!=='vinc'});if(!ap.length)return '';
   var fav=ap.map(function(p){var s1=p.q1<=p.q2;return{p:p,m:s1?'1':'2',q:s1?p.q1:p.q2,n:s1?p.casa:p.trasf}}).sort(function(a,b){return a.q-b.q}).slice(0,3);
   var used={};fav.forEach(function(x){used[x.p.id]=1});
   var col=ap.filter(function(p){return !used[p.id]}).map(function(p){var s1=p.q1>=p.q2;return{p:p,m:s1?'1':'2',q:s1?p.q1:p.q2,n:s1?p.casa:p.trasf}}).sort(function(a,b){return b.q-a.q}).slice(0,2);
@@ -233,53 +260,78 @@ function head(){
   var c=S.conto;
   return (DEMO?'<div class="card" style="border:2px dashed var(--hi);font-size:13px"><b style="color:var(--hi)">PROVA</b> · Qui è tutto finto e si azzera quando ricarichi. Gioca una schedina, poi premi il pulsante per far finire le partite a caso.<br><button class="go" id="sim" style="margin-top:10px">Fai finire le partite</button></div>':'')+'<a class="back" href="index.html">‹ O GIRRR</a><div class="top"><img src="../assets/logo-lega.png" alt=""><div class="t"><div class="k">O FANT A GIRRR</div><h1>Toto<span>girrr</span></h1></div><div class="bal"><small>FANTACREDITI</small><b>'+f2(c.crediti)+'</b>'+(Number(c.debito)>0?'<small style="color:var(--hi)">DEBITO '+f2(c.debito)+'</small>':'')+'</div></div>'+
   '<div class="who">Squadra: <b>'+esc(team)+'</b><button class="x" id="out">Esci</button></div>'+
-  '<nav>'+[['partite','Partite'],['mie','Le mie'],['class','Classifica'],['regole','Regole']].map(function(t){return '<button data-tab="'+t[0]+'" class="'+(tab===t[0]?'on':'')+'">'+t[1]+'</button>'}).join('')+'</nav>'+ticker();
+  '<nav>'+[['partite','Partite'],['vinc','Vincenti'],['mie','Le mie'],['class','Classifica'],['regole','Regole']].map(function(t){return '<button data-tab="'+t[0]+'" class="'+(tab===t[0]?'on':'')+'">'+t[1]+'</button>'}).join('')+'</nav>'+ticker();
 }
-function qbtn(p,m){
-  var on=slip.some(function(x){return x.p===p.id&&x.m===m}),lab={'1':'1','X':'X','2':'2','O':'Over 4,5','U':'Under 4,5'}[m];
+function qbtn(p,m,lab){
+  var on=slip.some(function(x){return x.p===p.id&&x.m===m});lab=lab||mlab(m);
   return '<button class="q'+(on?' on':'')+'" data-p="'+p.id+'" data-m="'+m+'"'+(aperta(p)?'':' disabled')+'><small>'+lab+'</small><b>'+f2(quotaDi(p,m))+'</b></button>';
+}
+function altri(p){
+  var ex=p.extra||{};if(!Object.keys(ex).length)return '';
+  var r2=function(a,b){return ex[a]!=null?'<div class="row two">'+qbtn(p,a)+qbtn(p,b)+'</div>':''};
+  var es=Object.keys(ex).filter(function(k){return k.indexOf('E:')===0}).sort(function(a,b){return ex[a]-ex[b]});
+  var eh=es.length?'<div class="eh">RISULTATO ESATTO</div><div class="row four">'+es.map(function(k){return qbtn(p,k,k.slice(2).replace('-','–'))}).join('')+'</div>':'';
+  return '<button class="x mo" data-more="'+p.id+'">Altri mercati <i>▾</i></button><div class="mx"><div class="mi">'+r2('O35','U35')+r2('O55','U55')+r2('GG','NG')+eh+'</div></div>';
+}
+function vVinc(){
+  var vs=S.partite.filter(function(p){return p.comp==='vinc'});
+  if(!vs.length)return '<div class="vuoto">Le quote su chi vince la lega e i gironi escono tra poco.</div>';
+  return vs.map(function(p){
+    var ex=p.extra||{},ks=Object.keys(ex).sort(function(a,b){return ex[a]-ex[b]});
+    var chiuso=p.chiusa||new Date(p.chiude)<=new Date();
+    return '<div class="gh"><span>'+esc(p.casa).toUpperCase()+'</span><small style="white-space:nowrap">'+(chiuso?'Chiusa':'Chiude tra <span class="cd" data-t="'+p.chiude+'"></span>')+'</small></div><div class="card"><div class="vl">'+ks.map(function(k){var on=slip.some(function(x){return x.p===p.id&&x.m===k});return '<button class="q vq'+(on?' on':'')+'" data-p="'+p.id+'" data-m="'+k+'"'+(chiuso?' disabled':'')+'><span>'+esc(k.slice(2))+'</span><b>'+f2(ex[k])+'</b></button>'}).join('')+'</div></div>';
+  }).join('');
 }
 function vPartite(){
   var ev=evid();
-  var gr={},ord=[];S.partite.forEach(function(p){var k=p.comp+'|'+p.giornata;if(!gr[k]){gr[k]=[];ord.push(k)}gr[k].push(p)});
+  var gr={},ord=[];S.partite.filter(function(p){return p.comp!=='vinc'}).forEach(function(p){var k=p.comp+'|'+p.giornata;if(!gr[k]){gr[k]=[];ord.push(k)}gr[k].push(p)});
   if(!ord.length)return '<div class="vuoto">Nessuna partita in lavagna per ora. Le quote escono appena si sa quando inizia la giornata.</div>';
   return ev+ord.map(function(k){
     var a=gr[k],p0=a[0],cup=p0.comp==='coppa';
     var h='<div class="gh'+(cup?' cup':'')+'"><span>'+(cup?'CHAMPIONS CUP':'CAMPIONATO')+' · GIORNATA '+p0.giornata+'</span><small title="'+quando(p0.chiude)+'" style="white-space:nowrap">'+(p0.chiusa||new Date(p0.chiude)<=new Date()?'Chiusa':'Chiude tra <span class="cd" data-t="'+p0.chiude+'"></span>')+'</small></div>';
     return h+a.map(function(p){
       var body=p.chiusa?'<div class="res">'+p.gc+' – '+p.gt+' <span class="chiusa">Finita</span></div>':
-        '<div class="row">'+qbtn(p,'1')+qbtn(p,'X')+qbtn(p,'2')+'</div><div class="row two">'+qbtn(p,'O')+qbtn(p,'U')+'</div>'+(aperta(p)?'':'<div class="chiusa">Scommesse chiuse, si aspetta il risultato.</div>');
-      return '<div class="card m"><div class="nm"><span>'+esc(p.casa)+' <i>vs</i> '+esc(p.trasf)+'</span></div>'+body+'</div>';
+        '<div class="row">'+qbtn(p,'1')+qbtn(p,'X')+qbtn(p,'2')+'</div><div class="row two">'+qbtn(p,'O')+qbtn(p,'U')+'</div>'+(aperta(p)?altri(p):'<div class="chiusa">Scommesse chiuse, si aspetta il risultato.</div>');
+      return '<div class="card m'+(MORE[p.id]?' open':'')+'" data-id="'+p.id+'"><div class="nm"><span>'+esc(p.casa)+' <i>vs</i> '+esc(p.trasf)+'</span></div>'+body+'</div>';
     }).join('');
   }).join('');
 }
-function etichetta(s){var p=pm(s.partita);return p?(esc(p.casa)+' – '+esc(p.trasf)):esc(s.partita)}
+function etichetta(s){var p=pm(s.partita);return p?nm(p):esc(s.partita)}
 var OPEN={};
-function esito(x){var p=pm(x.partita);return p&&p.chiusa?p.gc+'–'+p.gt:''}
+function esito(x){var p=pm(x.partita);return p&&p.chiusa&&p.comp!=='vinc'?p.gc+'–'+p.gt:''}
 function vMie(){
   if(!S.schedine.length)return '<div class="vuoto">Non hai ancora giocato niente. Vai su Partite e scegli gli esiti.</div>';
   return S.schedine.map(function(s){
     var multi=s.sel.length>1,az=s.sel.filter(function(x){return x.esito==='v'}).length,sb=s.sel.filter(function(x){return x.esito==='p'}).length,att=s.sel.length-az-sb;
     var lis=s.sel.map(function(x){var ic=x.esito==='v'?'✓':x.esito==='p'?'✗':'…',r=esito(x);
-      return '<li class="'+(x.esito||'')+'"><span class="ic">'+ic+'</span><span class="tx">'+etichetta(x)+'<br><small>Hai giocato <b>'+MN[x.mercato]+'</b>'+(r?' · Finita '+r:(x.esito?'':' · In attesa'))+'</small></span><span>'+f2(x.quota)+'</span></li>'}).join('');
+      return '<li class="'+(x.esito||'')+'"><span class="ic">'+ic+'</span><span class="tx">'+etichetta(x)+'<br><small>Hai giocato <b>'+mlab(x.mercato)+'</b>'+(r?' · Finita '+r:(x.esito?'':' · In attesa'))+'</small></span><span>'+f2(x.quota)+'</span></li>'}).join('');
     var rs=s.stato==='vinta'?'Hai vinto '+f2(s.vincita)+' fantacrediti':s.stato==='persa'?'Hai perso '+f2(s.puntata)+' fantacrediti':'Possibile vincita '+f2(s.puntata*s.quota);
     var sum=s.stato==='aperta'?(az+' azzeccate · '+att+' in attesa'+(sb?' · '+sb+' sbagliate':'')):(az+' su '+s.sel.length+' azzeccate');
     var rig=s.sel.every(function(x){var p=pm(x.partita);return p&&aperta(p)})?'<br><button class="x rig" data-rig="'+s.id+'">Rigioca</button>':'';
     return '<div class="card bet'+(OPEN[s.id]?' open':'')+'" data-id="'+s.id+'"><div class="summ" data-tog="'+s.id+'"><div class="h"><span>'+(multi?'Multipla ('+s.sel.length+')':'Singola')+' · '+f2(s.quota)+'</span><span class="tag '+s.stato+'">'+s.stato.toUpperCase()+'</span></div><div class="sm">Puntata <b>'+f2(s.puntata)+'</b> · '+sum+' <span class="ch">Dettagli <i>▾</i></span></div></div><div class="bd"><div class="bi"><ul>'+lis+'</ul><div class="ft">'+rs+rig+'</div></div></div></div>';
   }).join('');
 }
+function vStat(){
+  var st=S.stat||{},g=Number(st.giocate)||0,v=Number(st.vinte)||0,net=Number(st.vinto)-Number(st.puntato);
+  var t=function(l,x){return '<div><small>'+l+'</small><b>'+x+'</b></div>'};
+  var h='<div class="gh" style="margin-top:0"><span>LE MIE STATISTICHE</span></div>';
+  if(!g&&!Number(st.aperte))h+='<div class="vuoto" style="padding:10px 0">Appena giochi qualcosa compaiono qui.</div>';
+  else h+='<div class="stt">'+t('GIOCATE',g)+t('VINTE',v+(g?' ('+Math.round(v*100/g)+'%)':''))+t('SALDO',(net>=0?'+':'')+f0(net))+t('QUOTA MEDIA',f2(st.quota_media||0))+t('MIGLIOR COLPO',f0(st.miglior_vincita||0))+t('MULTIPLE',st.multiple||0)+'</div>';
+  if(S.colpo)h+='<div class="colpo"><small>COLPO DELLA LEGA</small>'+esc(S.colpo.team)+' ha vinto <b>'+f0(S.colpo.vincita)+'</b> fantacrediti con una schedina a quota '+f2(S.colpo.quota)+'</div>';
+  return h+'<div class="gh"><span>CLASSIFICA DEGLI SCOMMETTITORI</span></div>';
+}
 function vClass(){
   var rows=S.classifica.map(function(c,i){var tot=Number(c.crediti)+Number(c.ingioco)-Number(c.debito||0);
     return '<tr class="'+(c.team===team?'me':'')+'"><td class="n">'+(i+1)+'</td><td>'+esc(c.team)+'</td><td>'+f0(c.crediti)+'</td><td>'+f0(tot)+'</td></tr>'}).join('');
-  return '<div class="card"><table class="lb"><tr><th></th><th>SQUADRA</th><th>LIBERI</th><th>TOTALE</th></tr>'+rows+'</table><p style="font-size:12px;color:var(--sub);margin-top:10px">Totale = fantacrediti liberi + quelli puntati su schedine ancora aperte − eventuali debiti col banco. Chi non gioca non compare finché non entra la prima volta.</p></div>';
+  return vStat()+'<div class="card"><table class="lb"><tr><th></th><th>SQUADRA</th><th>LIBERI</th><th>TOTALE</th></tr>'+rows+'</table><p style="font-size:12px;color:var(--sub);margin-top:10px">Totale = fantacrediti liberi + quelli puntati su schedine ancora aperte − eventuali debiti col banco. Chi non gioca non compare finché non entra la prima volta.</p></div>';
 }
 function vRegole(){
   var su=S.sussidio_ok?'<button class="go" id="suss" style="margin-top:12px">Chiedi il prestito al banco (porta a 50)</button>':'';
-  return '<div class="card regole"><b>Come funziona</b><ul><li>Si scommette solo con <b>fantacrediti</b>, soldi finti. Parti con <b>500</b>.</li><li>Scegli un esito (1 casa, X pari, 2 trasferta, Over/Under 4,5 gol totali) e premi su <b>Gioca</b>. Con più partite insieme fai una <b>multipla</b>: le quote si moltiplicano, ma devi indovinarle tutte (massimo 6).</li><li>Si può scommettere fino al <b>calcio d\'inizio della prima partita di Serie A</b> della giornata.</li><li>Puntata minima 5. Sulla <b>tua</b> partita il massimo è 100.</li><li>Le vincite arrivano da sole quando il risultato è in lega, di solito la mattina dopo.</li><li>Se scendi sotto i 50 fantacrediti puoi chiedere un <b>prestito al banco</b>: ti riporta a 50, ma una volta ogni due settimane. Il banco però vuole il <b>120%</b> indietro: sulle tue vincite si tiene il <b>40%</b> finché il debito non è saldato. Il debito conta in meno nella classifica.</li><li>Le quote nascono dalla forza delle squadre, con il banco che si tiene un po\' di margine. All\'inizio sono approssimative e migliorano giornata dopo giornata.</li></ul>'+su+'</div>';
+  return '<div class="card regole"><b>Come funziona</b><ul><li>Si scommette solo con <b>fantacrediti</b>, soldi finti. Parti con <b>500</b>.</li><li>Scegli un esito (1 casa, X pari, 2 trasferta, Over/Under 4,5 gol totali; sotto «Altri mercati» trovi Over/Under 3,5 e 5,5, entrambe segnano e il risultato esatto) e premi su <b>Gioca</b>. Con più partite insieme fai una <b>multipla</b>: le quote si moltiplicano, ma devi indovinarle tutte (massimo 6).</li><li>Nella scheda <b>Vincenti</b> puoi puntare su chi vince il campionato e su chi vince ciascun girone di coppa: si chiude con la giornata 8 di Serie A e si incassa alla fine. Si possono mettere in multipla con le partite.</li><li>Si può scommettere fino al <b>calcio d\'inizio della prima partita di Serie A</b> della giornata.</li><li>Puntata minima 5. Sulla <b>tua</b> partita il massimo è 100.</li><li>Le vincite arrivano da sole quando il risultato è in lega, di solito la mattina dopo.</li><li>Se scendi sotto i 50 fantacrediti puoi chiedere un <b>prestito al banco</b>: ti riporta a 50, ma una volta ogni due settimane. Il banco però vuole il <b>120%</b> indietro: sulle tue vincite si tiene il <b>40%</b> finché il debito non è saldato. Il debito conta in meno nella classifica.</li><li>Le quote nascono dalla forza delle squadre, con il banco che si tiene un po\' di margine. All\'inizio sono approssimative e migliorano giornata dopo giornata.</li></ul>'+su+'</div>';
 }
 function vSlip(){
   if(!slip.length||tab==='mie'&&0)return '';
-  var q=1,sel=slip.map(function(x){var p=pm(x.p),qq=quotaDi(p,x.m);q*=qq;return '<div><span>'+esc(p.casa)+' – '+esc(p.trasf)+' · <b>'+MN[x.m]+'</b></span><span>'+f2(qq)+'</span></div>'}).join('');
+  var q=1,sel=slip.map(function(x){var p=pm(x.p),qq=quotaDi(p,x.m);q*=qq;return '<div><span>'+nm(p)+' · <b>'+mlab(x.m)+'</b></span><span>'+f2(qq)+'</span></div>'}).join('');
   q=Math.min(500,Math.round(q*100)/100);
   var st=Number(LS.puntata||10);
   return '<div class="slip"><div class="in"><div class="sel">'+sel+'</div><div class="ln"><input id="stake" type="number" inputmode="decimal" min="5" step="1" value="'+st+'"><div class="info">'+(slip.length>1?'Multipla ':'Singola ')+'· quota <b>'+f2(q)+'</b><br>Vincita <b id="win">'+f2(st*q)+'</b></div><button class="go" id="gioca"'+(busy?' disabled':'')+'>Gioca</button></div><div class="chips"><button data-st="10">10</button><button data-st="25">25</button><button data-st="50">50</button><button data-st="100">100</button><button class="x" id="svuota" style="margin-left:auto">Svuota</button></div></div></div>';
@@ -288,11 +340,12 @@ var QS=1,ANIM=true,LASTQ='',SLIPWAS=false,BALPREV=null;
 function render(){
   var a=document.getElementById('app');
   if(!S){a.innerHTML=gate();return}
-  var body=tab==='partite'?vPartite():tab==='mie'?vMie():tab==='class'?vClass():vRegole();
+  var body=tab==='partite'?vPartite():tab==='vinc'?vVinc():tab==='mie'?vMie():tab==='class'?vClass():vRegole();
   var keep=document.getElementById('stake');
   var hs=head(),sv=vSlip(),isNew=!!sv&&!SLIPWAS;SLIPWAS=!!sv;
   a.innerHTML=hs+'<div class="pane'+(ANIM?' an':'')+'">'+body+'</div>'+(isNew?sv.replace('class="slip"','class="slip new"'):sv);
   ANIM=false;
+  tickCd();
   if(LASTQ){var qb=a.querySelector('.q[data-p="'+LASTQ.split('|')[0]+'"][data-m="'+LASTQ.split('|')[1]+'"]');if(qb&&qb.classList.contains('on'))qb.classList.add('pop');LASTQ=''}
   var bb=document.querySelector('.bal b');if(bb&&S){var v=Number(S.conto.crediti);if(BALPREV!==null&&BALPREV!==v){var from=BALPREV,t0=performance.now();document.querySelector('.bal').classList.add('up');(function st(t){var k=Math.min(1,(t-t0)/700),e=1-Math.pow(1-k,3);bb.textContent=f2(from+(v-from)*e);if(k<1)requestAnimationFrame(st)})(t0)}BALPREV=v}
 }
@@ -313,6 +366,7 @@ document.addEventListener('click',function(e){
     if(i>=0&&slip[i].m===m)slip.splice(i,1);else if(i>=0)slip[i].m=m;else{if(slip.length>=6){toast('Massimo 6 partite in una multipla',1);return}slip.push({p:id,m:m})}
     LASTQ=id+'|'+m;var y=window.scrollY;render();window.scrollTo(0,y);return}
   if(b=t.closest('[data-st]')){setStake(b.getAttribute('data-st'));return}
+  if(b=t.closest('[data-more]')){var mc=b.closest('.card'),mi=b.getAttribute('data-more');mc.classList.toggle('open');MORE[mi]=mc.classList.contains('open');return}
   if(b=t.closest('[data-tog]')){var cd=b.closest('.bet'),id3=b.getAttribute('data-tog');cd.classList.toggle('open');OPEN[id3]=cd.classList.contains('open');return}
   if(b=t.closest('[data-rig]')){var id2=Number(b.getAttribute('data-rig')),sc=S.schedine.filter(function(x){return x.id===id2})[0];if(sc){slip=sc.sel.map(function(x){return{p:x.partita,m:x.mercato}});tab='partite';ANIM=true;render();window.scrollTo(0,0);toast('Schedina ripresa: controlla la puntata e gioca')}return}
   if(t.id==='svuota'){slip=[];render();return}
@@ -330,7 +384,8 @@ document.addEventListener('input',function(e){if(e.target.id==='stake')upWin()})
 document.addEventListener('keydown',function(e){if(e.key==='Enter'&&e.target.id==='gc')document.getElementById('enter').click()});
 
 function fmtCd(ms){var s=Math.floor(ms/1000),d=Math.floor(s/86400),h=Math.floor(s%86400/3600),m=Math.floor(s%3600/60);return d>0?d+'g '+h+'h':h>0?h+'h '+m+'m':m+'m '+String(s%60).padStart(2,'0')+'s'}
-setInterval(function(){document.querySelectorAll('.cd').forEach(function(e){var ms=new Date(e.getAttribute('data-t'))-Date.now();if(ms<=0){if(!e.dataset.done){e.dataset.done=1;e.textContent='0s';if(S&&!busy)carica()}return}e.textContent=fmtCd(ms);e.className='cd'+(ms<3600e3?' hot':ms<86400e3?' warn':'')})},1000);
+function tickCd(){document.querySelectorAll('.cd').forEach(function(e){var ms=new Date(e.getAttribute('data-t'))-Date.now();if(ms<=0){if(!e.dataset.done){e.dataset.done=1;e.textContent='0s';if(S&&!busy)carica()}return}e.textContent=fmtCd(ms);e.className='cd'+(ms<3600e3?' hot':ms<86400e3?' warn':'')})}
+setInterval(tickCd,1000);
 fetch('../data.json',{cache:'no-cache'}).then(function(r){return r.json()}).then(function(d){teams=d.teams.map(function(t){return t.name});
   if(team&&code)carica();else render();
 }).catch(function(){teams=['Oranje VC'];render()});
