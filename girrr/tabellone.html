@@ -189,7 +189,7 @@ fetch('../data.json',{cache:'no-store'}).then(function(r){return r.json()}).then
   var hm=/^#(lega|coppa)(?:-(\d+))?$/.exec(location.hash||'');
   if(hm){if(hm[1]==='coppa'){mode='coppa';document.body.setAttribute('data-mode','coppa')}if(hm[2]){var nn=+hm[2],mx=(hm[1]==='coppa'?d.cal.cup:d.cal.lega).length;sel[hm[1]]=Math.min(Math.max(1,nn),mx)}}
   render();
-  document.getElementById('foot').textContent='Dati aggiornati al '+(d.cal.date||'')+' · frecce ← → per cambiare giornata';
+  document.getElementById('foot').textContent='Dati aggiornati al '+(d.cal.date||'');
 }).catch(function(){document.getElementById('board').innerHTML='<div class="err">Non riesco a leggere i dati.</div>'});
 })();
 </script>

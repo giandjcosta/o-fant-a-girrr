@@ -54,6 +54,7 @@ body::before{content:'';position:fixed;inset:-120px;z-index:-1;pointer-events:no
 </div>
 <script>
 fetch('../riepiloghi/indice.json',{cache:'no-store'}).then(function(r){return r.json()}).then(function(v){
+  if(/[?&]demo\b/.test(location.search)&&v.length){var b=v[0],T=['Oranje VC dilaga: cinque gol e 89 punti','Il Mercato Scambi scuote la classifica','Derby di coppa: il girone A si accende','Real Madrink non si ferma più','Rimonta clamorosa all\'ultimo fantapunto','La WOA trova finalmente la vittoria','Pioggia di gol: record di giornata','Sorpasso in vetta, è un testa a testa'];v=T.map(function(t,i){var n=T.length-i,d=new Date(2026,9,9-7*i-0);return Object.assign({},b,{n:n,titolone:t,data:d.toLocaleDateString('it-IT',{weekday:'long',day:'numeric',month:'long',year:'numeric'})})})}
   function esc(s){return String(s).replace(/[&<>"]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})}
   if(!v.length){document.getElementById('ultimo').innerHTML='<div class="empty">Il primo numero esce presto.</div>';return}
   var u=v[0];
