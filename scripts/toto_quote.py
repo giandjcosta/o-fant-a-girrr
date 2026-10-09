@@ -175,6 +175,68 @@ def simula_classifica(partite_giocate, partite_da_fare, squadre, rt, sims, seed)
     return {t: v / sims for t, v in vinc.items()}
 
 
+def _gioca(rng, rt, a, b):
+    fa, fb = rng.gauss(rt[a], SD), rng.gauss(rt[b], SD)
+    return fa, fb, poisson(rng, lam(fa)), poisson(rng, lam(fb))
+
+
+def _tabella(base, da, rt, rng):
+    cur = {t: dict(r) for t, r in base.items()}
+    for casa, _, _, fuori, _ in da:
+        fc, ff, a, b = _gioca(rng, rt, casa, fuori)
+        for t, fp, gf, gs in ((casa, fc, a, b), (fuori, ff, b, a)):
+            r = cur[t]; r["fp"] += fp; r["gf"] += gf; r["gs"] += gs
+            r["pt"] += 3 if gf > gs else (1 if gf == gs else 0)
+    return sorted(cur.values(), key=ordine_chiave)
+
+
+def _base(giocate, squadre):
+    base = {t: {"n": t, "pt": 0, "fp": 0.0, "gf": 0, "gs": 0} for t in squadre}
+    for casa, pc, pf, fuori, ris in giocate:
+        a, b = map(int, ris.split("-"))
+        for t, fp, gf, gs in ((casa, pc, a, b), (fuori, pf, b, a)):
+            r = base[t]; r["fp"] += fp; r["gf"] += gf; r["gs"] += gs
+            r["pt"] += 3 if gf > gs else (1 if gf == gs else 0)
+    return base
+
+
+def _doppio(rng, rt, a, b):
+    """Andata e ritorno: passa chi ha piu' gol nel totale; a pari merito sceglie il punteggio fanta totale."""
+    ga = gb = 0
+    fa = fb = 0.0
+    for _ in range(2):
+        x, y, g1, g2 = _gioca(rng, rt, a, b)
+        ga += g1; gb += g2; fa += x; fb += y
+    if ga != gb:
+        return a if ga > gb else b
+    return a if fa >= fb else b
+
+
+def simula_coppa(gruppi, rt, sims, seed):
+    """gruppi: {nome: (squadre, giocate, da_fare)}. Ritorna (p_eliminata, p_coppa) con gironi A/B,
+    quarti 1A-4B, 2A-3B, 1B-4A, 2B-3A, semifinali tra i vincitori dei quarti 1-2 e 3-4, finale secca."""
+    rng = random.Random(seed)
+    base = {g: _base(gi, sq) for g, (sq, gi, da) in gruppi.items()}
+    el = {t: 0 for g, (sq, _, _) in gruppi.items() for t in sq}
+    co = dict.fromkeys(el, 0)
+    for _ in range(sims):
+        tab = {g: _tabella(base[g], gruppi[g][2], rt, rng) for g in gruppi}
+        for g in tab:
+            el[tab[g][-1]["n"]] += 1
+        A, B = [r["n"] for r in tab["A"]], [r["n"] for r in tab["B"]]
+        q = [(A[0], B[3]), (A[1], B[2]), (B[0], A[3]), (B[1], A[2])]
+        w = [_doppio(rng, rt, a, b) for a, b in q]
+        f = [_doppio(rng, rt, w[0], w[1]), _doppio(rng, rt, w[2], w[3])]
+        fa, fb, ga, gb = _gioca(rng, rt, f[0], f[1])
+        co[f[0] if (ga, fa) >= (gb, fb) else f[1]] += 1
+    return {t: v / sims for t, v in el.items()}, {t: v / sims for t, v in co.items()}
+
+
+def quote_eliminata(prob):
+    # in ogni girone ne esce una su cinque: margine come gli altri mercati, tetto 25
+    return {f"T:{t}": round(min(25.0, max(1.10, 1.0 / (max(p, 0.02) * 1.12))), 2) for t, p in prob.items()}
+
+
 def quote_vincente(prob):
     # margine piu' alto sui mercati lunghi; tetto 60 e minimo 1,20
     return {f"T:{t}": round(min(60.0, max(1.20, 1.0 / (max(p, 0.01) * 1.15))), 2) for t, p in prob.items()}
@@ -209,6 +271,30 @@ def vincenti(d, rt):
             out.append({"id": f"V-G{gir}", "comp": "vinc", "giornata": 0, "casa": f"Chi vince il girone {gir} di coppa", "trasf": "",
                         "chiude": ch.isoformat(), "q1": 1, "qx": 1, "q2": 1, "qo": 1, "qu": 1,
                         "extra": quote_vincente(simula_classifica(gi, da, squadre, rt, 3000, 13))})
+    # eliminate nei gironi e vincitrice della coppa (stesse squadre dei gironi)
+    gr = {}
+    for g in d["cal"]["cup"]:
+        for gir, c, pc, pf, f, r in g["m"]:
+            gr.setdefault(gir, [[], [], []])
+            gr[gir][1 if r and r != "-" else 2].append((c, pc, pf, f, r))
+    for g in d["cal"]["cup"]:
+        for gir, t in g.get("rest", []):
+            gr.setdefault(gir, [[], [], []])
+    gruppi = {}
+    for gir, (_, gi, da) in gr.items():
+        sq = sorted({x for m in gi + da for x in (m[0], m[3])} |
+                    {t for g in d["cal"]["cup"] for gg, t in g.get("rest", []) if gg == gir})
+        gruppi[gir] = (sq, gi, da)
+    if len(gruppi) == 2 and all(da for _, _, da in gruppi.values()):
+        el, co = simula_coppa(gruppi, rt, 3000, 17)
+        for gir in sorted(gruppi):
+            sq = gruppi[gir][0]
+            out.append({"id": f"V-E{gir}", "comp": "vinc", "giornata": 0, "casa": f"Chi viene eliminata nel girone {gir} di coppa", "trasf": "",
+                        "chiude": ch.isoformat(), "q1": 1, "qx": 1, "q2": 1, "qo": 1, "qu": 1,
+                        "extra": quote_eliminata({t: el[t] for t in sq})})
+        out.append({"id": "V-COPPA", "comp": "vinc", "giornata": 0, "casa": "Chi vince la Champions Cup", "trasf": "",
+                    "chiude": ch.isoformat(), "q1": 1, "qx": 1, "q2": 1, "qo": 1, "qu": 1,
+                    "extra": quote_vincente(co)})
     return out
 
 
@@ -230,6 +316,8 @@ def vincitori_noti(d):
             squadre = sorted({x for m in ms for x in (m[0], m[3])})
             p = simula_classifica(ms, [], squadre, {t: 0 for t in squadre}, 1, 1)
             res[f"V-G{gir}"] = max(p, key=p.get)
+            b = _base(ms, squadre)
+            res[f"V-E{gir}"] = sorted(b.values(), key=ordine_chiave)[-1]["n"]
     return res
 
 
