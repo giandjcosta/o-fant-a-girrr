@@ -23,6 +23,11 @@ jobs:
         run: python3 scripts/aggiorna_dati.py
       - name: Rifaccio il riepilogo
         run: python3 scripts/riepilogo.py
+      - name: Totogirrr (quote, risultati, pagamenti e ping al database)
+        continue-on-error: true
+        env:
+          TOTO_ADMIN: ${{ secrets.TOTO_ADMIN }}
+        run: python3 scripts/toto_quote.py sync
       - name: Salvo se è cambiato
         run: |
           git config user.name "github-actions[bot]"
