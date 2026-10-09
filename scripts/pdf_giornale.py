@@ -42,7 +42,9 @@ import base64 as _b64
 from pathlib import Path as _P
 
 _ASSETS = _P(__file__).resolve().parent.parent / "assets" / "loghi"
-SPONSOR = ["sponsor-birra-contropiede", "sponsor-pizzeria-fuorigioco", "sponsor-bomber-gym-club", "sponsor-amaro-del-mister"]
+SPONSOR = ["sponsor-birra-contropiede", "sponsor-pizzeria-fuorigioco", "sponsor-bomber-gym-club", "sponsor-amaro-del-mister",
+           "sponsor-la-camiseta", "sponsor-turbo-werkstatt", "sponsor-banque-premier-but", "sponsor-tubarao-credito-facil", "sponsor-wegwezen-reizen", "sponsor-pixelbay-electronics", "sponsor-velox-sportswear"]
+SPONSOR_MEDICO = "sponsor-ouchguard-injury-insurance"   # fisso sotto il bollettino medico, fuori dalla rotazione
 
 
 def scegli_sponsor(n):
@@ -137,6 +139,7 @@ tr.pod td.pos{color:var(--red)}
 .gm em{text-align:center}
 .gm em{font-style:normal;font-family:'Inter',sans-serif;font-size:7.4pt;color:var(--red);font-weight:800;align-self:center}
 .gr{font-family:var(--hd);font-weight:700;text-transform:uppercase;font-size:9pt;letter-spacing:.12em;color:var(--red);margin:1.8mm 0 .6mm}
+.spm{display:flex;align-items:center;justify-content:flex-end;gap:3mm;margin-top:1.6mm;font-family:'Inter',sans-serif;font-size:6.6pt;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:var(--mute)}.spm img{height:11mm}
 .nt{font-size:7.6pt;color:var(--mute);margin-top:1.2mm;line-height:1.35;font-style:italic}
 .cols{display:grid;grid-template-columns:1fr 1fr;gap:6mm}
 .st{font-family:'Inter',sans-serif;font-weight:800;font-size:6.8pt;letter-spacing:.06em;text-transform:uppercase;padding:.4mm 1.4mm;border:.3mm solid var(--rule)}
@@ -363,6 +366,7 @@ def costruisci(t, tema="classico"):
         h.append("</table>")
     if t.get("infortunati"):
         h.append(f'<p class="nt">{esc(t["infortunati"])}</p>')
+    h.append(f'<div class="spm"><span>Il bollettino medico è offerto da</span><img src="{logo_uri(SPONSOR_MEDICO)}"></div>')
     h.append("</div>")
     if t.get("chiusura"):
         h.append(f'<div class="taglio"><b>Taglio basso</b>{esc(t["chiusura"])}</div>')

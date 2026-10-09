@@ -143,6 +143,10 @@ fetch('../riepiloghi/indice.json',{cache:'no-store'}).then(function(r){return r.
     var g=document.getElementById('gico');g.src='../'+v[0].copertina;g.style.display='block';g.style.borderRadius='4px';g.style.height='100%';document.getElementById('gtxt').style.display='none'}
 }).catch(function(){});
 })();
+
+(function(){var L=['sponsor-birra-contropiede','sponsor-pizzeria-fuorigioco','sponsor-bomber-gym-club','sponsor-amaro-del-mister','sponsor-la-camiseta','sponsor-turbo-werkstatt','sponsor-banque-premier-but','sponsor-tubarao-credito-facil','sponsor-wegwezen-reizen','sponsor-pixelbay-electronics','sponsor-velox-sportswear','sponsor-ouchguard-injury-insurance'];
+var a=L.slice();for(var i=a.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1));var t=a[i];a[i]=a[j];a[j]=t}
+var e=document.querySelector('.sp .lg');if(e)e.innerHTML=a.slice(0,4).map(function(n){return '<img src="../assets/loghi/'+n+'.png" alt="">'}).join('')})();
 </script>
 </body>
 </html>

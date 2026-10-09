@@ -15,7 +15,9 @@ from pdf_settimana import D, cap, classifica, esc, pt  # noqa: E402
 
 ROOT = Path(__file__).resolve().parent.parent
 LOGHI = ROOT / "assets" / "loghi"
-SPONSOR = ["sponsor-birra-contropiede", "sponsor-pizzeria-fuorigioco", "sponsor-bomber-gym-club", "sponsor-amaro-del-mister"]
+SPONSOR = ["sponsor-birra-contropiede", "sponsor-pizzeria-fuorigioco", "sponsor-bomber-gym-club", "sponsor-amaro-del-mister",
+           "sponsor-la-camiseta", "sponsor-turbo-werkstatt", "sponsor-banque-premier-but", "sponsor-tubarao-credito-facil", "sponsor-wegwezen-reizen", "sponsor-pixelbay-electronics", "sponsor-velox-sportswear",
+           "sponsor-ouchguard-injury-insurance"]
 
 TEMI = {
     "lega": dict(acc="#d62839", bg="#1d2a52", bg2="#2c3f7c", bg3="#141d3d", chiaro="#fbf6ec", hi="#ffd166", sub="#bfe3ff",
@@ -96,7 +98,7 @@ def costruisci(quale):
         sopra = "RISULTATI"
         titolo = f"I risultati della {n}ª giornata"
         kick = "CLASSIC LEAGUE · 2026/27"
-    sp = SPONSOR[(n - 1) % 4:] + SPONSOR[:(n - 1) % 4]
+    sp = [SPONSOR[((n - 1) * 4 + i) % len(SPONSOR)] for i in range(4)]   # 4 alla volta, tutti a rotazione
     css = f"""
 *{{box-sizing:border-box;margin:0;padding:0}}
 body{{width:1600px;height:900px;font-family:"Inter Display","Inter",sans-serif;color:{t['chiaro']};background:{t['bg']};position:relative;overflow:hidden}}
