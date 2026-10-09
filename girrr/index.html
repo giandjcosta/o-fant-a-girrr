@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="robots" content="noindex">
+<title>O Girrr · O Fant A Girrr</title>
+<meta property="og:title" content="O Girrr · O Fant A Girrr">
+<meta property="og:description" content="Spogliatoio, Giornale, Tabellone e Totogirrr della nostra lega di fantacalcio.">
+<link rel="icon" type="image/png" href="../assets/favicon-64.png">
+<link rel="apple-touch-icon" href="../assets/apple-touch-icon.png">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@500;700;800;900&display=swap">
+<style>
+:root{--acc:#d62839;--bg:#1d2a52;--bg2:#2c3f7c;--bg3:#141d3d;--chiaro:#fbf6ec;--hi:#ffd166;--sub:#bfe3ff;--az:#3d93d6}
+*{box-sizing:border-box;margin:0;padding:0}
+body{min-height:100vh;font-family:Inter,system-ui,-apple-system,Segoe UI,sans-serif;color:var(--chiaro);background:var(--bg);
+ background-image:repeating-linear-gradient(115deg,rgba(255,255,255,.04) 0 36px,transparent 36px 72px),radial-gradient(1200px 700px at 80% -10%,var(--bg2) 0,var(--bg) 55%,var(--bg3) 100%);background-attachment:fixed}
+.wrap{max-width:1100px;margin:0 auto;padding:22px 16px 36px}
+.hero{display:flex;align-items:center;gap:clamp(14px,3vw,28px);margin-bottom:26px}
+.hero img{height:clamp(100px,22vw,190px);filter:drop-shadow(0 10px 18px rgba(0,0,0,.4));animation:pop .8s both}
+@keyframes pop{from{opacity:0;transform:translateY(14px) scale(.95)}to{opacity:1;transform:none}}
+.kick{font-weight:900;font-size:clamp(11px,1.6vw,14px);letter-spacing:.4em;color:var(--hi)}
+h1{font-weight:900;font-size:clamp(44px,10vw,92px);line-height:.95;margin-top:6px;letter-spacing:-.02em}
+h1 span{color:var(--acc);filter:brightness(1.3)}
+.tag{margin-top:10px;color:var(--sub);font-weight:600;font-size:clamp(14px,2vw,18px)}
+.strip{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:12px;margin-bottom:26px}
+.st{background:rgba(255,255,255,.08);border-left:6px solid var(--acc);border-radius:4px 12px 12px 4px;padding:12px 14px}
+.st small{display:block;font-weight:800;font-size:11px;letter-spacing:.24em;color:var(--hi);margin-bottom:6px}
+.st b{font-weight:900;font-size:17px;text-transform:uppercase}
+.st span{display:block;color:var(--sub);font-weight:600;font-size:13px;margin-top:3px;line-height:1.4}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:18px}
+.c{position:relative;display:flex;flex-direction:column;min-height:230px;text-decoration:none;color:inherit;border-radius:18px;padding:20px;overflow:hidden;background:linear-gradient(150deg,rgba(255,255,255,.14),rgba(255,255,255,.05));border:1px solid rgba(255,255,255,.14);transition:transform .25s,box-shadow .25s,border-color .25s}
+.c:hover{transform:translateY(-6px);box-shadow:0 18px 36px rgba(0,0,0,.4);border-color:var(--hi)}
+.c .ic{height:74px;margin-bottom:14px;display:flex;align-items:center}
+.c .ic img{height:100%;filter:drop-shadow(0 6px 10px rgba(0,0,0,.4))}
+.c h2{font-weight:900;font-size:25px;line-height:1.05}
+.c p{margin-top:8px;color:var(--sub);font-weight:600;font-size:14px;line-height:1.45;flex:1}
+.c .go{margin-top:14px;font-weight:900;font-size:12px;letter-spacing:.22em;color:var(--hi)}
+.c.soon{opacity:.72;cursor:default}
+.c.soon:hover{transform:none;box-shadow:none;border-color:rgba(255,255,255,.14)}
+.badge{position:absolute;top:14px;right:14px;background:var(--hi);color:var(--bg);font-weight:900;font-size:11px;letter-spacing:.18em;padding:5px 10px;border-radius:999px}
+.c.bet{background:linear-gradient(150deg,rgba(61,147,214,.35),rgba(255,255,255,.05))}
+.sp{margin-top:28px;background:var(--chiaro);border-radius:14px;padding:12px 16px;display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:14px 22px}
+.sp span{font-weight:900;font-size:11px;letter-spacing:.3em;color:var(--bg)}
+.sp img{height:clamp(44px,7vw,66px)}
+.foot{margin-top:14px;text-align:center;font-size:12px;color:var(--sub);opacity:.8}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="hero">
+    <img src="../assets/loghi/logo-lega-o-fant-a-girrr.png" alt="O Fant A Girrr">
+    <div><div class="kick">O FANT A GIRRR · 2026/27</div><h1>O <span>Girrr</span></h1><div class="tag">La casa della nostra lega: tutto quello che serve, in un posto solo.</div></div>
+  </header>
+  <section class="strip" id="strip"></section>
+  <section class="cards">
+    <a class="c" href="../index.html"><div class="ic"><img src="../assets/logo-lega.png" alt=""></div><h2>Spogliatoio</h2><p>La tua rosa, la giornata, gli scambi e il Mercato Scambi, svincolati e infortunati.</p><div class="go">ENTRA ›</div></a>
+    <a class="c" href="giornale.html"><div class="ic"><img src="../assets/favicon-64.png" alt="" style="display:none" id="gico"><span id="gtxt" style="font-family:'DejaVu Serif',Georgia,serif;font-weight:700;font-size:26px;line-height:1.05">O Giornale<br>del Girrr</span></div><h2>Giornale</h2><p>Il settimanale della lega: tutti i numeri da leggere o scaricare, quando vuoi.</p><div class="go">SFOGLIA ›</div></a>
+    <a class="c" href="tabellone.html"><div class="ic"><img src="../assets/loghi/logo-tv-girrr-sport-live.png" alt=""></div><h2>Tabellone</h2><p>Risultati e classifiche di campionato e Champions Cup, giornata per giornata.</p><div class="go">GUARDA ›</div></a>
+    <div class="c bet soon"><span class="badge">IN ARRIVO</span><div class="ic"><span style="font-weight:900;font-size:34px;letter-spacing:-.01em">Toto<span style="color:var(--hi)">girrr</span></span></div><h2>Totogirrr</h2><p>Le scommesse della lega con fantacrediti: 500 a testa, quote su ogni partita e classifica degli scommettitori.</p><div class="go">PRESTO ›</div></div>
+  </section>
+  <div class="sp"><span>CON</span><img src="../assets/loghi/sponsor-birra-contropiede.png" alt=""><img src="../assets/loghi/sponsor-pizzeria-fuorigioco.png" alt=""><img src="../assets/loghi/sponsor-bomber-gym-club.png" alt=""><img src="../assets/loghi/sponsor-amaro-del-mister.png" alt=""></div>
+  <div class="foot">O Girrr · fantacalcio 2026/27</div>
+</div>
+<script>
+(function(){
+function cap(s){s=String(s);return s.charAt(0).toUpperCase()+s.slice(1)}
+function esc(s){return String(s).replace(/[&<>"]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})}
+var ORD=["The Blue brothers","Apo team","Mariana Coneja","stif dc","Real Madrink","Atletico ma non troppo","Oranje VC","AFA SELECCION","Grodah","WOA"];
+function classifica(rounds){
+  var sq={};function r(n){return sq[n]||(sq[n]={n:n,g:0,pt:0,fp:0,gf:0,gs:0})}
+  rounds.forEach(function(g){g.m.forEach(function(m){
+    var a=r(m[0]),b=r(m[3]);if(m[4]==='-')return;var s=m[4].split('-').map(Number);
+    [[a,s[0],s[1],m[1]],[b,s[1],s[0],m[2]]].forEach(function(x){x[0].g++;x[0].gf+=x[1];x[0].gs+=x[2];x[0].fp+=x[3];x[0].pt+=x[1]>x[2]?3:(x[1]===x[2]?1:0)})})});
+  return Object.keys(sq).map(function(k){return sq[k]}).sort(function(x,y){return y.pt-x.pt||y.fp-x.fp||(y.gf-y.gs)-(x.gf-x.gs)||y.gf-x.gf||((ORD.indexOf(x.n)<0?99:ORD.indexOf(x.n))-(ORD.indexOf(y.n)<0?99:ORD.indexOf(y.n)))});
+}
+function pt(x){return String(Math.round(x*100)/100).replace('.',',')}
+fetch('../data.json',{cache:'no-store'}).then(function(r){return r.json()}).then(function(d){
+  var L=d.cal.lega,pl=L.filter(function(g){return g.m.some(function(m){return m[4]!=='-'})});
+  var h='';
+  if(pl.length){
+    var cl=classifica(pl),last=pl[pl.length-1];
+    h+='<div class="st"><small>IN TESTA ALLA CLASSIFICA</small><b>'+esc(cap(cl[0].n))+'</b><span>'+cl[0].pt+' punti · '+pt(cl[0].fp)+' fantapunti</span></div>';
+    var big=last.m.slice().sort(function(a,b){var d1=Math.abs(a[1]-a[2]),d2=Math.abs(b[1]-b[2]);return d2-d1})[0];
+    h+='<div class="st"><small>ULTIMA GIORNATA · '+last.n+'ª</small><b>'+esc(cap(big[0]))+' '+big[4].replace('-','–')+' '+esc(cap(big[3]))+'</b><span>Lo scarto più largo: '+pt(Math.abs(big[1]-big[2]))+' punti</span></div>';
+    var nx=L.filter(function(g){return g.m.every(function(m){return m[4]==='-'})})[0];
+    if(nx)h+='<div class="st"><small>PROSSIMO TURNO · '+nx.n+'ª</small><b>Serie A, giornata '+nx.sa+'</b><span>'+nx.m.map(function(m){return esc(cap(m[0]))+' – '+esc(cap(m[3]))}).slice(0,2).join('<br>')+'<br>…</span></div>';
+  }
+  document.getElementById('strip').innerHTML=h;
+}).catch(function(){});
+fetch('../riepiloghi/indice.json',{cache:'no-store'}).then(function(r){return r.json()}).then(function(v){
+  if(v.length){var g=document.getElementById('gico');g.src='../'+v[0].copertina;g.style.display='block';g.style.borderRadius='4px';g.style.height='100%';document.getElementById('gtxt').style.display='none'}
+}).catch(function(){});
+})();
+</script>
+</body>
+</html>

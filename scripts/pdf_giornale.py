@@ -393,6 +393,11 @@ def main():
         pg.pdf(path=str(uscita), width="210mm", height="297mm", print_background=True, prefer_css_page_size=True)
         b.close()
     tmp.unlink()
+    # scheda dell'uscita per l'archivio del sito (numero, data, titolo)
+    ora = datetime.now(ZoneInfo("Europe/Rome"))
+    scheda = {"n": n, "data": f"{GIORNI[ora.weekday()]} {ora.day} {MESI[ora.month - 1]} {ora.year}", "iso": ora.date().isoformat(),
+              "occhiello": t.get("occhiello", ""), "titolone": t.get("titolone") or t.get("titolo", ""), "sommario": t.get("sommario", "")}
+    uscita.with_suffix(".json").write_text(json.dumps(scheda, ensure_ascii=False, indent=1), encoding="utf-8")
     print(uscita)
 
 
