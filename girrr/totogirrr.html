@@ -65,10 +65,17 @@ button{font-family:inherit;cursor:pointer}
 .bet .h{display:flex;justify-content:space-between;align-items:baseline;gap:8px;font-weight:800}
 .tag{font-weight:900;font-size:10px;letter-spacing:.16em;padding:3px 8px;border-radius:999px;background:rgba(255,255,255,.15)}
 .tag.vinta{background:var(--ok);color:#052e16}.tag.persa{background:var(--ko);color:#4c0519}
-.bet summary{list-style:none;cursor:pointer}.bet summary::-webkit-details-marker{display:none}
+html{overflow-y:scroll;scrollbar-gutter:stable}
+.bet .summ{cursor:pointer;-webkit-tap-highlight-color:transparent}
+.bet .bd{display:grid;grid-template-rows:0fr;transition:grid-template-rows .4s cubic-bezier(.2,.8,.2,1)}
+.bet.open .bd{grid-template-rows:1fr}
+.bet .bi{overflow:hidden;min-height:0;opacity:0;transform:translateY(-8px);transition:opacity .3s,transform .4s cubic-bezier(.2,.8,.2,1)}
+.bet.open .bi{opacity:1;transform:none;transition-delay:.08s}
+.bet .ch i{display:inline-block;font-style:normal;transition:transform .35s}
+.bet.open .ch i{transform:rotate(180deg)}
+.bet.open .ch{display:inline}
 .bet .sm{margin-top:6px;font-size:13px;color:var(--sub)}.bet .sm b{color:var(--chiaro)}.bet .ch{color:var(--hi);font-weight:800;font-size:11px;letter-spacing:.06em;margin-left:4px;white-space:nowrap}
-.bet[open] .ch{display:none}
-.bet ul{border-top:1px solid rgba(255,255,255,.12);padding-top:8px;animation:rise .35s both}
+.bet ul{border-top:1px solid rgba(255,255,255,.12);padding-top:8px;margin-top:10px}
 .bet li{align-items:flex-start;gap:10px}.bet li .ic{flex:none;width:22px;height:22px;border-radius:50%;display:grid;place-items:center;font-weight:900;font-size:13px;background:rgba(255,255,255,.12);color:var(--chiaro)}
 .bet li.v .ic{background:var(--ok);color:#052e16}.bet li.p .ic{background:var(--ko);color:#4c0519}
 .bet li .tx{flex:1;min-width:0;color:var(--chiaro)}.bet li .tx small{color:var(--sub);font-size:12px}
@@ -275,7 +282,7 @@ function vMie(){
     var rs=s.stato==='vinta'?'Hai vinto '+f2(s.vincita)+' fantacrediti':s.stato==='persa'?'Hai perso '+f2(s.puntata)+' fantacrediti':'Possibile vincita '+f2(s.puntata*s.quota);
     var sum=s.stato==='aperta'?(az+' azzeccate · '+att+' in attesa'+(sb?' · '+sb+' sbagliate':'')):(az+' su '+s.sel.length+' azzeccate');
     var rig=s.sel.every(function(x){var p=pm(x.partita);return p&&aperta(p)})?'<br><button class="x rig" data-rig="'+s.id+'">Rigioca</button>':'';
-    return '<details class="card bet" data-id="'+s.id+'"'+(OPEN[s.id]?' open':'')+'><summary><div class="h"><span>'+(multi?'Multipla ('+s.sel.length+')':'Singola')+' · '+f2(s.quota)+'</span><span class="tag '+s.stato+'">'+s.stato.toUpperCase()+'</span></div><div class="sm">Puntata <b>'+f2(s.puntata)+'</b> · '+sum+' <span class="ch">Dettagli ▾</span></div></summary><ul>'+lis+'</ul><div class="ft">'+rs+rig+'</div></details>';
+    return '<div class="card bet'+(OPEN[s.id]?' open':'')+'" data-id="'+s.id+'"><div class="summ" data-tog="'+s.id+'"><div class="h"><span>'+(multi?'Multipla ('+s.sel.length+')':'Singola')+' · '+f2(s.quota)+'</span><span class="tag '+s.stato+'">'+s.stato.toUpperCase()+'</span></div><div class="sm">Puntata <b>'+f2(s.puntata)+'</b> · '+sum+' <span class="ch">Dettagli <i>▾</i></span></div></div><div class="bd"><div class="bi"><ul>'+lis+'</ul><div class="ft">'+rs+rig+'</div></div></div></div>';
   }).join('');
 }
 function vClass(){
@@ -323,6 +330,7 @@ document.addEventListener('click',function(e){
     if(i>=0&&slip[i].m===m)slip.splice(i,1);else if(i>=0)slip[i].m=m;else{if(slip.length>=6){toast('Massimo 6 partite in una multipla',1);return}slip.push({p:id,m:m})}
     LASTQ=id+'|'+m;var y=window.scrollY;render();window.scrollTo(0,y);return}
   if(b=t.closest('[data-st]')){setStake(b.getAttribute('data-st'));return}
+  if(b=t.closest('[data-tog]')){var cd=b.closest('.bet'),id3=b.getAttribute('data-tog');cd.classList.toggle('open');OPEN[id3]=cd.classList.contains('open');return}
   if(b=t.closest('[data-rig]')){var id2=Number(b.getAttribute('data-rig')),sc=S.schedine.filter(function(x){return x.id===id2})[0];if(sc){slip=sc.sel.map(function(x){return{p:x.partita,m:x.mercato}});tab='partite';ANIM=true;render();window.scrollTo(0,0);toast('Schedina ripresa: controlla la puntata e gioca')}return}
   if(t.id==='svuota'){slip=[];render();return}
   if(t.id==='suss'){rpc('toto_sussidio',{p_team:team,p_code:code}).then(function(r){toast('Prestito ricevuto: sei a 50, ne devi restituire '+f2(r.da_restituire));return carica()}).catch(function(e){toast(e.message,1)});return}
@@ -335,7 +343,6 @@ document.addEventListener('click',function(e){
      .catch(function(e){busy=false;toast(e.message,1);render()});
   }
 });
-document.addEventListener('toggle',function(e){var d=e.target;if(d&&d.classList&&d.classList.contains('bet')){OPEN[d.getAttribute('data-id')]=d.open}},true);
 document.addEventListener('input',function(e){if(e.target.id==='stake')upWin()});
 document.addEventListener('keydown',function(e){if(e.key==='Enter'&&e.target.id==='gc')document.getElementById('enter').click()});
 
