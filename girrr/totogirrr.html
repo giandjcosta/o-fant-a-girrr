@@ -87,6 +87,28 @@ button{font-family:inherit;cursor:pointer}
 .regole li{margin:6px 0 6px 18px}
 .toast{position:fixed;left:50%;transform:translateX(-50%);bottom:130px;z-index:20;background:var(--hi);color:var(--bg);font-weight:900;padding:10px 16px;border-radius:12px;box-shadow:0 8px 22px rgba(0,0,0,.4);max-width:92vw;text-align:center}
 .toast.bad{background:var(--ko);color:#fff}
+.pane.an>*{animation:rise .55s cubic-bezier(.2,.8,.2,1) both}
+.pane.an>*:nth-child(1){animation-delay:0s}.pane.an>*:nth-child(2){animation-delay:.05s}.pane.an>*:nth-child(3){animation-delay:.1s}.pane.an>*:nth-child(4){animation-delay:.15s}.pane.an>*:nth-child(5){animation-delay:.2s}.pane.an>*:nth-child(6){animation-delay:.25s}.pane.an>*:nth-child(7){animation-delay:.3s}.pane.an>*:nth-child(8){animation-delay:.35s}.pane.an>*:nth-child(n+9){animation-delay:.4s}
+@keyframes rise{from{opacity:0;transform:translateY(22px) scale(.97)}to{opacity:1;transform:none}}
+@keyframes pop{0%{transform:scale(.88)}55%{transform:scale(1.08)}100%{transform:scale(1)}}
+@keyframes up{from{transform:translateY(100%)}to{transform:none}}
+@keyframes glow{0%,100%{box-shadow:0 0 0 0 rgba(255,209,102,0)}50%{box-shadow:0 0 22px 2px rgba(255,209,102,.55)}}
+@keyframes shine{from{background-position:-200% 0}to{background-position:200% 0}}
+.q{transition:transform .15s,background-color .2s,border-color .2s}
+.q:not(:disabled):hover{transform:translateY(-2px);border-color:var(--hi)}
+.q:not(:disabled):active{transform:scale(.94)}
+.q.pop{animation:pop .35s}
+.card.m{transition:transform .2s,box-shadow .2s}
+.card.m:hover{transform:translateY(-2px);box-shadow:0 10px 24px rgba(0,0,0,.3)}
+.slip.new{animation:up .35s cubic-bezier(.2,.8,.2,1)}
+.go{transition:transform .15s,filter .2s}.go:not(:disabled):hover{filter:brightness(1.12);transform:translateY(-1px)}.go:not(:disabled):active{transform:scale(.96)}
+.bal{animation:glow 2.4s ease-in-out 1}
+.bal.up{animation:pop .5s,glow 1.2s}
+.top h1 span{background:linear-gradient(90deg,var(--hi) 30%,#fff 50%,var(--hi) 70%);background-size:200% 100%;-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;animation:shine 3.2s linear 2}
+.tag.vinta{animation:glow 1.4s ease-in-out 3}
+.toast{animation:rise .35s both}
+nav button{transition:background-color .2s,color .2s,transform .15s}nav button:active{transform:scale(.94)}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
 .vuoto{text-align:center;color:var(--sub);padding:26px 8px;font-weight:600}
 </style>
 </head>
@@ -207,13 +229,17 @@ function vSlip(){
   var st=Number(LS.puntata||10);
   return '<div class="slip"><div class="in"><div class="sel">'+sel+'</div><div class="ln"><input id="stake" type="number" inputmode="decimal" min="5" step="1" value="'+st+'"><div class="info">'+(slip.length>1?'Multipla ':'Singola ')+'· quota <b>'+f2(q)+'</b><br>Vincita <b id="win">'+f2(st*q)+'</b></div><button class="go" id="gioca"'+(busy?' disabled':'')+'>Gioca</button></div><div class="chips"><button data-st="10">10</button><button data-st="25">25</button><button data-st="50">50</button><button data-st="100">100</button><button class="x" id="svuota" style="margin-left:auto">Svuota</button></div></div></div>';
 }
-var QS=1;
+var QS=1,ANIM=true,LASTQ='',SLIPWAS=false,BALPREV=null;
 function render(){
   var a=document.getElementById('app');
   if(!S){a.innerHTML=gate();return}
   var body=tab==='partite'?vPartite():tab==='mie'?vMie():tab==='class'?vClass():vRegole();
   var keep=document.getElementById('stake');
-  a.innerHTML=head()+body+vSlip();
+  var hs=head(),sv=vSlip(),isNew=!!sv&&!SLIPWAS;SLIPWAS=!!sv;
+  a.innerHTML=hs+'<div class="pane'+(ANIM?' an':'')+'">'+body+'</div>'+(isNew?sv.replace('class="slip"','class="slip new"'):sv);
+  ANIM=false;
+  if(LASTQ){var qb=a.querySelector('.q[data-p="'+LASTQ.split('|')[0]+'"][data-m="'+LASTQ.split('|')[1]+'"]');if(qb&&qb.classList.contains('on'))qb.classList.add('pop');LASTQ=''}
+  var bb=document.querySelector('.bal b');if(bb&&S){var v=Number(S.conto.crediti);if(BALPREV!==null&&BALPREV!==v){var from=BALPREV,t0=performance.now();document.querySelector('.bal').classList.add('up');(function st(t){var k=Math.min(1,(t-t0)/700),e=1-Math.pow(1-k,3);bb.textContent=f2(from+(v-from)*e);if(k<1)requestAnimationFrame(st)})(t0)}BALPREV=v}
 }
 function setStake(v){LS.puntata=v;save();var s=document.getElementById('stake');if(s)s.value=v;upWin()}
 function upWin(){
@@ -223,14 +249,14 @@ function upWin(){
 document.addEventListener('click',function(e){
   var t=e.target,b;
   if(t.id==='enter'){team=document.getElementById('gt').value;code=document.getElementById('gc').value.trim().toUpperCase();LS.team=team;LS.code=code;save();err='';document.querySelector('.err').textContent='Controllo…';carica();return}
-  if(t.id==='sim'){rpc('demo_simula',{}).then(function(){slip=[];tab='mie';toast('Partite finite, pagamenti fatti');return carica()});return}
+  if(t.id==='sim'){rpc('demo_simula',{}).then(function(){slip=[];tab='mie';ANIM=true;toast('Partite finite, pagamenti fatti');return carica()});return}
   if(t.id==='out'){LS.code='';save();code='';S=null;slip=[];render();return}
-  if(b=t.closest('[data-tab]')){tab=b.getAttribute('data-tab');render();window.scrollTo(0,0);return}
+  if(b=t.closest('[data-tab]')){tab=b.getAttribute('data-tab');ANIM=true;render();window.scrollTo(0,0);return}
   if(b=t.closest('.q')){
     var id=b.getAttribute('data-p'),m=b.getAttribute('data-m');
     var i=slip.findIndex(function(x){return x.p===id});
     if(i>=0&&slip[i].m===m)slip.splice(i,1);else if(i>=0)slip[i].m=m;else{if(slip.length>=6){toast('Massimo 6 partite in una multipla',1);return}slip.push({p:id,m:m})}
-    var y=window.scrollY;render();window.scrollTo(0,y);return}
+    LASTQ=id+'|'+m;var y=window.scrollY;render();window.scrollTo(0,y);return}
   if(b=t.closest('[data-st]')){setStake(b.getAttribute('data-st'));return}
   if(t.id==='svuota'){slip=[];render();return}
   if(t.id==='suss'){rpc('toto_sussidio',{p_team:team,p_code:code}).then(function(r){toast('Prestito ricevuto: sei a 50, ne devi restituire '+f2(r.da_restituire));return carica()}).catch(function(e){toast(e.message,1)});return}
@@ -239,7 +265,7 @@ document.addEventListener('click',function(e){
     if(!(st>=5)){toast('Puntata minima 5',1);return}
     LS.puntata=st;save();busy=true;t.disabled=true;
     rpc('toto_gioca',{p_team:team,p_code:code,p_puntata:st,p_sel:slip.map(function(x){return{p:x.p,m:x.m}})})
-     .then(function(r){toast('Giocata! Quota '+f2(r.quota)+', vincita possibile '+f2(r.vincita_possibile));slip=[];tab='mie';return carica()})
+     .then(function(r){toast('Giocata! Quota '+f2(r.quota)+', vincita possibile '+f2(r.vincita_possibile));slip=[];tab='mie';ANIM=true;return carica()})
      .catch(function(e){busy=false;toast(e.message,1);render()});
   }
 });
