@@ -44,6 +44,10 @@ body[data-mode=coppa] .sw i{transform:translateX(100%)}
 .chips{display:flex;gap:6px;overflow-x:auto;scrollbar-width:none;padding:2px;scroll-behavior:smooth;flex:1}
 .chips::-webkit-scrollbar{display:none}
 .chips button{flex:none;min-width:40px;height:38px;border-radius:19px;border:2px solid transparent;background:rgba(255,255,255,.08);color:var(--chiaro);font:800 15px Inter;cursor:pointer;opacity:.55;transition:all .25s}
+.chips button.ko{padding:0 14px;font-size:13px;letter-spacing:.04em;border-style:dashed;border-color:rgba(255,255,255,.35)}
+.chips button.ko.sel{border-style:solid;border-color:var(--acc)}
+.m.ko .t span{opacity:.55;font-weight:700}
+.m.ko .g{font-size:clamp(13px,2vw,18px)}
 .chips button.pl{opacity:1;background:rgba(255,255,255,.18)}
 .chips button.nx{opacity:1;border-color:var(--hi)}
 .chips button.sel{background:var(--acc);border-color:var(--acc);opacity:1;transform:scale(1.08)}
@@ -117,6 +121,9 @@ function cap(s){s=String(s);return s.charAt(0).toUpperCase()+s.slice(1)}
 function esc(s){return String(s).replace(/[&<>"]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})}
 function pt(x){return String(Math.round(x*100)/100).replace('.',',')}
 function played(g,cup){var i=cup?5:4;return g.m.some(function(m){return m[i]!=='-'})}
+var KO=[{n:11,lab:'Quarti',tit:'Quarti di finale',ic:'Q',k:4},{n:12,lab:'Semi',tit:'Semifinali',ic:'S',k:2},{n:13,lab:'Finale',tit:'Finale',ic:'F',k:1}];
+function nmax(){return mode==='coppa'?cal().length+KO.length:cal().length}
+function koOf(n){return KO.filter(function(x){return x.n===n})[0]}
 function cal(){return mode==='coppa'?D.cal.cup:D.cal.lega}
 function classifica(rounds,cup){
   var sq={};function r(n){return sq[n]||(sq[n]={n:n,g:0,pt:0,fp:0,gf:0,gs:0,gir:''})}
@@ -142,7 +149,8 @@ function tabella(rows,fp,titolo,top){
 var ME='';try{ME=(JSON.parse(localStorage.getItem('fg')||'{}')||{}).team||''}catch(e){}
 function lastPlayed(c,cup){var l=0;c.forEach(function(g){if(played(g,cup))l=g.n});return l}
 function render(){
-  var cup=mode==='coppa',c=cal(),n=sel[mode],g=c.filter(function(x){return x.n===n})[0];
+  var cup=mode==='coppa',c=cal(),n=sel[mode],g=c.filter(function(x){return x.n===n})[0],ko=cup?koOf(n):null;
+  if(ko)return renderKo(c,ko);
   if(!g)return;
   var pl=played(g,cup),lp=lastPlayed(c,cup);
   var tit=(cup?'Champions Cup':'Campionato')+' · '+n+'ª giornata';
@@ -168,10 +176,30 @@ function render(){
   bd.classList.add('out');tb.classList.add('out');
   setTimeout(function(){bd.innerHTML=b;tb.innerHTML=t;bd.classList.remove('out');tb.classList.remove('out')},200);
   chips(c,cup,n,lp);
-  document.getElementById('prev').disabled=n<=1;document.getElementById('next').disabled=n>=c.length;
+  document.getElementById('prev').disabled=n<=1;document.getElementById('next').disabled=n>=nmax();
+}
+function renderKo(c,ko){
+  var lp=lastPlayed(c,true);
+  document.getElementById('tit').textContent='Champions Cup · '+ko.tit;
+  document.getElementById('kick').textContent='DA GIOCARE';
+  document.title='Tabellone · Champions Cup · '+ko.tit;
+  var b='<div class="nota">Fase finale · si completa dopo i gironi</div>';
+  for(var k=0;k<ko.k;k++){
+    b+='<div class="m cp ko" style="animation-delay:'+(k*70)+'ms"><div class="g">'+ko.ic+(ko.k>1?(k+1):'')+'</div><div class="t h"><span>Da definire</span></div><div class="sc"><b>–</b><i></i><b>–</b></div><div class="t"><span>Da definire</span></div></div>';
+  }
+  b+='<div class="rip">'+(ko.n===13?'La finalissima della Champions Cup':'Chi passa va avanti, chi perde torna a casa')+'</div>';
+  var upto=c.filter(function(x){return played(x,true)});
+  var cl=classifica(upto.length?upto:[c[0]],true);
+  var t=tabella(cl.filter(function(x){return x.gir==='A'}),false,'Girone A',2)+tabella(cl.filter(function(x){return x.gir==='B'}),false,'Girone B',2);
+  var bd=document.getElementById('board'),tb=document.getElementById('tab');
+  bd.classList.add('out');tb.classList.add('out');
+  setTimeout(function(){bd.innerHTML=b;tb.innerHTML=t;bd.classList.remove('out');tb.classList.remove('out')},200);
+  chips(c,true,ko.n,lp);
+  document.getElementById('prev').disabled=false;document.getElementById('next').disabled=ko.n>=13;
 }
 function chips(c,cup,n,lp){
   var h='';c.forEach(function(g){h+='<button data-n="'+g.n+'" class="'+(g.n===n?'sel ':'')+(played(g,cup)?'pl':(g.n===lp+1?'nx':''))+'">'+g.n+'</button>'});
+  if(cup)KO.forEach(function(x){h+='<button data-n="'+x.n+'" class="ko'+(x.n===n?' sel':'')+'">'+x.lab+'</button>'});
   var el=document.getElementById('chips');el.innerHTML=h;
   var s=el.querySelector('.sel');if(s)el.scrollLeft=s.offsetLeft-el.clientWidth/2+s.clientWidth/2;
 }
@@ -180,7 +208,7 @@ function setMode(m){
   try{history.replaceState(null,'','#'+m)}catch(e){}
   render();
 }
-function go(d){var c=cal(),n=sel[mode]+d;if(n<1||n>c.length)return;sel[mode]=n;render()}
+function go(d){var n=sel[mode]+d;if(n<1||n>nmax())return;sel[mode]=n;render()}
 document.querySelectorAll('.sw button').forEach(function(b){b.addEventListener('click',function(){setMode(b.getAttribute('data-m'))})});
 document.getElementById('prev').onclick=function(){go(-1)};document.getElementById('next').onclick=function(){go(1)};
 (function(){var cf=document.querySelector('.crossfade');if(cf){cf.style.cursor='pointer';cf.title='Torna a O Girrr';cf.addEventListener('click',function(){location.href='index.html'})}})();
