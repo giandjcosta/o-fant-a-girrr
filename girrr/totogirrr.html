@@ -100,10 +100,42 @@ function f2(n){return Number(n).toLocaleString('it-IT',{minimumFractionDigits:2,
 function f0(n){return Number(n).toLocaleString('it-IT',{maximumFractionDigits:0})}
 var LS={};try{LS=JSON.parse(localStorage.getItem('fg')||'{}')||{}}catch(e){}
 function save(){try{localStorage.setItem('fg',JSON.stringify(LS))}catch(e){}}
-var teams=[],team=LS.team||'',code=LS.code||'',S=null,tab='partite',slip=[],err='',busy=false;
+var DEMO=/[?&]demo\b/.test(location.search);
+var teams=[],team=DEMO?'Oranje VC':(LS.team||''),code=DEMO?'demo':(LS.code||''),S=null,tab='partite',slip=[],err='',busy=false;
 var MN={'1':'1','X':'X','2':'2','O':'Over 4,5','U':'Under 4,5'};
 
+var M=null;
+function mockInit(){
+  var t=Date.now()+3600e3,mk=function(i,c,tr,a,b,c2,d,e){return{id:'D'+i,comp:'lega',giornata:2,casa:c,trasf:tr,chiude:new Date(t).toISOString(),q1:a,qx:b,q2:c2,qo:d,qu:e,gc:null,gt:null,chiusa:false}};
+  M={conto:{team:'Oranje VC',crediti:500,debito:0,ultimo_prestito:null},partite:[mk(1,'The Blue brothers','Mariana Coneja',2.55,6.15,1.83,1.67,2.0),mk(2,'AFA SELECCION','Real Madrink',2.21,6.27,2.05,1.59,2.12),mk(3,'Oranje VC','stif dc',1.59,6.71,3.12,1.54,2.22),mk(4,'Grodah','Atletico ma non troppo',2.05,5.46,2.33,1.99,1.67),mk(5,'WOA','Apo team',2.24,6.25,2.03,1.66,2.02)],schedine:[],n:0};
+}
+function mockStato(){
+  var c=M.conto,lib=c.crediti<50&&!c.ultimo_prestito;
+  return{ora:new Date().toISOString(),conto:c,sussidio_ok:lib,partite:M.partite,schedine:M.schedine.slice().reverse(),
+   classifica:[{team:'Oranje VC',crediti:c.crediti,debito:c.debito,ingioco:M.schedine.filter(function(x){return x.stato==='aperta'}).reduce(function(a,x){return a+x.puntata},0)},{team:'stif dc',crediti:500,debito:0,ingioco:0},{team:'Grodah',crediti:500,debito:0,ingioco:0}]};
+}
+function mockRpc(name,b){
+  if(!M)mockInit();
+  if(name==='toto_stato')return mockStato();
+  if(name==='toto_sussidio'){var d=50-M.conto.crediti;M.conto.crediti=50;M.conto.debito=Math.round(d*120)/100;M.conto.ultimo_prestito=1;return{crediti:50,dato:d,da_restituire:M.conto.debito}}
+  if(name==='toto_gioca'){
+    var st=b.p_puntata;if(!(st>=5))throw new Error('Puntata minima: 5 fantacrediti');if(st>M.conto.crediti)throw new Error('Fantacrediti insufficienti');
+    var q=1,sel=b.p_sel.map(function(x){var p=M.partite.filter(function(y){return y.id===x.p})[0];if(p.casa==='Oranje VC'&&st>100)throw new Error('Sulla tua partita puntata massima 100');var qq=quotaDi(p,x.m);q*=qq;return{partita:p.id,mercato:x.m,quota:qq,esito:null}});
+    q=Math.min(500,Math.round(q*100)/100);M.conto.crediti=Math.round((M.conto.crediti-st)*100)/100;
+    M.schedine.push({id:++M.n,puntata:st,quota:q,stato:'aperta',vincita:0,creata:new Date().toISOString(),sel:sel});
+    return{id:M.n,quota:q,vincita_possibile:Math.round(st*q*100)/100};
+  }
+  if(name==='demo_simula'){
+    M.partite.forEach(function(p){if(!p.chiusa){p.gc=Math.floor(Math.random()*5);p.gt=Math.floor(Math.random()*5);p.chiusa=true}});
+    M.schedine.forEach(function(s){if(s.stato!=='aperta')return;
+      s.sel.forEach(function(x){var p=M.partite.filter(function(y){return y.id===x.partita})[0],tot=p.gc+p.gt;x.esito=((x.mercato==='1'&&p.gc>p.gt)||(x.mercato==='X'&&p.gc===p.gt)||(x.mercato==='2'&&p.gc<p.gt)||(x.mercato==='O'&&tot>=5)||(x.mercato==='U'&&tot<=4))?'v':'p'});
+      if(s.sel.some(function(x){return x.esito==='p'}))s.stato='persa';
+      else{var v=Math.round(s.puntata*s.quota*100)/100,tr=Math.min(M.conto.debito,Math.round(v*40)/100);s.stato='vinta';s.vincita=v;M.conto.crediti=Math.round((M.conto.crediti+v-tr)*100)/100;M.conto.debito=Math.round((M.conto.debito-tr)*100)/100}});
+    return 1;
+  }
+}
 function rpc(name,body){
+  if(DEMO){try{return Promise.resolve(JSON.parse(JSON.stringify(mockRpc(name,body))))}catch(e){return Promise.reject(e)}}
   return fetch(URL_+'/rest/v1/rpc/'+name,{method:'POST',headers:{'apikey':KEY,'Authorization':'Bearer '+KEY,'Content-Type':'application/json'},body:JSON.stringify(body)})
    .then(function(r){return r.json().then(function(j){if(!r.ok)throw new Error(j&&j.message?j.message:'Errore di rete');return j})});
 }
@@ -128,7 +160,7 @@ function gate(){
 }
 function head(){
   var c=S.conto;
-  return '<a class="back" href="index.html">‹ O GIRRR</a><div class="top"><img src="../assets/logo-lega.png" alt=""><div class="t"><div class="k">O FANT A GIRRR</div><h1>Toto<span>girrr</span></h1></div><div class="bal"><small>FANTACREDITI</small><b>'+f2(c.crediti)+'</b>'+(Number(c.debito)>0?'<small style="color:var(--hi)">DEBITO '+f2(c.debito)+'</small>':'')+'</div></div>'+
+  return (DEMO?'<div class="card" style="border:2px dashed var(--hi);font-size:13px"><b style="color:var(--hi)">PROVA</b> · qui è tutto finto e si azzera quando ricarichi. Gioca una schedina, poi premi il pulsante per far finire le partite a caso.<br><button class="go" id="sim" style="margin-top:10px">Fai finire le partite</button></div>':'')+'<a class="back" href="index.html">‹ O GIRRR</a><div class="top"><img src="../assets/logo-lega.png" alt=""><div class="t"><div class="k">O FANT A GIRRR</div><h1>Toto<span>girrr</span></h1></div><div class="bal"><small>FANTACREDITI</small><b>'+f2(c.crediti)+'</b>'+(Number(c.debito)>0?'<small style="color:var(--hi)">DEBITO '+f2(c.debito)+'</small>':'')+'</div></div>'+
   '<div class="who">Squadra: <b>'+esc(team)+'</b><button class="x" id="out">Esci</button></div>'+
   '<nav>'+[['partite','Partite'],['mie','Le mie'],['class','Classifica'],['regole','Regole']].map(function(t){return '<button data-tab="'+t[0]+'" class="'+(tab===t[0]?'on':'')+'">'+t[1]+'</button>'}).join('')+'</nav>';
 }
@@ -191,6 +223,7 @@ function upWin(){
 document.addEventListener('click',function(e){
   var t=e.target,b;
   if(t.id==='enter'){team=document.getElementById('gt').value;code=document.getElementById('gc').value.trim().toUpperCase();LS.team=team;LS.code=code;save();err='';document.querySelector('.err').textContent='Controllo…';carica();return}
+  if(t.id==='sim'){rpc('demo_simula',{}).then(function(){slip=[];tab='mie';toast('Partite finite, pagamenti fatti');return carica()});return}
   if(t.id==='out'){LS.code='';save();code='';S=null;slip=[];render();return}
   if(b=t.closest('[data-tab]')){tab=b.getAttribute('data-tab');render();window.scrollTo(0,0);return}
   if(b=t.closest('.q')){
