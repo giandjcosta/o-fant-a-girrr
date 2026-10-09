@@ -55,13 +55,14 @@ body::before{content:'';position:fixed;inset:-120px;z-index:-1;pointer-events:no
 <script>
 fetch('../riepiloghi/indice.json',{cache:'no-store'}).then(function(r){return r.json()}).then(function(v){
   if(/[?&]demo\b/.test(location.search)&&v.length){var b=v[0],T=['Oranje VC dilaga: cinque gol e 89 punti','Il Mercato Scambi scuote la classifica','Derby di coppa: il girone A si accende','Real Madrink non si ferma più','Rimonta clamorosa all\'ultimo fantapunto','La WOA trova finalmente la vittoria','Pioggia di gol: record di giornata','Sorpasso in vetta, è un testa a testa'];v=T.map(function(t,i){var n=T.length-i,d=new Date(2026,9,9-7*i-0);return Object.assign({},b,{n:n,titolone:t,data:d.toLocaleDateString('it-IT',{weekday:'long',day:'numeric',month:'long',year:'numeric'})})})}
+  function cap(s){s=String(s);return s.charAt(0).toUpperCase()+s.slice(1)}
   function esc(s){return String(s).replace(/[&<>"]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})}
   if(!v.length){document.getElementById('ultimo').innerHTML='<div class="empty">Il primo numero esce presto.</div>';return}
   var u=v[0];
   document.getElementById('ultimo').innerHTML='<div class="last"><a class="cv" href="../'+u.pdf+'" target="_blank" rel="noopener"><img src="../'+u.copertina+'" alt="Copertina numero '+u.n+'"></a><div><div class="num">NUMERO '+u.n+(u.data?' · '+esc(u.data).toUpperCase():'')+'</div><h2>'+esc(u.titolone||'Ultimo numero')+'</h2><p>'+esc(u.sommario||'')+'</p><a class="btn" href="../'+u.pdf+'" target="_blank" rel="noopener">Leggi il PDF</a><a class="btn o" href="../'+u.pdf+'" download>Scarica</a></div></div>';
   var rest=v.slice(1);
   if(rest.length){document.getElementById('th').hidden=false;
-    document.getElementById('lista').innerHTML=rest.map(function(x){return '<a class="it" href="../'+x.pdf+'" target="_blank" rel="noopener"><img src="../'+x.copertina+'" alt=""><b>N° '+x.n+'</b><span>'+esc(x.titolone||'')+'</span><small>'+esc(x.data||'')+'</small></a>'}).join('')}
+    document.getElementById('lista').innerHTML=rest.map(function(x){return '<a class="it" href="../'+x.pdf+'" target="_blank" rel="noopener"><img src="../'+x.copertina+'" alt=""><b>N° '+x.n+'</b><span>'+esc(x.titolone||'')+'</span><small>'+esc(cap(x.data||''))+'</small></a>'}).join('')}
 }).catch(function(){document.getElementById('ultimo').innerHTML='<div class="empty">Non riesco a leggere l\'archivio.</div>'});
 </script>
 </body>
