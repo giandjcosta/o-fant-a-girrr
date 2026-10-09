@@ -22,7 +22,7 @@ URL = os.environ.get("TOTO_URL", "https://qmjqfgmvimsuxvghetgi.supabase.co")
 KEY = os.environ.get("TOTO_KEY", "sb_publishable_qPhimkrF4iUvIad7JPoH8A_i-eOqG7n")
 ROMA = ZoneInfo("Europe/Rome")
 MARGINE = 1.10   # 10% di aggressività del banco
-PRIOR, K = 73.0, 2.0   # media di partenza e peso (in giornate) della media di lega
+PRIOR, K = 73.0, 3.0   # media di lega e peso (in giornate) dell'attesa basata sulla rosa
 SD = 8.5         # variabilità del punteggio di una squadra in una giornata
 
 
@@ -30,8 +30,69 @@ def carica():
     return json.loads((ROOT / "data.json").read_text(encoding="utf-8"))
 
 
+MODULI = [(3, 4, 3), (3, 5, 2), (4, 4, 2), (4, 3, 3), (4, 5, 1), (5, 3, 2), (5, 4, 1)]
+SPREAD = 3.0     # quanto si distanziano, in punti, due rose "di livello diverso" (stima prudente)
+
+
+def stima_giocatori(d):
+    """Fantavoto atteso di ogni giocatore: media della scorsa stagione (pesata per le presenze),
+    voti di quest'anno (pesati il doppio) e media del ruolo come ancora per chi ha pochi dati."""
+    P, ly, votes = d.get("P", {}), d.get("ly", {}), d.get("votes", {})
+    per_ruolo = {}
+    for pid, v in ly.items():
+        p = P.get(pid)
+        if p and v[0] >= 10:
+            per_ruolo.setdefault(p["r"], []).append(v[2])
+    base = {r: sum(x) / len(x) for r, x in per_ruolo.items() if x}
+    out = {}
+    for pid, p in P.items():
+        r = p.get("r")
+        if r not in base:
+            continue
+        l = ly.get(pid)
+        pres, fm = (l[0], l[2]) if l else (0, base[r])
+        cy = [x["f"] for x in votes.get(pid, {}).values() if x.get("f") is not None]
+        out[pid] = (r, (pres * fm + 2 * sum(cy) + 10 * base[r]) / (pres + 2 * len(cy) + 10))
+    return out
+
+
+def forza_rosa(d):
+    """Somma dei fantavoti attesi della miglior formazione possibile di ogni squadra."""
+    est = stima_giocatori(d)
+    forza = {}
+    for t in d["teams"]:
+        by = {"P": [], "D": [], "C": [], "A": []}
+        for pl in t["pl"]:
+            e = est.get(str(pl["id"]))
+            if e:
+                by[e[0]].append(e[1])
+        for r in by:
+            by[r].sort(reverse=True)
+        best = None
+        for m in MODULI:
+            req = {"P": 1, "D": m[0], "C": m[1], "A": m[2]}
+            if all(len(by[r]) >= n for r, n in req.items()):
+                sm = sum(sum(by[r][:n]) for r, n in req.items())
+                best = sm if best is None else max(best, sm)
+        if best is not None:
+            forza[t["name"]] = best
+    return forza
+
+
+def prior_squadre(d):
+    """Punteggio atteso di partenza di ogni squadra: media di lega +/- la forza della rosa."""
+    f = forza_rosa(d)
+    if len(f) < 2:
+        return {}
+    m = sum(f.values()) / len(f)
+    sd = (sum((x - m) ** 2 for x in f.values()) / len(f)) ** 0.5 or 1.0
+    return {t: PRIOR + SPREAD * (x - m) / sd for t, x in f.items()}
+
+
 def ratings(d, k=None):
+    """Punteggio atteso = rosa (voti dei giocatori) all'inizio, poi sempre piu' i risultati veri."""
     k = K if k is None else k
+    pri = prior_squadre(d)
     tot, n = {}, {}
     for r in d["cal"]["lega"]:
         for casa, pc, pf, fuori, ris in r["m"]:
@@ -39,7 +100,11 @@ def ratings(d, k=None):
                 for t, p in ((casa, pc), (fuori, pf)):
                     tot[t] = tot.get(t, 0) + p
                     n[t] = n.get(t, 0) + 1
-    return {t["name"]: (tot.get(t["name"], 0) + PRIOR * k) / (n.get(t["name"], 0) + k) for t in d["teams"]}
+    out = {}
+    for t in d["teams"]:
+        nm = t["name"]
+        out[nm] = (tot.get(nm, 0) + pri.get(nm, PRIOR) * k) / (n.get(nm, 0) + k)
+    return out
 
 
 def lam(fp):
