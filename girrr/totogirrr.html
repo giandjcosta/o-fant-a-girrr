@@ -140,7 +140,7 @@ function rpc(name,body){
    .then(function(r){return r.json().then(function(j){if(!r.ok)throw new Error(j&&j.message?j.message:'Errore di rete');return j})});
 }
 function toast(t,bad){var d=document.createElement('div');d.className='toast'+(bad?' bad':'');d.textContent=t;document.body.appendChild(d);setTimeout(function(){d.remove()},3200)}
-function quando(iso){try{return new Intl.DateTimeFormat('it-IT',{weekday:'short',day:'numeric',month:'numeric',hour:'2-digit',minute:'2-digit',timeZone:'Europe/Rome'}).format(new Date(iso))}catch(e){return iso}}
+function quando(iso){try{var t=new Intl.DateTimeFormat('it-IT',{weekday:'short',day:'numeric',month:'numeric',hour:'2-digit',minute:'2-digit',timeZone:'Europe/Rome'}).format(new Date(iso));return t.charAt(0).toUpperCase()+t.slice(1)}catch(e){return iso}}
 
 function carica(){
   busy=true;
@@ -160,7 +160,7 @@ function gate(){
 }
 function head(){
   var c=S.conto;
-  return (DEMO?'<div class="card" style="border:2px dashed var(--hi);font-size:13px"><b style="color:var(--hi)">PROVA</b> · qui è tutto finto e si azzera quando ricarichi. Gioca una schedina, poi premi il pulsante per far finire le partite a caso.<br><button class="go" id="sim" style="margin-top:10px">Fai finire le partite</button></div>':'')+'<a class="back" href="index.html">‹ O GIRRR</a><div class="top"><img src="../assets/logo-lega.png" alt=""><div class="t"><div class="k">O FANT A GIRRR</div><h1>Toto<span>girrr</span></h1></div><div class="bal"><small>FANTACREDITI</small><b>'+f2(c.crediti)+'</b>'+(Number(c.debito)>0?'<small style="color:var(--hi)">DEBITO '+f2(c.debito)+'</small>':'')+'</div></div>'+
+  return (DEMO?'<div class="card" style="border:2px dashed var(--hi);font-size:13px"><b style="color:var(--hi)">PROVA</b> · Qui è tutto finto e si azzera quando ricarichi. Gioca una schedina, poi premi il pulsante per far finire le partite a caso.<br><button class="go" id="sim" style="margin-top:10px">Fai finire le partite</button></div>':'')+'<a class="back" href="index.html">‹ O GIRRR</a><div class="top"><img src="../assets/logo-lega.png" alt=""><div class="t"><div class="k">O FANT A GIRRR</div><h1>Toto<span>girrr</span></h1></div><div class="bal"><small>FANTACREDITI</small><b>'+f2(c.crediti)+'</b>'+(Number(c.debito)>0?'<small style="color:var(--hi)">DEBITO '+f2(c.debito)+'</small>':'')+'</div></div>'+
   '<div class="who">Squadra: <b>'+esc(team)+'</b><button class="x" id="out">Esci</button></div>'+
   '<nav>'+[['partite','Partite'],['mie','Le mie'],['class','Classifica'],['regole','Regole']].map(function(t){return '<button data-tab="'+t[0]+'" class="'+(tab===t[0]?'on':'')+'">'+t[1]+'</button>'}).join('')+'</nav>';
 }
@@ -175,7 +175,7 @@ function vPartite(){
     var a=gr[k],p0=a[0],cup=p0.comp==='coppa';
     var h='<div class="gh'+(cup?' cup':'')+'"><span>'+(cup?'CHAMPIONS CUP':'CAMPIONATO')+' · GIORNATA '+p0.giornata+'</span><small>Chiude '+quando(p0.chiude)+'</small></div>';
     return h+a.map(function(p){
-      var body=p.chiusa?'<div class="res">'+p.gc+' – '+p.gt+' <span class="chiusa">finita</span></div>':
+      var body=p.chiusa?'<div class="res">'+p.gc+' – '+p.gt+' <span class="chiusa">Finita</span></div>':
         '<div class="row">'+qbtn(p,'1')+qbtn(p,'X')+qbtn(p,'2')+'</div><div class="row two">'+qbtn(p,'O')+qbtn(p,'U')+'</div>'+(aperta(p)?'':'<div class="chiusa">Scommesse chiuse, si aspetta il risultato.</div>');
       return '<div class="card m"><div class="nm"><span>'+esc(p.casa)+' <i>vs</i> '+esc(p.trasf)+'</span></div>'+body+'</div>';
     }).join('');

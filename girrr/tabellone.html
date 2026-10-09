@@ -74,6 +74,10 @@ td.p{width:34px;text-align:center;font-weight:900;color:var(--hi)}
 td.n{text-align:left;text-transform:uppercase;font-weight:800;font-size:.92em}
 td.pt{font-weight:900;font-size:1.15em}
 td.fp{font-size:.82em;color:var(--sub);font-weight:600}
+tr.me td{background:rgba(255,209,102,.2)}
+tr.me td.n,tr.me td.pt{color:var(--hi)}
+.t.mine>span{color:var(--hi);background:rgba(255,209,102,.18);border-radius:6px;padding:1px 7px;margin-inline:-7px}
+.rip b{color:var(--hi)}
 tr.pod td.p{background:var(--acc);color:var(--chiaro);transition:background-color .8s}
 tr{animation:in .45s both}
 .sp{margin-top:26px;background:var(--chiaro);border-radius:14px;padding:12px 16px;display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:14px 22px;transition:background-color .8s}
@@ -127,9 +131,10 @@ function classifica(rounds,cup){
 }
 function tabella(rows,fp,titolo,top){
   var h='<h3>'+titolo+'</h3><table>'+(fp?'<tr><th></th><th>Squadra</th><th>G</th><th>Pt</th><th>Fantapunti</th></tr>':'<tr><th></th><th>Squadra</th><th>G</th><th>Pt</th></tr>');
-  rows.forEach(function(x,k){h+='<tr class="'+(k<top?'pod':'')+'" style="animation-delay:'+(k*35)+'ms"><td class="p">'+(k+1)+'</td><td class="n">'+esc(cap(x.n))+'</td><td>'+x.g+'</td><td class="pt">'+x.pt+'</td>'+(fp?'<td class="fp">'+pt(x.fp)+'</td>':'')+'</tr>'});
+  rows.forEach(function(x,k){h+='<tr class="'+(k<top?'pod':'')+(x.n===ME?' me':'')+'" style="animation-delay:'+(k*35)+'ms"><td class="p">'+(k+1)+'</td><td class="n">'+esc(cap(x.n))+'</td><td>'+x.g+'</td><td class="pt">'+x.pt+'</td>'+(fp?'<td class="fp">'+pt(x.fp)+'</td>':'')+'</tr>'});
   return h+'</table>';
 }
+var ME='';try{ME=(JSON.parse(localStorage.getItem('fg')||'{}')||{}).team||''}catch(e){}
 function lastPlayed(c,cup){var l=0;c.forEach(function(g){if(played(g,cup))l=g.n});return l}
 function render(){
   var cup=mode==='coppa',c=cal(),n=sel[mode],g=c.filter(function(x){return x.n===n})[0];
@@ -147,9 +152,9 @@ function render(){
     if(ris!=='-'){var s=ris.split('-').map(Number);wc=s[0]>=s[1]?'w':'';wf=s[1]>=s[0]?'w':'';
       if(s[0]>s[1])wf='';if(s[1]>s[0])wc='';
       sc='<b>'+s[0]+'</b><i></i><b>'+s[1]+'</b>';fc='<small>'+pt(pc)+'</small>';ff='<small>'+pt(pf)+'</small>'}
-    b+='<div class="m'+(cup?' cp':'')+'" style="animation-delay:'+(k*70)+'ms">'+(cup?'<div class="g">'+esc(gir)+'</div>':'')+'<div class="t h '+wc+'"><span>'+esc(cap(casa))+'</span>'+fc+'</div><div class="sc">'+sc+'</div><div class="t '+wf+'"><span>'+esc(cap(fuori))+'</span>'+ff+'</div></div>';
+    b+='<div class="m'+(cup?' cp':'')+'" style="animation-delay:'+(k*70)+'ms">'+(cup?'<div class="g">'+esc(gir)+'</div>':'')+'<div class="t h '+wc+(casa===ME?' mine':'')+'"><span>'+esc(cap(casa))+'</span>'+fc+'</div><div class="sc">'+sc+'</div><div class="t '+wf+(fuori===ME?' mine':'')+'"><span>'+esc(cap(fuori))+'</span>'+ff+'</div></div>';
   });
-  if(cup&&g.rest&&g.rest.length)b+='<div class="rip">Riposano: '+g.rest.map(function(x){return esc(cap(x[1]))+' (gir. '+esc(x[0])+')'}).join(' · ')+'</div>';
+  if(cup&&g.rest&&g.rest.length)b+='<div class="rip">Riposano: '+g.rest.map(function(x){return (x[1]===ME?'<b>'+esc(cap(x[1]))+'</b>':esc(cap(x[1])))+' (gir. '+esc(x[0])+')'}).join(' · ')+'</div>';
   var upto=c.filter(function(x){return x.n<=n&&played(x,cup)});
   var cl=classifica(upto.length?upto:[c[0]],cup),t;
   if(cup){t=tabella(cl.filter(function(x){return x.gir==='A'}),false,'Girone A',2)+tabella(cl.filter(function(x){return x.gir==='B'}),false,'Girone B',2)}
