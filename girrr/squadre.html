@@ -169,7 +169,7 @@ function render(){
   /* migliori della rosa */
   var pl=T.pl.map(function(x){var id=String(x.id),p=D.P[id],v=voti(id),s=v.reduce(function(a,b){return a+b.f},0);return {id:id,p:p,c:x.c,n:v.length,m:v.length?s/v.length:null,e:stima(id),last:v.length?v[v.length-1].f:null}}).filter(function(x){return x.p});
   var top=pl.filter(function(x){return x.n>0}).sort(function(a,b){return b.m-a.m}).slice(0,5);
-  var ht='<div class="card top5"><h3>I migliori della rosa</h3>'+(top.length?top.map(function(x){return '<div class="g"><span>'+esc(nome(x.p.n))+' <small>'+esc(x.p.t)+' · '+x.n+' voto'+(x.n>1?'i':'')+'</small></span><b>'+pt(x.m)+'</b></div>'}).join(''):'<div class="vuoto">Appena inizia il campionato qui compaiono i migliori.</div>')+'</div>';
+  var ht='<div class="card top5"><h3>I migliori della rosa</h3>'+(top.length?top.map(function(x){return '<div class="g"><span>'+esc(nome(x.p.n))+' <small>'+esc(x.p.t)+' · '+x.n+(x.n>1?' voti':' voto')+'</small></span><b>'+pt(x.m)+'</b></div>'}).join(''):'<div class="vuoto">Appena inizia il campionato qui compaiono i migliori.</div>')+'</div>';
   /* rosa per ruolo */
   var ruoli=[['P','Portieri'],['D','Difensori'],['C','Centrocampisti'],['A','Attaccanti']];
   var hro='<div class="card"><h3>La rosa</h3>'+ruoli.map(function(r){
