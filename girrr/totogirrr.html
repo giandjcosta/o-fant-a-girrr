@@ -109,6 +109,20 @@ button{font-family:inherit;cursor:pointer}
 .toast{animation:rise .35s both}
 nav button{transition:background-color .2s,color .2s,transform .15s}nav button:active{transform:scale(.94)}
 @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+.tick{overflow:hidden;white-space:nowrap;margin:0 -14px 12px;border-block:1px solid rgba(255,255,255,.12);background:rgba(0,0,0,.2);font-size:12px;font-weight:700;color:var(--sub);-webkit-mask-image:linear-gradient(90deg,transparent,#000 6%,#000 94%,transparent);mask-image:linear-gradient(90deg,transparent,#000 6%,#000 94%,transparent)}
+.tk{display:inline-flex;gap:30px;padding:7px 0;animation:tick 55s linear infinite}
+.tick:hover .tk{animation-play-state:paused}
+.tk span b{color:var(--chiaro)}.tk span i{font-style:normal;color:var(--hi)}
+@keyframes tick{to{transform:translateX(-50%)}}
+.feat{display:flex;gap:10px;overflow-x:auto;scroll-snap-type:x proximity;margin:0 -14px 4px;padding:2px 14px 8px;scrollbar-width:none}
+.feat::-webkit-scrollbar{display:none}
+.fc{flex:none;width:210px;scroll-snap-align:start;background:linear-gradient(150deg,rgba(255,209,102,.2),rgba(255,255,255,.06));border-radius:14px;padding:10px 12px;border:1px solid rgba(255,209,102,.3)}
+.fc .tg{font-weight:900;font-size:9px;letter-spacing:.2em;color:var(--hi)}
+.fc .mm{font-weight:800;font-size:13px;margin:4px 0 8px;line-height:1.2;min-height:32px}
+.fc .q{width:100%;display:flex;justify-content:space-between;align-items:center;padding:8px 10px}
+.fc .q small{margin:0;text-align:left}
+.cd{color:var(--chiaro);font-variant-numeric:tabular-nums}.cd.warn{color:var(--hi)}.cd.hot{color:var(--ko);animation:glow 1.2s infinite}
+.rig{border:1px solid var(--hi)!important;color:var(--hi)!important;text-decoration:none!important;border-radius:999px;padding:5px 12px;margin-top:10px;font-weight:900;letter-spacing:.08em;font-size:11px}
 .vuoto{text-align:center;color:var(--sub);padding:26px 8px;font-weight:600}
 body::before{content:'';position:fixed;inset:-120px;z-index:-1;pointer-events:none;background:repeating-linear-gradient(115deg,rgba(255,255,255,.04) 0 36px,transparent 36px 72px);animation:strisce 9s linear infinite}
 @keyframes strisce{to{transform:translate3d(79.45px,0,0)}}
@@ -183,22 +197,39 @@ function gate(){
   return '<div class="gate"><img src="../assets/logo-lega.png" alt=""><h1>Toto<span>girrr</span></h1><p>Le scommesse della lega, con fantacrediti finti. Entra con il codice della tua squadra, lo stesso del Spogliatoio.</p>'+
   '<select id="gt">'+o+'</select><input id="gc" placeholder="Codice squadra" autocomplete="off" autocapitalize="characters" value="'+esc(code)+'"><button class="go" id="enter">Entra</button><div class="err">'+esc(err)+'</div><p style="margin-top:22px"><a href="index.html">‹ Torna a O Girrr</a></p></div>';
 }
+function ticker(){
+  var it=S.partite.map(function(p){return p.chiusa?'<span><b>'+esc(p.casa)+'</b> <i>'+p.gc+'–'+p.gt+'</i> <b>'+esc(p.trasf)+'</b></span>':'<span><b>'+esc(p.casa)+'</b> – <b>'+esc(p.trasf)+'</b> <i>'+f2(p.q1)+' · '+f2(p.qx)+' · '+f2(p.q2)+'</i></span>'}).join('');
+  return it?'<div class="tick"><div class="tk">'+it+it+'</div></div>':'';
+}
+function evid(){
+  var ap=S.partite.filter(aperta);if(!ap.length)return '';
+  var fav=ap.map(function(p){var s1=p.q1<=p.q2;return{p:p,m:s1?'1':'2',q:s1?p.q1:p.q2,n:s1?p.casa:p.trasf}}).sort(function(a,b){return a.q-b.q}).slice(0,3);
+  var used={};fav.forEach(function(x){used[x.p.id]=1});
+  var col=ap.filter(function(p){return !used[p.id]}).map(function(p){var s1=p.q1>=p.q2;return{p:p,m:s1?'1':'2',q:s1?p.q1:p.q2,n:s1?p.casa:p.trasf}}).sort(function(a,b){return b.q-a.q}).slice(0,2);
+  var cards=fav.map(function(x){return card(x,'FAVORITA')}).concat(col.map(function(x){return card(x,'COLPACCIO')})).join('');
+  return '<div class="gh" style="margin-top:4px"><span>IN EVIDENZA</span></div><div class="feat">'+cards+'</div>';
+}
+function card(x,tag){
+  var on=slip.some(function(y){return y.p===x.p.id&&y.m===x.m});
+  return '<div class="fc"><div class="tg">'+tag+'</div><div class="mm">'+esc(x.p.casa)+' – '+esc(x.p.trasf)+'</div><button class="q'+(on?' on':'')+'" data-p="'+x.p.id+'" data-m="'+x.m+'"><small>'+esc(x.n)+'</small><b>'+f2(x.q)+'</b></button></div>';
+}
 function head(){
   var c=S.conto;
   return (DEMO?'<div class="card" style="border:2px dashed var(--hi);font-size:13px"><b style="color:var(--hi)">PROVA</b> · Qui è tutto finto e si azzera quando ricarichi. Gioca una schedina, poi premi il pulsante per far finire le partite a caso.<br><button class="go" id="sim" style="margin-top:10px">Fai finire le partite</button></div>':'')+'<a class="back" href="index.html">‹ O GIRRR</a><div class="top"><img src="../assets/logo-lega.png" alt=""><div class="t"><div class="k">O FANT A GIRRR</div><h1>Toto<span>girrr</span></h1></div><div class="bal"><small>FANTACREDITI</small><b>'+f2(c.crediti)+'</b>'+(Number(c.debito)>0?'<small style="color:var(--hi)">DEBITO '+f2(c.debito)+'</small>':'')+'</div></div>'+
   '<div class="who">Squadra: <b>'+esc(team)+'</b><button class="x" id="out">Esci</button></div>'+
-  '<nav>'+[['partite','Partite'],['mie','Le mie'],['class','Classifica'],['regole','Regole']].map(function(t){return '<button data-tab="'+t[0]+'" class="'+(tab===t[0]?'on':'')+'">'+t[1]+'</button>'}).join('')+'</nav>';
+  '<nav>'+[['partite','Partite'],['mie','Le mie'],['class','Classifica'],['regole','Regole']].map(function(t){return '<button data-tab="'+t[0]+'" class="'+(tab===t[0]?'on':'')+'">'+t[1]+'</button>'}).join('')+'</nav>'+ticker();
 }
 function qbtn(p,m){
   var on=slip.some(function(x){return x.p===p.id&&x.m===m}),lab={'1':'1','X':'X','2':'2','O':'Over 4,5','U':'Under 4,5'}[m];
   return '<button class="q'+(on?' on':'')+'" data-p="'+p.id+'" data-m="'+m+'"'+(aperta(p)?'':' disabled')+'><small>'+lab+'</small><b>'+f2(quotaDi(p,m))+'</b></button>';
 }
 function vPartite(){
+  var ev=evid();
   var gr={},ord=[];S.partite.forEach(function(p){var k=p.comp+'|'+p.giornata;if(!gr[k]){gr[k]=[];ord.push(k)}gr[k].push(p)});
   if(!ord.length)return '<div class="vuoto">Nessuna partita in lavagna per ora. Le quote escono appena si sa quando inizia la giornata.</div>';
-  return ord.map(function(k){
+  return ev+ord.map(function(k){
     var a=gr[k],p0=a[0],cup=p0.comp==='coppa';
-    var h='<div class="gh'+(cup?' cup':'')+'"><span>'+(cup?'CHAMPIONS CUP':'CAMPIONATO')+' · GIORNATA '+p0.giornata+'</span><small>Chiude '+quando(p0.chiude)+'</small></div>';
+    var h='<div class="gh'+(cup?' cup':'')+'"><span>'+(cup?'CHAMPIONS CUP':'CAMPIONATO')+' · GIORNATA '+p0.giornata+'</span><small title="'+quando(p0.chiude)+'" style="white-space:nowrap">'+(p0.chiusa||new Date(p0.chiude)<=new Date()?'Chiusa':'Chiude tra <span class="cd" data-t="'+p0.chiude+'"></span>')+'</small></div>';
     return h+a.map(function(p){
       var body=p.chiusa?'<div class="res">'+p.gc+' – '+p.gt+' <span class="chiusa">Finita</span></div>':
         '<div class="row">'+qbtn(p,'1')+qbtn(p,'X')+qbtn(p,'2')+'</div><div class="row two">'+qbtn(p,'O')+qbtn(p,'U')+'</div>'+(aperta(p)?'':'<div class="chiusa">Scommesse chiuse, si aspetta il risultato.</div>');
@@ -213,7 +244,8 @@ function vMie(){
     var multi=s.sel.length>1;
     var lis=s.sel.map(function(x){return '<li class="'+(x.esito||'')+'"><span>'+etichetta(x)+' · <b>'+MN[x.mercato]+'</b></span><span>'+f2(x.quota)+'</span></li>'}).join('');
     var vin=s.stato==='vinta'?'Vinti '+f2(s.vincita):(s.stato==='aperta'?'Possibile vincita '+f2(s.puntata*s.quota):'Persa');
-    return '<div class="card bet"><div class="h"><span>'+(multi?'Multipla ('+s.sel.length+')':'Singola')+' · '+f2(s.quota)+'</span><span class="tag '+s.stato+'">'+s.stato.toUpperCase()+'</span></div><ul>'+lis+'</ul><div style="margin-top:8px;font-size:13px;color:var(--sub)">Puntata <b style="color:var(--chiaro)">'+f2(s.puntata)+'</b> · '+vin+'</div></div>';
+    var rig=s.sel.every(function(x){var p=pm(x.partita);return p&&aperta(p)})?'<br><button class="x rig" data-rig="'+s.id+'">Rigioca</button>':'';
+    return '<div class="card bet"><div class="h"><span>'+(multi?'Multipla ('+s.sel.length+')':'Singola')+' · '+f2(s.quota)+'</span><span class="tag '+s.stato+'">'+s.stato.toUpperCase()+'</span></div><ul>'+lis+'</ul><div style="margin-top:8px;font-size:13px;color:var(--sub)">Puntata <b style="color:var(--chiaro)">'+f2(s.puntata)+'</b> · '+vin+rig+'</div></div>';
   }).join('');
 }
 function vClass(){
@@ -261,6 +293,7 @@ document.addEventListener('click',function(e){
     if(i>=0&&slip[i].m===m)slip.splice(i,1);else if(i>=0)slip[i].m=m;else{if(slip.length>=6){toast('Massimo 6 partite in una multipla',1);return}slip.push({p:id,m:m})}
     LASTQ=id+'|'+m;var y=window.scrollY;render();window.scrollTo(0,y);return}
   if(b=t.closest('[data-st]')){setStake(b.getAttribute('data-st'));return}
+  if(b=t.closest('[data-rig]')){var id2=Number(b.getAttribute('data-rig')),sc=S.schedine.filter(function(x){return x.id===id2})[0];if(sc){slip=sc.sel.map(function(x){return{p:x.partita,m:x.mercato}});tab='partite';ANIM=true;render();window.scrollTo(0,0);toast('Schedina ripresa: controlla la puntata e gioca')}return}
   if(t.id==='svuota'){slip=[];render();return}
   if(t.id==='suss'){rpc('toto_sussidio',{p_team:team,p_code:code}).then(function(r){toast('Prestito ricevuto: sei a 50, ne devi restituire '+f2(r.da_restituire));return carica()}).catch(function(e){toast(e.message,1)});return}
   if(t.id==='gioca'){
@@ -275,6 +308,8 @@ document.addEventListener('click',function(e){
 document.addEventListener('input',function(e){if(e.target.id==='stake')upWin()});
 document.addEventListener('keydown',function(e){if(e.key==='Enter'&&e.target.id==='gc')document.getElementById('enter').click()});
 
+function fmtCd(ms){var s=Math.floor(ms/1000),d=Math.floor(s/86400),h=Math.floor(s%86400/3600),m=Math.floor(s%3600/60);return d>0?d+'g '+h+'h':h>0?h+'h '+m+'m':m+'m '+String(s%60).padStart(2,'0')+'s'}
+setInterval(function(){document.querySelectorAll('.cd').forEach(function(e){var ms=new Date(e.getAttribute('data-t'))-Date.now();if(ms<=0){if(!e.dataset.done){e.dataset.done=1;e.textContent='0s';if(S&&!busy)carica()}return}e.textContent=fmtCd(ms);e.className='cd'+(ms<3600e3?' hot':ms<86400e3?' warn':'')})},1000);
 fetch('../data.json',{cache:'no-cache'}).then(function(r){return r.json()}).then(function(d){teams=d.teams.map(function(t){return t.name});
   if(team&&code)carica();else render();
 }).catch(function(){teams=['Oranje VC'];render()});
