@@ -29,6 +29,14 @@ body[data-mode=coppa]{--acc:#3d93d6;--bg:#12305c;--bg2:#1f4a85;--bg3:#0b2142;--c
 .crossfade img+img{position:absolute;inset:0;opacity:0;transform:scale(.94)}
 body[data-mode=coppa] .crossfade img:first-child{opacity:0;transform:scale(.94)}
 body[data-mode=coppa] .crossfade img+img{opacity:1;transform:none}
+.rec{--bg:#d62839;--dot:#fbf6ec;position:absolute;left:5.1%;top:23.9%;width:5.95%;aspect-ratio:1;border-radius:50%;background:var(--bg);pointer-events:none}
+.rec::after{content:'';position:absolute;left:3.5%;top:3.5%;width:93%;height:93%;border-radius:50%;background:var(--dot);animation:recp 2.6s ease-in-out infinite}
+@keyframes recp{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.12;transform:scale(.86)}}
+@media (prefers-reduced-motion:reduce){.rec::after{animation:none}}
+.rec.r2{--bg:#3d93d6;--dot:#f7fbff;opacity:0;transition:opacity .7s ease}
+.rec.r1{transition:opacity .7s ease}
+body[data-mode=coppa] .rec.r1{opacity:0}
+body[data-mode=coppa] .rec.r2{opacity:1}
 .shield{height:clamp(86px,16vw,150px)}
 .tv{height:clamp(40px,7vw,70px)}
 .ttl{flex:1;min-width:0}
@@ -102,7 +110,7 @@ body::before{content:'';position:fixed;inset:-120px;z-index:-1;pointer-events:no
   <header class="top">
     <div class="crossfade"><img class="shield" src="../assets/loghi/logo-lega-o-fant-a-girrr.png" alt="O Fant A Girrr"><img class="shield" src="../assets/loghi/logo-cup-champions-cup.png" alt="Champions Cup"></div>
     <div class="ttl"><div class="kick" id="kick">TABELLONE</div><h1 id="tit">…</h1></div>
-    <div class="crossfade"><img class="tv" src="../assets/loghi/logo-tv-girrr-sport-live.png" alt=""><img class="tv" src="../assets/loghi/logo-tv-cup-girrr-live.png" alt=""></div>
+    <div class="crossfade"><img class="tv" src="../assets/loghi/logo-tv-girrr-sport-live.png" alt=""><img class="tv" src="../assets/loghi/logo-tv-cup-girrr-live.png" alt=""><i class="rec r1"></i><i class="rec r2"></i></div>
   </header>
   <div class="sw" role="tablist"><i></i><button data-m="lega" role="tab">Campionato</button><button data-m="coppa" role="tab">Champions Cup</button></div>
   <div class="gs"><button class="ar" id="prev" aria-label="Giornata precedente">‹</button><div class="chips" id="chips"></div><button class="ar" id="next" aria-label="Giornata successiva">›</button></div>
