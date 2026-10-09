@@ -20,8 +20,9 @@ a{color:var(--hi)}
 .top .t{flex:1;min-width:0}
 .top .k{font-weight:900;font-size:10px;letter-spacing:.32em;color:var(--hi)}
 .top h1,.gate h1,.toto{font-family:Lobster,"Brush Script MT",cursive;font-weight:400;font-style:italic;letter-spacing:.01em;text-shadow:0 2px 0 rgba(0,0,0,.28)}
-.top h1{font-size:36px;line-height:1.05;transform:rotate(-3deg);transform-origin:left center}
-.top h1 span{color:var(--hi);text-shadow:none}
+.top h1{font-size:36px;line-height:1.05;}
+.top h1 span,.gate h1 span{padding-right:.12em;text-shadow:none}
+.top h1 span{color:var(--hi)}
 .bal{text-align:right;background:rgba(255,255,255,.1);border-radius:12px;padding:6px 12px;border-left:5px solid var(--hi)}
 .bal small{display:block;font-weight:800;font-size:9px;letter-spacing:.22em;color:var(--sub)}
 .bal b{font-weight:900;font-size:22px;line-height:1.1}
@@ -93,7 +94,7 @@ html{overflow-y:scroll;scrollbar-gutter:stable}
 .lb .n{width:26px;font-weight:900;color:var(--hi)}
 .gate{max-width:420px;margin:8vh auto 0;text-align:center}
 .gate img{height:120px;margin-bottom:6px}
-.gate h1{font-size:60px;line-height:1.1;transform:rotate(-3deg)}
+.gate h1{font-size:60px;line-height:1.1}
 .gate h1 span{color:var(--hi)}
 .gate p{color:var(--sub);font-weight:600;margin:8px 0 18px;line-height:1.4}
 .gate select,.gate input{width:100%;font:700 16px Inter;padding:13px;border-radius:12px;border:2px solid rgba(255,255,255,.25);background:rgba(0,0,0,.25);color:var(--chiaro);margin-bottom:10px}
@@ -163,6 +164,8 @@ nav button{transition:background-color .2s,color .2s,transform .15s}nav button:a
 body::before{content:'';position:fixed;inset:-120px;z-index:-1;pointer-events:none;background:repeating-linear-gradient(115deg,rgba(255,255,255,.04) 0 36px,transparent 36px 72px);animation:strisce 9s linear infinite}
 @keyframes strisce{to{transform:translate3d(79.45px,0,0)}}
 @media (prefers-reduced-motion:reduce){body::before{animation:none}}
+.TT{font-weight:400;font-size:1.3em;position:relative;display:inline-block;line-height:1}
+.TT::after{content:"";position:absolute;left:.42em;top:.31em;width:1.9em;height:.1em;background:currentColor;clip-path:polygon(0 0,100% 40%,100% 60%,0 100%)}
 </style>
 </head>
 <body>
@@ -238,7 +241,7 @@ function aperta(p){return !p.chiusa&&new Date(p.chiude)>new Date()}
 
 function gate(){
   var o=teams.map(function(t){return '<option'+(t===team?' selected':'')+'>'+esc(t)+'</option>'}).join('');
-  return '<div class="gate"><a href="index.html" title="Torna a O Girrr"><img src="../assets/logo-lega.png" alt="O Fant A Girrr"></a><h1>Toto<span>girrr</span></h1><p>Le scommesse della lega, con fantacrediti finti. Entra con il codice della tua squadra, lo stesso del Spogliatoio.</p>'+
+  return '<div class="gate"><a href="index.html" title="Torna a O Girrr"><img src="../assets/logo-lega.png" alt="O Fant A Girrr"></a><h1><b class="TT">T</b>oto<span>girrr</span></h1><p>Le scommesse della lega, con fantacrediti finti. Entra con il codice della tua squadra, lo stesso del Spogliatoio.</p>'+
   '<select id="gt">'+o+'</select><input id="gc" placeholder="Codice squadra" autocomplete="off" autocapitalize="characters" value="'+esc(code)+'"><button class="go" id="enter">Entra</button><div class="err">'+esc(err)+'</div><p style="margin-top:22px"><a href="index.html">‹ Torna a O Girrr</a></p></div>';
 }
 function ticker(){
@@ -259,7 +262,7 @@ function card(x,tag){
 }
 function head(){
   var c=S.conto;
-  return (DEMO?'<div class="card" style="border:2px dashed var(--hi);font-size:13px"><b style="color:var(--hi)">PROVA</b> · Qui è tutto finto e si azzera quando ricarichi. Gioca una schedina, poi premi il pulsante per far finire le partite a caso.<br><button class="go" id="sim" style="margin-top:10px">Fai finire le partite</button></div>':'')+'<a class="back" href="index.html">‹ O GIRRR</a><div class="top"><a href="index.html" title="Torna a O Girrr" style="display:block;flex:none"><img src="../assets/logo-lega.png" alt="O Fant A Girrr" style="display:block"></a><div class="t"><div class="k">O FANT A GIRRR</div><h1>Toto<span>girrr</span></h1></div><div class="bal"><small>FANTACREDITI</small><b>'+f2(c.crediti)+'</b>'+(Number(c.debito)>0?'<small style="color:var(--hi)">DEBITO '+f2(c.debito)+'</small>':'')+'</div></div>'+
+  return (DEMO?'<div class="card" style="border:2px dashed var(--hi);font-size:13px"><b style="color:var(--hi)">PROVA</b> · Qui è tutto finto e si azzera quando ricarichi. Gioca una schedina, poi premi il pulsante per far finire le partite a caso.<br><button class="go" id="sim" style="margin-top:10px">Fai finire le partite</button></div>':'')+'<a class="back" href="index.html">‹ O GIRRR</a><div class="top"><a href="index.html" title="Torna a O Girrr" style="display:block;flex:none"><img src="../assets/logo-lega.png" alt="O Fant A Girrr" style="display:block"></a><div class="t"><div class="k">O FANT A GIRRR</div><h1><b class="TT">T</b>oto<span>girrr</span></h1></div><div class="bal"><small>FANTACREDITI</small><b>'+f2(c.crediti)+'</b>'+(Number(c.debito)>0?'<small style="color:var(--hi)">DEBITO '+f2(c.debito)+'</small>':'')+'</div></div>'+
   '<div class="who">Squadra: <b>'+esc(team)+'</b><button class="x" id="out">Esci</button></div>'+
   '<nav>'+[['partite','Partite'],['vinc','Vincenti'],['mie','Le mie'],['class','Classifica'],['regole','Regole']].map(function(t){return '<button data-tab="'+t[0]+'" class="'+(tab===t[0]?'on':'')+'">'+t[1]+'</button>'}).join('')+'</nav>'+ticker();
 }
