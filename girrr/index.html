@@ -44,9 +44,11 @@ a.st:hover{transform:translateY(-4px);background:rgba(255,255,255,.14);box-shado
 .c.soon:hover{transform:none;box-shadow:none;border-color:rgba(255,255,255,.14)}
 .badge{position:absolute;top:14px;right:14px;background:var(--hi);color:var(--bg);font-weight:900;font-size:11px;letter-spacing:.18em;padding:5px 10px;border-radius:999px}
 .c.bet{background:linear-gradient(150deg,rgba(61,147,214,.35),rgba(255,255,255,.05))}
-.sp{margin-top:28px;background:var(--chiaro);border-radius:14px;padding:12px 16px;display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:14px 22px}
+.sp{margin-top:28px;background:var(--chiaro);border-radius:14px;padding:14px 16px 16px;text-align:center}
+.sp .lg{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:10px;align-items:center;justify-items:center}
+@media(max-width:560px){.sp .lg{grid-template-columns:repeat(2,1fr);gap:10px 12px}}
 .sp span{font-weight:800;font-size:13px;letter-spacing:.06em;color:var(--bg)}
-.sp img{height:clamp(44px,7vw,66px)}
+.sp img{width:100%;max-width:230px;height:auto;display:block}
 .foot{margin-top:14px;text-align:center;font-size:12px;color:var(--sub);opacity:.8}
 body::before{content:'';position:fixed;inset:-120px;z-index:-1;pointer-events:none;background:repeating-linear-gradient(115deg,rgba(255,255,255,.04) 0 36px,transparent 36px 72px);animation:strisce 9s linear infinite}
 @keyframes strisce{to{transform:translate3d(79.45px,0,0)}}
@@ -88,7 +90,7 @@ body::before{content:'';position:fixed;inset:-120px;z-index:-1;pointer-events:no
     <a class="c" href="tabellone.html"><div class="ic"><img src="../assets/loghi/logo-tv-girrr-sport-live.png" alt=""></div><h2>Tabellone</h2><p>Risultati e classifiche di campionato e Champions Cup, giornata per giornata.</p><div class="go">GUARDA ›</div></a>
     <a class="c bet" href="totogirrr.html"><div class="ic"><span style="font-family:Lobster,'Brush Script MT',cursive;font-style:italic;font-size:40px;line-height:1.1;display:inline-block;text-shadow:0 2px 0 rgba(0,0,0,.28)"><b class="TT"><em class="Tg">T</em><svg viewBox="0 0 900 400" aria-hidden="true"><path fill="currentColor" d="M185.8 85.2H181Q145.4 85.2 121.1 103Q96.9 120.8 85.6 166Q81.9 180.8 83.2 186.6Q84.6 192.4 84.4 193.2Q62.8 193.2 54.4 184.2Q46.1 175.2 51.3 154.4Q58.4 126 78.2 102.6Q98.1 79.2 132.3 64.8Q166.5 50.4 213.7 50.4Q240.1 50.4 269.3 55.2Q272.6 55.8 275.8 56.3C299.8 57.8 329.3 62.4 360.7 67.4C408.7 74.9 461.1 83.2 505 82C565 80 605 68 642 62C668 66 668 94 640 99C600 108 545 122 480 122C417.8 122 363.5 106.2 296 100.6V102Q285.1 101.7 274.5 100Q262.2 98 239.8 93.2L120.4 350H62.8Z"/></svg></b>oto<span style="color:var(--hi)">girrr</span></span></div><h2>Totogirrr</h2><p>Le scommesse della lega con fantacrediti: 500 a testa, quote su ogni partita e classifica degli scommettitori.</p><div class="go">GIOCA ›</div></a>
   </section>
-  <div class="sp"><span>Gentilmente offerto da</span><img src="../assets/loghi/sponsor-birra-contropiede.png" alt=""><img src="../assets/loghi/sponsor-pizzeria-fuorigioco.png" alt=""><img src="../assets/loghi/sponsor-bomber-gym-club.png" alt=""><img src="../assets/loghi/sponsor-amaro-del-mister.png" alt=""></div>
+  <div class="sp"><span>Gentilmente offerto da</span><div class="lg"><img src="../assets/loghi/sponsor-birra-contropiede.png" alt=""><img src="../assets/loghi/sponsor-pizzeria-fuorigioco.png" alt=""><img src="../assets/loghi/sponsor-bomber-gym-club.png" alt=""><img src="../assets/loghi/sponsor-amaro-del-mister.png" alt=""></div></div>
   <div class="foot">O Girrr · Fantacalcio 2026/27</div>
 </div>
 <script>
