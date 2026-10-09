@@ -12,7 +12,7 @@
 :root{--acc:#d62839;--bg:#1d2a52;--bg2:#2c3f7c;--bg3:#141d3d;--chiaro:#fbf6ec;--hi:#ffd166;--sub:#bfe3ff;--az:#3d93d6;--ok:#4ade80;--ko:#ff6b7a}
 *{box-sizing:border-box;margin:0;padding:0}
 body{min-height:100vh;font-family:Inter,system-ui,-apple-system,Segoe UI,sans-serif;color:var(--chiaro);background:var(--bg);
- background-image:repeating-linear-gradient(115deg,rgba(255,255,255,.04) 0 36px,transparent 36px 72px),radial-gradient(1200px 700px at 80% -10%,var(--bg2) 0,var(--bg) 55%,var(--bg3) 100%);background-attachment:fixed}
+ background-image:radial-gradient(1200px 700px at 80% -10%,var(--bg2) 0,var(--bg) 55%,var(--bg3) 100%);background-attachment:fixed}
 .wrap{max-width:860px;margin:0 auto;padding:14px 14px 150px}
 a{color:var(--hi)}
 .top{display:flex;align-items:center;gap:12px;margin-bottom:12px}
@@ -110,6 +110,9 @@ button{font-family:inherit;cursor:pointer}
 nav button{transition:background-color .2s,color .2s,transform .15s}nav button:active{transform:scale(.94)}
 @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
 .vuoto{text-align:center;color:var(--sub);padding:26px 8px;font-weight:600}
+body::before{content:'';position:fixed;inset:-120px;z-index:-1;pointer-events:none;background:repeating-linear-gradient(115deg,rgba(255,255,255,.04) 0 36px,transparent 36px 72px);animation:strisce 9s linear infinite}
+@keyframes strisce{to{transform:translate3d(79.45px,0,0)}}
+@media (prefers-reduced-motion:reduce){body::before{animation:none}}
 </style>
 </head>
 <body>

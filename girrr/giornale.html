@@ -11,7 +11,7 @@
 :root{--acc:#d62839;--bg:#1d2a52;--bg2:#2c3f7c;--bg3:#141d3d;--chiaro:#fbf6ec;--hi:#ffd166;--sub:#bfe3ff}
 *{box-sizing:border-box;margin:0;padding:0}
 body{min-height:100vh;font-family:Inter,system-ui,-apple-system,Segoe UI,sans-serif;color:var(--chiaro);background:var(--bg);
- background-image:repeating-linear-gradient(115deg,rgba(255,255,255,.04) 0 36px,transparent 36px 72px),radial-gradient(1200px 700px at 80% -10%,var(--bg2) 0,var(--bg) 55%,var(--bg3) 100%);background-attachment:fixed}
+ background-image:radial-gradient(1200px 700px at 80% -10%,var(--bg2) 0,var(--bg) 55%,var(--bg3) 100%);background-attachment:fixed}
 .wrap{max-width:1100px;margin:0 auto;padding:18px 16px 36px}
 .back{display:inline-block;margin-bottom:10px;font-weight:800;font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:var(--hi);text-decoration:none}
 .top{display:flex;align-items:center;gap:16px;margin-bottom:22px}
@@ -39,6 +39,9 @@ h3{font-weight:900;font-size:14px;letter-spacing:.34em;color:var(--hi);margin-bo
 .it span{display:block;margin-top:4px;font-weight:700;font-size:14px;line-height:1.3}
 .it small{display:block;margin-top:4px;color:var(--sub);font-size:12px}
 .empty{padding:30px;text-align:center;color:var(--sub);font-weight:700}
+body::before{content:'';position:fixed;inset:-120px;z-index:-1;pointer-events:none;background:repeating-linear-gradient(115deg,rgba(255,255,255,.04) 0 36px,transparent 36px 72px);animation:strisce 9s linear infinite}
+@keyframes strisce{to{transform:translate3d(79.45px,0,0)}}
+@media (prefers-reduced-motion:reduce){body::before{animation:none}}
 </style>
 </head>
 <body>
