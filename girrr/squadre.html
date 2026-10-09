@@ -1,0 +1,199 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="robots" content="noindex">
+<title>Squadre · O Girrr</title>
+<link rel="icon" type="image/png" href="../assets/favicon-64.png">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@500;700;800;900&display=swap">
+<link rel="manifest" href="../manifest.webmanifest">
+<meta name="theme-color" content="#1d2a52">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="O Girrr">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<link rel="apple-touch-icon" href="../assets/apple-touch-icon.png">
+<style>
+:root{--acc:#d62839;--bg:#1d2a52;--bg2:#2c3f7c;--bg3:#141d3d;--chiaro:#fbf6ec;--hi:#ffd166;--sub:#bfe3ff;--ok:#5fd38d;--bad:#ff7d86}
+*{box-sizing:border-box;margin:0;padding:0}
+body{min-height:100vh;font-family:Inter,system-ui,-apple-system,Segoe UI,sans-serif;color:var(--chiaro);background:var(--bg);
+ background-image:radial-gradient(1200px 700px at 80% -10%,var(--bg2) 0,var(--bg) 55%,var(--bg3) 100%);background-attachment:fixed}
+body::before{content:'';position:fixed;inset:-120px;z-index:-1;pointer-events:none;background:repeating-linear-gradient(115deg,rgba(255,255,255,.04) 0 36px,transparent 36px 72px);animation:strisce 9s linear infinite}
+@keyframes strisce{to{transform:translate3d(79.45px,0,0)}}
+@media (prefers-reduced-motion:reduce){body::before{animation:none}}
+.wrap{max-width:1080px;margin:0 auto;padding:18px 16px 30px}
+.back{display:inline-block;margin-bottom:10px;font-weight:800;font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:var(--hi);text-decoration:none}
+.top{display:flex;align-items:center;gap:16px}
+.top img{height:clamp(70px,13vw,120px);cursor:pointer;filter:drop-shadow(0 8px 14px rgba(0,0,0,.4))}
+.kick{font-weight:900;font-size:clamp(11px,1.6vw,14px);letter-spacing:.4em;color:var(--hi)}
+h1{font-weight:900;font-size:clamp(26px,5vw,44px);line-height:1.05;margin-top:4px}
+.chips{display:flex;gap:8px;overflow-x:auto;scrollbar-width:none;padding:14px 2px 6px;margin-bottom:6px}
+.chips::-webkit-scrollbar{display:none}
+.chips button{flex:none;border-radius:999px;border:2px solid transparent;background:rgba(255,255,255,.1);color:var(--chiaro);font:800 13px Inter;padding:9px 14px;cursor:pointer;opacity:.7;transition:all .25s}
+.chips button.mia{border-color:rgba(255,209,102,.5)}
+.chips button.sel{background:var(--acc);opacity:1;transform:scale(1.04)}
+.swap{transition:opacity .22s ease,transform .22s ease}
+.swap.out{opacity:0;transform:translateY(8px)}
+.card{background:linear-gradient(150deg,rgba(255,255,255,.12),rgba(255,255,255,.05));border:1px solid rgba(255,255,255,.14);border-radius:16px;padding:16px;margin-bottom:14px}
+.card h3{font-weight:900;font-size:13px;letter-spacing:.3em;color:var(--hi);margin-bottom:10px;text-transform:uppercase}
+.nome{font-weight:900;font-size:clamp(26px,5vw,40px);text-transform:uppercase;line-height:1.05}
+.sub{color:var(--sub);font-weight:600;font-size:14px;margin-top:4px}
+.kp{display:grid;grid-template-columns:repeat(auto-fit,minmax(110px,1fr));gap:10px;margin-top:14px}
+.kp div{background:rgba(0,0,0,.2);border-radius:12px;padding:10px 12px}
+.kp small{display:block;font-weight:800;font-size:10px;letter-spacing:.2em;color:var(--sub);text-transform:uppercase}
+.kp b{display:block;font-weight:900;font-size:24px;margin-top:2px}
+.grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:14px;align-items:start}
+@media(max-width:860px){.grid{grid-template-columns:1fr}}
+.ris{display:grid;grid-template-columns:30px 1fr auto;gap:10px;align-items:center;padding:9px 0;border-bottom:1px solid rgba(255,255,255,.12);font-weight:700;font-size:14px}
+.ris:last-child{border-bottom:0}
+.ris .e{width:28px;height:28px;border-radius:50%;display:grid;place-items:center;font-weight:900;font-size:13px;color:#10192f}
+.e.v{background:var(--ok)}.e.n{background:var(--hi)}.e.p{background:var(--bad)}.e.d{background:rgba(255,255,255,.2);color:var(--chiaro)}
+.ris small{display:block;color:var(--sub);font-weight:600;font-size:12px;margin-top:2px}
+.ris .s{font-weight:900;font-size:17px;text-align:right}
+.top5 .g{display:grid;grid-template-columns:1fr auto;gap:8px;padding:8px 0;border-bottom:1px solid rgba(255,255,255,.12);font-weight:700;font-size:14px}
+.top5 .g:last-child{border-bottom:0}.top5 small{color:var(--sub);font-weight:600}
+.top5 b{font-weight:900;font-size:16px}
+.bar{height:10px;border-radius:6px;background:rgba(255,255,255,.14);overflow:hidden;margin-top:8px}
+.bar i{display:block;height:100%;background:linear-gradient(90deg,var(--acc),var(--hi));border-radius:6px;transition:width .6s ease}
+table{width:100%;border-collapse:collapse;font-size:14px;font-weight:600}
+th{font-size:10px;letter-spacing:.16em;color:var(--sub);text-align:right;padding:0 6px 6px;font-weight:800;text-transform:uppercase}
+th:first-child{text-align:left}
+td{padding:7px 6px;text-align:right;border-bottom:1px solid rgba(255,255,255,.1)}
+td:first-child{text-align:left;font-weight:800}
+td small{color:var(--sub);font-weight:600;display:block;font-size:11px}
+.ruolo{font-weight:900;font-size:11px;letter-spacing:.3em;color:var(--hi);margin:14px 0 4px}
+.vuoto{color:var(--sub);font-weight:600;font-size:14px}
+.err{padding:30px;text-align:center;font-weight:700}
+.foot{margin-top:14px;text-align:center;font-size:12px;color:var(--sub);opacity:.8}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <a class="back" href="index.html">‹ O Girrr</a>
+  <header class="top"><img id="lg" src="../assets/loghi/logo-lega-o-fant-a-girrr.png" alt="O Fant A Girrr" title="Torna a O Girrr"><div><div class="kick">O FANT A GIRRR · 2026/27</div><h1>Le squadre</h1></div></header>
+  <div class="chips" id="chips"></div>
+  <div class="swap" id="sch"><div class="vuoto">Carico le squadre…</div></div>
+  <div class="foot" id="foot">O Girrr · i dati arrivano dallo Spogliatoio</div>
+</div>
+<script>
+(function(){
+var D=null,sel='',ME='';
+try{ME=(JSON.parse(localStorage.getItem('fg')||'{}')||{}).team||''}catch(e){}
+function cap(s){s=String(s);return s.charAt(0).toUpperCase()+s.slice(1)}
+function esc(s){return String(s).replace(/[&<>"]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})}
+function pt(x){return String(Math.round(x*100)/100).replace('.',',')}
+function nome(s){return String(s).toLowerCase().replace(/(^|[\s'.-])([a-zà-ú])/g,function(m,a,b){return a+b.toUpperCase()})}
+document.getElementById('lg').onclick=function(){location.href='index.html'};
+/* Tutte le partite concluse di una squadra (campionato e coppa), per ordine di giornata di Serie A */
+function partite(team){
+  var out=[];
+  D.cal.lega.forEach(function(g){g.m.forEach(function(m){
+    if(m[4]==='-')return;var s=m[4].split('-').map(Number);
+    if(m[0]===team)out.push({sa:g.sa,n:g.n,comp:'Campionato',avv:m[3],gf:s[0],gs:s[1],fp:m[1],fpa:m[2]});
+    else if(m[3]===team)out.push({sa:g.sa,n:g.n,comp:'Campionato',avv:m[0],gf:s[1],gs:s[0],fp:m[2],fpa:m[1]});
+  })});
+  D.cal.cup.forEach(function(g){g.m.forEach(function(m){
+    if(m[5]==='-')return;var s=m[5].split('-').map(Number);
+    if(m[1]===team)out.push({sa:g.sa,n:g.n,comp:'Champions Cup',avv:m[4],gf:s[0],gs:s[1],fp:m[2],fpa:m[3]});
+    else if(m[4]===team)out.push({sa:g.sa,n:g.n,comp:'Champions Cup',avv:m[1],gf:s[1],gs:s[0],fp:m[3],fpa:m[2]});
+  })});
+  return out.sort(function(a,b){return a.sa-b.sa});
+}
+function classLega(){
+  var sq={};D.teams.forEach(function(t){sq[t.name]={n:t.name,g:0,pt:0,fp:0,v:0,pa:0,p:0,gf:0,gs:0}});
+  D.cal.lega.forEach(function(g){g.m.forEach(function(m){if(m[4]==='-')return;var s=m[4].split('-').map(Number);
+    [[sq[m[0]],s[0],s[1],m[1]],[sq[m[3]],s[1],s[0],m[2]]].forEach(function(x){var t=x[0];if(!t)return;t.g++;t.gf+=x[1];t.gs+=x[2];t.fp+=x[3];
+      if(x[1]>x[2]){t.pt+=3;t.v++}else if(x[1]===x[2]){t.pt++;t.pa++}else t.p++})})});
+  return Object.keys(sq).map(function(k){return sq[k]}).sort(function(a,b){return b.pt-a.pt||b.fp-a.fp||(b.gf-b.gs)-(a.gf-a.gs)});
+}
+/* Coppa: girone e posizione */
+function coppa(team){
+  var gir='',sq={};
+  D.cal.cup.forEach(function(g){g.m.forEach(function(m){
+    [[m[1],m[4]],[m[4],m[1]]].forEach(function(p){if(p[0]===team)gir=m[0]});
+  });(g.rest||[]).forEach(function(r){if(r[1]===team)gir=r[0]})});
+  if(!gir)return null;
+  var t={};
+  D.cal.cup.forEach(function(g){g.m.forEach(function(m){
+    if(m[0]!==gir)return;t[m[1]]=t[m[1]]||{n:m[1],g:0,pt:0,fp:0};t[m[4]]=t[m[4]]||{n:m[4],g:0,pt:0,fp:0};
+    if(m[5]==='-')return;var s=m[5].split('-').map(Number);
+    [[t[m[1]],s[0],s[1],m[2]],[t[m[4]],s[1],s[0],m[3]]].forEach(function(x){x[0].g++;x[0].fp+=x[3];x[0].pt+=x[1]>x[2]?3:(x[1]===x[2]?1:0)})})});
+  (D.cal.cup[0].rest||[]).forEach(function(r){if(r[0]===gir&&!t[r[1]])t[r[1]]={n:r[1],g:0,pt:0,fp:0}});
+  var rows=Object.keys(t).map(function(k){return t[k]}).sort(function(a,b){return b.pt-a.pt||b.fp-a.fp});
+  var pos=rows.map(function(r){return r.n}).indexOf(team)+1;
+  return {gir:gir,pos:pos,rows:rows,me:t[team]};
+}
+/* Stima del fantavoto atteso (stessa idea delle quote di Totogirrr) */
+var BASE=null;
+function base(){
+  if(BASE)return BASE;var per={};
+  Object.keys(D.ly||{}).forEach(function(id){var p=D.P[id],v=D.ly[id];if(p&&v[0]>=10)(per[p.r]=per[p.r]||[]).push(v[2])});
+  BASE={};Object.keys(per).forEach(function(r){BASE[r]=per[r].reduce(function(a,b){return a+b},0)/per[r].length});return BASE;
+}
+function voti(id){var o=(D.votes||{})[id]||{},a=[];Object.keys(o).forEach(function(g){if(o[g].f!=null)a.push({g:+g,f:o[g].f})});return a.sort(function(x,y){return x.g-y.g})}
+function stima(id){
+  var p=D.P[id];if(!p||!base()[p.r])return null;var l=(D.ly||{})[id],pres=l?l[0]:0,fm=l?l[2]:base()[p.r],cy=voti(id).map(function(x){return x.f});
+  return {r:p.r,e:(pres*fm+2*cy.reduce(function(a,b){return a+b},0)+10*base()[p.r])/(pres+2*cy.length+10)};
+}
+var MOD=[[3,4,3],[3,5,2],[4,4,2],[4,3,3],[4,5,1],[5,3,2],[5,4,1]];
+function forza(t){
+  var by={P:[],D:[],C:[],A:[]};t.pl.forEach(function(x){var e=stima(String(x.id));if(e)by[e.r].push(e.e)});
+  for(var r in by)by[r].sort(function(a,b){return b-a});
+  var best=null;MOD.forEach(function(m){var rq={P:1,D:m[0],C:m[1],A:m[2]},ok=true,s=0;
+    for(var r in rq){if(by[r].length<rq[r]){ok=false;break}s+=by[r].slice(0,rq[r]).reduce(function(a,b){return a+b},0)}
+    if(ok&&(best===null||s>best))best=s});
+  return best;
+}
+function render(){
+  var T=D.teams.filter(function(x){return x.name===sel})[0];if(!T)return;
+  var cl=classLega(),pos=cl.map(function(x){return x.n}).indexOf(sel)+1,c=cl[pos-1],cp=coppa(sel),pr=partite(sel);
+  var h='<div class="card"><div class="nome">'+esc(cap(sel))+(sel===ME?' <span style="font-size:.4em;letter-spacing:.2em;color:var(--hi)">· LA TUA</span>':'')+'</div>'
+   +'<div class="sub">'+(c.g?pos+'º in campionato · '+c.g+' partita'+(c.g>1?'e':'')+' giocata'+(c.g>1?'e':''):'Il campionato non è ancora iniziato per lei')+'</div>'
+   +'<div class="kp"><div><small>Punti</small><b>'+c.pt+'</b></div><div><small>Fantapunti</small><b>'+pt(c.fp)+'</b></div>'
+   +'<div><small>Media</small><b>'+(c.g?pt(c.fp/c.g):'–')+'</b></div><div><small>V · N · P</small><b>'+c.v+' · '+c.pa+' · '+c.p+'</b></div></div></div>';
+  /* ultimi risultati */
+  var rr=pr.slice().reverse().slice(0,6);
+  var hr='<div class="card"><h3>Ultimi risultati</h3>'+(rr.length?rr.map(function(x){var k=x.gf>x.gs?'v':(x.gf===x.gs?'n':'p'),l=k==='v'?'V':(k==='n'?'N':'P');
+    return '<div class="ris"><div class="e '+k+'">'+l+'</div><div>'+esc(cap(x.avv))+'<small>'+x.comp+' · '+x.n+'ª giornata · '+pt(x.fp)+' a '+pt(x.fpa)+'</small></div><div class="s">'+x.gf+' - '+x.gs+'</div></div>'}).join(''):'<div class="vuoto">Ancora nessuna partita giocata.</div>')+'</div>';
+  /* coppa */
+  var hc='<div class="card"><h3>Champions Cup</h3>';
+  if(cp){hc+='<div class="sub" style="margin:0 0 8px">Girone '+cp.gir+' · '+cp.pos+'º posto</div>'
+    +cp.rows.map(function(r,i){return '<div class="top5"><div class="g"><span>'+(i+1)+'. '+esc(cap(r.n))+(r.n===sel?' ◀':'')+'</span><b>'+r.pt+' pt</b></div></div>'}).join('')}
+  else hc+='<div class="vuoto">Questa squadra non è in nessun girone.</div>';
+  hc+='</div>';
+  /* forza della rosa */
+  var fs=D.teams.map(function(t){return {n:t.name,f:forza(t)}}).filter(function(x){return x.f!==null}).sort(function(a,b){return b.f-a.f});
+  var fi=fs.map(function(x){return x.n}).indexOf(sel),mx=fs.length?fs[0].f:1,mn=fs.length?fs[fs.length-1].f:0;
+  var hf='<div class="card"><h3>Forza della rosa</h3>'+(fi>=0?'<div class="sub" style="margin:0">'+(fi+1)+'ª su '+fs.length+' per fantavoti attesi dei migliori undici</div><div class="bar"><i style="width:'+Math.round(25+75*(fs[fi].f-mn)/Math.max(0.01,mx-mn))+'%"></i></div>':'<div class="vuoto">Dati non disponibili.</div>')+'</div>';
+  /* migliori della rosa */
+  var pl=T.pl.map(function(x){var id=String(x.id),p=D.P[id],v=voti(id),s=v.reduce(function(a,b){return a+b.f},0);return {id:id,p:p,c:x.c,n:v.length,m:v.length?s/v.length:null,e:stima(id),last:v.length?v[v.length-1].f:null}}).filter(function(x){return x.p});
+  var top=pl.filter(function(x){return x.n>0}).sort(function(a,b){return b.m-a.m}).slice(0,5);
+  var ht='<div class="card top5"><h3>I migliori della rosa</h3>'+(top.length?top.map(function(x){return '<div class="g"><span>'+esc(nome(x.p.n))+' <small>'+esc(x.p.t)+' · '+x.n+' voto'+(x.n>1?'i':'')+'</small></span><b>'+pt(x.m)+'</b></div>'}).join(''):'<div class="vuoto">Appena inizia il campionato qui compaiono i migliori.</div>')+'</div>';
+  /* rosa per ruolo */
+  var ruoli=[['P','Portieri'],['D','Difensori'],['C','Centrocampisti'],['A','Attaccanti']];
+  var hro='<div class="card"><h3>La rosa</h3>'+ruoli.map(function(r){
+    var L=pl.filter(function(x){return x.p.r===r[0]}).sort(function(a,b){return b.c-a.c});
+    return '<div class="ruolo">'+r[1].toUpperCase()+' · '+L.length+'</div><table><tr><th>Giocatore</th><th>Crediti</th><th>Media</th><th>Ultimo</th></tr>'
+      +L.map(function(x){return '<tr><td>'+esc(nome(x.p.n))+'<small>'+esc(x.p.t)+'</small></td><td>'+x.c+'</td><td>'+(x.m!==null?pt(x.m):'–')+'</td><td>'+(x.last!==null?pt(x.last):'–')+'</td></tr>'}).join('')+'</table>'}).join('')
+    +'<div class="vuoto" style="margin-top:10px;font-size:12px">La media è quella dei fantavoti di questa stagione.</div></div>';
+  var sc=document.getElementById('sch');
+  sc.classList.add('out');
+  setTimeout(function(){sc.innerHTML=h+'<div class="grid"><div>'+hr+hc+'</div><div>'+hf+ht+'</div></div>'+hro;sc.classList.remove('out')},200);
+  var ch=document.getElementById('chips');[].forEach.call(ch.children,function(b){b.classList.toggle('sel',b.dataset.t===sel)});
+}
+function chips(){
+  var ch=document.getElementById('chips');
+  ch.innerHTML=D.teams.map(function(t){return '<button data-t="'+esc(t.name)+'" class="'+(t.name===ME?'mia':'')+'">'+esc(cap(t.name))+'</button>'}).join('');
+  ch.addEventListener('click',function(e){var b=e.target.closest('button');if(!b)return;sel=b.dataset.t;try{history.replaceState(null,'','#'+encodeURIComponent(sel))}catch(x){}render()});
+}
+fetch('../data.json',{cache:'no-store'}).then(function(r){return r.json()}).then(function(d){
+  D=d;var h=decodeURIComponent((location.hash||'').replace('#',''));
+  sel=D.teams.some(function(t){return t.name===h})?h:(D.teams.some(function(t){return t.name===ME})?ME:D.teams[0].name);
+  chips();render();document.getElementById('foot').textContent='Dati aggiornati al '+(D.cal.date||'');
+  var el=document.querySelector('.chips button.sel');if(el)el.scrollIntoView({inline:'center',block:'nearest'});
+}).catch(function(){document.getElementById('sch').innerHTML='<div class="err">Non riesco a leggere i dati.</div>'});
+})();
+</script>
+</body>
+</html>
