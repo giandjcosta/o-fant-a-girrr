@@ -290,7 +290,7 @@ def costruisci(t, tema="classico"):
     if fz:
         gg, modulo, sel, tot = fz
         h.append(f'<div class="tab" style="margin-top:2.6mm"><h2>L\'undici <b>della settimana</b></h2>'
-                 f'<div class="fig" style="margin:0;width:100mm">{svg_formazione(sel)}<p>Modulo {modulo} · i migliori fantavoti della {gg}ª di Serie A tra le rose</p></div></div>')
+                 f'<div class="fig" style="margin:0;width:100mm">{svg_formazione(sel)}<p>Modulo {modulo} · I migliori fantavoti della {gg}ª di Serie A tra le rose</p></div></div>')
     h.append("</div><div>")
     if t.get("numero"):
         nm = t["numero"]
@@ -309,7 +309,7 @@ def costruisci(t, tema="classico"):
     # ---------- pagina 2: classifiche e migliori
     h.append(f'<section class="pg">{testata(2)}<div class="mini occ">Dopo la {n}ª giornata</div><div class="tit" style="font-size:30pt">Le classifiche</div>')
     h.append('<div class="tab"><h2>Campionato · <b>la classifica</b></h2>' + tab_cl(classifica(gioc)) +
-             '<p class="nt">Vittoria 3 punti, pareggio 1. A parità di punti conta il totale dei fantapunti, come nella classifica di Leghe.</p></div>')
+             '<p class="nt">Vittoria 3 punti, pareggio 1. A parità di punti conta il totale dei fantapunti. Fonte: classifica Leghe Fantacalcio.</p></div>')
     giocate_cup = [x for x in cal["cup"] if giocata(x)]
     cc = classifica(cal["cup"] if giocate_cup else cal["cup"][:1], coppa=True)
     h.append('<div class="tab"><h2>Champions Cup · <b>i gironi</b></h2>')
@@ -323,7 +323,8 @@ def costruisci(t, tema="classico"):
         h.append(f'<div class="taglio" style="margin-top:3.4mm;padding:2.4mm 4mm"><b>Il commento</b>{esc(t["classifiche"])}</div>')
     g, top, flop = migliori()
     if top:
-        h.append(f'<div class="tab"><h2>Serie A, {g}ª giornata · <b>i migliori delle rose</b></h2><div class="cols"><div>')
+        h.append(f'<div class="tab"><h2>Serie A, {g}ª giornata · <b>il meglio e il peggio delle rose</b></h2><div class="cols"><div>')
+        h.append('<div class="gr" style="margin-top:0">I top</div>')
         for fv, nome, club, r, v, b in top:
             extra = (" · " + ", ".join(b)) if b else ""
             h.append(f'<div class="tp"><b>{esc(nome)}</b> <i>{esc(club)} · {RUOLO.get(r, "")}</i><br>Fantavoto {pt(fv)}{esc(extra)}</div>')
