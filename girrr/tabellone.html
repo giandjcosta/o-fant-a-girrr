@@ -186,7 +186,8 @@ document.addEventListener('keydown',function(e){if(e.key==='ArrowLeft')go(-1);if
 fetch('../data.json',{cache:'no-store'}).then(function(r){return r.json()}).then(function(d){
   D=d;sel.lega=lastPlayed(d.cal.lega,false)||1;
   var lc=lastPlayed(d.cal.cup,true);sel.coppa=lc||1;
-  if(location.hash==='#coppa'){mode='coppa';document.body.setAttribute('data-mode','coppa')}
+  var hm=/^#(lega|coppa)(?:-(\d+))?$/.exec(location.hash||'');
+  if(hm){if(hm[1]==='coppa'){mode='coppa';document.body.setAttribute('data-mode','coppa')}if(hm[2]){var nn=+hm[2],mx=(hm[1]==='coppa'?d.cal.cup:d.cal.lega).length;sel[hm[1]]=Math.min(Math.max(1,nn),mx)}}
   render();
   document.getElementById('foot').textContent='Dati aggiornati al '+(d.cal.date||'')+' · frecce ← → per cambiare giornata';
 }).catch(function(){document.getElementById('board').innerHTML='<div class="err">Non riesco a leggere i dati.</div>'});

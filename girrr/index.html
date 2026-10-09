@@ -23,8 +23,12 @@ body{min-height:100vh;font-family:Inter,system-ui,-apple-system,Segoe UI,sans-se
 h1{font-weight:900;font-size:clamp(44px,10vw,92px);line-height:.95;margin-top:6px;letter-spacing:-.02em}
 h1 span{color:var(--acc);filter:brightness(1.3)}
 .tag{margin-top:10px;color:var(--sub);font-weight:600;font-size:clamp(14px,2vw,18px)}
-.strip{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:12px;margin-bottom:26px}
-.st{background:rgba(255,255,255,.08);border-left:6px solid var(--acc);border-radius:4px 12px 12px 4px;padding:12px 14px}
+.strip{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin-bottom:26px}
+@media(min-width:900px){.strip{grid-template-columns:repeat(4,1fr)}}
+@media(max-width:460px){.strip{grid-template-columns:1fr}}
+a.st:hover{transform:translateY(-4px);background:rgba(255,255,255,.14);box-shadow:0 12px 24px rgba(0,0,0,.3)}
+.st .vai{display:block;margin-top:8px;font-weight:900;font-size:10px;letter-spacing:.2em;color:var(--hi)}
+.st{display:block;text-decoration:none;color:inherit;transition:transform .2s,background-color .2s,box-shadow .2s;background:rgba(255,255,255,.08);border-left:6px solid var(--acc);border-radius:4px 12px 12px 4px;padding:12px 14px}
 .st small{display:block;font-weight:800;font-size:11px;letter-spacing:.24em;color:var(--hi);margin-bottom:6px}
 .st b{font-weight:900;font-size:17px;text-transform:uppercase}
 .st span{display:block;color:var(--sub);font-weight:600;font-size:13px;margin-top:3px;line-height:1.4}
@@ -101,11 +105,13 @@ fetch('../data.json',{cache:'no-store'}).then(function(r){return r.json()}).then
   var h='';
   if(pl.length){
     var cl=classifica(pl),last=pl[pl.length-1];
-    h+='<div class="st"><small>IN TESTA ALLA CLASSIFICA</small><b>'+esc(cap(cl[0].n))+'</b><span>'+cl[0].pt+' punti · '+pt(cl[0].fp)+' fantapunti</span></div>';
+    h+='<a class="st" href="tabellone.html#lega-'+last.n+'"><small>IN TESTA ALLA CLASSIFICA</small><b>'+esc(cap(cl[0].n))+'</b><span>'+cl[0].pt+' punti · '+pt(cl[0].fp)+' fantapunti</span><span class="vai">VEDI LA CLASSIFICA ›</span></a>';
     var big=last.m.slice().sort(function(a,b){var d1=Math.abs(a[1]-a[2]),d2=Math.abs(b[1]-b[2]);return d2-d1})[0];
-    h+='<div class="st"><small>ULTIMA GIORNATA · '+last.n+'ª</small><b>'+esc(cap(big[0]))+' '+big[4].replace('-','–')+' '+esc(cap(big[3]))+'</b><span>Lo scarto più largo: '+pt(Math.abs(big[1]-big[2]))+' punti</span></div>';
+    h+='<a class="st" href="tabellone.html#lega-'+last.n+'"><small>ULTIMA GIORNATA · '+last.n+'ª</small><b>'+esc(cap(big[0]))+' '+big[4].replace('-','–')+' '+esc(cap(big[3]))+'</b><span>Lo scarto più largo: '+pt(Math.abs(big[1]-big[2]))+' punti</span><span class="vai">VEDI I RISULTATI ›</span></a>';
     var nx=L.filter(function(g){return g.m.every(function(m){return m[4]==='-'})})[0];
-    if(nx)h+='<div class="st"><small>PROSSIMO TURNO · '+nx.n+'ª</small><b>Serie A, giornata '+nx.sa+'</b><span>'+nx.m.map(function(m){return esc(cap(m[0]))+' – '+esc(cap(m[3]))}).slice(0,2).join('<br>')+'<br>…</span></div>';
+    if(nx)h+='<a class="st" href="tabellone.html#lega-'+nx.n+'"><small>PROSSIMO TURNO · '+nx.n+'ª</small><b>Serie A, giornata '+nx.sa+'</b><span>'+nx.m.map(function(m){return esc(cap(m[0]))+' – '+esc(cap(m[3]))}).slice(0,2).join('<br>')+'<br>…</span><span class="vai">VEDI IL CALENDARIO ›</span></a>';
+    var cn=(d.cal.cup||[]).filter(function(g){return g.m.every(function(m){return m[5]==='-'})})[0];
+    if(cn)h+='<a class="st" href="tabellone.html#coppa-'+cn.n+'"><small>CHAMPIONS CUP · TURNO '+cn.n+'</small><b>Serie A, giornata '+cn.sa+'</b><span>'+cn.m.map(function(m){return esc(cap(m[1]))+' – '+esc(cap(m[4]))}).slice(0,2).join('<br>')+'<br>…</span><span class="vai">VEDI I GIRONI ›</span></a>';
   }
   document.getElementById('strip').innerHTML=h;
   var nx2=L.filter(function(g){return g.m.every(function(m){return m[4]==='-'})})[0];
