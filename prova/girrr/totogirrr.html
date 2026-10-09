@@ -1,0 +1,408 @@
+<!doctype html>
+<html lang="it">
+<head><meta name="robots" content="noindex">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="robots" content="noindex">
+<title>Totogirrr · O Girrr</title>
+<link rel="icon" type="image/png" href="../assets/favicon-64.png">
+<link rel="apple-touch-icon" href="../assets/apple-touch-icon.png">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lobster&family=Inter:wght@500;700;800;900&display=swap">
+<style>
+:root{--acc:#d62839;--bg:#1d2a52;--bg2:#2c3f7c;--bg3:#141d3d;--chiaro:#fbf6ec;--hi:#ffd166;--sub:#bfe3ff;--az:#3d93d6;--ok:#4ade80;--ko:#ff6b7a}
+*{box-sizing:border-box;margin:0;padding:0}
+body{min-height:100vh;font-family:Inter,system-ui,-apple-system,Segoe UI,sans-serif;color:var(--chiaro);background:var(--bg);
+ background-image:radial-gradient(1200px 700px at 80% -10%,var(--bg2) 0,var(--bg) 55%,var(--bg3) 100%);background-attachment:fixed}
+.wrap{max-width:860px;margin:0 auto;padding:14px 14px 150px}
+a{color:var(--hi)}
+.top{display:flex;align-items:center;gap:12px;margin-bottom:12px}
+.top img{height:46px}
+.top .t{flex:1;min-width:0}
+.top .k{font-weight:900;font-size:10px;letter-spacing:.32em;color:var(--hi)}
+.top h1,.gate h1,.toto{font-family:Lobster,"Brush Script MT",cursive;font-weight:400;font-style:italic;letter-spacing:.01em;text-shadow:0 2px 0 rgba(0,0,0,.28)}
+.top h1{font-size:36px;line-height:1.05;}
+.top h1 span,.gate h1 span{padding-right:.12em;text-shadow:none}
+.top h1 span{color:var(--hi)}
+.bal{text-align:right;background:rgba(255,255,255,.1);border-radius:12px;padding:6px 12px;border-left:5px solid var(--hi)}
+.bal small{display:block;font-weight:800;font-size:9px;letter-spacing:.22em;color:var(--sub)}
+.bal b{font-weight:900;font-size:22px;line-height:1.1}
+.back{display:inline-block;margin:0 0 10px;font-size:12px;font-weight:800;letter-spacing:.14em;text-decoration:none;color:var(--sub)}
+.who{font-size:12px;color:var(--sub);margin-bottom:10px}
+.who button{margin-left:6px}
+nav{display:flex;gap:6px;margin-bottom:14px;position:sticky;top:0;z-index:5;padding:6px 0;background:linear-gradient(var(--bg) 70%,transparent)}
+nav button{flex:1;font:900 10.5px Inter;letter-spacing:.04em;text-transform:uppercase;padding:10px 4px;border:0;border-radius:10px;background:rgba(255,255,255,.1);color:var(--chiaro);cursor:pointer}
+nav button.on{background:var(--hi);color:var(--bg)}
+button{font-family:inherit;cursor:pointer}
+.card{background:rgba(255,255,255,.08);border-radius:14px;padding:14px;margin-bottom:12px}
+.gh{font-weight:900;font-size:12px;letter-spacing:.2em;color:var(--hi);margin:18px 2px 8px;display:flex;justify-content:space-between;gap:8px}
+.gh.cup{color:var(--sub)}
+.gh small{font-weight:700;letter-spacing:.04em;color:var(--sub);text-align:right}
+.m .nm{display:flex;justify-content:space-between;gap:8px;font-weight:800;font-size:15px;margin-bottom:10px}
+.m .nm span{min-width:0;overflow-wrap:anywhere}
+.m .nm i{font-style:normal;color:var(--sub);font-weight:600;flex:none}
+.row{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin-bottom:6px}
+.row.two{grid-template-columns:repeat(2,1fr)}
+.q{border:2px solid rgba(255,255,255,.18);background:rgba(0,0,0,.18);color:var(--chiaro);border-radius:10px;padding:7px 4px;line-height:1.15}
+.q small{display:block;font-weight:700;font-size:10px;letter-spacing:.1em;color:var(--sub)}
+.q b{font-weight:900;font-size:18px}
+.q.on{background:var(--hi);color:var(--bg);border-color:var(--hi)}
+.q.on small{color:var(--bg)}
+.q:disabled{opacity:.4;cursor:not-allowed}
+.chiusa{font-size:12px;color:var(--sub);font-weight:700}
+.res{font-weight:900;font-size:20px;color:var(--hi)}
+.slip{position:fixed;left:0;right:0;bottom:0;z-index:10;background:var(--bg3);border-top:3px solid var(--hi);padding:10px 14px calc(10px + env(safe-area-inset-bottom,0px));box-shadow:0 -10px 26px rgba(0,0,0,.45)}
+.slip .in{max-width:860px;margin:0 auto}
+.slip .sel{font-size:12px;color:var(--sub);margin-bottom:6px;max-height:84px;overflow:auto}
+.slip .sel div{display:flex;justify-content:space-between;gap:8px}
+.slip .sel b{color:var(--chiaro)}
+.slip .ln{display:flex;gap:8px;align-items:center}
+.slip input{width:92px;font:900 17px Inter;padding:9px;border-radius:10px;border:2px solid var(--hi);background:var(--bg);color:var(--chiaro)}
+.slip .info{flex:1;font-size:12px;color:var(--sub);line-height:1.3}
+.slip .info b{color:var(--hi);font-size:16px}
+.go{font:900 13px Inter;letter-spacing:.14em;text-transform:uppercase;padding:12px 14px;border:0;border-radius:10px;background:var(--acc);color:#fff}
+.go:disabled{opacity:.5}
+.x{border:0;background:transparent;color:var(--sub);font-weight:800;font-size:12px;text-decoration:underline}
+.chips{display:flex;gap:6px;margin-top:6px}
+.chips button{border:1px solid rgba(255,255,255,.3);background:transparent;color:var(--chiaro);border-radius:999px;font-weight:800;font-size:11px;padding:4px 10px}
+.bet .h{display:flex;justify-content:space-between;align-items:baseline;gap:8px;font-weight:800}
+.tag{font-weight:900;font-size:10px;letter-spacing:.16em;padding:3px 8px;border-radius:999px;background:rgba(255,255,255,.15)}
+.tag.vinta{background:var(--ok);color:#052e16}.tag.persa{background:var(--ko);color:#4c0519}
+html{overflow-y:scroll;scrollbar-gutter:stable}
+.bet .summ{cursor:pointer;-webkit-tap-highlight-color:transparent}
+.bet .bd{display:grid;grid-template-rows:0fr;transition:grid-template-rows .4s cubic-bezier(.2,.8,.2,1)}
+.bet.open .bd{grid-template-rows:1fr}
+.bet .bi{overflow:hidden;min-height:0;opacity:0;transform:translateY(-8px);transition:opacity .3s,transform .4s cubic-bezier(.2,.8,.2,1)}
+.bet.open .bi{opacity:1;transform:none;transition-delay:.08s}
+.bet .ch i{display:inline-block;font-style:normal;transition:transform .35s}
+.bet.open .ch i{transform:rotate(180deg)}
+.bet.open .ch{display:inline}
+.bet .sm{margin-top:6px;font-size:13px;color:var(--sub)}.bet .sm b{color:var(--chiaro)}.bet .ch{color:var(--hi);font-weight:800;font-size:11px;letter-spacing:.06em;margin-left:4px;white-space:nowrap}
+.bet ul{border-top:1px solid rgba(255,255,255,.12);padding-top:8px;margin-top:10px}
+.bet li{align-items:flex-start;gap:10px}.bet li .ic{flex:none;width:22px;height:22px;border-radius:50%;display:grid;place-items:center;font-weight:900;font-size:13px;background:rgba(255,255,255,.12);color:var(--chiaro)}
+.bet li.v .ic{background:var(--ok);color:#052e16}.bet li.p .ic{background:var(--ko);color:#4c0519}
+.bet li .tx{flex:1;min-width:0;color:var(--chiaro)}.bet li .tx small{color:var(--sub);font-size:12px}
+.bet li.v .tx{color:var(--ok)}.bet li.p .tx{color:var(--ko)}.bet li.v .tx small,.bet li.p .tx small{color:var(--sub)}
+.bet .ft{margin-top:10px;font-size:13px;color:var(--chiaro);font-weight:800}
+.bet ul{list-style:none;margin-top:8px;font-size:13px;color:var(--sub)}
+.bet li{display:flex;justify-content:space-between;gap:8px;padding:2px 0}
+.bet li.v{color:var(--ok)}.bet li.p{color:var(--ko)}
+.lb{width:100%;border-collapse:collapse;font-size:14px}
+.lb td,.lb th{padding:9px 6px;text-align:left;border-bottom:1px solid rgba(255,255,255,.1)}
+.lb th{font-size:10px;letter-spacing:.2em;color:var(--sub)}
+.lb td:last-child,.lb th:last-child{text-align:right}
+.lb tr.me{background:rgba(255,209,102,.14)}
+.lb .n{width:26px;font-weight:900;color:var(--hi)}
+.gate{max-width:420px;margin:8vh auto 0;text-align:center}
+.gate img{height:120px;margin-bottom:6px}
+.gate h1{font-size:60px;line-height:1.1}
+.gate h1 span{color:var(--hi)}
+.gate p{color:var(--sub);font-weight:600;margin:8px 0 18px;line-height:1.4}
+.gate select,.gate input{width:100%;font:700 16px Inter;padding:13px;border-radius:12px;border:2px solid rgba(255,255,255,.25);background:rgba(0,0,0,.25);color:var(--chiaro);margin-bottom:10px}
+.gate .go{width:100%;padding:14px}
+.err{color:var(--ko);font-weight:700;font-size:13px;margin-top:8px;min-height:18px}
+.regole{font-size:13px;line-height:1.55;color:var(--sub)}
+.regole b{color:var(--chiaro)}
+.regole li{margin:6px 0 6px 18px}
+.toast{position:fixed;left:50%;transform:translateX(-50%);bottom:130px;z-index:20;background:var(--hi);color:var(--bg);font-weight:900;padding:10px 16px;border-radius:12px;box-shadow:0 8px 22px rgba(0,0,0,.4);max-width:92vw;text-align:center}
+.toast.bad{background:var(--ko);color:#fff}
+.pane.an>*{animation:rise .55s cubic-bezier(.2,.8,.2,1) both}
+.pane.an>*:nth-child(1){animation-delay:0s}.pane.an>*:nth-child(2){animation-delay:.05s}.pane.an>*:nth-child(3){animation-delay:.1s}.pane.an>*:nth-child(4){animation-delay:.15s}.pane.an>*:nth-child(5){animation-delay:.2s}.pane.an>*:nth-child(6){animation-delay:.25s}.pane.an>*:nth-child(7){animation-delay:.3s}.pane.an>*:nth-child(8){animation-delay:.35s}.pane.an>*:nth-child(n+9){animation-delay:.4s}
+@keyframes rise{from{opacity:0;transform:translateY(22px) scale(.97)}to{opacity:1;transform:none}}
+@keyframes pop{0%{transform:scale(.88)}55%{transform:scale(1.08)}100%{transform:scale(1)}}
+@keyframes up{from{transform:translateY(100%)}to{transform:none}}
+@keyframes glow{0%,100%{box-shadow:0 0 0 0 rgba(255,209,102,0)}50%{box-shadow:0 0 22px 2px rgba(255,209,102,.55)}}
+@keyframes shine{from{background-position:-200% 0}to{background-position:200% 0}}
+.q{transition:transform .15s,background-color .2s,border-color .2s}
+.q:not(:disabled):hover{transform:translateY(-2px);border-color:var(--hi)}
+.q:not(:disabled):active{transform:scale(.94)}
+.q.pop{animation:pop .35s}
+.card.m{transition:transform .2s,box-shadow .2s}
+.card.m:hover{transform:translateY(-2px);box-shadow:0 10px 24px rgba(0,0,0,.3)}
+.slip.new{animation:up .35s cubic-bezier(.2,.8,.2,1)}
+.go{transition:transform .15s,filter .2s}.go:not(:disabled):hover{filter:brightness(1.12);transform:translateY(-1px)}.go:not(:disabled):active{transform:scale(.96)}
+.bal{animation:glow 2.4s ease-in-out 1}
+.bal.up{animation:pop .5s,glow 1.2s}
+.top h1 span{background:linear-gradient(90deg,var(--hi) 30%,#fff 50%,var(--hi) 70%);background-size:200% 100%;-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;animation:shine 3.2s linear 2}
+.tag.vinta{animation:glow 1.4s ease-in-out 3}
+.toast{animation:rise .35s both}
+nav button{transition:background-color .2s,color .2s,transform .15s}nav button:active{transform:scale(.94)}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+.tick{overflow:hidden;white-space:nowrap;margin:0 -14px 12px;border-block:1px solid rgba(255,255,255,.12);background:rgba(0,0,0,.2);font-size:12px;font-weight:700;color:var(--sub);-webkit-mask-image:linear-gradient(90deg,transparent,#000 6%,#000 94%,transparent);mask-image:linear-gradient(90deg,transparent,#000 6%,#000 94%,transparent)}
+.tk{display:inline-flex;gap:30px;padding:7px 0;animation:tick 55s linear infinite}
+.tick:hover .tk{animation-play-state:paused}
+.tk span b{color:var(--chiaro)}.tk span i{font-style:normal;color:var(--hi)}
+@keyframes tick{to{transform:translateX(-50%)}}
+.feat{display:flex;gap:10px;overflow-x:auto;scroll-snap-type:x proximity;margin:0 -14px 4px;padding:2px 14px 8px;scrollbar-width:none}
+.feat::-webkit-scrollbar{display:none}
+.fc{flex:none;width:210px;scroll-snap-align:start;background:linear-gradient(150deg,rgba(255,209,102,.2),rgba(255,255,255,.06));border-radius:14px;padding:10px 12px;border:1px solid rgba(255,209,102,.3)}
+.fc .tg{font-weight:900;font-size:9px;letter-spacing:.2em;color:var(--hi)}
+.fc .mm{font-weight:800;font-size:13px;margin:4px 0 8px;line-height:1.2;min-height:32px}
+.fc .q{width:100%;display:flex;justify-content:space-between;align-items:center;padding:8px 10px}
+.fc .q small{margin:0;text-align:left}
+.cd{color:var(--chiaro);font-variant-numeric:tabular-nums}.cd.warn{color:var(--hi)}.cd.hot{color:var(--ko);animation:glow 1.2s infinite}
+.rig{border:1px solid var(--hi)!important;color:var(--hi)!important;text-decoration:none!important;border-radius:999px;padding:5px 12px;margin-top:10px;font-weight:900;letter-spacing:.08em;font-size:11px}
+.card.m .mx{display:grid;grid-template-rows:0fr;transition:grid-template-rows .4s cubic-bezier(.2,.8,.2,1)}
+.card.m.open .mx{grid-template-rows:1fr}
+.card.m .mi{overflow:hidden;min-height:0;opacity:0;transition:opacity .3s}
+.card.m.open .mi{opacity:1;transition-delay:.08s}
+.mo{margin:2px 0 0;font-weight:800;font-size:12px}.mo i{display:inline-block;font-style:normal;transition:transform .35s}
+.card.m.open .mo i{transform:rotate(180deg)}
+.mi{padding-top:8px}
+.row.four{grid-template-columns:repeat(4,1fr)}
+.row.four .q{padding:6px 2px}.row.four .q small{font-size:11px;letter-spacing:.04em}.row.four .q b{font-size:14px}
+.eh{font-weight:900;font-size:10px;letter-spacing:.2em;color:var(--hi);margin:6px 2px}
+.vl{display:grid;gap:6px}
+.vq{display:flex;justify-content:space-between;align-items:center;padding:10px 12px;text-align:left}
+.vq span{font-weight:800;font-size:14px;overflow-wrap:anywhere}
+.stt{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:12px}
+.stt div{background:rgba(255,255,255,.08);border-radius:12px;padding:10px 6px;text-align:center}
+.stt small{display:block;font-weight:800;font-size:9px;letter-spacing:.14em;color:var(--sub)}
+.stt b{font-weight:900;font-size:19px}
+.colpo{background:linear-gradient(135deg,rgba(255,209,102,.25),rgba(255,255,255,.06));border:1px solid rgba(255,209,102,.4);border-radius:14px;padding:12px 14px;margin-bottom:12px;font-size:14px;font-weight:700}
+.colpo small{display:block;font-weight:900;font-size:10px;letter-spacing:.22em;color:var(--hi);margin-bottom:4px}
+.vuoto{text-align:center;color:var(--sub);padding:26px 8px;font-weight:600}
+body::before{content:'';position:fixed;inset:-120px;z-index:-1;pointer-events:none;background:repeating-linear-gradient(115deg,rgba(255,255,255,.04) 0 36px,transparent 36px 72px);animation:strisce 9s linear infinite}
+@keyframes strisce{to{transform:translate3d(79.45px,0,0)}}
+@media (prefers-reduced-motion:reduce){body::before{animation:none}}
+.TT{font-weight:400;font-size:1.3em;position:relative;display:inline-block;line-height:1}
+.Tg{visibility:hidden;display:inline-block;font-style:italic;line-height:1}
+.TT{filter:drop-shadow(0 2px 0 rgba(0,0,0,.28))}
+.TT svg{position:absolute;left:0;top:0;width:2.25em;height:1em;overflow:visible;pointer-events:none}
+</style>
+</head>
+<body><div style="position:fixed;top:0;left:0;right:0;z-index:99999;background:#ffd23f;color:#111;font:800 11px/1 Inter,sans-serif;letter-spacing:.12em;text-align:center;padding:5px 8px;text-transform:uppercase">Sito di prova · dati finti · non è il sito vero</div>
+<div class="wrap" id="app"></div>
+<script>
+(function(){
+var URL_='https://qmjqfgmvimsuxvghetgi.supabase.co',KEY='sb_publishable_qPhimkrF4iUvIad7JPoH8A_i-eOqG7n';
+function esc(s){return String(s).replace(/[&<>"]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})}
+function f2(n){return Number(n).toLocaleString('it-IT',{minimumFractionDigits:2,maximumFractionDigits:2})}
+function f0(n){return Number(n).toLocaleString('it-IT',{maximumFractionDigits:0})}
+var LS={};try{LS=JSON.parse(localStorage.getItem('fg')||'{}')||{}}catch(e){}
+function save(){try{localStorage.setItem('fg',JSON.stringify(LS))}catch(e){}}
+var DEMO=true;
+var teams=[],team=DEMO?'Oranje VC':(LS.team||''),code=DEMO?'demo':(LS.code||''),S=null,tab='partite',slip=[],err='',busy=false;
+var MORE={};
+function mlab(m){var t={'1':'1','X':'X','2':'2','O':'Over 4,5','U':'Under 4,5','O35':'Over 3,5','U35':'Under 3,5','O55':'Over 5,5','U55':'Under 5,5','GG':'Entrambe segnano','NG':'Non segnano entrambe'};if(t[m])return t[m];if(m.indexOf('T:')===0)return m.slice(2);if(m.indexOf('E:')===0)return 'Esatto '+m.slice(2).replace('-','–');return m}
+function esitoJS(m,a,b){var t=a+b;return m==='1'?a>b:m==='X'?a===b:m==='2'?a<b:m==='O'?t>=5:m==='U'?t<=4:m==='O35'?t>=4:m==='U35'?t<=3:m==='O55'?t>=6:m==='U55'?t<=5:m==='GG'?a>=1&&b>=1:m==='NG'?(a===0||b===0):m==='E:'+a+'-'+b}
+function nm(p){return p.comp==='vinc'?esc(p.casa):esc(p.casa)+' – '+esc(p.trasf)}
+
+var M=null;
+function mockInit(){
+  var t=Date.now()+3600e3,mk=function(i,c,tr,a,b,c2,d,e){return{id:'D'+i,comp:'lega',giornata:2,casa:c,trasf:tr,chiude:new Date(t).toISOString(),q1:a,qx:b,q2:c2,qo:d,qu:e,gc:null,gt:null,chiusa:false,extra:{O35:1.3,U35:3.1,O55:2.0,U55:1.7,GG:1.3,NG:3.2,'E:2-1':19,'E:1-1':24,'E:3-1':21,'E:2-0':22,'E:3-2':24,'E:4-1':25}}};
+  M={conto:{team:'Oranje VC',crediti:500,debito:0,ultimo_prestito:null},partite:[mk(1,'The Blue brothers','Mariana Coneja',2.55,6.15,1.83,1.67,2.0),mk(2,'AFA SELECCION','Real Madrink',2.21,6.27,2.05,1.59,2.12),mk(3,'Oranje VC','stif dc',1.59,6.71,3.12,1.54,2.22),mk(4,'Grodah','Atletico ma non troppo',2.05,5.46,2.33,1.99,1.67),mk(5,'WOA','Apo team',2.24,6.25,2.03,1.66,2.02)],schedine:[],n:0};
+  M.partite.push({id:'V-LEGA',comp:'vinc',giornata:0,casa:'Chi vince il campionato',trasf:'',chiude:new Date(t).toISOString(),q1:1,qx:1,q2:1,qo:1,qu:1,gc:null,gt:null,chiusa:false,extra:{'T:Oranje VC':3.66,'T:Mariana Coneja':5.53,'T:Apo team':7.07,'T:Real Madrink':7.15,'T:AFA SELECCION':7.17,'T:WOA':14.33,'T:The Blue brothers':16.83,'T:Grodah':19.32,'T:stif dc':19.91,'T:Atletico ma non troppo':22.88}});
+}
+function mockStat(){var f=M.schedine.filter(function(x){return x.stato!=='aperta'}),v=f.filter(function(x){return x.stato==='vinta'});
+  return{giocate:f.length,vinte:v.length,aperte:M.schedine.length-f.length,puntato:f.reduce(function(a,x){return a+x.puntata},0),vinto:v.reduce(function(a,x){return a+x.vincita},0),quota_media:M.schedine.length?M.schedine.reduce(function(a,x){return a+x.quota},0)/M.schedine.length:0,miglior_vincita:v.reduce(function(a,x){return Math.max(a,x.vincita)},0),multiple:M.schedine.filter(function(x){return x.sel.length>1}).length}}
+function mockColpo(){var v=M.schedine.filter(function(x){return x.stato==='vinta'}).sort(function(a,b){return b.vincita-a.vincita})[0];return v?{team:'Oranje VC',vincita:v.vincita,quota:v.quota}:null}
+function mockStato(){
+  var c=M.conto,lib=c.crediti<50&&!c.ultimo_prestito;
+  return{ora:new Date().toISOString(),conto:c,sussidio_ok:lib,partite:M.partite,schedine:M.schedine.slice().reverse(),
+   stat:mockStat(),colpo:mockColpo(),classifica:[{team:'Oranje VC',crediti:c.crediti,debito:c.debito,ingioco:M.schedine.filter(function(x){return x.stato==='aperta'}).reduce(function(a,x){return a+x.puntata},0)},{team:'stif dc',crediti:500,debito:0,ingioco:0},{team:'Grodah',crediti:500,debito:0,ingioco:0}]};
+}
+function mockRpc(name,b){
+  if(!M)mockInit();
+  if(name==='toto_stato')return mockStato();
+  if(name==='toto_sussidio'){var d=50-M.conto.crediti;M.conto.crediti=50;M.conto.debito=Math.round(d*120)/100;M.conto.ultimo_prestito=1;return{crediti:50,dato:d,da_restituire:M.conto.debito}}
+  if(name==='toto_gioca'){
+    var st=b.p_puntata;if(!(st>=5))throw new Error('Puntata minima: 5 fantacrediti');if(st>M.conto.crediti)throw new Error('Fantacrediti insufficienti');
+    var q=1,sel=b.p_sel.map(function(x){var p=M.partite.filter(function(y){return y.id===x.p})[0];if(p.casa==='Oranje VC'&&st>100)throw new Error('Sulla tua partita puntata massima 100');var qq=quotaDi(p,x.m);q*=qq;return{partita:p.id,mercato:x.m,quota:qq,esito:null}});
+    q=Math.min(500,Math.round(q*100)/100);M.conto.crediti=Math.round((M.conto.crediti-st)*100)/100;
+    M.schedine.push({id:++M.n,puntata:st,quota:q,stato:'aperta',vincita:0,creata:new Date().toISOString(),sel:sel});
+    return{id:M.n,quota:q,vincita_possibile:Math.round(st*q*100)/100};
+  }
+  if(name==='demo_simula'){
+    var win={};
+    M.partite.forEach(function(p){if(p.chiusa)return;p.chiusa=true;if(p.comp==='vinc'){var k=Object.keys(p.extra);win[p.id]='T:'+k[Math.floor(Math.random()*k.length)].slice(2)}else{p.gc=Math.floor(Math.random()*5);p.gt=Math.floor(Math.random()*5)}});
+    M.schedine.forEach(function(s){if(s.stato!=='aperta')return;
+      s.sel.forEach(function(x){var p=M.partite.filter(function(y){return y.id===x.partita})[0];x.esito=(p.comp==='vinc'?x.mercato===win[p.id]:esitoJS(x.mercato,p.gc,p.gt))?'v':'p'});
+      if(s.sel.some(function(x){return x.esito==='p'}))s.stato='persa';
+      else{var v=Math.round(s.puntata*s.quota*100)/100,tr=Math.min(M.conto.debito,Math.round(v*40)/100);s.stato='vinta';s.vincita=v;M.conto.crediti=Math.round((M.conto.crediti+v-tr)*100)/100;M.conto.debito=Math.round((M.conto.debito-tr)*100)/100}});
+    return 1;
+  }
+}
+function rpc(name,body){
+  if(DEMO){try{return Promise.resolve(JSON.parse(JSON.stringify(mockRpc(name,body))))}catch(e){return Promise.reject(e)}}
+  return fetch(URL_+'/rest/v1/rpc/'+name,{method:'POST',headers:{'apikey':KEY,'Authorization':'Bearer '+KEY,'Content-Type':'application/json'},body:JSON.stringify(body)})
+   .then(function(r){return r.json().then(function(j){if(!r.ok)throw new Error(j&&j.message?j.message:'Errore di rete');return j})});
+}
+function toast(t,bad){var d=document.createElement('div');d.className='toast'+(bad?' bad':'');d.textContent=t;document.body.appendChild(d);setTimeout(function(){d.remove()},3200)}
+function quando(iso){try{var t=new Intl.DateTimeFormat('it-IT',{weekday:'short',day:'numeric',month:'numeric',hour:'2-digit',minute:'2-digit',timeZone:'Europe/Rome'}).format(new Date(iso));return t.charAt(0).toUpperCase()+t.slice(1)}catch(e){return iso}}
+
+function carica(){
+  busy=true;
+  return rpc('toto_stato',{p_team:team,p_code:code}).then(function(s){S=s;err='';busy=false;
+    // tolgo dalla schedina le partite che nel frattempo si sono chiuse
+    slip=slip.filter(function(x){var p=pm(x.p);return p&&!p.chiusa&&new Date(p.chiude)>new Date()});
+    render()}).catch(function(e){busy=false;S=null;err=e.message;if(/Codice/.test(err)){LS.code='';code='';save()}render()});
+}
+function pm(id){return S&&S.partite.filter(function(p){return p.id===id})[0]}
+function quotaDi(p,m){var f={'1':p.q1,'X':p.qx,'2':p.q2,'O':p.qo,'U':p.qu}[m];return Number(f!=null?f:(p.extra||{})[m])}
+function aperta(p){return !p.chiusa&&new Date(p.chiude)>new Date()}
+
+function gate(){
+  var o=teams.map(function(t){return '<option'+(t===team?' selected':'')+'>'+esc(t)+'</option>'}).join('');
+  return '<div class="gate"><a href="index.html" title="Torna a O Girrr"><img src="../assets/logo-lega.png" alt="O Fant A Girrr"></a><h1><b class="TT"><em class="Tg">T</em><svg viewBox="0 0 900 400" aria-hidden="true"><path fill="currentColor" d="M185.8 85.2H181Q145.4 85.2 121.1 103Q96.9 120.8 85.6 166Q81.9 180.8 83.2 186.6Q84.6 192.4 84.4 193.2Q62.8 193.2 54.4 184.2Q46.1 175.2 51.3 154.4Q58.4 126 78.2 102.6Q98.1 79.2 132.3 64.8Q166.5 50.4 213.7 50.4Q240.1 50.4 269.3 55.2Q272.6 55.8 275.8 56.3C299.8 57.8 329.3 62.4 360.7 67.4C408.7 74.9 461.1 83.2 505 82C565 80 605 68 642 62C668 66 668 94 640 99C600 108 545 122 480 122C417.8 122 363.5 106.2 296 100.6V102Q285.1 101.7 274.5 100Q262.2 98 239.8 93.2L120.4 350H62.8Z"/></svg></b>oto<span>girrr</span></h1><p>Le scommesse della lega, con i fantacrediti: ne hai 500 a testa. Entra con il codice della tua squadra, lo stesso dello Spogliatoio.</p>'+
+  '<select id="gt">'+o+'</select><input id="gc" placeholder="Codice squadra" autocomplete="off" autocapitalize="characters" value="'+esc(code)+'"><button class="go" id="enter">Entra</button><div class="err">'+esc(err)+'</div><p style="margin-top:22px"><a href="index.html">‹ Torna a O Girrr</a></p></div>';
+}
+function ticker(){
+  var it=S.partite.filter(function(p){return p.comp!=='vinc'}).map(function(p){return p.chiusa?'<span><b>'+esc(p.casa)+'</b> <i>'+p.gc+'–'+p.gt+'</i> <b>'+esc(p.trasf)+'</b></span>':'<span><b>'+esc(p.casa)+'</b> – <b>'+esc(p.trasf)+'</b> <i>'+f2(p.q1)+' · '+f2(p.qx)+' · '+f2(p.q2)+'</i></span>'}).join('');
+  return it?'<div class="tick"><div class="tk">'+it+it+'</div></div>':'';
+}
+function evid(){
+  var ap=S.partite.filter(function(p){return aperta(p)&&p.comp!=='vinc'});if(!ap.length)return '';
+  var fav=ap.map(function(p){var s1=p.q1<=p.q2;return{p:p,m:s1?'1':'2',q:s1?p.q1:p.q2,n:s1?p.casa:p.trasf}}).sort(function(a,b){return a.q-b.q}).slice(0,3);
+  var used={};fav.forEach(function(x){used[x.p.id]=1});
+  var col=ap.filter(function(p){return !used[p.id]}).map(function(p){var s1=p.q1>=p.q2;return{p:p,m:s1?'1':'2',q:s1?p.q1:p.q2,n:s1?p.casa:p.trasf}}).sort(function(a,b){return b.q-a.q}).slice(0,2);
+  var cards=fav.map(function(x){return card(x,'FAVORITA')}).concat(col.map(function(x){return card(x,'COLPACCIO')})).join('');
+  return '<div class="gh" style="margin-top:4px"><span>IN EVIDENZA</span></div><div class="feat">'+cards+'</div>';
+}
+function card(x,tag){
+  var on=slip.some(function(y){return y.p===x.p.id&&y.m===x.m});
+  return '<div class="fc"><div class="tg">'+tag+'</div><div class="mm">'+esc(x.p.casa)+' – '+esc(x.p.trasf)+'</div><button class="q'+(on?' on':'')+'" data-p="'+x.p.id+'" data-m="'+x.m+'"><small>'+esc(x.n)+'</small><b>'+f2(x.q)+'</b></button></div>';
+}
+function head(){
+  var c=S.conto;
+  return (DEMO?'<div class="card" style="border:2px dashed var(--hi);font-size:13px"><b style="color:var(--hi)">PROVA</b> · Qui è tutto finto e si azzera quando ricarichi. Gioca una schedina, poi premi il pulsante per far finire le partite a caso.<br><button class="go" id="sim" style="margin-top:10px">Fai finire le partite</button></div>':'')+'<a class="back" href="index.html">‹ O GIRRR</a><div class="top"><a href="index.html" title="Torna a O Girrr" style="display:block;flex:none"><img src="../assets/logo-lega.png" alt="O Fant A Girrr" style="display:block"></a><div class="t"><div class="k">O FANT A GIRRR</div><h1><b class="TT"><em class="Tg">T</em><svg viewBox="0 0 900 400" aria-hidden="true"><path fill="currentColor" d="M185.8 85.2H181Q145.4 85.2 121.1 103Q96.9 120.8 85.6 166Q81.9 180.8 83.2 186.6Q84.6 192.4 84.4 193.2Q62.8 193.2 54.4 184.2Q46.1 175.2 51.3 154.4Q58.4 126 78.2 102.6Q98.1 79.2 132.3 64.8Q166.5 50.4 213.7 50.4Q240.1 50.4 269.3 55.2Q272.6 55.8 275.8 56.3C299.8 57.8 329.3 62.4 360.7 67.4C408.7 74.9 461.1 83.2 505 82C565 80 605 68 642 62C668 66 668 94 640 99C600 108 545 122 480 122C417.8 122 363.5 106.2 296 100.6V102Q285.1 101.7 274.5 100Q262.2 98 239.8 93.2L120.4 350H62.8Z"/></svg></b>oto<span>girrr</span></h1></div><div class="bal"><small>FANTACREDITI</small><b>'+f2(c.crediti)+'</b>'+(Number(c.debito)>0?'<small style="color:var(--hi)">DEBITO '+f2(c.debito)+'</small>':'')+'</div></div>'+
+  '<div class="who">Squadra: <b>'+esc(team)+'</b><button class="x" id="out">Esci</button></div>'+
+  '<nav>'+[['partite','Partite'],['vinc','Vincenti'],['mie','Le mie'],['class','Classifica'],['regole','Regole']].map(function(t){return '<button data-tab="'+t[0]+'" class="'+(tab===t[0]?'on':'')+'">'+t[1]+'</button>'}).join('')+'</nav>'+ticker();
+}
+function qbtn(p,m,lab){
+  var on=slip.some(function(x){return x.p===p.id&&x.m===m});lab=lab||mlab(m);
+  return '<button class="q'+(on?' on':'')+'" data-p="'+p.id+'" data-m="'+m+'"'+(aperta(p)?'':' disabled')+'><small>'+lab+'</small><b>'+f2(quotaDi(p,m))+'</b></button>';
+}
+function altri(p){
+  var ex=p.extra||{};if(!Object.keys(ex).length)return '';
+  var r2=function(a,b){return ex[a]!=null?'<div class="row two">'+qbtn(p,a)+qbtn(p,b)+'</div>':''};
+  var es=Object.keys(ex).filter(function(k){return k.indexOf('E:')===0}).sort(function(a,b){return ex[a]-ex[b]});
+  var eh=es.length?'<div class="eh">RISULTATO ESATTO</div><div class="row four">'+es.map(function(k){return qbtn(p,k,k.slice(2).replace('-','–'))}).join('')+'</div>':'';
+  return '<button class="x mo" data-more="'+p.id+'">Altri mercati <i>▾</i></button><div class="mx"><div class="mi">'+r2('O35','U35')+r2('O55','U55')+r2('GG','NG')+eh+'</div></div>';
+}
+function vVinc(){
+  var vs=S.partite.filter(function(p){return p.comp==='vinc'});
+  if(!vs.length)return '<div class="vuoto">Le quote su chi vince la lega e i gironi escono tra poco.</div>';
+  return vs.map(function(p){
+    var ex=p.extra||{},ks=Object.keys(ex).sort(function(a,b){return ex[a]-ex[b]});
+    var chiuso=p.chiusa||new Date(p.chiude)<=new Date();
+    return '<div class="gh"><span>'+esc(p.casa).toUpperCase()+'</span><small style="white-space:nowrap">'+(chiuso?'Chiusa':'Chiude tra <span class="cd" data-t="'+p.chiude+'"></span>')+'</small></div><div class="card"><div class="vl">'+ks.map(function(k){var on=slip.some(function(x){return x.p===p.id&&x.m===k});return '<button class="q vq'+(on?' on':'')+'" data-p="'+p.id+'" data-m="'+k+'"'+(chiuso?' disabled':'')+'><span>'+esc(k.slice(2))+'</span><b>'+f2(ex[k])+'</b></button>'}).join('')+'</div></div>';
+  }).join('');
+}
+function vPartite(){
+  var ev=evid();
+  var gr={},ord=[];S.partite.filter(function(p){return p.comp!=='vinc'}).forEach(function(p){var k=p.comp+'|'+p.giornata;if(!gr[k]){gr[k]=[];ord.push(k)}gr[k].push(p)});
+  if(!ord.length)return '<div class="vuoto">Nessuna partita in lavagna per ora. Le quote escono appena si sa quando inizia la giornata.</div>';
+  return ev+ord.map(function(k){
+    var a=gr[k],p0=a[0],cup=p0.comp==='coppa';
+    var h='<div class="gh'+(cup?' cup':'')+'"><span>'+(cup?'CHAMPIONS CUP':'CAMPIONATO')+' · GIORNATA '+p0.giornata+'</span><small title="'+quando(p0.chiude)+'" style="white-space:nowrap">'+(p0.chiusa||new Date(p0.chiude)<=new Date()?'Chiusa':'Chiude tra <span class="cd" data-t="'+p0.chiude+'"></span>')+'</small></div>';
+    return h+a.map(function(p){
+      var body=p.chiusa?'<div class="res">'+p.gc+' – '+p.gt+' <span class="chiusa">Finita</span></div>':
+        '<div class="row">'+qbtn(p,'1')+qbtn(p,'X')+qbtn(p,'2')+'</div><div class="row two">'+qbtn(p,'O')+qbtn(p,'U')+'</div>'+(aperta(p)?altri(p):'<div class="chiusa">Scommesse chiuse, si aspetta il risultato.</div>');
+      return '<div class="card m'+(MORE[p.id]?' open':'')+'" data-id="'+p.id+'"><div class="nm"><span>'+esc(p.casa)+' <i>vs</i> '+esc(p.trasf)+'</span></div>'+body+'</div>';
+    }).join('');
+  }).join('');
+}
+function etichetta(s){var p=pm(s.partita);return p?nm(p):esc(s.partita)}
+var OPEN={};
+function esito(x){var p=pm(x.partita);return p&&p.chiusa&&p.comp!=='vinc'?p.gc+'–'+p.gt:''}
+function vMie(){
+  if(!S.schedine.length)return '<div class="vuoto">Non hai ancora giocato niente. Vai su Partite e scegli gli esiti.</div>';
+  return S.schedine.map(function(s){
+    var multi=s.sel.length>1,az=s.sel.filter(function(x){return x.esito==='v'}).length,sb=s.sel.filter(function(x){return x.esito==='p'}).length,att=s.sel.length-az-sb;
+    var lis=s.sel.map(function(x){var ic=x.esito==='v'?'✓':x.esito==='p'?'✗':'…',r=esito(x);
+      return '<li class="'+(x.esito||'')+'"><span class="ic">'+ic+'</span><span class="tx">'+etichetta(x)+'<br><small>Hai giocato <b>'+mlab(x.mercato)+'</b>'+(r?' · Finita '+r:(x.esito?'':' · In attesa'))+'</small></span><span>'+f2(x.quota)+'</span></li>'}).join('');
+    var rs=s.stato==='vinta'?'Hai vinto '+f2(s.vincita)+' fantacrediti':s.stato==='persa'?'Hai perso '+f2(s.puntata)+' fantacrediti':'Possibile vincita '+f2(s.puntata*s.quota);
+    var sum=s.stato==='aperta'?(az+' azzeccate · '+att+' in attesa'+(sb?' · '+sb+' sbagliate':'')):(az+' su '+s.sel.length+' azzeccate');
+    var rig=s.sel.every(function(x){var p=pm(x.partita);return p&&aperta(p)})?'<br><button class="x rig" data-rig="'+s.id+'">Rigioca</button>':'';
+    return '<div class="card bet'+(OPEN[s.id]?' open':'')+'" data-id="'+s.id+'"><div class="summ" data-tog="'+s.id+'"><div class="h"><span>'+(multi?'Multipla ('+s.sel.length+')':'Singola')+' · '+f2(s.quota)+'</span><span class="tag '+s.stato+'">'+s.stato.toUpperCase()+'</span></div><div class="sm">Puntata <b>'+f2(s.puntata)+'</b> · '+sum+' <span class="ch">Dettagli <i>▾</i></span></div></div><div class="bd"><div class="bi"><ul>'+lis+'</ul><div class="ft">'+rs+rig+'</div></div></div></div>';
+  }).join('');
+}
+function vStat(){
+  var st=S.stat||{},g=Number(st.giocate)||0,v=Number(st.vinte)||0,net=Number(st.vinto)-Number(st.puntato);
+  var t=function(l,x){return '<div><small>'+l+'</small><b>'+x+'</b></div>'};
+  var h='<div class="gh" style="margin-top:0"><span>LE MIE STATISTICHE</span></div>';
+  if(!g&&!Number(st.aperte))h+='<div class="vuoto" style="padding:10px 0">Appena giochi qualcosa compaiono qui.</div>';
+  else h+='<div class="stt">'+t('GIOCATE',g)+t('VINTE',v+(g?' ('+Math.round(v*100/g)+'%)':''))+t('SALDO',(net>=0?'+':'')+f0(net))+t('QUOTA MEDIA',f2(st.quota_media||0))+t('MIGLIOR COLPO',f0(st.miglior_vincita||0))+t('MULTIPLE',st.multiple||0)+'</div>';
+  if(S.colpo)h+='<div class="colpo"><small>COLPO DELLA LEGA</small>'+esc(S.colpo.team)+' ha vinto <b>'+f0(S.colpo.vincita)+'</b> fantacrediti con una schedina a quota '+f2(S.colpo.quota)+'</div>';
+  return h+'<div class="gh"><span>CLASSIFICA DEGLI SCOMMETTITORI</span></div>';
+}
+function vClass(){
+  var rows=S.classifica.map(function(c,i){var tot=Number(c.crediti)+Number(c.ingioco)-Number(c.debito||0);
+    return '<tr class="'+(c.team===team?'me':'')+'"><td class="n">'+(i+1)+'</td><td>'+esc(c.team)+'</td><td>'+f0(c.crediti)+'</td><td>'+f0(tot)+'</td></tr>'}).join('');
+  return vStat()+'<div class="card"><table class="lb"><tr><th></th><th>SQUADRA</th><th>LIBERI</th><th>TOTALE</th></tr>'+rows+'</table><p style="font-size:12px;color:var(--sub);margin-top:10px">Totale = fantacrediti liberi + quelli puntati su schedine ancora aperte − eventuali debiti col banco. Chi non gioca non compare finché non entra la prima volta.</p></div>';
+}
+function vRegole(){
+  var su=S.sussidio_ok?'<button class="go" id="suss" style="margin-top:12px">Chiedi il prestito al banco (porta a 50)</button>':'';
+  return '<div class="card regole"><b>Come funziona</b><ul><li>La valuta sono i <b>fantacrediti</b>: all’inizio ne hai <b>500</b>.</li><li>Scegli un esito (1 casa, X pari, 2 trasferta, Over/Under 4,5 gol totali; sotto «Altri mercati» trovi Over/Under 3,5 e 5,5, entrambe segnano e il risultato esatto) e premi su <b>Gioca</b>. Con più partite insieme fai una <b>multipla</b>: le quote si moltiplicano, ma devi indovinarle tutte (massimo 6).</li><li>Nella scheda <b>Vincenti</b> puoi puntare su chi vince il campionato e su chi vince ciascun girone di coppa: si chiude con la giornata 8 di Serie A e si incassa alla fine. Si possono mettere in multipla con le partite.</li><li>Si può scommettere fino al <b>calcio d\'inizio della prima partita di Serie A</b> della giornata.</li><li>Puntata minima 5. Sulla <b>tua</b> partita il massimo è 100.</li><li>Le vincite arrivano da sole quando il risultato è in lega, di solito la mattina dopo.</li><li>Se scendi sotto i 50 fantacrediti puoi chiedere un <b>prestito al banco</b>: ti riporta a 50, ma una volta ogni due settimane. Il banco però vuole il <b>120%</b> indietro: sulle tue vincite si tiene il <b>40%</b> finché il debito non è saldato. Il debito conta in meno nella classifica.</li><li>Le quote nascono dalla forza delle squadre, con il banco che si tiene un po\' di margine. All\'inizio sono approssimative e migliorano giornata dopo giornata.</li></ul>'+su+'</div>';
+}
+function vSlip(){
+  if(!slip.length||tab==='mie'&&0)return '';
+  var q=1,sel=slip.map(function(x){var p=pm(x.p),qq=quotaDi(p,x.m);q*=qq;return '<div><span>'+nm(p)+' · <b>'+mlab(x.m)+'</b></span><span>'+f2(qq)+'</span></div>'}).join('');
+  q=Math.min(500,Math.round(q*100)/100);
+  var st=Number(LS.puntata||10);
+  return '<div class="slip"><div class="in"><div class="sel">'+sel+'</div><div class="ln"><input id="stake" type="number" inputmode="decimal" min="5" step="1" value="'+st+'"><div class="info">'+(slip.length>1?'Multipla ':'Singola ')+'· quota <b>'+f2(q)+'</b><br>Vincita <b id="win">'+f2(st*q)+'</b></div><button class="go" id="gioca"'+(busy?' disabled':'')+'>Gioca</button></div><div class="chips"><button data-st="10">10</button><button data-st="25">25</button><button data-st="50">50</button><button data-st="100">100</button><button class="x" id="svuota" style="margin-left:auto">Svuota</button></div></div></div>';
+}
+var QS=1,ANIM=true,LASTQ='',SLIPWAS=false,BALPREV=null;
+function render(){
+  var a=document.getElementById('app');
+  if(!S){a.innerHTML=gate();return}
+  var body=tab==='partite'?vPartite():tab==='vinc'?vVinc():tab==='mie'?vMie():tab==='class'?vClass():vRegole();
+  var keep=document.getElementById('stake');
+  var hs=head(),sv=vSlip(),isNew=!!sv&&!SLIPWAS;SLIPWAS=!!sv;
+  a.innerHTML=hs+'<div class="pane'+(ANIM?' an':'')+'">'+body+'</div>'+(isNew?sv.replace('class="slip"','class="slip new"'):sv);
+  ANIM=false;
+  tickCd();
+  var tk=document.querySelector('.tk');if(tk)tk.style.animationDuration=Math.max(70,Math.round(tk.scrollWidth/2/35))+'s';
+  if(LASTQ){var qb=a.querySelector('.q[data-p="'+LASTQ.split('|')[0]+'"][data-m="'+LASTQ.split('|')[1]+'"]');if(qb&&qb.classList.contains('on'))qb.classList.add('pop');LASTQ=''}
+  var bb=document.querySelector('.bal b');if(bb&&S){var v=Number(S.conto.crediti);if(BALPREV!==null&&BALPREV!==v){var from=BALPREV,t0=performance.now();document.querySelector('.bal').classList.add('up');(function st(t){var k=Math.min(1,(t-t0)/700),e=1-Math.pow(1-k,3);bb.textContent=f2(from+(v-from)*e);if(k<1)requestAnimationFrame(st)})(t0)}BALPREV=v}
+}
+function setStake(v){LS.puntata=v;save();var s=document.getElementById('stake');if(s)s.value=v;upWin()}
+function upWin(){
+  var q=1;slip.forEach(function(x){q*=quotaDi(pm(x.p),x.m)});q=Math.min(500,Math.round(q*100)/100);
+  var s=document.getElementById('stake'),w=document.getElementById('win');if(s&&w)w.textContent=f2((parseFloat(s.value)||0)*q);
+}
+document.addEventListener('click',function(e){
+  var t=e.target,b;
+  if(t.id==='enter'){team=document.getElementById('gt').value;code=document.getElementById('gc').value.trim().toUpperCase();LS.team=team;LS.code=code;save();err='';document.querySelector('.err').textContent='Controllo…';carica();return}
+  if(t.id==='sim'){rpc('demo_simula',{}).then(function(){slip=[];tab='mie';ANIM=true;toast('Partite finite, pagamenti fatti');return carica()});return}
+  if(t.id==='out'){LS.code='';save();code='';S=null;slip=[];render();return}
+  if(b=t.closest('[data-tab]')){tab=b.getAttribute('data-tab');ANIM=true;render();window.scrollTo(0,0);return}
+  if(b=t.closest('.q')){
+    var id=b.getAttribute('data-p'),m=b.getAttribute('data-m');
+    var i=slip.findIndex(function(x){return x.p===id});
+    if(i>=0&&slip[i].m===m)slip.splice(i,1);else if(i>=0)slip[i].m=m;else{if(slip.length>=6){toast('Massimo 6 partite in una multipla',1);return}slip.push({p:id,m:m})}
+    LASTQ=id+'|'+m;var y=window.scrollY;render();window.scrollTo(0,y);return}
+  if(b=t.closest('[data-st]')){setStake(b.getAttribute('data-st'));return}
+  if(b=t.closest('[data-more]')){var mc=b.closest('.card'),mi=b.getAttribute('data-more');mc.classList.toggle('open');MORE[mi]=mc.classList.contains('open');return}
+  if(b=t.closest('[data-tog]')){var cd=b.closest('.bet'),id3=b.getAttribute('data-tog');cd.classList.toggle('open');OPEN[id3]=cd.classList.contains('open');return}
+  if(b=t.closest('[data-rig]')){var id2=Number(b.getAttribute('data-rig')),sc=S.schedine.filter(function(x){return x.id===id2})[0];if(sc){slip=sc.sel.map(function(x){return{p:x.partita,m:x.mercato}});tab='partite';ANIM=true;render();window.scrollTo(0,0);toast('Schedina ripresa: controlla la puntata e gioca')}return}
+  if(t.id==='svuota'){slip=[];render();return}
+  if(t.id==='suss'){rpc('toto_sussidio',{p_team:team,p_code:code}).then(function(r){toast('Prestito ricevuto: sei a 50, ne devi restituire '+f2(r.da_restituire));return carica()}).catch(function(e){toast(e.message,1)});return}
+  if(t.id==='gioca'){
+    var st=parseFloat(document.getElementById('stake').value);
+    if(!(st>=5)){toast('Puntata minima 5',1);return}
+    LS.puntata=st;save();busy=true;t.disabled=true;
+    rpc('toto_gioca',{p_team:team,p_code:code,p_puntata:st,p_sel:slip.map(function(x){return{p:x.p,m:x.m}})})
+     .then(function(r){toast('Giocata! Quota '+f2(r.quota)+', vincita possibile '+f2(r.vincita_possibile));slip=[];tab='mie';ANIM=true;return carica()})
+     .catch(function(e){busy=false;toast(e.message,1);render()});
+  }
+});
+document.addEventListener('input',function(e){if(e.target.id==='stake')upWin()});
+document.addEventListener('keydown',function(e){if(e.key==='Enter'&&e.target.id==='gc')document.getElementById('enter').click()});
+
+function fmtCd(ms){var s=Math.floor(ms/1000),d=Math.floor(s/86400),h=Math.floor(s%86400/3600),m=Math.floor(s%3600/60);return d>0?d+'g '+h+'h':h>0?h+'h '+m+'m':m+'m '+String(s%60).padStart(2,'0')+'s'}
+function tickCd(){document.querySelectorAll('.cd').forEach(function(e){var ms=new Date(e.getAttribute('data-t'))-Date.now();if(ms<=0){if(!e.dataset.done){e.dataset.done=1;e.textContent='0s';if(S&&!busy)carica()}return}e.textContent=fmtCd(ms);e.className='cd'+(ms<3600e3?' hot':ms<86400e3?' warn':'')})}
+setInterval(tickCd,1000);
+window.addEventListener('hashchange',function(){location.reload()});
+function hshF(s){var h=2166136261,i;for(i=0;i<s.length;i++){h^=s.charCodeAt(i);h=Math.imul(h,16777619)}return (h>>>0).toString(36)}
+function loginDaLink(d){var k=(location.hash||'').replace('#','').trim().toUpperCase();if(!k||/^(LEGA|COPPA)/.test(k)||!d||!d.lock)return false;var ok=false;
+  d.teams.forEach(function(x){if(hshF(x.name+'|'+k)===d.lock[x.name]){var o={};try{o=JSON.parse(localStorage.getItem('fg')||'{}')||{}}catch(e){}o.team=x.name;o.code=k;try{localStorage.setItem('fg',JSON.stringify(o))}catch(e){}ok=x.name}});
+  if(ok){try{history.replaceState(null,'',location.pathname+location.search)}catch(e){}}return ok}
+fetch('../data.json',{cache:'no-cache'}).then(function(r){return r.json()}).then(function(d){teams=d.teams.map(function(t){return t.name});
+  var lg=loginDaLink(d);if(lg){try{LS=JSON.parse(localStorage.getItem('fg')||'{}')||{}}catch(e){}team=LS.team;code=LS.code}
+  if(team&&code)carica();else render();
+}).catch(function(){teams=['Oranje VC'];render()});
+})();
+</script>
+</body>
+</html>
