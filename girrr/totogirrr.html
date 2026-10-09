@@ -165,8 +165,9 @@ body::before{content:'';position:fixed;inset:-120px;z-index:-1;pointer-events:no
 @keyframes strisce{to{transform:translate3d(79.45px,0,0)}}
 @media (prefers-reduced-motion:reduce){body::before{animation:none}}
 .TT{font-weight:400;font-size:1.3em;position:relative;display:inline-block;line-height:1}
-.Tg{display:inline-block;font-style:italic;line-height:1;clip-path:polygon(-1em -1em,.75em -1em,.75em 2em,-1em 2em)}
-.TT svg{filter:drop-shadow(0 2px 0 rgba(0,0,0,.28));position:absolute;left:0;top:0;width:2.25em;height:1em;overflow:visible;pointer-events:none}
+.Tg{text-shadow:none;display:inline-block;font-style:italic;line-height:1;clip-path:polygon(-1em -1em,.54em -1em,.54em .25em,2em .25em,2em 2em,-1em 2em)}
+.TT{filter:drop-shadow(0 2px 0 rgba(0,0,0,.28))}
+.TT svg{position:absolute;left:0;top:0;width:2.25em;height:1em;overflow:visible;pointer-events:none}
 </style>
 </head>
 <body>
@@ -242,7 +243,7 @@ function aperta(p){return !p.chiusa&&new Date(p.chiude)>new Date()}
 
 function gate(){
   var o=teams.map(function(t){return '<option'+(t===team?' selected':'')+'>'+esc(t)+'</option>'}).join('');
-  return '<div class="gate"><a href="index.html" title="Torna a O Girrr"><img src="../assets/logo-lega.png" alt="O Fant A Girrr"></a><h1><b class="TT"><em class="Tg">T</em><svg viewBox="0 0 900 400" aria-hidden="true"><path fill="currentColor" d="M270 56 C360 62 440 84 505 82 C565 80 605 68 642 62 C668 66 668 94 640 99 C600 108 545 122 480 122 C400 122 330 108 270 99 Z"/></svg></b>oto<span>girrr</span></h1><p>Le scommesse della lega, con fantacrediti finti. Entra con il codice della tua squadra, lo stesso del Spogliatoio.</p>'+
+  return '<div class="gate"><a href="index.html" title="Torna a O Girrr"><img src="../assets/logo-lega.png" alt="O Fant A Girrr"></a><h1><b class="TT"><em class="Tg">T</em><svg viewBox="0 0 900 400" aria-hidden="true"><path fill="currentColor" d="M200 48.8 C330 49.2 430 84 505 82 C565 80 605 68 642 62 C668 66 668 94 640 99 C600 108 545 122 480 122 C400 122 340 113 300 107 C275 103 255 103 238 112 L205 118 L200 80 Z"/></svg></b>oto<span>girrr</span></h1><p>Le scommesse della lega, con fantacrediti finti. Entra con il codice della tua squadra, lo stesso del Spogliatoio.</p>'+
   '<select id="gt">'+o+'</select><input id="gc" placeholder="Codice squadra" autocomplete="off" autocapitalize="characters" value="'+esc(code)+'"><button class="go" id="enter">Entra</button><div class="err">'+esc(err)+'</div><p style="margin-top:22px"><a href="index.html">‹ Torna a O Girrr</a></p></div>';
 }
 function ticker(){
@@ -263,7 +264,7 @@ function card(x,tag){
 }
 function head(){
   var c=S.conto;
-  return (DEMO?'<div class="card" style="border:2px dashed var(--hi);font-size:13px"><b style="color:var(--hi)">PROVA</b> · Qui è tutto finto e si azzera quando ricarichi. Gioca una schedina, poi premi il pulsante per far finire le partite a caso.<br><button class="go" id="sim" style="margin-top:10px">Fai finire le partite</button></div>':'')+'<a class="back" href="index.html">‹ O GIRRR</a><div class="top"><a href="index.html" title="Torna a O Girrr" style="display:block;flex:none"><img src="../assets/logo-lega.png" alt="O Fant A Girrr" style="display:block"></a><div class="t"><div class="k">O FANT A GIRRR</div><h1><b class="TT"><em class="Tg">T</em><svg viewBox="0 0 900 400" aria-hidden="true"><path fill="currentColor" d="M270 56 C360 62 440 84 505 82 C565 80 605 68 642 62 C668 66 668 94 640 99 C600 108 545 122 480 122 C400 122 330 108 270 99 Z"/></svg></b>oto<span>girrr</span></h1></div><div class="bal"><small>FANTACREDITI</small><b>'+f2(c.crediti)+'</b>'+(Number(c.debito)>0?'<small style="color:var(--hi)">DEBITO '+f2(c.debito)+'</small>':'')+'</div></div>'+
+  return (DEMO?'<div class="card" style="border:2px dashed var(--hi);font-size:13px"><b style="color:var(--hi)">PROVA</b> · Qui è tutto finto e si azzera quando ricarichi. Gioca una schedina, poi premi il pulsante per far finire le partite a caso.<br><button class="go" id="sim" style="margin-top:10px">Fai finire le partite</button></div>':'')+'<a class="back" href="index.html">‹ O GIRRR</a><div class="top"><a href="index.html" title="Torna a O Girrr" style="display:block;flex:none"><img src="../assets/logo-lega.png" alt="O Fant A Girrr" style="display:block"></a><div class="t"><div class="k">O FANT A GIRRR</div><h1><b class="TT"><em class="Tg">T</em><svg viewBox="0 0 900 400" aria-hidden="true"><path fill="currentColor" d="M200 48.8 C330 49.2 430 84 505 82 C565 80 605 68 642 62 C668 66 668 94 640 99 C600 108 545 122 480 122 C400 122 340 113 300 107 C275 103 255 103 238 112 L205 118 L200 80 Z"/></svg></b>oto<span>girrr</span></h1></div><div class="bal"><small>FANTACREDITI</small><b>'+f2(c.crediti)+'</b>'+(Number(c.debito)>0?'<small style="color:var(--hi)">DEBITO '+f2(c.debito)+'</small>':'')+'</div></div>'+
   '<div class="who">Squadra: <b>'+esc(team)+'</b><button class="x" id="out">Esci</button></div>'+
   '<nav>'+[['partite','Partite'],['vinc','Vincenti'],['mie','Le mie'],['class','Classifica'],['regole','Regole']].map(function(t){return '<button data-tab="'+t[0]+'" class="'+(tab===t[0]?'on':'')+'">'+t[1]+'</button>'}).join('')+'</nav>'+ticker();
 }
