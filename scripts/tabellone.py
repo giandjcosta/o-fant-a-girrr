@@ -129,13 +129,13 @@ td.p{{text-align:center;width:36px;font-weight:900;color:{t['hi']}}} td.n{{text-
 td.pt{{font-weight:900;font-size:23px}} td.fp{{font-size:15px;color:{t['sub']};font-weight:600}}
 tr.top td.p{{background:{t['acc']};color:{t['chiaro']}}}
 .sp{{position:absolute;left:0;bottom:0;width:1600px;height:118px;background:{t['chiaro']};display:flex;align-items:center;gap:26px;padding:0 30px 0 400px}}
-.sp span{{font-weight:900;font-size:13px;letter-spacing:4px;color:{t['bg']};writing-mode:vertical-rl;transform:rotate(180deg)}}
+.sp span{{font-weight:900;font-size:13px;letter-spacing:1px;color:{t['bg']};text-align:center;line-height:1.25;max-width:110px}}
 .sp img{{height:78px}}"""
     html = (f'<html><head><meta charset="utf-8"><style>{css}</style></head><body><div class="bg"></div><div class="side"></div>'
             f'<img class="shield" src="{uri(t["logo"])}"><div class="kick">{sopra}<b>{n}ª</b>GIORNATA<small>{kick}</small></div>'
             f'<img class="tv" src="{uri(t["tv"])}"><div class="hd">TABELLONE</div><div class="hd2">{esc(titolo)}</div>'
             f'<div class="board">{corpo}{riposo}</div><div class="lato">{lato}</div>'
-            f'<div class="sp"><span>CON</span>{"".join(f"<img src={chr(34)}{uri(s)}{chr(34)}>" for s in sp)}</div></body></html>')
+            f'<div class="sp"><span>Gentilmente offerto da</span>{"".join(f"<img src={chr(34)}{uri(s)}{chr(34)}>" for s in sp)}</div></body></html>')
     return html
 
 

@@ -366,7 +366,7 @@ def costruisci(t, tema="classico"):
     h.append("</div>")
     if t.get("chiusura"):
         h.append(f'<div class="taglio"><b>Taglio basso</b>{esc(t["chiusura"])}</div>')
-    h.append(f'<div class="spb"><span>Questo numero è offerto da</span><img src="{logo_uri(scegli_sponsor(n))}"></div>')
+    h.append(f'<div class="spb"><span>Questo numero è gentilmente offerto da</span><img src="{logo_uri(scegli_sponsor(n))}"></div>')
     h.append(piede(3) + "</section>")
     return "<!doctype html><html lang='it'><head><meta charset='utf-8'><title>O Giornale del Girrr</title></head><body>" + "".join(h) + "</body></html>", n
 
