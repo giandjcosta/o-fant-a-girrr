@@ -183,8 +183,12 @@ document.querySelectorAll('.sw button').forEach(function(b){b.addEventListener('
 document.getElementById('prev').onclick=function(){go(-1)};document.getElementById('next').onclick=function(){go(1)};
 document.getElementById('chips').addEventListener('click',function(e){var b=e.target.closest('button');if(!b)return;sel[mode]=+b.getAttribute('data-n');render()});
 document.addEventListener('keydown',function(e){if(e.key==='ArrowLeft')go(-1);if(e.key==='ArrowRight')go(1)});
+function hshF(s){var h=2166136261,i;for(i=0;i<s.length;i++){h^=s.charCodeAt(i);h=Math.imul(h,16777619)}return (h>>>0).toString(36)}
+function loginDaLink(d){var k=(location.hash||'').replace('#','').trim().toUpperCase();if(!k||/^(LEGA|COPPA)/.test(k)||!d||!d.lock)return false;var ok=false;
+  d.teams.forEach(function(x){if(hshF(x.name+'|'+k)===d.lock[x.name]){var o={};try{o=JSON.parse(localStorage.getItem('fg')||'{}')||{}}catch(e){}o.team=x.name;o.code=k;try{localStorage.setItem('fg',JSON.stringify(o))}catch(e){}ok=x.name}});
+  if(ok){try{history.replaceState(null,'',location.pathname+location.search)}catch(e){}}return ok}
 fetch('../data.json',{cache:'no-store'}).then(function(r){return r.json()}).then(function(d){
-  D=d;sel.lega=lastPlayed(d.cal.lega,false)||1;
+  D=d;if(loginDaLink(d)){try{ME=(JSON.parse(localStorage.getItem('fg')||'{}')||{}).team||''}catch(e){}}sel.lega=lastPlayed(d.cal.lega,false)||1;
   var lc=lastPlayed(d.cal.cup,true);sel.coppa=lc||1;
   var hm=/^#(lega|coppa)(?:-(\d+))?$/.exec(location.hash||'');
   if(hm){if(hm[1]==='coppa'){mode='coppa';document.body.setAttribute('data-mode','coppa')}if(hm[2]){var nn=+hm[2],mx=(hm[1]==='coppa'?d.cal.cup:d.cal.lega).length;sel[hm[1]]=Math.min(Math.max(1,nn),mx)}}

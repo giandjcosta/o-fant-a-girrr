@@ -386,7 +386,13 @@ document.addEventListener('keydown',function(e){if(e.key==='Enter'&&e.target.id=
 function fmtCd(ms){var s=Math.floor(ms/1000),d=Math.floor(s/86400),h=Math.floor(s%86400/3600),m=Math.floor(s%3600/60);return d>0?d+'g '+h+'h':h>0?h+'h '+m+'m':m+'m '+String(s%60).padStart(2,'0')+'s'}
 function tickCd(){document.querySelectorAll('.cd').forEach(function(e){var ms=new Date(e.getAttribute('data-t'))-Date.now();if(ms<=0){if(!e.dataset.done){e.dataset.done=1;e.textContent='0s';if(S&&!busy)carica()}return}e.textContent=fmtCd(ms);e.className='cd'+(ms<3600e3?' hot':ms<86400e3?' warn':'')})}
 setInterval(tickCd,1000);
+window.addEventListener('hashchange',function(){location.reload()});
+function hshF(s){var h=2166136261,i;for(i=0;i<s.length;i++){h^=s.charCodeAt(i);h=Math.imul(h,16777619)}return (h>>>0).toString(36)}
+function loginDaLink(d){var k=(location.hash||'').replace('#','').trim().toUpperCase();if(!k||/^(LEGA|COPPA)/.test(k)||!d||!d.lock)return false;var ok=false;
+  d.teams.forEach(function(x){if(hshF(x.name+'|'+k)===d.lock[x.name]){var o={};try{o=JSON.parse(localStorage.getItem('fg')||'{}')||{}}catch(e){}o.team=x.name;o.code=k;try{localStorage.setItem('fg',JSON.stringify(o))}catch(e){}ok=x.name}});
+  if(ok){try{history.replaceState(null,'',location.pathname+location.search)}catch(e){}}return ok}
 fetch('../data.json',{cache:'no-cache'}).then(function(r){return r.json()}).then(function(d){teams=d.teams.map(function(t){return t.name});
+  var lg=loginDaLink(d);if(lg){try{LS=JSON.parse(localStorage.getItem('fg')||'{}')||{}}catch(e){}team=LS.team;code=LS.code}
   if(team&&code)carica();else render();
 }).catch(function(){teams=['Oranje VC'];render()});
 })();

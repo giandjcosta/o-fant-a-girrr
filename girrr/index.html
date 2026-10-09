@@ -100,7 +100,13 @@ function classifica(rounds){
   return Object.keys(sq).map(function(k){return sq[k]}).sort(function(x,y){return y.pt-x.pt||y.fp-x.fp||(y.gf-y.gs)-(x.gf-x.gs)||y.gf-x.gf||((ORD.indexOf(x.n)<0?99:ORD.indexOf(x.n))-(ORD.indexOf(y.n)<0?99:ORD.indexOf(y.n)))});
 }
 function pt(x){return String(Math.round(x*100)/100).replace('.',',')}
+window.addEventListener('hashchange',function(){location.reload()});
+function hshF(s){var h=2166136261,i;for(i=0;i<s.length;i++){h^=s.charCodeAt(i);h=Math.imul(h,16777619)}return (h>>>0).toString(36)}
+function loginDaLink(d){var k=(location.hash||'').replace('#','').trim().toUpperCase();if(!k||/^(LEGA|COPPA)/.test(k)||!d||!d.lock)return false;var ok=false;
+  d.teams.forEach(function(x){if(hshF(x.name+'|'+k)===d.lock[x.name]){var o={};try{o=JSON.parse(localStorage.getItem('fg')||'{}')||{}}catch(e){}o.team=x.name;o.code=k;try{localStorage.setItem('fg',JSON.stringify(o))}catch(e){}ok=x.name}});
+  if(ok){try{history.replaceState(null,'',location.pathname+location.search)}catch(e){}}return ok}
 fetch('../data.json',{cache:'no-store'}).then(function(r){return r.json()}).then(function(d){
+  loginDaLink(d);
   var L=d.cal.lega,pl=L.filter(function(g){return g.m.some(function(m){return m[4]!=='-'})});
   var h='';
   if(pl.length){
