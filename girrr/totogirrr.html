@@ -65,6 +65,15 @@ button{font-family:inherit;cursor:pointer}
 .bet .h{display:flex;justify-content:space-between;align-items:baseline;gap:8px;font-weight:800}
 .tag{font-weight:900;font-size:10px;letter-spacing:.16em;padding:3px 8px;border-radius:999px;background:rgba(255,255,255,.15)}
 .tag.vinta{background:var(--ok);color:#052e16}.tag.persa{background:var(--ko);color:#4c0519}
+.bet summary{list-style:none;cursor:pointer}.bet summary::-webkit-details-marker{display:none}
+.bet .sm{margin-top:6px;font-size:13px;color:var(--sub)}.bet .sm b{color:var(--chiaro)}.bet .ch{color:var(--hi);font-weight:800;font-size:11px;letter-spacing:.06em;margin-left:4px;white-space:nowrap}
+.bet[open] .ch{display:none}
+.bet ul{border-top:1px solid rgba(255,255,255,.12);padding-top:8px;animation:rise .35s both}
+.bet li{align-items:flex-start;gap:10px}.bet li .ic{flex:none;width:22px;height:22px;border-radius:50%;display:grid;place-items:center;font-weight:900;font-size:13px;background:rgba(255,255,255,.12);color:var(--chiaro)}
+.bet li.v .ic{background:var(--ok);color:#052e16}.bet li.p .ic{background:var(--ko);color:#4c0519}
+.bet li .tx{flex:1;min-width:0;color:var(--chiaro)}.bet li .tx small{color:var(--sub);font-size:12px}
+.bet li.v .tx{color:var(--ok)}.bet li.p .tx{color:var(--ko)}.bet li.v .tx small,.bet li.p .tx small{color:var(--sub)}
+.bet .ft{margin-top:10px;font-size:13px;color:var(--chiaro);font-weight:800}
 .bet ul{list-style:none;margin-top:8px;font-size:13px;color:var(--sub)}
 .bet li{display:flex;justify-content:space-between;gap:8px;padding:2px 0}
 .bet li.v{color:var(--ok)}.bet li.p{color:var(--ko)}
@@ -238,14 +247,18 @@ function vPartite(){
   }).join('');
 }
 function etichetta(s){var p=pm(s.partita);return p?(esc(p.casa)+' – '+esc(p.trasf)):esc(s.partita)}
+var OPEN={};
+function esito(x){var p=pm(x.partita);return p&&p.chiusa?p.gc+'–'+p.gt:''}
 function vMie(){
   if(!S.schedine.length)return '<div class="vuoto">Non hai ancora giocato niente. Vai su Partite e scegli gli esiti.</div>';
   return S.schedine.map(function(s){
-    var multi=s.sel.length>1;
-    var lis=s.sel.map(function(x){return '<li class="'+(x.esito||'')+'"><span>'+etichetta(x)+' · <b>'+MN[x.mercato]+'</b></span><span>'+f2(x.quota)+'</span></li>'}).join('');
-    var vin=s.stato==='vinta'?'Vinti '+f2(s.vincita):(s.stato==='aperta'?'Possibile vincita '+f2(s.puntata*s.quota):'Persa');
+    var multi=s.sel.length>1,az=s.sel.filter(function(x){return x.esito==='v'}).length,sb=s.sel.filter(function(x){return x.esito==='p'}).length,att=s.sel.length-az-sb;
+    var lis=s.sel.map(function(x){var ic=x.esito==='v'?'✓':x.esito==='p'?'✗':'…',r=esito(x);
+      return '<li class="'+(x.esito||'')+'"><span class="ic">'+ic+'</span><span class="tx">'+etichetta(x)+'<br><small>Hai giocato <b>'+MN[x.mercato]+'</b>'+(r?' · Finita '+r:(x.esito?'':' · In attesa'))+'</small></span><span>'+f2(x.quota)+'</span></li>'}).join('');
+    var rs=s.stato==='vinta'?'Hai vinto '+f2(s.vincita)+' fantacrediti':s.stato==='persa'?'Hai perso '+f2(s.puntata)+' fantacrediti':'Possibile vincita '+f2(s.puntata*s.quota);
+    var sum=s.stato==='aperta'?(az+' azzeccate · '+att+' in attesa'+(sb?' · '+sb+' sbagliate':'')):(az+' su '+s.sel.length+' azzeccate');
     var rig=s.sel.every(function(x){var p=pm(x.partita);return p&&aperta(p)})?'<br><button class="x rig" data-rig="'+s.id+'">Rigioca</button>':'';
-    return '<div class="card bet"><div class="h"><span>'+(multi?'Multipla ('+s.sel.length+')':'Singola')+' · '+f2(s.quota)+'</span><span class="tag '+s.stato+'">'+s.stato.toUpperCase()+'</span></div><ul>'+lis+'</ul><div style="margin-top:8px;font-size:13px;color:var(--sub)">Puntata <b style="color:var(--chiaro)">'+f2(s.puntata)+'</b> · '+vin+rig+'</div></div>';
+    return '<details class="card bet" data-id="'+s.id+'"'+(OPEN[s.id]?' open':'')+'><summary><div class="h"><span>'+(multi?'Multipla ('+s.sel.length+')':'Singola')+' · '+f2(s.quota)+'</span><span class="tag '+s.stato+'">'+s.stato.toUpperCase()+'</span></div><div class="sm">Puntata <b>'+f2(s.puntata)+'</b> · '+sum+' <span class="ch">Dettagli ▾</span></div></summary><ul>'+lis+'</ul><div class="ft">'+rs+rig+'</div></details>';
   }).join('');
 }
 function vClass(){
@@ -305,6 +318,7 @@ document.addEventListener('click',function(e){
      .catch(function(e){busy=false;toast(e.message,1);render()});
   }
 });
+document.addEventListener('toggle',function(e){var d=e.target;if(d&&d.classList&&d.classList.contains('bet')){OPEN[d.getAttribute('data-id')]=d.open}},true);
 document.addEventListener('input',function(e){if(e.target.id==='stake')upWin()});
 document.addEventListener('keydown',function(e){if(e.key==='Enter'&&e.target.id==='gc')document.getElementById('enter').click()});
 
