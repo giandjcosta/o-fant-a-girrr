@@ -181,6 +181,7 @@ function setMode(m){
 function go(d){var c=cal(),n=sel[mode]+d;if(n<1||n>c.length)return;sel[mode]=n;render()}
 document.querySelectorAll('.sw button').forEach(function(b){b.addEventListener('click',function(){setMode(b.getAttribute('data-m'))})});
 document.getElementById('prev').onclick=function(){go(-1)};document.getElementById('next').onclick=function(){go(1)};
+(function(){var cf=document.querySelector('.crossfade');if(cf){cf.style.cursor='pointer';cf.title='Torna a O Girrr';cf.addEventListener('click',function(){location.href='index.html'})}})();
 document.getElementById('chips').addEventListener('click',function(e){var b=e.target.closest('button');if(!b)return;sel[mode]=+b.getAttribute('data-n');render()});
 document.addEventListener('keydown',function(e){if(e.key==='ArrowLeft')go(-1);if(e.key==='ArrowRight')go(1)});
 function hshF(s){var h=2166136261,i;for(i=0;i<s.length;i++){h^=s.charCodeAt(i);h=Math.imul(h,16777619)}return (h>>>0).toString(36)}

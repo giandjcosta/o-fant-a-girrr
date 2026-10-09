@@ -237,7 +237,7 @@ function aperta(p){return !p.chiusa&&new Date(p.chiude)>new Date()}
 
 function gate(){
   var o=teams.map(function(t){return '<option'+(t===team?' selected':'')+'>'+esc(t)+'</option>'}).join('');
-  return '<div class="gate"><img src="../assets/logo-lega.png" alt=""><h1>Toto<span>girrr</span></h1><p>Le scommesse della lega, con fantacrediti finti. Entra con il codice della tua squadra, lo stesso del Spogliatoio.</p>'+
+  return '<div class="gate"><a href="index.html" title="Torna a O Girrr"><img src="../assets/logo-lega.png" alt="O Fant A Girrr"></a><h1>Toto<span>girrr</span></h1><p>Le scommesse della lega, con fantacrediti finti. Entra con il codice della tua squadra, lo stesso del Spogliatoio.</p>'+
   '<select id="gt">'+o+'</select><input id="gc" placeholder="Codice squadra" autocomplete="off" autocapitalize="characters" value="'+esc(code)+'"><button class="go" id="enter">Entra</button><div class="err">'+esc(err)+'</div><p style="margin-top:22px"><a href="index.html">‹ Torna a O Girrr</a></p></div>';
 }
 function ticker(){
@@ -258,7 +258,7 @@ function card(x,tag){
 }
 function head(){
   var c=S.conto;
-  return (DEMO?'<div class="card" style="border:2px dashed var(--hi);font-size:13px"><b style="color:var(--hi)">PROVA</b> · Qui è tutto finto e si azzera quando ricarichi. Gioca una schedina, poi premi il pulsante per far finire le partite a caso.<br><button class="go" id="sim" style="margin-top:10px">Fai finire le partite</button></div>':'')+'<a class="back" href="index.html">‹ O GIRRR</a><div class="top"><img src="../assets/logo-lega.png" alt=""><div class="t"><div class="k">O FANT A GIRRR</div><h1>Toto<span>girrr</span></h1></div><div class="bal"><small>FANTACREDITI</small><b>'+f2(c.crediti)+'</b>'+(Number(c.debito)>0?'<small style="color:var(--hi)">DEBITO '+f2(c.debito)+'</small>':'')+'</div></div>'+
+  return (DEMO?'<div class="card" style="border:2px dashed var(--hi);font-size:13px"><b style="color:var(--hi)">PROVA</b> · Qui è tutto finto e si azzera quando ricarichi. Gioca una schedina, poi premi il pulsante per far finire le partite a caso.<br><button class="go" id="sim" style="margin-top:10px">Fai finire le partite</button></div>':'')+'<a class="back" href="index.html">‹ O GIRRR</a><div class="top"><a href="index.html" title="Torna a O Girrr" style="display:block;flex:none"><img src="../assets/logo-lega.png" alt="O Fant A Girrr" style="display:block"></a><div class="t"><div class="k">O FANT A GIRRR</div><h1>Toto<span>girrr</span></h1></div><div class="bal"><small>FANTACREDITI</small><b>'+f2(c.crediti)+'</b>'+(Number(c.debito)>0?'<small style="color:var(--hi)">DEBITO '+f2(c.debito)+'</small>':'')+'</div></div>'+
   '<div class="who">Squadra: <b>'+esc(team)+'</b><button class="x" id="out">Esci</button></div>'+
   '<nav>'+[['partite','Partite'],['vinc','Vincenti'],['mie','Le mie'],['class','Classifica'],['regole','Regole']].map(function(t){return '<button data-tab="'+t[0]+'" class="'+(tab===t[0]?'on':'')+'">'+t[1]+'</button>'}).join('')+'</nav>'+ticker();
 }
@@ -346,6 +346,7 @@ function render(){
   a.innerHTML=hs+'<div class="pane'+(ANIM?' an':'')+'">'+body+'</div>'+(isNew?sv.replace('class="slip"','class="slip new"'):sv);
   ANIM=false;
   tickCd();
+  var tk=document.querySelector('.tk');if(tk)tk.style.animationDuration=Math.max(70,Math.round(tk.scrollWidth/2/35))+'s';
   if(LASTQ){var qb=a.querySelector('.q[data-p="'+LASTQ.split('|')[0]+'"][data-m="'+LASTQ.split('|')[1]+'"]');if(qb&&qb.classList.contains('on'))qb.classList.add('pop');LASTQ=''}
   var bb=document.querySelector('.bal b');if(bb&&S){var v=Number(S.conto.crediti);if(BALPREV!==null&&BALPREV!==v){var from=BALPREV,t0=performance.now();document.querySelector('.bal').classList.add('up');(function st(t){var k=Math.min(1,(t-t0)/700),e=1-Math.pow(1-k,3);bb.textContent=f2(from+(v-from)*e);if(k<1)requestAnimationFrame(st)})(t0)}BALPREV=v}
 }
