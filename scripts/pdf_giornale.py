@@ -201,7 +201,7 @@ def svg_formazione(sel):
     """Campo orizzontale: portiere a sinistra, attacco a destra."""
     cols = [("P", 11), ("D", 30), ("C", 53), ("A", 78)]
     out = ['<svg viewBox="0 0 100 58" xmlns="http://www.w3.org/2000/svg"><rect width="100" height="58" fill="#2f6b3a"/>'
-           '<g fill="none" stroke="#e9f2e5" stroke-opacity=".5" stroke-width=".5"><rect x="2" y="2" width="96" height="54"/><line x1="50" y1="2" x2="50" y2="56"/><circle cx="50" cy="29" r="8"/>'
+           '<g fill="none" stroke="#fff" stroke-width=".5"><rect x="2" y="2" width="96" height="54"/><line x1="50" y1="2" x2="50" y2="56"/><circle cx="50" cy="29" r="8"/>'
            '<rect x="2" y="15" width="13" height="28"/><rect x="85" y="15" width="13" height="28"/></g>']
     for ruolo, x in cols:
         gioc = sel[ruolo]
