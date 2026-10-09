@@ -362,7 +362,7 @@ def costruisci(t, tema="classico"):
                      f'<td style="text-align:left">{esc(e["b"])}</td><td><span class="st {"s" if salta else ""}">{"Salta" if salta else "Dubbio"}</span></td></tr>')
         h.append("</table>")
     if t.get("infortunati"):
-        h.append(f'<p class="nt">{esc(t["infortunati"])} Notizie pubbliche: non indicano di chi sono i giocatori.</p>')
+        h.append(f'<p class="nt">{esc(t["infortunati"])}</p>')
     h.append("</div>")
     if t.get("chiusura"):
         h.append(f'<div class="taglio"><b>Taglio basso</b>{esc(t["chiusura"])}</div>')
