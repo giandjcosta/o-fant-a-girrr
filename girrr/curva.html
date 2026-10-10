@@ -127,6 +127,10 @@ svg{display:block}
 .box .btn{padding:7px 12px;font-size:13px;flex:none;white-space:nowrap}
 .nt{display:flex;gap:12px;padding:12px 14px;border-bottom:1px solid var(--ln)}
 .nt p{font-size:15px;line-height:1.35}.nt small{display:block;color:var(--mu);margin-top:3px}
+.sl-l{animation:slL .28s ease both}.sl-r{animation:slR .28s ease both}
+@keyframes slL{from{opacity:.2;transform:translateX(38px)}to{opacity:1;transform:none}}
+@keyframes slR{from{opacity:.2;transform:translateX(-38px)}to{opacity:1;transform:none}}
+#vista{touch-action:pan-y}
 .sec{font-size:19px;font-weight:900;padding:16px 14px 6px}
 </style>
 </head>
@@ -313,6 +317,12 @@ document.addEventListener('click',function(e){
  else return;
  render();
 });
+var TF=['tutti','squadre','notizie'],tx0=null,ty0=0;
+document.addEventListener('touchstart',function(e){if(vista!=='home'||!e.target.closest('#vista')){tx0=null;return}var t=e.touches[0];tx0=t.clientX;ty0=t.clientY},{passive:true});
+document.addEventListener('touchend',function(e){if(tx0===null)return;var t=e.changedTouches[0],dx=t.clientX-tx0,dy=t.clientY-ty0;tx0=null;
+ if(Math.abs(dx)<60||Math.abs(dx)<Math.abs(dy)*1.5)return;
+ var i=TF.indexOf(filt),n=i+(dx<0?1:-1);if(n<0||n>=TF.length)return;
+ filt=TF[n];render();var v=document.getElementById('vista');v.classList.add(dx<0?'sl-l':'sl-r');setTimeout(function(){v.classList.remove('sl-l','sl-r')},320)},{passive:true});
 document.addEventListener('keydown',function(e){if(e.key==='Enter'&&e.target.matches&&e.target.matches('.rf input')){e.target.closest('.post').querySelector('[data-a=invia]').click()}});
 fetch('../data.json',{cache:'no-store'}).then(function(r){return r.json()}).then(calcola).catch(function(){}).then(function(){seed();render()});
 })();
