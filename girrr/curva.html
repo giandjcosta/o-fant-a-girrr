@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="robots" content="noindex">
-<meta name="cv-ver" content="20261010c">
+<meta name="cv-ver" content="20261010d">
 <title>Curva · O Girrr</title>
 <link rel="icon" type="image/png" href="../assets/favicon-64.png">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800;900&display=swap">
@@ -171,7 +171,7 @@ html,body{overscroll-behavior-y:none}
 </div>
 <script>window.goatcounter={path:function(){return location.pathname},no_onload:/[?&]demo/.test(location.search)}</script>
 <script data-goatcounter="https://djcosta18.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
-<script src="curva-banca.js?v=20261010c"></script>
+<script src="curva-banca.js?v=20261010d"></script>
 <script>
 (function(){
 'use strict';
@@ -383,7 +383,8 @@ document.addEventListener('click',function(e){
  var el=e.target.closest('[data-v],[data-u],[data-f],[data-seg],[data-a],[data-q],[data-emo]');if(!el)return;
  var d=el.dataset;
  if(d.q!==undefined){e.stopPropagation();qs=d.q;vista='esplora';scrollTo(0,0);render();return}
- if(d.v){if(d.v==='scrivi'){if(!me){toast('Entra con il codice della tua squadra per partecipare');return}vista='home';filt='tutti';render();var t=document.getElementById('tx');if(t)t.focus();return}if(d.v==='profilo'&&!me){toast('Entra con il codice della tua squadra');return}vista=d.v;scrollTo(0,0);if(d.v==='esplora')qs='';render();return}
+ if(d.v){if(d.v==='scrivi'){if(!me){toast('Entra con il codice della tua squadra per partecipare');return}vista='home';filt='tutti';render();var t=document.getElementById('tx');if(t)t.focus();return}if(d.v==='home'&&vista==='home'){if(window.scrollY>4)window.scrollTo({top:0,behavior:'smooth'});else rinfresca();return}
+ if(d.v==='profilo'&&!me){toast('Entra con il codice della tua squadra');return}vista=d.v;scrollTo(0,0);if(d.v==='esplora')qs='';render();return}
  if(d.u){vprof=d.u;vista='u';edit=false;scrollTo(0,0);render();return}
  if(d.f){filt=d.f;render();return}
  if(d.emo!==undefined){sel.e=d.emo;document.querySelectorAll('.emo button').forEach(function(b){b.classList.toggle('on',b.dataset.emo===d.emo)});var av=document.querySelector('.av.xl');if(av){av.textContent=d.emo||sigla(me);av.className='av xl'+(d.emo?' e':'')}return}
