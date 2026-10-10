@@ -6,163 +6,315 @@
 <meta name="robots" content="noindex">
 <title>Curva · O Girrr</title>
 <link rel="icon" type="image/png" href="../assets/favicon-64.png">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@500;700;800;900&display=swap">
-<link rel="manifest" href="../manifest.webmanifest">
-<meta name="theme-color" content="#1d2a52">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800;900&display=swap">
+<meta name="theme-color" content="#ffffff" id="tc">
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-title" content="O Girrr">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-<link rel="apple-touch-icon" href="../assets/apple-touch-icon.png">
 <style>
-:root{--acc:#d62839;--bg:#1d2a52;--bg2:#2c3f7c;--bg3:#141d3d;--chiaro:#fbf6ec;--hi:#ffd166;--sub:#bfe3ff;--ok:#5fd38d;--bad:#ff7d86;--card:#0f1419;--line:#2f3336;--mute:#8b98a5}
-*{box-sizing:border-box;margin:0;padding:0}
-html{overflow-y:scroll;scrollbar-gutter:stable}
-body{min-height:100vh;font-family:Inter,system-ui,-apple-system,Segoe UI,sans-serif;color:var(--chiaro);background:var(--bg);
- background-image:radial-gradient(1200px 700px at 80% -10%,var(--bg2) 0,var(--bg) 55%,var(--bg3) 100%);background-attachment:fixed}
-body::before{content:'';position:fixed;inset:-120px;z-index:-1;pointer-events:none;background:repeating-linear-gradient(115deg,rgba(255,255,255,.04) 0 36px,transparent 36px 72px);animation:strisce 9s linear infinite}
-@keyframes strisce{to{transform:translate3d(79.45px,0,0)}}
-@media (prefers-reduced-motion:reduce){body::before{animation:none}*{animation:none!important;transition:none!important}}
-button{font-family:inherit;color:inherit}
-.wrap{max-width:640px;margin:0 auto;padding:18px 16px 40px}
-.back{display:inline-block;margin-bottom:10px;font-weight:800;font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:var(--hi);text-decoration:none}
-.top{display:flex;align-items:center;gap:14px}
-.top img{height:clamp(64px,12vw,92px);cursor:pointer;filter:drop-shadow(0 8px 14px rgba(0,0,0,.4))}
-.kick{font-weight:900;font-size:clamp(11px,1.6vw,13px);letter-spacing:.4em;color:var(--hi)}
-.brand{display:flex;align-items:center;gap:10px;margin-top:4px}
-.brand i{flex:none;width:clamp(30px,6vw,40px);height:clamp(30px,6vw,40px);border-radius:28%;background:linear-gradient(135deg,#ff5a36,#c8102e);position:relative;box-shadow:0 6px 14px rgba(0,0,0,.35)}
-.brand i:after{content:"";position:absolute;inset:26%;border-radius:50%;border:max(2.5px,.5vw) solid #fff;border-right-color:transparent;transform:rotate(30deg)}
-h1{font-weight:900;font-size:clamp(30px,6vw,46px);line-height:1;letter-spacing:-.02em}
-.sub{color:var(--sub);font-weight:600;font-size:14px;margin:10px 0 14px}
-.bozza{display:inline-block;font-size:10px;font-weight:800;letter-spacing:.16em;text-transform:uppercase;color:#1d2a52;background:var(--hi);padding:3px 8px;border-radius:999px;vertical-align:middle;margin-left:6px}
-.who{display:flex;align-items:center;gap:10px;margin-bottom:12px;font-size:12px;font-weight:700;color:var(--sub)}
-.who select{flex:1;max-width:250px;font:800 13px Inter;color:var(--chiaro);background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.2);border-radius:10px;padding:8px 10px}
-.who select option{color:#111}
-.tabs{display:flex;background:rgba(255,255,255,.1);border-radius:999px;padding:4px;margin-bottom:12px;position:relative}
-.tabs button{flex:1;position:relative;z-index:1;border:0;background:none;font:800 12px Inter;letter-spacing:.06em;text-transform:uppercase;padding:10px 6px;border-radius:999px;cursor:pointer;opacity:.75;transition:opacity .2s,background .25s}
-.tabs button.on{background:var(--acc);opacity:1}
-.tend{display:flex;gap:8px;overflow-x:auto;scrollbar-width:none;margin-bottom:12px}
-.tend::-webkit-scrollbar{display:none}
-.tend span{flex:none;font-weight:800;font-size:12px;padding:6px 11px;border-radius:999px;background:rgba(255,255,255,.1);color:var(--hi)}
-.feed{background:var(--card);border-radius:20px;overflow:hidden;box-shadow:0 14px 30px rgba(0,0,0,.35)}
-.comp{display:flex;gap:12px;padding:14px 16px;border-bottom:1px solid var(--line)}
-.av{flex:none;width:44px;height:44px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:15px;color:#fff}
-.av.sm{width:32px;height:32px;font-size:11px}
+:root{--bg:#fff;--bg2:#f7f9f9;--tx:#0f1419;--mu:#536471;--ln:#eff3f4;--hv:rgba(15,20,25,.05);--acc:#d62839;--blu:#1d9bf0;--ora:#f5b301;--pk:#f91880;--gr:#00ba7c}
+:root[data-theme=dark]{--bg:#0b0f14;--bg2:#16202a;--tx:#e7e9ea;--mu:#8b98a5;--ln:#2f3336;--hv:rgba(255,255,255,.06)}
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+html{overflow-y:scroll}
+body{font-family:Inter,system-ui,-apple-system,Segoe UI,sans-serif;background:var(--bg);color:var(--tx);min-height:100vh;transition:background .25s,color .25s}
+button,input,textarea{font-family:inherit;color:inherit}
+svg{display:block}
+.app{max-width:1080px;margin:0 auto;display:grid;grid-template-columns:minmax(0,1fr);min-height:100vh}
+@media(min-width:760px){.app{grid-template-columns:80px minmax(0,600px)}}
+@media(min-width:1060px){.app{grid-template-columns:230px minmax(0,600px) 270px}}
+.nav{position:fixed;left:0;right:0;bottom:0;z-index:30;display:flex;justify-content:space-around;background:var(--bg);border-top:1px solid var(--ln);padding:4px 0 calc(4px + env(safe-area-inset-bottom))}
+.nav button{position:relative;flex:1;border:0;background:none;padding:10px 0;cursor:pointer;display:flex;justify-content:center;color:var(--tx)}
+.nav button svg{width:26px;height:26px}
+.nav button .t{display:none}
+.nav button.on svg{stroke-width:2.9}
+.nav .logo,.nav .postbtn{display:none}
+.bd{position:absolute;top:5px;left:calc(50% + 6px);background:var(--blu);color:#fff;font:800 10px Inter;min-width:17px;height:17px;border-radius:9px;display:flex;align-items:center;justify-content:center;padding:0 4px}
+@media(min-width:760px){
+ .nav{position:sticky;top:0;bottom:auto;height:100vh;flex-direction:column;justify-content:flex-start;gap:4px;border-top:0;border-right:1px solid var(--ln);padding:12px 8px;align-items:stretch}
+ .nav button{flex:none;border-radius:999px;padding:12px;gap:16px;align-items:center}
+ .nav button:hover{background:var(--hv)}
+ .nav .logo{display:flex;padding:8px 12px 14px;cursor:pointer}
+}
+@media(min-width:1060px){
+ .nav button{justify-content:flex-start;padding:12px 16px}
+ .nav button .t{display:inline;font-size:19px;font-weight:500}
+ .nav button.on .t{font-weight:900}
+ .nav .bd{left:36px}
+ .nav .postbtn{display:flex;margin-top:10px;background:var(--acc);color:#fff;justify-content:center;font:800 16px Inter;padding:14px}
+ .nav .postbtn:hover{background:var(--acc)}
+}
+.lg{width:34px;height:34px;border-radius:28%;background:linear-gradient(135deg,#ff5a36,#c8102e);position:relative;flex:none}
+.lg:after{content:"";position:absolute;inset:26%;border-radius:50%;border:3.5px solid #fff;border-right-color:transparent;transform:rotate(30deg)}
+.col{min-width:0;border-right:1px solid var(--ln);padding-bottom:90px}
+@media(max-width:759px){.col{border-right:0}}
+.top{position:sticky;top:0;z-index:20;background:color-mix(in srgb,var(--bg) 88%,transparent);-webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px);border-bottom:1px solid var(--ln);padding-top:env(safe-area-inset-top)}
+.bar{display:flex;align-items:center;gap:12px;padding:8px 14px;min-height:52px}
+.bar .tt{font-weight:900;font-size:20px;flex:1;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.bar .tt small{display:block;font-size:13px;color:var(--mu);font-weight:500}
+.ib{flex:none;width:36px;height:36px;border-radius:50%;border:0;background:none;cursor:pointer;display:flex;align-items:center;justify-content:center}
+.ib:hover{background:var(--hv)}.ib svg{width:20px;height:20px}
+@media(min-width:760px){.bar .me{display:none}}
+.tabs{display:flex}
+.tabs button{flex:1;border:0;background:none;padding:14px 4px;font:700 15px Inter;color:var(--mu);cursor:pointer;position:relative}
+.tabs button:hover{background:var(--hv)}
+.tabs button.on{color:var(--tx);font-weight:900}
+.tabs button.on:after{content:"";position:absolute;left:50%;bottom:0;width:56px;height:4px;border-radius:2px;background:var(--acc);transform:translateX(-50%)}
+.av{flex:none;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:800;color:#fff;width:44px;height:44px;font-size:15px;cursor:pointer;user-select:none}
+.av.sm{width:34px;height:34px;font-size:12px}.av.xl{width:96px;height:96px;font-size:30px;border:4px solid var(--bg);cursor:default}
+.mine{margin:12px 14px;padding:12px 14px;border-radius:16px;background:var(--bg2);border:1px solid var(--ln);display:flex;gap:12px;align-items:center}
+.mine b{font-size:15px}.mine span{display:block;color:var(--mu);font-size:13px;margin-top:2px}
+.mine .pos{margin-left:auto;text-align:center;font-weight:900;font-size:22px;line-height:1}
+.mine .pos small{display:block;font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--mu);margin-top:3px;font-weight:700}
+.comp{display:flex;gap:12px;padding:12px 14px;border-bottom:1px solid var(--ln)}
 .comp .cb{flex:1;min-width:0}
-.comp textarea{width:100%;background:none;border:0;outline:0;resize:none;color:#e7e9ea;font:500 17px/1.35 Inter;min-height:52px;overflow:hidden}
-.comp textarea::placeholder{color:#6b7885}
-.comp .cr{display:flex;align-items:center;justify-content:space-between;gap:10px;border-top:1px solid var(--line);padding-top:10px}
-.cnt{font-size:12px;font-weight:700;color:var(--mute);font-variant-numeric:tabular-nums}
-.cnt.near{color:var(--hi)}.cnt.over{color:var(--bad)}
-.btn{border:0;border-radius:999px;background:var(--acc);color:#fff;font:800 14px Inter;padding:9px 18px;cursor:pointer;transition:transform .15s,opacity .2s}
-.btn:active{transform:scale(.95)}.btn:disabled{opacity:.4;cursor:default}
-.post{display:flex;gap:12px;padding:14px 16px;border-bottom:1px solid var(--line);color:#e7e9ea;animation:entra .45s ease both}
-@keyframes entra{from{opacity:0;transform:translateY(-10px)}to{opacity:1;transform:none}}
-.post:last-child{border-bottom:0}
+.comp textarea{width:100%;background:none;border:0;outline:0;resize:none;font:400 19px/1.35 Inter;min-height:48px;overflow:hidden;padding-top:8px}
+.comp textarea::placeholder{color:var(--mu)}
+.comp .cr{display:flex;align-items:center;justify-content:flex-end;gap:12px;border-top:1px solid var(--ln);padding-top:10px}
+.cnt{font-size:13px;font-weight:700;color:var(--mu);font-variant-numeric:tabular-nums}
+.cnt.near{color:var(--ora)}.cnt.over{color:#f4212e}
+.btn{border:0;border-radius:999px;background:var(--acc);color:#fff;font:800 15px Inter;padding:9px 20px;cursor:pointer;transition:transform .15s,opacity .2s}
+.btn:active{transform:scale(.95)}.btn:disabled{opacity:.45;cursor:default}
+.btn.out{background:none;border:1px solid var(--ln);color:var(--tx)}
+.btn.blu{background:var(--tx);color:var(--bg)}
+.post{display:flex;gap:12px;padding:12px 14px;border-bottom:1px solid var(--ln);animation:entra .4s ease both}
+.post:hover{background:var(--hv)}
+@keyframes entra{from{opacity:0;transform:translateY(-8px)}to{opacity:1;transform:none}}
 .pb{flex:1;min-width:0}
-.pn{display:flex;align-items:center;gap:6px;flex-wrap:wrap;font-size:15px}
-.pn b{color:#fff;font-weight:800}.pn span{color:var(--mute);font-size:14px}
-.pn .ver{flex:none}
-.pt{margin:3px 0 8px;font-size:16px;line-height:1.38;white-space:pre-wrap;word-wrap:break-word;overflow-wrap:anywhere}
-.acts{display:flex;justify-content:space-between;max-width:380px;margin-left:-8px}
-.acts button{display:flex;align-items:center;gap:6px;border:0;background:none;color:var(--mute);font:600 13px Inter;cursor:pointer;padding:6px 8px;border-radius:999px;transition:color .2s,background .2s}
-.acts button:hover{background:rgba(255,255,255,.07)}
-.acts .app.on{color:#f91880}.acts .ril.on{color:#00ba7c}.acts .rsp.on{color:#1d9bf0}
-.acts svg{width:18px;height:18px}
-.acts .app.on svg{fill:#f91880;animation:pop .35s ease}
+.pn{display:flex;align-items:center;gap:4px;flex-wrap:wrap;font-size:15px;line-height:1.2}
+.pn b{font-weight:800;cursor:pointer}.pn b:hover{text-decoration:underline}
+.pn .h,.pn .tm{color:var(--mu);font-weight:400}
+.pt{margin:2px 0 8px;font-size:15.5px;line-height:1.38;white-space:pre-wrap;overflow-wrap:anywhere}
+.hs{color:var(--blu)}
+.res{border:1px solid var(--ln);border-radius:16px;overflow:hidden;margin:6px 0 10px}
+.res h4{font-size:12px;letter-spacing:.1em;text-transform:uppercase;padding:10px 14px;background:var(--bg2);color:var(--mu);font-weight:800}
+.res .g{display:grid;grid-template-columns:1fr 58px 1fr;gap:6px;align-items:center;padding:8px 14px;border-top:1px solid var(--ln);font-size:14px;font-weight:700}
+.res .g span:first-child{text-align:right}.res .g em{font-style:normal;text-align:center;background:var(--tx);color:var(--bg);border-radius:6px;font-weight:900;padding:2px 0}
+.res .g .l{color:var(--mu);font-weight:500}
+.res .c{display:grid;grid-template-columns:24px 1fr auto auto;gap:8px;padding:7px 14px;border-top:1px solid var(--ln);font-size:14px;font-weight:700}
+.res .c i{font-style:normal;color:var(--mu)}.res .c u{text-decoration:none;color:var(--mu);font-weight:500}
+.lnk{display:inline-flex;margin:2px 0 10px;border:1px solid var(--ln);border-radius:999px;padding:7px 14px;font-weight:800;font-size:13px;color:var(--tx);text-decoration:none;background:none;cursor:pointer}
+.acts{display:flex;justify-content:space-between;max-width:420px;margin-left:-8px}
+.acts button{display:flex;align-items:center;gap:6px;border:0;background:none;color:var(--mu);font:500 13px Inter;cursor:pointer;padding:6px 8px;border-radius:999px;transition:color .2s,background .2s}
+.acts button:hover{background:var(--hv)}
+.acts button svg{width:18px;height:18px}
+.acts .rsp:hover,.acts .rsp.on{color:var(--blu)}.acts .ril:hover,.acts .ril.on{color:var(--gr)}.acts .app:hover,.acts .app.on{color:var(--pk)}
+.acts .app.on svg{fill:var(--pk);animation:pop .35s ease}
 @keyframes pop{0%{transform:scale(.6)}60%{transform:scale(1.35)}100%{transform:scale(1)}}
-.acts .del{margin-left:auto;color:#7a5560}.acts .del:hover{color:var(--bad)}
-.thr{margin-top:10px;border-left:2px solid var(--line);padding-left:12px;display:none}
-.thr.open{display:block}
-.rp{display:flex;gap:10px;padding:8px 0}
-.rp .pt{font-size:15px;margin:2px 0 0}
-.rf{display:flex;gap:8px;margin-top:8px}
-.rf input{flex:1;min-width:0;background:#16202a;border:1px solid var(--line);border-radius:999px;color:#e7e9ea;font:500 14px Inter;padding:9px 14px;outline:0}
-.rf input:focus{border-color:#1d9bf0}
-.rf .btn{padding:8px 14px;font-size:13px;background:#1d9bf0}
-.vuoto{padding:34px 16px;text-align:center;color:var(--mute);font-weight:600}
-.tm{color:var(--mute);font-size:13px;white-space:nowrap}
-.red{font-size:10px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:#1d9bf0;border:1px solid #1d9bf0;border-radius:4px;padding:1px 5px}
-.foot{margin-top:14px;text-align:center;font-size:12px;color:var(--sub);opacity:.8}
+.acts .del:hover{color:#f4212e}
+.thr{margin-top:6px;display:none}.thr.open{display:block}
+.rp{display:flex;gap:10px;padding:10px 0;border-top:1px solid var(--ln)}
+.rf{display:flex;gap:8px;margin-top:8px;padding-top:10px;border-top:1px solid var(--ln)}
+.rf input{flex:1;min-width:0;background:var(--bg2);border:1px solid var(--ln);border-radius:999px;font:400 14px Inter;padding:9px 14px;outline:0}
+.rf input:focus{border-color:var(--blu)}
+.vuoto{padding:44px 20px;text-align:center;color:var(--mu);font-weight:600}
+.ban{height:130px;background:linear-gradient(135deg,var(--c1),var(--c2))}
+.pf{padding:0 16px 12px;border-bottom:1px solid var(--ln)}
+.pf .r1{display:flex;justify-content:space-between;align-items:flex-end;margin-top:-48px}
+.pf h2{font-size:21px;font-weight:900;display:flex;align-items:center;gap:6px;margin-top:8px;flex-wrap:wrap}
+.pf .h{color:var(--mu);font-size:15px}
+.pf p{margin-top:10px;font-size:15px;line-height:1.35}
+.pf .st{display:flex;gap:18px;margin-top:10px;color:var(--mu);font-size:14px}.pf .st b{color:var(--tx);font-weight:800}
+.etich{display:inline-flex;align-items:center;gap:5px;font-size:12px;color:var(--mu);font-weight:700;margin-top:8px}
+.dx{display:none;padding:12px 18px;min-width:0}
+@media(min-width:1060px){.dx{display:block}}
+.box{background:var(--bg2);border-radius:16px;margin-bottom:14px;overflow:hidden}
+.box h3{font-size:19px;font-weight:900;padding:12px 16px}
+.box .it{padding:10px 16px}
+.box .it small{display:block;color:var(--mu);font-size:12.5px}.box .it b{font-size:15px}
+.box .who{display:flex;gap:10px;align-items:center;padding:10px 16px}
+.box .who .n{flex:1;min-width:0;font-size:14.5px}.box .who .n b{display:block;cursor:pointer;line-height:1.2}.box .who .n b svg{display:inline-block;vertical-align:-3px;margin-left:3px}.box .who .n small{color:var(--mu);font-size:13px;display:block}
+.box .btn{padding:7px 12px;font-size:13px;flex:none;white-space:nowrap}
+.nt{display:flex;gap:12px;padding:12px 14px;border-bottom:1px solid var(--ln)}
+.nt p{font-size:15px;line-height:1.35}.nt small{display:block;color:var(--mu);margin-top:3px}
+.sec{font-size:19px;font-weight:900;padding:16px 14px 6px}
 </style>
 </head>
 <body>
-<div class="wrap">
-  <a class="back" href="index.html">‹ O Girrr</a>
-  <header class="top"><img id="lg" src="../assets/loghi/logo-lega-o-fant-a-girrr.png" alt="O Fant A Girrr" title="Torna a O Girrr"><div><div class="kick">O FANT A GIRRR · 2026/27</div><div class="brand"><i></i><h1>Curva</h1><span class="bozza">Bozza</span></div></div></header>
-  <p class="sub">Il social della lega: i cori delle squadre, gli applausi e le risposte.</p>
-  <div class="who"><span>Stai guardando come</span><select id="chi" aria-label="Squadra"></select></div>
-  <div class="tend" id="tend"></div>
-  <div class="tabs" id="tabs"><button data-f="tutti" class="on">Tutti</button><button data-f="redazione">Redazione</button><button data-f="miei">I miei cori</button></div>
-  <div class="feed">
-    <div class="comp"><div class="av" id="cav"></div><div class="cb">
-      <textarea id="tx" rows="2" maxlength="160" placeholder="Fai il tuo coro…"></textarea>
-      <div class="cr"><span class="cnt" id="cnt">140</span><button class="btn" id="go" disabled>Lancia il coro</button></div>
-    </div></div>
-    <div id="lista"></div>
-  </div>
-  <div class="foot">O Girrr · Curva</div>
+<div class="app">
+  <nav class="nav" id="nav"></nav>
+  <main class="col"><header class="top" id="top"></header><div id="vista"></div></main>
+  <aside class="dx" id="dx"></aside>
 </div>
 <script>
 (function(){
+'use strict';
 var SQ=['Oranje VC','The Blue brothers','Apo team','Grodah','WOA','Real Madrink','stif dc','Mariana Coneja','AFA SELECCION','Atletico ma non troppo'];
-var ADMIN='Oranje VC',RED='O Giornale del Girrr',MAX=140;
+var ADMIN='Oranje VC',MAX=140;
 function esc(s){return String(s).replace(/[&<>"]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})}
 function cap(s){return s.charAt(0).toUpperCase()+s.slice(1)}
 function maiusc(s){return s.replace(/(^\s*|[.!?…]\s+)([a-zàèéìòù])/g,function(m,a,b,off,str){if(a.charAt(0)==='.'&&/(^|\s)[A-Z]$/.test(str.slice(0,off)))return m;return a+b.toUpperCase()})}
-function hue(n){var h=0;for(var i=0;i<n.length;i++)h=(h*31+n.charCodeAt(i))%360;return 'hsl('+h+' 55% 42%)'}
+function hue(n){var h=0;for(var i=0;i<n.length;i++)h=(h*31+n.charCodeAt(i))%360;return h}
+function col(n){return 'hsl('+hue(n)+' 55% 42%)'}
 function sigla(n){var p=n.trim().split(/\s+/);return(p[0][0]+(p[1]?p[1][0]:(p[0][1]||''))).toUpperCase()}
-function handle(n){return '@'+n.toLowerCase().replace(/[^a-z0-9]+/g,'_').replace(/^_|_$/g,'')}
-function ago(m){return m<1?'ora':m<60?m+' min':m<1440?Math.floor(m/60)+' h':'ieri'}
-var ICO={rsp:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a8 8 0 0 1-11.5 7.2L4 21l1.8-5.3A8 8 0 1 1 21 12z"/></svg>',
- ril:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 2l4 4-4 4"/><path d="M3 11V9a3 3 0 0 1 3-3h15"/><path d="M7 22l-4-4 4-4"/><path d="M21 13v2a3 3 0 0 1-3 3H3"/></svg>',
- app:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7.5-4.6-9.6-9.3C.9 8.2 3 5 6.2 5c1.9 0 3.2 1 3.8 2 .6-1 1.9-2 3.8-2C17 5 19.1 8.2 17.6 11.7 15.5 16.4 12 21 12 21z"/></svg>',
- del:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h18"/><path d="M8 6V4h8v2"/><path d="M6 6l1 14h10l1-14"/></svg>'};
-var VER='<svg class="ver" viewBox="0 0 24 24" width="17" height="17"><circle cx="12" cy="12" r="11" fill="#1d9bf0"/><path d="M7 12.5l3.2 3.2L17 8.8" fill="none" stroke="#fff" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg>';
-var nid=100;
-var P=[
- {id:1,t:'Oranje VC',x:"Dall'89 al 69 in sette giorni. Il record resta in bacheca, il resto è in revisione. Mercoledì si riparte.",m:62,ap:9,ril:2,r:[{t:'Grodah',x:'Bacheca bella piena, vedo.',m:50},{t:'stif dc',x:'Revisione ok, ma il 3-1 non te lo toglie nessuno.',m:41}]},
- {id:2,t:RED,x:'È online il numero 2 del Giornale: pagelle, coro della settimana e bufala di mercato. Buona lettura.',m:95,ap:14,ril:6,r:[]},
- {id:3,t:'stif dc',x:'Prima giornata 68,5, seconda 77,5 e Oranje VC battuto 1-3. La stagione grigia? Ho cambiato lampadina.',m:128,ap:22,ril:7,r:[{t:'Mariana Coneja',x:'Lampadina nuova, bolletta più alta.',m:100}]},
- {id:4,t:'Grodah',x:"Quattro gol all'Atletico ma non troppo. Il nome continua a essere la parte più sincera.",m:200,ap:11,ril:1,r:[]},
- {id:5,t:'Atletico ma non troppo',x:'66,5. Non è un punteggio, è uno stato d\'animo.',m:215,ap:17,ril:3,r:[{t:'Real Madrink',x:'Posso mettere "mi piace" a uno stato d\'animo?',m:190}]},
- {id:6,t:'Real Madrink',x:'Perdere 4-2 con 72 punti è il mio modo di dire che c\'ero.',m:340,ap:6,ril:0,r:[]},
- {id:7,t:'Apo team',x:'Pareggio con la WOA. Come il caffè: poco, ma serve.',m:410,ap:8,ril:1,r:[{t:'WOA',x:"Sul 2-2 l'ultimo gol era mio, giuro.",m:380}]},
- {id:8,t:'Mariana Coneja',x:'Primo posto in classifica. Non lo dico per vantarmi, lo dico per farvi vedere come si fa.',m:1500,ap:13,ril:4,r:[]}
-];
-var me=SQ[0],filt='tutti',ap={},ril={},open={};
-(function(){try{var f=JSON.parse(localStorage.getItem('fg')||'{}');if(f&&f.team&&SQ.indexOf(f.team)>=0)me=f.team}catch(e){}})();
-var sel=document.getElementById('chi');sel.innerHTML=SQ.map(function(n){return '<option'+(n===me?' selected':'')+'>'+esc(cap(n))+'</option>'}).join('');
-sel.onchange=function(){me=SQ[sel.selectedIndex];drawMe();draw()};
-function drawMe(){var a=document.getElementById('cav');a.style.background=hue(me);a.textContent=sigla(me);document.getElementById('lg').onclick=function(){location.href='index.html'}}
-function head(t){return '<div class="pn"><b>'+esc(cap(t))+'</b>'+(t===RED?VER+'<span class="red">Redazione</span>':'')+'<span>'+esc(handle(t))+'</span></div>'}
-function draw(){
-  var L=P.filter(function(p){return filt==='tutti'||(filt==='redazione'&&p.t===RED)||(filt==='miei'&&p.t===me)});
-  var h=L.map(function(p){
-    var a=ap[p.id]?1:0,r=ril[p.id]?1:0,own=(p.t===me)||(me===ADMIN);
-    return '<div class="post" data-i="'+p.id+'"><div class="av" style="background:'+(p.t===RED?'linear-gradient(135deg,#ff5a36,#c8102e)':hue(p.t))+'">'+esc(p.t===RED?'GG':sigla(p.t))+'</div><div class="pb">'+head(p.t)+
-    '<div class="pt">'+esc(p.x)+' <span class="tm">· '+ago(p.m)+'</span></div>'+
-    '<div class="acts"><button class="rsp'+(open[p.id]?' on':'')+'" data-a="rsp">'+ICO.rsp+(p.r.length||'')+'</button><button class="ril'+(r?' on':'')+'" data-a="ril">'+ICO.ril+(p.ril+r||'')+'</button><button class="app'+(a?' on':'')+'" data-a="app">'+ICO.app+(p.ap+a||'')+'</button>'+(own?'<button class="del" data-a="del" title="Elimina">'+ICO.del+'</button>':'')+'</div>'+
-    '<div class="thr'+(open[p.id]?' open':'')+'">'+p.r.map(function(r){return '<div class="rp"><div class="av sm" style="background:'+hue(r.t)+'">'+esc(sigla(r.t))+'</div><div class="pb">'+head(r.t).replace('<div class="pn">','<div class="pn" style="font-size:14px">')+'<div class="pt">'+esc(r.x)+' <span class="tm">· '+ago(r.m)+'</span></div></div></div>'}).join('')+
-    '<div class="rf"><input maxlength="140" placeholder="Scrivi una risposta…" data-ri="'+p.id+'"><button class="btn" data-a="invia">Rispondi</button></div></div>'+
-    '</div></div>'}).join('');
-  document.getElementById('lista').innerHTML=h||'<div class="vuoto">'+(filt==='miei'?'Non hai ancora fatto nessun coro.':'Ancora niente qui.')+'</div>';
+function hnd(n){return n.toLowerCase().replace(/[^a-z0-9]+/g,'_').replace(/^_|_$/g,'')}
+function ago(m){return m<1?'ora':m<60?m+' min':m<1440?Math.floor(m/60)+' h':m<2880?'ieri':Math.floor(m/1440)+' g'}
+function fmt(n){return n>=1000?(n/1000).toFixed(1).replace('.',',')+' mila':String(n)}
+var S='fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"';
+var I={
+ home:'<svg viewBox="0 0 24 24" '+S+'><path d="M3 11l9-8 9 8"/><path d="M5 10v10h5v-6h4v6h5V10"/></svg>',
+ expl:'<svg viewBox="0 0 24 24" '+S+'><circle cx="11" cy="11" r="7"/><path d="M20 20l-4-4"/></svg>',
+ bell:'<svg viewBox="0 0 24 24" '+S+'><path d="M6 17V11a6 6 0 0 1 12 0v6l2 2H4z"/><path d="M10 21h4"/></svg>',
+ user:'<svg viewBox="0 0 24 24" '+S+'><circle cx="12" cy="8" r="4"/><path d="M4 21c1-4 4-6 8-6s7 2 8 6"/></svg>',
+ rsp:'<svg viewBox="0 0 24 24" '+S+'><path d="M21 12a8 8 0 0 1-11.5 7.2L4 21l1.8-5.3A8 8 0 1 1 21 12z"/></svg>',
+ ril:'<svg viewBox="0 0 24 24" '+S+'><path d="M17 2l4 4-4 4"/><path d="M3 11V9a3 3 0 0 1 3-3h15"/><path d="M7 22l-4-4 4-4"/><path d="M21 13v2a3 3 0 0 1-3 3H3"/></svg>',
+ app:'<svg viewBox="0 0 24 24" '+S+'><path d="M12 21s-7.5-4.6-9.6-9.3C.9 8.2 3 5 6.2 5c1.9 0 3.2 1 3.8 2 .6-1 1.9-2 3.8-2C17 5 19.1 8.2 17.6 11.7 15.5 16.4 12 21 12 21z"/></svg>',
+ vis:'<svg viewBox="0 0 24 24" '+S+'><path d="M4 20V10"/><path d="M10 20V4"/><path d="M16 20v-7"/><path d="M22 20H2"/></svg>',
+ del:'<svg viewBox="0 0 24 24" '+S+'><path d="M3 6h18"/><path d="M8 6V4h8v2"/><path d="M6 6l1 14h10l1-14"/></svg>',
+ sun:'<svg viewBox="0 0 24 24" '+S+'><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M2 12h2M20 12h2M5 5l1.5 1.5M17.5 17.5L19 19M5 19l1.5-1.5M17.5 6.5L19 5"/></svg>',
+ moon:'<svg viewBox="0 0 24 24" '+S+'><path d="M20 14.5A8 8 0 0 1 9.5 4 8 8 0 1 0 20 14.5z"/></svg>',
+ back:'<svg viewBox="0 0 24 24" '+S+'><path d="M15 5l-7 7 7 7"/></svg>'};
+function badge(t){return t?'<svg viewBox="0 0 24 24" width="18" height="18" style="display:inline-block;flex:none"><circle cx="12" cy="12" r="11" fill="'+(t==='oro'?'#e8a600':'#1d9bf0')+'"/><path d="M7 12.5l3.2 3.2L17 8.8" fill="none" stroke="#fff" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg>':''}
+/* account */
+var ACC={};
+function add(h,n,k,v,bio,c){ACC[h]={h:h,n:n,k:k,v:v,bio:bio,c:c}}
+SQ.forEach(function(n){add(hnd(n),n,'sq','','',null)});
+add('lega_ofantagirrr','Lega O Fant A Girrr','org','oro','Account ufficiale della lega. Risultati e comunicazioni. Niente ricorsi.',['#d62839','#1d2a52']);
+add('giornale_girrr','O Giornale del Girrr','org','oro','Il settimanale della lega. Esce ogni mercoledì mattina.',['#c8102e','#7a0a1c']);
+add('ciro_trattativa','Ciro Trattativa','pro','blu','Giornalista di mercato. Quasi sempre. Fonti: il bar sotto casa.',['#1d9bf0','#0b3d66']);
+add('nonno_cesare','Nonno Cesare','fan','','Allenatore dal 1962 (della domenica).',['#6b705c','#3a3d33']);
+add('tifoso_arrabbiato','Il Tifoso Arrabbiato','fan','','Cambiate allenatore. Sempre.',['#b5179e','#560bad']);
+add('mister_divano','Il Tecnico da Divano','fan','','Ho vinto tutto. Su un altro divano.',['#3a86ff','#8338ec']);
+add('radio_spogliatoio','Radio Spogliatoio','fan','','Voci di corridoio. Nessuna conferma, molta convinzione.',['#fb8500','#9d4400']);
+add('mamma_di_capitan','Mamma di Capitan Sfortuna','fan','','Orgogliosa di mio figlio. Soprattutto quando perde.',['#ef476f','#7b1c34']);
+add('ex_ds_provincia','Ex DS di Provincia','fan','','Ho venduto più portieri di quanti ne abbia mai parati la mia squadra.',['#06d6a0','#0b5d49']);
+add('var_parlante','VAR Parlante','fan','','Ho rivisto l\'azione. Ho dei dubbi.',['#118ab2','#073b4c']);
+add('fc27_ratings','FC27 Ratings Italia','fan','','Aggiorniamo gli overall quando ci pare. Reclami non accettati.',['#2ec4b6','#0b3c3a']);
+function acc(h){return ACC[h]||{h:h,n:h,k:'fan',v:'',bio:''}}
+function bg(a){return a.c?'linear-gradient(135deg,'+a.c[0]+','+a.c[1]+')':col(a.n)}
+function sg(a){return a.h==='giornale_girrr'?'GG':a.h==='lega_ofantagirrr'?'LG':a.h==='ciro_trattativa'?'CT':sigla(a.n)}
+/* stato */
+var ST={cls:[],ult:null,next:null},me=null;
+(function(){try{var f=JSON.parse(localStorage.getItem('fg')||'{}');if(f&&SQ.indexOf(f.team)>=0)me=f.team}catch(e){}
+ var q=(location.search.match(/[?&]come=([^&]+)/)||[])[1];if(q){q=decodeURIComponent(q);if(SQ.indexOf(q)>=0)me=q}
+ if(!me)me=ADMIN})();
+var meH=hnd(me),ap={},ril={},open={},filt='tutti',nid=100,nuove=0,vista='home',vprof='',notif=[],P=[],seguiti={ciro_trattativa:1,giornale_girrr:1,lega_ofantagirrr:1};
+function calcola(d){
+ var L=(d.cal&&d.cal.lega)||[],T={};
+ function giocata(g){return g.m.some(function(m){return m[4]!=='-'})}
+ L.forEach(function(g){if(!giocata(g))return;g.m.forEach(function(m){var gc=+m[4].split('-')[0],gf=+m[4].split('-')[1];
+  [[m[0],m[1],gc>gf?3:gc===gf?1:0],[m[3],m[2],gf>gc?3:gf===gc?1:0]].forEach(function(x){var t=T[x[0]]||(T[x[0]]={n:x[0],pt:0,fp:0});t.pt+=x[2];t.fp+=x[1]})})});
+ SQ.forEach(function(n){if(!T[n])T[n]={n:n,pt:0,fp:0}});
+ ST.cls=Object.keys(T).map(function(k){return T[k]}).sort(function(a,b){return b.pt-a.pt||b.fp-a.fp});
+ var pl=L.filter(giocata);ST.ult=pl[pl.length-1]||null;ST.next=L.filter(function(g){return !giocata(g)})[0]||null;
 }
-document.getElementById('lista').addEventListener('click',function(e){
-  var b=e.target.closest('button');if(!b)return;var po=b.closest('.post'),id=+po.dataset.i,p=P.filter(function(x){return x.id===id})[0],a=b.dataset.a;
-  if(a==='app')ap[id]=!ap[id];else if(a==='ril')ril[id]=!ril[id];else if(a==='rsp')open[id]=!open[id];
-  else if(a==='del'){P=P.filter(function(x){return x.id!==id});}
-  else if(a==='invia'){var i=po.querySelector('input'),v=maiusc(i.value.trim());if(!v)return;p.r.push({t:me,x:v,m:0});open[id]=true}
-  draw();if(a==='rsp'&&open[id]){var i2=document.querySelector('[data-i="'+id+'"] input');if(i2)i2.focus()}
+function posiz(n){var i=ST.cls.map(function(t){return t.n}).indexOf(n);return i<0?0:i+1}
+function prossimo(n){if(!ST.next)return null;for(var i=0;i<ST.next.m.length;i++){var m=ST.next.m[i];if(m[0]===n)return m[3];if(m[3]===n)return m[0]}return null}
+function seed(){
+ var u=ST.ult,n=u?u.n:1;
+ P=[
+ {id:1,a:'lega_ofantagirrr',x:'Fine giornata. Ecco i risultati della '+n+'ª giornata di campionato. #Giornata'+n,m:1520,ap:41,ril:9,v:1840,tipo:'ris',r:[{a:'stif_dc',x:'Ricorso respinto in anticipo, grazie.',m:1500}]},
+ {id:2,a:'giornale_girrr',x:'È uscito il numero '+n+' del Giornale: pagelle, il Coro della settimana e la Bufala di mercato. #Giornata'+n,m:1380,ap:33,ril:12,v:2210,tipo:'gio',r:[]},
+ {id:3,a:'ciro_trattativa',x:'🚨 Ci siamo… forse. L\'asta di riparazione si avvicina e tutti giurano che non cambieranno niente. Ovviamente non è vero. #AstaDiRiparazione\n\nAggiornamento a breve. 🧵',m:600,ap:58,ril:21,v:3190,thr:['2/3 Una squadra della lega starebbe pensando a un colpo a sorpresa. Il giocatore è sereno. Il giornalista meno.','3/3 Prossimo aggiornamento: quando vorrò io. Ci siamo. Forse.'],r:[{a:'radio_spogliatoio',x:'Confermo. Cioè, non confermo. Però confermo.',m:580}]},
+ {id:4,a:'tifoso_arrabbiato',x:'Cambiate allenatore! Non importa quale squadra, cambiate e basta. Poi vediamo. #Giornata'+n,m:95,ap:27,ril:5,v:910,r:[]},
+ {id:5,a:'stif_dc',x:'Prima giornata 68,5, seconda 77,5 e Oranje VC battuto 1-3. La stagione grigia? Ho cambiato lampadina. #LampadinaNuova',m:128,ap:22,ril:7,v:870,r:[{a:'mariana_coneja',x:'Lampadina nuova, bolletta più alta.',m:100}]},
+ {id:6,a:'mister_divano',x:'Sorpreso dalla squadra? No. Sono sorpreso che qualcuno sia sorpreso. 4-3-3 e passa la paura.',m:150,ap:16,ril:3,v:540,r:[]},
+ {id:7,a:'fc27_ratings',x:'Aggiornamento overall: Oranje VC 89 (+20 dopo la prima giornata). Troppo? Chiedetelo a chi ha perso. #FC27',m:210,ap:31,ril:11,v:1420,r:[{a:'atletico_ma_non_troppo',x:'Il mio è 66,5. Fate voi.',m:190}]},
+ {id:8,a:'atletico_ma_non_troppo',x:'66,5. Non è un punteggio, è uno stato d\'animo.',m:215,ap:17,ril:3,v:560,r:[{a:'real_madrink',x:'Posso mettere un applauso a uno stato d\'animo?',m:190}]},
+ {id:9,a:'nonno_cesare',x:'Ai miei tempi il fantacalcio si faceva con carta, penna e litigi al bar. Oggi gli stessi litigi, ma con le notifiche.',m:330,ap:44,ril:14,v:1980,r:[]},
+ {id:10,a:'mamma_di_capitan',x:'Bravo, ho visto la partita. Hai fatto settantuno punti. Hai mangiato?',m:360,ap:63,ril:18,v:2740,r:[]},
+ {id:11,a:'ex_ds_provincia',x:'Il mercato è così: vendi un portiere a gennaio, a maggio ti chiede ancora i soldi dell\'assicurazione. #BufalaDiMercato',m:420,ap:12,ril:2,v:380,r:[]},
+ {id:12,a:'var_parlante',x:'Ho rivisto l\'azione. Il 69 di Oranje VC era regolare. Anche se faceva male.',m:480,ap:20,ril:6,v:760,r:[]},
+ {id:13,a:'real_madrink',x:'Perdere 4-2 con 72 punti è il mio modo di dire che c\'ero.',m:540,ap:6,ril:0,v:300,r:[]}
+ ];
+ notif=[{t:'giornale_girrr',x:'ha pubblicato il Giornale.',m:1380},{t:'lega_ofantagirrr',x:'ha pubblicato i risultati.',m:1520},{t:'nonno_cesare',x:'ha applaudito il tuo coro.',m:300},{t:'ciro_trattativa',x:'ti segue.',m:700}];
+}
+/* tema */
+function tema(t){document.documentElement.setAttribute('data-theme',t);document.getElementById('tc').setAttribute('content',t==='dark'?'#0b0f14':'#ffffff');try{localStorage.setItem('cv-tema',t)}catch(e){}}
+(function(){var t=null;try{t=localStorage.getItem('cv-tema')}catch(e){}if(!t)t=window.matchMedia&&matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light';tema(t)})();
+function curTema(){return document.documentElement.getAttribute('data-theme')}
+/* render */
+function testo(s){return esc(s).replace(/#(\w+)/g,'<span class="hs">#$1</span>')}
+function resCard(){
+ if(!ST.ult)return '';
+ return '<div class="res"><h4>Campionato · '+ST.ult.n+'ª giornata</h4>'+ST.ult.m.map(function(m){var gc=m[4].split('-');return '<div class="g"><span class="'+(+gc[0]<+gc[1]?'l':'')+'">'+esc(cap(m[0]))+'</span><em>'+gc[0]+' - '+gc[1]+'</em><span class="'+(+gc[1]<+gc[0]?'l':'')+'" style="text-align:left">'+esc(cap(m[3]))+'</span></div>'}).join('')+'</div>'+
+ '<div class="res"><h4>Classifica</h4>'+ST.cls.slice(0,5).map(function(t,i){return '<div class="c"><i>'+(i+1)+'</i><span>'+esc(cap(t.n))+'</span><u>'+String(t.fp).replace('.',',')+' fp</u><b>'+t.pt+' pt</b></div>'}).join('')+'</div>'
+}
+function reply(r,sz){var ra=acc(r.a);return '<div class="rp"><div class="av sm" data-u="'+ra.h+'" style="background:'+bg(ra)+'">'+sg(ra)+'</div><div class="pb"><div class="pn" style="font-size:14px"><b data-u="'+ra.h+'">'+esc(cap(ra.n))+'</b>'+badge(ra.v)+'<span class="h">@'+ra.h+'</span><span class="tm">· '+ago(r.m)+'</span></div><div class="pt" style="font-size:14.5px;margin-bottom:0">'+testo(r.x)+'</div></div></div>'}
+function postHTML(p){
+ var a=acc(p.a),A=ap[p.id]?1:0,R=ril[p.id]?1:0,own=p.a===meH||me===ADMIN;
+ var ex=(p.tipo==='ris'?resCard():'')+(p.tipo==='gio'?'<a class="lnk" href="giornale.html">Apri il Giornale ›</a>':'');
+ var th=(p.thr||[]).map(function(x){return reply({a:p.a,x:x,m:p.m})}).join('');
+ return '<article class="post" data-i="'+p.id+'"><div class="av" data-u="'+a.h+'" style="background:'+bg(a)+'">'+sg(a)+'</div><div class="pb">'+
+  '<div class="pn"><b data-u="'+a.h+'">'+esc(cap(a.n))+'</b>'+badge(a.v)+'<span class="h">@'+a.h+'</span><span class="tm">· '+ago(p.m)+'</span></div>'+
+  '<div class="pt">'+testo(p.x)+'</div>'+ex+
+  (th?'<div class="thr'+(open['t'+p.id]?' open':'')+'">'+th+'</div><button class="lnk" data-a="thr" style="color:var(--blu)">'+(open['t'+p.id]?'Nascondi il thread':'Mostra il thread')+'</button>':'')+
+  '<div class="acts"><button class="rsp'+(open[p.id]?' on':'')+'" data-a="rsp">'+I.rsp+(p.r.length||'')+'</button><button class="ril'+(R?' on':'')+'" data-a="ril">'+I.ril+(p.ril+R||'')+'</button><button class="app'+(A?' on':'')+'" data-a="app">'+I.app+(p.ap+A||'')+'</button><button style="cursor:default">'+I.vis+fmt(p.v)+'</button>'+(own?'<button class="del" data-a="del" title="Elimina">'+I.del+'</button>':'')+'</div>'+
+  '<div class="thr'+(open[p.id]?' open':'')+'">'+p.r.map(function(r){return reply(r)}).join('')+'<div class="rf"><input maxlength="140" placeholder="Scrivi una risposta…"><button class="btn" data-a="invia" style="padding:8px 14px;font-size:13px">Rispondi</button></div></div></div></article>'
+}
+function feed(L){return L.length?L.map(postHTML).join(''):'<div class="vuoto">Ancora niente qui.</div>'}
+function navR(){
+ var it=[['home','Home',I.home],['esplora','Esplora',I.expl],['notif','Notifiche',I.bell],['profilo','Profilo',I.user]];
+ document.getElementById('nav').innerHTML='<div class="logo" data-v="home"><div class="lg"></div></div>'+it.map(function(x){var on=vista===x[0]||(vista==='u'&&x[0]==='profilo'&&vprof===meH);return '<button data-v="'+x[0]+'" class="'+(on?'on':'')+'" aria-label="'+x[1]+'">'+x[2]+'<span class="t">'+x[1]+'</span>'+(x[0]==='notif'&&nuove?'<span class="bd">'+nuove+'</span>':'')+'</button>'}).join('')+'<button class="btn postbtn" data-v="scrivi">Lancia un coro</button>'
+}
+function topR(titolo,sott,tabs){
+ var back=vista==='u'&&vprof!==meH;
+ document.getElementById('top').innerHTML='<div class="bar">'+(back?'<button class="ib" data-v="home" aria-label="Indietro">'+I.back+'</button>':'<div class="av sm me" data-v="profilo" style="background:'+col(me)+'">'+sigla(me)+'</div>')+
+  '<div class="tt">'+(vista==='home'?'<span style="display:flex;align-items:center;gap:8px"><i class="lg" style="width:28px;height:28px"></i>Curva</span>':esc(titolo)+(sott?'<small>'+esc(sott)+'</small>':''))+'</div>'+
+  '<button class="ib" id="tg" aria-label="Cambia tema">'+(curTema()==='dark'?I.sun:I.moon)+'</button></div>'+(tabs?'<div class="tabs">'+tabs+'</div>':'');
+ document.getElementById('tg').onclick=function(){tema(curTema()==='dark'?'light':'dark');render()};
+}
+var TR=[['#Giornata'+(ST.ult?ST.ult.n:1),'2,4 mila cori'],['#AstaDiRiparazione','860 cori'],['#LampadinaNuova','612 cori'],['#BufalaDiMercato','498 cori'],['#FC27','341 cori']];
+function whoRow(h){var a=acc(h);return '<div class="who"><div class="av sm" data-u="'+h+'" style="background:'+bg(a)+'">'+sg(a)+'</div><div class="n"><b data-u="'+h+'">'+esc(a.n)+badge(a.v)+'</b><small>@'+h+'</small></div><button class="btn blu" data-seg="'+h+'">'+(seguiti[h]?'Seguito':'Segui')+'</button></div>'}
+function dxR(){
+ TR[0][0]='#Giornata'+(ST.ult?ST.ult.n:1);
+ document.getElementById('dx').innerHTML='<div class="box"><h3>Tendenze</h3>'+TR.map(function(t){return '<div class="it"><small>Tendenza nella lega</small><b>'+t[0]+'</b><small>'+t[1]+'</small></div>'}).join('')+'<div class="it"><small>Cambiano dopo ogni giornata.</small></div></div>'+
+ '<div class="box"><h3>Chi seguire</h3>'+['giornale_girrr','lega_ofantagirrr','ciro_trattativa'].map(whoRow).join('')+'</div>'
+}
+function render(){
+ var v=document.getElementById('vista'),h='';
+ TR[0][0]='#Giornata'+(ST.ult?ST.ult.n:1);
+ if(vista==='profilo'){vista='u';vprof=meH}
+ if(vista==='home'){
+  topR('Curva','','<button data-f="tutti" class="'+(filt==='tutti'?'on':'')+'">Per te</button><button data-f="squadre" class="'+(filt==='squadre'?'on':'')+'">Squadre</button><button data-f="notizie" class="'+(filt==='notizie'?'on':'')+'">Notizie</button>');
+  var pos=posiz(me),pr=prossimo(me);
+  h+='<div class="mine"><div class="av" data-v="profilo" style="background:'+col(me)+'">'+sigla(me)+'</div><div><b>'+esc(cap(me))+'</b><span>'+(pr?'Prossima partita: contro '+esc(cap(pr)):'La tua squadra')+'</span></div>'+(pos?'<div class="pos">'+pos+'ª<small>'+ST.cls[pos-1].pt+' punti</small></div>':'')+'</div>';
+  h+='<div class="comp"><div class="av" style="background:'+col(me)+'">'+sigla(me)+'</div><div class="cb"><textarea id="tx" rows="2" maxlength="160" placeholder="Cosa succede in curva?"></textarea><div class="cr"><span class="cnt" id="cnt">'+MAX+'</span><button class="btn" id="go" disabled>Lancia il coro</button></div></div></div>';
+  h+=feed(P.filter(function(p){var k=acc(p.a).k;return filt==='tutti'||(filt==='squadre'&&k==='sq')||(filt==='notizie'&&(k==='org'||k==='pro'))}));
+ }else if(vista==='esplora'){
+  topR('Esplora','Tendenze e account da seguire');
+  h+='<div class="sec">Tendenze</div>'+TR.map(function(t){return '<div class="nt"><div><small style="margin:0">Tendenza nella lega</small><p style="font-weight:800">'+t[0]+'</p><small>'+t[1]+'</small></div></div>'}).join('')+'<div class="nt"><small style="margin:0">Le tendenze cambiano dopo ogni giornata.</small></div><div class="sec">Chi seguire</div>'+
+  ['lega_ofantagirrr','giornale_girrr','ciro_trattativa','nonno_cesare','tifoso_arrabbiato','mister_divano','radio_spogliatoio','mamma_di_capitan','ex_ds_provincia','var_parlante','fc27_ratings'].map(function(k){var a=acc(k);return '<div class="nt"><div class="av" data-u="'+k+'" style="background:'+bg(a)+'">'+sg(a)+'</div><div style="flex:1;min-width:0"><p><b data-u="'+k+'" style="cursor:pointer">'+esc(a.n)+'</b> '+badge(a.v)+'</p><small style="margin:0">@'+k+'</small><p style="font-size:14px;color:var(--mu);margin-top:3px">'+esc(a.bio)+'</p></div><button class="btn blu" data-seg="'+k+'" style="align-self:flex-start;padding:7px 14px;font-size:13px">'+(seguiti[k]?'Seguito':'Segui')+'</button></div>'}).join('');
+ }else if(vista==='notif'){
+  topR('Notifiche','');nuove=0;
+  h+=notif.map(function(n){var a=acc(n.t);return '<div class="nt"><div class="av sm" data-u="'+a.h+'" style="background:'+bg(a)+'">'+sg(a)+'</div><div><p><b data-u="'+a.h+'" style="cursor:pointer">'+esc(cap(a.n))+'</b> '+n.x+'</p><small>'+ago(n.m)+'</small></div></div>'}).join('');
+ }else{
+  var a=acc(vprof),isSq=a.k==='sq',pos=isSq?posiz(a.n):0,mio=vprof===meH;
+  topR(a.n,P.filter(function(p){return p.a===vprof}).length+' cori');
+  var bio=isSq?(pos?cap(a.n)+' · '+pos+'ª in classifica con '+ST.cls[pos-1].pt+' punti. Campionato O Fant A Girrr.':'Squadra della lega O Fant A Girrr.'):a.bio;
+  var c1=a.c?a.c[0]:'hsl('+hue(a.n)+' 60% 40%)',c2=a.c?a.c[1]:'hsl('+((hue(a.n)+40)%360)+' 55% 22%)';
+  h+='<div class="ban" style="--c1:'+c1+';--c2:'+c2+'"></div><div class="pf"><div class="r1"><div class="av xl" style="background:'+bg(a)+'">'+sg(a)+'</div>'+(mio?'<button class="btn out" disabled>Il tuo profilo</button>':'<button class="btn blu" data-seg="'+vprof+'">'+(seguiti[vprof]?'Seguito':'Segui')+'</button>')+'</div>'+
+   '<h2>'+esc(cap(a.n))+badge(a.v)+'</h2><div class="h">@'+a.h+'</div><p>'+esc(bio)+'</p>'+(a.v?'<div class="etich">'+badge(a.v)+(a.v==='oro'?' Account ufficiale':' Account verificato')+'</div>':'')+
+   '<div class="st"><span><b>'+(isSq?9:12+hue(a.n)%40)+'</b> Seguiti</span><span><b>'+(isSq?10+hue(a.n)%7:100+hue(a.n)*3)+'</b> Follower</span></div></div>'+feed(P.filter(function(p){return p.a===vprof}));
+ }
+ v.innerHTML=h;navR();dxR();
+ var tx=document.getElementById('tx');if(tx){tx.addEventListener('input',conta);conta()}
+ var go=document.getElementById('go');if(go)go.onclick=lancia;
+}
+function conta(){var tx=document.getElementById('tx'),c=document.getElementById('cnt'),go=document.getElementById('go');if(!tx)return;var r=MAX-tx.value.length;c.textContent=r;c.className='cnt'+(r<0?' over':r<20?' near':'');go.disabled=!tx.value.trim()||r<0;tx.style.height='auto';tx.style.height=tx.scrollHeight+'px'}
+var BOT=[['tifoso_arrabbiato','Cambiate allenatore.'],['nonno_cesare','Ai miei tempi non si scriveva, si urlava.'],['mister_divano','Sorpreso? Io no. Il 4-3-3 non mente.'],['radio_spogliatoio','Voci di corridoio: è vero. O forse no.'],['var_parlante','Rivisto. Dubbi.']];
+function lancia(){
+ var tx=document.getElementById('tx'),v=maiusc(tx.value.trim());if(!v||v.length>MAX)return;
+ var id=nid++;P.unshift({id:id,a:meH,x:v,m:0,ap:0,ril:0,v:3,r:[]});filt='tutti';render();
+ setTimeout(function(){var p=P.filter(function(x){return x.id===id})[0];if(!p)return;var b=BOT[Math.floor(Math.random()*BOT.length)];p.ap+=3;p.v+=41;p.r.push({a:b[0],x:b[1],m:0});notif.unshift({t:b[0],x:'ha risposto al tuo coro.',m:0});nuove++;if(vista==='home')render();else navR()},2600);
+}
+document.addEventListener('click',function(e){
+ var el=e.target.closest('[data-v],[data-u],[data-f],[data-seg],[data-a]');if(!el)return;
+ var d=el.dataset;
+ if(d.v){if(d.v==='scrivi'){vista='home';filt='tutti';render();var t=document.getElementById('tx');if(t)t.focus();return}vista=d.v;scrollTo(0,0);render();return}
+ if(d.u){vprof=d.u;vista='u';scrollTo(0,0);render();return}
+ if(d.f){filt=d.f;render();return}
+ if(d.seg){seguiti[d.seg]=!seguiti[d.seg];render();return}
+ var a=d.a,po=el.closest('.post');if(!po)return;
+ var id=+po.dataset.i,p=P.filter(function(x){return x.id===id})[0];
+ if(a==='app')ap[id]=!ap[id];else if(a==='ril')ril[id]=!ril[id];else if(a==='rsp')open[id]=!open[id];else if(a==='thr')open['t'+id]=!open['t'+id];
+ else if(a==='del')P=P.filter(function(x){return x.id!==id});
+ else if(a==='invia'){var i=po.querySelector('.rf input'),t=maiusc(i.value.trim());if(!t)return;p.r.push({a:meH,x:t,m:0});open[id]=true}
+ else return;
+ render();
 });
-document.getElementById('lista').addEventListener('keydown',function(e){if(e.key==='Enter'&&e.target.matches('input')){e.target.closest('.post').querySelector('[data-a=invia]').click()}});
-var tx=document.getElementById('tx'),cnt=document.getElementById('cnt'),go=document.getElementById('go');
-function conta(){var n=tx.value.length,r=MAX-n;cnt.textContent=r;cnt.className='cnt'+(r<0?' over':r<20?' near':'');go.disabled=!tx.value.trim()||r<0;tx.style.height='auto';tx.style.height=tx.scrollHeight+'px'}
-tx.addEventListener('input',conta);
-go.onclick=function(){var v=maiusc(tx.value.trim());if(!v||v.length>MAX)return;P.unshift({id:nid++,t:me,x:v,m:0,ap:0,ril:0,r:[]});tx.value='';conta();filt='tutti';[].forEach.call(document.querySelectorAll('.tabs button'),function(b){b.classList.toggle('on',b.dataset.f==='tutti')});draw()};
-document.getElementById('tabs').onclick=function(e){var b=e.target.closest('button');if(!b)return;filt=b.dataset.f;[].forEach.call(this.children,function(x){x.classList.toggle('on',x===b)});draw()};
-document.getElementById('tend').innerHTML=['#Giornata2','#Cappotto','#Thuram','#BufalaDiMercato','#LampadinaNuova'].map(function(t){return '<span>'+t+'</span>'}).join('');
-drawMe();draw();
+document.addEventListener('keydown',function(e){if(e.key==='Enter'&&e.target.matches&&e.target.matches('.rf input')){e.target.closest('.post').querySelector('[data-a=invia]').click()}});
+fetch('../data.json',{cache:'no-store'}).then(function(r){return r.json()}).then(calcola).catch(function(){}).then(function(){seed();render()});
 })();
 </script>
 </body>
