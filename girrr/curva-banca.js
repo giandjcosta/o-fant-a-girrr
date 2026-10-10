@@ -192,14 +192,35 @@ function post_giorno(D,SQ,ST,g){
   /* nessuna ripetizione di template a ravvicinato: indice ruotato per giorno */
   var ix=(Math.floor(g/1)+i*7+h32(a+cat))%lis.length,c=mk();
   var tag=r()<0.45?pick(r,tags):null;
-  var x=riempi(lis[ix],c,tag);
+  var x=natura(riempi(lis[ix],c,tag),'v:'+g+':'+i,a);
   var hh=8+Math.floor((i+r())*(15/n)),mi=Math.floor(r()*60);
   out.push({k:'v:'+g+':'+i,a:a,x:x,ts:ts(dd.y,dd.mo,dd.d,Math.min(23,hh),mi),_r:r});
  }
  /* risposte generiche */
- out.forEach(function(p){var rr=prng(p.k),nr=Math.floor(rr()*3);p.r=[];var s=shuffle(rr,AUTORI.filter(function(a){return a!==p.a}));for(var j=0;j<nr;j++){var c=mk();p.r.push({a:s[j],x:riempi(pick(rr,RISP),c,null),ts:p.ts+(5+Math.floor(rr()*90))*60000})}});
+ out.forEach(function(p){var rr=prng(p.k),nr=Math.floor(rr()*3);p.r=[];var s=shuffle(rr,AUTORI.filter(function(a){return a!==p.a}));for(var j=0;j<nr;j++){var c=mk();p.r.push({a:s[j],x:natura(riempi(pick(rr,RISP),c,null),p.k+'r'+j,s[j]),ts:p.ts+(5+Math.floor(rr()*90))*60000})}});
  return out;
 }
+/* Rende i cori meno perfetti e più vivi: emoji, punti esclamativi, puntini, domande insistenti, qualche errore. Tutto raro e deterministico. */
+var EMJ={nonno_cesare:['👴','🍷','⚽'],tifoso_arrabbiato:['😡','🤬','🔥'],mister_divano:['🛋️','📋','⚽'],radio_spogliatoio:['📻','👀','🤫'],mamma_di_capitan:['❤️','🍝','🥰'],ex_ds_provincia:['💼','🤝','😅'],var_parlante:['🖥️','🧐','🚩'],fc27_ratings:['🎮','📈','🔥'],il_cugino_del_dt:['🤫','👀','😏'],telecronista_stanco:['😴','🎙️','☕'],gufo_professionista:['🦉','😈','🔮'],il_filosofo_del_pallone:['🤔','🌌','⚽'],bomber_da_bar:['🍺','⚽','😎'],statistico_folle:['📊','🤓','🔢'],arbitro_in_pensione:['🟨','⚽','🙄']};
+var GEN=['😂','🤦‍♂️','👏','🔥','🙄','😅','⚽','😬'];
+var DOM=['Voi che dite?','Ma sono l\'unico?','Che ne pensate?','Qualcuno mi spiega?','Chi è d\'accordo?','Ma davvero?'];
+function natura(x,key,a){
+ var r=prng(key+'nat'+a),t=x;
+ /* qualche errore, raramente */
+ if(r()<0.07){var m=r();t=m<0.34?t.replace(/\bè\b/g,'e').replace(/\bpiù\b/g,'piu').replace(/\bperché\b/g,'perche'):m<0.67?t.replace(/(\b[Uu]n)'(?=[a-zàèéìòù])/g,'$1 ').replace(/\bl'(?=[a-zàèéìòù])/g,'l '):t.replace(/\b(\w*(?:imo|ona|ato|ata|ente))\b/,function(w){return w+w.slice(-1)+w.slice(-1)})}
+ var fine=/[.!?…]$/.test(t)?t.slice(-1):'';var base=fine?t.slice(0,-1):t,multi=/[.!?]\s/.test(base);
+ /* domande insistenti */
+ if(fine==='?'&&r()<0.35)t=base+(r()<0.6?'??':'???');
+ else if(fine==='.'&&!multi&&r()<0.1)t=base+'…';
+ else if(fine==='.'&&!multi&&r()<0.12)t=base+(r()<0.7?'!':'!!');
+ else if(!fine&&r()<0.08)t=base+'...';
+ /* aggiunta di una domanda finale */
+ if(r()<0.06&&t.length<100&&!/\?$/.test(t)){var q=pick(r,DOM);if(r()<0.35)q=q.slice(0,-1)+'??';t+=' '+q}
+ /* tifoso arrabbiato: a volte tutto maiuscolo */
+ if(a==='tifoso_arrabbiato'&&r()<0.12&&t.length<80)t=t.toUpperCase().replace(/#\w+/g,function(h){return h});
+ /* emoji, raramente */
+ if(r()<0.14){var set=(EMJ[a]||[]).concat(GEN);var e=pick(r,set);if(r()<0.15)e+=pick(r,set);t+=' '+e}
+ return t}
 function conta(k,base){var r=prng(k+'n');var b=base||1;return{ap:Math.floor((4+r()*40)*b),ril:Math.floor(r()*12*b),v:Math.floor((200+r()*2400)*b)}}
 function genera(D,SQ,ST,ms){
  var r=roma(ms),oggi=giorno(ms),all=[],tg=tendenze(D).map(function(x){return x[0]});
@@ -232,7 +253,7 @@ function genera(D,SQ,ST,ms){
 function reazioni(k,t,ms,SQ){var r=prng('rz'+k),age=(ms-t)/60000;if(age<1)return{ap:0,ril:0,r:[]};
  var fa=2+Math.floor(r()*11),fr=Math.floor(r()*4),pr=Math.pow(Math.min(1,age/360),0.6),out=[];
  var nr=Math.floor(r()*3),ord=shuffle(r,AUTORI);
- for(var i=0;i<nr;i++){var d=10+r()*240,tx=pick(r,RISP).replace('{sq}',pick(r,SQ)),a=ord[i];if(age>=d)out.push({a:a,x:tx,ts:t+d*60000})}
+ for(var i=0;i<nr;i++){var d=10+r()*240,tx=pick(r,RISP).replace('{sq}',pick(r,SQ)),a=ord[i];if(age>=d)out.push({a:a,x:natura(tx,k+'z'+i,a),ts:t+d*60000})}
  return{ap:Math.floor(fa*pr),ril:Math.floor(fr*pr),r:out}}
 function ultimo(D,ms){var SQ=(D.teams||[]).map(function(t){return t.name}),L=(D.cal&&D.cal.lega)||[],u=null;L.forEach(function(g){if(g.m.some(function(m){return m[4]!=='-'}))u=g});
  var p=genera(D,SQ,{cls:SQ.map(function(n){return{n:n}}),ult:u,next:null},ms);return p.length?p[0].ts:0}
