@@ -38,7 +38,7 @@ a.st:hover{transform:translateY(-4px);background:rgba(255,255,255,.14);box-shado
 .mn[hidden]{display:none!important}
 .mn:hover{transform:translateY(-3px);background:rgba(255,255,255,.13)}
 .mn .mi{flex:none;width:38px;height:38px;border-radius:10px;background:rgba(255,255,255,.1);display:grid;place-items:center;font-size:20px}
-.mn b{display:block;font-weight:900;font-size:15px}.mn span{display:block;color:var(--sub);font-weight:600;font-size:12px;margin-top:2px}
+.nd[hidden]{display:none}.nd{display:inline-block;width:9px;height:9px;border-radius:50%;background:#1d9bf0;margin-left:6px;vertical-align:1px;animation:ndp 1.8s ease-in-out infinite}@keyframes ndp{0%,100%{opacity:1;box-shadow:0 0 8px 2px rgba(29,155,240,.6)}50%{opacity:.25;box-shadow:none}}.mn b{display:block;font-weight:900;font-size:15px}.mn span{display:block;color:var(--sub);font-weight:600;font-size:12px;margin-top:2px}
 .lg-leghe{display:flex;align-items:center;gap:14px;flex-wrap:wrap;margin:22px 0 0;background:rgba(255,255,255,.08);border-left:6px solid var(--acc);border-radius:4px 12px 12px 4px;padding:14px 16px}
 .lg-leghe .t{flex:1;min-width:200px}.lg-leghe small{display:block;font-weight:800;font-size:11px;letter-spacing:.24em;color:var(--hi);margin-bottom:4px}
 .lg-leghe b{font-weight:900;font-size:17px;text-transform:uppercase}.lg-leghe p{color:var(--sub);font-weight:600;font-size:13px;margin-top:3px;line-height:1.4}
@@ -118,7 +118,7 @@ body::before{content:'';position:fixed;inset:-120px;z-index:-1;pointer-events:no
     <a class="c" href="tabellone.html"><div class="ic"><span class="recw"><img src="../assets/loghi/logo-tv-girrr-sport-live.png" alt=""><i class="rec"></i></span></div><h2>Tabellone</h2><p>Risultati e classifiche di campionato e Champions Cup, giornata per giornata.</p><div class="go">GUARDA ›</div></a>
     <a class="c bet" href="totogirrr.html"><div class="ic"><span style="font-family:Lobster,'Brush Script MT',cursive;font-style:italic;font-size:40px;line-height:1.1;display:inline-block;text-shadow:0 2px 0 rgba(0,0,0,.28)"><b class="TT"><em class="Tg">T</em><svg viewBox="0 0 900 400" aria-hidden="true"><path fill="currentColor" d="M185.8 85.2H181Q145.4 85.2 121.1 103Q96.9 120.8 85.6 166Q81.9 180.8 83.2 186.6Q84.6 192.4 84.4 193.2Q62.8 193.2 54.4 184.2Q46.1 175.2 51.3 154.4Q58.4 126 78.2 102.6Q98.1 79.2 132.3 64.8Q166.5 50.4 213.7 50.4Q240.1 50.4 269.3 55.2Q272.6 55.8 275.8 56.3C299.8 57.8 329.3 62.4 360.7 67.4C408.7 74.9 461.1 83.2 505 82C565 80 605 68 642 62C668 66 668 94 640 99C600 108 545 122 480 122C417.8 122 363.5 106.2 296 100.6V102Q285.1 101.7 274.5 100Q262.2 98 239.8 93.2L120.4 350H62.8Z"/></svg></b>oto<span style="color:var(--hi)">girrr</span></span></div><h2>Totogirrr</h2><p>Le scommesse della lega con fantacrediti: 500 a testa, quote su ogni partita e classifica degli scommettitori.</p><div class="go">GIOCA ›</div></a>
   </section>
-  <section class="mini"><a class="mn" href="squadre.html"><div class="mi">🛡️</div><div><b>Le squadre</b><span>Rosa, risultati e forma di ognuno</span></div></a><a class="mn" href="albo.html"><div class="mi">🏆</div><div><b>Albo d'oro</b><span>Record e trofei della lega</span></div></a><a class="mn" id="mst" href="statistiche.html" hidden><div class="mi">📊</div><div><b>Statistiche</b><span>Solo per te: chi entra e dove</span></div></a></section>
+  <section class="mini"><a class="mn" href="squadre.html"><div class="mi">🛡️</div><div><b>Le squadre</b><span>Rosa, risultati e forma di ognuno</span></div></a><a class="mn" href="albo.html"><div class="mi">🏆</div><div><b>Albo d'oro</b><span>Record e trofei della lega</span></div></a><a class="mn" id="mcv" href="curva.html"><div class="mi">📣</div><div><b>Curva <i class="nd" id="cvd" hidden></i></b><span>Il social della lega</span></div></a><a class="mn" id="mst" href="statistiche.html" hidden><div class="mi">📊</div><div><b>Statistiche</b><span>Solo per te: chi entra e dove</span></div></a></section>
   <script>try{var f=JSON.parse(localStorage.getItem("fg")||"{}");if(f.team==="Oranje VC")document.getElementById("mst").hidden=false}catch(e){}</script>
   <div class="lg-leghe"><div class="t"><small>La nostra lega</small><b>Leghe Fantacalcio</b><p>Formazioni, classifica e mercato.</p></div><a class="go" id="lgo" href="https://leghe.fantacalcio.it/" target="_blank" rel="noopener">Apri la lega ›</a><div class="alt">Per la Serie A: <a href="https://www.legaseriea.it/" target="_blank" rel="noopener">Sito ufficiale della Serie A</a></div></div>
   <script>(function(){try{var u=navigator.userAgent||'',a=document.getElementById('lgo');
@@ -147,6 +147,7 @@ function loginDaLink(d){var k=(location.hash||'').replace('#','').trim().toUpper
   if(ok){try{history.replaceState(null,'',location.pathname+location.search)}catch(e){}}return ok}
 fetch('../data.json',{cache:'no-store'}).then(function(r){return r.json()}).then(function(d){
   loginDaLink(d);
+  try{var u=CVB.ultimo(d,Date.now()),vs=+(localStorage.getItem('cv-ultimo')||0);if(u>vs)document.getElementById('cvd').hidden=false}catch(e){}
   var L=d.cal.lega,pl=L.filter(function(g){return g.m.some(function(m){return m[4]!=='-'})});
   var h='';
   if(pl.length){
@@ -183,6 +184,7 @@ fetch('../riepiloghi/indice.json',{cache:'no-store'}).then(function(r){return r.
 var a=L.slice();for(var i=a.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1));var t=a[i];a[i]=a[j];a[j]=t}
 var e=document.querySelector('.sp .lg');if(e)e.innerHTML=a.slice(0,4).map(function(n){return '<img src="../assets/loghi/'+n+'.png" alt="">'}).join('')})();
 </script>
+<script src="curva-banca.js"></script>
 <script src="../assets/app.js"></script>
 </body>
 </html>
