@@ -226,7 +226,12 @@ function genera(D,SQ,ST,ms){
  all.sort(function(a,b){return b.ts-a.ts});
  return all;
 }
+function reazioni(k,t,ms,SQ){var r=prng('rz'+k),age=(ms-t)/60000;if(age<1)return{ap:0,ril:0,r:[]};
+ var fa=2+Math.floor(r()*11),fr=Math.floor(r()*4),pr=Math.pow(Math.min(1,age/360),0.6),out=[];
+ var nr=Math.floor(r()*3),ord=shuffle(r,AUTORI);
+ for(var i=0;i<nr;i++){var d=10+r()*240,tx=pick(r,RISP).replace('{sq}',pick(r,SQ)),a=ord[i];if(age>=d)out.push({a:a,x:tx,ts:t+d*60000})}
+ return{ap:Math.floor(fa*pr),ril:Math.floor(fr*pr),r:out}}
 function ultimo(D,ms){var SQ=(D.teams||[]).map(function(t){return t.name}),L=(D.cal&&D.cal.lega)||[],u=null;L.forEach(function(g){if(g.m.some(function(m){return m[4]!=='-'}))u=g});
  var p=genera(D,SQ,{cls:SQ.map(function(n){return{n:n}}),ult:u,next:null},ms);return p.length?p[0].ts:0}
-window.CVB={ultimo:ultimo,genera:genera,tendenze:tendenze,PERS:PERS,RISP:RISP,CIRO:CIRO,roma:roma,giorno:giorno,h32:h32};
+window.CVB={reazioni:reazioni,ultimo:ultimo,genera:genera,tendenze:tendenze,PERS:PERS,RISP:RISP,CIRO:CIRO,roma:roma,giorno:giorno,h32:h32};
 })();

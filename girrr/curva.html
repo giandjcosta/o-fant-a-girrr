@@ -232,7 +232,7 @@ function costruisci(){
  RC={};MN={};S.react.forEach(function(r){RC[r.k+'|'+r.kind]=r.n});S.mine.forEach(function(r){MN[r.k+'|'+r.kind]=1});
  var tuttiR={};S.replies.forEach(function(r){(tuttiR[r.k]=tuttiR[r.k]||[]).push({id:r.id,a:hnd(r.team),x:r.body,ts:r.ts,real:1})});
  var out=[];
- S.posts.forEach(function(p){out.push({k:'p'+p.id,id:p.id,real:1,a:hnd(p.team),x:p.body,ts:p.ts,ap:0,ril:0,v:0,r:[]})});
+ S.posts.forEach(function(p){var z={ap:0,ril:0,r:[]};try{z=CVB.reazioni('p'+p.id,p.ts,Date.now(),SQ)}catch(e){}out.push({k:'p'+p.id,id:p.id,real:1,a:hnd(p.team),x:p.body,ts:p.ts,ap:z.ap,ril:z.ril,v:0,r:z.r})});
  var gen=[];try{gen=CVB.genera(D,SQ,ST,Date.now())}catch(e){}
  gen.forEach(function(p){out.push(p)});
  out.forEach(function(p){var rr=(p.r||[]).concat(tuttiR[p.k]||[]);rr.sort(function(a,b){return a.ts-b.ts});p.r=rr;
@@ -275,7 +275,10 @@ function topR(titolo,sott,tabs){
   '<button class="ib" id="tg" aria-label="Cambia tema">'+(curTema()==='dark'?I.sun:I.moon)+'</button></div>'+(tabs?'<div class="tabs">'+tabs+'</div>':'')+(NET===false?'<div class="net">Non riesco a collegarmi ai cori: puoi leggere, ma non scrivere.</div>':'');
  document.getElementById('tg').onclick=function(){tema(curTema()==='dark'?'light':'dark');render()};
 }
-function segBtn(h,small){var s=S.follow.indexOf(h)>=0;return '<button class="btn blu" data-seg="'+h+'"'+(small?' style="align-self:flex-start;padding:7px 14px;font-size:13px"':'')+'>'+(s?'Seguito':'Segui')+'</button>'}
+function isDef(h){return h==='lega_ofantagirrr'||h==='giornale_girrr'||(ACC[h]&&ACC[h].k==='sq'&&h!==meH)}
+function isFol(h){if(!me)return false;var row=S.follow.indexOf(h)>=0;return isDef(h)?!row:row}
+function nSeguiti(){var n=0;Object.keys(ACC).forEach(function(h){if(h!==meH&&isFol(h))n++});return n}
+function segBtn(h,small){var s=isFol(h);return '<button class="btn blu" data-seg="'+h+'"'+(small?' style="align-self:flex-start;padding:7px 14px;font-size:13px"':'')+'>'+(s?'Seguito':'Segui')+'</button>'}
 function whoRow(h){var a=acc(h);return '<div class="who">'+AV(a,'sm','data-u="'+h+'"')+'<div class="n"><b data-u="'+h+'">'+esc(a.n)+badge(a.v)+'</b><small>@'+h+'</small></div>'+segBtn(h)+'</div>'}
 function dxR(){
  document.getElementById('dx').innerHTML='<div class="box"><h3>Tendenze</h3>'+TR.map(function(t){return '<div class="it" data-q="'+t[0]+'" style="cursor:pointer"><small>Tendenza nella lega</small><b>'+t[0]+'</b><small>'+fmt(t[1])+' cori</small></div>'}).join('')+'<div class="it"><small>Cambiano a ogni giornata.</small></div></div>'+
@@ -292,7 +295,7 @@ function render(){
    h+='<div class="mine">'+AV(m,'','data-v="profilo"')+'<div><b>'+esc(cap(me))+'</b><span>'+(pr?'Prossima partita: contro '+esc(cap(pr)):'La tua squadra')+'</span></div>'+(pos?'<div class="pos">'+pos+'ª<small>'+ST.cls[pos-1].pt+' punti</small></div>':'')+'</div>';
    h+='<div class="comp">'+AV(m)+'<div class="cb"><textarea id="tx" rows="2" maxlength="160" placeholder="Cosa succede in curva?"></textarea><div class="cr"><span class="cnt" id="cnt">'+MAX+'</span><button class="btn" id="go" disabled>Lancia il coro</button></div></div></div>'}
   else h+='<div class="ban2"><b>Stai guardando come ospite.</b><br>Per scrivere cori, rispondere e mettere applausi entra con il codice della tua squadra.<br><a class="btn" href="../index.html">Entra</a></div>';
-  var L=POSTS.filter(function(p){var k=acc(p.a).k;return filt==='tutti'||(filt==='seguiti'&&(S.follow.indexOf(p.a)>=0||p.a===meH))||(filt==='squadre'&&k==='sq')||(filt==='notizie'&&(k==='org'||k==='pro'))});
+  var L=POSTS.filter(function(p){var k=acc(p.a).k;return filt==='tutti'||(filt==='seguiti'&&(isFol(p.a)||p.a===meH))||(filt==='squadre'&&k==='sq')||(filt==='notizie'&&(k==='org'||k==='pro'))});
   h+=(filt==='seguiti'&&!L.length)?'<div class="vuoto">Non segui ancora nessuno.<br>Cerca in Esplora gli account da seguire.</div>':feed(L);
  }else if(vista==='esplora'){
   topR('Esplora','Cerca, tendenze e account');
@@ -304,7 +307,7 @@ function render(){
   var hh=pf.h!=null?pf.h:hue(a.n),c1=a.c?a.c[0]:'hsl('+hh+' 60% 40%)',c2=a.c?a.c[1]:'hsl('+((hh+40)%360)+' 55% 22%)';
   h+='<div class="ban" style="--c1:'+c1+';--c2:'+c2+'"></div><div class="pf"><div class="r1">'+AV(a,'xl')+(mio?'<button class="btn out" data-a="edav">'+(edit?'Chiudi':'Modifica avatar')+'</button>':segBtn(vprof))+'</div>'+
    '<h2>'+esc(cap(a.n))+badge(a.v)+'</h2><div class="h">@'+a.h+'</div><p>'+esc(bio)+'</p>'+(a.v?'<div class="etich">'+badge(a.v)+(a.v==='oro'?' Account ufficiale':' Account verificato')+'</div>':'')+
-   '<div class="st"><span><b>'+(isSq?9:12+hue(a.n)%40)+'</b> Seguiti</span><span><b>'+(isSq?10+hue(a.n)%7:100+hue(a.n)*3)+'</b> Follower</span></div></div>';
+   '<div class="st"><span><b>'+(mio?nSeguiti():isSq?11:12+hue(a.n)%40)+'</b> Seguiti</span><span><b>'+(isSq?fmt(1800+hue(a.n)*17+(mio?0:0)).replace(' mila','')+' mila':a.k==='org'?fmt(9000+hue(a.n)*31).replace(' mila','')+' mila':100+hue(a.n)*3)+'</b> Follower</span></div></div>';
   if(mio&&edit)h+='<div class="edav"><b>Scegli la tua icona</b><div class="emo">'+EMO.map(function(e){return '<button data-emo="'+e+'" class="'+(pf.e===e?'on':'')+'">'+e+'</button>'}).join('')+'<button data-emo="" class="'+(!pf.e?'on':'')+'" style="font-size:12px;font-weight:800">Sigla</button></div><b>Colore</b><input type="range" id="hue" min="0" max="359" value="'+hh+'"><button class="btn" data-a="salvaav" style="margin-top:10px">Salva</button></div>';
   h+=feed(POSTS.filter(function(p){return p.a===vprof}));
  }
