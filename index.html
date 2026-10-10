@@ -333,7 +333,7 @@ details.help .mk{margin-top:10px}
 .mkchip.on{background:var(--hl);border-color:var(--hl);color:var(--hl-ink);box-shadow:0 2px 10px rgba(var(--halo),.35)}
 .mkv .fld{display:grid;gap:6px}
 
-.pick{font:700 1.05rem var(--fh);text-transform:var(--tt);padding:10px 12px;border-radius:12px;border:1px solid var(--or);background:var(--card2);color:var(--ink);max-width:100%}
+.pick{width:100%;box-sizing:border-box;font:700 1.05rem var(--fh);text-transform:var(--tt);padding:10px 12px;border-radius:12px;border:1px solid var(--or);background:var(--card2);color:var(--ink);max-width:100%}
 .stb{font:700 .72rem var(--fb);text-transform:uppercase;letter-spacing:.05em;padding:2px 7px;border-radius:4px;white-space:nowrap}
 .stb{border-radius:999px}.s-T{background:var(--ok);color:#0b2200}.s-B{background:var(--mid);color:#001a33}.s-R{background:var(--warn);color:#1b1300}.s-D{background:var(--warn);color:#1b1300}.s-P{background:var(--line);color:var(--ink)}.s-I{background:var(--bad);color:#2b0008}
 .kpi{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-bottom:14px}
@@ -566,7 +566,7 @@ var gateErr=false,enter=true;
 function vGate(){
   return '<div class="card" style="max-width:420px;margin:24px auto;display:grid;gap:12px"><h3>Entra con la tua squadra</h3><div class="meta">Scegli la squadra e inserisci il codice che ti ha dato chi gestisce la lega. Il telefono se lo ricorda.</div>'+
   '<select class="pick" id="gt" aria-label="Squadra">'+D.teams.map(function(t){return '<option'+(t.name===team?' selected':'')+'>'+esc(t.name)+'</option>'}).join('')+'</select>'+
-  '<input id="gc" aria-label="Codice" placeholder="Codice" autocomplete="off" autocapitalize="characters" maxlength="8" style="font:700 1.2rem var(--fb);letter-spacing:.2em;padding:10px;border-radius:6px;border:2px solid var(--line);background:var(--card);color:var(--ink);text-transform:uppercase">'+
+  '<input id="gc" aria-label="Codice" placeholder="Codice" autocomplete="off" autocapitalize="characters" maxlength="8" style="width:100%;box-sizing:border-box;font:700 1.2rem var(--fb);letter-spacing:.2em;padding:10px;border-radius:6px;border:2px solid var(--line);background:var(--card);color:var(--ink);text-transform:uppercase">'+
   (gateErr?'<div style="color:var(--bad);font-weight:600">Codice non valido per questa squadra. Controlla maiuscole e numeri.</div>':'')+'<button class="btn pri" data-enter="1">Entra</button></div>';
 }
 function plur(n,s,p){return n+' '+(n===1?s:p)}

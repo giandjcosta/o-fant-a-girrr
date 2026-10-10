@@ -61,6 +61,7 @@ body[data-mode=coppa] .sw i{transform:translateX(100%)}
 .chips button.sel{background:var(--acc);border-color:var(--acc);opacity:1;transform:scale(1.08)}
 .grid{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(0,1fr);gap:22px;align-items:start}
 @media(max-width:860px){.grid{grid-template-columns:1fr}.tv{display:none}}
+@media(max-width:480px){.top{flex-wrap:wrap;gap:10px}.ttl{order:3;flex:1 1 100%;min-width:0}.shield{height:84px}.tv{height:44px}}
 .swap{transition:opacity .22s ease,transform .22s ease}
 .swap.out{opacity:0;transform:translateY(8px)}
 .m{display:grid;grid-template-columns:1fr auto 1fr;gap:clamp(8px,2vw,22px);align-items:center;padding:clamp(10px,2vw,16px) clamp(10px,2vw,16px) clamp(10px,2vw,16px) clamp(12px,2vw,18px);margin-bottom:12px;background:rgba(255,255,255,.08);border-left:8px solid var(--acc);border-radius:4px 14px 14px 4px;animation:in .5s both;transition:border-color .8s}
