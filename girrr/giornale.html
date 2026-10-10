@@ -72,5 +72,6 @@ fetch('../riepiloghi/indice.json',{cache:'no-store'}).then(function(r){return r.
     document.getElementById('lista').innerHTML=rest.map(function(x){return '<a class="it" href="../'+x.pdf+'" target="_blank" rel="noopener"><img src="../'+x.copertina+'" alt=""><b>N° '+x.n+'</b><span>'+esc(x.titolone||'')+'</span><small>'+esc(cap(x.data||''))+'</small></a>'}).join('')}
 }).catch(function(){document.getElementById('ultimo').innerHTML='<div class="empty">Non riesco a leggere l\'archivio.</div>'});
 </script>
+<script src="../assets/app.js"></script>
 </body>
 </html>

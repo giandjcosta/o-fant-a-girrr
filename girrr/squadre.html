@@ -183,17 +183,27 @@ function render(){
   var ch=document.getElementById('chips');[].forEach.call(ch.children,function(b){b.classList.toggle('sel',b.dataset.t===sel)});
 }
 function chips(){
-  var ch=document.getElementById('chips');
-  ch.innerHTML=D.teams.map(function(t){return '<button data-t="'+esc(t.name)+'" class="'+(t.name===ME?'mia':'')+'">'+esc(cap(t.name))+'</button>'}).join('');
+  /* le squadre sono ripetute tre volte: scorrendo oltre l'ultima si riparte dalla prima, come una rotella */
+  var ch=document.getElementById('chips'),n=D.teams.length,one=D.teams.map(function(t){return '<button data-t="'+esc(t.name)+'" class="'+(t.name===ME?'mia':'')+'">'+esc(cap(t.name))+'</button>'}).join('');
+  ch.innerHTML=one+one+one;ch.style.scrollBehavior='auto';
   ch.addEventListener('click',function(e){var b=e.target.closest('button');if(!b)return;sel=b.dataset.t;try{history.replaceState(null,'','#'+encodeURIComponent(sel))}catch(x){}render()});
+  var tmr=null;
+  ch.addEventListener('scroll',function(){clearTimeout(tmr);tmr=setTimeout(function(){
+    var W=ch.children[n].offsetLeft-ch.children[0].offsetLeft;if(!W)return;
+    if(ch.scrollLeft<W*0.5)ch.scrollLeft+=W;else if(ch.scrollLeft>W*1.5)ch.scrollLeft-=W},90)},{passive:true});
+}
+function centra(){
+  var ch=document.getElementById('chips'),n=D.teams.length,i=D.teams.map(function(t){return t.name}).indexOf(sel),b=ch.children[n+i];
+  if(b)ch.scrollLeft=b.offsetLeft-ch.children[0].offsetLeft-(ch.clientWidth-b.offsetWidth)/2+(ch.children[0].offsetLeft-ch.offsetLeft)*0;
 }
 fetch('../data.json',{cache:'no-store'}).then(function(r){return r.json()}).then(function(d){
   D=d;var h=decodeURIComponent((location.hash||'').replace('#',''));
   sel=D.teams.some(function(t){return t.name===h})?h:(D.teams.some(function(t){return t.name===ME})?ME:D.teams[0].name);
   chips();render();document.getElementById('foot').textContent='Dati aggiornati al '+(D.cal.date||'');
-  var el=document.querySelector('.chips button.sel');if(el)el.scrollIntoView({inline:'center',block:'nearest'});
+  centra();
 }).catch(function(){document.getElementById('sch').innerHTML='<div class="err">Non riesco a leggere i dati.</div>'});
 })();
 </script>
+<script src="../assets/app.js"></script>
 </body>
 </html>

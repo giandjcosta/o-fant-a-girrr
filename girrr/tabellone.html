@@ -248,5 +248,6 @@ fetch('../data.json',{cache:'no-store'}).then(function(r){return r.json()}).then
 var a=L.slice();for(var i=a.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1));var t=a[i];a[i]=a[j];a[j]=t}
 var e=document.querySelector('.sp .lg');if(e)e.innerHTML=a.slice(0,4).map(function(n){return '<img src="../assets/loghi/'+n+'.png" alt="">'}).join('')})();
 </script>
+<script src="../assets/app.js"></script>
 </body>
 </html>
