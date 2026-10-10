@@ -4,6 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="robots" content="noindex">
+<meta name="cv-ver" content="20261010c">
 <title>Curva · O Girrr</title>
 <link rel="icon" type="image/png" href="../assets/favicon-64.png">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800;900&display=swap">
@@ -145,10 +146,10 @@ svg{display:block}
 .lb{position:fixed;inset:0;z-index:80;background:rgba(0,0,0,.88);display:flex;align-items:center;justify-content:center;padding:16px;cursor:zoom-out}.lb img{max-width:100%;max-height:100%;border-radius:12px}
 .np{background:var(--blu);color:#fff;border-radius:999px;padding:1px 8px;font-size:11px;font-weight:800;margin-left:6px}
 .nov{display:block;margin-top:6px;color:var(--blu);font-weight:800;font-size:13px;cursor:pointer;background:none;border:0;padding:0;text-align:left}
-.ptr{position:fixed;left:50%;top:calc(env(safe-area-inset-top) + 64px);width:38px;height:38px;margin-left:-19px;border-radius:50%;background:var(--bg);border:1px solid var(--ln);box-shadow:0 4px 14px rgba(0,0,0,.25);display:flex;align-items:center;justify-content:center;z-index:40;opacity:0;pointer-events:none;transform:translateY(-60px)}
-.ptr svg{width:20px;height:20px;color:var(--blu);transition:transform .15s}.ptr.sp svg{animation:giro .8s linear infinite}
+.ptrb{height:0;overflow:hidden;display:flex;align-items:center;justify-content:center;transition:height .2s}.ptrb.dr{transition:none}
+.ptrb svg{width:22px;height:22px;color:var(--blu);flex:none}.ptrb.sp svg{animation:giro .8s linear infinite}
 @keyframes giro{to{transform:rotate(360deg)}}
-body{overscroll-behavior-y:contain}
+html,body{overscroll-behavior-y:none}
 .toast{position:fixed;left:50%;bottom:84px;transform:translateX(-50%);background:var(--tx);color:var(--bg);font:700 14px Inter;padding:11px 18px;border-radius:12px;z-index:60;max-width:90vw;text-align:center;animation:entra .25s ease}
 .hs{cursor:pointer}.hs:hover{text-decoration:underline}
 .ban2{margin:12px 14px;padding:14px;border-radius:16px;background:var(--bg2);border:1px solid var(--ln);font-size:14px;line-height:1.4;color:var(--mu)}
@@ -163,15 +164,14 @@ body{overscroll-behavior-y:contain}
 </style>
 </head>
 <body>
-<div class="ptr" id="ptr"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 12a8 8 0 1 1-2.5-5.8"/><path d="M20 4v5h-5"/></svg></div>
 <div class="shell">
   <nav class="nav" id="nav"></nav>
-  <main class="col"><header class="top" id="top"></header><div id="vista"></div></main>
+  <main class="col"><header class="top" id="top"></header><div class="ptrb" id="ptrb"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 12a8 8 0 1 1-2.5-5.8"/><path d="M20 4v5h-5"/></svg></div><div id="vista"></div></main>
   <aside class="dx" id="dx"></aside>
 </div>
 <script>window.goatcounter={path:function(){return location.pathname},no_onload:/[?&]demo/.test(location.search)}</script>
 <script data-goatcounter="https://djcosta18.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
-<script src="curva-banca.js"></script>
+<script src="curva-banca.js?v=20261010c"></script>
 <script>
 (function(){
 'use strict';
@@ -404,12 +404,12 @@ document.addEventListener('click',function(e){
 document.addEventListener('input',function(e){if(e.target.id==='qs'){qs=e.target.value;risultati()}});
 
 var py0=null,pdy=0,rif=false;
-function rinfresca(){if(rif)return;rif=true;var p=document.getElementById('ptr');p.classList.add('sp');p.style.opacity=1;p.style.transform='translateY(0)';
+function rinfresca(){if(rif)return;rif=true;var p=document.getElementById('ptrb');p.classList.remove('dr');p.classList.add('sp');p.style.height='44px';p.firstChild.style.transform='';
  var tx=document.getElementById('tx'),tv=tx?tx.value:'';
- Promise.all([carica(),new Promise(function(r){setTimeout(r,700)})]).then(function(){render();var t2=document.getElementById('tx');if(t2&&tv){t2.value=tv;conta()}}).then(function(){p.classList.remove('sp');p.style.opacity=0;p.style.transform='translateY(-60px)';rif=false})}
+ Promise.all([carica(),new Promise(function(r){setTimeout(r,700)})]).then(function(){render();var t2=document.getElementById('tx');if(t2&&tv){t2.value=tv;conta()}}).then(function(){p.classList.remove('sp');p.style.height='0px';rif=false},function(){p.classList.remove('sp');p.style.height='0px';rif=false})}
 document.addEventListener('touchstart',function(e){py0=(window.scrollY<=0&&!rif&&e.touches.length===1&&!e.target.closest('textarea,input'))?e.touches[0].clientY:null;pdy=0},{passive:true});
-document.addEventListener('touchmove',function(e){if(py0===null||rif)return;var d=e.touches[0].clientY-py0;if(window.scrollY>0||d<=0){pdy=0;var p0=document.getElementById('ptr');p0.style.opacity=0;return}pdy=Math.max(pdy,d);var p=document.getElementById('ptr'),k=Math.min(1,d/80);if(d>=150&&!rif){py0=null;rinfresca();return}p.style.opacity=k;p.style.transform='translateY('+(Math.min(d*.5,60)-60)+'px)';p.firstChild.style.transform='rotate('+(d*3)+'deg)'},{passive:true});
-function fineTiro(){if(py0===null)return;var d=pdy;py0=null;pdy=0;var p=document.getElementById('ptr');if(d>=80&&!rif)rinfresca();else if(!rif){p.style.opacity=0;p.style.transform='translateY(-60px)'}}
+document.addEventListener('touchmove',function(e){if(py0===null||rif)return;var d=e.touches[0].clientY-py0,p=document.getElementById('ptrb');if(window.scrollY>0||d<=0){pdy=0;p.style.height='0px';return}pdy=Math.max(pdy,d);p.classList.add('dr');p.style.height=Math.min(d*.5,60)+'px';p.firstChild.style.transform='rotate('+(d*3)+'deg)';if(d>=150){py0=null;rinfresca()}},{passive:true});
+function fineTiro(){if(py0===null)return;var d=pdy;py0=null;pdy=0;var p=document.getElementById('ptrb');p.classList.remove('dr');if(d>=80&&!rif)rinfresca();else if(!rif)p.style.height='0px'}
 document.addEventListener('touchend',fineTiro,{passive:true});document.addEventListener('touchcancel',fineTiro,{passive:true});
 var TF=['tutti','seguiti','squadre','notizie'],tx0=null,ty0=0;
 document.addEventListener('touchstart',function(e){if(vista!=='home'||!e.target.closest('#vista')){tx0=null;return}var t=e.touches[0];tx0=t.clientX;ty0=t.clientY},{passive:true});
@@ -418,6 +418,9 @@ document.addEventListener('touchend',function(e){if(tx0===null)return;var t=e.ch
  var i=TF.indexOf(filt),n=i+(dx<0?1:-1);if(n<0||n>=TF.length)return;
  filt=TF[n];render();var v=document.getElementById('vista');v.classList.add(dx<0?'sl-l':'sl-r');setTimeout(function(){v.classList.remove('sl-l','sl-r')},320)},{passive:true});
 document.addEventListener('keydown',function(e){if(e.key==='Enter'&&e.target.matches&&e.target.matches('.rf input')){e.target.closest('.post').querySelector('[data-a=invia]').click()}});
+/* se l'app ha in cache una versione vecchia della pagina, si ricarica da sola (una volta) */
+(function(){var me0=(document.querySelector('meta[name=cv-ver]')||{}).content;if(!me0||/[?&]nov/.test(location.search))return;
+ fetch(location.pathname+'?_='+Date.now(),{cache:'no-store'}).then(function(r){return r.text()}).then(function(h){var m=h.match(/name="cv-ver" content="([^"]+)"/);if(m&&m[1]!==me0){var k='cv-reload-'+m[1];try{if(sessionStorage.getItem(k))return;sessionStorage.setItem(k,'1')}catch(e){}location.replace(location.pathname+'?v='+m[1]+location.hash)}}).catch(function(){})})();
 /* avvio */
 function occupato(){var a=document.activeElement;return a&&(a.tagName==='TEXTAREA'||a.tagName==='INPUT')&&a.value}
 fetch('../data.json',{cache:'no-store'}).then(function(r){return r.json()}).then(function(d){D=d;SQ=d.teams.map(function(t){return t.name});initAcc();calcola(d);login()}).catch(function(){login()}).then(function(){render();return carica()}).then(function(){render()});
