@@ -477,7 +477,7 @@ def costruisci(t, tema="classico"):
         for k, (sq, fp, att, v, fr) in enumerate(pagelle(ult, gioc)):
             frec = {"su": ' <small style="color:#1f7a3d">▲</small>', "giu": ' <small>▼</small>', "uguale": ' <small style="color:var(--mute)">=</small>'}.get(fr, "")
             testo = com.get(sq.lower()) or commento_pagella(fp - att)
-            h.append(f'<tr class="{"top" if k < 3 else ""}"><td class="sq">{esc(cap(sq))}<i>{pt(fp)} fantapunti · attesi {att:.0f}</i></td>'
+            h.append(f'<tr class="{"top" if k < 3 else ""}"><td class="sq">{esc(cap(sq))}<i>{pt(fp)} fantapunti · Attesi {att:.0f}</i></td>'
                      f'<td class="v">{pt(v)}{frec}</td><td class="cm">{esc(testo)}</td></tr>')
         h.append('</table><p class="nt">Il voto confronta i fantapunti della giornata con quelli che ci si aspettava dalla rosa (voti di quest\'anno e della scorsa stagione). Il 6 è «in linea con la rosa»: ogni 5 fantapunti in più o in meno vale un voto.</p></div>')
         if t.get("coro"):
