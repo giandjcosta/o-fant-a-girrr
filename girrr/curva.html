@@ -218,7 +218,7 @@ function calcola(d){
 function posiz(n){var i=ST.cls.map(function(t){return t.n}).indexOf(n);return i<0?0:i+1}
 function prossimo(n){if(!ST.next)return null;for(var i=0;i<ST.next.m.length;i++){var m=ST.next.m[i];if(m[0]===n)return m[3];if(m[3]===n)return m[0]}return null}
 /* rete */
-function rpc(name,body){return fetch(URL_+'/rest/v1/rpc/'+name,{method:'POST',headers:{'apikey':KEY,'Authorization':'Bearer '+KEY,'Content-Type':'application/json'},body:JSON.stringify(body)}).then(function(r){return r.json().then(function(j){if(!r.ok)throw new Error(j&&j.message?j.message:'Errore di rete');return j})})}
+function rpc(name,body){return fetch(URL_+'/rest/v1/rpc/'+name,{method:'POST',headers:{'apikey':KEY,'Authorization':'Bearer '+KEY,'Content-Type':'application/json'},body:JSON.stringify(body)}).then(function(r){return r.text().then(function(x){var j=null;try{j=x?JSON.parse(x):null}catch(e){}if(!r.ok)throw new Error(j&&j.message?j.message:'Errore di rete');return j})})}
 function carica(){return rpc('curva_feed',{p_team:me,p_code:me?code:null}).then(function(f){S=f;NET=true;if(me&&!f.ok){/* codice non più valido */}}).catch(function(){NET=false})}
 function toast(t){var d=document.createElement('div');d.className='toast';d.textContent=t;document.body.appendChild(d);setTimeout(function(){d.remove()},3000)}
 function serve(){if(!me){toast('Entra con il codice della tua squadra per partecipare');return false}if(NET===false){toast('Non riesco a collegarmi ai cori in questo momento');return false}return true}
