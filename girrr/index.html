@@ -86,6 +86,9 @@ body::before{content:'';position:fixed;inset:-120px;z-index:-1;pointer-events:no
 .big .cv img{width:100%;display:block;border-radius:6px;box-shadow:0 14px 30px rgba(0,0,0,.5)}
 .big .nx{display:inline-block;margin-top:14px;font-weight:800;font-size:13px;color:var(--chiaro);background:rgba(0,0,0,.28);padding:7px 12px;border-radius:999px}
 .big .nx b{color:var(--hi);font-variant-numeric:tabular-nums}
+.big .nx .live{display:inline-block;width:10px;height:10px;border-radius:50%;background:#2ee66b;margin-right:8px;vertical-align:baseline;box-shadow:0 0 0 0 rgba(46,230,107,.6);animation:lvp 2.6s ease-in-out infinite}
+@keyframes lvp{0%,100%{opacity:1;box-shadow:0 0 8px 2px rgba(46,230,107,.55)}50%{opacity:.18;box-shadow:0 0 0 0 rgba(46,230,107,0)}}
+@media (prefers-reduced-motion:reduce){.big .nx .live{animation:none}}
 @media(max-width:560px){.big.on{flex-direction:column;align-items:flex-start}.big .cv{width:56%;align-self:center}}
 .TT{font-weight:400;font-size:1.3em;position:relative;display:inline-block;line-height:1}
 .Tg{visibility:hidden;display:inline-block;font-style:italic;line-height:1}
@@ -159,15 +162,16 @@ fetch('../data.json',{cache:'no-store'}).then(function(r){return r.json()}).then
   document.getElementById('strip').innerHTML=h;
   var nx2=L.filter(function(g){return g.m.every(function(m){return m[4]==='-'})})[0];
   if(nx2&&d.fx&&d.fx[nx2.sa]){
-    var best=null;d.fx[nx2.sa].forEach(function(f){var q=(f[2]||'').split(' ');if(q.length<3)return;var dm=q[1].split('/').map(Number),hm=q[2].split(':').map(Number);
+    var best=null,worst=null;d.fx[nx2.sa].forEach(function(f){var q=(f[2]||'').split(' ');if(q.length<3)return;var dm=q[1].split('/').map(Number),hm=q[2].split(':').map(Number);
       var y=dm[1]>=7?2026:2027,iso=y+'-'+String(dm[1]).padStart(2,'0')+'-'+String(dm[0]).padStart(2,'0')+'T'+String(hm[0]).padStart(2,'0')+':'+String(hm[1]).padStart(2,'0')+':00';
       var off=(function(){var t=new Date(iso+'Z'),r=new Intl.DateTimeFormat('en-GB',{timeZone:'Europe/Rome',hour:'2-digit',minute:'2-digit',hour12:false}).formatToParts(t);var rh=Number(r.filter(function(x){return x.type==='hour'})[0].value);return(rh-t.getUTCHours()+24)%24})();
-      var t=new Date(iso+'Z').getTime()-off*3600e3;if(best===null||t<best)best=t});
-    if(best)window.NEXT={t:best,n:nx2.n};
+      var t=new Date(iso+'Z').getTime()-off*3600e3;if(best===null||t<best)best=t;if(worst===null||t>worst)worst=t});
+    if(best)window.NEXT={t:best,e:worst+2*3600e3,n:nx2.n};
   }
 }).catch(function(){});
 function cdTxt(ms){var s=Math.floor(ms/1000),d=Math.floor(s/86400),h=Math.floor(s%86400/3600),m=Math.floor(s%3600/60);return d>0?d+'g '+h+'h':h>0?h+'h '+m+'m':m+'m '+String(s%60).padStart(2,'0')+'s'}
-function tickNx(){var e=document.getElementById('bn');if(!e||!window.NEXT)return;var ms=window.NEXT.t-Date.now();e.innerHTML=ms>0?'<span class="nx">Giornata '+window.NEXT.n+': si gioca fra <b>'+cdTxt(ms)+'</b></span>':''}
+function tickNx(){var e=document.getElementById('bn');if(!e||!window.NEXT)return;var N=window.NEXT,now=Date.now(),ms=N.t-now;
+  e.innerHTML=ms>0?'<span class="nx">Giornata '+N.n+': si gioca fra <b>'+cdTxt(ms)+'</b></span>':now<N.e?'<span class="nx"><i class="live"></i>Giornata '+N.n+' <b>in corso</b></span>':'<span class="nx">Giornata '+N.n+' <b>conclusa</b> · risultati in arrivo</span>'}
 setInterval(tickNx,1000);
 fetch('../riepiloghi/indice.json',{cache:'no-store'}).then(function(r){return r.json()}).then(function(v){
   if(v.length){var u=v[0];document.getElementById('bk').textContent='ULTIMO NUMERO · N° '+u.n+' · '+String(u.occhiello||'').toUpperCase();document.getElementById('bh').textContent=u.titolone;document.getElementById('bp').textContent=u.sommario;document.getElementById('bc').src='../'+u.copertina;document.getElementById('big').classList.add('on');tickNx();
