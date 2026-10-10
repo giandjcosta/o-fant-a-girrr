@@ -20,9 +20,9 @@ html{overflow-y:scroll}
 body{font-family:Inter,system-ui,-apple-system,Segoe UI,sans-serif;background:var(--bg);color:var(--tx);min-height:100vh;transition:background .25s,color .25s}
 button,input,textarea{font-family:inherit;color:inherit}
 svg{display:block}
-.app{max-width:1080px;margin:0 auto;display:grid;grid-template-columns:minmax(0,1fr);min-height:100vh}
-@media(min-width:760px){.app{grid-template-columns:80px minmax(0,600px)}}
-@media(min-width:1060px){.app{grid-template-columns:230px minmax(0,600px) 270px}}
+.shell{max-width:1080px;margin:0 auto;display:grid;grid-template-columns:minmax(0,1fr);min-height:100vh}
+@media(min-width:760px){.shell{grid-template-columns:80px minmax(0,600px)}}
+@media(min-width:1060px){.shell{grid-template-columns:230px minmax(0,600px) 270px}}
 .nav{position:fixed;left:0;right:0;bottom:0;z-index:30;display:flex;justify-content:space-around;background:var(--bg);border-top:1px solid var(--ln);padding:4px 0 calc(4px + env(safe-area-inset-bottom))}
 .nav button{position:relative;flex:1;border:0;background:none;padding:10px 0;cursor:pointer;display:flex;justify-content:center;color:var(--tx)}
 .nav button svg{width:26px;height:26px}
@@ -131,7 +131,7 @@ svg{display:block}
 </style>
 </head>
 <body>
-<div class="app">
+<div class="shell">
   <nav class="nav" id="nav"></nav>
   <main class="col"><header class="top" id="top"></header><div id="vista"></div></main>
   <aside class="dx" id="dx"></aside>
