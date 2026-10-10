@@ -36,14 +36,14 @@ var PERS={
   so:['Sorpreso da {sq}? Io no. Ho visto cose che voi umani non potete nemmeno immaginare. Tipo il catenaccio.'],
   fc:['Mio nipote mi parla di FC27. Gli ho detto: io ho giocato al calcio vero. Mi ha risposto che il mio overall è 42.'],
   gen:['Il fantacalcio è come la bocciofila, ma con più urla.','Ho appena capito come funziona il modulo. Peccato che ormai sia cambiato.','Il segreto è non guardare i voti prima della domenica sera. Poi li si guarda comunque.'],
-  cl:['{sq} al {pos}° posto. Una volta questa era una posizione di prestigio. Oggi è una posizione.']},
+  ri:["{vinc} batte {perd} {sc}. Ai miei tempi un risultato così si commentava solo con un silenzio rispettoso.", "{pv} punti per {vinc}. Per i miei standard è un campionato di altri tempi."],cl:['{sq} al {pos}° posto. Una volta questa era una posizione di prestigio. Oggi è una posizione.']},
  tifoso_arrabbiato:{
   al:['Cambiate allenatore! Non importa quale squadra, cambiate e basta. Poi vediamo.','{sq} con {pt} punti. Un allenatore così lo manderei a coltivare patate. {#}','Basta! Cambio allenatore e modulo e giocatori. Il resto va bene.','Dopo questa giornata dico solo una cosa: cambiate allenatore. A chiunque.'],
   pm:['{pt} punti? Ma stiamo scherzando? Io voglio le dimissioni. Di tutti. Anche mie. {#}','Sono uscito dal divano per dire che {sq} è una vergogna. Torno sul divano.'],
   so:['Sorpreso da {sq}? Io sono furioso, che è peggio.'],
   mk:['{gio} non vale il prezzo. Vendete tutto. Ricominciate. Poi vendete di nuovo.'],
   gen:['Quando perdo do la colpa all\'arbitro. Quando vinco ringrazio l\'arbitro. Quando pareggio mi arrabbio con tutti.','Ho litigato con la TV. Ha vinto lei. Era spenta.'],
-  cl:['{sq} al {pos}° posto. Posizione che meriterebbe una commissione d\'inchiesta.']},
+  ri:["{perd} ha preso {pp} punti contro {vinc}? Una vergogna. Cambiate tutto, a partire dall'allenatore.", "{vinc} vince {sc} e io sono arrabbiato lo stesso. Perché si poteva fare meglio."],cl:['{sq} al {pos}° posto. Posizione che meriterebbe una commissione d\'inchiesta.']},
  mister_divano:{
   pm:['{sq} ha preso {pt} punti. Col 4-3-3 ne avrebbe fatti dieci in più. Fidatevi.','Ho rivisto la partita di {sq}. Dal divano si vede tutto. Soprattutto gli errori degli altri. {#}'],
   so:['Sorpreso dalla squadra? No. Sono sorpreso che qualcuno sia sorpreso. 4-3-3 e passa la paura.','{sq} ha cambiato modulo e ha dato un senso alla sua stagione. Io lo dicevo da agosto. Nessuno ascolta il divano.'],
@@ -51,63 +51,63 @@ var PERS={
   gen:['Il segreto dei grandi allenatori è lo spazio tra le linee. Io ho solo lo spazio tra i cuscini.','4-3-3. 4-4-2. 3-5-2. Sono tutti numeri. Il vero modulo è la fortuna.','Dopo la giornata sono sicuro di una cosa: la panchina è il vero titolare.'],
   mk:['Se prendessi {gio} cambierei modulo e alleno da casa. Già pronto per il prossimo ruolo.'],
   fc:['In FC27 sono un fenomeno. Nella vita no. Preferisco FC27.'],
-  cl:['{sq} al {pos}° posto: i numeri non mentono, ma il divano sì.']},
+  ri:["{vinc} – {perd} {sc}. Il segreto è stato il modulo. Non l'ho visto ma lo so.", "{perd} ha perso di {scarto} punti. Con il 4-3-3 il risultato sarebbe stato diverso. Lo dico da divano."],cl:['{sq} al {pos}° posto: i numeri non mentono, ma il divano sì.']},
  radio_spogliatoio:{
   mk:['Voci di corridoio: {sq} starebbe sondando {gio}. Nessuna conferma. Molta convinzione. {#}','Fonti vicine a una bottiglia d\'acqua: {gio} cambia casacca. Aggiornamenti non prima di domani.','Rumors insistenti: {sq} e {sq2} stanno parlando. Di cosa? Di calcio. O di pizza. Dipende.'],
   pm:['Si dice che dopo {pt} punti {sq} non dormirà stanotte. Il giocatore smentisce. Il suo gatto conferma.'],
   al:['Dicono che l\'allenatore di {sq} sia in bilico. Ma anche io lo sono, sulla sedia.'],
   so:['Sentito dire: {sq} ha cambiato qualcosa. Cosa? Non lo so. Ma qualcosa.'],
   gen:['Radio Spogliatoio non conferma e non smentisce. Si limita a confermare. Poi smentisce.'],
-  cl:['Voci: {sq} al {pos}° posto non è un caso. Qualcuno sa. Io no.']},
+  ri:["Si dice che {perd} dopo {sc} contro {vinc} abbia lasciato lo spogliatoio in silenzio. O forse in ritardo.", "Voci: {vinc} festeggia, {perd} riflette. Nessuna conferma. Solo molta convinzione."],cl:['Voci: {sq} al {pos}° posto non è un caso. Qualcuno sa. Io no.']},
  mamma_di_capitan:{
   pm:['Bravo, ho visto la partita. Hai fatto {pt} punti. Hai mangiato?','{pt} punti non sono pochi. Sono giusti. Come i calzini: né troppi né pochi.','Mio figlio ha perso ma ha giocato bene. Lo dico ogni settimana. Ogni settimana è vero.'],
   mk:['Mio figlio mi dice che vuole {gio}. Io gli ho detto: prima mangia.','Dicono che {gio} vale tanto. Io pago in lasagne.'],
   al:['L\'allenatore di mio figlio è bravissimo. Anche se non ne azzecca una. Ma chi è perfetto.'],
   so:['Sorpresa dalla squadra di mio figlio? Mai. Io lo so da quando era piccolo che aveva talento.'],
   gen:['Ho comprato un cuscino per la tribuna. Non serve a niente ma è comodo.','Ho chiesto a mio figlio cos\'è un fantallenatore. Mi ha detto "sei tu, mamma". Quindi sì.'],
-  cl:['{sq} al {pos}° posto. Posizione dignitosa. Come tutte, dopotutto.']},
+  ri:["{perd} ha perso {sc} ma ha giocato bene. Lo dico perché sono la madre.", "{vinc} ha fatto {pv} punti. Un bravo ragazzo. Avrà mangiato."],cl:['{sq} al {pos}° posto. Posizione dignitosa. Come tutte, dopotutto.']},
  ex_ds_provincia:{
   mk:['Il mercato è così: vendi un portiere a gennaio, a maggio ti chiede ancora i soldi dell\'assicurazione. {#}','{gio} a quel prezzo? Io l\'ho venduto a meno. E mi ringraziavano.','Consiglio di mercato: guardate le gambe, non il curriculum. Il curriculum non corre.','Ho portato in squadra {gio}. Era in prova. Poi la prova è finita ma lui è rimasto.'],
   pm:['Quando una squadra fa {pt} punti, il DS ha già pronto il comunicato. Di solito parla di "visione".'],
   al:['Un allenatore si cambia a gennaio, quando il DS ha finito le scuse.'],
   so:['Sorpreso da {sq}? Io no: ho visto il bilancio.'],
   gen:['Il DS è come l\'arbitro: se si nota, ha sbagliato.'],
-  cl:['{sq} al {pos}° posto: il budget lo permette. Il resto no.']},
+  ri:["{vinc} batte {perd} {sc}: il budget è sempre un fattore. Ma anche la fortuna.", "{pp} punti per {perd}: a gennaio si cambia qualcosa. O qualcuno."],cl:['{sq} al {pos}° posto: il budget lo permette. Il resto no.']},
  var_parlante:{
   pm:['Ho rivisto l\'azione. Il {pt} di {sq} era regolare. Anche se faceva male.','Controllo in corso su {sq}. Ho dei dubbi. Anche sui miei dubbi.','Revisione al monitor: {gio} era in fuorigioco di una testa. Non la sua.'],
   al:['Dalla sala VAR: l\'allenatore è fuori area. Ma resta dentro l\'ego.'],
   so:['La squadra {sq} sorprende. VAR: nessuna irregolarità. Per ora.'],
   mk:['Revisione del trasferimento di {gio}: il contratto è regolare. Il portafoglio no.'],
   gen:['Ho rivisto tutto. Non ho cambiato idea. Ma ho cambiato l\'ora.','Il VAR non sbaglia mai. È l\'umano che lo interpreta. Io interpreto male da sempre.'],
-  cl:['Posizione di {sq}: {pos}°. Controllo terminato. Confermata.']},
+  ri:["Ho rivisto {vinc} – {perd}: il {sc} è regolare. Anche se fa male a {perd}.", "Controllo sul {sc} di {vinc}: nessuna irregolarità. Solo una gran giornata."],cl:['Posizione di {sq}: {pos}°. Controllo terminato. Confermata.']},
  fc27_ratings:{
   pm:['Aggiornamento overall: {sq} {pt} dopo la giornata. Troppo? Chiedetelo a chi ha perso. #FC27','FC27 Ratings: {sq} prende +{gol} dopo la giornata. {sq2} perde il sorriso.'],
   so:['Il nuovo overall di {sq} è un po\' sospetto. Ma noi non commentiamo. Cambiamo e basta.'],
   mk:['Overall di {gio}: lo alziamo se qualcuno lo compra. Il mercato è un videogioco.'],
   fc:['Le carte speciali di FC27 sono uscite. Sono tutte uguali tranne il prezzo.','In FC27 la squadra più forte sono io. Ho fatto una modifica nei file. Reclami non accettati.','Mio nipote ha comprato un pacchetto di FC27 e ha preso un portiere. Ha detto che è la sua carta preferita.'],
   gen:['Aggiorniamo gli overall quando ci pare. Reclami non accettati.'],
-  cl:['{sq} al {pos}° posto. Overall in aggiornamento. Notizie dal campo.']},
+  ri:["{vinc} sale a {pv} di overall dopo il {sc} su {perd}. {perd} scende a {pp}. Reclami non accettati.", "Aggiornamento rapido: {vinc} +{scarto}, {perd} -{scarto}. Il resto è statistica."],cl:['{sq} al {pos}° posto. Overall in aggiornamento. Notizie dal campo.']},
  il_cugino_del_dt:{
   mk:['Mio cugino lavora con un DT e dice che {gio} sta per cambiare squadra. Lui dice di non dirlo. Ma io lo dico.','Il cugino di un amico di mio cugino dice che {sq} ha un colpo in canna. Probabilmente è una pistola ad acqua.'],
   al:['Mio cugino dice che l\'allenatore di {sq} è sotto esame. Poi mi ha chiesto dei soldi. Quindi non so.'],
   pm:['Mio cugino era allo stadio. Dice che {sq} ha fatto una grande partita. Poi ha detto che era a casa.'],
   gen:['Mio cugino è convinto che il calcio sia truccato. Anche il suo televisore.','Mio cugino conosce uno che conosce uno che ha giocato in Serie A. Una volta. A calcetto.'],
   so:['Mio cugino non è sorpreso da {sq}. Lui non si sorprende mai. Nemmeno dalle bollette.'],
-  cl:['Mio cugino dice che {sq} al {pos}° posto è un segno del destino. E di una formazione sbagliata.']},
+  ri:["Mio cugino dice che {vinc} – {perd} {sc} era già scritto. Poi ha detto che anche lui ha scritto il contrario.", "Mio cugino era in tribuna per {vinc} – {perd}. Dice che si è divertito. Poi ha detto che era a casa."],cl:['Mio cugino dice che {sq} al {pos}° posto è un segno del destino. E di una formazione sbagliata.']},
  telecronista_stanco:{
   pm:['Siamo qui. E {sq} fa {pt} punti. Non so voi ma io sono già stanco.','{gio} tocca palla. Tocca ancora. Tocca di nuovo. Insomma tocca. Ora aspettiamo un gol. O un caffè.'],
   so:['Che sorpresa {sq}! E io ancora a commentare. Vado a bere.'],
   al:['Ora in panchina c\'è tensione. Come in tutta la mia vita lavorativa.'],
   gen:['Un saluto a chi ci segue da casa. E a chi ci segue anche se non vuole.','Intanto in tribuna c\'è un signore che dorme. Il vero spettatore neutrale.'],
   mk:['E mentre {gio} è seduto in panchina, il mercato corre. Noi invece restiamo fermi. Per contratto.'],
-  cl:['{sq} al {pos}° posto. Cala il sipario, anzi, resta aperto.']},
+  ri:["{vinc} supera {perd} {sc}. Io sono stanco. Ma il risultato è bello.", "E il {sc} è servito: {vinc} vince, {perd} resta a guardare. Io pure."],cl:['{sq} al {pos}° posto. Cala il sipario, anzi, resta aperto.']},
  gufo_professionista:{
   pm:['Ho gufato {sq} e infatti {pt} punti. Il mio lavoro è fatto.','Gufata riuscita su {sq}. Il successo è questione di allenamento.','Dicevo che {gio} avrebbe fatto bene. Ha fatto male. Il mio talento è reale.'],
   al:['Non gufo l\'allenatore. Ma lo guardo con tanta preoccupazione. Quasi professionale.'],
   so:['Sorpreso da {sq}? Io ho gufato in senso contrario. Ho sbagliato. Ora gufo meglio.'],
   gen:['Ho smesso di gufare. Ma la mia energia negativa no. È più forte di me.','Oggi mi sento ottimista. Sto cercando di capire chi gufare.'],
   mk:['Ho gufato {gio} e infatti. Il mercato è stato clemente. Per ora.'],
-  cl:['{sq} al {pos}° posto. Segno che il mio gufo funziona al contrario.']},
+  ri:["Ho gufato {perd} e infatti {sc} per {vinc}. Ho già prenotato il prossimo turno.", "{vinc} vince e io dico solo: tutto previsto. Anche l'errore."],cl:['{sq} al {pos}° posto. Segno che il mio gufo funziona al contrario.']},
  il_filosofo_del_pallone:{
   pm:['Il {pt} non è un numero. È un\'idea. Un\'idea di {sq}.','Cosa resta dopo {pt} punti? Resta il silenzio. E poi la prossima giornata.'],
   al:['Cambiare allenatore è cambiare il mondo? No. È cambiare la mail dell\'allenatore.','Ogni mister è un\'illusione. Il vero mister è il caso.'],
@@ -115,7 +115,7 @@ var PERS={
   mk:['{gio} cambia squadra. Ma il pallone resta rotondo. Tutto il resto è mercato.'],
   gen:['Il calcio è come la vita. Tranne che nel calcio ci sono i voti. Nella vita no. Per fortuna.','Siamo tutti allenatori. Qualcuno è solo più rumoroso.'],
   fc:['FC27 è un\'allegoria del capitalismo: ti fanno pagare per sbloccare un portiere.'],
-  cl:['{sq} al {pos}° posto. La classifica è un\'illusione numerata.']},
+  ri:["{vinc} – {perd} {sc}: il calcio non è una scienza esatta. Il fantacalcio nemmeno.", "Chi vince {sc} guadagna tre punti. Chi perde guadagna un'idea."],cl:['{sq} al {pos}° posto. La classifica è un\'illusione numerata.']},
  bomber_da_bar:{
   pm:['Io {pt} punti li avrei fatti con una mano. Con l\'altra bevevo.','{sq} non ha fatto male. Ma io avrei segnato di più. Fidatevi, ho il bomber dentro.'],
   mk:['Prendo {gio} gratis, lo faccio giocare al bar e vince lo scudetto del bar.','{gio} costa troppo. Io mi accontento di un giocatore da seconda categoria. Che fa gli stessi gol.'],
@@ -123,7 +123,7 @@ var PERS={
   so:['{sq} sorprende? Io sono sorpreso dalla mia stessa sorpresa. Un giro per tutti?'],
   gen:['Il calcio vero si gioca all\'oratorio. Il resto è fantacalcio.','Oggi ho fatto un gol in cortile. Lo racconto da una settimana.'],
   fc:['Ho comprato FC27 per guardare il bomber. Ho trovato il menù.'],
-  cl:['{sq} al {pos}° posto. Birra per tutti.']},
+  ri:["{vinc} – {perd} {sc}: io avrei fatto un gol in più. Con una mano dietro la schiena.", "{pv} punti per {vinc}? Al bar ne farei di più. Ma sono senza segnare."],cl:['{sq} al {pos}° posto. Birra per tutti.']},
  statistico_folle:{
   pm:['Statistica del giorno: il {pt} di {sq} è esattamente la media tra il suo punteggio e quello dell\'altra squadra. Ma non sempre.','Probabilità che {sq} faccia {pt} punti due volte di fila: 3,2%. Probabilità che io abbia ragione: 0%.'],
   so:['Secondo i miei calcoli, {sq} sorprende nel 73% dei casi in cui sorprende.'],
@@ -131,7 +131,7 @@ var PERS={
   mk:['{gio}: valore atteso 0,81 gol a partita. Valore reale: sì.'],
   gen:['Il 67% delle statistiche viene inventato sul momento. Il restante 33% è un\'approssimazione.','Dati alla mano: dopo ogni giornata c\'è un\'altra giornata. Fonte: calendario.'],
   fc:['In FC27 la media overall è 71,4. In vita mia, 41,4.'],
-  cl:['{sq} al {pos}° posto: percentuale scudetto 4,7%. Margine errore 100%.']},
+  ri:["{vinc} – {perd} {sc}: la probabilità di questo risultato era 6,1%. Come sempre, ho sbagliato io.", "Differenza punti {scarto}: il 73% delle volte chi fa {pv} vince. Il restante 27% è un'altra storia."],cl:['{sq} al {pos}° posto: percentuale scudetto 4,7%. Margine errore 100%.']},
  arbitro_in_pensione:{
   pm:['Ho arbitrato 400 partite. Questa di {sq} la sospenderei per eccesso di fantasia.','{pt} punti per {sq}. Ho visto di peggio. Ho fischiato di peggio.'],
   al:['L\'allenatore protesta. Cartellino giallo morale. Il rosso lo tengo per le emergenze.'],
@@ -139,7 +139,7 @@ var PERS={
   mk:['{gio} cambia squadra. Se avessi un euro per ogni trasferimento che ho ignorato.'],
   gen:['Il segreto di un buon arbitro è sembrare sicuri anche quando non lo si è. Vale anche per i fantallenatori.','Quando dico "gioco fermo" intendo che il mondo si ferma. E invece il fantacalcio continua.'],
   fc:['In FC27 puoi comprare l\'arbitro. Almeno lì lo ammettono.'],
-  cl:['{sq} al {pos}° posto. Posizione regolare. Controllo effettuato.']}
+  ri:["{vinc} – {perd} {sc}: partita regolare. Ammonizione a {perd} per scarsa mira.", "{pv} contro {pp}. Fischio finale e applausi. Un po' meno per {perd}."],cl:['{sq} al {pos}° posto. Posizione regolare. Controllo effettuato.']}
 };
 var AUTORI=Object.keys(PERS);
 /* risposte generiche */
@@ -173,11 +173,14 @@ function ctxDi(D,SQ,ST,seed){
   var pos=ST.cls.map(function(t){return t.n}).indexOf(c.sq);c.pos=pos<0?'?':pos+1;
   var pt='?';if(ST.ult)ST.ult.m.forEach(function(m){if(m[0]===c.sq)pt=m[1];else if(m[3]===c.sq)pt=m[2]});
   c.pt=String(pt).replace('.',',');
+  var mm=ST.ult&&ST.ult.m.length?ST.ult.m[Math.floor(r()*ST.ult.m.length)]:null;
+  if(mm){var gc=mm[4].split('-').map(Number),w=mm[1]>=mm[2];c.vinc=w?mm[0]:mm[3];c.perd=w?mm[3]:mm[0];c.pv=String(Math.max(mm[1],mm[2])).replace('.',',');c.pp=String(Math.min(mm[1],mm[2])).replace('.',',');c.sc=(w?gc[0]+'-'+gc[1]:gc[1]+'-'+gc[0]);c.scarto=(Math.abs(mm[1]-mm[2])).toFixed(1).replace('.',',').replace(',0','')}
+  else{c.vinc=c.sq;c.perd=c.sq2;c.pv='70';c.pp='65';c.sc='2-1';c.scarto='5'}
   return c;
  };
 }
 function riempi(t,c,tag){return t.replace(/\{(\w+)\}/g,function(m,k){return c[k]!==undefined?c[k]:m}).replace('{#}',tag?('#'+tag):'').replace(/\s+$/,'').replace(/\s{2,}/g,' ').replace(/\.\.(?!\.)/g,'.')}
-var PESI={0:{pm:5,so:3,al:3,gen:3,mk:1,fc:1,cl:1},1:{pm:5,so:3,al:3,gen:3,mk:1,fc:1,cl:2},2:{cl:5,al:3,so:3,gen:3,mk:1,fc:2,pm:1},3:{cl:3,so:3,al:2,gen:3,mk:2,fc:2,pm:1},4:{mk:5,gen:3,fc:3,so:2,al:2,cl:1,pm:0},5:{mk:5,gen:3,fc:3,so:2,al:2,cl:1,pm:0},6:{pm:3,gen:3,mk:2,so:2,fc:2,al:1,cl:0}};
+var PESI={0:{pm:5,so:3,al:3,gen:3,mk:1,fc:1,cl:1,ri:0},1:{pm:5,so:3,al:3,gen:3,mk:1,fc:1,cl:2,ri:1},2:{cl:4,ri:6,al:3,so:3,gen:3,mk:1,fc:2,pm:1},3:{cl:3,ri:5,so:3,al:2,gen:3,mk:2,fc:2,pm:1},4:{mk:5,ri:3,gen:3,fc:3,so:2,al:2,cl:1,pm:0},5:{mk:5,ri:1,gen:3,fc:3,so:2,al:2,cl:1,pm:0},6:{pm:3,ri:1,gen:3,mk:2,so:2,fc:2,al:1,cl:0}};
 function post_giorno(D,SQ,ST,g){
  var dd=dalGiorno(g),tg=tendenze(D),tags=tg.map(function(x){return x[0]}),r=prng('giorno'+g),mk=ctxDi(D,SQ,ST,'ctx'+g);
  var w=PESI[dd.wd],cats=[];Object.keys(w).forEach(function(k){for(var i=0;i<w[k];i++)cats.push(k)});

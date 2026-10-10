@@ -137,6 +137,13 @@ svg{display:block}
 .nav .sito img{width:26px;height:26px;border-radius:6px}.nav .sito .t{display:none}
 @media(min-width:760px){.nav .sito{flex:none;border-radius:999px;padding:12px;gap:16px}.nav .sito:hover{background:var(--hv)}}
 @media(min-width:1060px){.nav .sito{justify-content:flex-start;padding:12px 16px}.nav .sito .t{display:inline;font-size:19px;font-weight:500}}
+.pimg{margin:2px 0 10px;border-radius:16px;overflow:hidden;border:1px solid var(--ln);background:var(--bg2);min-height:60px;max-width:420px}
+.pimg img{display:block;width:100%;max-height:420px;object-fit:cover;cursor:zoom-in}
+.pv{position:relative;display:inline-block;margin:4px 0 8px}.pv img{display:block;max-width:100%;max-height:220px;border-radius:14px;border:1px solid var(--ln)}
+.pv button{position:absolute;top:6px;right:6px;width:28px;height:28px;border-radius:50%;border:0;background:rgba(0,0,0,.65);color:#fff;font-size:16px;cursor:pointer;line-height:1}
+.lb{position:fixed;inset:0;z-index:80;background:rgba(0,0,0,.88);display:flex;align-items:center;justify-content:center;padding:16px;cursor:zoom-out}.lb img{max-width:100%;max-height:100%;border-radius:12px}
+.np{background:var(--blu);color:#fff;border-radius:999px;padding:1px 8px;font-size:11px;font-weight:800;margin-left:6px}
+.nov{display:block;margin-top:6px;color:var(--blu);font-weight:800;font-size:13px;cursor:pointer;background:none;border:0;padding:0;text-align:left}
 .toast{position:fixed;left:50%;bottom:84px;transform:translateX(-50%);background:var(--tx);color:var(--bg);font:700 14px Inter;padding:11px 18px;border-radius:12px;z-index:60;max-width:90vw;text-align:center;animation:entra .25s ease}
 .hs{cursor:pointer}.hs:hover{text-decoration:underline}
 .ban2{margin:12px 14px;padding:14px;border-radius:16px;background:var(--bg2);border:1px solid var(--ln);font-size:14px;line-height:1.4;color:var(--mu)}
@@ -199,6 +206,7 @@ add('ciro_trattativa','Ciro Trattativa','pro','blu','Giornalista di mercato. Qua
 [['nonno_cesare','Nonno Cesare','Allenatore dal 1962 (della domenica).','#6b705c','#3a3d33'],['tifoso_arrabbiato','Il Tifoso Arrabbiato','Cambiate allenatore. Sempre.','#b5179e','#560bad'],['mister_divano','Il Tecnico da Divano','Ho vinto tutto. Su un altro divano.','#3a86ff','#8338ec'],['radio_spogliatoio','Radio Spogliatoio','Voci di corridoio. Nessuna conferma, molta convinzione.','#fb8500','#9d4400'],['mamma_di_capitan','Mamma di Capitan Sfortuna','Orgogliosa di mio figlio. Soprattutto quando perde.','#ef476f','#7b1c34'],['ex_ds_provincia','Ex DS di Provincia','Ho venduto più portieri di quanti ne abbia mai parati la mia squadra.','#06d6a0','#0b5d49'],['var_parlante','VAR Parlante','Ho rivisto l\'azione. Ho dei dubbi.','#118ab2','#073b4c'],['fc27_ratings','FC27 Ratings Italia','Aggiorniamo gli overall quando ci pare. Reclami non accettati.','#2ec4b6','#0b3c3a'],['il_cugino_del_dt','Il Cugino del DT','Mio cugino lo sa. Io no.','#e07a5f','#3d405b'],['telecronista_stanco','Il Telecronista Stanco','Ancora qui. Purtroppo.','#8d99ae','#2b2d42'],['gufo_professionista','Gufo Professionista','Gufo con metodo e dedizione.','#7b2cbf','#240046'],['il_filosofo_del_pallone','Il Filosofo del Pallone','Il calcio è un\'idea. Il resto è mercato.','#264653','#0b1e24'],['bomber_da_bar','Bomber da Bar','Gol a ripetizione, ma solo al bancone.','#f4a261','#7a3e00'],['statistico_folle','Lo Statistico Folle','Il 73% delle mie statistiche è inventato.','#00b4d8','#03045e'],['arbitro_in_pensione','Arbitro in Pensione','Ho fischiato 400 partite. E diverse persone.','#adb5bd','#343a40']].forEach(function(x){add(x[0],x[1],'fan','',x[2],[x[3],x[4]])});}
 initAcc();
 function acc(h){return ACC[h]||{h:h,n:h,k:'fan',v:'',bio:''}}
+var NOTIF={tot:0,per:{}},pimg=null,IM={},IMG_LOAD={};
 var S={ok:false,posts:[],replies:[],react:[],mine:[],follow:[],prof:{}},NET=null;
 function prof(a){return a.k==='sq'?(S.prof[a.n]||{}):{}}
 function bg(a){if(a.c)return 'linear-gradient(135deg,'+a.c[0]+','+a.c[1]+')';var p=prof(a);return 'hsl('+(p.h!=null?p.h:hue(a.n))+' 55% 42%)'}
@@ -239,12 +247,20 @@ function costruisci(){
  RC={};MN={};S.react.forEach(function(r){RC[r.k+'|'+r.kind]=r.n});S.mine.forEach(function(r){MN[r.k+'|'+r.kind]=1});
  var tuttiR={};S.replies.forEach(function(r){(tuttiR[r.k]=tuttiR[r.k]||[]).push({id:r.id,a:hnd(r.team),x:r.body,ts:r.ts,real:1})});
  var out=[];
- S.posts.forEach(function(p){var z={ap:0,ril:0,r:[]};try{z=CVB.reazioni('p'+p.id,p.ts,Date.now(),SQ)}catch(e){}out.push({k:'p'+p.id,id:p.id,real:1,a:hnd(p.team),x:p.body,ts:p.ts,ap:z.ap,ril:z.ril,v:0,r:z.r})});
+ S.posts.forEach(function(p){var z={ap:0,ril:0,r:[]};try{z=CVB.reazioni('p'+p.id,p.ts,Date.now(),SQ)}catch(e){}out.push({k:'p'+p.id,id:p.id,hi:p.hi,real:1,a:hnd(p.team),x:p.body,ts:p.ts,ap:z.ap,ril:z.ril,v:0,r:z.r})});
  var gen=[];try{gen=CVB.genera(D,SQ,ST,Date.now())}catch(e){}
  gen.forEach(function(p){out.push(p)});
  out.forEach(function(p){var rr=(p.r||[]).concat(tuttiR[p.k]||[]);rr.sort(function(a,b){return a.ts-b.ts});p.r=rr;
   p.A=(p.ap||0)+(RC[p.k+'|a']||0);p.R=(p.ril||0)+(RC[p.k+'|r']||0);if(!p.v)p.v=20+13*(p.A+p.R+rr.length)});
- out.sort(function(a,b){return b.ts-a.ts});return out}
+ out.sort(function(a,b){return b.ts-a.ts});
+ NOTIF={tot:0,per:{}};
+ if(me){var key='cv-snap-'+me,snap=null;try{snap=JSON.parse(localStorage.getItem(key)||'null')}catch(e){}
+  var cur={};out.forEach(function(p){if(p.real&&p.a===meH)cur[p.k]=p.A+p.R+p.r.length});
+  if(snap===null){try{localStorage.setItem(key,JSON.stringify(cur))}catch(e){}}
+  else Object.keys(cur).forEach(function(k){var d=cur[k]-(snap[k]===undefined?0:snap[k]);if(d>0){NOTIF.per[k]=d;NOTIF.tot+=d}});
+  NOTIF.cur=cur;NOTIF.key=key}
+ return out}
+function salvaSnap(){if(!NOTIF.key)return;try{localStorage.setItem(NOTIF.key,JSON.stringify(NOTIF.cur))}catch(e){}}
 var POSTS=[];
 function tendenze(){var t=CVB.tendenze(D),real={};S.posts.forEach(function(p){(p.body.match(/#\w+/g)||[]).forEach(function(h){real[h.slice(1).toLowerCase()]=(real[h.slice(1).toLowerCase()]||0)+1})});
  return t.map(function(x){return['#'+x[0],x[1]+(real[x[0].toLowerCase()]||0)*30]})}
@@ -264,8 +280,8 @@ function postHTML(p){
  var th=(p.thr||[]).map(function(x){return reply({a:p.a,x:x,ts:p.ts})}).join('');
  var op=!!open[p.k];
  return '<article class="post" data-k="'+p.k+'">'+AV(a,'','data-u="'+a.h+'"')+'<div class="pb">'+
-  '<div class="pn"><b data-u="'+a.h+'">'+esc(cap(a.n))+'</b>'+badge(a.v)+'<span class="h">@'+a.h+'</span><span class="tm">· '+ago(p.ts)+'</span></div>'+
-  '<div class="pt">'+testo(p.x)+'</div>'+ex+
+  '<div class="pn"><b data-u="'+a.h+'">'+esc(cap(a.n))+'</b>'+badge(a.v)+'<span class="h">@'+a.h+'</span><span class="tm">· '+ago(p.ts)+'</span>'+(NOTIF.per[p.k]?'<span class="np">+'+NOTIF.per[p.k]+' novità</span>':'')+'</div>'+
+  '<div class="pt">'+testo(p.x)+'</div>'+(p.hi?'<div class="pimg" data-id="'+p.id+'">'+(IM[p.id]?'<img src="'+IM[p.id]+'" alt="">':'')+'</div>':'')+ex+
   (th?'<div class="thr'+(open['t'+p.k]?' open':'')+'">'+th+'</div><button class="lnk" data-a="thr" style="color:var(--blu)">'+(open['t'+p.k]?'Nascondi il thread':'Mostra il thread')+'</button>':'')+
   '<div class="acts"><button class="rsp'+(op?' on':'')+'" data-a="rsp">'+I.rsp+(p.r.length||'')+'</button><button class="ril'+(R?' on':'')+'" data-a="ril">'+I.ril+(p.R||'')+'</button><button class="app'+(A?' on':'')+'" data-a="app">'+I.app+(p.A||'')+'</button><button style="cursor:default">'+I.vis+fmt(p.v)+'</button>'+(own?'<button class="del" data-a="del" title="Elimina">'+I.del+'</button>':'')+'</div>'+
   '<div class="thr'+(op?' open':'')+'">'+p.r.map(function(r){return reply(r)}).join('')+(me?'<div class="rf"><input maxlength="140" placeholder="Scrivi una risposta…"><button class="btn" data-a="invia" style="padding:8px 14px;font-size:13px">Rispondi</button></div>':'<div class="rf" style="color:var(--mu);font-size:13px">Entra con il codice della tua squadra per rispondere.</div>')+'</div></div></article>'
@@ -273,7 +289,7 @@ function postHTML(p){
 function feed(L){return L.length?L.map(postHTML).join(''):'<div class="vuoto">Ancora niente qui.</div>'}
 function navR(){
  var it=[['home','Home',I.home],['esplora','Esplora',I.expl],['profilo','Profilo',I.user]];
- document.getElementById('nav').innerHTML='<div class="logo" data-v="home"><div class="lg"></div></div>'+it.map(function(x){var on=vista===x[0]||(vista==='u'&&x[0]==='profilo'&&vprof===meH);return '<button data-v="'+x[0]+'" class="'+(on?'on':'')+'" aria-label="'+x[1]+'">'+x[2]+'<span class="t">'+x[1]+'</span></button>'}).join('')+'<a class="sito" href="index.html" aria-label="Torna a O Girrr"><img src="../assets/favicon-64.png" alt=""><span class="t">O Girrr</span></a><button class="btn postbtn" data-v="scrivi">Lancia un coro</button>'
+ document.getElementById('nav').innerHTML='<div class="logo" data-v="home"><div class="lg"></div></div>'+it.map(function(x){var on=vista===x[0]||(vista==='u'&&x[0]==='profilo'&&vprof===meH);var bd=(x[0]==='profilo'&&NOTIF.tot&&!(vista==='u'&&vprof===meH))?'<span class="bd">'+NOTIF.tot+'</span>':'';return '<button data-v="'+x[0]+'" class="'+(on?'on':'')+'" aria-label="'+x[1]+'">'+x[2]+'<span class="t">'+x[1]+'</span>'+bd+'</button>'}).join('')+'<a class="sito" href="index.html" aria-label="Torna a O Girrr"><img src="../assets/favicon-64.png" alt=""><span class="t">O Girrr</span></a><button class="btn postbtn" data-v="scrivi">Lancia un coro</button>'
 }
 function topR(titolo,sott,tabs){
  var back=vista==='u'&&vprof!==meH,m=nomeMio();
@@ -299,8 +315,8 @@ function render(){
  if(vista==='home'){
   topR('Curva','','<button data-f="tutti" class="'+(filt==='tutti'?'on':'')+'">Per te</button><button data-f="seguiti" class="'+(filt==='seguiti'?'on':'')+'">Seguiti</button><button data-f="squadre" class="'+(filt==='squadre'?'on':'')+'">Squadre</button><button data-f="notizie" class="'+(filt==='notizie'?'on':'')+'">Notizie</button>');
   if(me){var pos=posiz(me),pr=prossimo(me),m=nomeMio();
-   h+='<div class="mine">'+AV(m,'','data-v="profilo"')+'<div><b>'+esc(cap(me))+'</b><span>'+(pr?'Prossima partita: contro '+esc(cap(pr)):'La tua squadra')+'</span></div>'+(pos?'<div class="pos">'+pos+'ª<small>'+ST.cls[pos-1].pt+' punti</small></div>':'')+'</div>';
-   h+='<div class="comp">'+AV(m)+'<div class="cb"><textarea id="tx" rows="2" maxlength="160" placeholder="Cosa succede in curva?"></textarea><div class="cr"><span class="cnt" id="cnt">'+MAX+'</span><button class="btn" id="go" disabled>Lancia il coro</button></div></div></div>'}
+   h+='<div class="mine">'+AV(m,'','data-v="profilo"')+'<div><b>'+esc(cap(me))+'</b><span>'+(pr?'Prossima partita: contro '+esc(cap(pr)):'La tua squadra')+'</span></div>'+(pos?'<div class="pos">'+pos+'ª<small>'+ST.cls[pos-1].pt+' punti</small></div>':'')+'</div>'+(NOTIF.tot?'<div style="margin:-4px 14px 8px"><button class="nov" data-v="profilo">Hai '+NOTIF.tot+' novità sui tuoi cori ›</button></div>':'');
+   h+='<div class="comp">'+AV(m)+'<div class="cb"><textarea id="tx" rows="2" maxlength="160" placeholder="Cosa succede in curva?"></textarea><div id="pvw">'+(pimg?'<div class="pv"><img src="'+pimg+'" alt=""><button id="pvx" aria-label="Togli la foto">×</button></div>':'')+'</div><div class="cr"><button class="ib" id="pic" title="Aggiungi una foto" aria-label="Aggiungi una foto" style="margin-right:auto;color:var(--blu)"><svg viewBox="0 0 24 24" '+S0+'><rect x="3" y="4" width="18" height="16" rx="3"/><circle cx="9" cy="10" r="1.6"/><path d="M21 16l-5-5-8 8"/></svg></button><input type="file" id="fi" accept="image/*" hidden><span class="cnt" id="cnt">'+MAX+'</span><button class="btn" id="go" disabled>Lancia il coro</button></div></div></div>'}
   else h+='<div class="ban2"><b>Stai guardando come ospite.</b><br>Per scrivere cori, rispondere e mettere applausi entra con il codice della tua squadra.<br><a class="btn" href="../index.html">Entra</a></div>';
   var L=POSTS.filter(function(p){var k=acc(p.a).k;return filt==='tutti'||(filt==='seguiti'&&(isFol(p.a)||p.a===meH))||(filt==='squadre'&&k==='sq')||(filt==='notizie'&&(k==='org'||k==='pro'))});
   h+=(filt==='seguiti'&&!L.length)?'<div class="vuoto">Non segui ancora nessuno.<br>Cerca in Esplora gli account da seguire.</div>':feed(L);
@@ -322,7 +338,11 @@ function render(){
  if(vista==='esplora')risultati();
  var tx=document.getElementById('tx');if(tx){tx.addEventListener('input',conta);conta()}
  var go=document.getElementById('go');if(go)go.onclick=lancia;
+ var pc=document.getElementById('pic'),fi=document.getElementById('fi');if(pc&&fi){pc.onclick=function(){fi.click()};fi.onchange=function(){var f=fi.files&&fi.files[0];if(!f)return;comprimi(f).then(function(d){var tv=document.getElementById('tx').value;pimg=d;render();var t2=document.getElementById('tx');t2.value=tv;conta()}).catch(function(e){toast(e.message)})}}
+ var px=document.getElementById('pvx');if(px)px.onclick=function(){var tv=document.getElementById('tx').value;pimg=null;render();var t2=document.getElementById('tx');t2.value=tv;conta()};
  var hu=document.getElementById('hue');if(hu)hu.oninput=function(){sel.h=+hu.value;var av=document.querySelector('.av.xl');if(av)av.style.background='hsl('+sel.h+' 55% 42%)'};
+ if(vista==='u'&&vprof===meH)salvaSnap();
+ caricaImg();
  try{var mx=POSTS.length?POSTS[0].ts:0;localStorage.setItem('cv-ultimo',String(mx))}catch(e){}
 }
 var sel={e:undefined,h:null};
@@ -337,17 +357,21 @@ function risultati(){
  c.innerHTML=h;
 }
 function accRow(k){var a=acc(k);return '<div class="nt">'+AV(a,'','data-u="'+k+'"')+'<div style="flex:1;min-width:0"><p><b data-u="'+k+'" style="cursor:pointer">'+esc(a.n)+'</b> '+badge(a.v)+'</p><small style="margin:0">@'+k+'</small><p style="font-size:14px;color:var(--mu);margin-top:3px">'+esc(a.bio||'Squadra della lega.')+'</p></div>'+segBtn(k,1)+'</div>'}
+function comprimi(file){return new Promise(function(res,rej){var u=URL.createObjectURL(file),im=new Image();im.onload=function(){var M=720,k=Math.min(1,M/Math.max(im.width,im.height)),c=document.createElement('canvas');c.width=Math.round(im.width*k);c.height=Math.round(im.height*k);c.getContext('2d').drawImage(im,0,0,c.width,c.height);URL.revokeObjectURL(u);var q=.78,d=c.toDataURL('image/jpeg',q);while(d.length>200000&&q>.3){q-=.1;d=c.toDataURL('image/jpeg',q)}if(d.indexOf('data:image/jpeg')!==0||d.length>200000){rej(new Error('Immagine troppo grande'));return}res(d)};im.onerror=function(){rej(new Error('Non riesco a leggere questa immagine'))};im.src=u})}
+function caricaImg(){document.querySelectorAll('.pimg[data-id]').forEach(function(el){var id=el.dataset.id;if(IM[id]){if(!el.firstChild)el.innerHTML='<img src="'+IM[id]+'" alt="">';return}if(IMG_LOAD[id])return;IMG_LOAD[id]=1;rpc('curva_img',{p_id:+id}).then(function(d){if(typeof d==='string'&&d.indexOf('data:image/jpeg')===0){IM[id]=d;document.querySelectorAll('.pimg[data-id="'+id+'"]').forEach(function(e){e.innerHTML='<img src="'+d+'" alt="">'})}else delete IMG_LOAD[id]}).catch(function(){delete IMG_LOAD[id]})})}
 function conta(){var tx=document.getElementById('tx'),c=document.getElementById('cnt'),go=document.getElementById('go');if(!tx)return;var r=MAX-tx.value.length;c.textContent=r;c.className='cnt'+(r<0?' over':r<20?' near':'');go.disabled=!tx.value.trim()||r<0;tx.style.height='auto';tx.style.height=tx.scrollHeight+'px'}
 function lancia(){
  if(!serve())return;var tx=document.getElementById('tx'),v=maiusc(tx.value.trim());if(!v||v.length>MAX)return;
  var go=document.getElementById('go');go.disabled=true;
- rpc('curva_scrivi',{p_team:me,p_code:code,p_body:v}).then(function(){ev1('curva/coro','Curva: coro scritto');filt='tutti';return carica()}).then(function(){render()}).catch(function(e){toast(e.message);go.disabled=false});
+ var arg={p_team:me,p_code:code,p_body:v};if(pimg)arg.p_img=pimg;rpc('curva_scrivi',arg).then(function(){ev1(pimg?'curva/foto':'curva/coro',pimg?'Curva: coro con foto':'Curva: coro scritto');pimg=null;filt='tutti';return carica()}).then(function(){render()}).catch(function(e){toast(e.message);go.disabled=false});
 }
 function reagisci(k,kind){if(!serve())return;
  var key=k+'|'+kind,on=!MN[key];
  rpc('curva_reagisci',{p_team:me,p_code:code,p_k:k,p_kind:kind}).then(function(){ev1('curva/reazione','Curva: applauso o rilancio');return carica()}).then(function(){render()}).catch(function(e){toast(e.message)})}
 /* eventi */
 document.addEventListener('click',function(e){
+ if(e.target.closest('.lb')){e.target.closest('.lb').remove();return}
+ var im=e.target.closest('.pimg img');if(im){var l=document.createElement('div');l.className='lb';l.innerHTML='<img src="'+im.src+'" alt="">';document.body.appendChild(l);return}
  var el=e.target.closest('[data-v],[data-u],[data-f],[data-seg],[data-a],[data-q],[data-emo]');if(!el)return;
  var d=el.dataset;
  if(d.q!==undefined){e.stopPropagation();qs=d.q;vista='esplora';scrollTo(0,0);render();return}
