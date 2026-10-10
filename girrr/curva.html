@@ -133,6 +133,10 @@ svg{display:block}
 #vista{touch-action:pan-y}
 .sec{font-size:19px;font-weight:900;padding:16px 14px 6px}
 
+.nav .sito{position:relative;flex:1;display:flex;justify-content:center;align-items:center;padding:10px 0;color:var(--tx);text-decoration:none}
+.nav .sito img{width:26px;height:26px;border-radius:6px}.nav .sito .t{display:none}
+@media(min-width:760px){.nav .sito{flex:none;border-radius:999px;padding:12px;gap:16px}.nav .sito:hover{background:var(--hv)}}
+@media(min-width:1060px){.nav .sito{justify-content:flex-start;padding:12px 16px}.nav .sito .t{display:inline;font-size:19px;font-weight:500}}
 .toast{position:fixed;left:50%;bottom:84px;transform:translateX(-50%);background:var(--tx);color:var(--bg);font:700 14px Inter;padding:11px 18px;border-radius:12px;z-index:60;max-width:90vw;text-align:center;animation:entra .25s ease}
 .hs{cursor:pointer}.hs:hover{text-decoration:underline}
 .ban2{margin:12px 14px;padding:14px;border-radius:16px;background:var(--bg2);border:1px solid var(--ln);font-size:14px;line-height:1.4;color:var(--mu)}
@@ -266,7 +270,7 @@ function postHTML(p){
 function feed(L){return L.length?L.map(postHTML).join(''):'<div class="vuoto">Ancora niente qui.</div>'}
 function navR(){
  var it=[['home','Home',I.home],['esplora','Esplora',I.expl],['profilo','Profilo',I.user]];
- document.getElementById('nav').innerHTML='<div class="logo" data-v="home"><div class="lg"></div></div>'+it.map(function(x){var on=vista===x[0]||(vista==='u'&&x[0]==='profilo'&&vprof===meH);return '<button data-v="'+x[0]+'" class="'+(on?'on':'')+'" aria-label="'+x[1]+'">'+x[2]+'<span class="t">'+x[1]+'</span></button>'}).join('')+'<button class="btn postbtn" data-v="scrivi">Lancia un coro</button>'
+ document.getElementById('nav').innerHTML='<div class="logo" data-v="home"><div class="lg"></div></div>'+it.map(function(x){var on=vista===x[0]||(vista==='u'&&x[0]==='profilo'&&vprof===meH);return '<button data-v="'+x[0]+'" class="'+(on?'on':'')+'" aria-label="'+x[1]+'">'+x[2]+'<span class="t">'+x[1]+'</span></button>'}).join('')+'<a class="sito" href="index.html" aria-label="Torna a O Girrr"><img src="../assets/favicon-64.png" alt=""><span class="t">O Girrr</span></a><button class="btn postbtn" data-v="scrivi">Lancia un coro</button>'
 }
 function topR(titolo,sott,tabs){
  var back=vista==='u'&&vprof!==meH,m=nomeMio();
