@@ -9,6 +9,7 @@ Se una chiave manca, quella parte semplicemente non compare.
 """
 import html
 import json
+import re
 import sys
 from datetime import datetime
 from pathlib import Path
@@ -16,6 +17,7 @@ from zoneinfo import ZoneInfo
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 from pdf_settimana import D, cap, classifica, esc, giocata, premi, pt  # noqa: E402
+import toto_quote as _tq  # noqa: E402  (forza delle rose, per le pagelle)
 
 ROOT = Path(__file__).resolve().parent.parent
 GIORNI = ["lunedì", "martedì", "mercoledì", "giovedì", "venerdì", "sabato", "domenica"]
@@ -153,6 +155,35 @@ tr.pod td.pos{color:var(--red)}
 .taglio b{font-style:normal;font-family:var(--hd);text-transform:uppercase;font-size:8.2pt;letter-spacing:.14em;color:var(--red);display:block;margin-bottom:.8mm}
 .foot{position:absolute;left:11mm;right:11mm;bottom:5mm;display:flex;justify-content:space-between;font-family:'Inter',sans-serif;font-size:7pt;color:var(--mute);border-top:.3mm solid var(--rule);padding-top:1.4mm}
 .fin{font-size:9pt;line-height:1.4;margin-top:3mm}
+
+.pgl{width:100%;border-collapse:collapse}
+.pgl td{padding:1.15mm .8mm;vertical-align:middle}
+.pgl td.v{width:15mm;text-align:center;font-family:var(--hd);font-weight:var(--hw);font-size:17pt;color:var(--red);-webkit-text-stroke:.5pt currentColor;white-space:nowrap}
+.pgl td.v small{font-size:8pt;font-family:'Inter',sans-serif;-webkit-text-stroke:0;margin-left:.6mm}
+.pgl td.sq{font-weight:700;font-size:10.2pt;text-align:left;white-space:nowrap}
+.pgl td.sq i{display:block;font-style:normal;font-family:'Inter',sans-serif;font-weight:400;font-size:6.8pt;color:var(--mute)}
+.pgl td.cm{font-style:italic;font-size:8.6pt;line-height:1.28;text-align:left;opacity:.9}
+.pgl tr.top td.sq{color:var(--red)}
+.social{background:#0f1419;color:#e7e9ea;border-radius:4mm;padding:3.2mm 4mm 3mm;font-family:'Inter',sans-serif;margin-top:2mm}
+.social .sh{display:flex;justify-content:space-between;align-items:center;padding-bottom:2mm;border-bottom:.25mm solid #2f3336}
+.social .sl{font-weight:900;font-size:14pt;letter-spacing:-.02em;color:#fff;display:flex;align-items:center;gap:1.6mm}
+.social .sl i{display:inline-block;width:5mm;height:5mm;border-radius:1.4mm;background:linear-gradient(135deg,#ff5a36,#c8102e);position:relative}
+.social .sl i:after{content:"";position:absolute;left:1.15mm;top:1.15mm;width:2.7mm;height:2.7mm;border-radius:50%;border:.55mm solid #fff;border-right-color:transparent;transform:rotate(30deg)}
+.social .sh span{font-size:6.8pt;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:#71767b}
+.post{display:flex;gap:3mm;padding-top:2.6mm}
+.av{flex:none;width:11mm;height:11mm;border-radius:50%;color:#fff;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:10pt}
+.pb{flex:1;min-width:0}
+.pn{display:flex;align-items:center;gap:1.4mm;font-size:9.6pt}
+.pn b{color:#fff;font-weight:800}.pn span{color:#71767b;font-size:8.8pt}
+.pt{font-size:11pt;line-height:1.35;margin:1mm 0 1.6mm;color:#e7e9ea}
+.pq{font-size:7.6pt;color:#71767b;padding-bottom:1.8mm;border-bottom:.25mm solid #2f3336}.pq b{color:#e7e9ea}
+.pm{display:flex;justify-content:space-between;color:#71767b;font-size:8pt;padding:1.8mm 2mm 0 0;max-width:120mm}
+.pm span{display:flex;align-items:center;gap:1.2mm}
+.bufala{border:.5mm solid var(--rule);border-top:2.2mm solid var(--red);padding:2.6mm 4mm 3mm;margin-top:4mm;position:relative;background:rgba(200,16,46,.04)}
+.bufala .bk{font-family:var(--hd);font-weight:700;text-transform:uppercase;font-size:8.2pt;letter-spacing:.16em;color:var(--red)}
+.bufala .bh{font-family:var(--hd);font-weight:var(--hw);text-transform:uppercase;font-size:17pt;line-height:1;letter-spacing:-.01em;margin:1.2mm 0 1.6mm}
+.bufala p{font-size:9.6pt;line-height:1.4;text-align:justify;hyphens:auto}
+.bufala .bn{font-size:7pt;color:var(--mute);font-style:italic;margin-top:1.4mm;font-family:'Inter',sans-serif}
 """
 
 PITCH = """<svg viewBox="0 0 100 62" xmlns="http://www.w3.org/2000/svg"><rect width="100" height="62" fill="#2f6b3a"/>
@@ -164,6 +195,105 @@ PITCH = """<svg viewBox="0 0 100 62" xmlns="http://www.w3.org/2000/svg"><rect wi
 
 
 MODULI = {"3-4-3": (3, 4, 3), "3-5-2": (3, 5, 2), "4-3-3": (4, 3, 3), "4-4-2": (4, 4, 2), "4-5-1": (4, 5, 1), "5-3-2": (5, 3, 2), "5-4-1": (5, 4, 1)}
+
+
+def maiuscole(x):
+    """Prima lettera maiuscola a inizio testo e dopo ogni . ! ? (nei testi scritti a mano)."""
+    if isinstance(x, str):
+        x = re.sub(r"(^\s*|(?<!\s[A-Z])[.!?…]\s+)([a-zàèéìòù])", lambda m: m.group(1) + m.group(2).upper(), x)  # non dopo un'iniziale ("Martinez L. è")
+        return x
+    if isinstance(x, list):
+        return [maiuscole(v) for v in x]
+    if isinstance(x, dict):
+        return {k: (v if k == "valore" else maiuscole(v)) for k, v in x.items()}
+    return x
+
+
+def voto_pagella(fp, atteso):
+    """6 = in linea con la rosa; ogni 5 fantapunti sopra/sotto l'atteso vale un voto. Passi da mezzo punto."""
+    v = 6 + (fp - atteso) / 5
+    return max(3, min(10, round(v * 2) / 2))
+
+
+def commento_pagella(delta):
+    if delta >= 12:
+        return "Serata da incorniciare: la rosa ha dato molto più del previsto."
+    if delta >= 5:
+        return "Sopra le attese, la rosa ha reso più di quanto si pensasse."
+    if delta > -5:
+        return "In linea con quello che prometteva la rosa."
+    if delta > -12:
+        return "Sotto le attese: la rosa poteva dare qualcosa in più."
+    return "Giornata da dimenticare: la rosa valeva molto di più."
+
+
+def pagelle(ult, gioc):
+    """[(squadra, fantapunti, atteso, voto, freccia)] ordinate per voto. La freccia confronta con la giornata prima."""
+    pri = _tq.prior_squadre(D)
+    def per_giornata(g):
+        out = {}
+        for casa, pc, pf, fuori, _ in g["m"]:
+            out[casa] = pc
+            out[fuori] = pf
+        return out
+    ora = per_giornata(ult)
+    prec = per_giornata(gioc[-2]) if len(gioc) > 1 else {}
+    righe = []
+    for sq, fp in ora.items():
+        att = pri.get(sq, 72.0)
+        v = voto_pagella(fp, att)
+        fr = ""
+        if sq in prec:
+            vp = voto_pagella(prec[sq], att)
+            fr = "su" if v > vp else "giu" if v < vp else "uguale"
+        righe.append((sq, fp, att, v, fr))
+    righe.sort(key=lambda r: (-r[3], -(r[1] - r[2])))
+    return righe
+
+
+def colore_squadra(nome):
+    h = 0
+    for ch in nome:
+        h = (h * 31 + ord(ch)) % 360
+    return f"hsl({h} 55% 42%)"
+
+
+def sigla(nome):
+    parole = [w for w in re.split(r"\s+", nome.strip()) if w]
+    return (parole[0][0] + (parole[1][0] if len(parole) > 1 else parole[0][1:2])).upper()
+
+
+def cifra(n):
+    return f"{n/1000:.1f}".replace(".", ",") + " mila" if n >= 1000 else str(n)
+
+
+def post_social(coro, n):
+    """Il "coro della settimana": un post in stile social (inventato: la piattaforma si chiama Curva)."""
+    import random
+    r = random.Random(n * 7919)
+    sq = coro.get("squadra", "")
+    nome = cap(sq)
+    handle = "@" + re.sub(r"[^a-z0-9]+", "_", sq.lower()).strip("_")
+    risposte = r.randint(12, 140)
+    rilanci = r.randint(30, 600)
+    applausi = rilanci * r.randint(3, 6) + r.randint(0, 99)
+    viste = applausi * r.randint(9, 14)
+    ora = f"{r.randint(9, 23)}:{r.randint(0, 59):02d}"
+    ico = lambda d: f'<svg viewBox="0 0 24 24" width="3.6mm" height="3.6mm" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">{d}</svg>'
+    bolla = ico('<path d="M21 12a8 8 0 0 1-11.5 7.2L4 21l1.8-5.3A8 8 0 1 1 21 12z"/>')
+    giro = ico('<path d="M17 2l4 4-4 4"/><path d="M3 11V9a3 3 0 0 1 3-3h15"/><path d="M7 22l-4-4 4-4"/><path d="M21 13v2a3 3 0 0 1-3 3H3"/>')
+    cuore = ico('<path d="M12 21s-7.5-4.6-9.6-9.3C.9 8.2 3 5 6.2 5c1.9 0 3.2 1 3.8 2 .6-1 1.9-2 3.8-2C17 5 19.1 8.2 17.6 11.7 15.5 16.4 12 21 12 21z"/>')
+    barre = ico('<path d="M4 20V10"/><path d="M10 20V4"/><path d="M16 20v-7"/><path d="M22 20H2"/>')
+    testo = esc(coro.get("testo", "")).replace("\n", "<br>")
+    return (
+        '<div class="social"><div class="sh"><div class="sl"><i></i>Curva</div><span>Il coro della settimana</span></div>'
+        f'<div class="post"><div class="av" style="background:{colore_squadra(sq)}">{esc(sigla(sq))}</div><div class="pb">'
+        f'<div class="pn"><b>{esc(nome)}</b><svg class="ver" viewBox="0 0 24 24" width="3.5mm" height="3.5mm"><circle cx="12" cy="12" r="11" fill="#1d9bf0"/><path d="M7 12.5l3.2 3.2L17 8.8" fill="none" stroke="#fff" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg>'
+        f'<span>{esc(handle)}</span></div><div class="pt">{testo}</div>'
+        f'<div class="pq">{ora} · Curva per smartphone · <b>{cifra(viste)}</b> visualizzazioni</div>'
+        f'<div class="pm"><span>{bolla}{risposte}</span><span>{giro}{rilanci}</span><span>{cuore}{cifra(applausi)}</span><span>{barre}{cifra(viste)}</span></div>'
+        '</div></div></div>'
+    )
 
 
 def formazione():
@@ -248,6 +378,7 @@ def tab_cl(righe, completa=True):
 
 
 def costruisci(t, tema="classico"):
+    t = maiuscole(t)
     cal = D["cal"]
     gioc = [x for x in cal["lega"] if giocata(x)]
     ult = gioc[-1] if gioc else None
@@ -263,7 +394,7 @@ def costruisci(t, tema="classico"):
                 f'<div class="bar"><span>O Giornale del Girrr</span><span>{esc(data)}</span><span>N° {n}</span></div>')
 
     def piede(p):
-        return f'<div class="foot"><span>O Giornale del Girrr · O Fant A Girrr · Lo Spogliatoio</span><span>Pag. {p} di 3</span></div>'
+        return f'<div class="foot"><span>O Giornale del Girrr · O Fant A Girrr · Lo Spogliatoio</span><span>Pag. {p} di 4</span></div>'
 
     h = [f"<style>{CSS}{css_tema(tema)}</style>"]
     # ---------- prima pagina
@@ -337,8 +468,29 @@ def costruisci(t, tema="classico"):
         h.append("</div></div></div>")
     h.append(piede(2) + "</section>")
 
-    # ---------- pagina 3: programma e infermeria
-    h.append(f'<section class="pg">{testata(3)}<div class="mini occ">Cosa ci aspetta</div><div class="tit" style="font-size:30pt">Il prossimo turno</div><div class="cols" style="margin-top:2mm">')
+    # ---------- pagina 3: pagelle, coro della settimana, bufala di mercato
+    if ult:
+        h.append(f'<section class="pg">{testata(3)}<div class="mini occ">Dopo la {n}ª giornata</div><div class="tit" style="font-size:30pt">Le pagelle</div>')
+        com = t.get("pagelle") or {}
+        com = {k.lower(): v for k, v in com.items()} if isinstance(com, dict) else {}
+        h.append('<div class="tab" style="margin-top:2.4mm"><h2>Squadra per squadra · <b>il voto della settimana</b></h2><table class="pgl">')
+        for k, (sq, fp, att, v, fr) in enumerate(pagelle(ult, gioc)):
+            frec = {"su": ' <small style="color:#1f7a3d">▲</small>', "giu": ' <small>▼</small>', "uguale": ' <small style="color:var(--mute)">=</small>'}.get(fr, "")
+            testo = com.get(sq.lower()) or commento_pagella(fp - att)
+            h.append(f'<tr class="{"top" if k < 3 else ""}"><td class="sq">{esc(cap(sq))}<i>{pt(fp)} fantapunti · attesi {att:.0f}</i></td>'
+                     f'<td class="v">{pt(v)}{frec}</td><td class="cm">{esc(testo)}</td></tr>')
+        h.append('</table><p class="nt">Il voto confronta i fantapunti della giornata con quelli che ci si aspettava dalla rosa (voti di quest\'anno e della scorsa stagione). Il 6 è «in linea con la rosa»: ogni 5 fantapunti in più o in meno vale un voto.</p></div>')
+        if t.get("coro"):
+            h.append('<div class="tab"><h2>Il coro <b>della settimana</b></h2>' + post_social(t["coro"], n) +
+                     '<p class="nt">Curva è un social inventato: il coro è satira sui risultati della giornata, ma le statistiche sotto il post sono tutte finte.</p></div>')
+        if t.get("bufala"):
+            b = t["bufala"]
+            h.append(f'<div class="bufala"><div class="bk">Bufala di mercato</div><div class="bh">{esc(b.get("titolo", ""))}</div><p>{esc(b.get("testo", ""))}</p>'
+                     '<div class="bn">Notizia completamente inventata: nessun giocatore si muove davvero.</div></div>')
+        h.append(piede(3) + "</section>")
+
+    # ---------- pagina 4: programma e infermeria
+    h.append(f'<section class="pg">{testata(4)}<div class="mini occ">Cosa ci aspetta</div><div class="tit" style="font-size:30pt">Il prossimo turno</div><div class="cols" style="margin-top:2mm">')
     h.append('<div class="tab"><h2>Campionato</h2>')
     if pross:
         h.append(f'<div class="gr" style="margin-top:0">{pross["n"]}ª giornata · Serie A G{pross["sa"]}</div>')
@@ -378,7 +530,7 @@ def costruisci(t, tema="classico"):
     if t.get("chiusura"):
         h.append(f'<div class="taglio"><b>Taglio basso</b>{esc(t["chiusura"])}</div>')
     h.append('<div class="spb"><span>Questo numero è gentilmente offerto da</span>' + "".join(f'<img src="{logo_uri(x)}">' for x in scegli_sponsor(n)) + '</div>')
-    h.append(piede(3) + "</section>")
+    h.append(piede(4) + "</section>")
     return "<!doctype html><html lang='it'><head><meta charset='utf-8'><title>O Giornale del Girrr</title></head><body>" + "".join(h) + "</body></html>", n
 
 
