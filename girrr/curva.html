@@ -1,0 +1,169 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="robots" content="noindex">
+<title>Curva · O Girrr</title>
+<link rel="icon" type="image/png" href="../assets/favicon-64.png">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@500;700;800;900&display=swap">
+<link rel="manifest" href="../manifest.webmanifest">
+<meta name="theme-color" content="#1d2a52">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="O Girrr">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<link rel="apple-touch-icon" href="../assets/apple-touch-icon.png">
+<style>
+:root{--acc:#d62839;--bg:#1d2a52;--bg2:#2c3f7c;--bg3:#141d3d;--chiaro:#fbf6ec;--hi:#ffd166;--sub:#bfe3ff;--ok:#5fd38d;--bad:#ff7d86;--card:#0f1419;--line:#2f3336;--mute:#8b98a5}
+*{box-sizing:border-box;margin:0;padding:0}
+html{overflow-y:scroll;scrollbar-gutter:stable}
+body{min-height:100vh;font-family:Inter,system-ui,-apple-system,Segoe UI,sans-serif;color:var(--chiaro);background:var(--bg);
+ background-image:radial-gradient(1200px 700px at 80% -10%,var(--bg2) 0,var(--bg) 55%,var(--bg3) 100%);background-attachment:fixed}
+body::before{content:'';position:fixed;inset:-120px;z-index:-1;pointer-events:none;background:repeating-linear-gradient(115deg,rgba(255,255,255,.04) 0 36px,transparent 36px 72px);animation:strisce 9s linear infinite}
+@keyframes strisce{to{transform:translate3d(79.45px,0,0)}}
+@media (prefers-reduced-motion:reduce){body::before{animation:none}*{animation:none!important;transition:none!important}}
+button{font-family:inherit;color:inherit}
+.wrap{max-width:640px;margin:0 auto;padding:18px 16px 40px}
+.back{display:inline-block;margin-bottom:10px;font-weight:800;font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:var(--hi);text-decoration:none}
+.top{display:flex;align-items:center;gap:14px}
+.top img{height:clamp(64px,12vw,92px);cursor:pointer;filter:drop-shadow(0 8px 14px rgba(0,0,0,.4))}
+.kick{font-weight:900;font-size:clamp(11px,1.6vw,13px);letter-spacing:.4em;color:var(--hi)}
+.brand{display:flex;align-items:center;gap:10px;margin-top:4px}
+.brand i{flex:none;width:clamp(30px,6vw,40px);height:clamp(30px,6vw,40px);border-radius:28%;background:linear-gradient(135deg,#ff5a36,#c8102e);position:relative;box-shadow:0 6px 14px rgba(0,0,0,.35)}
+.brand i:after{content:"";position:absolute;inset:26%;border-radius:50%;border:max(2.5px,.5vw) solid #fff;border-right-color:transparent;transform:rotate(30deg)}
+h1{font-weight:900;font-size:clamp(30px,6vw,46px);line-height:1;letter-spacing:-.02em}
+.sub{color:var(--sub);font-weight:600;font-size:14px;margin:10px 0 14px}
+.bozza{display:inline-block;font-size:10px;font-weight:800;letter-spacing:.16em;text-transform:uppercase;color:#1d2a52;background:var(--hi);padding:3px 8px;border-radius:999px;vertical-align:middle;margin-left:6px}
+.who{display:flex;align-items:center;gap:10px;margin-bottom:12px;font-size:12px;font-weight:700;color:var(--sub)}
+.who select{flex:1;max-width:250px;font:800 13px Inter;color:var(--chiaro);background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.2);border-radius:10px;padding:8px 10px}
+.who select option{color:#111}
+.tabs{display:flex;background:rgba(255,255,255,.1);border-radius:999px;padding:4px;margin-bottom:12px;position:relative}
+.tabs button{flex:1;position:relative;z-index:1;border:0;background:none;font:800 12px Inter;letter-spacing:.06em;text-transform:uppercase;padding:10px 6px;border-radius:999px;cursor:pointer;opacity:.75;transition:opacity .2s,background .25s}
+.tabs button.on{background:var(--acc);opacity:1}
+.tend{display:flex;gap:8px;overflow-x:auto;scrollbar-width:none;margin-bottom:12px}
+.tend::-webkit-scrollbar{display:none}
+.tend span{flex:none;font-weight:800;font-size:12px;padding:6px 11px;border-radius:999px;background:rgba(255,255,255,.1);color:var(--hi)}
+.feed{background:var(--card);border-radius:20px;overflow:hidden;box-shadow:0 14px 30px rgba(0,0,0,.35)}
+.comp{display:flex;gap:12px;padding:14px 16px;border-bottom:1px solid var(--line)}
+.av{flex:none;width:44px;height:44px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:15px;color:#fff}
+.av.sm{width:32px;height:32px;font-size:11px}
+.comp .cb{flex:1;min-width:0}
+.comp textarea{width:100%;background:none;border:0;outline:0;resize:none;color:#e7e9ea;font:500 17px/1.35 Inter;min-height:52px;overflow:hidden}
+.comp textarea::placeholder{color:#6b7885}
+.comp .cr{display:flex;align-items:center;justify-content:space-between;gap:10px;border-top:1px solid var(--line);padding-top:10px}
+.cnt{font-size:12px;font-weight:700;color:var(--mute);font-variant-numeric:tabular-nums}
+.cnt.near{color:var(--hi)}.cnt.over{color:var(--bad)}
+.btn{border:0;border-radius:999px;background:var(--acc);color:#fff;font:800 14px Inter;padding:9px 18px;cursor:pointer;transition:transform .15s,opacity .2s}
+.btn:active{transform:scale(.95)}.btn:disabled{opacity:.4;cursor:default}
+.post{display:flex;gap:12px;padding:14px 16px;border-bottom:1px solid var(--line);color:#e7e9ea;animation:entra .45s ease both}
+@keyframes entra{from{opacity:0;transform:translateY(-10px)}to{opacity:1;transform:none}}
+.post:last-child{border-bottom:0}
+.pb{flex:1;min-width:0}
+.pn{display:flex;align-items:center;gap:6px;flex-wrap:wrap;font-size:15px}
+.pn b{color:#fff;font-weight:800}.pn span{color:var(--mute);font-size:14px}
+.pn .ver{flex:none}
+.pt{margin:3px 0 8px;font-size:16px;line-height:1.38;white-space:pre-wrap;word-wrap:break-word;overflow-wrap:anywhere}
+.acts{display:flex;justify-content:space-between;max-width:380px;margin-left:-8px}
+.acts button{display:flex;align-items:center;gap:6px;border:0;background:none;color:var(--mute);font:600 13px Inter;cursor:pointer;padding:6px 8px;border-radius:999px;transition:color .2s,background .2s}
+.acts button:hover{background:rgba(255,255,255,.07)}
+.acts .app.on{color:#f91880}.acts .ril.on{color:#00ba7c}.acts .rsp.on{color:#1d9bf0}
+.acts svg{width:18px;height:18px}
+.acts .app.on svg{fill:#f91880;animation:pop .35s ease}
+@keyframes pop{0%{transform:scale(.6)}60%{transform:scale(1.35)}100%{transform:scale(1)}}
+.acts .del{margin-left:auto;color:#7a5560}.acts .del:hover{color:var(--bad)}
+.thr{margin-top:10px;border-left:2px solid var(--line);padding-left:12px;display:none}
+.thr.open{display:block}
+.rp{display:flex;gap:10px;padding:8px 0}
+.rp .pt{font-size:15px;margin:2px 0 0}
+.rf{display:flex;gap:8px;margin-top:8px}
+.rf input{flex:1;min-width:0;background:#16202a;border:1px solid var(--line);border-radius:999px;color:#e7e9ea;font:500 14px Inter;padding:9px 14px;outline:0}
+.rf input:focus{border-color:#1d9bf0}
+.rf .btn{padding:8px 14px;font-size:13px;background:#1d9bf0}
+.vuoto{padding:34px 16px;text-align:center;color:var(--mute);font-weight:600}
+.tm{color:var(--mute);font-size:13px;white-space:nowrap}
+.red{font-size:10px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:#1d9bf0;border:1px solid #1d9bf0;border-radius:4px;padding:1px 5px}
+.foot{margin-top:14px;text-align:center;font-size:12px;color:var(--sub);opacity:.8}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <a class="back" href="index.html">‹ O Girrr</a>
+  <header class="top"><img id="lg" src="../assets/loghi/logo-lega-o-fant-a-girrr.png" alt="O Fant A Girrr" title="Torna a O Girrr"><div><div class="kick">O FANT A GIRRR · 2026/27</div><div class="brand"><i></i><h1>Curva</h1><span class="bozza">Bozza</span></div></div></header>
+  <p class="sub">Il social della lega: i cori delle squadre, gli applausi e le risposte.</p>
+  <div class="who"><span>Stai guardando come</span><select id="chi" aria-label="Squadra"></select></div>
+  <div class="tend" id="tend"></div>
+  <div class="tabs" id="tabs"><button data-f="tutti" class="on">Tutti</button><button data-f="redazione">Redazione</button><button data-f="miei">I miei cori</button></div>
+  <div class="feed">
+    <div class="comp"><div class="av" id="cav"></div><div class="cb">
+      <textarea id="tx" rows="2" maxlength="160" placeholder="Fai il tuo coro…"></textarea>
+      <div class="cr"><span class="cnt" id="cnt">140</span><button class="btn" id="go" disabled>Lancia il coro</button></div>
+    </div></div>
+    <div id="lista"></div>
+  </div>
+  <div class="foot">O Girrr · Curva</div>
+</div>
+<script>
+(function(){
+var SQ=['Oranje VC','The Blue brothers','Apo team','Grodah','WOA','Real Madrink','stif dc','Mariana Coneja','AFA SELECCION','Atletico ma non troppo'];
+var ADMIN='Oranje VC',RED='O Giornale del Girrr',MAX=140;
+function esc(s){return String(s).replace(/[&<>"]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})}
+function cap(s){return s.charAt(0).toUpperCase()+s.slice(1)}
+function maiusc(s){return s.replace(/(^\s*|[.!?…]\s+)([a-zàèéìòù])/g,function(m,a,b,off,str){if(a.charAt(0)==='.'&&/(^|\s)[A-Z]$/.test(str.slice(0,off)))return m;return a+b.toUpperCase()})}
+function hue(n){var h=0;for(var i=0;i<n.length;i++)h=(h*31+n.charCodeAt(i))%360;return 'hsl('+h+' 55% 42%)'}
+function sigla(n){var p=n.trim().split(/\s+/);return(p[0][0]+(p[1]?p[1][0]:(p[0][1]||''))).toUpperCase()}
+function handle(n){return '@'+n.toLowerCase().replace(/[^a-z0-9]+/g,'_').replace(/^_|_$/g,'')}
+function ago(m){return m<1?'ora':m<60?m+' min':m<1440?Math.floor(m/60)+' h':'ieri'}
+var ICO={rsp:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a8 8 0 0 1-11.5 7.2L4 21l1.8-5.3A8 8 0 1 1 21 12z"/></svg>',
+ ril:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 2l4 4-4 4"/><path d="M3 11V9a3 3 0 0 1 3-3h15"/><path d="M7 22l-4-4 4-4"/><path d="M21 13v2a3 3 0 0 1-3 3H3"/></svg>',
+ app:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7.5-4.6-9.6-9.3C.9 8.2 3 5 6.2 5c1.9 0 3.2 1 3.8 2 .6-1 1.9-2 3.8-2C17 5 19.1 8.2 17.6 11.7 15.5 16.4 12 21 12 21z"/></svg>',
+ del:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h18"/><path d="M8 6V4h8v2"/><path d="M6 6l1 14h10l1-14"/></svg>'};
+var VER='<svg class="ver" viewBox="0 0 24 24" width="17" height="17"><circle cx="12" cy="12" r="11" fill="#1d9bf0"/><path d="M7 12.5l3.2 3.2L17 8.8" fill="none" stroke="#fff" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+var nid=100;
+var P=[
+ {id:1,t:'Oranje VC',x:"Dall'89 al 69 in sette giorni. Il record resta in bacheca, il resto è in revisione. Mercoledì si riparte.",m:62,ap:9,ril:2,r:[{t:'Grodah',x:'Bacheca bella piena, vedo.',m:50},{t:'stif dc',x:'Revisione ok, ma il 3-1 non te lo toglie nessuno.',m:41}]},
+ {id:2,t:RED,x:'È online il numero 2 del Giornale: pagelle, coro della settimana e bufala di mercato. Buona lettura.',m:95,ap:14,ril:6,r:[]},
+ {id:3,t:'stif dc',x:'Prima giornata 68,5, seconda 77,5 e Oranje VC battuto 1-3. La stagione grigia? Ho cambiato lampadina.',m:128,ap:22,ril:7,r:[{t:'Mariana Coneja',x:'Lampadina nuova, bolletta più alta.',m:100}]},
+ {id:4,t:'Grodah',x:"Quattro gol all'Atletico ma non troppo. Il nome continua a essere la parte più sincera.",m:200,ap:11,ril:1,r:[]},
+ {id:5,t:'Atletico ma non troppo',x:'66,5. Non è un punteggio, è uno stato d\'animo.',m:215,ap:17,ril:3,r:[{t:'Real Madrink',x:'Posso mettere "mi piace" a uno stato d\'animo?',m:190}]},
+ {id:6,t:'Real Madrink',x:'Perdere 4-2 con 72 punti è il mio modo di dire che c\'ero.',m:340,ap:6,ril:0,r:[]},
+ {id:7,t:'Apo team',x:'Pareggio con la WOA. Come il caffè: poco, ma serve.',m:410,ap:8,ril:1,r:[{t:'WOA',x:"Sul 2-2 l'ultimo gol era mio, giuro.",m:380}]},
+ {id:8,t:'Mariana Coneja',x:'Primo posto in classifica. Non lo dico per vantarmi, lo dico per farvi vedere come si fa.',m:1500,ap:13,ril:4,r:[]}
+];
+var me=SQ[0],filt='tutti',ap={},ril={},open={};
+(function(){try{var f=JSON.parse(localStorage.getItem('fg')||'{}');if(f&&f.team&&SQ.indexOf(f.team)>=0)me=f.team}catch(e){}})();
+var sel=document.getElementById('chi');sel.innerHTML=SQ.map(function(n){return '<option'+(n===me?' selected':'')+'>'+esc(cap(n))+'</option>'}).join('');
+sel.onchange=function(){me=SQ[sel.selectedIndex];drawMe();draw()};
+function drawMe(){var a=document.getElementById('cav');a.style.background=hue(me);a.textContent=sigla(me);document.getElementById('lg').onclick=function(){location.href='index.html'}}
+function head(t){return '<div class="pn"><b>'+esc(cap(t))+'</b>'+(t===RED?VER+'<span class="red">Redazione</span>':'')+'<span>'+esc(handle(t))+'</span></div>'}
+function draw(){
+  var L=P.filter(function(p){return filt==='tutti'||(filt==='redazione'&&p.t===RED)||(filt==='miei'&&p.t===me)});
+  var h=L.map(function(p){
+    var a=ap[p.id]?1:0,r=ril[p.id]?1:0,own=(p.t===me)||(me===ADMIN);
+    return '<div class="post" data-i="'+p.id+'"><div class="av" style="background:'+(p.t===RED?'linear-gradient(135deg,#ff5a36,#c8102e)':hue(p.t))+'">'+esc(p.t===RED?'GG':sigla(p.t))+'</div><div class="pb">'+head(p.t)+
+    '<div class="pt">'+esc(p.x)+' <span class="tm">· '+ago(p.m)+'</span></div>'+
+    '<div class="acts"><button class="rsp'+(open[p.id]?' on':'')+'" data-a="rsp">'+ICO.rsp+(p.r.length||'')+'</button><button class="ril'+(r?' on':'')+'" data-a="ril">'+ICO.ril+(p.ril+r||'')+'</button><button class="app'+(a?' on':'')+'" data-a="app">'+ICO.app+(p.ap+a||'')+'</button>'+(own?'<button class="del" data-a="del" title="Elimina">'+ICO.del+'</button>':'')+'</div>'+
+    '<div class="thr'+(open[p.id]?' open':'')+'">'+p.r.map(function(r){return '<div class="rp"><div class="av sm" style="background:'+hue(r.t)+'">'+esc(sigla(r.t))+'</div><div class="pb">'+head(r.t).replace('<div class="pn">','<div class="pn" style="font-size:14px">')+'<div class="pt">'+esc(r.x)+' <span class="tm">· '+ago(r.m)+'</span></div></div></div>'}).join('')+
+    '<div class="rf"><input maxlength="140" placeholder="Scrivi una risposta…" data-ri="'+p.id+'"><button class="btn" data-a="invia">Rispondi</button></div></div>'+
+    '</div></div>'}).join('');
+  document.getElementById('lista').innerHTML=h||'<div class="vuoto">'+(filt==='miei'?'Non hai ancora fatto nessun coro.':'Ancora niente qui.')+'</div>';
+}
+document.getElementById('lista').addEventListener('click',function(e){
+  var b=e.target.closest('button');if(!b)return;var po=b.closest('.post'),id=+po.dataset.i,p=P.filter(function(x){return x.id===id})[0],a=b.dataset.a;
+  if(a==='app')ap[id]=!ap[id];else if(a==='ril')ril[id]=!ril[id];else if(a==='rsp')open[id]=!open[id];
+  else if(a==='del'){P=P.filter(function(x){return x.id!==id});}
+  else if(a==='invia'){var i=po.querySelector('input'),v=maiusc(i.value.trim());if(!v)return;p.r.push({t:me,x:v,m:0});open[id]=true}
+  draw();if(a==='rsp'&&open[id]){var i2=document.querySelector('[data-i="'+id+'"] input');if(i2)i2.focus()}
+});
+document.getElementById('lista').addEventListener('keydown',function(e){if(e.key==='Enter'&&e.target.matches('input')){e.target.closest('.post').querySelector('[data-a=invia]').click()}});
+var tx=document.getElementById('tx'),cnt=document.getElementById('cnt'),go=document.getElementById('go');
+function conta(){var n=tx.value.length,r=MAX-n;cnt.textContent=r;cnt.className='cnt'+(r<0?' over':r<20?' near':'');go.disabled=!tx.value.trim()||r<0;tx.style.height='auto';tx.style.height=tx.scrollHeight+'px'}
+tx.addEventListener('input',conta);
+go.onclick=function(){var v=maiusc(tx.value.trim());if(!v||v.length>MAX)return;P.unshift({id:nid++,t:me,x:v,m:0,ap:0,ril:0,r:[]});tx.value='';conta();filt='tutti';[].forEach.call(document.querySelectorAll('.tabs button'),function(b){b.classList.toggle('on',b.dataset.f==='tutti')});draw()};
+document.getElementById('tabs').onclick=function(e){var b=e.target.closest('button');if(!b)return;filt=b.dataset.f;[].forEach.call(this.children,function(x){x.classList.toggle('on',x===b)});draw()};
+document.getElementById('tend').innerHTML=['#Giornata2','#Cappotto','#Thuram','#BufalaDiMercato','#LampadinaNuova'].map(function(t){return '<span>'+t+'</span>'}).join('');
+drawMe();draw();
+})();
+</script>
+</body>
+</html>
