@@ -481,12 +481,10 @@ def costruisci(t, tema="classico"):
                      f'<td class="v">{pt(v)}{frec}</td><td class="cm">{esc(testo)}</td></tr>')
         h.append('</table><p class="nt">Il voto confronta i fantapunti della giornata con quelli che ci si aspettava dalla rosa (voti di quest\'anno e della scorsa stagione). Il 6 è «in linea con la rosa»: ogni 5 fantapunti in più o in meno vale un voto.</p></div>')
         if t.get("coro"):
-            h.append('<div class="tab"><h2>Il coro <b>della settimana</b></h2>' + post_social(t["coro"], n) +
-                     '<p class="nt">Curva è un social inventato: il coro è satira sui risultati della giornata, ma le statistiche sotto il post sono tutte finte.</p></div>')
+            h.append('<div class="tab"><h2>Il coro <b>della settimana</b></h2>' + post_social(t["coro"], n) + '</div>')
         if t.get("bufala"):
             b = t["bufala"]
-            h.append(f'<div class="bufala"><div class="bk">Bufala di mercato</div><div class="bh">{esc(b.get("titolo", ""))}</div><p>{esc(b.get("testo", ""))}</p>'
-                     '<div class="bn">Notizia completamente inventata: nessun giocatore si muove davvero.</div></div>')
+            h.append(f'<div class="bufala"><div class="bk">Bufala di mercato</div><div class="bh">{esc(b.get("titolo", ""))}</div><p>{esc(b.get("testo", ""))}</p></div>')
         h.append(piede(3) + "</section>")
 
     # ---------- pagina 4: programma e infermeria
