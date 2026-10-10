@@ -101,11 +101,11 @@ function f0(x){return Math.round(x).toLocaleString('it-IT')}
 document.getElementById('lg').onclick=function(){location.href='index.html'};
 function hshF(s){var h=2166136261,i;for(i=0;i<s.length;i++){h^=s.charCodeAt(i);h=Math.imul(h,16777619)}return (h>>>0).toString(36)}
 var FG={};try{FG=JSON.parse(localStorage.getItem('fg')||'{}')||{}}catch(e){}
-var SEZ=[['home','Home'],['spogliatoio','Spogliatoio'],['giornale','Giornale'],['tabellone','Tabellone'],['totogirrr','Totogirrr'],['squadre','Squadre'],['albo',"Albo d'oro"]];
+var SEZ=[['home','Home'],['spogliatoio','Spogliatoio'],['giornale','Giornale'],['tabellone','Tabellone'],['totogirrr','Totogirrr'],['squadre','Squadre'],['albo',"Albo d'oro"],['curva','Curva']];
 function sezione(p){
   p=String(p||'').replace(/index\.html$/,'');
   if(/totogirrr\.html$/.test(p))return 'totogirrr';if(/giornale\.html$/.test(p))return 'giornale';if(/tabellone\.html$/.test(p))return 'tabellone';
-  if(/squadre\.html$/.test(p))return 'squadre';if(/albo\.html$/.test(p))return 'albo';
+  if(/squadre\.html$/.test(p))return 'squadre';if(/albo\.html$/.test(p))return 'albo';if(/curva\.html$/.test(p))return 'curva';
   if(/\/girrr\/$/.test(p))return 'home';if(/^\/o-fant-a-girrr\/$/.test(p)||p==='/')return 'spogliatoio';return null;
 }
 function demoHits(){
@@ -149,8 +149,20 @@ function disegna(j){
   var mh=Math.max.apply(null,loc.concat([1])),best=0;for(i=1;i<24;i++)if(loc[i]>loc[best])best=i;
   h+='<div class="card"><h3>A che ora si entra</h3><div class="ore">'+loc.map(function(v){return '<i style="height:'+Math.max(3,Math.round(v/mh*100))+'%" title="'+v+'"></i>'}).join('')+'</div><div class="orel"><span>0</span><span>6</span><span>12</span><span>18</span><span>23</span></div>'+(tot?'<div class="sub" style="margin-top:8px">L\'ora più frequente è '+String(best).padStart(2,'0')+':00 (ora dei tuoi dispositivi).</div>':'')+'</div>';
   h+='<div class="card"><div class="vuoto">I conteggi partono dal 10 ottobre. Nello Spogliatoio c\'è anche la scheda Statistiche con le aperture per scheda. Per paesi, browser e sistemi: <a style="color:var(--hi)" href="'+GC+'" target="_blank" rel="noopener">le statistiche complete</a>.</div></div>';
-  el.innerHTML=h+'<div id="tt"></div>';
-  totogirrr();
+  var ev={};j.hits.forEach(function(x){if(x.event&&/^curva\//.test(x.path))ev[x.path]=(ev[x.path]||0)+(x.count||0)});
+  el.innerHTML=h+'<div id="cvs"></div><div id="tt"></div>';
+  curvaStat(ev);totogirrr();
+}
+function curvaStat(ev){
+  var box=document.getElementById('cvs');if(!box)return;
+  if(DEMO){draw({posts:[{team:'Oranje VC'},{team:'Grodah'},{team:'Grodah'},{team:'WOA'}],replies:[{team:'Grodah'},{team:'Oranje VC'}],react:[{n:5},{n:3}]});return}
+  fetch(SUP+'/rest/v1/rpc/curva_feed',{method:'POST',headers:{apikey:SKEY,Authorization:'Bearer '+SKEY,'Content-Type':'application/json'},body:'{}'}).then(function(r){return r.ok?r.json():null}).then(function(f){if(f)draw(f)}).catch(function(){});
+  function draw(f){
+    var pt={},n;f.posts.forEach(function(p){pt[p.team]=(pt[p.team]||0)+1});f.replies.forEach(function(p){pt[p.team]=(pt[p.team]||0)+1});
+    var rows=Object.keys(pt).map(function(k){return[k,pt[k]]}).sort(function(a,b){return b[1]-a[1]}),m=rows.length?rows[0][1]:1,rea=f.react.reduce(function(a,r){return a+Number(r.n)},0);
+    box.innerHTML='<div class="card"><h3>Curva</h3><div class="kpi" style="margin-bottom:12px"><div><small>Cori</small><b>'+f0(f.posts.length)+'</b></div><div><small>Risposte</small><b>'+f0(f.replies.length)+'</b></div><div><small>Applausi e rilanci</small><b>'+f0(rea)+'</b></div></div>'+
+      (rows.length?'<div class="vuoto" style="text-align:left;margin-bottom:6px">Chi scrive di più (cori + risposte)</div>'+rows.map(function(r){return bar(r[0],r[1],m)}).join(''):'<div class="vuoto">Ancora nessun coro scritto.</div>')+'<div class="vuoto" style="margin-top:8px;font-size:12px">Le visite alla Curva sono in "Dove si entra di più". Conta gli ultimi cori e le risposte degli ultimi 30 giorni.</div></div>';
+  }
 }
 function totogirrr(){
   var box=document.getElementById('tt');if(!box)return;

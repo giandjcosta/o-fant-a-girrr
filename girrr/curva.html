@@ -156,6 +156,8 @@ svg{display:block}
   <main class="col"><header class="top" id="top"></header><div id="vista"></div></main>
   <aside class="dx" id="dx"></aside>
 </div>
+<script>window.goatcounter={path:function(){return location.pathname},no_onload:/[?&]demo/.test(location.search)}</script>
+<script data-goatcounter="https://djcosta18.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
 <script src="curva-banca.js"></script>
 <script>
 (function(){
@@ -224,6 +226,7 @@ function prossimo(n){if(!ST.next)return null;for(var i=0;i<ST.next.m.length;i++)
 /* rete */
 function rpc(name,body){return fetch(URL_+'/rest/v1/rpc/'+name,{method:'POST',headers:{'apikey':KEY,'Authorization':'Bearer '+KEY,'Content-Type':'application/json'},body:JSON.stringify(body)}).then(function(r){return r.text().then(function(x){var j=null;try{j=x?JSON.parse(x):null}catch(e){}if(!r.ok)throw new Error(j&&j.message?j.message:'Errore di rete');return j})})}
 function carica(){return rpc('curva_feed',{p_team:me,p_code:me?code:null}).then(function(f){S=f;NET=true;if(me&&!f.ok){/* codice non più valido */}}).catch(function(){NET=false})}
+function ev1(p,n){try{if(window.goatcounter&&goatcounter.count)goatcounter.count({path:p,title:n,event:true})}catch(e){}}
 function toast(t){var d=document.createElement('div');d.className='toast';d.textContent=t;document.body.appendChild(d);setTimeout(function(){d.remove()},3000)}
 function serve(){if(!me){toast('Entra con il codice della tua squadra per partecipare');return false}if(NET===false){toast('Non riesco a collegarmi ai cori in questo momento');return false}return true}
 /* tema */
@@ -338,11 +341,11 @@ function conta(){var tx=document.getElementById('tx'),c=document.getElementById(
 function lancia(){
  if(!serve())return;var tx=document.getElementById('tx'),v=maiusc(tx.value.trim());if(!v||v.length>MAX)return;
  var go=document.getElementById('go');go.disabled=true;
- rpc('curva_scrivi',{p_team:me,p_code:code,p_body:v}).then(function(){filt='tutti';return carica()}).then(function(){render()}).catch(function(e){toast(e.message);go.disabled=false});
+ rpc('curva_scrivi',{p_team:me,p_code:code,p_body:v}).then(function(){ev1('curva/coro','Curva: coro scritto');filt='tutti';return carica()}).then(function(){render()}).catch(function(e){toast(e.message);go.disabled=false});
 }
 function reagisci(k,kind){if(!serve())return;
  var key=k+'|'+kind,on=!MN[key];
- rpc('curva_reagisci',{p_team:me,p_code:code,p_k:k,p_kind:kind}).then(function(){return carica()}).then(function(){render()}).catch(function(e){toast(e.message)})}
+ rpc('curva_reagisci',{p_team:me,p_code:code,p_k:k,p_kind:kind}).then(function(){ev1('curva/reazione','Curva: applauso o rilancio');return carica()}).then(function(){render()}).catch(function(e){toast(e.message)})}
 /* eventi */
 document.addEventListener('click',function(e){
  var el=e.target.closest('[data-v],[data-u],[data-f],[data-seg],[data-a],[data-q],[data-emo]');if(!el)return;
@@ -364,7 +367,7 @@ document.addEventListener('click',function(e){
  if(a==='ril'){reagisci(k,'r');return}
  if(a==='del'){if(!serve())return;rpc('curva_cancella',{p_team:me,p_code:code,p_tipo:'p',p_id:p.id}).then(function(){return carica()}).then(function(){render()}).catch(function(x){toast(x.message)});return}
  if(a==='delr'){if(!serve())return;rpc('curva_cancella',{p_team:me,p_code:code,p_tipo:'r',p_id:+el.dataset.rid}).then(function(){return carica()}).then(function(){open[k]=true;render()}).catch(function(x){toast(x.message)});return}
- if(a==='invia'){if(!serve())return;var i=po.querySelector('.rf input'),t=maiusc(i.value.trim());if(!t)return;rpc('curva_rispondi',{p_team:me,p_code:code,p_k:k,p_body:t}).then(function(){open[k]=true;return carica()}).then(function(){render()}).catch(function(x){toast(x.message)})}
+ if(a==='invia'){if(!serve())return;var i=po.querySelector('.rf input'),t=maiusc(i.value.trim());if(!t)return;rpc('curva_rispondi',{p_team:me,p_code:code,p_k:k,p_body:t}).then(function(){ev1('curva/risposta','Curva: risposta');open[k]=true;return carica()}).then(function(){render()}).catch(function(x){toast(x.message)})}
 });
 document.addEventListener('input',function(e){if(e.target.id==='qs'){qs=e.target.value;risultati()}});
 var TF=['tutti','seguiti','squadre','notizie'],tx0=null,ty0=0;
