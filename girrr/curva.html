@@ -282,7 +282,7 @@ function postHTML(p){
  return '<article class="post" data-k="'+p.k+'">'+AV(a,'','data-u="'+a.h+'"')+'<div class="pb">'+
   '<div class="pn"><b data-u="'+a.h+'">'+esc(cap(a.n))+'</b>'+badge(a.v)+'<span class="h">@'+a.h+'</span><span class="tm">· '+ago(p.ts)+'</span>'+(NOTIF.per[p.k]?'<span class="np">+'+NOTIF.per[p.k]+' novità</span>':'')+'</div>'+
   '<div class="pt">'+testo(p.x)+'</div>'+(p.hi?'<div class="pimg" data-id="'+p.id+'">'+(IM[p.id]?'<img src="'+IM[p.id]+'" alt="">':'')+'</div>':'')+ex+
-  (th?'<div class="thr'+(open['t'+p.k]?' open':'')+'">'+th+'</div><button class="lnk" data-a="thr" style="color:var(--blu)">'+(open['t'+p.k]?'Nascondi il thread':'Mostra il thread')+'</button>':'')+
+  (th?'<div class="thr'+(open['t'+p.k]?' open':'')+'">'+th+'</div><button class="lnk" data-a="thr" style="color:var(--blu)">'+(open['t'+p.k]?'Nascondi il resto':'Mostra tutto il coro')+'</button>':'')+
   '<div class="acts"><button class="rsp'+(op?' on':'')+'" data-a="rsp">'+I.rsp+(p.r.length||'')+'</button><button class="ril'+(R?' on':'')+'" data-a="ril">'+I.ril+(p.R||'')+'</button><button class="app'+(A?' on':'')+'" data-a="app">'+I.app+(p.A||'')+'</button><button style="cursor:default">'+I.vis+fmt(p.v)+'</button>'+(own?'<button class="del" data-a="del" title="Elimina">'+I.del+'</button>':'')+'</div>'+
   '<div class="thr'+(op?' open':'')+'">'+p.r.map(function(r){return reply(r)}).join('')+(me?'<div class="rf"><input maxlength="140" placeholder="Scrivi una risposta…"><button class="btn" data-a="invia" style="padding:8px 14px;font-size:13px">Rispondi</button></div>':'<div class="rf" style="color:var(--mu);font-size:13px">Entra con il codice della tua squadra per rispondere.</div>')+'</div></div></article>'
 }
