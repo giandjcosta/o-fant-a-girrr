@@ -77,6 +77,7 @@ svg{display:block}
 .btn:active{transform:scale(.95)}.btn:disabled{opacity:.45;cursor:default}
 .btn.out{background:none;border:1px solid var(--ln);color:var(--tx)}
 .btn.blu{background:var(--tx);color:var(--bg)}
+.post.old{animation:none}
 .post{display:flex;gap:12px;padding:12px 14px;border-bottom:1px solid var(--ln);animation:entra .4s ease both}
 .post:hover{background:var(--hv)}
 @keyframes entra{from{opacity:0;transform:translateY(-8px)}to{opacity:1;transform:none}}
@@ -211,7 +212,7 @@ add('ciro_trattativa','Ciro Trattativa','pro','blu','Giornalista di mercato. Qua
 [['nonno_cesare','Nonno Cesare','Allenatore dal 1962 (della domenica).','#6b705c','#3a3d33'],['tifoso_arrabbiato','Il Tifoso Arrabbiato','Cambiate allenatore. Sempre.','#b5179e','#560bad'],['mister_divano','Il Tecnico da Divano','Ho vinto tutto. Su un altro divano.','#3a86ff','#8338ec'],['radio_spogliatoio','Radio Spogliatoio','Voci di corridoio. Nessuna conferma, molta convinzione.','#fb8500','#9d4400'],['mamma_di_capitan','Mamma di Capitan Sfortuna','Orgogliosa di mio figlio. Soprattutto quando perde.','#ef476f','#7b1c34'],['ex_ds_provincia','Ex DS di Provincia','Ho venduto più portieri di quanti ne abbia mai parati la mia squadra.','#06d6a0','#0b5d49'],['var_parlante','VAR Parlante','Ho rivisto l\'azione. Ho dei dubbi.','#118ab2','#073b4c'],['fc27_ratings','FC27 Ratings Italia','Aggiorniamo gli overall quando ci pare. Reclami non accettati.','#2ec4b6','#0b3c3a'],['il_cugino_del_dt','Il Cugino del DT','Mio cugino lo sa. Io no.','#e07a5f','#3d405b'],['telecronista_stanco','Il Telecronista Stanco','Ancora qui. Purtroppo.','#8d99ae','#2b2d42'],['gufo_professionista','Gufo Professionista','Gufo con metodo e dedizione.','#7b2cbf','#240046'],['il_filosofo_del_pallone','Il Filosofo del Pallone','Il calcio è un\'idea. Il resto è mercato.','#264653','#0b1e24'],['bomber_da_bar','Bomber da Bar','Gol a ripetizione, ma solo al bancone.','#f4a261','#7a3e00'],['statistico_folle','Lo Statistico Folle','Il 73% delle mie statistiche è inventato.','#00b4d8','#03045e'],['arbitro_in_pensione','Arbitro in Pensione','Ho fischiato 400 partite. E diverse persone.','#adb5bd','#343a40']].forEach(function(x){add(x[0],x[1],'fan','',x[2],[x[3],x[4]])});}
 initAcc();
 function acc(h){return ACC[h]||{h:h,n:h,k:'fan',v:'',bio:''}}
-var NOTIF={tot:0,per:{}},pimg=null,IM={},IMG_LOAD={};
+var SEEN={},NOTIF={tot:0,per:{}},pimg=null,IM={},IMG_LOAD={};
 var S={ok:false,posts:[],replies:[],react:[],mine:[],follow:[],prof:{}},NET=null;
 function prof(a){return a.k==='sq'?(S.prof[a.n]||{}):{}}
 function bg(a){if(a.c)return 'linear-gradient(135deg,'+a.c[0]+','+a.c[1]+')';var p=prof(a);return 'hsl('+(p.h!=null?p.h:hue(a.n))+' 55% 42%)'}
@@ -284,7 +285,7 @@ function postHTML(p){
  var ex=(p.tipo==='ris'?resCard():'')+(p.tipo==='gio'?'<a class="lnk" href="giornale.html">Apri il Giornale ›</a>':'');
  var th=(p.thr||[]).map(function(x){return reply({a:p.a,x:x,ts:p.ts})}).join('');
  var op=!!open[p.k];
- return '<article class="post" data-k="'+p.k+'">'+AV(a,'','data-u="'+a.h+'"')+'<div class="pb">'+
+ return '<article class="post'+(SEEN[p.k]?' old':'')+'" data-k="'+p.k+'">'+AV(a,'','data-u="'+a.h+'"')+'<div class="pb">'+
   '<div class="pn"><b data-u="'+a.h+'">'+esc(cap(a.n))+'</b>'+badge(a.v)+'<span class="h">@'+a.h+'</span><span class="tm">· '+ago(p.ts)+'</span>'+(NOTIF.per[p.k]?'<span class="np">+'+NOTIF.per[p.k]+' novità</span>':'')+'</div>'+
   '<div class="pt">'+testo(p.x)+'</div>'+(p.hi?'<div class="pimg" data-id="'+p.id+'">'+(IM[p.id]?'<img src="'+IM[p.id]+'" alt="">':'')+'</div>':'')+ex+
   (th?'<div class="thr'+(open['t'+p.k]?' open':'')+'">'+th+'</div><button class="lnk" data-a="thr" style="color:var(--blu)">'+(open['t'+p.k]?'Nascondi il resto':'Mostra tutto il coro')+'</button>':'')+
@@ -346,6 +347,7 @@ function render(){
  var pc=document.getElementById('pic'),fi=document.getElementById('fi');if(pc&&fi){pc.onclick=function(){fi.click()};fi.onchange=function(){var f=fi.files&&fi.files[0];if(!f)return;comprimi(f).then(function(d){var tv=document.getElementById('tx').value;pimg=d;render();var t2=document.getElementById('tx');t2.value=tv;conta()}).catch(function(e){toast(e.message)})}}
  var px=document.getElementById('pvx');if(px)px.onclick=function(){var tv=document.getElementById('tx').value;pimg=null;render();var t2=document.getElementById('tx');t2.value=tv;conta()};
  var hu=document.getElementById('hue');if(hu)hu.oninput=function(){sel.h=+hu.value;var av=document.querySelector('.av.xl');if(av)av.style.background='hsl('+sel.h+' 55% 42%)'};
+ POSTS.forEach(function(p){SEEN[p.k]=1});
  if(vista==='u'&&vprof===meH)salvaSnap();
  caricaImg();
  try{var mx=POSTS.length?POSTS[0].ts:0;localStorage.setItem('cv-ultimo',String(mx))}catch(e){}
@@ -417,7 +419,10 @@ document.addEventListener('keydown',function(e){if(e.key==='Enter'&&e.target.mat
 /* avvio */
 function occupato(){var a=document.activeElement;return a&&(a.tagName==='TEXTAREA'||a.tagName==='INPUT')&&a.value}
 fetch('../data.json',{cache:'no-store'}).then(function(r){return r.json()}).then(function(d){D=d;SQ=d.teams.map(function(t){return t.name});initAcc();calcola(d);login()}).catch(function(){login()}).then(function(){render();return carica()}).then(function(){render()});
-setInterval(function(){if(document.hidden||occupato())return;carica().then(function(){if(!occupato())render()})},60000);
+function firma(){var n=0;try{n=CVB.genera(D,SQ,ST,Date.now()).length}catch(e){}return JSON.stringify([S.posts.map(function(p){return p.id}),S.replies.length,S.react,S.follow,S.prof,n,Math.floor(Date.now()/600000)])}
+function renderFermo(){var an=null,els=document.querySelectorAll('.post'),i,r;for(i=0;i<els.length;i++){r=els[i].getBoundingClientRect();if(r.bottom>0){an=[els[i].dataset.k,r.top];break}}
+ render();if(an&&window.scrollY>0){var e2=document.querySelector('.post[data-k="'+an[0]+'"]');if(e2)window.scrollBy(0,e2.getBoundingClientRect().top-an[1])}}
+setInterval(function(){if(document.hidden||occupato()||rif)return;var f0=firma();carica().then(function(){if(!occupato()&&firma()!==f0)renderFermo()})},60000);
 })();
 </script>
 
