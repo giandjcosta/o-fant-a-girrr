@@ -144,6 +144,10 @@ svg{display:block}
 .lb{position:fixed;inset:0;z-index:80;background:rgba(0,0,0,.88);display:flex;align-items:center;justify-content:center;padding:16px;cursor:zoom-out}.lb img{max-width:100%;max-height:100%;border-radius:12px}
 .np{background:var(--blu);color:#fff;border-radius:999px;padding:1px 8px;font-size:11px;font-weight:800;margin-left:6px}
 .nov{display:block;margin-top:6px;color:var(--blu);font-weight:800;font-size:13px;cursor:pointer;background:none;border:0;padding:0;text-align:left}
+.ptr{position:fixed;left:50%;top:calc(env(safe-area-inset-top) + 64px);width:38px;height:38px;margin-left:-19px;border-radius:50%;background:var(--bg);border:1px solid var(--ln);box-shadow:0 4px 14px rgba(0,0,0,.25);display:flex;align-items:center;justify-content:center;z-index:40;opacity:0;pointer-events:none;transform:translateY(-60px)}
+.ptr svg{width:20px;height:20px;color:var(--blu);transition:transform .15s}.ptr.sp svg{animation:giro .8s linear infinite}
+@keyframes giro{to{transform:rotate(360deg)}}
+body{overscroll-behavior-y:contain}
 .toast{position:fixed;left:50%;bottom:84px;transform:translateX(-50%);background:var(--tx);color:var(--bg);font:700 14px Inter;padding:11px 18px;border-radius:12px;z-index:60;max-width:90vw;text-align:center;animation:entra .25s ease}
 .hs{cursor:pointer}.hs:hover{text-decoration:underline}
 .ban2{margin:12px 14px;padding:14px;border-radius:16px;background:var(--bg2);border:1px solid var(--ln);font-size:14px;line-height:1.4;color:var(--mu)}
@@ -158,6 +162,7 @@ svg{display:block}
 </style>
 </head>
 <body>
+<div class="ptr" id="ptr"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 12a8 8 0 1 1-2.5-5.8"/><path d="M20 4v5h-5"/></svg></div>
 <div class="shell">
   <nav class="nav" id="nav"></nav>
   <main class="col"><header class="top" id="top"></header><div id="vista"></div></main>
@@ -394,6 +399,14 @@ document.addEventListener('click',function(e){
  if(a==='invia'){if(!serve())return;var i=po.querySelector('.rf input'),t=maiusc(i.value.trim());if(!t)return;rpc('curva_rispondi',{p_team:me,p_code:code,p_k:k,p_body:t}).then(function(){ev1('curva/risposta','Curva: risposta');open[k]=true;return carica()}).then(function(){render()}).catch(function(x){toast(x.message)})}
 });
 document.addEventListener('input',function(e){if(e.target.id==='qs'){qs=e.target.value;risultati()}});
+
+var py0=null,pdy=0,rif=false;
+function rinfresca(){if(rif)return;rif=true;var p=document.getElementById('ptr');p.classList.add('sp');p.style.opacity=1;p.style.transform='translateY(0)';
+ var tx=document.getElementById('tx'),tv=tx?tx.value:'';
+ Promise.all([carica(),new Promise(function(r){setTimeout(r,700)})]).then(function(){render();var t2=document.getElementById('tx');if(t2&&tv){t2.value=tv;conta()}}).then(function(){p.classList.remove('sp');p.style.opacity=0;p.style.transform='translateY(-60px)';rif=false})}
+document.addEventListener('touchstart',function(e){py0=(window.scrollY<=0&&!rif&&e.touches.length===1&&!e.target.closest('textarea,input'))?e.touches[0].clientY:null;pdy=0},{passive:true});
+document.addEventListener('touchmove',function(e){if(py0===null||rif)return;var d=e.touches[0].clientY-py0;if(window.scrollY>0||d<=0){pdy=0;var p0=document.getElementById('ptr');p0.style.opacity=0;return}pdy=d;var p=document.getElementById('ptr'),k=Math.min(1,d/110);p.style.opacity=k;p.style.transform='translateY('+(Math.min(d*.5,60)-60)+'px)';p.firstChild.style.transform='rotate('+(d*3)+'deg)'},{passive:true});
+document.addEventListener('touchend',function(){if(py0===null)return;var d=pdy;py0=null;pdy=0;var p=document.getElementById('ptr');if(d>110&&!rif)rinfresca();else if(!rif){p.style.opacity=0;p.style.transform='translateY(-60px)'}},{passive:true});
 var TF=['tutti','seguiti','squadre','notizie'],tx0=null,ty0=0;
 document.addEventListener('touchstart',function(e){if(vista!=='home'||!e.target.closest('#vista')){tx0=null;return}var t=e.touches[0];tx0=t.clientX;ty0=t.clientY},{passive:true});
 document.addEventListener('touchend',function(e){if(tx0===null)return;var t=e.changedTouches[0],dx=t.clientX-tx0,dy=t.clientY-ty0;tx0=null;
