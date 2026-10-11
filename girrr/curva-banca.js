@@ -27,6 +27,8 @@ function tendenze(D,ms){
 }
 function giocate(D){var L=(D.cal&&D.cal.lega)||[],n=0;L.forEach(function(g){if(g.m.some(function(m){return m[4]!=='-'}))n=Math.max(n,g.n)});return n}
 
+function cupUlt(D){var C=(D.cal&&D.cal.cup)||[],u=null;C.forEach(function(g){var mm=g.m.filter(function(m){return m[5]!=='-'});if(mm.length)u={n:g.n,sa:g.sa,m:mm.map(function(m){return [m[1],m[2],m[3],m[4],m[5],m[0]]})}});return u}
+function legaSa(D){var u=null;((D.cal&&D.cal.lega)||[]).forEach(function(g){if(g.m.some(function(m){return m[4]!=='-'}))u=g});return u&&u.sa}
 /* Personaggi */
 var PERS={
  nonno_cesare:{
@@ -173,7 +175,7 @@ function ctxDi(D,SQ,ST,seed){
   var pos=ST.cls.map(function(t){return t.n}).indexOf(c.sq);c.pos=pos<0?'?':pos+1;
   var pt='?';if(ST.ult)ST.ult.m.forEach(function(m){if(m[0]===c.sq)pt=m[1];else if(m[3]===c.sq)pt=m[2]});
   c.pt=String(pt).replace('.',',');
-  var mm=ST.ult&&ST.ult.m.length?ST.ult.m[Math.floor(r()*ST.ult.m.length)]:null;
+  var pool=(ST.ult?ST.ult.m:[]).concat(ST.ultC?ST.ultC.m:[]);var mm=pool.length?pool[Math.floor(r()*pool.length)]:null;
   if(mm){var gc=mm[4].split('-').map(Number),w=mm[1]>=mm[2];c.vinc=w?mm[0]:mm[3];c.perd=w?mm[3]:mm[0];c.pv=String(Math.max(mm[1],mm[2])).replace('.',',');c.pp=String(Math.min(mm[1],mm[2])).replace('.',',');c.sc=(w?gc[0]+'-'+gc[1]:gc[1]+'-'+gc[0]);c.scarto=(Math.abs(mm[1]-mm[2])).toFixed(1).replace('.',',').replace(',0','')}
   else{c.vinc=c.sq;c.perd=c.sq2;c.pv='70';c.pp='65';c.sc='2-1';c.scarto='5'}
   return c;
@@ -240,10 +242,13 @@ function genera(D,SQ,ST,ms){
  var n=giocate(D);
  if(n&&D.cal&&D.cal.date){
   var dp=D.cal.date.split('-').map(Number),gd=Math.floor(Date.UTC(dp[0],dp[1]-1,dp[2])/864e5),wd=dalGiorno(gd).wd;
-  var gTue=gd-((wd-2+7)%7),gWed=gd-((wd-3+7)%7),a=dalGiorno(gTue),b=dalGiorno(gWed);
-  var P1={k:'lega:'+n,a:'lega_ofantagirrr',x:'Fine giornata. Ecco i risultati della '+n+'ª giornata di campionato. #Giornata'+n,tipo:'ris',ts:ts(a.y,a.mo,a.d,21,15),r:[]};
+  var cu0=cupUlt(D),sr0=Math.max(legaSa(D)||0,(cu0&&cu0.sa)||0),gTue=gd-((wd-2+7)%7),gWed=gd-((wd-3+7)%7),a=dalGiorno(gTue+7*((legaSa(D)||sr0)-sr0)),b=dalGiorno(gWed);
+  var P1c=null,P1={k:'lega:'+n,a:'lega_ofantagirrr',x:'Fine giornata. Ecco i risultati della '+n+'ª giornata di campionato. #Giornata'+n,tipo:'ris',ts:ts(a.y,a.mo,a.d,21,15),r:[]};
   var P2={k:'gior:'+n,a:'giornale_girrr',x:'È uscito il numero '+n+' del Giornale: pagelle, il Coro della settimana e la Bufala di mercato. #Giornata'+n,tipo:'gio',ts:ts(b.y,b.mo,b.d,9,0),r:[]};
-  [P1,P2].forEach(function(p){var c=conta(p.k,1.4);p.ap=c.ap;p.ril=c.ril;p.v=c.v;if(p.ts<=ms)all.push(p)});
+  var cu=cupUlt(D);
+  if(cu){var sr=Math.max(legaSa(D)||0,cu.sa||0),tc=gTue+7*((cu.sa||sr)-sr),ac=dalGiorno(tc);P1c={k:'lega:c'+cu.n,a:'lega_ofantagirrr',x:'Fine giornata di Champions Cup. Ecco i risultati della '+cu.n+'ª giornata dei gironi. #ChampionsCup',tipo:'rc',ts:ts(ac.y,ac.mo,ac.d,21,30),r:[]}}
+  if(P1c)P1.ts=P1.ts;
+  [P1,P2].concat(P1c?[P1c]:[]).forEach(function(p){var c=conta(p.k,1.4);p.ap=c.ap;p.ril=c.ril;p.v=c.v;if(p.ts<=ms)all.push(p)});
  }
  /* veri scambi */
  (D.scambi||[]).forEach(function(s,i){var T=Date.parse(s.t);if(!(T<=ms))return;var cc={a:s.a,b:s.b,da:s.da,db:s.db};var p={k:'sc:'+i,a:'ciro_trattativa',x:riempi(SCAMBIO[i%2],cc,null),ts:T,r:[],ap:20,ril:6,v:900};all.push(p)});
@@ -265,6 +270,7 @@ var UFF={
  gio:["Il nostro migliore finora? {gio}: {g} gol e media {mv}. Il club è orgoglioso.","Menzione speciale per {gio}: {g} gol e media {mv}. Continuiamo così."],
  sme:["Il club smentisce ufficialmente le voci su un nostro interesse per {altro}. Nessuna trattativa in corso. #Calciomercato","Circola una notizia su un presunto contatto per {altro}. È falsa. Nessun contatto, nessuna offerta. #Calciomercato","Smentiamo ufficialmente qualunque dissidio nello spogliatoio. L'ambiente è sereno. Chi diffonde queste voci si assuma le proprie responsabilità."],
  clt:["{pos}° in classifica con {pt} punti. Bel lavoro, ma non ci accontentiamo.","Siamo {pos}° con {pt} punti. Teniamo i piedi per terra e andiamo avanti."],
+ cup:["Champions Cup: siamo {cp}° nel girone {gir} con {cpt} punti. Ci crediamo. #ChampionsCup","Nel girone {gir} di Champions Cup siamo {cp}° con {cpt} punti. Il cammino è lungo ma siamo in corsa. #ChampionsCup"],
  cla:["Siamo {pos}° in classifica con {pt} punti. Il campionato è ancora lunghissimo.","{pos}° posto per ora, con {pt} punti. Lavoriamo per salire."]
 };
 function ufficiale(D,SQ,ST,tsMap,ms){
@@ -278,13 +284,13 @@ function ufficiale(D,SQ,ST,tsMap,ms){
    var c={},pos=ST.cls.map(function(t){return t.n}).indexOf(sq);
    var t0=pos>=0?ST.cls[pos]:null;
    if(t0&&pos>=0){c.pos=pos+1;c.pt=t0.pt;opts.push('cla')}
-   var mm=null;if(ST.ult)ST.ult.m.forEach(function(m){if(m[0]===sq||m[3]===sq)mm=m});
-   if(mm){var gc=mm[4].split('-').map(Number),casa=mm[0]===sq,a=casa?gc[0]:gc[1],b=casa?gc[1]:gc[0];c.opp=casa?mm[3]:mm[0];c.sc=a+'-'+b;c.n=ST.ult.n;opts.push(a>b?'vit':a===b?'par':'sco','cla')}
+   var mm=null,cupm=false;var cu2=cupUlt(D);if(ST.ult)ST.ult.m.forEach(function(m){if(m[0]===sq||m[3]===sq)mm=m});if(cu2&&(!ST.ult||(cu2.sa||0)>=(ST.ult.sa||0)))cu2.m.forEach(function(m){if(m[0]===sq||m[3]===sq){mm=m;cupm=true}});
+   if(mm){var gc=mm[4].split('-').map(Number),casa=mm[0]===sq,a=casa?gc[0]:gc[1],b=casa?gc[1]:gc[0];c.opp=(casa?mm[3]:mm[0])+(cupm?' in Champions Cup':'');c.sc=a+'-'+b;c.n=ST.ult.n;opts.push(a>b?'vit':a===b?'par':'sco','cla')}
    var mio=null;(D.teams||[]).forEach(function(t){if(t.name===sq)(t.pl||[]).forEach(function(p){var s0=(D.ps||{})[p.id];if(s0&&D.P[p.id]&&(!mio||(s0.fmv||0)>mio.s.fmv))mio={n:D.P[p.id].n,s:s0}})});
    if(mio){c.gio=mio.n;c.g=mio.s.g||0;c.mv=String(mio.s.mv||mio.s.fmv).replace('.',',');opts.push('gio')}
    var ids=Object.keys(NM).filter(function(i){return NM[i].sq!==sq});
    if(ids.length){c.altro=NM[pick(r,ids)].n}
-   opts.push('sme','sme');
+   if(ST.cup&&ST.cup[sq]&&ST.cup[sq].g){c.cp=ST.cup[sq].pos;c.cpt=ST.cup[sq].pt;c.gir=ST.cup[sq].gir;opts.push('cup')}opts.push('sme','sme');
    var tp=pick(r,opts);if(tp==='cla'&&c.pos<=3)tp='clt';var x=riempi(pick(r,UFF[tp]),c,null);
    var tx=gg*864e5+(8+Math.floor(r()*12))*36e5-72e5;out.push({k:k,team:sq,x:x,ts:tx<=ms?tx:f0,r:[]});
   })});
@@ -294,5 +300,5 @@ function ultimo(D,ms){var SQ=(D.teams||[]).map(function(t){return t.name}),L=(D.
 var NOMI={nonno_cesare:'Nonno Cesare',tifoso_arrabbiato:'Il Tifoso Arrabbiato',mister_divano:'Il Tecnico da Divano',radio_spogliatoio:'Radio Spogliatoio',mamma_di_capitan:'Mamma di Capitan Sfortuna',ex_ds_provincia:'Ex DS di Provincia',var_parlante:'VAR Parlante',fc27_ratings:'FC27 Ratings Italia',il_cugino_del_dt:'Il Cugino del DT',telecronista_stanco:'Il Telecronista Stanco',gufo_professionista:'Gufo Professionista',il_filosofo_del_pallone:'Il Filosofo del Pallone',bomber_da_bar:'Bomber da Bar',statistico_folle:'Lo Statistico Folle',arbitro_in_pensione:'Arbitro in Pensione',ciro_trattativa:'Ciro Trattativa',lega_ofantagirrr:'Lega O Fant A Girrr',giornale_girrr:'O Giornale del Girrr'};
 function anteprima(D,ms,n){var SQ=(D.teams||[]).map(function(t){return t.name}),L=(D.cal&&D.cal.lega)||[],u=null;L.forEach(function(g){if(g.m.some(function(m){return m[4]!=='-'}))u=g});
  return genera(D,SQ,{cls:SQ.map(function(x){return{n:x}}),ult:u,next:null},ms).filter(function(p){return !p.tipo}).slice(0,n).map(function(p){return{a:p.a,n:NOMI[p.a]||p.a,x:p.x.replace(/\n[\s\S]*/,'')}})}
-window.CVB={ufficiale:ufficiale,anteprima:anteprima,reazioni:reazioni,ultimo:ultimo,genera:genera,tendenze:tendenze,PERS:PERS,RISP:RISP,CIRO:CIRO,roma:roma,giorno:giorno,h32:h32};
+window.CVB={cupUlt:cupUlt,ufficiale:ufficiale,anteprima:anteprima,reazioni:reazioni,ultimo:ultimo,genera:genera,tendenze:tendenze,PERS:PERS,RISP:RISP,CIRO:CIRO,roma:roma,giorno:giorno,h32:h32};
 })();
