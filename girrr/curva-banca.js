@@ -143,6 +143,57 @@ var PERS={
   fc:['In FC27 puoi comprare l\'arbitro. Almeno lì lo ammettono.'],
   ri:["{vinc} – {perd} {sc}: partita regolare. Ammonizione a {perd} per scarsa mira.", "{pv} contro {pp}. Fischio finale e applausi. Un po' meno per {perd}."],cl:['{sq} al {pos}° posto. Posizione regolare. Controllo effettuato.']}
 };
+PERS.il_barista={
+ gen:['Caffè e cornetto: 2 fantagol. Consiglio sul modulo: gratis, ma lo pagherete.','Qui al bar non esistono le formazioni sbagliate. Solo quelle che non hanno ancora vinto.','Ogni mattina qualcuno mi chiede il pronostico. Rispondo sempre uguale: un caffè.','La differenza tra un fantallenatore e un barista? Il barista almeno ascolta.'],
+ live:['Bar aperto, tv accesa, {sq} nel cuore. Oggi si gioca e si consuma. {#}','Oggi tutti i tavoli prenotati per la giornata. Ordinazioni: un caffè e tanta speranza.','Sento già il profumo di caffè bruciato e panico da formazione. Giornata perfetta. {#}','Se {sq} stasera vince, offro io. Se perde, offre {sq2}.'],
+ mk:['I miei clienti dicono che {gio} cambia squadra. Lo so, ne parlano da due caffè.','Voci raccolte al bancone: {sq} chiama {gio}. Sono voci. Del bancone.'],
+ pm:['{sq} con {pt} punti? Oggi ne ho sentite tante. Questa è la migliore.'],
+ al:['Mi hanno chiesto se allenerei {sq}. Ho risposto: prima un caffè.']
+};
+PERS.il_mago_cabala={
+ gen:['Il numero 7 porta bene. Il 13 anche, se lo chiami 12+1. Il resto è casualità.','Ho consultato i fondi di caffè. Dicono: portate fortuna a chi gioca con il calzino sinistro per primo.','Non cambiate formazione di venerdì. Lo dico io, che non gioco.','Le stelle suggeriscono tre cose: pazienza, modulo prudente, mai l\'ultimo della lista.'],
+ live:['Oggi giornata di Mercurio storto. Evitate il capitano al primo slot. {#}','I numeri della giornata: 4, 11 e il cognome di {gio}. Non chiedetemi perché.','Ho acceso una candela per {sq}. Il vicino dice che ha preso fuoco. Non è colpa mia.','Oggi {sq} è favorita. Le carte lo dicono. Le carte hanno già sbagliato, ma il principio resta.'],
+ pm:['{sq} con {pt} punti: era scritto. Non so dove, ma era scritto.'],
+ mk:['{gio} sta per cambiare squadra: me lo ha detto una carta. Quella del jolly.'],
+ al:['Per l\'allenatore di {sq} consiglio un bagno di sale grosso. Per la panchina, due.']
+};
+PERS.la_suocera={
+ gen:['A mio genero ho detto: il fantacalcio non ti porta da nessuna parte. Ha vinto. Non cambio idea.','Ai miei tempi la domenica si andava a pranzo dalla mamma. Ora tutti sul telefono a guardare i voti.','Mio genero sta di nuovo chiuso in camera con quel tablet. Si chiama lavoro, dice.','Non capisco il fantacalcio, ma capisco chi perde: sempre con la faccia lunga a tavola.'],
+ live:['Oggi pranzo alle 12:30. Chi guarda la partita a tavola mangia da solo. {#}','Mio genero ha preparato la formazione dalle sei di mattina. Io ho preparato il ragù. Vediamo chi vince.','Se {sq} stasera perde, a cena silenzio. Lo dico agli ospiti.','La partita è alle 15. Il caffè alle 14:50. Rispettate gli orari.'],
+ pm:['{pt} punti per {sq}. Mio genero ha fatto una faccia che non ho più dimenticato.'],
+ al:['Ho consigliato a {sq} di cambiare allenatore. Mi hanno risposto "Signora, è un fantasy". Appunto.']
+};
+PERS.il_tassista={
+ gen:['Ho portato un giocatore all\'aeroporto oggi. Non dico il nome. Ma lo chiamano il Pallone d\'Oro delle Serie B.','Un cliente mi ha spiegato il fantacalcio per mezz\'ora. Ho segnato il tassametro. Costava meno del fantacalcio.','Mi chiedono sempre un consiglio sul modulo. Io rispondo: Via Garibaldi, poi a destra.','Quando c\'è la partita il traffico sparisce. Ecco, almeno un vantaggio.'],
+ live:['Oggi giornata di campionato: in giro nessuno, tutti incollati alla radio. Strade libere. {#}','Corsa da {sq} allo stadio: il cliente chiede la formazione, io il pagamento.','Fra un cliente e l\'altro sbircio i risultati. Il mio capitano è fermo in panchina. Come me.','Ho in macchina tre tifosi di {sq}. Il morale è altissimo. Il pagamento no.'],
+ mk:['Ho sentito dire che {gio} cambia squadra. Me lo ha detto un passeggero che lavora nell\'ambiente. O forse faceva il parrucchiere.'],
+ pm:['{sq} con {pt} punti? Un cliente stamattina ne era sicuro. Ho dovuto lasciarlo a metà strada.']
+};
+PERS.fidanzata_stufa={
+ gen:['Il mio fidanzato ha un\'asta alle 21. Il mio anniversario era alle 20. Indovinate chi ha vinto.','Ho scoperto che esiste un modulo 3-5-2. Io volevo solo andare al cinema.','Mi hanno detto "è solo una lega tra amici". Allora perché piange per un 5,5?','Ho cambiato la password del Wi-Fi. Il mio fidanzato ha capito cos\'è davvero la disperazione.'],
+ live:['Oggi giornata: lui non risponde ai messaggi fino alle 19. Lo so che è una persona adulta. {#}','Per {sq} oggi si decide tutto. Per me si decide solo cosa cucinare a cena.','Ho promesso di non ascoltare i commenti fino a stasera. Sono già al terzo.','Se oggi il capitano non segna, stasera lo consolo io. Con la tv spenta. {#}'],
+ pm:['{sq} con {pt} punti. Mi hanno spiegato che è tanto. A me sembra un numero.'],
+ so:['Sorpresa da {sq}? No. Ma mi hanno chiesto di fingermi sorpresa.'],
+ al:['Se il mio fidanzato fosse allenatore di {sq}, avrebbe già cambiato modulo tre volte. Per me va bene.']
+};
+var IMGPER={il_barista:'lavagna',mister_divano:'campo',fc27_ratings:'carta',statistico_folle:'grafico',il_mago_cabala:'amuleto',telecronista_stanco:'diretta',tifoso_arrabbiato:'striscione',nonno_cesare:'epoca'};
+var LIVE={
+ nonno_cesare:['Oggi si gioca. Ai miei tempi la domenica era sacra: messa, pranzo, partita. Ora è solo notifiche.','Oggi spero che {sq} faccia un bel gioco. Se perde, ho sempre l\'arbitro da incolpare.','Preparo la radiolina. Il telefono non mi ascolta. {#}'],
+ tifoso_arrabbiato:['OGGI CAMBIO TUTTO se {sq} non gioca bene. Allenatore compreso. {#}','Spero che oggi {gio} faccia qualcosa. Qualsiasi cosa. Anche un passo.','Giornata di campionato: ansia, caffè e voglia di urlare. In quest\'ordine.'],
+ mister_divano:['Oggi guardo la giornata dal divano. Posizione ottimale per leggere il gioco. {#}','Per {sq} consiglio un 4-3-3 aggressivo. Se perde era colpa del 4-4-2. Mai del 4-3-3.','Il segreto per oggi è la compattezza tra le linee. Il segreto per me è il telecomando.'],
+ radio_spogliatoio:['Oggi giornata importante. Dicono che {sq} abbia lavorato bene in settimana. Dicono.','Fonti non verificate: in {sq} stasera c\'è tensione. O fame. Non si capisce. {#}','Clima in spogliatoio sereno. Il capitano è nervoso ma lo nasconde bene. Non mi crede nessuno.'],
+ mamma_di_capitan:['Oggi mio figlio gioca. Gli ho preparato il panino. Non capisce ma lo mangia. {#}','Spero che {sq} oggi faccia bene. E che mio figlio si copra, c\'è corrente.','Giornata di campionato: ho già acceso tre ceri e un cero extra. Per sicurezza.'],
+ ex_ds_provincia:['Giornata di campionato: spero che {sq} giochi con equilibrio. Ho visto cose peggiori.','Oggi si decide il futuro di tanti. Anche del mio telefono: nessuno mi richiama. {#}','Fiducia in {sq}. Quanto basta per non dirlo a voce alta.'],
+ var_parlante:['Oggi monitoro la giornata. Qualsiasi contatto sarà analizzato. Anche il saluto iniziale.','Spero che oggi nessuno tocchi {gio} in area. Mi viene il mal di testa. {#}','Revisione dell\'umore di oggi: moderatamente ottimista. Verifica in corso.'],
+ fc27_ratings:['Oggi {gio} gioca. Spero che il suo overall regga alla pressione. {#}','Aggiornamento giornata: nessun aggiornamento. Ma il livello di sudore virtuale è alto.','Il mio auspicio per oggi: un gol di {sq} e un -2 a {sq2}. Matematica elementare.'],
+ il_cugino_del_dt:['Mio cugino mi ha detto che oggi {sq} è carica. Sono parole del DT. O sue. Non ricordo.','Oggi tifo {sq} ma lo dico sottovoce. In famiglia ci sono più allenatori che divani.','Prima della giornata: nessuna novità. Ma voi non dite che ve l\'ho detto io.'],
+ telecronista_stanco:['Oggi giornata di campionato. Cercherò di restare sveglio fino all\'intervallo. {#}','{sq} sembra in forma. O forse sono io che ho dormito poco.','Bentornati. Anche oggi si gioca. Anche oggi, purtroppo, parlo io.'],
+ gufo_professionista:['Oggi gufo con grande rispetto. Per {sq} un po\' meno. {#}','Il mio obiettivo di oggi: che {sq2} faccia solo un punto. Più o meno.','Giornata di campionato: gufata pronta, spero di non dover usare gli straordinari.'],
+ il_filosofo_del_pallone:['Si gioca. Il pallone gira. E noi, con lui. {#}','Che cos\'è una giornata? Un\'attesa con un pallone dentro. Buona giornata a {sq}.','Oggi {gio} dovrà scegliere: segnare o non segnare. L\'eterno dilemma.'],
+ bomber_da_bar:['Oggi gioco io. Se mi chiamano. Nel frattempo tifo {sq}. {#}','Vi ricordo che al bar ho segnato 19 gol in una sera. Spero che {gio} faccia lo stesso.','Giornata di campionato: pronto al colpo di tacco. Quello vero lo faccio solo dal divano.'],
+ statistico_folle:['Probabilità che oggi {sq} segni: 63%. Che la tv funzioni: 61%. Che io dorma: 4%. {#}','Dati di oggi: il 100% dei fantallenatori è in ansia. Il restante 0% non esiste.','Secondo il mio modello, {sq} oggi ha il 58% di fare bene. E il 51% di fare male.'],
+ arbitro_in_pensione:['Oggi sarebbe stata una bella giornata da arbitro. Fischietto in tasca, per sicurezza. {#}','Spero che oggi i direttori di gara siano sereni. Io lo ero. Poi ho smesso.','Giornata di campionato: ricordate di rispettare il fischio finale. Anche quello di casa.']
+};
 var AUTORI=Object.keys(PERS);
 /* risposte generiche */
 var RISP=['Confermo.','Firmo.','Verissimo.','Però {sq} ha dei dubbi.','Non è colpa mia, giuro.','Seguiamo con attenzione.','Applauso, ma con riserva.','Su questo non ho nulla da aggiungere. Quindi aggiungo.','Ai posteri.','Questo coro merita un premio. O un esame.','Ho letto e sono ancora qui.','Ma anche no.','Bomba. Poi si vedrà.','Hai detto tutto. Anche troppo.','Lo dicevo anche io. Ma più forte.'];
@@ -182,28 +233,30 @@ function ctxDi(D,SQ,ST,seed){
  };
 }
 function riempi(t,c,tag){return t.replace(/\{(\w+)\}/g,function(m,k){return c[k]!==undefined?c[k]:m}).replace('{#}',tag?('#'+tag):'').replace(/\s+$/,'').replace(/\s{2,}/g,' ').replace(/\.\.(?!\.)/g,'.')}
-var PESI={0:{pm:5,so:3,al:3,gen:3,mk:1,fc:1,cl:1,ri:0},1:{pm:5,so:3,al:3,gen:3,mk:1,fc:1,cl:2,ri:1},2:{cl:4,ri:6,al:3,so:3,gen:3,mk:1,fc:2,pm:1},3:{cl:3,ri:5,so:3,al:2,gen:3,mk:2,fc:2,pm:1},4:{mk:5,ri:3,gen:3,fc:3,so:2,al:2,cl:1,pm:0},5:{mk:5,ri:1,gen:3,fc:3,so:2,al:2,cl:1,pm:0},6:{pm:3,ri:1,gen:3,mk:2,so:2,fc:2,al:1,cl:0}};
+var PESI={0:{live:9,pm:2,so:2,al:2,gen:2,mk:1,fc:1,cl:1,ri:0},1:{pm:5,so:3,al:3,gen:3,mk:1,fc:1,cl:2,ri:1},2:{cl:4,ri:6,al:3,so:3,gen:3,mk:1,fc:2,pm:1},3:{cl:3,ri:5,so:3,al:2,gen:3,mk:2,fc:2,pm:1},4:{mk:5,ri:3,gen:3,fc:3,so:2,al:2,cl:1,pm:0},5:{mk:5,ri:1,gen:3,fc:3,so:2,al:2,cl:1,pm:0,live:2},6:{live:10,pm:1,ri:1,gen:2,mk:2,so:1,fc:2,al:1,cl:0}};
 function post_giorno(D,SQ,ST,g){
  var dd=dalGiorno(g),tg=tendenze(D),tags=tg.map(function(x){return x[0]}),r=prng('giorno'+g),mk=ctxDi(D,SQ,ST,'ctx'+g);
  var w=PESI[dd.wd],cats=[];Object.keys(w).forEach(function(k){for(var i=0;i<w[k];i++)cats.push(k)});
- var n=6+Math.floor(r()*3),out=[],usati={};
+ var n=(dd.wd===0||dd.wd===6?9:6)+Math.floor(r()*3),out=[],usati={};
  var ordine=shuffle(r,AUTORI);
  for(var i=0;i<n;i++){
-  var a=ordine[i%ordine.length],cat=pick(r,cats),lis=PERS[a][cat];
+  var a=ordine[i%ordine.length],cat=pick(r,cats),lis=cat==='live'?(PERS[a].live||LIVE[a]):PERS[a][cat];
   if(!lis||!lis.length){var ks=Object.keys(PERS[a]);cat=pick(r,ks);lis=PERS[a][cat]}
   /* nessuna ripetizione di template a ravvicinato: indice ruotato per giorno */
   var ix=(Math.floor(g/1)+i*7+h32(a+cat))%lis.length,c=mk();
   var tag=r()<0.45?pick(r,tags):null;
   var x=natura(riempi(lis[ix],c,tag),'v:'+g+':'+i,a);
   var hh=8+Math.floor((i+r())*(15/n)),mi=Math.floor(r()*60);
-  out.push({k:'v:'+g+':'+i,a:a,x:x,ts:ts(dd.y,dd.mo,dd.d,Math.min(23,hh),mi),_r:r});
+  var po={k:'v:'+g+':'+i,a:a,x:x,ts:ts(dd.y,dd.mo,dd.d,Math.min(23,hh),mi),_r:r},ri=prng(po.k+'img');
+  if(IMGPER[a]&&ri()<0.4){po.imgt=IMGPER[a];po.cx={sq:c.sq,sq2:c.sq2,gio:c.gio,pt:c.pt}}
+  out.push(po);
  }
  /* risposte generiche */
  out.forEach(function(p){var rr=prng(p.k),nr=Math.floor(rr()*3);p.r=[];var s=shuffle(rr,AUTORI.filter(function(a){return a!==p.a}));for(var j=0;j<nr;j++){var c=mk();p.r.push({a:s[j],x:natura(riempi(pick(rr,RISP),c,null),p.k+'r'+j,s[j]),ts:p.ts+(5+Math.floor(rr()*90))*60000})}});
  return out;
 }
 /* Rende i cori meno perfetti e più vivi: emoji, punti esclamativi, puntini, domande insistenti, qualche errore. Tutto raro e deterministico. */
-var EMJ={nonno_cesare:['👴','🍷','⚽'],tifoso_arrabbiato:['😡','🤬','🔥'],mister_divano:['🛋️','📋','⚽'],radio_spogliatoio:['📻','👀','🤫'],mamma_di_capitan:['❤️','🍝','🥰'],ex_ds_provincia:['💼','🤝','😅'],var_parlante:['🖥️','🧐','🚩'],fc27_ratings:['🎮','📈','🔥'],il_cugino_del_dt:['🤫','👀','😏'],telecronista_stanco:['😴','🎙️','☕'],gufo_professionista:['🦉','😈','🔮'],il_filosofo_del_pallone:['🤔','🌌','⚽'],bomber_da_bar:['🍺','⚽','😎'],statistico_folle:['📊','🤓','🔢'],arbitro_in_pensione:['🟨','⚽','🙄']};
+var EMJ={il_barista:['☕','🥐','⚽'],il_mago_cabala:['🔮','🧿','✨'],la_suocera:['🍝','😤','🙄'],il_tassista:['🚕','📻','😅'],fidanzata_stufa:['🙄','😮‍💨','🍿'],nonno_cesare:['👴','🍷','⚽'],tifoso_arrabbiato:['😡','🤬','🔥'],mister_divano:['🛋️','📋','⚽'],radio_spogliatoio:['📻','👀','🤫'],mamma_di_capitan:['❤️','🍝','🥰'],ex_ds_provincia:['💼','🤝','😅'],var_parlante:['🖥️','🧐','🚩'],fc27_ratings:['🎮','📈','🔥'],il_cugino_del_dt:['🤫','👀','😏'],telecronista_stanco:['😴','🎙️','☕'],gufo_professionista:['🦉','😈','🔮'],il_filosofo_del_pallone:['🤔','🌌','⚽'],bomber_da_bar:['🍺','⚽','😎'],statistico_folle:['📊','🤓','🔢'],arbitro_in_pensione:['🟨','⚽','🙄']};
 var GEN=['😂','🤦‍♂️','👏','🔥','🙄','😅','⚽','😬'];
 var DOM=['Voi che dite?','Ma sono l\'unico?','Che ne pensate?','Qualcuno mi spiega?','Chi è d\'accordo?','Ma davvero?'];
 function natura(x,key,a){
@@ -297,7 +350,7 @@ function ufficiale(D,SQ,ST,tsMap,ms){
  return out}
 function ultimo(D,ms){var SQ=(D.teams||[]).map(function(t){return t.name}),L=(D.cal&&D.cal.lega)||[],u=null;L.forEach(function(g){if(g.m.some(function(m){return m[4]!=='-'}))u=g});
  var p=genera(D,SQ,{cls:SQ.map(function(n){return{n:n}}),ult:u,next:null},ms);return p.length?p[0].ts:0}
-var NOMI={nonno_cesare:'Nonno Cesare',tifoso_arrabbiato:'Il Tifoso Arrabbiato',mister_divano:'Il Tecnico da Divano',radio_spogliatoio:'Radio Spogliatoio',mamma_di_capitan:'Mamma di Capitan Sfortuna',ex_ds_provincia:'Ex DS di Provincia',var_parlante:'VAR Parlante',fc27_ratings:'FC27 Ratings Italia',il_cugino_del_dt:'Il Cugino del DT',telecronista_stanco:'Il Telecronista Stanco',gufo_professionista:'Gufo Professionista',il_filosofo_del_pallone:'Il Filosofo del Pallone',bomber_da_bar:'Bomber da Bar',statistico_folle:'Lo Statistico Folle',arbitro_in_pensione:'Arbitro in Pensione',ciro_trattativa:'Ciro Trattativa',lega_ofantagirrr:'Lega O Fant A Girrr',giornale_girrr:'O Giornale del Girrr'};
+var NOMI={il_barista:'Il Barista',il_mago_cabala:'Il Mago della Cabala',la_suocera:'La Suocera',il_tassista:'Il Tassista',fidanzata_stufa:'La Fidanzata Stufa',nonno_cesare:'Nonno Cesare',tifoso_arrabbiato:'Il Tifoso Arrabbiato',mister_divano:'Il Tecnico da Divano',radio_spogliatoio:'Radio Spogliatoio',mamma_di_capitan:'Mamma di Capitan Sfortuna',ex_ds_provincia:'Ex DS di Provincia',var_parlante:'VAR Parlante',fc27_ratings:'FC27 Ratings Italia',il_cugino_del_dt:'Il Cugino del DT',telecronista_stanco:'Il Telecronista Stanco',gufo_professionista:'Gufo Professionista',il_filosofo_del_pallone:'Il Filosofo del Pallone',bomber_da_bar:'Bomber da Bar',statistico_folle:'Lo Statistico Folle',arbitro_in_pensione:'Arbitro in Pensione',ciro_trattativa:'Ciro Trattativa',lega_ofantagirrr:'Lega O Fant A Girrr',giornale_girrr:'O Giornale del Girrr'};
 function anteprima(D,ms,n){var SQ=(D.teams||[]).map(function(t){return t.name}),L=(D.cal&&D.cal.lega)||[],u=null;L.forEach(function(g){if(g.m.some(function(m){return m[4]!=='-'}))u=g});
  return genera(D,SQ,{cls:SQ.map(function(x){return{n:x}}),ult:u,next:null},ms).filter(function(p){return !p.tipo}).slice(0,n).map(function(p){return{a:p.a,n:NOMI[p.a]||p.a,x:p.x.replace(/\n[\s\S]*/,'')}})}
 window.CVB={cupUlt:cupUlt,ufficiale:ufficiale,anteprima:anteprima,reazioni:reazioni,ultimo:ultimo,genera:genera,tendenze:tendenze,PERS:PERS,RISP:RISP,CIRO:CIRO,roma:roma,giorno:giorno,h32:h32};
