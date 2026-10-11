@@ -23,12 +23,9 @@ ROOT = Path(__file__).resolve().parent.parent
 GIORNI = ["lunedì", "martedì", "mercoledì", "giovedì", "venerdì", "sabato", "domenica"]
 MESI = ["gennaio", "febbraio", "marzo", "aprile", "maggio", "giugno", "luglio", "agosto", "settembre", "ottobre", "novembre", "dicembre"]
 TEMI = {
-    # nome: (carta, inchiostro, accento, grigio, fascia, testo fascia, font titoli, peso, font testata, peso testata, dimensione titolo, dimensione testata)
+    # Il Giornale ha un solo aspetto ufficiale.
+    # carta, inchiostro, accento, grigio, fascia, testo fascia, font titoli, peso, font testata, peso testata, dimensione titolo, dimensione testata
     "classico": ("#f3eee1", "#16130e", "#c8102e", "#6a6254", "#c8102e", "#ffffff", "'Inter Display','Inter',sans-serif", 900, "'DejaVu Serif',serif", 700, "35pt", "43pt"),
-    "arancio": ("#fbf5ea", "#1c1a17", "#f26a0c", "#6f665a", "#1c1a17", "#ffffff", "'Poppins','Inter',sans-serif", 700, "'Poppins','Inter',sans-serif", 700, "30pt", "36pt"),
-    "notte": ("#14171f", "#f1eee5", "#ffc933", "#9aa0ad", "#ffc933", "#14171f", "'Inter Display','Inter',sans-serif", 900, "'Inter Display','Inter',sans-serif", 900, "35pt", "40pt"),
-    "verde": ("#eef2e4", "#0f2a1a", "#1f7a3d", "#5d6c5f", "#0f2a1a", "#eef2e4", "'DejaVu Serif','Inter',serif", 700, "'GFS Baskerville','DejaVu Serif',serif", 700, "30pt", "45pt"),
-    "blu": ("#eef1f6", "#0d1b3a", "#1d5fd6", "#5a6784", "#1d5fd6", "#ffffff", "'Inter Display','Inter',sans-serif", 900, "'DejaVu Serif',serif", 700, "35pt", "43pt"),
 }
 
 
@@ -534,9 +531,8 @@ def costruisci(t, tema="classico"):
 
 def main():
     tema = "classico"
-    if "--tema" in sys.argv:
+    if "--tema" in sys.argv:  # ignorato: il Giornale ha un solo tema
         k = sys.argv.index("--tema")
-        tema = sys.argv[k + 1]
         del sys.argv[k:k + 2]
     t = {}
     if len(sys.argv) > 1 and Path(sys.argv[1]).exists():
