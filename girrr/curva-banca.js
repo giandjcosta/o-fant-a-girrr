@@ -207,6 +207,33 @@ var TONI={
  n:['ricordo quando si giocava tutti alla stessa ora, la domenica alle 15','una volta il fantacalcio si faceva con carta e penna. ora ci sono le notifiche','bei tempi quando bastava leggere il giornale per fare la formazione','il primo fantacalcio l\'ho giocato nel 2004. ho perso. ma che bei ricordi','al bar la domenica si litigava per un voto. oggi si litiga per un emoji','mi manca il gazzettino con le pagelle ancora calde di inchiostro','mio nonno diceva che il calcio si guarda alla radio. aveva ragione','quando ho iniziato non c\'erano nemmeno i bonus. solo gol e pazienza'],
  a:['ho il cuore a mille. cambio formazione per la quarta volta','non riesco a guardare i risultati. li guardo. no, non li guardo','ho paura di tutto. soprattutto del 5,5','se {gio} non segna oggi mi viene un colpo','ansia da formazione. ansia da panchina. ansia da tutto','ho cambiato modulo ieri sera e non dormo ancora','non apro l\'app fino alle 19. lo giuro. forse. {#}','il capitano è un incubo. il vice è un incubo. la panchina è un incubo','ho sudato più io davanti al telefono che {gio} in campo']
 };
+/* Uscite fuori carattere: prima avvisano, poi dicono l'opposto di quello che dicono sempre */
+var OPPOSTO={i:'s',s:'i',c:'g',g:'c',p:'g',n:'a',a:'i'};
+var AVVISO={
+ i:['Sapete come sono io, dico sempre cose giuste. Oggi però:','Di solito ragiono. Oggi no:','Non è da me, lo so, ma:'],
+ g:['Oggi devo proprio sfogarmi:','Non è da me ma:','Per una volta non faccio il carino:','Scusate, oggi ho il nervoso:'],
+ c:['Oggi devo proprio dare una nota positiva:','Oggi devo proprio complimentarmi:','Non crederete ai vostri occhi, ma:','Una volta ogni tanto:'],
+ s:['Per una volta faccio il serio:','Oggi mi sento intelligente, ascoltate:','Fermi tutti, parlo seriamente:'],
+ p:['Per una volta niente polemica:','Oggi sono d\'accordo con tutti, strano:','Pausa dalle lamentele:'],
+ n:['Basta nostalgia, oggi si parla di adesso:','Una volta tanto guardo avanti:'],
+ a:['Oggi sono incredibilmente calmo:','Respiro e dico:','Niente ansia, per oggi:']
+};
+var FUORI={
+ tifoso_arrabbiato:['Oggi devo proprio dare una nota positiva: {sq} ha giocato bene. Lo dico una volta sola. Non abituatevi.','Oggi devo proprio complimentarmi con {sq2}. Mi sono scoppiate le vene dalla sorpresa.','Non è da me, ma: bel lavoro, {sq}. Sono stanco di essere arrabbiato, per oggi.'],
+ nonno_cesare:['Devo ammetterlo, l\'app è comoda. Ai miei tempi no, ma ora sì. Non lo ripeto.','Oggi ho scoperto che {gio} è bravo. Mi ero sbagliato. Succede ogni vent\'anni.'],
+ mister_divano:['Sapete come sono io: dico sempre che il modulo conta. Oggi ammetto che ha contato la fortuna.','Oggi parlo da persona normale: non so niente. Mi sto godendo il divano e basta.'],
+ radio_spogliatoio:['Oggi niente voci, solo fatti: {sq} ha {pt} punti. Fine.','Non è da me, ma: oggi nessuna indiscrezione. Ho dormito poco e ho perso il filo.'],
+ mamma_di_capitan:['Oggi devo proprio sfogarmi: basta, mio figlio ha sbagliato la formazione! Ma lo amo lo stesso.','Non è da me, ma: {sq} merita di perdere un po\'. Tanto poi gli faccio la torta.'],
+ telecronista_stanco:['E ORA ATTENZIONE: {sq} CI PROVA! È l\'unica volta che alzo la voce, giuro.','Oggi sono carico, sveglio e pure felice. Non so cosa mi abbiano dato. {#}'],
+ var_parlante:['Oggi niente analisi: mi sono emozionato. Succede.','Non è da me ma: oggi ho dato ragione a tutti. Anche al fallo che non c\'era.'],
+ statistico_folle:['Oggi niente numeri. Solo sensazioni. {sq} mi piace e basta.','Non è da me, ma: ho spento il modello. Mi sembra una bella giornata.'],
+ gufo_professionista:['Oggi tifo davvero per {sq}. Sinceramente. Non so cosa mi sia preso.','Non è da me: auguro il meglio a tutti. Anche a {sq2}. Anche a me.'],
+ arbitro_in_pensione:['Devo ammetterlo: anche gli arbitri sbagliano. Lo dico io che ho sbagliato più di tutti.','Non è da me ma: oggi il fallo era netto. Netto davvero. Mi dispiace per voi.'],
+ il_filosofo_del_pallone:['Basta filosofia, oggi parlo semplice: {sq} gioca bene. Fine.','Non è da me, ma: a volte un gol è solo un gol.'],
+ il_cugino_del_dt:['Non è da me, ma ve lo dico: mio cugino non sa niente. Mai saputo.','Oggi parlo chiaro: mio cugino e {sq} non si parlano. È tutto qui.'],
+ bomber_da_bar:['Per una volta ammetto: ho segnato 3 gol in 15 anni. Il resto era bar.','Non è da me, ma: {gio} è più forte di me. Un po\'.'],
+ ex_ds_provincia:['Oggi parlo da DS vero: {gio} vale più di quanto pensiate. Ve lo dico gratis.','Devo ammetterlo: il mercato l\'ho sbagliato quasi sempre. Ma qualcosa ho azzeccato.']
+};
 var CREP=['lol','vero','ahahah','🤣🤣','no ma anche basta','concordo','boh io dico di no','top','che schifo','assolutamente sì','ma cosa dici?','bravo','potresti aver ragione','non so cosa dire. bravo comunque','ahah dai','ci sta','fortissimo','questa me la segno','🔥','mah. sarà'];
 var AUTORI=Object.keys(PERS);
 /* risposte generiche */
@@ -257,6 +284,7 @@ function post_giorno(D,SQ,ST,g){
  for(var i=0;i<n;i++){
   var a=ordine[i%ordine.length],cat=pick(r,cats),lis=cat==='live'?(PERS[a].live||LIVE[a]):PERS[a][cat];
   if(!lis||!lis.length){var ks=Object.keys(PERS[a]);cat=pick(r,ks);lis=PERS[a][cat]}
+  if(FUORI[a]&&prng('fu'+g+i)()<0.1){cat='fuori';lis=FUORI[a]}
   /* nessuna ripetizione di template a ravvicinato: indice ruotato per giorno */
   var ix=(Math.floor(g/1)+i*7+h32(a+cat))%lis.length,c=mk();
   var tag=r()<0.45?pick(r,tags):null;
@@ -268,8 +296,9 @@ function post_giorno(D,SQ,ST,g){
  }
  /* utenti qualunque */
  var nc=3+Math.floor(r()*4)+((dd.wd===0||dd.wd===6)?3:0);
- for(var q=0;q<nc;q++){var rc=prng('cm'+g+'-'+q),cu=comune(rc),tn=rc()<0.55?cu[2][0]:rc()<0.7?cu[2][cu[2].length-1]:'sicgpna'.charAt(Math.floor(rc()*7)),cl=TONI[tn],cc=mk(),xt=riempi(pick(rc,cl),cc,rc()<0.25?pick(rc,tags):null);
-  if(tn!=='i'&&rc()<0.5)xt=xt.charAt(0).toLowerCase()+xt.slice(1);
+ for(var q=0;q<nc;q++){var rc=prng('cm'+g+'-'+q),cu=comune(rc),fc=rc()<0.12,pr0=cu[2][0],tn=fc?OPPOSTO[pr0]:(rc()<0.7?pr0:cu[2][cu[2].length-1]),cl=TONI[tn],cc=mk(),xt=riempi(pick(rc,cl),cc,rc()<0.25?pick(rc,tags):null);
+  if(fc){var av=pick(rc,AVVISO[pr0]);xt=av+' '+(/[:,]$/.test(av)?xt.charAt(0).toLowerCase()+xt.slice(1):xt)}
+  if(!fc&&tn!=='i'&&rc()<0.5)xt=xt.charAt(0).toLowerCase()+xt.slice(1);
   if(tn!=='i'&&rc()<0.35)xt=xt.replace(/\.$/,'');
   if(rc()<0.12)xt+=' '+pick(rc,GEN);
   var hq=7+Math.floor(rc()*16),mq=Math.floor(rc()*60);
