@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,viewport-fit=cover">
 <meta name="robots" content="noindex">
-<meta name="cv-ver" content="20261011g">
+<meta name="cv-ver" content="20261011i">
 <title>Curva · O Girrr</title>
 <link rel="icon" type="image/png" href="../assets/favicon-64.png">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800;900&display=swap">
@@ -140,7 +140,7 @@ svg{display:block}
 @media(min-width:760px){.nav .sito{flex:none;border-radius:999px;padding:12px;gap:16px}.nav .sito:hover{background:var(--hv)}}
 @media(min-width:1060px){.nav .sito{justify-content:flex-start;padding:12px 16px}.nav .sito .t{display:inline;font-size:19px;font-weight:500}}
 .pimg{margin:2px 0 10px;border-radius:16px;overflow:hidden;border:1px solid var(--ln);background:var(--bg2);min-height:60px;max-width:420px}
-.pimg img{display:block;width:100%;max-height:420px;object-fit:cover;cursor:zoom-in}
+.pimg.bot img{object-fit:contain;max-height:none}.pimg img{display:block;width:100%;max-height:420px;object-fit:cover;cursor:zoom-in}
 .pv{position:relative;display:inline-block;margin:4px 0 8px}.pv img{display:block;max-width:100%;max-height:220px;border-radius:14px;border:1px solid var(--ln)}
 .pv button{position:absolute;top:6px;right:6px;width:28px;height:28px;border-radius:50%;border:0;background:rgba(0,0,0,.65);color:#fff;font-size:16px;cursor:pointer;line-height:1}
 .lb{position:fixed;inset:0;z-index:80;background:rgba(0,0,0,.88);display:flex;align-items:center;justify-content:center;padding:16px;cursor:zoom-out}.lb img{max-width:100%;max-height:100%;border-radius:12px}
@@ -171,7 +171,7 @@ html,body{overscroll-behavior-y:none;touch-action:manipulation;-webkit-text-size
 </div>
 <script>window.goatcounter={path:function(){return location.pathname},no_onload:/[?&]demo/.test(location.search)}</script>
 <script data-goatcounter="https://djcosta18.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
-<script src="curva-banca.js?v=20261011g"></script>
+<script src="curva-banca.js?v=20261011i"></script>
 <script>
 (function(){
 'use strict';
@@ -289,6 +289,37 @@ function tendenze(){var t=CVB.tendenze(D),real={};S.posts.forEach(function(p){(p
  return t.map(function(x){return['#'+x[0],x[1]+(real[x[0].toLowerCase()]||0)*30]})}
 /* rendering */
 function testo(s){return esc(s).replace(/#(\w+)/g,'<span class="hs" data-q="#$1">#$1</span>').replace(/(^|\s)@(\w+)/g,function(m,sp,h){return ACC[h]?sp+'<span class="hs" data-u="'+h+'">@'+h+'</span>':m})}
+/* Immagini dei bot: tabelline e copertine disegnate al volo */
+var IMGB={};
+function disegna(chiave,titolo,sott,sez,h0){
+ if(IMGB[chiave])return IMGB[chiave];
+ var W=900,rowH=58,H=170,i;
+ sez.forEach(function(z){H+=74+z.rows.length*(z.cls?46:rowH)});H+=80;
+ var cv=document.createElement('canvas');cv.width=W;cv.height=H;var c=cv.getContext('2d'),F='Inter,system-ui,-apple-system,Segoe UI,sans-serif';
+ var g=c.createLinearGradient(0,0,W,H);g.addColorStop(0,'#0c1a30');g.addColorStop(1,'#0a0f1c');c.fillStyle=g;c.fillRect(0,0,W,H);
+ c.fillStyle='#1d9bf0';c.fillRect(0,0,W,10);
+ c.fillStyle='#8aa0b8';c.font='800 24px '+F;c.fillText('O FANT A GIRRR',44,64);
+ c.fillStyle='#fff';c.font='900 52px '+F;c.fillText(titolo,44,128);
+ if(sott){c.fillStyle='#8aa0b8';c.font='600 26px '+F;c.textAlign='right';c.fillText(sott,W-44,64);c.textAlign='left'}
+ var y=170;
+ function fit(t,w){var m=/(\d+)px/.exec(c.font),z=m?+m[1]:30;while(c.measureText(t).width>w&&z>20){z-=2;c.font=c.font.replace(/\d+px/,z+'px')}while(c.measureText(t).width>w&&t.length>3)t=t.slice(0,-2);return t}
+ sez.forEach(function(z){
+  c.fillStyle='#1d9bf0';c.font='800 26px '+F;c.fillText(z.t.toUpperCase(),44,y+40);y+=74;
+  z.rows.forEach(function(r,k){var rh=z.cls?46:rowH;c.fillStyle=k%2?'rgba(255,255,255,.03)':'rgba(255,255,255,.07)';c.fillRect(30,y,W-60,rh-4);
+   c.font='700 '+(z.cls?28:30)+'px '+F;
+   if(z.cls){c.fillStyle='#8aa0b8';c.fillText(String(r.p),48,y+33);c.fillStyle='#fff';c.fillText(fit(r.n,470),100,y+33);c.fillStyle='#8aa0b8';c.textAlign='right';c.fillText(r.fp,700,y+33);c.fillStyle='#fff';c.font='900 30px '+F;c.fillText(r.pt+' pt',W-48,y+33);c.textAlign='left'}
+   else{c.fillStyle=r.a<r.b?'#6f8197':'#fff';c.fillText(fit(r.l,r.t?420:340),48,y+40);c.font='900 34px '+F;c.fillStyle='#fff';if(!r.t){c.textAlign='center';c.fillText(r.a+' - '+r.b,W/2,y+41)}c.textAlign='right';c.font='700 30px '+F;c.fillStyle=r.b<r.a?'#6f8197':'#fff';c.fillText(fit(r.r,r.t?420:340),W-48,y+40);c.textAlign='left'}
+   y+=rh});
+ });
+ c.fillStyle='#4f6177';c.font='600 22px '+F;c.fillText('Curva · O Girrr',44,H-30);
+ return IMGB[chiave]=cv.toDataURL('image/png')}
+function rowsRis(m){return m.map(function(x){var gc=x[4].split('-').map(Number);return{l:cap(x[0]),a:gc[0],b:gc[1],r:cap(x[3])}})}
+function cardBot(p){
+ if(p.tipo==='ris'&&ST.ult){var u=ST.ult;return disegna('ris'+u.n+'|'+ST.cls.slice(0,5).map(function(t){return t.n+t.pt}).join(),'Risultati',u.n+'ª giornata di campionato',[{t:'Risultati',rows:rowsRis(u.m)},{t:'Classifica',cls:1,rows:ST.cls.slice(0,5).map(function(t,i){return{p:i+1,n:cap(t.n),fp:String(t.fp).replace('.',','),pt:t.pt}})}])}
+ if(p.tipo==='rc'&&ST.ultC){var u2=ST.ultC,sz=[{t:'Risultati',rows:rowsRis(u2.m)}];['A','B'].forEach(function(gg){var L=Object.keys(ST.cup).map(function(k){return ST.cup[k]}).filter(function(t){return t.gir===gg}).sort(function(a,b){return a.pos-b.pos});if(L.length)sz.push({t:'Girone '+gg,cls:1,rows:L.slice(0,5).map(function(t){return{p:t.pos,n:cap(t.n),fp:String(t.fp).replace('.',','),pt:t.pt}})})});
+  return disegna('rc'+u2.n+'|'+sz.map(function(z){return z.rows.map(function(r){return r.n||r.l}).join()+(z.rows[0].pt||'')}).join(),'Champions Cup',u2.n+'ª giornata',sz)}
+ if(p.tipo==='gio'){var n=(p.k.split(':')[1]||'1');return disegna('gio'+n,'Il Giornale','Numero '+n,[{t:'In edicola',rows:[{l:'Pagelle',a:'',b:'',r:'della giornata'},{l:'Il Coro',a:'',b:'',r:'della settimana'},{l:'La Bufala',a:'',b:'',r:'di mercato'}].map(function(x){return{l:x.l,a:0,b:0,r:x.r,t:1}})}])}
+ return ''}
 function resCup(){
  if(!ST.ultC)return '';
  var r='<div class="res"><h4>Champions Cup · '+ST.ultC.n+'ª giornata</h4>'+ST.ultC.m.map(function(m){var gc=m[4].split('-');return '<div class="g"><span class="'+(+gc[0]<+gc[1]?'l':'')+'">'+esc(cap(m[0]))+'</span><em>'+gc[0]+' - '+gc[1]+'</em><span class="'+(+gc[1]<+gc[0]?'l':'')+'" style="text-align:left">'+esc(cap(m[3]))+'</span></div>'}).join('')+'</div>';
@@ -306,7 +337,8 @@ function reply(r,pk,i){var ra=acc(r.a),x=r.real&&puoCanc(r.a)?'<button class="rx
  return '<div class="rp">'+AV(ra,'sm','data-u="'+ra.h+'"')+'<div class="pb"><div class="pn" style="font-size:14px"><b data-u="'+ra.h+'">'+esc(cap(ra.n))+'</b>'+badge(ra.v)+'<span class="h">@'+ra.h+'</span><span class="tm">· '+ago(r.ts)+'</span>'+x+'</div><div class="pt" style="font-size:14.5px;margin-bottom:0">'+testo(r.x)+'</div>'+az+'</div></div>'}
 function postHTML(p){
  var a=acc(p.a),A=MN[p.k+'|a']?1:0,R=MN[p.k+'|r']?1:0,own=p.real&&puoCanc(p.a);
- var ex=(p.tipo==='ris'?resCard():'')+(p.tipo==='rc'?resCup():'')+(p.tipo==='gio'?'<a class="lnk" href="giornale.html">Apri il Giornale ›</a>':'');
+ var bi='';try{bi=cardBot(p)}catch(e){}
+ var ex=(bi?'<div class="pimg bot"><img src="'+bi+'" alt=""></div>':(p.tipo==='ris'?resCard():'')+(p.tipo==='rc'?resCup():''))+(p.tipo==='gio'?'<a class="lnk" href="giornale.html">Apri il Giornale ›</a>':'');
  var th=(p.thr||[]).map(function(x,i){return reply({a:p.a,x:x,ts:p.ts},p.k,'t'+i)}).join('');
  var op=!!open[p.k];
  var rl=p.rtby?'<div class="rtl">'+I.ril+esc(cap(p.rtby))+' ha rilanciato</div>':(RTS[p.k]&&vista!=='u'?'<div class="rtl">'+I.ril+'Rilanciato da '+RTS[p.k].slice(0,2).map(function(t){return esc(cap(t.team))}).join(', ')+(RTS[p.k].length>2?' e altri '+(RTS[p.k].length-2):'')+'</div>':'');
