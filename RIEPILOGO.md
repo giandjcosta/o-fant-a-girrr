@@ -118,7 +118,7 @@ Punteggio: piu' e' alto, piu' conviene. Unisce valore e probabilita' di giocare.
 |---|---|---|---|---|
 | Romano | Cagliari | Titolare | Juventus (C) | 90 |
 | Matic | Sassuolo | Titolare | Milan (C) | 84 |
-| Schmid | Frosinone | Titolare | Napoli (T) | 84 |
+| Schmid | Frosinone | Titolare | Napoli (T) | 83 |
 | Winks | Cagliari | Titolare | Juventus (C) | 77 |
 | Fitz-Jim | Torino | Titolare | Udinese (C) | 76 |
 
@@ -126,11 +126,11 @@ Punteggio: piu' e' alto, piu' conviene. Unisce valore e probabilita' di giocare.
 
 | Giocatore | Squadra | Stato | Avversario | Punteggio |
 |---|---|---|---|---|
-| Lontani | Parma | Titolare | Inter (T) | 72 |
 | Robinson J. | Monza | Titolare | Lazio (T) | 68 |
-| Ghedjemis | Frosinone | Titolare | Napoli (T) | 40 |
+| Lontani | Parma | Titolare | Inter (T) | 62 |
+| Ghedjemis | Frosinone | Titolare | Napoli (T) | 44 |
 | N'Dri | Lecce | Panchina | Bologna (C) | 31 |
-| Kulenovic | Torino | Panchina | Udinese (C) | 27 |
+| Elphege | Parma | Riserva, ballottaggio | Inter (T) | 27 |
 
 ## Correzioni da controllare
 
