@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,viewport-fit=cover">
 <meta name="robots" content="noindex">
-<meta name="cv-ver" content="20261011k">
+<meta name="cv-ver" content="20261011m">
 <title>Curva · O Girrr</title>
 <link rel="icon" type="image/png" href="../assets/favicon-64.png">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800;900&display=swap">
@@ -171,7 +171,7 @@ html,body{overscroll-behavior-y:none;touch-action:manipulation;-webkit-text-size
 </div>
 <script>window.goatcounter={path:function(){return location.pathname},no_onload:/[?&]demo/.test(location.search)}</script>
 <script data-goatcounter="https://djcosta18.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
-<script src="curva-banca.js?v=20261011k"></script>
+<script src="curva-banca.js?v=20261011m"></script>
 <script>
 (function(){
 'use strict';
@@ -327,12 +327,30 @@ function disegna(chiave,tema,titolo,sott,sez){
  });
  c.fillStyle='#fff';c.globalAlpha=.45;c.font='600 22px '+F;c.fillText('Curva · O Girrr',44,H-32);c.globalAlpha=1;
  var out=cv.toDataURL('image/png');if(pronto)IMGB[chiave]=out;return out}
+function giornaleImg(n,ts){
+ var key='gio'+n,L=TEMI.lega.im,pronto=L.complete&&L.naturalWidth>0;if(IMGB[key])return IMGB[key];
+ var GG=['Domenica','Lunedì','Martedì','Mercoledì','Giovedì','Venerdì','Sabato'],MM=['Gennaio','Febbraio','Marzo','Aprile','Maggio','Giugno','Luglio','Agosto','Settembre','Ottobre','Novembre','Dicembre'],d=new Date(ts);
+ var data=GG[d.getDay()]+' '+d.getDate()+' '+MM[d.getMonth()]+' '+d.getFullYear();
+ var W=900,H=640,cv=document.createElement('canvas');cv.width=W;cv.height=H;var c=cv.getContext('2d'),SF="'DejaVu Serif',Georgia,'Times New Roman',serif",SS='Inter,system-ui,-apple-system,Segoe UI,sans-serif',P='#f3eee1',I='#16130e',R='#c8102e',M='#6a6254';
+ c.fillStyle=P;c.fillRect(0,0,W,H);
+ c.fillStyle=I;c.font='700 21px '+SS;c.textAlign='left';c.fillText(data,44,52);c.textAlign='center';c.fillText('N° '+n,W/2,52);c.textAlign='right';c.fillText('Prezzo: 1 fantagol',W-44,52);c.textAlign='left';
+ c.fillRect(44,66,W-88,2);
+ if(pronto){var lh=120,lw=lh*L.naturalWidth/L.naturalHeight;c.drawImage(L,44,92,lw,lh);c.drawImage(L,W-44-lw,92,lw,lh)}
+ var t1='O Giornale del ',t2='Girrr',fz=62,w1,w2;do{c.font='700 '+fz+'px '+SF;w1=c.measureText(t1).width;w2=c.measureText(t2).width;fz-=2}while(w1+w2>560&&fz>24);var x0=W/2-(w1+w2)/2;
+ c.textAlign='left';c.fillStyle=I;c.fillText(t1,x0,176);c.fillStyle=R;c.fillText(t2,x0+w1,176);
+ c.fillStyle=I;c.fillRect(44,232,W-88,7);
+ c.fillStyle=M;c.font='italic 600 24px '+SS;c.textAlign='center';c.fillText('Il settimanale sportivo della lega O Fant A Girrr',W/2,278);c.textAlign='left';
+ c.fillStyle=R;c.fillRect(44,312,W-88,46);c.fillStyle='#fff';c.font='800 22px '+SS;c.fillText('IN QUESTO NUMERO',64,343);
+ var voci=[['Le pagelle','tutti i voti della giornata'],['Il Coro della settimana','la frase che ha fatto il giro'],['La Bufala di mercato','la notizia che non ha mai avuto senso']];
+ voci.forEach(function(v,i){var y=398+i*62;c.fillStyle=I;c.font='700 32px '+SF;c.fillText(v[0],44,y+22);c.fillStyle=M;c.font='600 21px '+SS;c.textAlign='right';c.fillText(v[1],W-44,y+20);c.textAlign='left';c.fillStyle=I;c.globalAlpha=.25;c.fillRect(44,y+38,W-88,1.5);c.globalAlpha=1});
+ c.fillStyle=M;c.font='600 19px '+SS;c.fillText('O Giornale del Girrr · O Fant A Girrr · Lo Spogliatoio',44,H-26);
+ var out=cv.toDataURL('image/png');if(pronto)IMGB[key]=out;return out}
 function rowsRis(m){return m.map(function(x){var gc=x[4].split('-').map(Number);return{l:cap(x[0]),a:gc[0],b:gc[1],r:cap(x[3])}})}
 function cardBot(p){
  if(p.tipo==='ris'&&ST.ult){var u=ST.ult;return disegna('ris'+u.n+'|'+ST.cls.slice(0,5).map(function(t){return t.n+t.pt}).join(),'lega','Risultati',u.n+'ª giornata di campionato',[{t:'Risultati',rows:rowsRis(u.m)},{t:'Classifica',cls:1,rows:ST.cls.slice(0,5).map(function(t,i){return{p:i+1,n:cap(t.n),fp:String(t.fp).replace('.',','),pt:t.pt}})}])}
  if(p.tipo==='rc'&&ST.ultC){var u2=ST.ultC,sz=[{t:'Risultati',rows:rowsRis(u2.m)}];['A','B'].forEach(function(gg){var L=Object.keys(ST.cup).map(function(k){return ST.cup[k]}).filter(function(t){return t.gir===gg}).sort(function(a,b){return a.pos-b.pos});if(L.length)sz.push({t:'Girone '+gg,cls:1,rows:L.slice(0,5).map(function(t){return{p:t.pos,n:cap(t.n),fp:String(t.fp).replace('.',','),pt:t.pt}})})});
   return disegna('rc'+u2.n+'|'+sz.map(function(z){return z.rows.map(function(r){return r.n||r.l}).join()+(z.rows[0].pt||'')}).join(),'cup','Champions Cup',u2.n+'ª giornata dei gironi',sz)}
- if(p.tipo==='gio'){var n=(p.k.split(':')[1]||'1');return disegna('gio'+n,'lega','Il Giornale','Numero '+n,[{t:'In edicola',rows:[{l:'Pagelle',a:'',b:'',r:'della giornata'},{l:'Il Coro',a:'',b:'',r:'della settimana'},{l:'La Bufala',a:'',b:'',r:'di mercato'}].map(function(x){return{l:x.l,a:0,b:0,r:x.r,t:1}})}])}
+ if(p.tipo==='gio'){return giornaleImg(p.k.split(':')[1]||'1',p.ts)}
  return ''}
 function resCup(){
  if(!ST.ultC)return '';
