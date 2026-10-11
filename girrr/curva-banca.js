@@ -196,6 +196,8 @@ var LIVE={
 };
 /* Utenti qualunque: nomi a caso, toni diversi */
 var COMUNI=[['fabrizio99','fabrizio99','s'],['errfantastico','ErrFantastico','i'],['ilbiscio','ilbiscio','c'],['giorgio_1987','giorgio_1987','g'],['xx_tommy_xx','xX_Tommy_Xx','s'],['la_pina','la_pina','g'],['marcorossi','MarcoRossi','p'],['superpippo','SuperPippo','s'],['ilgrandeste','ilGrandeSte','a'],['nicolino_','nicolino_','n'],['davide_ac','davide_ac','p'],['fantaguru88','FantaGuru88','i'],['roberta72','roberta72','g'],['il_lungo','il_lungo','c'],['kekko_','kekko_','s'],['mirko','mirko','a'],['antoniettab','AntoniettaB','g'],['gigi_er_mejo','Gigi_Er_Mejo','s'],['lucathebest','LucaTheBest','p'],['bbq_enjoyer','bbq_enjoyer','s'],['alepizza','alepizza','n'],['therealsandro','TheRealSandro','c'],['pino_arrosto','pino_arrosto','s'],['zio_beppe','zio_Beppe','n'],['chiarafanta','ChiaraFanta','g'],['il_carletto','il_carletto','a'],['maxpower','MaxPower','p'],['donrodrigo','DonRodrigo','i'],['tizio_a_caso','tizio_a_caso','s'],['sandokan79','sandokan79','c']];
+var SECONDO={s:'sa',i:'ig',c:'cp',g:'gs',p:'pc',n:'ns',a:'as'};
+COMUNI.forEach(function(u){u[2]=SECONDO[u[2]]||u[2]});
 var TONI={
  s:['ho messo {gio} perché ha il nome simpatico. vediamo','qualcuno mi spiega come si cambia il modulo','oggi pizza e fantacalcio. la vita è bella','ma {sq} gioca di sabato o di domenica? chiedo per un amico','non ho capito niente ma mi sto divertendo','ho dimenticato la formazione. di nuovo. che bello','chi è {gio}? scherzo, lo so. forse','se vinco offro io. se perdo non mi cercate','il mio capitano è in panchina. e io sono sul divano. coerenza','oggi ho chiesto al mio gatto di scegliere la formazione. {sq2} non ha vinto, lui sì'],
  i:['Il punto non è chi vince la giornata, ma chi sbaglia meno le scelte in panchina. Il fantacalcio è gestione del rischio.','La differenza la fa la continuità di rendimento, non il bonus occasionale. Sempre.','Attenzione ai turnover: {gio} ha giocato troppo e il rendimento cala dopo tre partite ravvicinate.','A fine stagione vincerà chi avrà evitato i grandi errori, non chi avrà azzeccato quelli grandi.','Ogni formazione è una scommessa sul tempo: quanto vale un titolare oggi rispetto a domani?','Chi guarda solo la media voto sbaglia: conta la varianza. {gio} ne è un esempio.'],
@@ -266,9 +268,9 @@ function post_giorno(D,SQ,ST,g){
  }
  /* utenti qualunque */
  var nc=3+Math.floor(r()*4)+((dd.wd===0||dd.wd===6)?3:0);
- for(var q=0;q<nc;q++){var rc=prng('cm'+g+'-'+q),cu=comune(rc),cl=TONI[cu[2]],cc=mk(),xt=riempi(pick(rc,cl),cc,rc()<0.25?pick(rc,tags):null);
-  if(cu[2]!=='i'&&rc()<0.5)xt=xt.charAt(0).toLowerCase()+xt.slice(1);
-  if(cu[2]!=='i'&&rc()<0.35)xt=xt.replace(/\.$/,'');
+ for(var q=0;q<nc;q++){var rc=prng('cm'+g+'-'+q),cu=comune(rc),tn=rc()<0.55?cu[2][0]:rc()<0.7?cu[2][cu[2].length-1]:'sicgpna'.charAt(Math.floor(rc()*7)),cl=TONI[tn],cc=mk(),xt=riempi(pick(rc,cl),cc,rc()<0.25?pick(rc,tags):null);
+  if(tn!=='i'&&rc()<0.5)xt=xt.charAt(0).toLowerCase()+xt.slice(1);
+  if(tn!=='i'&&rc()<0.35)xt=xt.replace(/\.$/,'');
   if(rc()<0.12)xt+=' '+pick(rc,GEN);
   var hq=7+Math.floor(rc()*16),mq=Math.floor(rc()*60);
   out.push({k:'v:'+g+':u'+q,a:cu[0],x:xt,ts:ts(dd.y,dd.mo,dd.d,Math.min(23,hq),mq),r:[]})}
