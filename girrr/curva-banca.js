@@ -255,10 +255,44 @@ function reazioni(k,t,ms,SQ){var r=prng('rz'+k),age=(ms-t)/60000;if(age<1)return
  var nr=Math.floor(r()*3),ord=shuffle(r,AUTORI);
  for(var i=0;i<nr;i++){var d=10+r()*240,tx=pick(r,RISP).replace('{sq}',pick(r,SQ)),a=ord[i];if(age>=d)out.push({a:a,x:natura(tx,k+'z'+i,a),ts:t+d*60000})}
  return{ap:Math.floor(fa*pr),ril:Math.floor(fr*pr),r:out}}
+
+/* Cori automatici del profilo ufficiale: se una squadra tace per due settimane */
+var LANCIO=Date.UTC(2026,9,11),SILENZIO=14*864e5;
+var UFF={
+ vit:["Tre punti importanti contro {opp}: {sc}. Grande prova di tutto il gruppo. #Giornata{n}","{sc} a {opp}. La squadra risponde presente e il club ringrazia i tifosi. #Giornata{n}"],
+ par:["Pareggio con {opp}, {sc}. Un punto che muove la classifica ma sappiamo di poter fare di più. #Giornata{n}","{sc} contro {opp}. Un punto a testa, il lavoro continua. #Giornata{n}"],
+ sco:["Sconfitta con {opp}, {sc}. Ci rialziamo subito: il campionato è lungo. #Giornata{n}","{sc} contro {opp}. Analizziamo gli errori e guardiamo avanti. Forza ragazzi. #Giornata{n}"],
+ gio:["Il nostro migliore finora? {gio}: {g} gol e media {mv}. Il club è orgoglioso.","Menzione speciale per {gio}: {g} gol e media {mv}. Continuiamo così."],
+ sme:["Il club smentisce ufficialmente le voci su un nostro interesse per {altro}. Nessuna trattativa in corso. #Calciomercato","Circola una notizia su un presunto contatto per {altro}. È falsa. Nessun contatto, nessuna offerta. #Calciomercato","Smentiamo ufficialmente qualunque dissidio nello spogliatoio. L'ambiente è sereno. Chi diffonde queste voci si assuma le proprie responsabilità."],
+ clt:["{pos}° in classifica con {pt} punti. Bel lavoro, ma non ci accontentiamo.","Siamo {pos}° con {pt} punti. Teniamo i piedi per terra e andiamo avanti."],
+ cla:["Siamo {pos}° in classifica con {pt} punti. Il campionato è ancora lunghissimo.","{pos}° posto per ora, con {pt} punti. Lavoriamo per salire."]
+};
+function ufficiale(D,SQ,ST,tsMap,ms){
+ var out=[],NM=nomi(D);
+ SQ.forEach(function(sq){
+  var T=(tsMap[sq]||[]).slice().sort(function(a,b){return a-b}),cur=LANCIO,fire=[];
+  T.forEach(function(t){if(t<=cur)return;while(cur+SILENZIO<t){cur+=SILENZIO;if(cur<=ms)fire.push(cur)}cur=t});
+  while(cur+SILENZIO<=ms){cur+=SILENZIO;fire.push(cur)}
+  fire.slice(-2).forEach(function(f0){
+   var gg=Math.floor(f0/864e5),k='u:'+h32(sq)+':'+gg,r=prng(k),opts=[];
+   var c={},pos=ST.cls.map(function(t){return t.n}).indexOf(sq);
+   var t0=pos>=0?ST.cls[pos]:null;
+   if(t0&&pos>=0){c.pos=pos+1;c.pt=t0.pt;opts.push('cla')}
+   var mm=null;if(ST.ult)ST.ult.m.forEach(function(m){if(m[0]===sq||m[3]===sq)mm=m});
+   if(mm){var gc=mm[4].split('-').map(Number),casa=mm[0]===sq,a=casa?gc[0]:gc[1],b=casa?gc[1]:gc[0];c.opp=casa?mm[3]:mm[0];c.sc=a+'-'+b;c.n=ST.ult.n;opts.push(a>b?'vit':a===b?'par':'sco','cla')}
+   var mio=null;(D.teams||[]).forEach(function(t){if(t.name===sq)(t.pl||[]).forEach(function(p){var s0=(D.ps||{})[p.id];if(s0&&D.P[p.id]&&(!mio||(s0.fmv||0)>mio.s.fmv))mio={n:D.P[p.id].n,s:s0}})});
+   if(mio){c.gio=mio.n;c.g=mio.s.g||0;c.mv=String(mio.s.mv||mio.s.fmv).replace('.',',');opts.push('gio')}
+   var ids=Object.keys(NM).filter(function(i){return NM[i].sq!==sq});
+   if(ids.length){c.altro=NM[pick(r,ids)].n}
+   opts.push('sme','sme');
+   var tp=pick(r,opts);if(tp==='cla'&&c.pos<=3)tp='clt',x=riempi(pick(r,UFF[tp]),c,null);
+   var tx=gg*864e5+(8+Math.floor(r()*12))*36e5-72e5;out.push({k:k,team:sq,x:x,ts:tx<=ms?tx:f0,r:[]});
+  })});
+ return out}
 function ultimo(D,ms){var SQ=(D.teams||[]).map(function(t){return t.name}),L=(D.cal&&D.cal.lega)||[],u=null;L.forEach(function(g){if(g.m.some(function(m){return m[4]!=='-'}))u=g});
  var p=genera(D,SQ,{cls:SQ.map(function(n){return{n:n}}),ult:u,next:null},ms);return p.length?p[0].ts:0}
 var NOMI={nonno_cesare:'Nonno Cesare',tifoso_arrabbiato:'Il Tifoso Arrabbiato',mister_divano:'Il Tecnico da Divano',radio_spogliatoio:'Radio Spogliatoio',mamma_di_capitan:'Mamma di Capitan Sfortuna',ex_ds_provincia:'Ex DS di Provincia',var_parlante:'VAR Parlante',fc27_ratings:'FC27 Ratings Italia',il_cugino_del_dt:'Il Cugino del DT',telecronista_stanco:'Il Telecronista Stanco',gufo_professionista:'Gufo Professionista',il_filosofo_del_pallone:'Il Filosofo del Pallone',bomber_da_bar:'Bomber da Bar',statistico_folle:'Lo Statistico Folle',arbitro_in_pensione:'Arbitro in Pensione',ciro_trattativa:'Ciro Trattativa',lega_ofantagirrr:'Lega O Fant A Girrr',giornale_girrr:'O Giornale del Girrr'};
 function anteprima(D,ms,n){var SQ=(D.teams||[]).map(function(t){return t.name}),L=(D.cal&&D.cal.lega)||[],u=null;L.forEach(function(g){if(g.m.some(function(m){return m[4]!=='-'}))u=g});
  return genera(D,SQ,{cls:SQ.map(function(x){return{n:x}}),ult:u,next:null},ms).filter(function(p){return !p.tipo}).slice(0,n).map(function(p){return{a:p.a,n:NOMI[p.a]||p.a,x:p.x.replace(/\n[\s\S]*/,'')}})}
-window.CVB={anteprima:anteprima,reazioni:reazioni,ultimo:ultimo,genera:genera,tendenze:tendenze,PERS:PERS,RISP:RISP,CIRO:CIRO,roma:roma,giorno:giorno,h32:h32};
+window.CVB={ufficiale:ufficiale,anteprima:anteprima,reazioni:reazioni,ultimo:ultimo,genera:genera,tendenze:tendenze,PERS:PERS,RISP:RISP,CIRO:CIRO,roma:roma,giorno:giorno,h32:h32};
 })();

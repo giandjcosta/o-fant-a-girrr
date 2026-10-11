@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,viewport-fit=cover">
 <meta name="robots" content="noindex">
-<meta name="cv-ver" content="20261011d">
+<meta name="cv-ver" content="20261011e">
 <title>Curva · O Girrr</title>
 <link rel="icon" type="image/png" href="../assets/favicon-64.png">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800;900&display=swap">
@@ -171,7 +171,7 @@ html,body{overscroll-behavior-y:none;touch-action:manipulation;-webkit-text-size
 </div>
 <script>window.goatcounter={path:function(){return location.pathname},no_onload:/[?&]demo/.test(location.search)}</script>
 <script data-goatcounter="https://djcosta18.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
-<script src="curva-banca.js?v=20261011d"></script>
+<script src="curva-banca.js?v=20261011e"></script>
 <script>
 (function(){
 'use strict';
@@ -263,6 +263,7 @@ function costruisci(){
  var out=[];
  S.posts.forEach(function(p){var z={ap:0,ril:0,r:[]};try{z=CVB.reazioni('p'+p.id,p.ts,Date.now(),SQ)}catch(e){}var f=fattore(p.team);out.push({k:'p'+p.id,id:p.id,hi:p.hi,real:1,a:hnd(p.team),x:p.body,ts:p.ts,ap:Math.round(z.ap*f),ril:Math.round(z.ril*f),v:0,f:f,tm:p.team,id0:p.id,r:z.r})});
  var gen=[];try{gen=CVB.genera(D,SQ,ST,Date.now())}catch(e){}
+ try{var tm={};S.posts.forEach(function(p){(tm[p.team]=tm[p.team]||[]).push(p.ts)});CVB.ufficiale(D,SQ,ST,tm,Date.now()).forEach(function(u){var z=CVB.reazioni(u.k,u.ts,Date.now(),SQ),f=fattore(u.team);out.push({k:u.k,a:hnd(u.team),x:u.x,ts:u.ts,ap:Math.round((z.ap+8)*f),ril:Math.round((z.ril+2)*f),v:0,f:f,tm:u.team,id0:CVB.h32(u.k)%1000,r:z.r})})}catch(e){}
  gen.forEach(function(p){out.push(p)});
  out.forEach(function(p){var rr=(p.r||[]).concat(tuttiR[p.k]||[]);rr.sort(function(a,b){return a.ts-b.ts});p.r=rr;
   p.A=(p.ap||0)+(RC[p.k+'|a']||0);p.R=(p.ril||0)+(RC[p.k+'|r']||0);if(!p.v){var et=Math.max(0,(Date.now()-p.ts)/36e5),cr=1-Math.exp(-et/5),j=0.8+((p.id0||0)*37%40)/100;p.v=Math.round(seguaci(p.tm)*(0.01+0.09*cr)*j+30*(p.A+p.R+rr.length))}});
