@@ -285,7 +285,7 @@ function ufficiale(D,SQ,ST,tsMap,ms){
    var ids=Object.keys(NM).filter(function(i){return NM[i].sq!==sq});
    if(ids.length){c.altro=NM[pick(r,ids)].n}
    opts.push('sme','sme');
-   var tp=pick(r,opts);if(tp==='cla'&&c.pos<=3)tp='clt',x=riempi(pick(r,UFF[tp]),c,null);
+   var tp=pick(r,opts);if(tp==='cla'&&c.pos<=3)tp='clt';var x=riempi(pick(r,UFF[tp]),c,null);
    var tx=gg*864e5+(8+Math.floor(r()*12))*36e5-72e5;out.push({k:k,team:sq,x:x,ts:tx<=ms?tx:f0,r:[]});
   })});
  return out}
