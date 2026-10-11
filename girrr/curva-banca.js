@@ -194,6 +194,18 @@ var LIVE={
  statistico_folle:['Probabilità che oggi {sq} segni: 63%. Che la tv funzioni: 61%. Che io dorma: 4%. {#}','Dati di oggi: il 100% dei fantallenatori è in ansia. Il restante 0% non esiste.','Secondo il mio modello, {sq} oggi ha il 58% di fare bene. E il 51% di fare male.'],
  arbitro_in_pensione:['Oggi sarebbe stata una bella giornata da arbitro. Fischietto in tasca, per sicurezza. {#}','Spero che oggi i direttori di gara siano sereni. Io lo ero. Poi ho smesso.','Giornata di campionato: ricordate di rispettare il fischio finale. Anche quello di casa.']
 };
+/* Utenti qualunque: nomi a caso, toni diversi */
+var COMUNI=[['fabrizio99','fabrizio99','s'],['errfantastico','ErrFantastico','i'],['ilbiscio','ilbiscio','c'],['giorgio_1987','giorgio_1987','g'],['xx_tommy_xx','xX_Tommy_Xx','s'],['la_pina','la_pina','g'],['marcorossi','MarcoRossi','p'],['superpippo','SuperPippo','s'],['ilgrandeste','ilGrandeSte','a'],['nicolino_','nicolino_','n'],['davide_ac','davide_ac','p'],['fantaguru88','FantaGuru88','i'],['roberta72','roberta72','g'],['il_lungo','il_lungo','c'],['kekko_','kekko_','s'],['mirko','mirko','a'],['antoniettab','AntoniettaB','g'],['gigi_er_mejo','Gigi_Er_Mejo','s'],['lucathebest','LucaTheBest','p'],['bbq_enjoyer','bbq_enjoyer','s'],['alepizza','alepizza','n'],['therealsandro','TheRealSandro','c'],['pino_arrosto','pino_arrosto','s'],['zio_beppe','zio_Beppe','n'],['chiarafanta','ChiaraFanta','g'],['il_carletto','il_carletto','a'],['maxpower','MaxPower','p'],['donrodrigo','DonRodrigo','i'],['tizio_a_caso','tizio_a_caso','s'],['sandokan79','sandokan79','c']];
+var TONI={
+ s:['ho messo {gio} perché ha il nome simpatico. vediamo','qualcuno mi spiega come si cambia il modulo','oggi pizza e fantacalcio. la vita è bella','ma {sq} gioca di sabato o di domenica? chiedo per un amico','non ho capito niente ma mi sto divertendo','ho dimenticato la formazione. di nuovo. che bello','chi è {gio}? scherzo, lo so. forse','se vinco offro io. se perdo non mi cercate','il mio capitano è in panchina. e io sono sul divano. coerenza','oggi ho chiesto al mio gatto di scegliere la formazione. {sq2} non ha vinto, lui sì'],
+ i:['Il punto non è chi vince la giornata, ma chi sbaglia meno le scelte in panchina. Il fantacalcio è gestione del rischio.','La differenza la fa la continuità di rendimento, non il bonus occasionale. Sempre.','Attenzione ai turnover: {gio} ha giocato troppo e il rendimento cala dopo tre partite ravvicinate.','A fine stagione vincerà chi avrà evitato i grandi errori, non chi avrà azzeccato quelli grandi.','Ogni formazione è una scommessa sul tempo: quanto vale un titolare oggi rispetto a domani?','Chi guarda solo la media voto sbaglia: conta la varianza. {gio} ne è un esempio.'],
+ c:['ma {sq} gioca con i piedi o con le mani?','chi ha consigliato {gio} a {sq} deve spiegare','la formazione di {sq} sembra scelta da un gatto','certi allenatori andrebbero mandati in pensione. subito','{sq2} è fortunata. solo fortunata','se questa è una squadra io sono un astronauta','bravi a dare i voti dal divano. a giocare però siamo tutti uguali','quella formazione l\'avrei fatta meglio io con gli occhi chiusi','{gio} è sopravvalutato. lo dico io che sono prudente','non capisco perché si parli ancora di {sq}. ha giocato male e basta'],
+ g:['complimenti a {sq}, bella stagione finora','forza {sq2}, dai che ce la fate!','bel campionato ragazzi, mi sto divertendo un sacco','buona giornata a tutti, che vinca il migliore (o il più fortunato)','grazie a tutti per i bei messaggi. siete una bella lega','in bocca al lupo a chi gioca oggi. a tutti, davvero','bellissimo vedere tutti questi commenti. questa lega è una famiglia','grazie al giornale per le pagelle di mercoledì. le leggo sempre per prime','ho vinto poco ma mi sono divertito tanto. è questo il fantacalcio','complimenti a chi ha organizzato tutto. davvero un bel lavoro'],
+ p:['sempre i soliti a vincere. mah','questo regolamento va cambiato. lo dico da settimane','perché si perde sempre la domenica? è una cospirazione','il bonus capitano è troppo punitivo. punto','non mi trovo con le regole della coppa, ditelo se sbaglio','ho letto il regolamento due volte e ancora non capisco. dev\'essere colpa mia, o no?','la coppa dovrebbe avere regole più chiare. dico solo questo','troppe partite, troppi punti da ricontare. basta cambiare tutto ogni giornata','chi decide gli orari delle aste? vorrei parlare con questa persona'],
+ n:['ricordo quando si giocava tutti alla stessa ora, la domenica alle 15','una volta il fantacalcio si faceva con carta e penna. ora ci sono le notifiche','bei tempi quando bastava leggere il giornale per fare la formazione','il primo fantacalcio l\'ho giocato nel 2004. ho perso. ma che bei ricordi','al bar la domenica si litigava per un voto. oggi si litiga per un emoji','mi manca il gazzettino con le pagelle ancora calde di inchiostro','mio nonno diceva che il calcio si guarda alla radio. aveva ragione','quando ho iniziato non c\'erano nemmeno i bonus. solo gol e pazienza'],
+ a:['ho il cuore a mille. cambio formazione per la quarta volta','non riesco a guardare i risultati. li guardo. no, non li guardo','ho paura di tutto. soprattutto del 5,5','se {gio} non segna oggi mi viene un colpo','ansia da formazione. ansia da panchina. ansia da tutto','ho cambiato modulo ieri sera e non dormo ancora','non apro l\'app fino alle 19. lo giuro. forse. {#}','il capitano è un incubo. il vice è un incubo. la panchina è un incubo','ho sudato più io davanti al telefono che {gio} in campo']
+};
+var CREP=['lol','vero','ahahah','🤣🤣','no ma anche basta','concordo','boh io dico di no','top','che schifo','assolutamente sì','ma cosa dici?','bravo','potresti aver ragione','non so cosa dire. bravo comunque','ahah dai','ci sta','fortissimo','questa me la segno','🔥','mah. sarà'];
 var AUTORI=Object.keys(PERS);
 /* risposte generiche */
 var RISP=['Confermo.','Firmo.','Verissimo.','Però {sq} ha dei dubbi.','Non è colpa mia, giuro.','Seguiamo con attenzione.','Applauso, ma con riserva.','Su questo non ho nulla da aggiungere. Quindi aggiungo.','Ai posteri.','Questo coro merita un premio. O un esame.','Ho letto e sono ancora qui.','Ma anche no.','Bomba. Poi si vedrà.','Hai detto tutto. Anche troppo.','Lo dicevo anche io. Ma più forte.'];
@@ -234,6 +246,7 @@ function ctxDi(D,SQ,ST,seed){
 }
 function riempi(t,c,tag){return t.replace(/\{(\w+)\}/g,function(m,k){return c[k]!==undefined?c[k]:m}).replace('{#}',tag?('#'+tag):'').replace(/\s+$/,'').replace(/\s{2,}/g,' ').replace(/\.\.(?!\.)/g,'.')}
 var PESI={0:{live:9,pm:2,so:2,al:2,gen:2,mk:1,fc:1,cl:1,ri:0},1:{pm:5,so:3,al:3,gen:3,mk:1,fc:1,cl:2,ri:1},2:{cl:4,ri:6,al:3,so:3,gen:3,mk:1,fc:2,pm:1},3:{cl:3,ri:5,so:3,al:2,gen:3,mk:2,fc:2,pm:1},4:{mk:5,ri:3,gen:3,fc:3,so:2,al:2,cl:1,pm:0},5:{mk:5,ri:1,gen:3,fc:3,so:2,al:2,cl:1,pm:0,live:2},6:{live:10,pm:1,ri:1,gen:2,mk:2,so:1,fc:2,al:1,cl:0}};
+function comune(r){return COMUNI[Math.floor(r()*COMUNI.length)]}
 function post_giorno(D,SQ,ST,g){
  var dd=dalGiorno(g),tg=tendenze(D),tags=tg.map(function(x){return x[0]}),r=prng('giorno'+g),mk=ctxDi(D,SQ,ST,'ctx'+g);
  var w=PESI[dd.wd],cats=[];Object.keys(w).forEach(function(k){for(var i=0;i<w[k];i++)cats.push(k)});
@@ -251,8 +264,16 @@ function post_giorno(D,SQ,ST,g){
   if(IMGPER[a]&&ri()<0.4){po.imgt=IMGPER[a];po.cx={sq:c.sq,sq2:c.sq2,gio:c.gio,pt:c.pt}}
   out.push(po);
  }
+ /* utenti qualunque */
+ var nc=3+Math.floor(r()*4)+((dd.wd===0||dd.wd===6)?3:0);
+ for(var q=0;q<nc;q++){var rc=prng('cm'+g+'-'+q),cu=comune(rc),cl=TONI[cu[2]],cc=mk(),xt=riempi(pick(rc,cl),cc,rc()<0.25?pick(rc,tags):null);
+  if(cu[2]!=='i'&&rc()<0.5)xt=xt.charAt(0).toLowerCase()+xt.slice(1);
+  if(cu[2]!=='i'&&rc()<0.35)xt=xt.replace(/\.$/,'');
+  if(rc()<0.12)xt+=' '+pick(rc,GEN);
+  var hq=7+Math.floor(rc()*16),mq=Math.floor(rc()*60);
+  out.push({k:'v:'+g+':u'+q,a:cu[0],x:xt,ts:ts(dd.y,dd.mo,dd.d,Math.min(23,hq),mq),r:[]})}
  /* risposte generiche */
- out.forEach(function(p){var rr=prng(p.k),nr=Math.floor(rr()*3);p.r=[];var s=shuffle(rr,AUTORI.filter(function(a){return a!==p.a}));for(var j=0;j<nr;j++){var c=mk();p.r.push({a:s[j],x:natura(riempi(pick(rr,RISP),c,null),p.k+'r'+j,s[j]),ts:p.ts+(5+Math.floor(rr()*90))*60000})}});
+ out.forEach(function(p){var rr=prng(p.k),nr=Math.floor(rr()*3);p.r=[];var s=shuffle(rr,AUTORI.filter(function(a){return a!==p.a}));for(var j=0;j<nr;j++){var c=mk();if(rr()<0.5){var cu=comune(rr);if(cu[0]!==p.a)p.r.push({a:cu[0],x:pick(rr,CREP),ts:p.ts+(5+Math.floor(rr()*120))*60000});continue}p.r.push({a:s[j],x:natura(riempi(pick(rr,RISP),c,null),p.k+'r'+j,s[j]),ts:p.ts+(5+Math.floor(rr()*90))*60000})}});
  return out;
 }
 /* Rende i cori meno perfetti e più vivi: emoji, punti esclamativi, puntini, domande insistenti, qualche errore. Tutto raro e deterministico. */
@@ -311,7 +332,7 @@ function genera(D,SQ,ST,ms){
 function reazioni(k,t,ms,SQ){var r=prng('rz'+k),age=(ms-t)/60000;if(age<1)return{ap:0,ril:0,r:[]};
  var fa=2+Math.floor(r()*11),fr=Math.floor(r()*4),pr=Math.pow(Math.min(1,age/360),0.6),out=[];
  var nr=Math.floor(r()*3),ord=shuffle(r,AUTORI);
- for(var i=0;i<nr;i++){var d=10+r()*240,tx=pick(r,RISP).replace('{sq}',pick(r,SQ)),a=ord[i];if(age>=d)out.push({a:a,x:natura(tx,k+'z'+i,a),ts:t+d*60000})}
+ for(var i=0;i<nr;i++){var d=10+r()*240,tx=pick(r,RISP).replace('{sq}',pick(r,SQ)),a=ord[i];if(r()<0.5){var cu=comune(r);if(age>=d)out.push({a:cu[0],x:pick(r,CREP),ts:t+d*60000});continue}if(age>=d)out.push({a:a,x:natura(tx,k+'z'+i,a),ts:t+d*60000})}
  return{ap:Math.floor(fa*pr),ril:Math.floor(fr*pr),r:out}}
 
 /* Cori automatici del profilo ufficiale: se una squadra tace per due settimane */
@@ -353,5 +374,5 @@ function ultimo(D,ms){var SQ=(D.teams||[]).map(function(t){return t.name}),L=(D.
 var NOMI={il_barista:'Il Barista',il_mago_cabala:'Il Mago della Cabala',la_suocera:'La Suocera',il_tassista:'Il Tassista',fidanzata_stufa:'La Fidanzata Stufa',nonno_cesare:'Nonno Cesare',tifoso_arrabbiato:'Il Tifoso Arrabbiato',mister_divano:'Il Tecnico da Divano',radio_spogliatoio:'Radio Spogliatoio',mamma_di_capitan:'Mamma di Capitan Sfortuna',ex_ds_provincia:'Ex DS di Provincia',var_parlante:'VAR Parlante',fc27_ratings:'FC27 Ratings Italia',il_cugino_del_dt:'Il Cugino del DT',telecronista_stanco:'Il Telecronista Stanco',gufo_professionista:'Gufo Professionista',il_filosofo_del_pallone:'Il Filosofo del Pallone',bomber_da_bar:'Bomber da Bar',statistico_folle:'Lo Statistico Folle',arbitro_in_pensione:'Arbitro in Pensione',ciro_trattativa:'Ciro Trattativa',lega_ofantagirrr:'Lega O Fant A Girrr',giornale_girrr:'O Giornale del Girrr'};
 function anteprima(D,ms,n){var SQ=(D.teams||[]).map(function(t){return t.name}),L=(D.cal&&D.cal.lega)||[],u=null;L.forEach(function(g){if(g.m.some(function(m){return m[4]!=='-'}))u=g});
  return genera(D,SQ,{cls:SQ.map(function(x){return{n:x}}),ult:u,next:null},ms).filter(function(p){return !p.tipo}).slice(0,n).map(function(p){return{a:p.a,n:NOMI[p.a]||p.a,x:p.x.replace(/\n[\s\S]*/,'')}})}
-window.CVB={cupUlt:cupUlt,ufficiale:ufficiale,anteprima:anteprima,reazioni:reazioni,ultimo:ultimo,genera:genera,tendenze:tendenze,PERS:PERS,RISP:RISP,CIRO:CIRO,roma:roma,giorno:giorno,h32:h32};
+window.CVB={COMUNI:COMUNI,cupUlt:cupUlt,ufficiale:ufficiale,anteprima:anteprima,reazioni:reazioni,ultimo:ultimo,genera:genera,tendenze:tendenze,PERS:PERS,RISP:RISP,CIRO:CIRO,roma:roma,giorno:giorno,h32:h32};
 })();

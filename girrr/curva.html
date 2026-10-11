@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,viewport-fit=cover">
 <meta name="robots" content="noindex">
-<meta name="cv-ver" content="20261011n">
+<meta name="cv-ver" content="20261011p">
 <title>Curva · O Girrr</title>
 <link rel="icon" type="image/png" href="../assets/favicon-64.png">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800;900&display=swap">
@@ -171,7 +171,7 @@ html,body{overscroll-behavior-y:none;touch-action:manipulation;-webkit-text-size
 </div>
 <script>window.goatcounter={path:function(){return location.pathname},no_onload:/[?&]demo/.test(location.search)}</script>
 <script data-goatcounter="https://djcosta18.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
-<script src="curva-banca.js?v=20261011n"></script>
+<script src="curva-banca.js?v=20261011p"></script>
 <script>
 (function(){
 'use strict';
@@ -179,6 +179,7 @@ var URL_='https://qmjqfgmvimsuxvghetgi.supabase.co',KEY='sb_publishable_qPhimkrF
 var SQ=['Oranje VC','The Blue brothers','Apo team','Grodah','WOA','Real Madrink','stif dc','Mariana Coneja','AFA SELECCION','Atletico ma non troppo'];
 var ADMIN='Oranje VC',MAX=140;
 function esc(s){return String(s).replace(/[&<>"]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})}
+function nm(a){return a.k==='u'?a.n:cap(a.n)}
 function cap(s){return s.charAt(0).toUpperCase()+s.slice(1)}
 function maiusc(s){return s.replace(/(^\s*|[.!?…]\s+)([a-zàèéìòù])/g,function(m,a,b,off,str){if(a.charAt(0)==='.'&&/(^|\s)[A-Z]$/.test(str.slice(0,off)))return m;return a+b.toUpperCase()})}
 function hue(n){var h=0;for(var i=0;i<n.length;i++)h=(h*31+n.charCodeAt(i))%360;return h}
@@ -210,7 +211,9 @@ add('lega_ofantagirrr','Lega O Fant A Girrr','org','oro','Account ufficiale dell
 add('giornale_girrr','O Giornale del Girrr','org','oro','Il settimanale della lega. Esce ogni mercoledì mattina.',['#c8102e','#7a0a1c']);
 add('ciro_trattativa','Ciro Trattativa','pro','blu','Giornalista di mercato. Quasi sempre. Fonti: il bar sotto casa.',['#1d9bf0','#0b3d66']);
 [['il_barista','Il Barista','Bar Sport. Caffè, cornetti e pronostici non richiesti.','#7f5539','#3d2817'],['il_mago_cabala','Il Mago della Cabala','Numeri, stelle e calzini. Rimborsi non previsti.','#7b2cbf','#240046'],['la_suocera','La Suocera','Il fantacalcio? Non lo capisco ma ho un\'opinione.','#c1121f','#5c0a10'],['il_tassista','Il Tassista','Tutto quello che sento in macchina. Taxi sempre libero.','#f5b700','#6b4d00'],['fidanzata_stufa','La Fidanzata Stufa','Lui è in asta. Io sono qui.','#e07a9b','#6a2c40'],['nonno_cesare','Nonno Cesare','Allenatore dal 1962 (della domenica).','#6b705c','#3a3d33'],['tifoso_arrabbiato','Il Tifoso Arrabbiato','Cambiate allenatore. Sempre.','#b5179e','#560bad'],['mister_divano','Il Tecnico da Divano','Ho vinto tutto. Su un altro divano.','#3a86ff','#8338ec'],['radio_spogliatoio','Radio Spogliatoio','Voci di corridoio. Nessuna conferma, molta convinzione.','#fb8500','#9d4400'],['mamma_di_capitan','Mamma di Capitan Sfortuna','Orgogliosa di mio figlio. Soprattutto quando perde.','#ef476f','#7b1c34'],['ex_ds_provincia','Ex DS di Provincia','Ho venduto più portieri di quanti ne abbia mai parati la mia squadra.','#06d6a0','#0b5d49'],['var_parlante','VAR Parlante','Ho rivisto l\'azione. Ho dei dubbi.','#118ab2','#073b4c'],['fc27_ratings','FC27 Ratings Italia','Aggiorniamo gli overall quando ci pare. Reclami non accettati.','#2ec4b6','#0b3c3a'],['il_cugino_del_dt','Il Cugino del DT','Mio cugino lo sa. Io no.','#e07a5f','#3d405b'],['telecronista_stanco','Il Telecronista Stanco','Ancora qui. Purtroppo.','#8d99ae','#2b2d42'],['gufo_professionista','Gufo Professionista','Gufo con metodo e dedizione.','#7b2cbf','#240046'],['il_filosofo_del_pallone','Il Filosofo del Pallone','Il calcio è un\'idea. Il resto è mercato.','#264653','#0b1e24'],['bomber_da_bar','Bomber da Bar','Gol a ripetizione, ma solo al bancone.','#f4a261','#7a3e00'],['statistico_folle','Lo Statistico Folle','Il 73% delle mie statistiche è inventato.','#00b4d8','#03045e'],['arbitro_in_pensione','Arbitro in Pensione','Ho fischiato 400 partite. E diverse persone.','#adb5bd','#343a40']].forEach(function(x){add(x[0],x[1],'fan','',x[2],[x[3],x[4]])});}
-initAcc();
+var BIOU=['','','Papà, tifoso e fantallenatore della domenica.','Qui solo per i commenti.','Non chiedetemi come ho fatto.','Calcio, pizza, ripeto.','La domenica è sacra.','Perdo ma con stile.','Fantacalcio dal 2008.','Scrivo quello che penso. Poi mi pento.','Allenatore da divano certificato.','Ho una formazione. A volte anche due.'];
+function initUtenti(){try{CVB.COMUNI.forEach(function(u){var h=hue(u[0]);add(u[0],u[1],'u','',BIOU[h%BIOU.length],['hsl('+h+' 45% 38%)','hsl('+((h+50)%360)+' 40% 22%)'])})}catch(e){}}
+initUtenti();
 function acc(h){return ACC[h]||{h:h,n:h,k:'fan',v:'',bio:''}}
 var SEEN={},NOTIF={tot:0,per:{}},pimg=null,IM={},IMG_LOAD={};
 var S={ok:false,posts:[],replies:[],react:[],mine:[],follow:[],prof:{}},NET=null;
@@ -395,7 +398,7 @@ function puoCanc(h){return me&&(h===meH||me===ADMIN)}
 function reply(r,pk,i){var ra=acc(r.a),x=r.real&&puoCanc(r.a)?'<button class="rx" data-a="delr" data-rid="'+r.id+'" title="Elimina">'+I.del.replace('<svg','<svg width="14" height="14"')+'</button>':'';
  var rk=pk?(r.real?'r'+r.id:pk+'~'+i):'',B=pk?(CVB.h32(rk)%5):0,N=rk?B+(RC[rk+'|a']||0):0,M=rk&&MN[rk+'|a'];
  var az=rk?'<div class="ra"><button class="'+(M?'on':'')+'" data-a="rapp" data-rk="'+rk+'">'+I.app+(N||'')+'</button>'+(me?'<button data-a="rrsp" data-h="'+ra.h+'">Rispondi</button>':'')+'</div>':'';
- return '<div class="rp">'+AV(ra,'sm','data-u="'+ra.h+'"')+'<div class="pb"><div class="pn" style="font-size:14px"><b data-u="'+ra.h+'">'+esc(cap(ra.n))+'</b>'+badge(ra.v)+'<span class="h">@'+ra.h+'</span><span class="tm">· '+ago(r.ts)+'</span>'+x+'</div><div class="pt" style="font-size:14.5px;margin-bottom:0">'+testo(r.x)+'</div>'+az+'</div></div>'}
+ return '<div class="rp">'+AV(ra,'sm','data-u="'+ra.h+'"')+'<div class="pb"><div class="pn" style="font-size:14px"><b data-u="'+ra.h+'">'+esc(nm(ra))+'</b>'+badge(ra.v)+'<span class="h">@'+ra.h+'</span><span class="tm">· '+ago(r.ts)+'</span>'+x+'</div><div class="pt" style="font-size:14.5px;margin-bottom:0">'+testo(r.x)+'</div>'+az+'</div></div>'}
 function postHTML(p){
  var a=acc(p.a),A=MN[p.k+'|a']?1:0,R=MN[p.k+'|r']?1:0,own=p.real&&puoCanc(p.a);
  var bi='';try{bi=cardBot(p)}catch(e){}
@@ -404,7 +407,7 @@ function postHTML(p){
  var op=!!open[p.k];
  var rl=p.rtby?'<div class="rtl">'+I.ril+esc(cap(p.rtby))+' ha rilanciato</div>':(RTS[p.k]&&vista!=='u'?'<div class="rtl">'+I.ril+'Rilanciato da '+RTS[p.k].slice(0,2).map(function(t){return esc(cap(t.team))}).join(', ')+(RTS[p.k].length>2?' e altri '+(RTS[p.k].length-2):'')+'</div>':'');
  return '<article class="post'+(SEEN[p.k]?' old':'')+'" data-k="'+p.k+'">'+AV(a,'','data-u="'+a.h+'"')+'<div class="pb">'+rl+
-  '<div class="pn"><b data-u="'+a.h+'">'+esc(cap(a.n))+'</b>'+badge(a.v)+'<span class="h">@'+a.h+'</span><span class="tm">· '+ago(p.ts)+'</span>'+(NOTIF.per[p.k]?'<span class="np">+'+NOTIF.per[p.k]+' novità</span>':'')+'</div>'+
+  '<div class="pn"><b data-u="'+a.h+'">'+esc(nm(a))+'</b>'+badge(a.v)+'<span class="h">@'+a.h+'</span><span class="tm">· '+ago(p.ts)+'</span>'+(NOTIF.per[p.k]?'<span class="np">+'+NOTIF.per[p.k]+' novità</span>':'')+'</div>'+
   '<div class="pt">'+testo(p.x)+'</div>'+(p.hi?'<div class="pimg" data-id="'+p.id+'">'+(IM[p.id]?'<img src="'+IM[p.id]+'" alt="">':'')+'</div>':'')+ex+
   (th?'<div class="thr'+(open['t'+p.k]?' open':'')+'">'+th+'</div><button class="lnk" data-a="thr" style="color:var(--blu)">'+(open['t'+p.k]?'Nascondi il resto':'Mostra tutto il coro')+'</button>':'')+
   '<div class="acts"><button class="rsp'+(op?' on':'')+'" data-a="rsp">'+I.rsp+(p.r.length||'')+'</button><button class="ril'+(R?' on':'')+'" data-a="ril">'+I.ril+(p.R||'')+'</button><button class="app'+(A?' on':'')+'" data-a="app">'+I.app+(p.A||'')+'</button><button style="cursor:default">'+I.vis+fmt(p.v)+'</button>'+(own?'<button class="del" data-a="del" title="Elimina">'+I.del+'</button>':'')+'</div>'+
@@ -458,7 +461,7 @@ function render(){
   var hh=pf.h!=null?pf.h:hue(a.n),c1=a.c?a.c[0]:'hsl('+hh+' 60% 40%)',c2=a.c?a.c[1]:'hsl('+((hh+40)%360)+' 55% 22%)';
   var bh2=pf.bh!=null?pf.bh:hh;if(isSq){c1='hsl('+bh2+' 60% 40%)';c2='hsl('+((bh2+40)%360)+' 55% 22%)'}var bim=imgP(a,'b');
   h+='<div class="ban" id="ban" style="--c1:'+c1+';--c2:'+c2+(bim?';background:url('+bim+') center/cover':'')+'"></div><div class="pf"><div class="r1">'+AV(a,'xl')+(mio?'<button class="btn out" data-a="edav">'+(edit?'Chiudi':'Modifica profilo')+'</button>':segBtn(vprof))+'</div>'+
-   '<h2>'+esc(cap(a.n))+badge(a.v)+'</h2><div class="h">@'+a.h+'</div><p>'+esc(bio)+'</p>'+(a.v?'<div class="etich">'+badge(a.v)+(a.v==='oro'?' Account ufficiale':' Account verificato')+'</div>':'')+
+   '<h2>'+esc(nm(a))+badge(a.v)+'</h2><div class="h">@'+a.h+'</div><p>'+esc(bio)+'</p>'+(a.v?'<div class="etich">'+badge(a.v)+(a.v==='oro'?' Account ufficiale':' Account verificato')+'</div>':'')+
    '<div class="st"><span><b>'+(mio?nSeguiti():isSq?11:12+hue(a.n)%40)+'</b> Seguiti</span><span><b>'+(isSq?fmt(seguaci(a.n)).replace(' mila','')+' mila':a.k==='org'?fmt(9000+hue(a.n)*31).replace(' mila','')+' mila':100+hue(a.n)*3)+'</b> Follower</span></div></div>';
   if(mio&&edit)h+='<div class="edav"><b>Scegli la tua icona</b><div class="emo">'+EMO.map(function(e){return '<button data-emo="'+e+'" class="'+(pf.e===e?'on':'')+'">'+e+'</button>'}).join('')+'<button data-emo="" class="'+(!pf.e?'on':'')+'" style="font-size:12px;font-weight:800">Sigla</button></div><b>Colore dell\'avatar</b><input type="range" id="hue" min="0" max="359" value="'+hh+'">'+(S.v>=2?'<div class="edi"><button class="btn out" data-a="pfoto">Foto profilo</button><button class="btn out" data-a="pfoto0">Togli foto</button></div><b>Colore dello sfondo</b><input type="range" id="bhue" min="0" max="359" value="'+bh2+'"><div class="edi"><button class="btn out" data-a="bfoto">Immagine di sfondo</button><button class="btn out" data-a="bfoto0">Togli immagine</button></div><input type="file" id="fpa" accept="image/*" hidden><input type="file" id="fpb" accept="image/*" hidden>':'')+'<button class="btn" data-a="salvaav" style="margin-top:10px">Salva</button></div>';
   h+=feed(profiloPosts(a));
