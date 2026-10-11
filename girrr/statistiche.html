@@ -158,10 +158,11 @@ function curvaStat(ev){
   if(DEMO){draw({posts:[{team:'Oranje VC'},{team:'Grodah'},{team:'Grodah'},{team:'WOA'}],replies:[{team:'Grodah'},{team:'Oranje VC'}],react:[{n:5},{n:3}]});return}
   fetch(SUP+'/rest/v1/rpc/curva_feed',{method:'POST',headers:{apikey:SKEY,Authorization:'Bearer '+SKEY,'Content-Type':'application/json'},body:'{}'}).then(function(r){return r.ok?r.json():null}).then(function(f){if(f)draw(f)}).catch(function(){});
   function draw(f){
+    var rl=/^p\d+$/;f.replies=f.replies.filter(function(r){return rl.test(r.k||'p0')});f.react=f.react.filter(function(r){return rl.test(r.k||'p0')});
     var pt={},n;f.posts.forEach(function(p){pt[p.team]=(pt[p.team]||0)+1});f.replies.forEach(function(p){pt[p.team]=(pt[p.team]||0)+1});
     var rows=Object.keys(pt).map(function(k){return[k,pt[k]]}).sort(function(a,b){return b[1]-a[1]}),m=rows.length?rows[0][1]:1,rea=f.react.reduce(function(a,r){return a+Number(r.n)},0);
     box.innerHTML='<div class="card"><h3>Curva</h3><div class="kpi" style="margin-bottom:12px"><div><small>Cori</small><b>'+f0(f.posts.length)+'</b></div><div><small>Risposte</small><b>'+f0(f.replies.length)+'</b></div><div><small>Applausi e rilanci</small><b>'+f0(rea)+'</b></div></div>'+
-      (rows.length?'<div class="vuoto" style="text-align:left;margin-bottom:6px">Chi scrive di più (cori + risposte)</div>'+rows.map(function(r){return bar(r[0],r[1],m)}).join(''):'<div class="vuoto">Ancora nessun coro scritto.</div>')+'<div class="vuoto" style="margin-top:8px;font-size:12px">Le visite alla Curva sono in "Dove si entra di più". Conta gli ultimi cori e le risposte degli ultimi 30 giorni.</div></div>';
+      (rows.length?'<div class="vuoto" style="text-align:left;margin-bottom:6px">Chi scrive di più (cori + risposte)</div>'+rows.map(function(r){return bar(r[0],r[1],m)}).join(''):'<div class="vuoto">Ancora nessun coro scritto.</div>')+'<div class="vuoto" style="margin-top:8px;font-size:12px">Le visite alla Curva sono in "Dove si entra di più". Conta solo i cori scritti da voi, con le risposte e le reazioni che ricevono, negli ultimi 30 giorni.</div></div>';
   }
 }
 function totogirrr(){
