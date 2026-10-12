@@ -46,6 +46,39 @@ var PERS={
   mk:['{gio} non vale il prezzo. Vendete tutto. Ricominciate. Poi vendete di nuovo.'],
   gen:['Quando perdo do la colpa all\'arbitro. Quando vinco ringrazio l\'arbitro. Quando pareggio mi arrabbio con tutti.','Ho litigato con la TV. Ha vinto lei. Era spenta.'],
   ri:["{perd} ha preso {pp} punti contro {vinc}? Una vergogna. Cambiate tutto, a partire dall'allenatore.", "{vinc} vince {sc} e io sono arrabbiato lo stesso. Perché si poteva fare meglio."],cl:['{sq} al {pos}° posto. Posizione che meriterebbe una commissione d\'inchiesta.']},
+
+ il_complottista:{
+  gen:['Qualcuno mi spiega perché il VAR guarda sempre dalla parte dei soliti? Io una spiegazione ce l\'ho. Non vi piacerà.','Gli arbitri sono tutti pagati. Non dico da chi. Dico solo che il bar sotto casa mia ha un fornitore interessante.','Il fischio di oggi era già scritto. Da settimane. Chiedete a chi sapete voi.','Quanti rigori sono stati dati alle prime della classe? Io li ho contati. Troppi. Fate voi le conclusioni. {#}','Se fosse un caso, non succederebbe ogni domenica. Il caso, di solito, si prende anche qualche giorno libero.','Tutto truccato. Tutto. Anche il fantacalcio. Soprattutto il fantacalcio.'],
+  pm:['Con {pt} punti {sq} è stata derubata. Non so da chi. Ma qualcuno c\'è.','Il 5,5 a {gio}? Sembra un voto deciso a tavolino. Con il caffè.'],
+  ri:['{vinc} vince {sc}. Casualità? Io non credo alle casualità. Guardate chi arbitrava.','{perd} ha perso per due episodi. Gli episodi li decide qualcuno.'],
+  cl:['{sq} al {pos}° posto. Bene. Ora aspettiamo il rigore al 94° per {top}. {#}'],
+  mk:['Se {gio} cambia squadra c\'è sotto qualcosa. Ci sono sempre le commissioni. Sempre.'],
+  al:['Ma quale allenatore: sono gli arbitri che decidono tutto.'],
+  so:['Sorpresi dal risultato? Io no. Era previsto dalla settimana scorsa. Da chi? Non lo dico.']},
+ il_romantico_del_pallone:{
+  gen:['Ventidue uomini in mutande che corrono dietro a un pallone. E intorno miliardi di euro. Ditemi che non è strano.','Girano troppi soldi nel calcio. Poi ti chiedono 12 euro per una birra. {#}','Il calcio era quello dell\'oratorio: un pallone, due zaini come pali. Poi sono arrivati i diritti tv.','Un giocatore costa quanto un ospedale. Ma i diritti tv sono più importanti. Capito?','Alla fine sono solo 22 persone dietro a una palla. Eppure ci scanniamo per {sq}. Siamo messi bene.','I procuratori guadagnano più dei giocatori. I giocatori più dei medici. Il calcio ha vinto, il resto no.'],
+  pm:['{sq} ha {pt} punti. Una cifra irrisoria, rispetto a quanto costa uno solo dei suoi giocatori.'],
+  mk:['{gio} cambia squadra per milioni. Io faccio fantacalcio con crediti finti. Almeno sono onesti.'],
+  ri:['{vinc} vince {sc}, ma intanto i soldi li hanno vinti i procuratori.'],
+  cl:['{sq} al {pos}° posto. Classifica che conta meno del bilancio.'],
+  al:['L\'allenatore guadagna in un mese quanto io in tre vite. Con calma.'],
+  so:['Mi stupisce poco: se paghi tanto, vinci. Principio base.']},
+ ing_stadi:{
+  gen:['Gli stadi italiani hanno in media 60 anni. Per un ingegnere non è un dettaglio: è un\'ammissione. {#}','Un nuovo stadio costa meno di tre giocatori medi. Eppure lo aspettiamo da vent\'anni.','Parcheggio medievale, bagni preistorici. Il calcio è bello, i bagni meno.','Servono stadi moderni: coperture, accessi, visibilità. Poi parlate del VAR.','Cinque ore di fila per entrare. Cinque minuti di partita. Rinnoviamo gli stadi o almeno le code.','Se rifacessero gli stadi con lo stesso impegno con cui si lamentano degli arbitri, avremmo l\'Etihad ovunque.'],
+  pm:['{sq} segna, ma la visuale dal secondo anello? Non è dell\'altro mondo. È un altro mondo, e non va bene.'],
+  mk:['{gio} è un bel colpo. Ma uno stadio nuovo sarebbe un colpo migliore.'],
+  ri:['{vinc} vince {sc}. Però il tetto dello stadio perde. Nessuno ne parla.'],
+  cl:['{sq} al {pos}° posto in classifica e al 17° per qualità dei bagni. Il confronto è severo.'],
+  al:['Un allenatore si sostituisce in una settimana. Uno stadio in vent\'anni. Qualcosa non quadra.'],
+  so:['Sorpresa? Sì. Come l\'acqua che entra nel tunnel di uno stadio italiano.']},
+ il_super_tifoso:{
+  gen:['Io sono sempre stato di {top}. Sempre. Da giovedì, ma sempre.','{top} è la mia vita. Se perdono vado in depressione. Se vincono sono contento. Se sono prime, ancora di più.','{gio} è il più forte del mondo, punto. Non ammetto repliche. Domenica scorsa il più forte era un altro, ma ero sotto choc.','Tifo {top} da quando è prima. Il mio è un tifo molto sentimentale. Molto solido. Molto in classifica.','Chi parla male di {gio} non capisce nulla. Io ne ho parlato male tre settimane fa, ma ero un altro.','Gli amici mi dicono: ma non tifavi {sq2}? Io non ho mai tifato {sq2}. Chi lo dice? {#}'],
+  pm:['{sq} ha preso {pt} punti? Mai stato mio tifoso. Ma se vincono, ero con loro dall\'inizio.'],
+  mk:['{gio} è il mio idolo. Qualunque squadra scelga. Anche quella che vince, tipo {top}.'],
+  ri:['{vinc} vince {sc}. Grande squadra, grande storia, ci credevo dall\'inizio. Cioè da ieri sera.','{perd} perde. Che squadra mediocre. Non sono mai stato dei loro. Chi dice il contrario è un provocatore.'],
+  cl:['{top} comanda la classifica. Segnatevi: io sono di {top}. Da sempre. Controllate pure.'],
+  al:['Cambio allenatore? Dipende da chi vince. Se vince, è un genio.'],
+  so:['Sorpreso? No. Ho sempre saputo che {sq} sarebbe salita. Anche se ieri dicevo il contrario.']},
  mister_divano:{
   pm:['{sq} ha preso {pt} punti. Col 4-3-3 ne avrebbe fatti dieci in più. Fidatevi.','Ho rivisto la partita di {sq}. Dal divano si vede tutto. Soprattutto gli errori degli altri. {#}'],
   so:['Sorpreso dalla squadra? No. Sono sorpreso che qualcuno sia sorpreso. 4-3-3 e passa la paura.','{sq} ha cambiato modulo e ha dato un senso alla sua stagione. Io lo dicevo da agosto. Nessuno ascolta il divano.'],
@@ -178,6 +211,10 @@ PERS.fidanzata_stufa={
 };
 var IMGPER={il_barista:'lavagna',mister_divano:'campo',fc27_ratings:'carta',statistico_folle:'grafico',il_mago_cabala:'amuleto',telecronista_stanco:'diretta',tifoso_arrabbiato:'striscione',nonno_cesare:'epoca'};
 var LIVE={
+ il_complottista:['Oggi gli arbitri sono già al bar con qualcuno. Noi lo sappiamo.','Giornata di campionato. Segnatevi chi fischia e poi controllate chi vince. {#}'],
+ il_romantico_del_pallone:['Oggi si gioca. Il biglietto costa come un mese di spesa. Buona partita a tutti.','Giornata di campionato. Io guardo il pallone, voi guardate i soldi. Tanto è lo stesso.'],
+ ing_stadi:['Oggi si gioca. Controllate le uscite di sicurezza: io lo faccio sempre. È deformazione professionale.','Buon calcio a tutti. Se piove, controllate il tetto. Spoiler: perde.'],
+ il_super_tifoso:['Oggi tifo {sq}. Se perde, cambio squadra in diretta. {#}','Oggi sono tutto per {top}. Fino a fischio finale. Poi vediamo.'],
  nonno_cesare:['Oggi si gioca. Ai miei tempi la domenica era sacra: messa, pranzo, partita. Ora è solo notifiche.','Oggi spero che {sq} faccia un bel gioco. Se perde, ho sempre l\'arbitro da incolpare.','Preparo la radiolina. Il telefono non mi ascolta. {#}'],
  tifoso_arrabbiato:['OGGI CAMBIO TUTTO se {sq} non gioca bene. Allenatore compreso. {#}','Spero che oggi {gio} faccia qualcosa. Qualsiasi cosa. Anche un passo.','Giornata di campionato: ansia, caffè e voglia di urlare. In quest\'ordine.'],
  mister_divano:['Oggi guardo la giornata dal divano. Posizione ottimale per leggere il gioco. {#}','Per {sq} consiglio un 4-3-3 aggressivo. Se perde era colpa del 4-4-2. Mai del 4-3-3.','Il segreto per oggi è la compattezza tra le linee. Il segreto per me è il telecomando.'],
@@ -268,6 +305,13 @@ var AUTORI=Object.keys(PERS);
 var RISP=['Confermo.','Firmo.','Verissimo.','Però {sq} ha dei dubbi.','Non è colpa mia, giuro.','Seguiamo con attenzione.','Applauso, ma con riserva.','Su questo non ho nulla da aggiungere. Quindi aggiungo.','Ai posteri.','Questo coro merita un premio. O un esame.','Ho letto e sono ancora qui.','Ma anche no.','Bomba. Poi si vedrà.','Hai detto tutto. Anche troppo.','Lo dicevo anche io. Ma più forte.'];
 /* Ciro */
 var CIRO=[
+ {x:'🚨 Fonti vicine al barista: {gio} sarebbe nel mirino di {sq}. O forse di {sq2}. O forse del barista. {#}',t:[]},
+ {x:'Ultim\'ora, anzi no, penultim\'ora: {sq} e {sq2} hanno parlato di {gio}. Hanno parlato. Di cosa? Del tempo, forse. {#}',t:[]},
+ {x:'Mi dicono che {gio} sia sul mercato. Mi dicono anche tante altre cose. Ma questa mi piace. 🧵',t:['2/2 Fonte: un signore al bar. Il signore, però, era convinto.']},
+ {x:'🚨 Colpo a sorpresa in arrivo. Non so chi, non so quando, non so come. Ma sarà un colpo. {#}',t:[]},
+ {x:'Trattativa segreta tra {sq} e {sq2}. Così segreta che non lo sa nessuno. Nemmeno loro. {#}',t:[]},
+ {x:'🚨 {gio} potrebbe cambiare maglia. Oppure no. Oppure sì. Oppure resta. Questo è il bello del mercato. {#}',t:[]},
+ {x:'Conferma dalle mie fonti: {inj} ({inj_sq}) tornerà presto. Presto vuol dire tra una settimana, un mese o mai. {#}',t:[]},
  {x:'🚨 Ci siamo… forse. {sq} avrebbe un\'idea per {gio}. Il giocatore è sereno. Il giornalista meno. {#}\n\nAggiornamento a breve. 🧵',t:['2/3 Trattativa avviata da ore. O da minuti. Il bar sotto casa conferma. Più o meno.','3/3 Prossimo aggiornamento: quando vorrò io. Ci siamo. Forse.']},
  {x:'🚨 Mercato: {sq} lavora in silenzio su {gio}. Silenzio assoluto. Tanto che non so nulla. Ma lo dico lo stesso. {#}',t:[]},
  {x:'Ultime sul mercato: {sq} e {sq2} hanno parlato. Di cosa? Non posso dirlo. Perché non lo so. 🧵',t:['2/2 Quando lo saprò, voi sarete già in vacanza.']},
@@ -287,7 +331,7 @@ function nomi(D){var m={};(D.teams||[]).forEach(function(t){(t.pl||[]).forEach(f
 function ctxDi(D,SQ,ST,seed){
  var r=prng(seed),NM=nomi(D),ids=Object.keys(NM);
  return function(){
-  var c={};c.sq=pick(r,SQ);do{c.sq2=pick(r,SQ)}while(c.sq2===c.sq);c.all=MISTER[c.sq]||c.sq;c.all2=MISTER[c.sq2]||c.sq2;
+  var c={};c.sq=pick(r,SQ);do{c.sq2=pick(r,SQ)}while(c.sq2===c.sq);c.all=MISTER[c.sq]||c.sq;c.all2=MISTER[c.sq2]||c.sq2;c.top=(ST.cls&&ST.cls[0]&&ST.cls[0].n)||c.sq;
   c.gol=1+Math.floor(r()*4);
   var g=ids.length?NM[pick(r,ids)]:{n:'il bomber',sq:c.sq};c.gio=g.n;c.gio_sq=g.sq;
   var ij=(D.inj||[]).filter(function(i){return NM[i.id]});
@@ -339,7 +383,7 @@ function post_giorno(D,SQ,ST,g){
  return out;
 }
 /* Rende i cori meno perfetti e più vivi: emoji, punti esclamativi, puntini, domande insistenti, qualche errore. Tutto raro e deterministico. */
-var EMJ={il_barista:['☕','🥐','⚽'],il_mago_cabala:['🔮','🧿','✨'],la_suocera:['🍝','😤','🙄'],il_tassista:['🚕','📻','😅'],fidanzata_stufa:['🙄','😮‍💨','🍿'],nonno_cesare:['👴','🍷','⚽'],tifoso_arrabbiato:['😡','🤬','🔥'],mister_divano:['🛋️','📋','⚽'],radio_spogliatoio:['📻','👀','🤫'],mamma_di_capitan:['❤️','🍝','🥰'],ex_ds_provincia:['💼','🤝','😅'],var_parlante:['🖥️','🧐','🚩'],fc27_ratings:['🎮','📈','🔥'],il_cugino_del_dt:['🤫','👀','😏'],telecronista_stanco:['😴','🎙️','☕'],gufo_professionista:['🦉','😈','🔮'],il_filosofo_del_pallone:['🤔','🌌','⚽'],bomber_da_bar:['🍺','⚽','😎'],statistico_folle:['📊','🤓','🔢'],arbitro_in_pensione:['🟨','⚽','🙄']};
+var EMJ={il_complottista:['🕵️','🧐','💰'],il_romantico_del_pallone:['⚽','💸','😔'],ing_stadi:['🏟️','📐','🚧'],il_super_tifoso:['📣','😍','🔥'],il_barista:['☕','🥐','⚽'],il_mago_cabala:['🔮','🧿','✨'],la_suocera:['🍝','😤','🙄'],il_tassista:['🚕','📻','😅'],fidanzata_stufa:['🙄','😮‍💨','🍿'],nonno_cesare:['👴','🍷','⚽'],tifoso_arrabbiato:['😡','🤬','🔥'],mister_divano:['🛋️','📋','⚽'],radio_spogliatoio:['📻','👀','🤫'],mamma_di_capitan:['❤️','🍝','🥰'],ex_ds_provincia:['💼','🤝','😅'],var_parlante:['🖥️','🧐','🚩'],fc27_ratings:['🎮','📈','🔥'],il_cugino_del_dt:['🤫','👀','😏'],telecronista_stanco:['😴','🎙️','☕'],gufo_professionista:['🦉','😈','🔮'],il_filosofo_del_pallone:['🤔','🌌','⚽'],bomber_da_bar:['🍺','⚽','😎'],statistico_folle:['📊','🤓','🔢'],arbitro_in_pensione:['🟨','⚽','🙄']};
 var GEN=['😂','🤦‍♂️','👏','🔥','🙄','😅','⚽','😬'];
 var DOM=['Voi che dite?','Ma sono l\'unico?','Che ne pensate?','Qualcuno mi spiega?','Chi è d\'accordo?','Ma davvero?'];
 function natura(x,key,a){
@@ -368,7 +412,7 @@ function genera(D,SQ,ST,ms){
   /* Ciro: venerdì 18:00 + un aggiornamento il lunedì */
   var dd=dalGiorno(g),mk=ctxDi(D,SQ,ST,'ciro'+g);
   if((dd.wd===2||dd.wd===4||dd.wd===6)&&g>=oggi-3){var mp=null;try{mp=mercato(D,SQ,g,dd,ms)}catch(e){}if(mp&&mp.ts<=ms&&mp.ts>=ms-96*36e5)all.push(mp)}
-  if(dd.wd===5||dd.wd===1||dd.wd===3&&g%2===0){
+  if(dd.wd===5||dd.wd===1||dd.wd===3||dd.wd===0){
    var cr=prng('ciro'+g),tpl=CIRO[(g*3)%CIRO.length],cc=mk(),T=ts(dd.y,dd.mo,dd.d,dd.wd===5?18:dd.wd===1?12:10,Math.floor(cr()*50));
    var p={k:'c:'+g,a:'ciro_trattativa',x:riempi(tpl.x,cc,tag('c'+g,0)),thr:tpl.t.map(function(t){return riempi(t,cc,null)}),ts:T,r:[]};
    var c=conta(p.k,2);p.ap=c.ap;p.ril=c.ril;p.v=c.v;
@@ -434,7 +478,7 @@ function ufficiale(D,SQ,ST,tsMap,ms){
  return out}
 function ultimo(D,ms){var SQ=(D.teams||[]).map(function(t){return t.name}),L=(D.cal&&D.cal.lega)||[],u=null;L.forEach(function(g){if(g.m.some(function(m){return m[4]!=='-'}))u=g});
  var p=genera(D,SQ,{cls:SQ.map(function(n){return{n:n}}),ult:u,next:null},ms);return p.length?p[0].ts:0}
-var NOMI={il_barista:'Il Barista',il_mago_cabala:'Il Mago della Cabala',la_suocera:'La Suocera',il_tassista:'Il Tassista',fidanzata_stufa:'La Fidanzata Stufa',nonno_cesare:'Nonno Cesare',tifoso_arrabbiato:'Il Tifoso Arrabbiato',mister_divano:'Il Tecnico da Divano',radio_spogliatoio:'Radio Spogliatoio',mamma_di_capitan:'Mamma di Capitan Sfortuna',ex_ds_provincia:'Ex DS di Provincia',var_parlante:'VAR Parlante',fc27_ratings:'FC27 Ratings Italia',il_cugino_del_dt:'Il Cugino del DT',telecronista_stanco:'Il Telecronista Stanco',gufo_professionista:'Gufo Professionista',il_filosofo_del_pallone:'Il Filosofo del Pallone',bomber_da_bar:'Bomber da Bar',statistico_folle:'Lo Statistico Folle',arbitro_in_pensione:'Arbitro in Pensione',ciro_trattativa:'Ciro Trattativa',lega_ofantagirrr:'Lega O Fant A Girrr',giornale_girrr:'O Giornale del Girrr'};
+var NOMI={il_complottista:'Il Complottista',il_romantico_del_pallone:'Il Romantico del Pallone',ing_stadi:'L\'Ingegnere degli Stadi',il_super_tifoso:'Il Super Tifoso',il_barista:'Il Barista',il_mago_cabala:'Il Mago della Cabala',la_suocera:'La Suocera',il_tassista:'Il Tassista',fidanzata_stufa:'La Fidanzata Stufa',nonno_cesare:'Nonno Cesare',tifoso_arrabbiato:'Il Tifoso Arrabbiato',mister_divano:'Il Tecnico da Divano',radio_spogliatoio:'Radio Spogliatoio',mamma_di_capitan:'Mamma di Capitan Sfortuna',ex_ds_provincia:'Ex DS di Provincia',var_parlante:'VAR Parlante',fc27_ratings:'FC27 Ratings Italia',il_cugino_del_dt:'Il Cugino del DT',telecronista_stanco:'Il Telecronista Stanco',gufo_professionista:'Gufo Professionista',il_filosofo_del_pallone:'Il Filosofo del Pallone',bomber_da_bar:'Bomber da Bar',statistico_folle:'Lo Statistico Folle',arbitro_in_pensione:'Arbitro in Pensione',ciro_trattativa:'Ciro Trattativa',lega_ofantagirrr:'Lega O Fant A Girrr',giornale_girrr:'O Giornale del Girrr'};
 function anteprima(D,ms,n){var SQ=(D.teams||[]).map(function(t){return t.name}),L=(D.cal&&D.cal.lega)||[],u=null;L.forEach(function(g){if(g.m.some(function(m){return m[4]!=='-'}))u=g});
  return genera(D,SQ,{cls:SQ.map(function(x){return{n:x}}),ult:u,next:null},ms).filter(function(p){return !p.tipo}).slice(0,n).map(function(p){return{a:p.a,n:NOMI[p.a]||p.a,x:p.x.replace(/\n[\s\S]*/,'')}})}
 window.CVB={MISTER:MISTER,COMUNI:COMUNI,cupUlt:cupUlt,ufficiale:ufficiale,anteprima:anteprima,reazioni:reazioni,ultimo:ultimo,genera:genera,tendenze:tendenze,PERS:PERS,RISP:RISP,CIRO:CIRO,roma:roma,giorno:giorno,h32:h32};
