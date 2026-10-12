@@ -209,7 +209,7 @@ PERS.fidanzata_stufa={
  so:['Sorpresa da {sq}? No. Ma mi hanno chiesto di fingermi sorpresa.'],
  al:['Se il mio fidanzato fosse allenatore di {sq}, avrebbe già cambiato modulo tre volte. Per me va bene.']
 };
-var IMGPER={il_complottista:'dossier',il_romantico_del_pallone:'cartello',ing_stadi:'blueprint',il_super_tifoso:'sciarpa',var_parlante:'moviola',bomber_da_bar:'schedina',ex_ds_provincia:'contratto',il_barista:'lavagna',mister_divano:'campo',fc27_ratings:'carta',statistico_folle:'grafico',il_mago_cabala:'amuleto',telecronista_stanco:'diretta',tifoso_arrabbiato:'striscione',nonno_cesare:'epoca'};
+var IMGPER={il_barista:[['lavagna','pm,gen,live,so,al,fc'],['conto','mk'],['bar_class','cl,ri']],mister_divano:[['campo','*'],['divano','gen,pm,so,ri,live,cl']],fc27_ratings:[['carta','*'],['confronto','mk,ri,cl,pm']],statistico_folle:[['grafico','*'],['tabella','cl,ri,mk,gen']],il_mago_cabala:[['amuleto','*'],['oroscopo','gen,pm,ri,so,live']],telecronista_stanco:[['diretta','live,pm,so'],['tabellone','ri,cl,gen,al']],tifoso_arrabbiato:[['striscione','*'],['lettera','al,ri,gen,so']],nonno_cesare:[['epoca','*'],['figurina','mk,fc,gen']],il_complottista:[['dossier','*'],['ritaglio','ri,cl,gen']],il_romantico_del_pallone:[['cartello','*'],['scontrino','gen,mk,pm']],ing_stadi:[['blueprint','*'],['cantiere','gen,al,so']],il_super_tifoso:[['sciarpa','*'],['tessera','cl,mk,ri']],var_parlante:[['moviola','*']],bomber_da_bar:[['schedina','*']],ex_ds_provincia:[['contratto','*']]};
 var LIVE={
  il_complottista:['Oggi gli arbitri sono già al bar con qualcuno. Noi lo sappiamo.','Giornata di campionato. Segnatevi chi fischia e poi controllate chi vince. {#}'],
  il_romantico_del_pallone:['Oggi si gioca. Il biglietto costa come un mese di spesa. Buona partita a tutti.','Giornata di campionato. Io guardo il pallone, voi guardate i soldi. Tanto è lo stesso.'],
@@ -399,7 +399,7 @@ function post_giorno(D,SQ,ST,g){
   var tq=quando(r),hh=Math.floor(tq/60),mi=tq%60;
   var po={k:'v:'+g+':'+i,a:a,x:x,ts:ts(dd.y,dd.mo,dd.d,Math.min(23,hh),mi),_r:r,cat:cat},ri=prng(po.k+'img');
   po.cx={sq:c.sq,sq2:c.sq2,gio:c.gio,pt:c.pt};
-  if(IMGPER[a]&&ri()<0.6){po.imgt=IMGPER[a]}
+  if(IMGPER[a]&&ri()<0.6){var iml=IMGPER[a],ok=iml.filter(function(x){return x[1]==='*'||x[1].split(',').indexOf(cat)>=0});if(!ok.length)ok=iml;po.imgt=ok[Math.floor(ri()*ok.length)][0]}
   out.push(po);
  }
  /* utenti qualunque */
