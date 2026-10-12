@@ -97,10 +97,10 @@ Punteggio: piu' e' alto, piu' conviene. Unisce valore e probabilita' di giocare.
 | Giocatore | Squadra | Stato | Avversario | Punteggio |
 |---|---|---|---|---|
 | Perri | Torino | Titolare | Udinese (C) | 42 |
-| Thiam | Monza | Panchina | Lazio (T) | 42 |
+| Thiam | Monza | Panchina | Lazio (T) | 35 |
 | Mascardi | Torino | Panchina | Udinese (C) | 28 |
+| Tornqvist | Monza | Titolare | Lazio (T) | 21 |
 | Daffara | Parma | Panchina | Inter (T) | 15 |
-| Happonen | Bologna | Panchina | Lecce (T) | 15 |
 
 ### Difensori
 
@@ -109,27 +109,27 @@ Punteggio: piu' e' alto, piu' conviene. Unisce valore e probabilita' di giocare.
 | Hainaut | Venezia | Titolare | Atalanta (T) | 87 |
 | Abankwah | Udinese | Panchina | Torino (T) | 84 |
 | Zè Pedro | Cagliari | Titolare | Juventus (C) | 78 |
-| Cinquegrano | Sassuolo | Titolare | Milan (C) | 77 |
-| Rodriguez Ju. | Cagliari | Titolare | Juventus (C) | 77 |
+| Veiga D. | Lecce | Titolare | Bologna (C) | 77 |
+| Rodriguez Ju. | Cagliari | Titolare | Juventus (C) | 76 |
 
 ### Centrocampisti
 
 | Giocatore | Squadra | Stato | Avversario | Punteggio |
 |---|---|---|---|---|
-| Romano | Cagliari | Titolare | Juventus (C) | 90 |
-| Matic | Sassuolo | Titolare | Milan (C) | 84 |
+| Romano | Cagliari | Titolare | Juventus (C) | 89 |
+| Matic | Sassuolo | Titolare | Milan (C) | 83 |
 | Schmid | Frosinone | Titolare | Napoli (T) | 83 |
-| Winks | Cagliari | Titolare | Juventus (C) | 77 |
+| Winks | Cagliari | Titolare | Juventus (C) | 78 |
 | Fitz-Jim | Torino | Titolare | Udinese (C) | 76 |
 
 ### Attaccanti
 
 | Giocatore | Squadra | Stato | Avversario | Punteggio |
 |---|---|---|---|---|
-| Robinson J. | Monza | Titolare | Lazio (T) | 68 |
 | Lontani | Parma | Titolare | Inter (T) | 62 |
+| Robinson J. | Monza | Titolare | Lazio (T) | 61 |
 | Ghedjemis | Frosinone | Titolare | Napoli (T) | 44 |
-| N'Dri | Lecce | Panchina | Bologna (C) | 31 |
+| Enem | Bologna | Panchina | Lecce (T) | 30 |
 | Elphege | Parma | Riserva, ballottaggio | Inter (T) | 27 |
 
 ## Correzioni da controllare
