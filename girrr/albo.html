@@ -111,8 +111,8 @@ function tutte(){
 function dove(m){return m.comp+' · '+m.n+'ª giornata'}
 function trofei(){
   var h='<div class="tr">'
-   +'<div class="card"><div class="coppa">🏆</div><h4>Campionato 2026/27</h4><div class="st">In corso · giocata la '+(lastN(D.cal.lega,false))+'ª giornata</div><div class="vinc">Da assegnare</div></div>'
-   +'<div class="card"><div class="coppa">⭐</div><h4>Champions Cup 2026/27</h4><div class="st">'+(lastN(D.cal.cup,true)?'In corso · gironi giocati: '+lastN(D.cal.cup,true)+' giornate su '+D.cal.cup.length:'Parte alla prossima giornata · '+D.cal.cup.length+' giornate di gironi')+'</div><div class="vinc">Da assegnare</div></div></div>';
+   +'<div class="card"><div class="coppa">🏆</div><h4>Campionato 2026/27</h4><div class="st">In corso · Giocata la '+(lastN(D.cal.lega,false))+'ª giornata</div><div class="vinc">Da assegnare</div></div>'
+   +'<div class="card"><div class="coppa">⭐</div><h4>Champions Cup 2026/27</h4><div class="st">'+(lastN(D.cal.cup,true)?'In corso · Gironi giocati: '+lastN(D.cal.cup,true)+' giornate su '+D.cal.cup.length:'Parte alla prossima giornata · '+D.cal.cup.length+' giornate di gironi')+'</div><div class="vinc">Da assegnare</div></div></div>';
   return h;
 }
 function lastN(c,cup){var l=0,i=cup?5:4;c.forEach(function(g){if(g.m.some(function(m){return m[i]!=='-'}))l=g.n});return l}
