@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,viewport-fit=cover">
 <meta name="robots" content="noindex">
-<meta name="cv-ver" content="20261012m">
+<meta name="cv-ver" content="20261012n">
 <title>Curva · O Girrr</title>
 <link rel="icon" type="image/png" href="../assets/favicon-64.png">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800;900&display=swap">
@@ -405,7 +405,7 @@ function reply(r,pk,i){var ra=acc(r.a),x=r.real&&puoCanc(r.a)?'<button class="rx
 function postHTML(p){
  var a=acc(p.a),A=MN[p.k+'|a']?1:0,R=MN[p.k+'|r']?1:0,own=p.real&&puoCanc(p.a);
  var bi='';try{bi=cardBot(p)}catch(e){}
- var ex=(bi?'<div class="pimg bot"><img src="'+bi+'" alt=""></div>':(p.tipo==='ris'?resCard():'')+(p.tipo==='rc'?resCup():''))+(p.tipo==='gio'?'<a class="lnk" href="giornale.html">Apri il Giornale ›</a>':'')+(p.tipo==='ris'?'<a class="lnk" href="tabellone.html#lega-'+(p.k.split(':')[1]||'')+'">Vedi i risultati ›</a>':'')+(p.tipo==='rc'?'<a class="lnk" href="tabellone.html#coppa-'+(p.k.split(':c')[1]||'')+'">Vedi i risultati ›</a>':'');
+ var ex=(bi?'<div class="pimg bot"><img src="'+bi+'" alt=""></div>':(p.tipo==='ris'?resCard():'')+(p.tipo==='rc'?resCup():''))+(p.tipo==='gio'?'<a class="lnk" href="giornale.html#'+(p.k.split(':')[1]||'')+'">Apri il Giornale ›</a>':'')+(p.tipo==='ris'?'<a class="lnk" href="tabellone.html#lega-'+(p.k.split(':')[1]||'')+'">Vedi i risultati ›</a>':'')+(p.tipo==='rc'?'<a class="lnk" href="tabellone.html#coppa-'+(p.k.split(':c')[1]||'')+'">Vedi i risultati ›</a>':'');
  var th=(p.thr||[]).map(function(x,i){return reply({a:p.a,x:x,ts:p.ts},p.k,'t'+i)}).join('');
  var op=!!open[p.k];
  var rl=p.rtby?'<div class="rtl">'+I.ril+esc(cap(p.rtby))+' ha rilanciato</div>':(RTS[p.k]&&vista!=='u'?'<div class="rtl">'+I.ril+'Rilanciato da '+RTS[p.k].slice(0,2).map(function(t){return esc(cap(t.team))}).join(', ')+(RTS[p.k].length>2?' e altri '+(RTS[p.k].length-2):'')+'</div>':'');
