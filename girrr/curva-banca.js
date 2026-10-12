@@ -351,7 +351,8 @@ function comune(r){return COMUNI[Math.floor(r()*COMUNI.length)]}
 function post_giorno(D,SQ,ST,g){
  var dd=dalGiorno(g),tg=tendenze(D),tags=tg.map(function(x){return x[0]}),r=prng('giorno'+g),mk=ctxDi(D,SQ,ST,'ctx'+g);
  var w=PESI[dd.wd],cats=[];Object.keys(w).forEach(function(k){for(var i=0;i<w[k];i++)cats.push(k)});
- var n=(dd.wd===0||dd.wd===6?9:6)+Math.floor(r()*3),out=[],usati={};
+ var n=(dd.wd===0||dd.wd===6?17:12)+Math.floor(r()*5),out=[],usati={},prev=null;
+ function quando(rq){if(prev!==null&&rq()<0.35){prev=Math.min(1430,prev+2+Math.floor(rq()*14));return prev}var m=Math.floor((7+Math.pow(rq(),0.75)*16.6)*60+rq()*60);prev=Math.min(1430,m);return prev}
  var ordine=shuffle(r,AUTORI);
  for(var i=0;i<n;i++){
   var a=ordine[i%ordine.length],cat=pick(r,cats),lis=cat==='live'?(PERS[a].live||LIVE[a]):PERS[a][cat];
@@ -362,20 +363,20 @@ function post_giorno(D,SQ,ST,g){
   var tag=r()<0.45?pick(r,tags):null;
   var rm=prng('ma'+g+i);if(rm()<0.14){var du=rm()<0.3;if(du){c.sq=DUO;c.all=MISTER[DUO]}else{var cs=SQ.filter(function(q){return q!==DUO});c.sq=pick(rm,cs);c.all=MISTER[c.sq]||c.sq}lis=du?MAD:MA;ix=Math.floor(rm()*lis.length)}
   var x=natura(riempi(lis[ix],c,tag),'v:'+g+':'+i,a);
-  var hh=8+Math.floor((i+r())*(15/n)),mi=Math.floor(r()*60);
+  var tq=quando(r),hh=Math.floor(tq/60),mi=tq%60;
   var po={k:'v:'+g+':'+i,a:a,x:x,ts:ts(dd.y,dd.mo,dd.d,Math.min(23,hh),mi),_r:r},ri=prng(po.k+'img');
   if(IMGPER[a]&&ri()<0.4){po.imgt=IMGPER[a];po.cx={sq:c.sq,sq2:c.sq2,gio:c.gio,pt:c.pt}}
   out.push(po);
  }
  /* utenti qualunque */
- var nc=3+Math.floor(r()*4)+((dd.wd===0||dd.wd===6)?3:0);
+ var nc=8+Math.floor(r()*6)+((dd.wd===0||dd.wd===6)?5:0);
  for(var q=0;q<nc;q++){var rc=prng('cm'+g+'-'+q),cu=comune(rc),fc=rc()<0.12,pr0=cu[2][0],tn=fc?OPPOSTO[pr0]:(rc()<0.7?pr0:cu[2][cu[2].length-1]),cl=TONI[tn],cc=mk(),xt=riempi(pick(rc,cl),cc,rc()<0.25?pick(rc,tags):null);
   if(fc){var av=pick(rc,AVVISO[pr0]);xt=av+' '+(/[:,]$/.test(av)?xt.charAt(0).toLowerCase()+xt.slice(1):xt)}
   if(!fc&&tn!=='i'&&rc()<0.5)xt=xt.charAt(0).toLowerCase()+xt.slice(1);
   if(tn!=='i'&&rc()<0.35)xt=xt.replace(/\.$/,'');
   if(rc()<0.12)xt+=' '+pick(rc,GEN);
   if(rc()<0.1){var d2=rc()<0.3,cs2=SQ.filter(function(q){return q!==DUO}),sq3=d2?DUO:pick(rc,cs2);cc.sq=sq3;cc.all=MISTER[sq3]||sq3;xt=riempi(pick(rc,d2?MAD:MA),cc,null);if(rc()<0.5)xt=xt.replace(/^(\S+)/,function(m){return m===cc.all||m===cc.all.split(' ')[0]?m:m.toLowerCase()})}
-  var hq=7+Math.floor(rc()*16),mq=Math.floor(rc()*60);
+  var tq2=quando(rc),hq=Math.floor(tq2/60),mq=tq2%60;
   out.push({k:'v:'+g+':u'+q,a:cu[0],x:xt,ts:ts(dd.y,dd.mo,dd.d,Math.min(23,hq),mq),r:[]})}
  /* risposte generiche */
  out.forEach(function(p){var rr=prng(p.k),nr=Math.floor(rr()*3);p.r=[];var s=shuffle(rr,AUTORI.filter(function(a){return a!==p.a}));for(var j=0;j<nr;j++){var c=mk();if(rr()<0.5){var cu=comune(rr);if(cu[0]!==p.a)p.r.push({a:cu[0],x:pick(rr,CREP),ts:p.ts+(5+Math.floor(rr()*120))*60000});continue}p.r.push({a:s[j],x:natura(riempi(pick(rr,RISP),c,null),p.k+'r'+j,s[j]),ts:p.ts+(5+Math.floor(rr()*90))*60000})}});
