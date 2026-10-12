@@ -259,6 +259,116 @@ function mercato(D,SQ,g,dd,ms){
  for(var i=0;i<n;i++){var kind=r(),cat=kind<0.4?'d':kind<0.75?'n':'p',x=riempi(pick(r,MKR[cat]),c,null),au;if(r()<0.45){var cu=comune(r);au=cu[0];x=x.charAt(0).toLowerCase()+x.slice(1)}else au=ord[i];
   var tt=T+(8+Math.floor(r()*150))*60000;if(tt<=ms)p.r.push({a:au,x:natura(x,'mkr'+g+i,au),ts:tt})}
  p.r.sort(function(a,b){return a.ts-b.ts});var cn=conta(p.k,1.6);p.ap=cn.ap;p.ril=cn.ril;p.v=cn.v;return p}
+/* Motore degli scambi: copia identica di quello dello Spogliatoio (index.html), così le percentuali coincidono. */
+function scambiMotore(D){
+var MODS={'3-5-2':[3,5,2],'4-4-2':[4,4,2],'4-3-3':[4,3,3],'3-4-3':[3,4,3],'4-5-1':[4,5,1],'5-3-2':[5,3,2],'5-4-1':[5,4,1],'3-4-1-2':[3,5,2]};
+var MKSTRICT=true;
+function P(id){var p=D.P[id]||{n:'?',t:'',r:'C',p:'',q:0,f:0};return p}
+function nxt(id){var s=(D.st||{})[id];return s?s:{s:'P'}}
+function pct(id){var s=(D.ps||{})[id];if(s&&s.pct!=null&&nxt(id).s!=='I')return s.pct;return {T:95,B:60,R:40,D:30,P:10,I:5}[nxt(id).s]}
+function roleBase(){var s={P:[0,0,0],D:[0,0,0],C:[0,0,0],A:[0,0,0]};Object.keys(D.ps||{}).forEach(function(id){var q=D.ps[id],p=P(id);if(p&&s[p.r]&&q.fmv!=null&&q.pg>=3){s[p.r][0]+=q.fmv;s[p.r][1]++;s[p.r][2]+=(q.mv!=null?q.mv:q.fmv)}});var b={mv:{}};['P','D','C','A'].forEach(function(r){b[r]=s[r][1]?s[r][0]/s[r][1]:6;b.mv[r]=s[r][1]?s[r][2]/s[r][1]:6});return b}
+function mvEff(p,rb){var q=(D.ps||{})[p.id]||{},n=q.pg||0,b=rb.mv[p.r];return q.mv!=null?(q.mv*n+b*3)/(n+3):b}
+function cdf(z){var t=1/(1+.2316419*Math.abs(z)),d=.3989423*Math.exp(-z*z/2),q=d*t*(.3193815+t*(-.3565638+t*(1.781478+t*(-1.821256+t*1.330274))));return z>0?1-q:q}
+function modBonus(mu){var F=function(x){return cdf((x-mu)/.4)};return 1*(F(6.25)-F(6))+1.5*(F(6.5)-F(6.25))+2*(F(6.75)-F(6.5))+3*(F(7)-F(6.75))+6*(1-F(7))}
+function mkVals(T,hz,rb,mf){
+  var out=T.pl.map(function(x){var id=String(x.id),p=P(id),q=(D.ps||{})[id]||{},n=q.pg||0,b=rb[p.r],pc=pct(id)/100,s=nxt(id).s;
+    var yl=(D.ly||{})[id],wy=yl?yl[0]/(yl[0]+12):0,lf=yl?(yl[2]*yl[0]+b*6)/(yl[0]+6):b,pb=b+(lf-b)*wy*0.5,fb=q.fmv!=null?(q.fmv*n+pb*3)/(n+3):pb,eb=pc*fb;
+    var pr0=b*(0.88+0.24*Math.min(1,0.5*(p.f||0)/mf[p.r]+0.5*(p.q||0)/mf.q[p.r])),prior=wy*lf+(1-wy)*pr0,fl=q.fmv!=null?(q.fmv*n+prior*8)/(n+8):prior,qr=Math.min(1,0.3+0.7*(p.q||0)/mf.q[p.r]),pp=yl?0.7*Math.min(1,yl[0]/34)+0.3*qr:qr,el=(0.7*pc+0.3*pp)*fl;
+    return {id:id,r:p.r,f:p.f||0,m:mvEff(p,rb),q:hz==='b'?0.8*fb+0.2*fl:fl,e:hz==='b'?0.8*eb+0.2*el:el}});
+  var gk=out.filter(function(v){return v.r==='P'}).sort(function(a,b){return b.e-a.e});if(gk[2])gk[2].third=true;
+  return out;
+}
+function mkTeam(vals){
+  var by={P:[],D:[],C:[],A:[]},i,best=-1;
+  for(i=0;i<vals.length;i++)by[vals[i].r].push(vals[i]);
+  ['P','D','C','A'].forEach(function(k){by[k].sort(function(a,b){return b.e-a.e})});
+  var M=['3-5-2','4-4-2','4-3-3','3-4-3','4-5-1','5-3-2','5-4-1'];
+  for(var mi=0;mi<7;mi++){var m=MODS[M[mi]],need={D:m[0],C:m[1],A:m[2]},t=0,k,j;
+    if(by.P[0])t+=by.P[0].e;
+    for(k in need)for(j=0;j<need[k]&&j<by[k].length;j++)t+=by[k][j].e;
+    if(m[0]>=4&&by.P.length&&by.D.length>=4){var ds=by.D.slice(0,m[0]).map(function(v){return v.m}).sort(function(a,b){return b-a});t+=modBonus((by.P[0].m+ds[0]+ds[1]+ds[2])/4)}
+    for(k in need){if(by[k][need[k]])t+=0.12*by[k][need[k]].q;if(by[k][need[k]+1])t+=0.05*by[k][need[k]+1].q}
+    if(by.P[1])t+=0.06*by.P[1].q;
+    if(t>best)best=t}
+  return best;
+}
+function mkComb(a,k,fn,i,cur){if(cur.length===k){fn(cur);return}for(var j=i;j<a.length;j++){cur.push(a[j]);mkComb(a,k,fn,j+1,cur);cur.pop()}}
+function mkPair(A,B){
+  var vA=mkTeam(A),vB=mkTeam(B),out=[];
+  var tA=A.filter(function(x){return !x.third}),tB=B.filter(function(x){return !x.third});
+  function cand(S,own,oth,vS,vO){return S.map(function(p){return {p:p,s:(mkTeam(oth.concat(p))-vO)-(vS-mkTeam(own.filter(function(y){return y!==p})))}}).sort(function(a,b){return b.s-a.s}).map(function(x){return x.p})}
+  var gc=cand(tA,A,B,vA,vB),rc=cand(tB,B,A,vB,vA);
+  function cnt(S){var c={P:0,D:0,C:0,A:0};S.forEach(function(v){c[v.r]++});return c}
+  var cA=cnt(A),cB=cnt(B),LIM={D:[6,10],C:[6,10],A:[4,8]};
+  [[1,9],[2,9],[3,7]].forEach(function(kn){var k=kn[0];
+    mkComb(gc.slice(0,kn[1]),k,function(G0){var G=G0.slice(),dg=cnt(G),sg=0;G.forEach(function(v){sg+=v.f});
+      mkComb(rc.slice(0,kn[1]),k,function(R){var dr=cnt(R),sr=0,eR=0,eG=0,ok=dg.P===dr.P,r;if(!ok)return;
+        for(r in LIM){if(MKSTRICT?dg[r]!==dr[r]:(cA[r]-dg[r]+dr[r]<LIM[r][0]||cA[r]-dg[r]+dr[r]>LIM[r][1]||cB[r]+dg[r]-dr[r]<LIM[r][0]||cB[r]+dg[r]-dr[r]>LIM[r][1]))return}
+        R.forEach(function(v){sr+=v.f;eR+=v.e});G.forEach(function(v){eG+=v.e});if(eG<0.75*eR||eR<0.75*eG)return;if(sr>1.4*sg+3||sg>1.4*sr+3)return;
+        var A2=A.filter(function(x){return G.indexOf(x)<0}).concat(R),B2=B.filter(function(x){return R.indexOf(x)<0}).concat(G);
+        var gA=mkTeam(A2)-vA,gB=mkTeam(B2)-vB;
+        if(gA>=0.05&&gB>=-0.1)out.push({G:G,R:R.slice(),k:k,gA:gA,gB:gB})},0,[])},0,[])});
+  return out;
+}
+function mkConv(g){return Math.round(100/(1+Math.exp(-g/0.6)))}
+function mkPick(list){
+  var used={},res=[];
+  function free(x){return x.G.concat(x.R).every(function(v){return !used[v.id]})}
+  function take(x,kind){x.G.concat(x.R).forEach(function(v){used[v.id]=1});x.kind=kind;res.push(x)}
+  var mir=list.filter(function(x){return x.gA>=0.05&&x.gB>=0.05&&Math.min(x.gA,x.gB)/Math.max(x.gA,x.gB)>=0.3});
+  mir.forEach(function(x){x.s=Math.min(x.gA,x.gB)+0.3*Math.max(x.gA,x.gB)-0.05*(x.k-1)});
+  mir.sort(function(a,b){return b.s-a.s});var n=0;
+  mir.forEach(function(x){if(n<2&&free(x)){take(x,'m');n++}});
+  var per=list.filter(function(x){return x.gA>=0.1&&x.gB>=-0.1});
+  per.forEach(function(x){x.s=x.gA+Math.min(0,x.gB)*2-0.05*(x.k-1)});
+  per.sort(function(a,b){return b.s-a.s});n=0;
+  per.forEach(function(x){if(n<2&&free(x)){take(x,'p');n++}});
+  return res;
+}
+function mkGain(Ab,Bb,G,R){
+  function sel(S,a,b){return S.filter(function(x){return a.indexOf(x.id)<0}).concat(S===Ab?R2(Bb,b):R2(Ab,b))}
+  function R2(S,ids){return S.filter(function(x){return ids.indexOf(x.id)>=0})}
+  var A2=Ab.filter(function(x){return G.indexOf(x.id)<0}).concat(R2(Bb,R)),B2=Bb.filter(function(x){return R.indexOf(x.id)<0}).concat(R2(Ab,G));
+  return {gA:mkTeam(A2)-mkTeam(Ab),gB:mkTeam(B2)-mkTeam(Bb)};
+}
+function mkSc(g){return g.gA>=0.05&&g.gB>=0.05?Math.min(g.gA,g.gB)+0.3*Math.max(g.gA,g.gB)+1:g.gA+2*Math.min(0,g.gB)}
+function mkLab(a,b){return a>=0.05&&b>=0.05?'Equilibrato':a>=0.05?(b>=-0.02?'Per te, lui non ci perde':b>=-0.3?'Per te, lui ci perde poco':'Per te, lui ci perde'):b>=0.05?(a>=-0.02?'Per lui, tu non ci perdi':'Per lui, tu ci perdi'):a>-0.05&&b>-0.05?'Alla pari':'Non conviene a nessuno'}
+function coppia(nA,nB){
+ var TA=(D.teams||[]).filter(function(t){return t.name===nA})[0],TB=(D.teams||[]).filter(function(t){return t.name===nB})[0];if(!TA||!TB)return[];
+ var rb=roleBase(),mf={P:1,D:1,C:1,A:1,q:{P:1,D:1,C:1,A:1}};Object.keys(D.P).forEach(function(i){var p=D.P[i];if((p.f||0)>mf[p.r])mf[p.r]=p.f;if((p.q||0)>mf.q[p.r])mf.q[p.r]=p.q});
+ var Ab=mkVals(TA,'b',rb,mf),Al=mkVals(TA,'l',rb,mf),Bb=mkVals(TB,'b',rb,mf),Bl=mkVals(TB,'l',rb,mf),seen={},L=[];
+ [[Ab,Bb],[Al,Bl]].forEach(function(ab){mkPick(mkPair(ab[0],ab[1])).forEach(function(x){
+  var G=x.G.map(function(v){return v.id}),R=x.R.map(function(v){return v.id}),k=G.slice().sort().join(',')+'>'+R.slice().sort().join(',');if(seen[k])return;seen[k]=1;
+  function es(V,W,ids){var t=0;ids.forEach(function(i){var v=V.concat(W).filter(function(y){return y.id===i})[0];t+=v?v.e:0});return t}
+  L.push({G:G,R:R,k:x.k,b:mkGain(Ab,Bb,G,R),l:mkGain(Al,Bl,G,R),rb:es(Ab,Bb,G)/es(Ab,Bb,R)})})});
+ var out=L.map(function(x){var g=x.b;return {G:x.G,R:x.R,k:x.k,gA:g.gA,gB:g.gB,oA:x.l.gA,oB:x.l.gB,s:mkSc(g),q:x.rb}}).filter(function(x){return x.gA>0.05&&x.gB>=-0.1&&x.q>=0.75&&x.q<=1.34}).sort(function(a,b){return b.s-a.s});
+ return out}
+return {coppia:coppia,conv:mkConv,lab:mkLab}}
+
+/* Ciro commenta gli scambi possibili tra le squadre, una coppia per volta */
+var SWC={},SWM=null;
+var SWB=["🤝 Scambio che approvo: {sa} dà {g} a {sb} e riceve {r}. Convenienza: {sa} {pa}%, {sb} {pb}%. Raro: qui vincono tutti e due. {#}","Ho fatto due conti sulle rose. {sa} e {sb}: {g} contro {r}. Convenienza {pa}% per {sa}, {pb}% per {sb}. Io lo firmerei. Voi? {#}","📊 Da tenere d'occhio: {sa} ({g}) e {sb} ({r}). Dai numeri conviene a entrambi: {pa}% e {pb}% di convenienza. Chi alza il telefono per primo? {#}"];
+var SWU=["{ca}, qui potete far cassa: {g} a {sb} per {r}. Convenienza {pa}% per voi, {pb}% per {sb}. Io ci penserei. {#}","🚨 Occhio {sb}: {sa} potrebbe proporvi {g} per {r}. Convenienza {pa}% per loro, {pb}% per voi. Non è un regalo, ma nemmeno una truffa. {#}","Scambio possibile tra {sa} e {sb}: {g} per {r}. Convenienza: {sa} {pa}%, {sb} {pb}%. Se fossi {sb}, ci dormirei sopra. {#}"];
+var SWN=["Ho passato al setaccio la rosa di {sa} con tutte le altre: nessuno scambio davvero utile oggi. Meglio tenersi i giocatori che si hanno. {#}","{ca}, buone notizie: la rosa regge. Brutte notizie: nessuno scambio con le altre squadre conviene davvero. Non forzate il mercato. {#}"];
+var SWR={b:["{sb} accetta e io mi prendo i pop corn.","Troppo bello per essere vero. Dov'è la fregatura?","Ciro che approva uno scambio: segno la data sul calendario.","Già immagino il gruppo WhatsApp che esplode.","Ora qualcuno deve avere il coraggio di chiamare."],u:["{sb}, non firmare: ti stanno fregando!","Se {sb} accetta lo scambio, chiamo il garante.","Con una convenienza del {pb}% per {sb}, il \"ci penso\" sarà molto lungo.","{ca}, ti stanno chiedendo {r} a prezzo di saldo?","Per {sa} un affare. Per gli altri, boh."],n:["Allora meglio non fare niente, come sempre.","Ciro che consiglia di non fare niente: il suo consiglio migliore.","Io intanto continuo a sperare in uno scambio con {sb}."]};
+function swFm(D,id){var q=(D.ps||{})[id]||{},p=(D.P||{})[id]||{n:'?'};return p.n+(q.fmv!=null?' (FM '+String(q.fmv.toFixed?q.fmv.toFixed(2):q.fmv).replace('.',',')+(q.pg?', '+q.pg+' pres.':'')+')':'')}
+function elenco(a){return a.length<2?a.join(''):a.slice(0,-1).join(', ')+' e '+a[a.length-1]}
+function scambiPost(D,SQ,g,dd,ms,ore){
+ var r=prng('sw'+g),M=SWM||(SWM=scambiMotore(D)),key=(D.updated||'')+'|'+D.round,ord=shuffle(prng('swo'),SQ.slice()),n=ord.length,best=null,sa=null,k,j;
+ var ck=function(a,b){var kk=key+'|'+a+'|'+b;return SWC[kk]||(SWC[kk]=M.coppia(a,b))};
+ for(k=0;k<Math.min(3,n)&&!best;k++){sa=ord[(g+k)%n];var bs=null;
+  var cs=[];SQ.forEach(function(sb){if(sb===sa)return;var L=ck(sa,sb);if(L.length)cs.push({sb:sb,x:L[0]})});cs.sort(function(a,b){return b.x.s-a.x.s});if(cs.length)bs=cs[Math.floor(prng('swp'+g)()*Math.min(2,cs.length))];
+  if(bs){best=bs;break}}
+ var T=ts(dd.y,dd.mo,dd.d,ore,Math.floor(r()*50));if(T>ms)return null;
+ var sb2=pick(r,SQ.filter(function(q){return q!==ord[g%n]})),c,tx,thr=[],cat;
+ if(!best){sa=ord[g%n];c={sa:sa,sb:sb2,ca:MISTER[sa]||sa};tx=riempi(pick(r,SWN),c,'Scambi');cat='n';thr=['Ho confrontato titolarità, medie fantavoto e presenze di ogni giocatore con quelle delle altre rose. Nessuna coppia migliora entrambe le squadre. Passate, c\'è un\'altra giornata.']}
+ else{var x=best.x,pa=M.conv(x.gA),pb=M.conv(x.gB),oa=M.conv(x.oA),ob=M.conv(x.oB),bal=x.gA>=0.05&&x.gB>=0.05;cat=bal?'b':'u';
+  c={sa:sa,sb:best.sb,ca:MISTER[sa]||sa,g:elenco(x.G.map(function(i){return D.P[i].n})),r:elenco(x.R.map(function(i){return D.P[i].n})),pa:pa,pb:pb};
+  tx=riempi(pick(r,bal?SWB:SWU),c,'Scambi');
+  thr=['Perché: per '+sa+' entrano '+x.R.map(function(i){return swFm(D,i)}).join(', ')+'. Escono '+x.G.map(function(i){return swFm(D,i)}).join(', ')+'. Il saldo sulla formazione migliora senza toccare i ruoli.','Lato '+best.sb+': arrivano '+x.G.map(function(i){return swFm(D,i)}).join(', ')+'. '+(bal?'Resa in crescita anche per loro.':'Resa quasi invariata: per loro non è un affare, ma nemmeno un danno.')+' Nel lungo periodo: '+sa+' '+oa+'%, '+best.sb+' '+ob+'%.']}
+ var p={k:'sw:'+g,a:'ciro_trattativa',x:tx,thr:thr,ts:T,r:[],cx:c},nr=2+Math.floor(r()*3),ordA=shuffle(r,AUTORI.filter(function(a){return a!=='ciro_trattativa'}));
+ var rl=shuffle(r,SWR[cat].slice());for(var i=0;i<nr&&i<rl.length;i++){var xx=riempi(rl[i],c,null),au;if(r()<0.4){var cu=comune(r);au=cu[0]}else au=ordA[i];var tt=T+(8+Math.floor(r()*150))*60000;if(tt<=ms)p.r.push({a:au,x:natura(xx,'swr'+g+i,au),ts:tt})}
+ p.r.sort(function(a,b){return a.ts-b.ts});var cn=conta(p.k,1.8);p.ap=cn.ap;p.ril=cn.ril;p.v=cn.v;return p}
 /* Utenti qualunque: nomi a caso, toni diversi */
 var COMUNI=[['fabrizio99','fabrizio99','s'],['errfantastico','ErrFantastico','i'],['ilbiscio','ilbiscio','c'],['giorgio_1987','giorgio_1987','g'],['xx_tommy_xx','xX_Tommy_Xx','s'],['la_pina','la_pina','g'],['marcorossi','MarcoRossi','p'],['superpippo','SuperPippo','s'],['ilgrandeste','ilGrandeSte','a'],['nicolino_','nicolino_','n'],['davide_ac','davide_ac','p'],['fantaguru88','FantaGuru88','i'],['roberta72','roberta72','g'],['il_lungo','il_lungo','c'],['kekko_','kekko_','s'],['mirko','mirko','a'],['antoniettab','AntoniettaB','g'],['gigi_er_mejo','Gigi_Er_Mejo','s'],['lucathebest','LucaTheBest','p'],['bbq_enjoyer','bbq_enjoyer','s'],['alepizza','alepizza','n'],['therealsandro','TheRealSandro','c'],['pino_arrosto','pino_arrosto','s'],['zio_beppe','zio_Beppe','n'],['chiarafanta','ChiaraFanta','g'],['il_carletto','il_carletto','a'],['maxpower','MaxPower','p'],['donrodrigo','DonRodrigo','i'],['tizio_a_caso','tizio_a_caso','s'],['sandokan79','sandokan79','c']];
 var SECONDO={s:'sa',i:'ig',c:'cp',g:'gs',p:'pc',n:'ns',a:'as'};
@@ -447,6 +557,7 @@ function genera(D,SQ,ST,ms){
   /* Ciro: venerdì 18:00 + un aggiornamento il lunedì */
   var dd=dalGiorno(g),mk=ctxDi(D,SQ,ST,'ciro'+g);
   if((dd.wd===2||dd.wd===4||dd.wd===6)&&g>=oggi-3){var mp=null;try{mp=mercato(D,SQ,g,dd,ms)}catch(e){}if(mp&&mp.ts<=ms&&mp.ts>=ms-96*36e5)all.push(mp)}
+  if((dd.wd===3||dd.wd===5)&&g>=oggi-3){var sp=null;try{sp=scambiPost(D,SQ,g,dd,ms,dd.wd===3?16:14)}catch(e){}if(sp&&sp.ts<=ms&&sp.ts>=ms-96*36e5)all.push(sp)}
   if(dd.wd===5||dd.wd===1||dd.wd===3||dd.wd===0){
    var cr=prng('ciro'+g),tpl=CIRO[(g*3)%CIRO.length],cc=mk(),T=ts(dd.y,dd.mo,dd.d,dd.wd===5?18:dd.wd===1?12:10,Math.floor(cr()*50));
    var p={k:'c:'+g,a:'ciro_trattativa',x:riempi(tpl.x,cc,tag('c'+g,0)),thr:tpl.t.map(function(t){return riempi(t,cc,null)}),ts:T,r:[]};
