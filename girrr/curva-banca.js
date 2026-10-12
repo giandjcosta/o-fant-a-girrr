@@ -194,6 +194,13 @@ var LIVE={
  statistico_folle:['Probabilità che oggi {sq} segni: 63%. Che la tv funzioni: 61%. Che io dorma: 4%. {#}','Dati di oggi: il 100% dei fantallenatori è in ansia. Il restante 0% non esiste.','Secondo il mio modello, {sq} oggi ha il 58% di fare bene. E il 51% di fare male.'],
  arbitro_in_pensione:['Oggi sarebbe stata una bella giornata da arbitro. Fischietto in tasca, per sicurezza. {#}','Spero che oggi i direttori di gara siano sereni. Io lo ero. Poi ho smesso.','Giornata di campionato: ricordate di rispettare il fischio finale. Anche quello di casa.']
 };
+
+/* Allenatori: i nomi piccoli sotto le squadre. Leanzino & Mario allenano in due. */
+var MISTER={'Oranje VC':'DJ Cst Brazil','AFA SELECCION':'Maria','Apo team':'apo','Atletico ma non troppo':'Riccardo','Grodah':'RikyArma','Mariana Coneja':'Mark Lenders','Real Madrink':'AndrewTT','stif dc':'stifson','The Blue brothers':'Leanzino e Mario','WOA':'ser'};
+var DUO='The Blue brothers';
+var MA=['Se {sq} continua così, {all} farebbe bene a ripensarci. Ci siamo capiti.','{all} ha il fisico per allenare {sq}. Il resto lo mettiamo noi dal divano.','Chiedo ufficialmente: {all} resta alla guida di {sq}? Rispondete in massa.','Il presidente di {sq} sta valutando se confermare {all}. Fonti vicine al bar.','Dopo questa giornata, {all} merita la conferma. Fatelo contento, ve lo dico io.','{all} ha cambiato il modulo di {sq}? Allora è una svolta. O una disperazione.','Voci di esonero per {all} su {sq}. Smentite? No, solo silenzio.','Se {all} lascia {sq}, qualcuno ci penserà. Io, con piacere, no.','Bravo {all}: {sq} ha {pt} punti e un\'idea. Raro. {#}','Tutti a dire che {all} sia in bilico. Io dico: lasciatelo lavorare. Per ora. {#}','{all} allena {sq} come un vero professionista. Quasi.','Mandare via {all} da {sq}? Non è il momento. Forse domani.'];
+var MAD=['In due non si fa un allenatore buono. Nemmeno {all} con {sq}. {#}','{all} hanno fatto la formazione di {sq} in due. Si vede. In che senso, non lo dico.','Bravi {all}: {sq} ha {pt} punti. Merito di entrambi. O di nessuno dei due.','Due allenatori su {sq} e nessuno ha visto il 5,5. Capita. {#}','{all}: uno dice 4-3-3, l\'altro dice 3-5-2. Alla fine esce un 4-4-2 per sbaglio.','Che bello vedere {all} litigare sulla formazione di {sq}. Il fantacalcio è anche questo.','Se {all} vincono, il merito è di entrambi. Se perdono, è sempre dell\'altro.','{sq} con {all} in panchina: due teste, un solo voto. Ci siamo. {#}','Complimenti a {all}: bravi, in due è tutto più facile. Ma bravi. {#}','Chi decide la formazione di {sq}? {all} dicono "insieme". Credo a metà.'];
+var DUORISP=['eh, vabbeh, in due è tutto più facile','in due però vale doppio l\'errore','uno dei due ha sbagliato. non dico chi','eh, in due è dura sbagliare. eppure','bravi, ma in due è tutto più facile','il vero allenatore è il terzo che non si è presentato','almeno si dividono la colpa','quello dei due che ha scelto {gio}, si faccia avanti'];
 /* Utenti qualunque: nomi a caso, toni diversi */
 var COMUNI=[['fabrizio99','fabrizio99','s'],['errfantastico','ErrFantastico','i'],['ilbiscio','ilbiscio','c'],['giorgio_1987','giorgio_1987','g'],['xx_tommy_xx','xX_Tommy_Xx','s'],['la_pina','la_pina','g'],['marcorossi','MarcoRossi','p'],['superpippo','SuperPippo','s'],['ilgrandeste','ilGrandeSte','a'],['nicolino_','nicolino_','n'],['davide_ac','davide_ac','p'],['fantaguru88','FantaGuru88','i'],['roberta72','roberta72','g'],['il_lungo','il_lungo','c'],['kekko_','kekko_','s'],['mirko','mirko','a'],['antoniettab','AntoniettaB','g'],['gigi_er_mejo','Gigi_Er_Mejo','s'],['lucathebest','LucaTheBest','p'],['bbq_enjoyer','bbq_enjoyer','s'],['alepizza','alepizza','n'],['therealsandro','TheRealSandro','c'],['pino_arrosto','pino_arrosto','s'],['zio_beppe','zio_Beppe','n'],['chiarafanta','ChiaraFanta','g'],['il_carletto','il_carletto','a'],['maxpower','MaxPower','p'],['donrodrigo','DonRodrigo','i'],['tizio_a_caso','tizio_a_caso','s'],['sandokan79','sandokan79','c']];
 var SECONDO={s:'sa',i:'ig',c:'cp',g:'gs',p:'pc',n:'ns',a:'as'};
@@ -259,7 +266,7 @@ function nomi(D){var m={};(D.teams||[]).forEach(function(t){(t.pl||[]).forEach(f
 function ctxDi(D,SQ,ST,seed){
  var r=prng(seed),NM=nomi(D),ids=Object.keys(NM);
  return function(){
-  var c={};c.sq=pick(r,SQ);do{c.sq2=pick(r,SQ)}while(c.sq2===c.sq);
+  var c={};c.sq=pick(r,SQ);do{c.sq2=pick(r,SQ)}while(c.sq2===c.sq);c.all=MISTER[c.sq]||c.sq;c.all2=MISTER[c.sq2]||c.sq2;
   c.gol=1+Math.floor(r()*4);
   var g=ids.length?NM[pick(r,ids)]:{n:'il bomber',sq:c.sq};c.gio=g.n;c.gio_sq=g.sq;
   var ij=(D.inj||[]).filter(function(i){return NM[i.id]});
@@ -288,6 +295,7 @@ function post_giorno(D,SQ,ST,g){
   /* nessuna ripetizione di template a ravvicinato: indice ruotato per giorno */
   var ix=(Math.floor(g/1)+i*7+h32(a+cat))%lis.length,c=mk();
   var tag=r()<0.45?pick(r,tags):null;
+  var rm=prng('ma'+g+i);if(rm()<0.14){var du=rm()<0.3;if(du){c.sq=DUO;c.all=MISTER[DUO]}else{var cs=SQ.filter(function(q){return q!==DUO});c.sq=pick(rm,cs);c.all=MISTER[c.sq]||c.sq}lis=du?MAD:MA;ix=Math.floor(rm()*lis.length)}
   var x=natura(riempi(lis[ix],c,tag),'v:'+g+':'+i,a);
   var hh=8+Math.floor((i+r())*(15/n)),mi=Math.floor(r()*60);
   var po={k:'v:'+g+':'+i,a:a,x:x,ts:ts(dd.y,dd.mo,dd.d,Math.min(23,hh),mi),_r:r},ri=prng(po.k+'img');
@@ -301,10 +309,12 @@ function post_giorno(D,SQ,ST,g){
   if(!fc&&tn!=='i'&&rc()<0.5)xt=xt.charAt(0).toLowerCase()+xt.slice(1);
   if(tn!=='i'&&rc()<0.35)xt=xt.replace(/\.$/,'');
   if(rc()<0.12)xt+=' '+pick(rc,GEN);
+  if(rc()<0.1){var d2=rc()<0.3,cs2=SQ.filter(function(q){return q!==DUO}),sq3=d2?DUO:pick(rc,cs2);cc.sq=sq3;cc.all=MISTER[sq3]||sq3;xt=riempi(pick(rc,d2?MAD:MA),cc,null);if(rc()<0.5)xt=xt.replace(/^(\S+)/,function(m){return m===cc.all||m===cc.all.split(' ')[0]?m:m.toLowerCase()})}
   var hq=7+Math.floor(rc()*16),mq=Math.floor(rc()*60);
   out.push({k:'v:'+g+':u'+q,a:cu[0],x:xt,ts:ts(dd.y,dd.mo,dd.d,Math.min(23,hq),mq),r:[]})}
  /* risposte generiche */
  out.forEach(function(p){var rr=prng(p.k),nr=Math.floor(rr()*3);p.r=[];var s=shuffle(rr,AUTORI.filter(function(a){return a!==p.a}));for(var j=0;j<nr;j++){var c=mk();if(rr()<0.5){var cu=comune(rr);if(cu[0]!==p.a)p.r.push({a:cu[0],x:pick(rr,CREP),ts:p.ts+(5+Math.floor(rr()*120))*60000});continue}p.r.push({a:s[j],x:natura(riempi(pick(rr,RISP),c,null),p.k+'r'+j,s[j]),ts:p.ts+(5+Math.floor(rr()*90))*60000})}});
+ out.forEach(function(p){if(p.x.indexOf(MISTER[DUO])<0)return;var rd=prng(p.k+'duo');if(rd()<0.8){var cu=comune(rd),c=mk();if(cu[0]!==p.a){p.r=(p.r||[]).concat([{a:rd()<0.5?cu[0]:pick(rd,AUTORI.filter(function(a){return a!==p.a})),x:riempi(pick(rd,DUORISP),c,null),ts:p.ts+(8+Math.floor(rd()*90))*60000}]);p.r.sort(function(a,b){return a.ts-b.ts})}}});
  return out;
 }
 /* Rende i cori meno perfetti e più vivi: emoji, punti esclamativi, puntini, domande insistenti, qualche errore. Tutto raro e deterministico. */
@@ -405,5 +415,5 @@ function ultimo(D,ms){var SQ=(D.teams||[]).map(function(t){return t.name}),L=(D.
 var NOMI={il_barista:'Il Barista',il_mago_cabala:'Il Mago della Cabala',la_suocera:'La Suocera',il_tassista:'Il Tassista',fidanzata_stufa:'La Fidanzata Stufa',nonno_cesare:'Nonno Cesare',tifoso_arrabbiato:'Il Tifoso Arrabbiato',mister_divano:'Il Tecnico da Divano',radio_spogliatoio:'Radio Spogliatoio',mamma_di_capitan:'Mamma di Capitan Sfortuna',ex_ds_provincia:'Ex DS di Provincia',var_parlante:'VAR Parlante',fc27_ratings:'FC27 Ratings Italia',il_cugino_del_dt:'Il Cugino del DT',telecronista_stanco:'Il Telecronista Stanco',gufo_professionista:'Gufo Professionista',il_filosofo_del_pallone:'Il Filosofo del Pallone',bomber_da_bar:'Bomber da Bar',statistico_folle:'Lo Statistico Folle',arbitro_in_pensione:'Arbitro in Pensione',ciro_trattativa:'Ciro Trattativa',lega_ofantagirrr:'Lega O Fant A Girrr',giornale_girrr:'O Giornale del Girrr'};
 function anteprima(D,ms,n){var SQ=(D.teams||[]).map(function(t){return t.name}),L=(D.cal&&D.cal.lega)||[],u=null;L.forEach(function(g){if(g.m.some(function(m){return m[4]!=='-'}))u=g});
  return genera(D,SQ,{cls:SQ.map(function(x){return{n:x}}),ult:u,next:null},ms).filter(function(p){return !p.tipo}).slice(0,n).map(function(p){return{a:p.a,n:NOMI[p.a]||p.a,x:p.x.replace(/\n[\s\S]*/,'')}})}
-window.CVB={COMUNI:COMUNI,cupUlt:cupUlt,ufficiale:ufficiale,anteprima:anteprima,reazioni:reazioni,ultimo:ultimo,genera:genera,tendenze:tendenze,PERS:PERS,RISP:RISP,CIRO:CIRO,roma:roma,giorno:giorno,h32:h32};
+window.CVB={MISTER:MISTER,COMUNI:COMUNI,cupUlt:cupUlt,ufficiale:ufficiale,anteprima:anteprima,reazioni:reazioni,ultimo:ultimo,genera:genera,tendenze:tendenze,PERS:PERS,RISP:RISP,CIRO:CIRO,roma:roma,giorno:giorno,h32:h32};
 })();
