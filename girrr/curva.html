@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,viewport-fit=cover">
 <meta name="robots" content="noindex">
-<meta name="cv-ver" content="20261012l">
+<meta name="cv-ver" content="20261012m">
 <title>Curva · O Girrr</title>
 <link rel="icon" type="image/png" href="../assets/favicon-64.png">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800;900&display=swap">
@@ -405,7 +405,7 @@ function reply(r,pk,i){var ra=acc(r.a),x=r.real&&puoCanc(r.a)?'<button class="rx
 function postHTML(p){
  var a=acc(p.a),A=MN[p.k+'|a']?1:0,R=MN[p.k+'|r']?1:0,own=p.real&&puoCanc(p.a);
  var bi='';try{bi=cardBot(p)}catch(e){}
- var ex=(bi?'<div class="pimg bot"><img src="'+bi+'" alt=""></div>':(p.tipo==='ris'?resCard():'')+(p.tipo==='rc'?resCup():''))+(p.tipo==='gio'?'<a class="lnk" href="giornale.html">Apri il Giornale ›</a>':'');
+ var ex=(bi?'<div class="pimg bot"><img src="'+bi+'" alt=""></div>':(p.tipo==='ris'?resCard():'')+(p.tipo==='rc'?resCup():''))+(p.tipo==='gio'?'<a class="lnk" href="giornale.html">Apri il Giornale ›</a>':'')+(p.tipo==='ris'?'<a class="lnk" href="tabellone.html#lega-'+(p.k.split(':')[1]||'')+'">Vedi i risultati ›</a>':'')+(p.tipo==='rc'?'<a class="lnk" href="tabellone.html#coppa-'+(p.k.split(':c')[1]||'')+'">Vedi i risultati ›</a>':'');
  var th=(p.thr||[]).map(function(x,i){return reply({a:p.a,x:x,ts:p.ts},p.k,'t'+i)}).join('');
  var op=!!open[p.k];
  var rl=p.rtby?'<div class="rtl">'+I.ril+esc(cap(p.rtby))+' ha rilanciato</div>':(RTS[p.k]&&vista!=='u'?'<div class="rtl">'+I.ril+'Rilanciato da '+RTS[p.k].slice(0,2).map(function(t){return esc(cap(t.team))}).join(', ')+(RTS[p.k].length>2?' e altri '+(RTS[p.k].length-2):'')+'</div>':'');
@@ -451,6 +451,7 @@ function nKey(){return 'cv-nl-'+me}
 function nLetto(){var t=0;try{t=+localStorage.getItem(nKey())||0}catch(e){}return t||Date.now()-36*36e5}
 function nMap(){var o={};try{o=JSON.parse(localStorage.getItem('cv-nr-'+me)||'{}')}catch(e){}return o||{}}
 function nNuova(o,m){m=m||nMap();return o.t>Math.max(nLetto(),m[o.k||'_f']||0)}
+function stab(key,cand){var n=Date.now();if(cand<=n)return cand;var f={},mk='cv-nf-'+me;try{f=JSON.parse(localStorage.getItem(mk)||'{}')}catch(e){}if(!f[key]){f[key]=n;try{localStorage.setItem(mk,JSON.stringify(f))}catch(e){}}return f[key]}
 function nBadge(){if(!me)return 0;var m=nMap();return NOTI.filter(function(o){return nNuova(o,m)}).length}
 function nSegna(k){if(!me)return;var m=nMap();m[k||'_f']=Date.now();try{localStorage.setItem('cv-nr-'+me,JSON.stringify(m))}catch(e){}aggBadge()}
 function aggBadge(){var n=nBadge(),b=document.querySelector('#nav [data-v=notifiche]');if(b){var x=b.querySelector('.bd');if(!n){if(x)x.remove()}else{if(!x){x=document.createElement('span');x.className='bd';b.appendChild(x)}x.textContent=n>99?'99+':n}}var nv=document.querySelector('.nov');if(nv){if(!n){var w=nv.parentNode;if(w)w.remove()}else nv.textContent='Hai '+n+(n===1?' notifica nuova':' notifiche nuove')+' ›'}}
@@ -475,10 +476,10 @@ function notifiche(){
  var altri=POSTS.filter(function(p){return !p.real&&p.v>0}),av=0;altri.forEach(function(p){av+=(p.A+p.R+p.r.length)/p.v});av=altri.length?av/altri.length*100:0;
  var top=null;POSTS.forEach(function(p){if(now-p.ts<864e5&&(!top||p.A>top.A))top=p});
  miei.forEach(function(p){
-  var j=-1;LV.forEach(function(l,q){if(p.v>=l)j=q});if(j>=0)out.push({t:Math.min(now,p.ts+(j+2)*30*6e4),tp:'vis',k:p.k,u:meH,x:p.x,n:LV[j]});
+  var j=-1;LV.forEach(function(l,q){if(p.v>=l)j=q});if(j>=0)out.push({t:stab('vis:'+p.k+':'+j,p.ts+(j+2)*30*6e4),tp:'vis',k:p.k,u:meH,x:p.x,n:LV[j]});
   var it=p.A+p.R+p.r.length,rate=p.v?it/p.v*100:0;
-  if(it>=8&&av>0&&rate>=av*1.25)out.push({t:Math.min(now,p.ts+4*36e5),tp:'eng',k:p.k,u:meH,x:p.x,rate:rate,av:av});
-  if(top&&top.k===p.k&&p.A>=5)out.push({t:Math.min(now,p.ts+3*36e5),tp:'top',k:p.k,u:meH,x:p.x})});
+  if(it>=8&&av>0&&rate>=av*1.25)out.push({t:stab('eng:'+p.k,p.ts+4*36e5),tp:'eng',k:p.k,u:meH,x:p.x,rate:rate,av:av});
+  if(top&&top.k===p.k&&p.A>=5)out.push({t:stab('top:'+p.k,p.ts+3*36e5),tp:'top',k:p.k,u:meH,x:p.x})});
  try{var sg=seguaci(me),lv=Math.floor(sg/50000)*50000;if(lv>=100000){var fk='cv-fol-'+me,o=null;try{o=JSON.parse(localStorage.getItem(fk)||'null')}catch(e){}
   if(!o||o.lv<lv){o={lv:lv,ts:now};try{localStorage.setItem(fk,JSON.stringify(o))}catch(e){}}
   out.push({t:o.ts,tp:'fol',n:o.lv})}}catch(e){}
