@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,viewport-fit=cover">
 <meta name="robots" content="noindex">
-<meta name="cv-ver" content="20261012t">
+<meta name="cv-ver" content="20261012u">
 <title>Curva · O Girrr</title>
 <link rel="icon" type="image/png" href="../assets/favicon-64.png">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800;900&display=swap">
@@ -290,10 +290,10 @@ function costruisci(){
  RC={};MN={};RTS={};PM={};(S.polls||[]).forEach(function(q){PM[q.id]=q});(S.rt||[]).forEach(function(r){(RTS[r.k]=RTS[r.k]||[]).push(r)});S.react.forEach(function(r){RC[r.k+'|'+r.kind]=r.n});S.mine.forEach(function(r){MN[r.k+'|'+r.kind]=1});
  var tuttiR={};S.replies.forEach(function(r){(tuttiR[r.k]=tuttiR[r.k]||[]).push({id:r.id,a:hnd(r.team),x:r.body,ts:r.ts,real:1})});
  var out=[];
- S.posts.forEach(function(p){var z={ap:0,ril:0,r:[]};try{z=CVB.reazioni('p'+p.id,p.ts,Date.now(),SQ)}catch(e){}var f=fattore(p.team);out.push({k:'p'+p.id,id:p.id,hi:p.hi,real:1,a:hnd(p.team),x:p.body,ts:p.ts,ap:Math.round(z.ap*f),ril:Math.round(z.ril*f),v:0,f:f,tm:p.team,id0:p.id,r:z.r.map(function(r){var q=CVB.h32(r.x+p.id)%100,co=CVB.MISTER[p.team];return q<30?{a:r.a,x:'@'+hnd(p.team)+' '+r.x,ts:r.ts}:q<45&&co?{a:r.a,x:co+', '+r.x,ts:r.ts}:q<55?{a:r.a,x:p.team+', '+r.x,ts:r.ts}:r})})});
+ S.posts.forEach(function(p){var z={ap:0,ril:0,r:[]};try{z=CVB.reazioni('p'+p.id,p.ts,Date.now(),SQ,p.body)}catch(e){}var f=fattore(p.team);out.push({k:'p'+p.id,id:p.id,hi:p.hi,real:1,a:hnd(p.team),x:p.body,ts:p.ts,ap:Math.round(z.ap*f),ril:Math.round(z.ril*f),v:0,f:f,tm:p.team,id0:p.id,r:z.r.map(function(r){var q=CVB.h32(r.x+p.id)%100,co=CVB.MISTER[p.team];return q<30?{a:r.a,x:'@'+hnd(p.team)+' '+r.x,ts:r.ts}:q<45&&co?{a:r.a,x:co+', '+r.x,ts:r.ts}:q<55?{a:r.a,x:p.team+', '+r.x,ts:r.ts}:r})})});
  var gen=[];try{gen=CVB.genera(D,SQ,ST,Date.now())}catch(e){}
- try{var tm={};S.posts.forEach(function(p){(tm[p.team]=tm[p.team]||[]).push(p.ts)});CVB.ufficiale(D,SQ,ST,tm,Date.now()).forEach(function(u){var z=CVB.reazioni(u.k,u.ts,Date.now(),SQ),f=fattore(u.team);out.push({k:u.k,a:hnd(u.team),x:u.x,uf:1,ts:u.ts,ap:Math.round((z.ap+8)*f),ril:Math.round((z.ril+2)*f),v:0,f:f,tm:u.team,id0:CVB.h32(u.k)%1000,r:z.r})})}catch(e){}
-(S.adm||[]).forEach(function(u){var k='a'+u.id,z={ap:0,ril:0,r:[]};try{z=CVB.reazioni(k,u.ts,Date.now(),SQ)}catch(e){}var tm=SQ[4],f=fattore(tm);out.push({k:k,id:k,hi:u.hi,a:u.h,x:u.body,uf:1,ts:u.ts,ap:Math.round((z.ap+8)*f),ril:Math.round((z.ril+2)*f),v:0,f:f,tm:tm,id0:u.id,r:z.r})});
+ try{var tm={};S.posts.forEach(function(p){(tm[p.team]=tm[p.team]||[]).push(p.ts)});CVB.ufficiale(D,SQ,ST,tm,Date.now()).forEach(function(u){var z=CVB.reazioni(u.k,u.ts,Date.now(),SQ,u.x),f=fattore(u.team);out.push({k:u.k,a:hnd(u.team),x:u.x,uf:1,ts:u.ts,ap:Math.round((z.ap+8)*f),ril:Math.round((z.ril+2)*f),v:0,f:f,tm:u.team,id0:CVB.h32(u.k)%1000,r:z.r})})}catch(e){}
+(S.adm||[]).forEach(function(u){var k='a'+u.id,z={ap:0,ril:0,r:[]};try{z=CVB.reazioni(k,u.ts,Date.now(),SQ,u.body)}catch(e){}var tm=SQ[4],f=fattore(tm);out.push({k:k,id:k,hi:u.hi,a:u.h,x:u.body,uf:1,ts:u.ts,ap:Math.round((z.ap+8)*f),ril:Math.round((z.ril+2)*f),v:0,f:f,tm:tm,id0:u.id,r:z.r})});
  gen.forEach(function(p){out.push(p)});
  out.forEach(function(p){var rr=(p.r||[]).concat(tuttiR[p.k]||[]);rr.sort(function(a,b){return a.ts-b.ts});p.r=rr;
   var vb=0;if((p.real||p.uf)&&!p.v){var et0=Math.max(0,(Date.now()-p.ts)/36e5),cr0=1-Math.exp(-et0/5),j0=0.8+((p.id0||0)*37%40)/100;vb=seguaci(p.tm)*(0.01+0.09*cr0)*j0;p.ap=Math.round(vb*(0.012+(CVB.h32(p.k)%20)/1000));p.ril=Math.round(vb*(0.003+(CVB.h32(p.k+'r')%30)/10000))}
@@ -384,6 +384,24 @@ function memeImg(p){
  else if(t==='striscione'){c.fillStyle='#111';c.fillRect(0,0,W,H);c.fillStyle='#fff';var fr=['VERGOGNA','CAMBIATE TUTTO','NON CI SIAMO','FUORI L\'ALLENATORE'][n(0,4)];var z=130;c.font='900 '+z+'px '+F;while(c.measureText(fr).width>W-80&&z>40){z-=6;c.font='900 '+z+'px '+F}c.textAlign='center';c.fillText(fr,W/2,H/2+z/3);c.fillRect(40,60,W-80,6);c.fillRect(40,H-66,W-80,6);T(S1.toUpperCase()+' · CURVA NORD',W/2,H-100,'700 26px '+F,'#bbb','center',W-100)}
  else if(t==='epoca'){c.fillStyle='#d9c7a0';c.fillRect(0,0,W,H);var g3=c.createRadialGradient(W/2,H/2,150,W/2,H/2,520);g3.addColorStop(0,'rgba(0,0,0,0)');g3.addColorStop(1,'rgba(60,35,10,.55)');c.fillStyle=g3;c.fillRect(0,0,W,H);c.fillStyle='#f4ead2';c.fillRect(110,50,W-220,H-170);c.fillStyle='#6b5a3a';var xs=[220,340,460,580,700];xs.forEach(function(x,i){c.beginPath();c.arc(x,230,34,0,7);c.fill();c.fillRect(x-40,266,80,110)});
   T('Anno 1962 · la formazione del Cesare',W/2,H-62,'italic 700 36px Georgia,serif','#3a2a10','center',W-200);T('Ai miei tempi tutti con la stessa maglia.',W/2,H-24,'italic 600 24px Georgia,serif','#3a2a10','center')}
+ else if(t==='dossier'){c.fillStyle='#3b2f23';c.fillRect(0,0,W,H);c.fillStyle='#e8dcc0';c.fillRect(90,40,W-180,H-80);T('DOSSIER ARBITRI',W/2,120,'900 54px '+F,'#2b1d05','center');
+  for(var i=0;i<6;i++){c.fillStyle='#16130e';c.fillRect(140,170+i*52,300+n(i,6)*60,28)}T('Rigori ai soliti: '+(5+n(0,20)),140,495,'700 28px '+F,'#2b1d05');
+  c.save();c.translate(650,300);c.rotate(-.3);c.strokeStyle='#c1121f';c.lineWidth=8;c.strokeRect(-150,-50,300,100);T('CONFIDENZIALE',0,15,'900 34px '+F,'#c1121f','center');c.restore()}
+ else if(t==='cartello'){c.fillStyle='#e9e4d6';c.fillRect(0,0,W,H);c.fillStyle='#c9c2ae';c.fillRect(W/2-14,430,28,130);c.fillStyle='#fff';c.fillRect(70,40,W-140,390);c.strokeStyle='#16130e';c.lineWidth=10;c.strokeRect(70,40,W-140,390);
+  T('22 UOMINI',W/2,150,'900 78px '+F,'#16130e','center');T('1 PALLONE',W/2,250,'900 78px '+F,'#16130e','center');T((300+n(0,700))+' MILIONI',W/2,350,'900 78px '+F,'#d62839','center',W-200);T('Ditemi che è normale',W/2,405,'600 28px '+F,'#6a6254','center')}
+ else if(t==='blueprint'){c.fillStyle='#0f3b73';c.fillRect(0,0,W,H);c.strokeStyle='rgba(255,255,255,.12)';c.lineWidth=1;for(var i=0;i<W;i+=30){c.beginPath();c.moveTo(i,0);c.lineTo(i,H);c.stroke()}for(var j=0;j<H;j+=30){c.beginPath();c.moveTo(0,j);c.lineTo(W,j);c.stroke()}
+  c.strokeStyle='#cfe3ff';c.lineWidth=4;c.beginPath();c.ellipse(W/2,260,330,170,0,0,7);c.stroke();c.beginPath();c.ellipse(W/2,260,200,90,0,0,7);c.stroke();c.strokeRect(W/2-100,215,200,90);
+  T('STADIO · PROGETTO DI RINNOVO',W/2,70,'800 34px '+F,'#cfe3ff','center');T('Bagni: 4 (servono 40)',W/2,480,'700 28px '+F,'#ffd166','center');T('Tetto: perde · Visuale: da talpa',W/2,520,'600 24px '+F,'#cfe3ff','center')}
+ else if(t==='sciarpa'){var sc=[['#e63946','#fff'],['#1d3557','#ffd166'],['#2a9d8f','#fff']][n(0,3)];c.fillStyle='#1b1b1b';c.fillRect(0,0,W,H);for(var i=0;i<9;i++){c.fillStyle=i%2?sc[1]:sc[0];c.fillRect(0,60+i*50,W,50)}for(var k=0;k<W;k+=14){c.fillStyle='rgba(0,0,0,.18)';c.fillRect(k,60,3,450)}
+  c.fillStyle='rgba(0,0,0,.65)';c.fillRect(70,210,W-140,130);T(cap(cx.sq2||'La mia squadra').toUpperCase()+' · FOREVER',W/2,285,'900 46px '+F,'#fff','center',W-180);T('(tifo dal giovedì)',W/2,325,'600 24px '+F,'#ddd','center')}
+ else if(t==='moviola'){c.fillStyle='#14532d';c.fillRect(0,0,W,H);for(var i=0;i<8;i++){c.fillStyle=i%2?'rgba(255,255,255,.04)':'rgba(0,0,0,.05)';c.fillRect(i*W/8,0,W/8,H)}
+  c.strokeStyle='#ffd166';c.lineWidth=4;c.beginPath();c.moveTo(560,0);c.lineTo(560,H);c.stroke();c.strokeStyle='#fff';c.beginPath();c.moveTo(0,300);c.lineTo(W,300);c.stroke();c.fillStyle='#fff';c.beginPath();c.arc(520,300,22,0,7);c.fill();c.fillStyle='#e63946';c.beginPath();c.arc(600,300,22,0,7);c.fill();
+  T('VAR · ANALISI',34,50,'900 30px '+F,'#fff');T('Fuorigioco di '+(1+n(0,5))+' capelli',W/2,500,'800 40px '+F,'#ffd166','center',W-100)}
+ else if(t==='schedina'){c.fillStyle='#f4e8c9';c.fillRect(0,0,W,H);T('SCHEDINA DEL BAR SPORT',W/2,70,'900 40px '+F,'#9a031e','center');
+  for(var i=0;i<6;i++){var y=120+i*62;c.fillStyle='#16130e';T((i+1)+'.  '+cap(i%2?(cx.sq||'Casa'):(cx.sq2||'Ospiti')),50,y+30,'700 28px '+F,'#16130e','left',420);['1','X','2'].forEach(function(q,j){var x=560+j*90;c.strokeStyle='#16130e';c.lineWidth=3;c.strokeRect(x,y,70,48);T(q,x+35,y+34,'800 28px '+F,'#16130e','center');if(j===n(i,3)){c.fillStyle='rgba(155,3,30,.8)';c.beginPath();c.arc(x+35,y+24,18,0,7);c.fill()}})}
+  T('Colonna vincente (forse)',W/2,540,'italic 600 24px '+F,'#6a6254','center')}
+ else if(t==='contratto'){c.fillStyle='#eadfc6';c.fillRect(0,0,W,H);c.fillStyle='#fff';c.fillRect(100,30,W-200,H-60);T('CONTRATTO DI PRESTAZIONE',W/2,100,'900 38px '+F,'#16130e','center');T(G.toUpperCase(),W/2,165,'800 34px '+F,'#9a031e','center',W-260);
+  ['Ingaggio: 2 panini a partita','Clausola: se segna, cena offerta','Durata: fino al prossimo infortunio','Procuratore: mio cugino'].forEach(function(q,i){T('§ '+(i+1)+' · '+q,150,240+i*58,'600 28px '+F,'#2b1d05','left',W-300)});T('Firma ________',W-150,500,'italic 600 26px '+F,'#6a6254','right')}
  var out=cv.toDataURL('image/png');IMGB[key]=out;return out}
 if(location.hostname==='localhost')window.__meme=memeImg;
 function rowsRis(m){return m.map(function(x){var gc=x[4].split('-').map(Number);return{l:cap(x[0]),a:gc[0],b:gc[1],r:cap(x[3])}})}

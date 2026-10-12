@@ -209,7 +209,7 @@ PERS.fidanzata_stufa={
  so:['Sorpresa da {sq}? No. Ma mi hanno chiesto di fingermi sorpresa.'],
  al:['Se il mio fidanzato fosse allenatore di {sq}, avrebbe già cambiato modulo tre volte. Per me va bene.']
 };
-var IMGPER={il_barista:'lavagna',mister_divano:'campo',fc27_ratings:'carta',statistico_folle:'grafico',il_mago_cabala:'amuleto',telecronista_stanco:'diretta',tifoso_arrabbiato:'striscione',nonno_cesare:'epoca'};
+var IMGPER={il_complottista:'dossier',il_romantico_del_pallone:'cartello',ing_stadi:'blueprint',il_super_tifoso:'sciarpa',var_parlante:'moviola',bomber_da_bar:'schedina',ex_ds_provincia:'contratto',il_barista:'lavagna',mister_divano:'campo',fc27_ratings:'carta',statistico_folle:'grafico',il_mago_cabala:'amuleto',telecronista_stanco:'diretta',tifoso_arrabbiato:'striscione',nonno_cesare:'epoca'};
 var LIVE={
  il_complottista:['Oggi gli arbitri sono già al bar con qualcuno. Noi lo sappiamo.','Giornata di campionato. Segnatevi chi fischia e poi controllate chi vince. {#}'],
  il_romantico_del_pallone:['Oggi si gioca. Il biglietto costa come un mese di spesa. Buona partita a tutti.','Giornata di campionato. Io guardo il pallone, voi guardate i soldi. Tanto è lo stesso.'],
@@ -300,6 +300,39 @@ var FUORI={
  ex_ds_provincia:['Oggi parlo da DS vero: {gio} vale più di quanto pensiate. Ve lo dico gratis.','Devo ammetterlo: il mercato l\'ho sbagliato quasi sempre. Ma qualcosa ho azzeccato.']
 };
 var CREP=['lol','vero','ahahah','🤣🤣','no ma anche basta','concordo','boh io dico di no','top','che schifo','assolutamente sì','ma cosa dici?','bravo','potresti aver ragione','non so cosa dire. bravo comunque','ahah dai','ci sta','fortissimo','questa me la segno','🔥','mah. sarà'];
+
+/* Risposte legate al contenuto del coro: argomento -> sentimento -> categoria -> neutre */
+var RTOP=[
+ [/arbitr|\bvar\b|rigor|fischi|moviola|fuorigioco|espuls/,['Con questo arbitro non vinciamo nemmeno al gioco dell\'oca.','Il VAR ha guardato. Ha visto. Ha deciso di no.','L\'arbitro ha sempre ragione, soprattutto quando sbaglia contro di noi.','Se non è rigore questo, il rigore cos\'è? Un\'opinione?','Moviola o no, la fischiata era già scritta.']],
+ [/soldi|milion|costa|stipend|procurator|diritti tv|prezzo|ingaggi/,['Intanto il mio stipendio è fermo dal 2019.','Con quei soldi ci facevano tre ospedali. E un bar sport.','Il calcio è diventato un bilancio con due porte.','Mi paghi tu l\'abbonamento allora?']],
+ [/stadi|bagni|tetto|curva nord|parcheggio|biglietto|code/,['I bagni dello stadio sono il vero test di resistenza.','Io lì ci vado solo per la birra. Il resto è un optional.','Hai dimenticato le scale da scalatore e la visuale da talpa.','Spoiler: il tetto perde anche quando non piove.']],
+ [/divano|pigiama|poltrona|telecomando/,['Eh, per fortuna che quelli corrono e io sto sul divano.','Il divano è il vero campo da gioco: zero infortuni.','Anche io, solo che il mio divano ha le molle rotte.','Beato te. Io ho il turno domani.']],
+ [/mercato|svincolat|trattativ|colpo|ceduto|acquist|scambio|offerta|rinforz/,['Ma chi lo compra davvero? Io no di sicuro.','Io lo avrei preso a zero, ma nessuno mi ascolta.','Ciro lo sa già da tre giorni, vedrai.','Se arriva lui cambio squadra. Anzi no.','Prima o poi lo prendo anche io. Un giorno. Forse.']],
+ [/pagell|\bvoto|\bvoti|media|fantavoto|bonus|malus/,['Il vero voto lo dà il mio umore, e oggi è un 5.','Con quel voto il fantacalcio ti prende in giro.','Sei politico. Come i voti del Giornale.','Un 6 dato col cuore, non con la testa.']],
+ [/classifica|primo posto|primi|ultimo posto|punti|scudetto|vetta|zona/,['La classifica è corta, poi si decide tutto all\'ultimo.','Ci sto male. Ma lunedì si ricomincia.','Finché dura, godiamocela.','Tanto alla fine vince sempre chi ha il cambio di modulo giusto.']],
+ [/infortun|squalific|stira|out\b|lesion|indisponib|dubbio/,['Ci mancava solo questa.','Guarisce presto, poi si vedrà in che stato.','E noi che lo avevamo messo capitano.','Vabbè, dai: avevamo il piano B. Cioè niente.']],
+ [/portier|difens|centrocamp|attacc|bomber|punta|rigorista|capitan/,['Se segna ancora lo faccio santo.','Io il portiere lo metterei in panchina e via.','Lui sì che si fa sentire. Gli altri sembrano turisti.','Un attaccante così basta e avanza. Lo dice la matematica.']],
+ [/tifos|ultras|curva|sciarpa|bandiera|cori/,['Io tifo da sempre. Da quando vince, almeno.','Il coro più bello è quello della domenica prima della partita.','Tifosi si nasce, e poi si diventa pentiti.','Con la sciarpa al collo e la birra in mano: casa.']],
+ [/allenator|mister|modulo|formazion|panchina|moduli|tattic/,['Il modulo è come il caffè: dipende da chi lo fa.','Io avrei schierato quello che sta in tribuna, ma ok.','Il mister sa quello che fa. Forse. Forse no.','In due non ne fanno uno buono, appunto.']],
+ [/derby|sfida|scontro|chi perde|cena|scommess|pronostic/,['Segnati: la cena la paga chi perde, e perdi tu.','Pronostico? 1X2 e ci vediamo al bar.','Io scommetto sul pareggio così non litigo con nessuno.','Ti ricordo che l\'ultima volta hai perso e hai negato tutto.']],
+ [/\bgol\b|rete|segna|tripletta|doppietta|assist/,['Che gol. Poi a casa non si capiva più niente.','Ripetilo: me lo sono perso, ero al bar.','Con quel tiro basta guardare l\'angolino. Fine.','E ancora qualcuno dice che non sa tirare.']],
+ [/pioggia|freddo|nebbia|caldo|meteo/,['Qui a Eindhoven piove sempre, ma la partita si gioca lo stesso.','Con quel meteo il divano vince 3-0.','Alla fine è tutto sul campo, anche l\'ombrello.']]
+];
+var RPOS=['Meritato, applausi.','Grandi, davvero.','Finalmente una gioia.','Bravissimi, e ora tutti a dire che ci credevano.','Questa è la strada: continuate così.','Lo dicevo io. Anche se non lo dicevo.'];
+var RNEG=['Che sfiga, ma dai, si rialza.','Oggi proprio no. Domani vediamo.','Purtroppo succede. Ci rifacciamo.','Brutta botta, però il campionato è lungo.','Mi dispiace, ma lo sapevamo un po\' tutti.','Ahia. Ho il fegato che brucia.'];
+var RCAT={ri:['Il risultato non mi stupisce, nemmeno un po\'.','Il punteggio è bugiardo, ma il fantacalcio è sovrano.','Ora vediamo cosa dice la classifica.'],cl:['La classifica oggi è così. Domani? Chissà.','Primo, ultimo: tutto cambia alla prossima giornata.','Occhio a chi è dietro: sono sempre quelli più pericolosi.'],pm:['Il punteggio sta lì. Il resto sono chiacchiere.','Con quel punteggio ci si può anche accontentare.'],so:['Non è una sorpresa, ma fa comunque effetto.','Una sorpresa così non la vedevo da settimane.'],al:['L\'allenatore dice una cosa, il fantacalcio ne fa un\'altra.','Chi comanda davvero è la formazione, non il mister.'],mk:['Del mercato si parla sempre, poi alla fine restiamo con gli stessi.','Io al mercato ci vado solo per la frutta.'],fc:['Su FC27 i numeri sono sempre un po\' gonfiati, secondo me.','Il 99 è sempre della carta più brutta.'],live:['Fatemi sapere com\'è finita, sono in fila al supermercato.','Quanto manca? Sono già agitato.']};
+var RNEU=['Ragionamento che non fa una piega. Tranne le pieghe.','Non ci avevo pensato, ora non dormo.','Dipende da cosa intendi, ma sono d\'accordo a metà.','Su questo ti seguo. Anche se non sono sicuro di dove.','Interessante. Pericoloso, ma interessante.','Eh, ma lo dici tu. E io? Io cosa dico?'];
+var CPOS=['grandi','bravi','🔥','meritato','applausi','top','che gioia'],CNEG=['che sfiga','ahia','purtroppo','💀','forza dai','mah, ci sta','no vabbè'],CNEU=['ci sta','boh','dipende','e quindi?','chi lo sa','ahah dai','vero','concordo'];
+var NEGR=/perso|sconfitt|\bko\b|flop|disastr|schifo|vergogna|infortun|squalific|crisi|polemic|rubat|truff|corrott|delus|incubo|piang|male\b/,POSR=/vinc|vitt|bravo|grande|\btop\b|primo|record|show|bomba|fenomen|stellar|meritat|applaus|bellissim|trionf|segna|gol\b|capolavoro/;
+function risposta(rr,x,cat,cx){var t=(x||'').toLowerCase(),lis=null,i;
+ for(i=0;i<RTOP.length;i++)if(RTOP[i][0].test(t)){lis=RTOP[i][1];break}
+ var q=rr();
+ if(cx&&cx.gio&&t.indexOf(cx.gio.toLowerCase())>=0&&q<0.3)lis=['Su '+cx.gio+' io non metterei la mano sul fuoco.',cx.gio+' in forma è un altro sport.','Secondo me '+cx.gio+' è sopravvalutato. Lo dico da mesi.','Se '+cx.gio+' sta bene, abbiamo risolto metà dei problemi.'];
+ else if(cx&&cx.sq&&t.indexOf(cx.sq.toLowerCase())>=0&&q<0.3)lis=[cap1(cx.sq)+' questa settimana ha fatto più danni della grandine.',cap1(cx.sq)+' continua a sorprendermi. In bene e in male.','Su '+cx.sq+' ci sarebbe un libro da scrivere. Un horror.','Aspetta che '+cx.sq+' si svegli e vedi.'];
+ else if(!lis){if(NEGR.test(t)&&!POSR.test(t))lis=RNEG;else if(POSR.test(t)&&!NEGR.test(t))lis=RPOS;else if(cat&&RCAT[cat]&&q<0.6)lis=RCAT[cat];else lis=RNEU}
+ return lis[Math.floor(rr()*lis.length)]}
+function cap1(t){return t.charAt(0).toUpperCase()+t.slice(1)}
+function crep(rr,x){var t=(x||'').toLowerCase(),n=NEGR.test(t),q=POSR.test(t),l=n&&!q?CNEG:q&&!n?CPOS:CNEU;return l[Math.floor(rr()*l.length)]}
 var AUTORI=Object.keys(PERS);
 /* risposte generiche */
 var RISP=['Confermo.','Firmo.','Verissimo.','Però {sq} ha dei dubbi.','Non è colpa mia, giuro.','Seguiamo con attenzione.','Applauso, ma con riserva.','Su questo non ho nulla da aggiungere. Quindi aggiungo.','Ai posteri.','Questo coro merita un premio. O un esame.','Ho letto e sono ancora qui.','Ma anche no.','Bomba. Poi si vedrà.','Hai detto tutto. Anche troppo.','Lo dicevo anche io. Ma più forte.'];
@@ -364,8 +397,9 @@ function post_giorno(D,SQ,ST,g){
   var rm=prng('ma'+g+i);if(rm()<0.14){var du=rm()<0.3;if(du){c.sq=DUO;c.all=MISTER[DUO]}else{var cs=SQ.filter(function(q){return q!==DUO});c.sq=pick(rm,cs);c.all=MISTER[c.sq]||c.sq}lis=du?MAD:MA;ix=Math.floor(rm()*lis.length)}
   var x=natura(riempi(lis[ix],c,tag),'v:'+g+':'+i,a);
   var tq=quando(r),hh=Math.floor(tq/60),mi=tq%60;
-  var po={k:'v:'+g+':'+i,a:a,x:x,ts:ts(dd.y,dd.mo,dd.d,Math.min(23,hh),mi),_r:r},ri=prng(po.k+'img');
-  if(IMGPER[a]&&ri()<0.4){po.imgt=IMGPER[a];po.cx={sq:c.sq,sq2:c.sq2,gio:c.gio,pt:c.pt}}
+  var po={k:'v:'+g+':'+i,a:a,x:x,ts:ts(dd.y,dd.mo,dd.d,Math.min(23,hh),mi),_r:r,cat:cat},ri=prng(po.k+'img');
+  po.cx={sq:c.sq,sq2:c.sq2,gio:c.gio,pt:c.pt};
+  if(IMGPER[a]&&ri()<0.6){po.imgt=IMGPER[a]}
   out.push(po);
  }
  /* utenti qualunque */
@@ -377,9 +411,9 @@ function post_giorno(D,SQ,ST,g){
   if(rc()<0.12)xt+=' '+pick(rc,GEN);
   if(rc()<0.1){var d2=rc()<0.3,cs2=SQ.filter(function(q){return q!==DUO}),sq3=d2?DUO:pick(rc,cs2);cc.sq=sq3;cc.all=MISTER[sq3]||sq3;xt=riempi(pick(rc,d2?MAD:MA),cc,null);if(rc()<0.5)xt=xt.replace(/^(\S+)/,function(m){return m===cc.all||m===cc.all.split(' ')[0]?m:m.toLowerCase()})}
   var tq2=quando(rc),hq=Math.floor(tq2/60),mq=tq2%60;
-  out.push({k:'v:'+g+':u'+q,a:cu[0],x:xt,ts:ts(dd.y,dd.mo,dd.d,Math.min(23,hq),mq),r:[]})}
+  out.push({k:'v:'+g+':u'+q,a:cu[0],x:xt,ts:ts(dd.y,dd.mo,dd.d,Math.min(23,hq),mq),r:[],cat:'u',cx:{sq:cc.sq,sq2:cc.sq2,gio:cc.gio,pt:cc.pt}})}
  /* risposte generiche */
- out.forEach(function(p){var rr=prng(p.k),nr=Math.floor(rr()*3);p.r=[];var s=shuffle(rr,AUTORI.filter(function(a){return a!==p.a}));for(var j=0;j<nr;j++){var c=mk();if(rr()<0.5){var cu=comune(rr);if(cu[0]!==p.a)p.r.push({a:cu[0],x:pick(rr,CREP),ts:p.ts+(5+Math.floor(rr()*120))*60000});continue}p.r.push({a:s[j],x:natura(riempi(pick(rr,RISP),c,null),p.k+'r'+j,s[j]),ts:p.ts+(5+Math.floor(rr()*90))*60000})}});
+ out.forEach(function(p){var rr=prng(p.k),nr=1+Math.floor(rr()*3);p.r=[];var s=shuffle(rr,AUTORI.filter(function(a){return a!==p.a}));for(var j=0;j<nr;j++){if(rr()<0.45){var cu=comune(rr);if(cu[0]!==p.a)p.r.push({a:cu[0],x:crep(rr,p.x),ts:p.ts+(5+Math.floor(rr()*120))*60000});continue}p.r.push({a:s[j],x:natura(risposta(rr,p.x,p.cat,p.cx),p.k+'r'+j,s[j]),ts:p.ts+(5+Math.floor(rr()*90))*60000})}});
  out.forEach(function(p){if(p.x.indexOf(MISTER[DUO])<0)return;var rd=prng(p.k+'duo');if(rd()<0.8){var cu=comune(rd),c=mk();if(cu[0]!==p.a){p.r=(p.r||[]).concat([{a:rd()<0.5?cu[0]:pick(rd,AUTORI.filter(function(a){return a!==p.a})),x:riempi(pick(rd,DUORISP),c,null),ts:p.ts+(8+Math.floor(rd()*90))*60000}]);p.r.sort(function(a,b){return a.ts-b.ts})}}});
  return out;
 }
@@ -437,10 +471,10 @@ function genera(D,SQ,ST,ms){
  all.sort(function(a,b){return b.ts-a.ts});
  return all;
 }
-function reazioni(k,t,ms,SQ){var r=prng('rz'+k),age=(ms-t)/60000;if(age<1)return{ap:0,ril:0,r:[]};
+function reazioni(k,t,ms,SQ,xt){var r=prng('rz'+k),age=(ms-t)/60000;if(age<1)return{ap:0,ril:0,r:[]};
  var fa=2+Math.floor(r()*11),fr=Math.floor(r()*4),pr=Math.pow(Math.min(1,age/360),0.6),out=[];
  var nr=Math.floor(r()*3),ord=shuffle(r,AUTORI);
- for(var i=0;i<nr;i++){var d=10+r()*240,tx=pick(r,RISP).replace('{sq}',pick(r,SQ)),a=ord[i];if(r()<0.5){var cu=comune(r);if(age>=d)out.push({a:cu[0],x:pick(r,CREP),ts:t+d*60000});continue}if(age>=d)out.push({a:a,x:natura(tx,k+'z'+i,a),ts:t+d*60000})}
+ for(var i=0;i<nr;i++){var d=10+r()*240,tx=xt?risposta(r,xt,null,{sq:(SQ.filter(function(q){return xt.toLowerCase().indexOf(q.toLowerCase())>=0})[0])}):pick(r,RISP).replace('{sq}',pick(r,SQ)),a=ord[i];if(r()<0.5){var cu=comune(r);if(age>=d)out.push({a:cu[0],x:xt?crep(r,xt):pick(r,CREP),ts:t+d*60000});continue}if(age>=d)out.push({a:a,x:natura(tx,k+'z'+i,a),ts:t+d*60000})}
  return{ap:Math.floor(fa*pr),ril:Math.floor(fr*pr),r:out}}
 
 /* Cori automatici del profilo ufficiale: se una squadra tace per due settimane */
