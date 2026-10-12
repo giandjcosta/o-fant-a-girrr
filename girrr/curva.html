@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,viewport-fit=cover">
 <meta name="robots" content="noindex">
-<meta name="cv-ver" content="20261012a">
+<meta name="cv-ver" content="20261012b">
 <title>Curva · O Girrr</title>
 <link rel="icon" type="image/png" href="../assets/favicon-64.png">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800;900&display=swap">
@@ -223,7 +223,8 @@ function avc(a){var p=prof(a);return p.e?[p.e,' e']:[a.h==='giornale_girrr'?'GG'
 /* Immagini di profilo (avatar e sfondo), scaricate a richiesta e tenute in memoria */
 var IMP={},PI_LOAD={},pit=null;
 function piKey(t,w,ts){return t+'|'+w+'|'+ts}
-function imgP(a,w){if(a.k!=='sq')return null;var p=prof(a),ts=p[w];if(!ts)return null;var k=piKey(a.n,w,ts);if(IMP[k])return IMP[k];
+var LOGHI={'Oranje VC':'../assets/loghi/logo-oranje-vc.png'};
+function imgP(a,w){if(a.k!=='sq')return null;var p=prof(a),ts=p[w];if(!ts)return(w==='a'&&LOGHI[a.n])||null;var k=piKey(a.n,w,ts);if(IMP[k])return IMP[k];
  try{var c=localStorage.getItem('cv-pi:'+k);if(c){IMP[k]=c;return c}}catch(e){}
  if(!PI_LOAD[k]){PI_LOAD[k]=1;rpc('curva_pimg',{p_team:a.n,p_w:w}).then(function(d){if(typeof d==='string'&&d.indexOf('data:image/jpeg')===0){IMP[k]=d;try{Object.keys(localStorage).forEach(function(q){if(q.indexOf('cv-pi:'+a.n+'|'+w+'|')===0&&q!=='cv-pi:'+k)localStorage.removeItem(q)});localStorage.setItem('cv-pi:'+k,d)}catch(e){}applicaPI(a)}}).catch(function(){delete PI_LOAD[k]})}
  return null}
