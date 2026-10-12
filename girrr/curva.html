@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,viewport-fit=cover">
 <meta name="robots" content="noindex">
-<meta name="cv-ver" content="20261012c">
+<meta name="cv-ver" content="20261012d">
 <title>Curva · O Girrr</title>
 <link rel="icon" type="image/png" href="../assets/favicon-64.png">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800;900&display=swap">
@@ -56,7 +56,7 @@ svg{display:block}
 .ib{flex:none;width:36px;height:36px;border-radius:50%;border:0;background:none;cursor:pointer;display:flex;align-items:center;justify-content:center}
 .ib:hover{background:var(--hv)}.ib svg{width:20px;height:20px}
 @media(min-width:760px){.bar .me{display:none}}
-.tabs{display:flex}
+.tabs{display:flex}.ptabs{border-bottom:1px solid var(--ln)}.qt{margin:2px 0 6px;padding:8px 10px;border:1px solid var(--ln);border-radius:12px;font-size:13.5px;color:var(--mu);line-height:1.35}.qt b{color:var(--tx)}.post.risp{display:block}.risp .rtl{margin:0 0 6px}.risp .rp{border-top:0;padding:2px 0 0}
 .tabs button{flex:1;border:0;background:none;padding:14px 4px;font:700 15px Inter;color:var(--mu);cursor:pointer;position:relative}
 .tabs button:hover{background:var(--hv)}
 .tabs button.on{color:var(--tx);font-weight:900}
@@ -151,7 +151,7 @@ svg{display:block}
 @keyframes giro{to{transform:rotate(360deg)}}
 html,body{overscroll-behavior-y:none;touch-action:manipulation;-webkit-text-size-adjust:100%}
 .toast{position:fixed;left:50%;bottom:84px;transform:translateX(-50%);background:var(--tx);color:var(--bg);font:700 14px Inter;padding:11px 18px;border-radius:12px;z-index:60;max-width:90vw;text-align:center;animation:entra .25s ease}
-.pf p.mu{color:var(--mu);font-size:14px;margin-top:-4px}.edi{display:flex;gap:8px;flex-wrap:wrap;margin:6px 0 12px}.edi .btn{padding:7px 14px;font-size:13px}.rtl{font-size:12.5px;color:var(--mu);font-weight:700;margin:0 0 2px}.rtl svg{width:13px;height:13px;vertical-align:-2px;margin-right:3px}.ra{display:flex;gap:6px;margin:2px 0 0 -6px}.ra button{display:flex;align-items:center;gap:5px;border:0;background:none;color:var(--mu);font:600 12.5px Inter;cursor:pointer;padding:3px 7px;border-radius:999px}.ra button:hover{background:var(--hv)}.ra svg{width:14px;height:14px}.ra .on{color:var(--pk)}.ra .on svg{fill:var(--pk)}.hs{cursor:pointer}.hs:hover{text-decoration:underline}
+.pf p.mu{color:var(--mu);font-size:14px;margin-top:-4px}.edi{display:flex;gap:8px;flex-wrap:wrap;margin:6px 0 12px}.edi .btn{padding:7px 14px;font-size:13px}.rtl{display:flex;align-items:center;gap:6px;font-size:12.5px;color:var(--mu);font-weight:700;margin:0 0 2px}.rtl svg{width:13px;height:13px;vertical-align:-2px;margin-right:3px}.ra{display:flex;gap:6px;margin:2px 0 0 -6px}.ra button{display:flex;align-items:center;gap:5px;border:0;background:none;color:var(--mu);font:600 12.5px Inter;cursor:pointer;padding:3px 7px;border-radius:999px}.ra button:hover{background:var(--hv)}.ra svg{width:14px;height:14px}.ra .on{color:var(--pk)}.ra .on svg{fill:var(--pk)}.hs{cursor:pointer}.hs:hover{text-decoration:underline}
 .ban2{margin:12px 14px;padding:14px;border-radius:16px;background:var(--bg2);border:1px solid var(--ln);font-size:14px;line-height:1.4;color:var(--mu)}
 .ban2 b{color:var(--tx)}.ban2 .btn{margin-top:10px;display:inline-block;text-decoration:none}
 .srch{display:flex;margin:10px 14px}.srch input{flex:1;min-width:0;background:var(--bg2);border:1px solid var(--ln);border-radius:999px;font:400 16px Inter;padding:11px 16px;outline:0}.srch input:focus{border-color:var(--blu)}
@@ -413,6 +413,10 @@ function postHTML(p){
   '<div class="acts"><button class="rsp'+(op?' on':'')+'" data-a="rsp">'+I.rsp+(p.r.length||'')+'</button><button class="ril'+(R?' on':'')+'" data-a="ril">'+I.ril+(p.R||'')+'</button><button class="app'+(A?' on':'')+'" data-a="app">'+I.app+(p.A||'')+'</button><button style="cursor:default">'+I.vis+fmt(p.v)+'</button>'+(own?'<button class="del" data-a="del" title="Elimina">'+I.del+'</button>':'')+'</div>'+
   '<div class="thr'+(op?' open':'')+'">'+p.r.map(function(r,i){return reply(r,p.k,i)}).join('')+(me?'<div class="rf"><input maxlength="140" placeholder="Scrivi una risposta…"><button class="btn" data-a="invia" style="padding:8px 14px;font-size:13px">Rispondi</button></div>':'<div class="rf" style="color:var(--mu);font-size:13px">Entra con il codice della tua squadra per rispondere.</div>')+'</div></div></article>'
 }
+function compHTML(m){return '<div class="comp">'+AV(m)+'<div class="cb"><textarea id="tx" rows="2" maxlength="160" placeholder="Cosa succede in curva?"></textarea><div id="pvw">'+(pimg?'<div class="pv"><img src="'+pimg+'" alt=""><button id="pvx" aria-label="Togli la foto">×</button></div>':'')+'</div><div class="cr"><button class="ib" id="pic" title="Aggiungi una foto" aria-label="Aggiungi una foto" style="margin-right:auto;color:var(--blu)"><svg viewBox="0 0 24 24" '+S0+'><rect x="3" y="4" width="18" height="16" rx="3"/><circle cx="9" cy="10" r="1.6"/><path d="M21 16l-5-5-8 8"/></svg></button><input type="file" id="fi" accept="image/*" hidden><span class="cnt" id="cnt">'+MAX+'</span><button class="btn" id="go" disabled>Lancia il coro</button></div></div></div>'}
+var ptab='cori';
+function rispostePosts(a){var L=[];POSTS.forEach(function(p){(p.r||[]).forEach(function(r,i){if(r.a===vprof)L.push({p:p,r:r,i:i})})});L.sort(function(x,y){return y.r.ts-x.r.ts});return L}
+function rispHTML(L){return L.length?L.map(function(o){var pa=acc(o.p.a);return '<article class="post risp" data-k="'+o.p.k+'"><div class="rtl">'+I.rsp+'In risposta a @'+pa.h+'</div><div class="qt"><b>'+esc(nm(pa))+'</b> '+esc((o.p.x||'').slice(0,110))+((o.p.x||'').length>110?'…':'')+'</div>'+reply(o.r,o.p.k,o.i)+'</article>'}).join(''):'<div class="vuoto">Ancora nessuna risposta.</div>'}
 function profiloPosts(a){var L=POSTS.filter(function(p){return p.a===vprof});
  if(a.k==='sq'){(S.rt||[]).forEach(function(r){if(r.team!==a.n)return;var p=POSTS.filter(function(q){return q.k===r.k})[0];if(p&&p.a!==vprof)L.push(Object.assign({},p,{rtby:a.n,ts0:r.ts}))})}
  L.sort(function(x,y){return (y.ts0||y.ts)-(x.ts0||x.ts)});return L}
@@ -447,7 +451,7 @@ function render(){
   topR('Curva','','<button data-f="tutti" class="'+(filt==='tutti'?'on':'')+'">Per te</button><button data-f="seguiti" class="'+(filt==='seguiti'?'on':'')+'">Seguiti</button><button data-f="squadre" class="'+(filt==='squadre'?'on':'')+'">Squadre</button><button data-f="notizie" class="'+(filt==='notizie'?'on':'')+'">Notizie</button>');
   if(me){var pos=posiz(me),pr=prossimo(me),m=nomeMio();
    h+='<div class="mine">'+AV(m,'','data-v="profilo"')+'<div><b>'+esc(cap(me))+'</b><span>'+(pr?'Prossima partita: contro '+esc(cap(pr)):'La tua squadra')+'</span></div>'+(pos?'<div class="pos">'+pos+'ª<small>'+ST.cls[pos-1].pt+' punti</small></div>':'')+'</div>'+(NOTIF.tot?'<div style="margin:-4px 14px 8px"><button class="nov" data-v="profilo">Hai '+NOTIF.tot+' novità sui tuoi cori ›</button></div>':'');
-   h+='<div class="comp">'+AV(m)+'<div class="cb"><textarea id="tx" rows="2" maxlength="160" placeholder="Cosa succede in curva?"></textarea><div id="pvw">'+(pimg?'<div class="pv"><img src="'+pimg+'" alt=""><button id="pvx" aria-label="Togli la foto">×</button></div>':'')+'</div><div class="cr"><button class="ib" id="pic" title="Aggiungi una foto" aria-label="Aggiungi una foto" style="margin-right:auto;color:var(--blu)"><svg viewBox="0 0 24 24" '+S0+'><rect x="3" y="4" width="18" height="16" rx="3"/><circle cx="9" cy="10" r="1.6"/><path d="M21 16l-5-5-8 8"/></svg></button><input type="file" id="fi" accept="image/*" hidden><span class="cnt" id="cnt">'+MAX+'</span><button class="btn" id="go" disabled>Lancia il coro</button></div></div></div>'}
+   h+=compHTML(m)}
   else h+='<div class="ban2"><b>Stai guardando come ospite.</b><br>Per scrivere cori, rispondere e mettere applausi entra con il codice della tua squadra.<br><a class="btn" href="../index.html">Entra</a></div>';
   var L=POSTS.filter(function(p){var k=acc(p.a).k;return filt==='tutti'||(filt==='seguiti'&&(isFol(p.a)||p.a===meH))||(filt==='squadre'&&k==='sq')||(filt==='notizie'&&(k==='org'||k==='pro'))});
   h+=(filt==='seguiti'&&!L.length)?'<div class="vuoto">Non segui ancora nessuno.<br>Cerca in Esplora gli account da seguire.</div>':feed(L);
@@ -464,7 +468,9 @@ function render(){
    '<h2>'+esc(nm(a))+badge(a.v)+'</h2><div class="h">@'+a.h+'</div>'+(pf.bio?'<p>'+esc(pf.bio)+'</p><p class="mu">'+esc(bio)+'</p>':'<p>'+esc(bio)+'</p>')+(a.v?'<div class="etich">'+badge(a.v)+(a.v==='oro'?' Account ufficiale':' Account verificato')+'</div>':'')+
    '<div class="st"><span><b>'+(mio?nSeguiti():isSq?11:12+hue(a.n)%40)+'</b> Seguiti</span><span><b>'+(isSq?fmt(seguaci(a.n)).replace(' mila','')+' mila':a.k==='org'?fmt(9000+hue(a.n)*31).replace(' mila','')+' mila':100+hue(a.n)*3)+'</b> Follower</span></div></div>';
   if(mio&&edit)h+='<div class="edav"><b>Scegli la tua icona</b><div class="emo">'+EMO.map(function(e){return '<button data-emo="'+e+'" class="'+(pf.e===e?'on':'')+'">'+e+'</button>'}).join('')+'<button data-emo="" class="'+(!pf.e?'on':'')+'" style="font-size:12px;font-weight:800">Sigla</button></div>'+(S.v>=3?'<b>Bio</b><textarea id="bioe" rows="2" maxlength="100" placeholder="Scrivi la bio della squadra (max 100 caratteri). Resta sotto la riga con posizione e punti." style="width:100%;margin:6px 0 12px;padding:10px;border-radius:12px;border:1px solid var(--ln);background:var(--bg2);color:var(--tx);font:500 15px Inter;resize:none">'+esc(pf.bio||'')+'</textarea>':'')+'<b>Colore dell\'avatar</b><input type="range" id="hue" min="0" max="359" value="'+hh+'">'+(S.v>=2?'<div class="edi"><button class="btn out" data-a="pfoto">Foto profilo</button><button class="btn out" data-a="pfoto0">Togli foto</button></div><b>Colore dello sfondo</b><input type="range" id="bhue" min="0" max="359" value="'+bh2+'"><div class="edi"><button class="btn out" data-a="bfoto">Immagine di sfondo</button><button class="btn out" data-a="bfoto0">Togli immagine</button></div><input type="file" id="fpa" accept="image/*" hidden><input type="file" id="fpb" accept="image/*" hidden>':'')+(S.v>=3?'':'<div style="margin-top:10px;font-size:12px;color:var(--mu)">Bio, foto e sfondo non sono ancora attivi: il feed del database risponde con la versione '+(S.v||1)+' invece della 3. Controlla l\'SQL v2 su Supabase.</div>')+'<button class="btn" data-a="salvaav" style="margin-top:10px">Salva</button></div>';
-  h+=feed(profiloPosts(a));
+  if(mio&&!edit&&me)h+=compHTML(nomeMio());
+  h+='<div class="tabs ptabs"><button data-pt="cori" class="'+(ptab==='cori'?'on':'')+'">Cori</button><button data-pt="risp" class="'+(ptab==='risp'?'on':'')+'">Risposte</button></div>';
+  h+=ptab==='risp'?rispHTML(rispostePosts(a)):feed(profiloPosts(a));
  }
  v.innerHTML=h;navR();dxR();
  if(vista==='esplora')risultati();
@@ -500,7 +506,7 @@ function conta(){var tx=document.getElementById('tx'),c=document.getElementById(
 function lancia(){
  if(!serve())return;var tx=document.getElementById('tx'),v=maiusc(tx.value.trim());if(!v||v.length>MAX)return;
  var go=document.getElementById('go');go.disabled=true;
- var arg={p_team:me,p_code:code,p_body:v};if(pimg)arg.p_img=pimg;rpc('curva_scrivi',arg).then(function(){ev1(pimg?'curva/foto':'curva/coro',pimg?'Curva: coro con foto':'Curva: coro scritto');pimg=null;filt='tutti';return carica()}).then(function(){render()}).catch(function(e){toast(e.message);go.disabled=false});
+ var arg={p_team:me,p_code:code,p_body:v};if(pimg)arg.p_img=pimg;rpc('curva_scrivi',arg).then(function(){ev1(pimg?'curva/foto':'curva/coro',pimg?'Curva: coro con foto':'Curva: coro scritto');pimg=null;if(vista!=='u'){filt='tutti'}else{ptab='cori'}return carica()}).then(function(){render();if(vista==='u')toast('Coro pubblicato')}).catch(function(e){toast(e.message);go.disabled=false});
 }
 function reagisci(k,kind){if(!serve())return;
  var key=k+'|'+kind,on=!MN[key];
@@ -509,12 +515,13 @@ function reagisci(k,kind){if(!serve())return;
 document.addEventListener('click',function(e){
  if(e.target.closest('.lb')){e.target.closest('.lb').remove();return}
  var im=e.target.closest('.pimg img');if(im){var l=document.createElement('div');l.className='lb';l.innerHTML='<img src="'+im.src+'" alt="">';document.body.appendChild(l);return}
- var el=e.target.closest('[data-v],[data-u],[data-f],[data-seg],[data-a],[data-q],[data-emo]');if(!el)return;
+ var el=e.target.closest('[data-v],[data-u],[data-f],[data-pt],[data-seg],[data-a],[data-q],[data-emo]');if(!el)return;
  var d=el.dataset;
  if(d.q!==undefined){e.stopPropagation();qs=d.q;vista='esplora';scrollTo(0,0);render();return}
  if(d.v){if(d.v==='scrivi'){if(!me){toast('Entra con il codice della tua squadra per partecipare');return}vista='home';filt='tutti';render();var t=document.getElementById('tx');if(t)t.focus();return}if(d.v==='home'&&vista==='home'){if(window.scrollY>4)window.scrollTo({top:0,behavior:'smooth'});else rinfresca();return}
- if(d.v==='profilo'&&!me){toast('Entra con il codice della tua squadra');return}vista=d.v;scrollTo(0,0);if(d.v==='esplora')qs='';render();return}
- if(d.u){vprof=d.u;vista='u';edit=false;scrollTo(0,0);render();return}
+ if(d.v==='profilo'&&!me){toast('Entra con il codice della tua squadra');return}vista=d.v;ptab='cori';scrollTo(0,0);if(d.v==='esplora')qs='';render();return}
+ if(d.u){vprof=d.u;vista='u';edit=false;ptab='cori';scrollTo(0,0);render();return}
+ if(d.pt){ptab=d.pt;render();return}
  if(d.f){filt=d.f;render();return}
  if(d.emo!==undefined){sel.e=d.emo;document.querySelectorAll('.emo button').forEach(function(b){b.classList.toggle('on',b.dataset.emo===d.emo)});var av=document.querySelector('.av.xl');if(av){av.textContent=d.emo||sigla(me);av.className='av xl'+(d.emo?' e':'')}return}
  if(d.seg){if(!serve())return;rpc('curva_segui',{p_team:me,p_code:code,p_h:d.seg}).then(function(){return carica()}).then(function(){render()}).catch(function(x){toast(x.message)});return}
