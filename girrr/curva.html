@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,viewport-fit=cover">
 <meta name="robots" content="noindex">
-<meta name="cv-ver" content="20261012o">
+<meta name="cv-ver" content="20261012q">
 <title>Curva · O Girrr</title>
 <link rel="icon" type="image/png" href="../assets/favicon-64.png">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800;900&display=swap">
@@ -95,6 +95,8 @@ svg{display:block}
 .res .g .l{color:var(--mu);font-weight:500}
 .res .c{display:grid;grid-template-columns:24px 1fr auto auto;gap:8px;padding:7px 14px;border-top:1px solid var(--ln);font-size:14px;font-weight:700}
 .res .c i{font-style:normal;color:var(--mu)}.res .c u{text-decoration:none;color:var(--mu);font-weight:500}
+.faq details{border-bottom:1px solid var(--ln);padding:16px}.faq summary{font-weight:800;font-size:16px;cursor:pointer;list-style:none;display:flex;justify-content:space-between;gap:12px}.faq summary::after{content:'+';font-size:22px;line-height:1;color:var(--mu)}.faq details[open] summary::after{content:'–'}.faq summary::-webkit-details-marker{display:none}.faq p{margin:10px 0 0;color:var(--mu);line-height:1.5;font-size:15px}
+.poll{margin:10px 0 4px}.po-o{display:block;width:100%;text-align:left;border:1px solid var(--blu);border-radius:12px;padding:11px 14px;margin:6px 0;font-weight:700;color:var(--blu);background:transparent;font-size:15px}.po-r{position:relative;display:flex;justify-content:space-between;gap:10px;border:1px solid var(--ln);border-radius:12px;padding:11px 14px;margin:6px 0;overflow:hidden;font-size:15px}.po-r i{position:absolute;left:0;top:0;bottom:0;background:var(--blu);opacity:.22}.po-r.me i{opacity:.42}.po-r span{position:relative}.pom{font-size:13px;color:var(--mu);margin-top:4px}.poi{display:block;width:100%;margin:6px 0;padding:11px 13px;border-radius:12px;border:1px solid var(--ln);background:transparent;color:var(--tx);font:inherit;box-sizing:border-box}
 .lnk{display:inline-flex;margin:2px 0 10px;border:1px solid var(--ln);border-radius:999px;padding:7px 14px;font-weight:800;font-size:13px;color:var(--tx);text-decoration:none;background:none;cursor:pointer}
 .acts{display:flex;justify-content:space-between;max-width:420px;margin-left:-8px}
 .acts button{display:flex;align-items:center;gap:6px;border:0;background:none;color:var(--mu);font:500 13px Inter;cursor:pointer;padding:6px 8px;border-radius:999px;transition:color .2s,background .2s}
@@ -198,6 +200,8 @@ var I={
  app:'<svg viewBox="0 0 24 24" '+S0+'><path d="M12 21s-7.5-4.6-9.6-9.3C.9 8.2 3 5 6.2 5c1.9 0 3.2 1 3.8 2 .6-1 1.9-2 3.8-2C17 5 19.1 8.2 17.6 11.7 15.5 16.4 12 21 12 21z"/></svg>',
  vis:'<svg viewBox="0 0 24 24" '+S0+'><path d="M4 20V10"/><path d="M10 20V4"/><path d="M16 20v-7"/><path d="M22 20H2"/></svg>',
  shr:'<svg viewBox="0 0 24 24" '+S0+'><path d="M12 3v12"/><path d="M7 8l5-5 5 5"/><path d="M5 13v6a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-6"/></svg>',
+ info:'<svg viewBox="0 0 24 24" '+S0+'><circle cx="12" cy="12" r="9"/><path d="M12 11v6"/><circle cx="12" cy="7.6" r=".6" fill="currentColor"/></svg>',
+ pol:'<svg viewBox="0 0 24 24" '+S0+'><path d="M4 6h10"/><path d="M4 12h16"/><path d="M4 18h7"/></svg>',
  bell:'<svg viewBox="0 0 24 24" '+S0+'><path d="M6 8a6 6 0 1 1 12 0c0 7 3 8 3 8H3s3-1 3-8"/><path d="M10.3 20a1.9 1.9 0 0 0 3.4 0"/></svg>',
  star:'<svg viewBox="0 0 24 24" '+S0+'><path d="M12 3l2.6 5.6 6 .7-4.5 4.1 1.2 6L12 16.5 6.7 19.4l1.2-6L3.4 9.3l6-.7z"/></svg>',
  del:'<svg viewBox="0 0 24 24" '+S0+'><path d="M3 6h18"/><path d="M8 6V4h8v2"/><path d="M6 6l1 14h10l1-14"/></svg>',
@@ -280,9 +284,9 @@ function tema(t){document.documentElement.setAttribute('data-theme',t);document.
 (function(){var t=null;try{t=localStorage.getItem('cv-tema')}catch(e){}if(!t)t=window.matchMedia&&matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light';tema(t)})();
 function curTema(){return document.documentElement.getAttribute('data-theme')}
 /* feed unificato */
-var RC={},MN={},RTS={};
+var RC={},MN={},RTS={},PM={};
 function costruisci(){
- RC={};MN={};RTS={};(S.rt||[]).forEach(function(r){(RTS[r.k]=RTS[r.k]||[]).push(r)});S.react.forEach(function(r){RC[r.k+'|'+r.kind]=r.n});S.mine.forEach(function(r){MN[r.k+'|'+r.kind]=1});
+ RC={};MN={};RTS={};PM={};(S.polls||[]).forEach(function(q){PM[q.id]=q});(S.rt||[]).forEach(function(r){(RTS[r.k]=RTS[r.k]||[]).push(r)});S.react.forEach(function(r){RC[r.k+'|'+r.kind]=r.n});S.mine.forEach(function(r){MN[r.k+'|'+r.kind]=1});
  var tuttiR={};S.replies.forEach(function(r){(tuttiR[r.k]=tuttiR[r.k]||[]).push({id:r.id,a:hnd(r.team),x:r.body,ts:r.ts,real:1})});
  var out=[];
  S.posts.forEach(function(p){var z={ap:0,ril:0,r:[]};try{z=CVB.reazioni('p'+p.id,p.ts,Date.now(),SQ)}catch(e){}var f=fattore(p.team);out.push({k:'p'+p.id,id:p.id,hi:p.hi,real:1,a:hnd(p.team),x:p.body,ts:p.ts,ap:Math.round(z.ap*f),ril:Math.round(z.ril*f),v:0,f:f,tm:p.team,id0:p.id,r:z.r.map(function(r){var q=CVB.h32(r.x+p.id)%100,co=CVB.MISTER[p.team];return q<30?{a:r.a,x:'@'+hnd(p.team)+' '+r.x,ts:r.ts}:q<45&&co?{a:r.a,x:co+', '+r.x,ts:r.ts}:q<55?{a:r.a,x:p.team+', '+r.x,ts:r.ts}:r})})});
@@ -412,12 +416,12 @@ function postHTML(p){
  var rl=p.rtby?'<div class="rtl">'+I.ril+esc(cap(p.rtby))+' ha rilanciato</div>':(RTS[p.k]&&vista!=='u'?'<div class="rtl">'+I.ril+'Rilanciato da '+RTS[p.k].slice(0,2).map(function(t){return esc(cap(t.team))}).join(', ')+(RTS[p.k].length>2?' e altri '+(RTS[p.k].length-2):'')+'</div>':'');
  return '<article class="post'+(SEEN[p.k]?' old':'')+'" data-k="'+p.k+'">'+AV(a,'','data-u="'+a.h+'"')+'<div class="pb">'+rl+
   '<div class="pn"><b data-u="'+a.h+'">'+esc(nm(a))+'</b>'+badge(a.v)+'<span class="h">@'+a.h+'</span><span class="tm">· '+ago(p.ts)+'</span>'+(NOTIF.per[p.k]?'<span class="np">+'+NOTIF.per[p.k]+' novità</span>':'')+'</div>'+
-  '<div class="pt">'+testo(p.x)+'</div>'+(p.hi?'<div class="pimg" data-id="'+p.id+'">'+(IM[p.id]?'<img src="'+IM[p.id]+'" alt="">':'')+'</div>':'')+ex+
+  '<div class="pt">'+testo(p.x)+'</div>'+(p.hi?'<div class="pimg" data-id="'+p.id+'">'+(IM[p.id]?'<img src="'+IM[p.id]+'" alt="">':'')+'</div>':'')+ex+pollHTML(p)+
   (th?'<div class="thr'+(open['t'+p.k]?' open':'')+'">'+th+'</div><button class="lnk" data-a="thr" style="color:var(--blu)">'+(open['t'+p.k]?'Nascondi il resto':'Mostra tutto il coro')+'</button>':'')+
   '<div class="acts"><button class="rsp'+(op?' on':'')+'" data-a="rsp">'+I.rsp+(p.r.length||'')+'</button><button class="ril'+(R?' on':'')+'" data-a="ril">'+I.ril+(p.R||'')+'</button><button class="app'+(A?' on':'')+'" data-a="app">'+I.app+(p.A||'')+'</button><button style="cursor:default">'+I.vis+fmt(p.v)+'</button><button data-a="shr" title="Condividi">'+I.shr+'</button>'+(own?'<button class="del" data-a="del" title="Elimina">'+I.del+'</button>':'')+'</div>'+
   '<div class="thr'+(op?' open':'')+'">'+p.r.map(function(r,i){return reply(r,p.k,i)}).join('')+(me?'<div class="rf"><input maxlength="140" placeholder="Scrivi una risposta…"><button class="btn" data-a="invia" style="padding:8px 14px;font-size:13px">Rispondi</button></div>':'<div class="rf" style="color:var(--mu);font-size:13px">Entra con il codice della tua squadra per rispondere.</div>')+'</div></div></article>'
 }
-function compHTML(m){return '<div class="comp">'+AV(m)+'<div class="cb"><textarea id="tx" rows="2" maxlength="300" placeholder="Cosa succede in curva?"></textarea><div id="pvw">'+(pimg?'<div class="pv"><img src="'+pimg+'" alt=""><button id="pvx" aria-label="Togli la foto">×</button></div>':'')+'</div><div class="cr"><button class="ib" id="pic" title="Aggiungi una foto" aria-label="Aggiungi una foto" style="margin-right:auto;color:var(--blu)"><svg viewBox="0 0 24 24" '+S0+'><rect x="3" y="4" width="18" height="16" rx="3"/><circle cx="9" cy="10" r="1.6"/><path d="M21 16l-5-5-8 8"/></svg></button><input type="file" id="fi" accept="image/*" hidden><span class="cnt" id="cnt">'+MAX+'</span><button class="btn" id="go" disabled>Lancia il coro</button></div></div></div>'}
+function compHTML(m){return '<div class="comp">'+AV(m)+'<div class="cb"><textarea id="tx" rows="2" maxlength="300" placeholder="Cosa succede in curva?"></textarea><div id="pvw">'+(pimg?'<div class="pv"><img src="'+pimg+'" alt=""><button id="pvx" aria-label="Togli la foto">×</button></div>':'')+'</div><div id="pol"></div><div class="cr"><button class="ib" id="pic" title="Aggiungi una foto" aria-label="Aggiungi una foto" style="margin-right:12px;color:var(--blu)"><svg viewBox="0 0 24 24" '+S0+'><rect x="3" y="4" width="18" height="16" rx="3"/><circle cx="9" cy="10" r="1.6"/><path d="M21 16l-5-5-8 8"/></svg></button>'+(S.v>=4?'<button class="ib" data-a="poll" title="Aggiungi un sondaggio" aria-label="Aggiungi un sondaggio" style="margin-right:auto;color:var(--blu)">'+I.pol+'</button>':'')+'<input type="file" id="fi" accept="image/*" hidden><span class="cnt" id="cnt">'+MAX+'</span><button class="btn" id="go" disabled>Lancia il coro</button></div></div></div>'}
 var ptab='cori';
 function rispostePosts(a){var L=[];POSTS.forEach(function(p){(p.r||[]).forEach(function(r,i){if(r.a===vprof)L.push({p:p,r:r,i:i})})});L.sort(function(x,y){return y.r.ts-x.r.ts});return L}
 function rispHTML(L){return L.length?L.map(function(o){var pa=acc(o.p.a);return '<article class="post risp" data-k="'+o.p.k+'"><div class="rtl">'+I.rsp+'In risposta a @'+pa.h+'</div><div class="qt"><b>'+esc(nm(pa))+'</b> '+esc((o.p.x||'').slice(0,110))+((o.p.x||'').length>110?'…':'')+'</div>'+reply(o.r,o.p.k,o.i)+'</article>'}).join(''):'<div class="vuoto">Ancora nessuna risposta.</div>'}
@@ -430,10 +434,10 @@ function navR(){
  document.getElementById('nav').innerHTML='<div class="logo" data-v="home"><div class="lg"></div></div>'+it.map(function(x){var on=vista===x[0]||(vista==='u'&&x[0]==='profilo'&&vprof===meH);var nb=x[0]==='notifiche'?nBadge():0,bd=nb?'<span class="bd">'+(nb>99?'99+':nb)+'</span>':'';return '<button data-v="'+x[0]+'" class="'+(on?'on':'')+'" aria-label="'+x[1]+'">'+x[2]+'<span class="t">'+x[1]+'</span>'+bd+'</button>'}).join('')+'<a class="sito" href="index.html" aria-label="Torna a O Girrr"><img src="../assets/favicon-64.png" alt=""><span class="t">O Girrr</span></a><button class="btn postbtn" data-v="scrivi">Lancia un coro</button>'
 }
 function topR(titolo,sott,tabs){
- var back=vista==='u'&&vprof!==meH,m=nomeMio();
+ var back=(vista==='u'&&vprof!==meH)||vista==='info',m=nomeMio();
  document.getElementById('top').innerHTML='<div class="bar">'+(back?'<button class="ib" data-v="home" aria-label="Indietro">'+I.back+'</button>':(m?AV(m,'sm me','data-v="profilo"'):'<span class="me"></span>'))+
   '<div class="tt">'+(vista==='home'?'<span style="display:flex;align-items:center;gap:8px"><i class="lg" style="width:28px;height:28px"></i>Curva</span>':esc(titolo)+(sott?'<small>'+esc(sott)+'</small>':''))+'</div>'+
-  '<button class="ib" id="rfb" aria-label="Aggiorna" title="Aggiorna"><svg viewBox="0 0 24 24" '+S0+'><path d="M20 12a8 8 0 1 1-2.5-5.8"/><path d="M20 4v5h-5"/></svg></button><button class="ib" id="tg" aria-label="Cambia tema">'+(curTema()==='dark'?I.sun:I.moon)+'</button></div>'+(tabs?'<div class="tabs">'+tabs+'</div>':'')+(NET===false?'<div class="net">Non riesco a collegarmi ai cori: puoi leggere, ma non scrivere.</div>':'');
+  '<button class="ib" data-v="info" aria-label="Info" title="Come funziona">'+I.info+'</button><button class="ib" id="rfb" aria-label="Aggiorna" title="Aggiorna"><svg viewBox="0 0 24 24" '+S0+'><path d="M20 12a8 8 0 1 1-2.5-5.8"/><path d="M20 4v5h-5"/></svg></button><button class="ib" id="tg" aria-label="Cambia tema">'+(curTema()==='dark'?I.sun:I.moon)+'</button></div>'+(tabs?'<div class="tabs">'+tabs+'</div>':'')+(NET===false?'<div class="net">Non riesco a collegarmi ai cori: puoi leggere, ma non scrivere.</div>':'');
  document.getElementById('rfb').onclick=function(){rinfresca()};
  document.getElementById('tg').onclick=function(){tema(curTema()==='dark'?'light':'dark');render()};
 }
@@ -514,6 +518,9 @@ function render(){
   var NL=NOTI.filter(function(o){return ntab==='tutte'||o.tp==='men'});
   h+=NL.length?NL.map(nRow).join(''):'<div class="vuoto">'+(ntab==='men'?'Nessuno ti ha ancora menzionato.<br>Scrivi @ seguito dal nome di una squadra per taggare qualcuno.':'Ancora nessuna notifica.<br>Qui compaiono menzioni, risposte, rilanci e traguardi dei tuoi cori.')+'</div>';
   nSegna(null);
+ }else if(vista==='info'){
+  topR('Come funziona','La Curva in breve');
+  h+='<div class="faq"><details><summary>Cos\'è la Curva?</summary><p>È il social della nostra lega. Qui la squadra, i tifosi e i personaggi della lega commentano giornate, scambi e risultati. Si legge senza entrare; per scrivere serve il link della tua squadra.</p></details><details><summary>Cos\'è un coro?</summary><p>Un coro è un post: fino a 280 caratteri, con una foto se vuoi. Puoi scriverlo dalla Home o dal tuo profilo, e aggiungere un sondaggio.</p></details><details><summary>Applausi, rilanci, risposte e visualizzazioni</summary><p>L\'applauso (cuore) mostra che un coro ti è piaciuto; il rilancio lo riporta anche sul tuo profilo; la risposta apre una discussione di massimo 140 caratteri. Le visualizzazioni crescono con i follower della squadra e con il tempo.</p></details><details><summary>Come si taggano le squadre?</summary><p>Scrivi @ e le prime lettere del nome: compaiono i suggerimenti, tocchi quello giusto. Chi viene menzionato riceve una notifica.</p></details><details><summary>Quando arrivano le notifiche?</summary><p>Quando qualcuno ti menziona, ti risponde, rilancia o applaude un tuo coro, quando un tuo coro supera certe visualizzazioni o ha un buon engagement, e quando raggiungi traguardi di follower. Una notifica sparisce quando la tocchi o quando guardi il coro a cui si riferisce.</p></details><details><summary>Chi sono gli altri account?</summary><p>Ci sono le altre squadre della lega, gli account ufficiali (la Lega, il Giornale, Ciro Trattativa) e i personaggi della Curva: il Barista, la Suocera, il Tecnico da Divano e gli altri. Commentano le giornate, il mercato e tutto quello che succede.</p></details><details><summary>Cosa fa Ciro Trattativa?</summary><p>Dà notizie di mercato: scambi veri tra le squadre e consigli sugli svincolati con i dati della stagione, cioè medie, presenze e titolarità.</p></details><details><summary>Come condivido un coro?</summary><p>Tocca l\'icona di condivisione sotto il coro: la Curva crea un\'immagine pronta da mandare nel gruppo WhatsApp o in qualunque altra app.</p></details><details><summary>Come modifico il mio profilo?</summary><p>Dal tuo profilo tocca Modifica profilo: puoi cambiare icona, colore, bio, foto profilo e sfondo.</p></details><details><summary>Dove trovo il resto della lega?</summary><p>Con l\'icona O Girrr in basso passi alla pagina principale: lì ci sono Spogliatoio, Giornale, Tabellone, Totogirrr, Albo d\'oro e le statistiche.</p></details></div>';
  }else if(vista==='esplora'){
   topR('Esplora','Cerca, tendenze e account');
   h+='<div class="srch"><input id="qs" type="search" placeholder="Cerca cori, #hashtag o @account" value="'+esc(qs)+'" autocomplete="off"></div><div id="ris"></div>';
@@ -586,10 +593,21 @@ function condividi(k){var p=POSTS.filter(function(q){return q.k===k})[0];if(!p)r
    else{var u=URL.createObjectURL(b),l=document.createElement('a');l.href=u;l.download=f.name;document.body.appendChild(l);l.click();l.remove();setTimeout(function(){URL.revokeObjectURL(u)},4000);toast('Immagine salvata')}
    ev1('curva/condividi','Curva: coro condiviso')},'image/png')})}
 function conta(){var tx=document.getElementById('tx'),c=document.getElementById('cnt'),go=document.getElementById('go');if(!tx)return;var r=MAX-tx.value.length;c.textContent=r;c.className='cnt'+(r<0?' over':r<20?' near':'');go.disabled=!tx.value.trim()||r<0;tx.style.height='auto';tx.style.height=tx.scrollHeight+'px'}
+
+function pollForm(){return '<input class="poi" maxlength="40" placeholder="Risposta 1"><input class="poi" maxlength="40" placeholder="Risposta 2"><button class="lnk" data-a="pollx" style="color:var(--blu);margin:2px 0 0">+ Aggiungi una risposta</button><div class="pom">Il sondaggio dura 24 ore. Ogni squadra vota una sola volta.</div>'}
+function pollHTML(p){var po=p.real&&PM[p.id0];if(!po)return '';var age=Date.now()-p.ts,chiuso=age>864e5,mio=me&&S.pv?S.pv[p.id0]:undefined,n=po.o.length,w=[],sw=0;
+ for(var i=0;i<n;i++){var x=1+CVB.h32(p.k+'o'+i)%100/40;w.push(x);sw+=x}
+ var B=Math.round((p.v||0)*0.012*(1-Math.exp(-age/36e5/3))),tot=0,c=[];for(var j=0;j<n;j++){c.push((po.n&&po.n[j]||0)+Math.round(B*w[j]/sw));tot+=c[j]}
+ var h='<div class="poll">';
+ if(me&&!chiuso&&mio===undefined){po.o.forEach(function(o,i){h+='<button class="po-o" data-a="vota" data-o="'+i+'">'+esc(o)+'</button>'})}
+ else{var mx=Math.max.apply(null,c);po.o.forEach(function(o,i){var pc=tot?Math.round(c[i]*100/tot):0;h+='<div class="po-r'+(mio===i?' me':'')+'"><i style="width:'+pc+'%"></i><span>'+esc(o)+(mio===i?' ✓':'')+'</span><span><b>'+pc+'%</b></span></div>'})}
+ var rest=864e5-age,ore=Math.ceil(rest/36e5);
+ return h+'<div class="pom">'+fmt(tot)+(tot===1?' voto':' voti')+' · '+(chiuso?'Concluso':'Ancora '+(ore>1?ore+' ore':'meno di un\'ora'))+'</div></div>'}
 function lancia(){
  if(!serve())return;var tx=document.getElementById('tx'),v=maiusc(tx.value.trim());if(!v||v.length>MAX)return;
  var go=document.getElementById('go');go.disabled=true;
- var arg={p_team:me,p_code:code,p_body:v};if(pimg)arg.p_img=pimg;rpc('curva_scrivi',arg).then(function(){ev1(pimg?'curva/foto':'curva/coro',pimg?'Curva: coro con foto':'Curva: coro scritto');pimg=null;if(vista!=='u'){filt='tutti'}else{ptab='cori'}return carica()}).then(function(){render();if(vista==='u')toast('Coro pubblicato')}).catch(function(e){toast(e.message);go.disabled=false});
+ var pin=Array.prototype.map.call(document.querySelectorAll('#pol .poi'),function(i){return i.value.trim()}).filter(Boolean);if(document.querySelector('#pol .poi')&&pin.length<2){toast('Servono almeno 2 risposte');go.disabled=false;return}
+ var arg={p_team:me,p_code:code,p_body:v},fnr='curva_scrivi';if(pin.length){fnr='curva_sondaggio';arg.p_opts=pin}else if(pimg)arg.p_img=pimg;rpc(fnr,arg).then(function(){ev1(pin.length?'curva/sondaggio':pimg?'curva/foto':'curva/coro',pin.length?'Curva: sondaggio':pimg?'Curva: coro con foto':'Curva: coro scritto');pimg=null;if(vista!=='u'){filt='tutti'}else{ptab='cori'}return carica()}).then(function(){render();if(vista==='u')toast('Coro pubblicato')}).catch(function(e){toast(e.message);go.disabled=false});
 }
 function reagisci(k,kind){if(!serve())return;
  var key=k+'|'+kind,on=!MN[key];
@@ -627,6 +645,8 @@ document.addEventListener('click',function(e){
  if(a==='bfoto0'){sel.bi='';var bn0=document.getElementById('ban');if(bn0){var b0=sel.bh!=null?sel.bh:(prof(acc(meH)).bh!=null?prof(acc(meH)).bh:(prof(acc(meH)).h!=null?prof(acc(meH)).h:hue(me)));bn0.style.cssText='background:linear-gradient(135deg,hsl('+b0+' 60% 40%),hsl('+((b0+40)%360)+' 55% 22%))'}return}
  if(a==='salvaav'){if(!serve())return;var pf2=prof(acc(meH));var pa={p_team:me,p_code:code,p_emoji:sel.e||'',p_hue:sel.h!=null?sel.h:(pf2.h!=null?pf2.h:hue(me))};if(S.v>=2){pa.p_bh=sel.bh!=null?sel.bh:(pf2.bh!=null?pf2.bh:pa.p_hue);if(sel.av!=null)pa.p_av=sel.av;if(sel.bi!=null)pa.p_bi=sel.bi}
  if(S.v>=3&&sel.bio!==undefined)pa.p_bio=sel.bio.trim();rpc('curva_profilo',pa).then(function(){edit=false;return carica()}).then(function(){render();toast('Profilo salvato')}).catch(function(x){toast(x.message)});return}
+ if(a==='poll'){var pl=document.getElementById('pol'),pc=document.getElementById('pic');if(!pl)return;if(pl.innerHTML){pl.innerHTML='';if(pc)pc.style.display=''}else{pimg=null;var pw=document.getElementById('pvw');if(pw)pw.innerHTML='';pl.innerHTML=pollForm();if(pc)pc.style.display='none'}return}
+ if(a==='pollx'){var pls=document.querySelectorAll('#pol .poi');if(pls.length<4){var ni=document.createElement('input');ni.className='poi';ni.maxLength=40;ni.placeholder='Risposta '+(pls.length+1);pls[pls.length-1].after(ni);ni.focus()}if(pls.length>=3)el.hidden=true;return}
  var po=el.closest('.post');if(!po)return;
  var k=po.dataset.k,p=POSTS.filter(function(x){return x.k===k})[0];if(!p)return;
  if(a==='rsp'){open[k]=!open[k];render();if(open[k]){var i2=document.querySelector('[data-k="'+k+'"] .rf input');if(i2)i2.focus()}return}
@@ -635,6 +655,7 @@ document.addEventListener('click',function(e){
  if(a==='rrsp'){open[k]=true;var h0=el.dataset.h;render();var i3=document.querySelector('[data-k="'+k+'"] .rf input');if(i3){i3.value='@'+h0+' ';i3.focus()}return}
  if(a==='app'){reagisci(k,'a');return}
  if(a==='shr'){condividi(k);return}
+ if(a==='vota'){if(!serve())return;var pid=+k.slice(1);rpc('curva_vota',{p_team:me,p_code:code,p_post:pid,p_opt:+el.dataset.o}).then(function(){ev1('curva/voto','Curva: voto al sondaggio');return carica()}).then(function(){render()}).catch(function(x){toast(x.message)});return}
  if(a==='ril'){reagisci(k,'r');return}
  if(a==='del'){if(!serve())return;rpc('curva_cancella',{p_team:me,p_code:code,p_tipo:'p',p_id:p.id}).then(function(){return carica()}).then(function(){render()}).catch(function(x){toast(x.message)});return}
  if(a==='delr'){if(!serve())return;rpc('curva_cancella',{p_team:me,p_code:code,p_tipo:'r',p_id:+el.dataset.rid}).then(function(){return carica()}).then(function(){open[k]=true;render()}).catch(function(x){toast(x.message)});return}
