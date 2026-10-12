@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,viewport-fit=cover">
 <meta name="robots" content="noindex">
-<meta name="cv-ver" content="20261012h">
+<meta name="cv-ver" content="20261012i">
 <title>Curva · O Girrr</title>
 <link rel="icon" type="image/png" href="../assets/favicon-64.png">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800;900&display=swap">
@@ -286,10 +286,11 @@ function costruisci(){
  var out=[];
  S.posts.forEach(function(p){var z={ap:0,ril:0,r:[]};try{z=CVB.reazioni('p'+p.id,p.ts,Date.now(),SQ)}catch(e){}var f=fattore(p.team);out.push({k:'p'+p.id,id:p.id,hi:p.hi,real:1,a:hnd(p.team),x:p.body,ts:p.ts,ap:Math.round(z.ap*f),ril:Math.round(z.ril*f),v:0,f:f,tm:p.team,id0:p.id,r:z.r.map(function(r){var q=CVB.h32(r.x+p.id)%100,co=CVB.MISTER[p.team];return q<30?{a:r.a,x:'@'+hnd(p.team)+' '+r.x,ts:r.ts}:q<45&&co?{a:r.a,x:co+', '+r.x,ts:r.ts}:q<55?{a:r.a,x:p.team+', '+r.x,ts:r.ts}:r})})});
  var gen=[];try{gen=CVB.genera(D,SQ,ST,Date.now())}catch(e){}
- try{var tm={};S.posts.forEach(function(p){(tm[p.team]=tm[p.team]||[]).push(p.ts)});CVB.ufficiale(D,SQ,ST,tm,Date.now()).forEach(function(u){var z=CVB.reazioni(u.k,u.ts,Date.now(),SQ),f=fattore(u.team);out.push({k:u.k,a:hnd(u.team),x:u.x,ts:u.ts,ap:Math.round((z.ap+8)*f),ril:Math.round((z.ril+2)*f),v:0,f:f,tm:u.team,id0:CVB.h32(u.k)%1000,r:z.r})})}catch(e){}
+ try{var tm={};S.posts.forEach(function(p){(tm[p.team]=tm[p.team]||[]).push(p.ts)});CVB.ufficiale(D,SQ,ST,tm,Date.now()).forEach(function(u){var z=CVB.reazioni(u.k,u.ts,Date.now(),SQ),f=fattore(u.team);out.push({k:u.k,a:hnd(u.team),x:u.x,uf:1,ts:u.ts,ap:Math.round((z.ap+8)*f),ril:Math.round((z.ril+2)*f),v:0,f:f,tm:u.team,id0:CVB.h32(u.k)%1000,r:z.r})})}catch(e){}
  gen.forEach(function(p){out.push(p)});
  out.forEach(function(p){var rr=(p.r||[]).concat(tuttiR[p.k]||[]);rr.sort(function(a,b){return a.ts-b.ts});p.r=rr;
-  p.A=(p.ap||0)+(RC[p.k+'|a']||0);p.R=(p.ril||0)+(RC[p.k+'|r']||0);if(!p.v){var et=Math.max(0,(Date.now()-p.ts)/36e5),cr=1-Math.exp(-et/5),j=0.8+((p.id0||0)*37%40)/100;p.v=Math.round(seguaci(p.tm)*(0.01+0.09*cr)*j+30*(p.A+p.R+rr.length))}});
+  var vb=0;if((p.real||p.uf)&&!p.v){var et0=Math.max(0,(Date.now()-p.ts)/36e5),cr0=1-Math.exp(-et0/5),j0=0.8+((p.id0||0)*37%40)/100;vb=seguaci(p.tm)*(0.01+0.09*cr0)*j0;p.ap=Math.round(vb*(0.012+(CVB.h32(p.k)%20)/1000));p.ril=Math.round(vb*(0.003+(CVB.h32(p.k+'r')%30)/10000))}
+  p.A=(p.ap||0)+(RC[p.k+'|a']||0);p.R=(p.ril||0)+(RC[p.k+'|r']||0);if(!p.v){var et=Math.max(0,(Date.now()-p.ts)/36e5),cr=1-Math.exp(-et/5),j=0.8+((p.id0||0)*37%40)/100;p.v=Math.round((vb||seguaci(p.tm)*(0.01+0.09*cr)*j)+30*(p.A+p.R+rr.length))}});
  out.sort(function(a,b){return b.ts-a.ts});
  NOTIF={tot:0,per:{}};
  if(me){var key='cv-snap-'+me,snap=null;try{snap=JSON.parse(localStorage.getItem(key)||'null')}catch(e){}
@@ -460,11 +461,11 @@ function notifiche(){
    if(re.test(r.x))out.push({t:r.ts,tp:'men',a:r.a,k:p.k,u:p.a,x:r.x,r:1});
    else if(p.a===meH)out.push({t:r.ts,tp:'rsp',a:r.a,k:p.k,u:p.a,x:r.x})})});
  (S.rt||[]).forEach(function(r){var p=miei.filter(function(q){return q.k===r.k})[0];if(p&&r.team!==me)out.push({t:r.ts,tp:'ril',a:hnd(r.team),k:p.k,u:meH,x:p.x})});
- var LA=[5,10,25,50,100,250,500,1000],LV=[1000,5000,10000,25000,50000,100000,250000,500000];
+ (S.lk||[]).forEach(function(r){var p=miei.filter(function(q){return q.k===r.k})[0];if(p&&r.team!==me)out.push({t:r.ts,tp:'ap',a:hnd(r.team),k:p.k,u:meH,x:p.x})});
+ var LV=[1000,5000,10000,25000,50000,100000,250000,500000];
  var altri=POSTS.filter(function(p){return !p.real&&p.v>0}),av=0;altri.forEach(function(p){av+=(p.A+p.R+p.r.length)/p.v});av=altri.length?av/altri.length*100:0;
  var top=null;POSTS.forEach(function(p){if(now-p.ts<864e5&&(!top||p.A>top.A))top=p});
  miei.forEach(function(p){
-  var i=-1;LA.forEach(function(l,j){if(p.A>=l)i=j});if(i>=0)out.push({t:Math.min(now,p.ts+(i+1)*45*6e4),tp:'app',k:p.k,u:meH,x:p.x,n:LA[i]});
   var j=-1;LV.forEach(function(l,q){if(p.v>=l)j=q});if(j>=0)out.push({t:Math.min(now,p.ts+(j+2)*30*6e4),tp:'vis',k:p.k,u:meH,x:p.x,n:LV[j]});
   var it=p.A+p.R+p.r.length,rate=p.v?it/p.v*100:0;
   if(it>=8&&av>0&&rate>=av*1.25)out.push({t:Math.min(now,p.ts+4*36e5),tp:'eng',k:p.k,u:meH,x:p.x,rate:rate,av:av});
@@ -473,17 +474,17 @@ function notifiche(){
   if(!o||o.lv<lv){o={lv:lv,ts:now};try{localStorage.setItem(fk,JSON.stringify(o))}catch(e){}}
   out.push({t:o.ts,tp:'fol',n:o.lv})}}catch(e){}
  out.sort(function(a,b){return b.t-a.t});return out.slice(0,80)}
-var NCOL={men:'#1d9bf0',rsp:'#6c7ae0',ril:'#17bf63',app:'#f4245e',vis:'#8a5cf6',eng:'#ff7a00',top:'#e8a90c',fol:'#1d9bf0'};
+var NCOL={ap:'#f4245e',men:'#1d9bf0',rsp:'#6c7ae0',ril:'#17bf63',app:'#f4245e',vis:'#8a5cf6',eng:'#ff7a00',top:'#e8a90c',fol:'#1d9bf0'};
 function nRow(o){var a=o.a?acc(o.a):null,q='«'+esc(snip(o.x,80))+'»',nome=a?'<b>'+esc(nm(a))+'</b>':'',t,ic;
  if(o.tp==='men'){t=nome+' ti ha menzionato '+(o.r?'in una risposta':'in un coro')+': '+q;ic='@'}
  else if(o.tp==='rsp'){t=nome+' ha risposto al tuo coro: '+q;ic=I.rsp}
  else if(o.tp==='ril'){t=nome+' ha rilanciato il tuo coro '+q;ic=I.ril}
- else if(o.tp==='app'){t='Il tuo coro '+q+' ha superato <b>'+o.n+' applausi</b>';ic=I.app}
+ else if(o.tp==='ap'){t=nome+' ha applaudito il tuo coro '+q;ic=I.app}
  else if(o.tp==='vis'){t='Il tuo coro '+q+' ha superato <b>'+fN(o.n)+' visualizzazioni</b>';ic=I.vis}
  else if(o.tp==='eng'){t='Buon engagement: il tuo coro '+q+' ha un tasso di interazione del <b>'+o.rate.toFixed(1).replace('.',',')+'%</b> (media '+o.av.toFixed(1).replace('.',',')+'%)';ic=I.vis}
  else if(o.tp==='top'){t='Il tuo coro '+q+' è <b>il più applaudito delle ultime 24 ore</b>';ic=I.star}
  else{t='Hai superato <b>'+fN(o.n)+' follower</b>';ic=I.user}
- var l=(a&&(o.tp==='men'||o.tp==='rsp'||o.tp==='ril'))?AV(a,'sm','data-u="'+a.h+'"'):'<div class="ni" style="background:'+NCOL[o.tp]+'">'+ic+'</div>';
+ var l=(a&&(o.tp==='men'||o.tp==='rsp'||o.tp==='ril'||o.tp==='ap'))?AV(a,'sm','data-u="'+a.h+'"'):'<div class="ni" style="background:'+NCOL[o.tp]+'">'+ic+'</div>';
  return '<div class="nrow'+(o.t>NVIEW?' nw':'')+'"'+(o.k?' data-nk="'+o.k+'" data-nu="'+o.u+'"':'')+'>'+l+'<div style="flex:1;min-width:0"><p>'+t+'</p><small>'+ago(o.t)+'</small></div></div>'}
 function render(){
  var v=document.getElementById('vista'),h='';
