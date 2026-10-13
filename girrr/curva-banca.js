@@ -661,6 +661,16 @@ function totoPost(g,dd,ms,SQ){
  var p={k:'toto:'+g+':'+kind,a:'totogirrr',x:x,ts:T,r:[]},c=conta(p.k,1);p.ap=Math.floor(3000+c.ap*220);p.ril=Math.floor(300+c.ril*60);p.v=Math.floor(60000+c.v*220);
  var rs=[];for(var q=0;q<5;q++)rs=rs.concat(reazioni(p.k+'#'+q,p.ts,ms,SQ,p.x).r);p.r=rs.filter(function(y){return y.ts<=ms}).sort(function(y,z){return y.ts-z.ts});
  return p}
+/* TotoGirrr commenta i prestiti tra fantallenatori */
+function prestitoPost(l,ms,SQ){
+ var T0=Date.parse(l.ts);if(!(T0>0))return null;var r=prng('pr'+l.id+l.stato),T=T0+(8+Math.floor(r()*40))*6e4;if(T>ms)return null;
+ var i=Math.round(l.importo),pc=Math.round(l.tasso*100),x,tot=Math.round(l.importo*l.tasso*100)/100;
+ if(l.stato==='chiuso')x=l.debitore+' ha restituito tutto a '+l.creditore+': '+f2(tot)+' fantacrediti, debito chiuso. Pagare i debiti in lega è il primo passo per farsene altri. #Totogirrr';
+ else{var cm=pc<=105?'Tasso da amici, quasi un abbraccio con la ricevuta.':pc<=110?'Sotto il banco di dieci punti: conviene, e si vede.':pc<=120?'Come il banco o quasi: almeno qui il banco ti guarda in faccia.':'Più caro del banco. Tra amici si chiama fiducia, con gli altri si chiama altro.';
+  x='Prestito in lega: '+l.creditore+' presta '+i+' fantacrediti a '+l.debitore+' al '+pc+'%, ne tornano '+f2(tot)+'. '+cm+' #Totogirrr'}
+ var p={k:'toto:pr:'+l.id+l.stato,a:'totogirrr',x:x,ts:T,r:[]},c=conta(p.k,1);p.ap=Math.floor(3000+c.ap*220);p.ril=Math.floor(300+c.ril*60);p.v=Math.floor(60000+c.v*220);
+ var rs=[];for(var q=0;q<4;q++)rs=rs.concat(reazioni(p.k+'#'+q,p.ts,ms,SQ,p.x).r);p.r=rs.filter(function(y){return y.ts<=ms}).sort(function(y,z){return y.ts-z.ts});
+ return p}
 function genera(D,SQ,ST,ms){
  var r=roma(ms),oggi=giorno(ms),all=[],tg=tendenze(D).map(function(x){return x[0]});
  var tag=function(k,i){return tg[(h32(k)+i)%tg.length]};
@@ -684,6 +694,7 @@ function genera(D,SQ,ST,ms){
    if(p.ts<=ms&&p.ts>=ms-96*36e5)all.push(p);
   }
  }
+ (window.CVB&&CVB.PRS||[]).forEach(function(l){var pp=null;try{pp=prestitoPost(l,ms,SQ)}catch(e){}if(pp&&pp.ts>=ms-96*36e5)all.push(pp)});
  /* Lega e Giornale legati ai risultati */
  var n=giocate(D);
  if(n&&D.cal&&D.cal.date){
