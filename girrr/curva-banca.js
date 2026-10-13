@@ -491,11 +491,14 @@ var RNEG=['Che sfiga, ma dai, si rialza.','Oggi proprio no. Domani vediamo.','Pu
 var RCAT={ri:['Il risultato non mi stupisce, nemmeno un po\'.','Il punteggio è bugiardo, ma il fantacalcio è sovrano.','Ora vediamo cosa dice la classifica.'],cl:['La classifica oggi è così. Domani? Chissà.','Primo, ultimo: tutto cambia alla prossima giornata.','Occhio a chi è dietro: sono sempre quelli più pericolosi.'],pm:['Il punteggio sta lì. Il resto sono chiacchiere.','Con quel punteggio ci si può anche accontentare.'],so:['Non è una sorpresa, ma fa comunque effetto.','Una sorpresa così non la vedevo da settimane.'],al:['L\'allenatore dice una cosa, il fantacalcio ne fa un\'altra.','Chi comanda davvero è la formazione, non il mister.'],mk:['Del mercato si parla sempre, poi alla fine restiamo con gli stessi.','Io al mercato ci vado solo per la frutta.'],fc:['Su FC27 i numeri sono sempre un po\' gonfiati, secondo me.','Il 99 è sempre della carta più brutta.'],live:['Fatemi sapere com\'è finita, sono in fila al supermercato.','Quanto manca? Sono già agitato.']};
 var RNEU=['Ragionamento che non fa una piega. Tranne le pieghe.','Non ci avevo pensato, ora non dormo.','Dipende da cosa intendi, ma sono d\'accordo a metà.','Su questo ti seguo. Anche se non sono sicuro di dove.','Interessante. Pericoloso, ma interessante.','Eh, ma lo dici tu. E io? Io cosa dico?'];
 var CPOS=['grandi','bravi','🔥','meritato','applausi','top','che gioia'],CNEG=['che sfiga','ahia','purtroppo','💀','forza dai','mah, ci sta','no vabbè'],CNEU=['ci sta','boh','dipende','e quindi?','chi lo sa','ahah dai','vero','concordo'];
-var NEGR=/perso|sconfitt|\bko\b|flop|disastr|schifo|vergogna|infortun|squalific|crisi|polemic|rubat|truff|corrott|delus|incubo|piang|male\b/,POSR=/vinc|vitt|bravo|grande|\btop\b|primo|record|show|bomba|fenomen|stellar|meritat|applaus|bellissim|trionf|segna|gol\b|capolavoro/;
+var NEGR=/perso|sconfitt|\bko\b|flop|disastr|schifo|vergogna|infortun|squalific|crisi|polemic|rubat|truff|corrott|delus|incubo|piang|male\b/,POSR=/vinc|vitt|bravo|grande|\btop\b|primo|record|show|bomba|fenomen|stellar|meritat|applaus|bellissim|trionf|segna|gol\b|capolavoro|batte|batt[eo]|alza|campion|dominat|conquist|titolo|festegg|successo|coppa vint/;
 function risposta(rr,x,cat,cx){var t=(x||'').toLowerCase(),lis=null,i;
  for(i=0;i<RTOP.length;i++)if(RTOP[i][0].test(t)){lis=RTOP[i][1];break}
  var q=rr();
- if(cx&&cx.gio&&t.indexOf(cx.gio.toLowerCase())>=0&&q<0.3)lis=['Su '+cx.gio+' io non metterei la mano sul fuoco.',cx.gio+' in forma è un altro sport.','Secondo me '+cx.gio+' è sopravvalutato. Lo dico da mesi.','Se '+cx.gio+' sta bene, abbiamo risolto metà dei problemi.'];
+ var pos=POSR.test(t)&&!NEGR.test(t);
+ if(pos&&cx&&cx.gio&&t.indexOf(cx.gio.toLowerCase())>=0&&q<0.3)lis=[cx.gio+' in questo momento è un altro sport.','Bravo '+cx.gio+', per una volta tutti zitti.','Su '+cx.gio+' avevo ragione io. Come sempre.'];
+ else if(pos&&cx&&cx.sq&&t.indexOf(cx.sq.toLowerCase())>=0&&q<0.3)lis=['Bravo '+cx.sq+', meritato.',cap1(cx.sq)+' sta vivendo un gran momento. Godetevelo.','Chapeau a '+cx.sq+'. Senza ironia, per una volta.','Applausi a '+cx.sq+'. La storia della lega passa da qui.'];
+ else if(cx&&cx.gio&&t.indexOf(cx.gio.toLowerCase())>=0&&q<0.3)lis=['Su '+cx.gio+' io non metterei la mano sul fuoco.',cx.gio+' in forma è un altro sport.','Secondo me '+cx.gio+' è sopravvalutato. Lo dico da mesi.','Se '+cx.gio+' sta bene, abbiamo risolto metà dei problemi.'];
  else if(cx&&cx.sq&&t.indexOf(cx.sq.toLowerCase())>=0&&q<0.3)lis=[cap1(cx.sq)+' questa settimana ha fatto più danni della grandine.',cap1(cx.sq)+' continua a sorprendermi. In bene e in male.','Su '+cx.sq+' ci sarebbe un libro da scrivere. Un horror.','Aspetta che '+cx.sq+' si svegli e vedi.'];
  else if(!lis){if(NEGR.test(t)&&!POSR.test(t))lis=RNEG;else if(POSR.test(t)&&!NEGR.test(t))lis=RPOS;else if(cat&&RCAT[cat]&&q<0.6)lis=RCAT[cat];else lis=RNEU}
  return lis[Math.floor(rr()*lis.length)]}
@@ -762,6 +765,7 @@ function genera(D,SQ,ST,ms){
   p.r.sort(function(x,y){return x.ts-y.ts})});
  /* veri scambi */
  (D.scambi||[]).forEach(function(s,i){var T=Date.parse(s.t);if(!(T<=ms))return;var cc={a:s.a,b:s.b,da:s.da,db:s.db};var p={k:'sc:'+i,a:'ciro_trattativa',x:riempi(SCAMBIO[i%2],cc,null),ts:T,r:[],ap:20,ril:6,v:900};all.push(p)});
+ all.forEach(function(p){if(p.r)p.r=dedup(p.r)});
  all.sort(function(a,b){return b.ts-a.ts});
  return all;
 }
@@ -798,6 +802,7 @@ function comUff(p,D,SQ,cu,ms){
  T.forEach(function(e,j){var ts=p.ts+Math.round(e.d)*60000;if(ts>ms)return;
   if(r()<0.55){var cu2=comune(r);out.push({a:cu2[0],x:e.x,ts:ts})}else{var a=ord[j%ord.length];out.push({a:a,x:natura(e.x,p.k+'c'+j,a),ts:ts})}});
  return out}
+function dedup(a){var s={};return(a||[]).filter(function(y){var k=(y.x||'').toLowerCase().trim();if(s[k])return false;s[k]=1;return true})}
 function reazioni(k,t,ms,SQ,xt){var r=prng('rz'+k),age=(ms-t)/60000;if(age<1)return{ap:0,ril:0,r:[]};
  var fa=2+Math.floor(r()*11),fr=Math.floor(r()*4),pr=Math.pow(Math.min(1,age/360),0.6),out=[];
  var rl=/^p\d/.test(k),nr=rl?3+Math.floor(r()*4):Math.floor(r()*3);if(rl&&nr<1)nr=1;var ord=shuffle(r,AUTORI);
@@ -808,7 +813,7 @@ function reazioni(k,t,ms,SQ,xt){var r=prng('rz'+k),age=(ms-t)/60000;if(age<1)ret
   var d1=25+r()*200,t1=t+d1*60000;if(age<d1)continue;
   out.push({a:A1,x:CHIAMA[Math.floor(r()*CHIAMA.length)].replace('{b}',B1),ts:t1});
   if(r()<0.55){var d2=d1+4+r()*70;if(age>=d2)out.push({a:B1,x:RISPCH[Math.floor(r()*RISPCH.length)].replace('{a}',A1),ts:t+d2*60000})}}
- out.sort(function(x,y){return x.ts-y.ts});
+ out=dedup(out.sort(function(x,y){return x.ts-y.ts}));
  return{ap:Math.floor(fa*pr),ril:Math.floor(fr*pr),r:out}}
 var CHIAMA=["@{b} guarda qui, c'è da dire la tua.","@{b} ci sei? Questo coro è per te.","@{b} vieni a vedere cosa hanno scritto.","@{b} tu che ne pensi?","@{b} chiamo te: su questo sei l'unico che può parlare.","@{b} hai visto? Poi dici che non succede niente."];
 var RISPCH=["@{a} eccomi, ho letto. Ne parliamo.","@{a} visto, e ho le mie idee.","@{a} arrivo, lasciami prendere il caffè.","@{a} per una volta hai ragione.","@{a} non potevo mancare."];
