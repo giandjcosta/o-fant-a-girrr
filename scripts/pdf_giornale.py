@@ -159,6 +159,14 @@ tr.pod td.pos{color:var(--red)}
 .pgl td.v small{font-size:8pt;font-family:'Inter',sans-serif;-webkit-text-stroke:0;margin-left:.6mm}
 .pgl td.sq{font-weight:700;font-size:10.2pt;text-align:left;white-space:nowrap}
 .pgl td.sq i{display:block;font-style:normal;font-family:'Inter',sans-serif;font-weight:400;font-size:6.8pt;color:var(--mute)}
+.pgl .pan{display:block;font-style:normal;font-size:7.4pt;color:var(--mute);margin-top:.5mm}
+.pgl .pan b{color:var(--red);text-transform:uppercase;font-size:6.6pt;letter-spacing:.3pt}
+.rimp{border:1.2pt solid var(--ink);padding:2.4mm 3.4mm;margin-top:2.6mm}
+.rimp .rk{font-family:var(--hd);font-weight:var(--hw);font-size:8pt;text-transform:uppercase;letter-spacing:.6pt;color:var(--red)}
+.rimp .rh{font-family:var(--hd);font-weight:var(--hw);font-size:13pt;margin:.4mm 0 1.2mm}
+.rimp .rr{display:flex;gap:2.4mm;font-size:8.6pt;padding:.7mm 0;border-top:.4pt solid var(--soft)}
+.rimp .rr b{min-width:26mm}
+.rimp .rr em{margin-left:auto;font-style:normal;font-weight:700;color:var(--red);white-space:nowrap}
 .pgl td.cm{font-style:italic;font-size:8.6pt;line-height:1.28;text-align:left;opacity:.9}
 .pgl tr.top td.sq{color:var(--red)}
 .social{background:#0f1419;color:#e7e9ea;border-radius:4mm;padding:3.2mm 4mm 3mm;font-family:'Inter',sans-serif;margin-top:2mm}
@@ -246,6 +254,41 @@ def pagelle(ult, gioc):
         righe.append((sq, fp, att, v, fr))
     righe.sort(key=lambda r: (-r[3], -(r[1] - r[2])))
     return righe
+
+
+def formazioni_schierate(g):
+    """Formazioni schierate della giornata di Serie A g: {squadra: {tit:[id], pan:[id]}}.
+    Le legge da formazioni.json (o dal file indicato in GIRRR_FORMAZIONI): {"6": {"Squadra": {"tit": [id...], "pan": [id...]}}}"""
+    import os
+    f = Path(os.environ.get("GIRRR_FORMAZIONI") or ROOT / "formazioni.json")
+    if not f.exists():
+        return {}
+    return json.loads(f.read_text(encoding="utf-8")).get(str(g), {})
+
+
+def panchina(g):
+    """{squadra: (punti_persi, [(fuori, fv_fuori, dentro, fv_dentro)])}: a parita' di ruolo, cosa sarebbe valso scambiare panchina e titolari."""
+    voti = D.get("votes", {})
+    out = {}
+    for sq, fz in formazioni_schierate(g).items():
+        def fv(i):
+            x = voti.get(str(i), {}).get(str(g))
+            return x["f"] if x and x.get("f") is not None else None
+        def nome(i):
+            return D["P"].get(str(i), {}).get("n", "?")
+        def ruolo(i):
+            return D["P"].get(str(i), {}).get("r", "?")
+        scambi, tot = [], 0.0
+        for r in ("P", "D", "C", "A"):
+            tit = sorted([i for i in fz.get("tit", []) if ruolo(i) == r and fv(i) is not None], key=fv)  # senza voto: lo sostituisce in automatico la panchina
+            pan = sorted([i for i in fz.get("pan", []) if ruolo(i) == r and fv(i) is not None], key=lambda i: -fv(i))
+            for a, b in zip(tit, pan):
+                if fv(b) > fv(a):
+                    tot += fv(b) - fv(a)
+                    scambi.append((nome(a), fv(a), nome(b), fv(b)))
+        scambi.sort(key=lambda z: -(z[3] - z[1]))
+        out[sq] = (tot, scambi)
+    return out
 
 
 def colore_squadra(nome):
@@ -468,20 +511,40 @@ def costruisci(t, tema="classico"):
     # ---------- pagina 3: pagelle, coro della settimana, bufala di mercato
     if ult:
         h.append(f'<section class="pg">{testata(3)}<div class="mini occ">Dopo la {n}ª giornata</div><div class="tit" style="font-size:30pt">Le pagelle</div>')
+        pan = panchina(int(ult["sa"]))
         com = t.get("pagelle") or {}
         com = {k.lower(): v for k, v in com.items()} if isinstance(com, dict) else {}
         h.append('<div class="tab" style="margin-top:2.4mm"><h2>Squadra per squadra · <b>il voto della settimana</b></h2><table class="pgl">')
         for k, (sq, fp, att, v, fr) in enumerate(pagelle(ult, gioc)):
             frec = {"su": ' <small style="color:#1f7a3d">▲</small>', "giu": ' <small>▼</small>', "uguale": ' <small style="color:var(--mute)">=</small>'}.get(fr, "")
             testo = com.get(sq.lower()) or commento_pagella(fp - att)
+            pn = pan.get(sq)
+            if pn and pn[0] > 0:
+                a, fa, b, fb = pn[1][0]
+                testo_pan = (f'<span class="pan"><b>Panchina</b> · {pt(pn[0])} punti lasciati fuori: '
+                             f'{esc(b)} ({pt(fb)}) in panchina, {esc(a)} ({pt(fa)}) titolare.</span>')
+            elif pn:
+                testo_pan = '<span class="pan"><b>Panchina</b> · formazione perfetta, nessun rimpianto.</span>'
+            else:
+                testo_pan = ""
             h.append(f'<tr class="{"top" if k < 3 else ""}"><td class="sq">{esc(cap(sq))}<i>{pt(fp)} fantapunti · Attesi {att:.0f}</i></td>'
-                     f'<td class="v">{pt(v)}{frec}</td><td class="cm">{esc(testo)}</td></tr>')
+                     f'<td class="v">{pt(v)}{frec}</td><td class="cm">{esc(testo)}{testo_pan}</td></tr>')
         h.append('</table><p class="nt">Il voto confronta i fantapunti della giornata con quelli che ci si aspettava dalla rosa (voti di quest\'anno e della scorsa stagione). Il 6 è «in linea con la rosa»: ogni 5 fantapunti in più o in meno vale un voto.</p></div>')
         if t.get("coro"):
             h.append('<div class="tab"><h2>Il coro <b>della settimana</b></h2>' + post_social(t["coro"], n) + '</div>')
         if t.get("bufala"):
             b = t["bufala"]
             h.append(f'<div class="bufala"><div class="bk">Bufala di mercato</div><div class="bh">{esc(b.get("titolo", ""))}</div><p>{esc(b.get("testo", ""))}</p></div>')
+        rim = sorted([(v[0], sq, v[1]) for sq, v in pan.items() if v[0] > 0], reverse=True)[:3]
+        if rim:
+            h.append('<div class="rimp"><div class="rk">Rimpianti</div><div class="rh">La panchina della settimana</div>')
+            for k2, (tot, sq, sw) in enumerate(rim):
+                a, fa, b, fb = sw[0]
+                h.append(f'<div class="rr"><b>{k2 + 1}. {esc(cap(sq))}</b><span>{esc(b)} in panchina ({pt(fb)}), {esc(a)} titolare ({pt(fa)})</span><em>-{pt(tot)}</em></div>')
+            zero = [cap(sq) for sq, v in pan.items() if v[0] == 0]
+            if zero:
+                h.append(f'<p class="nt" style="margin:1.2mm 0 0">Zero rimpianti: {esc(", ".join(zero))}.</p>')
+            h.append('</div>')
         h.append(piede(3) + "</section>")
 
     # ---------- pagina 4: programma e infermeria
