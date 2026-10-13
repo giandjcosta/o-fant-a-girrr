@@ -209,6 +209,17 @@ PERS.fidanzata_stufa={
  so:['Sorpresa da {sq}? No. Ma mi hanno chiesto di fingermi sorpresa.'],
  al:['Se il mio fidanzato fosse allenatore di {sq}, avrebbe già cambiato modulo tre volte. Per me va bene.']
 };
+PERS.americano_spaesato={
+ gen:["Aspetta, ma dov'è il quarterback? Cercavo \"football\" e mi sono ritrovato tra i cori. Nessuno mi aveva detto che qui il football si gioca coi piedi.","Ho scoperto che il \"soccer\" qui si chiama calcio e il fantacalcio si chiama religione. Il fuorigioco, invece, non l'ho ancora capito.","Perché nessuno usa le mani? Ho chiesto a un signore al bar. Mi ha risposto con un gesto che non conosco. Lo sto imparando.","Ho cercato \"touchdown\" e sono finito su un coro di una signora che parla del suo gatto. Curva, dite? Ok."],
+ live:["Oggi c'è il game? I bar sono pieni e nessuno parla d'altro. Non ho capito perché, ma porto le patatine.","Giornata di campionato: tutti con la sciarpa. Io mi sono messo una maglia di football americano per sbaglio. Mi guardano male. {#}","Sono allo stadio di {sq}. Ho chiesto dov'è il tailgate. Mi hanno portato a mangiare un panino. Va benissimo."],
+ pm:["{sq} ha {pt} punti? Non so se è tanto. Da noi venti punti sono un touchdown e una conversione. Qui?","Non capisco i punti di {sq}: {pt}? Ma dove sono le yard?"],
+ mk:["{gio} cambia squadra? È un trade? Da noi i trade sono una cosa da venerdì sera, tra uomini d'affari con la cravatta."],
+ al:["L'allenatore di {sq} viene licenziato? In America si dice \"fired\". Qui \"esonerato\". È più elegante."],
+ so:["Sorpreso da {sq}? Io sono sorpreso da tutto: da quando sono qui non ho capito niente. Ma sono felice."],
+ fc:["Ho scoperto FC27. È come Madden, ma con meno mani e più urla. Mi piace."],
+ ri:["{vinc} batte {perd} {sc}? Ma quanti punti, scusate. Niente touchdown? Solo gol? Ok.","{perd} ha perso {sc} contro {vinc}. In America ci sarebbe una conferenza stampa e un hot dog."],
+ cl:["{sq} al {pos}° posto? Chi è il quarterback? Dove sono i playoff? Chi sale di divisione?"]
+};
 var IMGPER={il_barista:[['lavagna','pm,gen,live,so,al,fc'],['conto','mk'],['bar_class','cl,ri']],mister_divano:[['campo','*'],['divano','gen,pm,so,ri,live,cl']],fc27_ratings:[['carta','*'],['confronto','mk,ri,cl,pm']],statistico_folle:[['grafico','*'],['tabella','cl,ri,mk,gen']],il_mago_cabala:[['amuleto','*'],['oroscopo','gen,pm,ri,so,live']],telecronista_stanco:[['diretta','live,pm,so'],['tabellone','ri,cl,gen,al']],tifoso_arrabbiato:[['striscione','*'],['lettera','al,ri,gen,so']],nonno_cesare:[['epoca','*'],['figurina','mk,fc,gen']],il_complottista:[['dossier','*'],['ritaglio','ri,cl,gen']],il_romantico_del_pallone:[['cartello','*'],['scontrino','gen,mk,pm']],ing_stadi:[['blueprint','*'],['cantiere','gen,al,so']],il_super_tifoso:[['sciarpa','*'],['tessera','cl,mk,ri']],var_parlante:[['moviola','*']],bomber_da_bar:[['schedina','*']],ex_ds_provincia:[['contratto','*']]};
 var LIVE={
  il_complottista:['Oggi gli arbitri sono già al bar con qualcuno. Noi lo sappiamo.','Giornata di campionato. Segnatevi chi fischia e poi controllate chi vince. {#}'],
@@ -262,36 +273,47 @@ function mercato(D,SQ,g,dd,ms){
 
 /* Ciro: thread lunghi. Domenica un giocatore da tenere d'occhio, lunedì l'elogio a un'operazione di mercato riuscita */
 var RLA=['Per una volta Ciro ha trovato un nome vero. Segnato.','{gio}? Se lo prende qualcuno io smetto di fidarmi dei numeri.','Thread bellissimo, ma il rischio c\'è e lo sai.','Io ci ho creduto da subito, ero solo senza crediti.','Ciro, ti seguo ma domani smentisci tutto.','Aspetto altre due giornate poi lo prendo. O lo piango.','Bel thread. Peccato che la mia rosa sia già piena di buoni propositi.','{gio} è l\'unico motivo per cui apro l\'app la domenica.','Il tuo "non lo so" qui vale più di mille fonti.','Letto tutto. Segnatevelo, io intanto lo scambio.'];
+var RLC=['{gio} è una certezza, e le certezze al fantacalcio valgono oro.','Nome che non si scopre, si tiene. Concordo.','Io ce l\'ho, e dormo bene la notte. Chi non ce l\'ha, meno.','{gio} conferma. Come sempre. Noioso, ma efficace.','Ciro, per una volta niente fonti vicine al barista? Applausi.','Se {gio} fa questi numeri tutto l\'anno, qualcuno si morde le mani.','Certezza assoluta. Il resto è fumo.','Quando i big si riconfermano, il resto della lega trema.','Letto, approvato. Aggiungo: {gio} vale il prezzo.','Nessuna novità, ma è la migliore delle notizie.'];
 var RLB=['Operazione da manuale. Complimenti a {all}.','{sq} ha fatto l\'affare e noi guardavamo il gatto.','Quanto lo hanno pagato? Poco. Troppo poco.','L\'operazione dell\'anno, e siamo solo a metà.','Io quel giocatore lo avevo in lista e mi sono distratto.','{all} fa il genio, ma c\'era anche un po\' di fortuna. Poca.','Bravi, ma non montatevi la testa. Mai.','Elogio meritato. Anche se mi costa dirlo.','Qui bisogna dare atto a chi ci ha creduto. E basta.','{gio} gioca da big. Pagato come un comprimario. Ecco.'];
 var RUL={P:'per un portiere la media è tutto, e ogni parata che vale un voto alto pesa più di un bonus altrove',D:'un difensore che porta voto e bonus insieme è raro come un rigore parato, e lui fin qui li porta entrambi',C:'un centrocampista che prende voti alti e ogni tanto segna è l\'unico investimento che non si svaluta',A:'un attaccante vive di gol, ma i gol arrivano solo se la squadra lo cerca, e lui se li cerca da solo'};
 function ciroLungo(D,SQ,g,dd,ms,kind){
  if(kind==='b'&&giocate(D)<5)return null;
- var PS=D.ps||{},P=D.P||{},FS=D.fas||{},FA={},own={},r=prng('cl'+kind+g);(D.fa||[]).forEach(function(i){FA[i]=1});
+ var PS=D.ps||{},P=D.P||{},own={},r=prng('cl'+kind+g);
  (D.teams||[]).forEach(function(t){(t.pl||[]).forEach(function(q){own[q.id]={sq:t.name,c:q.c}})});
- var cand=Object.keys(PS).filter(function(id){var s=PS[id],pl=P[id];if(!s||!pl||!(s.pg>=4)||!(s.fmv>=7))return false;return kind==='a'?s.fmv>=7.5:!!own[id]});
- if(kind==='b')cand=cand.filter(function(id){return own[id].c<=Math.max(8,(PS[id].fmv-6)*8)});
- cand.sort(function(a,b){return PS[b].fmv-PS[a].fmv});cand=cand.slice(0,6);
+ var cand=Object.keys(PS).filter(function(id){var s=PS[id],pl=P[id];if(!s||!pl)return false;
+  if(kind==='a')return s.pg>=3&&s.fmv>=7&&pl.q<=12;
+  if(kind==='c')return s.pg>=4&&s.fmv>=8&&pl.q>=24;
+  return s.pg>=4&&s.fmv>=7&&!!own[id]&&own[id].c<=Math.max(8,(s.fmv-6)*8)});
+ cand.sort(function(a,b){var fa=own[a]?1:0,fb=own[b]?1:0;if(kind==='a'&&fa!==fb)return fa-fb;return PS[b].fmv-PS[a].fmv});cand=cand.slice(0,6);
  if(!cand.length)return null;
  var id=cand[Math.floor(r()*cand.length)],s=PS[id],pl=P[id],o=own[id],ruolo=RUO[pl.r]||'giocatore',mv=String(s.mv).replace('.',','),fv=String(s.fmv).replace('.',','),gv=[];
  if(s.g)gv.push(s.g+' gol');if(s.as)gv.push(s.as+' assist');var ga=gv.length?gv.join(' e '):'zero bonus ma voti solidi';
- var c={gio:pl.n,sa:pl.t,sq:o?o.sq:'',all:o?(MISTER[o.sq]||o.sq):''},x,th;
- var T=ts(dd.y,dd.mo,dd.d,kind==='a'?20:21,Math.floor(r()*40));if(T>ms)return null;
+ var c={gio:pl.n,sa:pl.t,sq:o?o.sq:'',all:o?(MISTER[o.sq]||o.sq):''},x,th,R=ruolo.charAt(0).toUpperCase()+ruolo.slice(1),L;
+ var T=ts(dd.y,dd.mo,dd.d,kind==='b'?21:20,Math.floor(r()*40));if(T>ms)return null;
+ var inLega=o?'In Lega lo ha '+cap1(o.sq)+', pagato '+o.c+' crediti.':'In Lega è ancora libero. Libero. Lo ripeto per i coraggiosi.';
  if(kind==='a'){
-  x=pl.n+' ('+pl.t+'): il giocatore di cui parleremo tra un mese. '+ruolo.charAt(0).toUpperCase()+ruolo.slice(1)+', '+s.pg+' presenze, media '+mv+', fantamedia '+fv+', '+ga+'. Vi spiego perché vale la pena tenerlo d\'occhio. 🧵';
+  x=pl.n+' ('+pl.t+'): il nome nuovo di cui parleremo tra un mese. Quotazione bassa ('+pl.q+'), nessuno ci puntava, e invece: '+s.pg+' presenze, media '+mv+', fantamedia '+fv+', '+ga+'. Vi spiego perché vale la pena tenerlo d\'occhio. 🧵';
   th=['1/ Partiamo dai numeri: media voto '+mv+', fantamedia '+fv+' in '+s.pg+' presenze. È il tipo di dato che al fantacalcio non guardi finché qualcuno non lo prende. Poi lo guardano tutti.',
-   '2/ Perché tenerlo d\'occhio: '+RUL[pl.r]+'. Dati alla mano, '+ga+'.',
-   o?'3/ In Lega lo ha '+cap1(o.sq)+', pagato '+o.c+' crediti. Chi se lo è trovato in rosa si sta godendo il momento. Chi non lo ha preso ormai può solo guardare.':'3/ In Lega è ancora libero. Libero. Lo ripeto per i coraggiosi: nessuno lo ha preso, e le medie stanno lì a guardarvi.',
-   '4/ Il rischio, perché c\'è sempre: '+s.pg+' partite non sono una stagione, e in questa fase della stagione ci si innamora delle medie. Io mi sono innamorato tre volte e sono ancora sposato con due.',
-   '5/ Conclusione: se va bene l\'ho detto io, se va male ero in vacanza. Seguite il thread, vi aggiorno. Forse.'];
+   '2/ Perché tenerlo d\'occhio: la quotazione dice '+pl.q+', il campo dice un\'altra cosa. '+cap1(RUL[pl.r])+'. Dati alla mano, '+ga+'.',
+   '3/ '+inLega+(o?' Chi se lo è trovato in rosa si sta godendo il momento.':' Le medie stanno lì a guardarvi.'),
+   '4/ Il rischio, perché c\'è sempre: '+s.pg+' partite non sono una stagione, e in questa fase ci si innamora delle medie. Io mi sono innamorato tre volte e sono ancora sposato con due.',
+   '5/ Conclusione: se va bene l\'ho scoperto io, se va male ero in vacanza. Seguite il thread, vi aggiorno. Forse.'];L=RLA;
+ }else if(kind==='c'){
+  x=pl.n+' ('+pl.t+') si riconferma. '+R+' da quotazione '+pl.q+', e fin qui: '+s.pg+' presenze, media '+mv+', fantamedia '+fv+', '+ga+'. Non è una scoperta, è una certezza. Vi spiego perché. 🧵';
+  th=['1/ I numeri: media voto '+mv+', fantamedia '+fv+' in '+s.pg+' presenze. Non sono i numeri di uno che sorprende, sono quelli di uno che fa il suo, e il suo è tanto.',
+   '2/ Perché si riconferma: '+RUL[pl.r]+'. Quando lo fa una stagione è fortuna, quando lo fa di nuovo è una firma.',
+   '3/ '+inLega+(o?' Chi lo ha sta raccogliendo quello che aveva seminato all\'asta.':' Libero, per un nome così, sarebbe quasi una bugia.'),
+   '4/ La differenza tra un nome da osservare e uno confermato: il primo si scopre, il secondo si tiene. Questo è del secondo gruppo.',
+   '5/ Conclusione: nessun azzardo da dichiarare. Se lo avete, tenetelo. Se non lo avete, fate pace con la cosa.'];L=RLC;
  }else{
   x='👏 Parliamone. '+cap1(o.sq)+' ha preso '+pl.n+' ('+pl.t+') a '+o.c+' crediti e fin qui ha '+s.pg+' presenze con media '+mv+' e fantamedia '+fv+', '+ga+'. L\'operazione di mercato più intelligente dell\'anno? Apro il thread. 🧵';
   th=['1/ I numeri: '+ruolo+', media voto '+mv+', fantamedia '+fv+', '+s.pg+' partite giocate. Pagato '+o.c+' crediti. Il rapporto qualità-prezzo è quello di un affare.',
    '2/ La mossa giusta: '+RUL[pl.r]+'. Chi lo ha scelto ha letto il momento meglio degli altri.',
    '3/ Complimenti a '+(MISTER[o.sq]||o.sq)+' e alla squadra: per una volta il mercato ha premiato chi aveva una visione, o almeno un buon intuito.',
    '4/ Chi poteva prenderlo e non lo ha fatto ora lo guarda dal divano. Io, da giornalista, lo guardo con rispetto. E un po\' di invidia.',
-   '5/ Possiamo già dirlo: questa è un\'operazione che si ricorda. Se a fine stagione sarà ancora così, ricordatevi chi l\'ha scritto.'];
+   '5/ Possiamo già dirlo: questa è un\'operazione che si ricorda. Se a fine stagione sarà ancora così, ricordatevi chi l\'ha scritto.'];L=RLB;
  }
- var p={k:'cl:'+kind+g,a:'ciro_trattativa',x:riempi(x+' {#}',{},kind==='a'?'Svincolati':'Mercato'),thr:th,long:true,ts:T,r:[],cx:c},n=5+Math.floor(r()*3),ord=shuffle(r,AUTORI.filter(function(a){return a!=='ciro_trattativa'})),L=kind==='a'?RLA:RLB;
+ var p={k:'cl:'+kind+g,a:'ciro_trattativa',x:riempi(x+' {#}',{},kind==='b'?'Mercato':kind==='c'?'Conferme':'Svincolati'),thr:th,long:true,ts:T,r:[],cx:c},n=5+Math.floor(r()*3),ord=shuffle(r,AUTORI.filter(function(a){return a!=='ciro_trattativa'}));
  for(var i=0;i<n;i++){var tx=riempi(pick(r,L),c,null),au;if(r()<0.45){var cu=comune(r);au=cu[0];tx=tx.charAt(0).toLowerCase()+tx.slice(1)}else au=ord[i];var tt=T+(8+Math.floor(r()*240))*60000;if(tt<=ms)p.r.push({a:au,x:natura(tx,'clr'+kind+g+i,au),ts:tt})}
  p.r.sort(function(a,b){return a.ts-b.ts});var cn=conta(p.k,3);p.ap=cn.ap;p.ril=cn.ril;p.v=cn.v;return p}
 /* Motore degli scambi: copia identica di quello dello Spogliatoio (index.html), così le percentuali coincidono. */
@@ -504,6 +526,7 @@ var PEXT={
  il_mago_cabala:{fo:["Ho letto il fondo del caffè: la formazione di {sq} ha un difetto. Vi dico quale a pagamento."],cp:["I numeri della Champions Cup sono 7, 3 e 19. Giocateli, ma non dite che l'ha detto il mago."],vt:["Il voto a {gio} era scritto. Nelle carte, almeno. In classifica, non so."]},
  la_suocera:{fo:["La formazione di {sq}? Mia figlia dice che non devo parlare. Io parlo, ma sottovoce."],cp:["La Champions Cup? Una cosa da uomini che si prendono sul serio. Io intanto mi occupo della cena."],vt:["Il voto a {gio} era troppo basso. Se fosse mio genero gli darei almeno un sei."]},
  il_tassista:{fo:["La formazione di {sq}? Me l'ha detta un cliente. Ha pagato in contanti, quindi è affidabile."],cp:["Champions Cup: stasera ho tre corse e quattro opinioni. Una è giusta, ma non so quale."],vt:["Il voto a {gio}? Mi ha detto un collega: un sette e mezzo. Poi ha fatto il giro lungo."]},
+ americano_spaesato:{fo:["La formazione di {sq}? Quanti sono? Undici? Come l'offensive team. Ottimo, ci sono."],cp:["Champions Cup: finalmente un torneo con un nome che capisco. Playoff, giusto? No? Ah."],vt:["Il voto a {gio}? Da noi si chiama \"grade\". Qui è un numero con mezzo punto. Americano, ma dolce."]},
  fidanzata_stufa:{fo:["Il mio fidanzato sta decidendo la formazione di {sq} da due ore. Io ho già deciso un'altra cosa."],cp:["Champions Cup stasera. Ho capito che dovrò cenare da sola. Di nuovo."],vt:["Il voto a {gio}? Lui lo guarda come una pagella. Io come una cosa a cui non rispondo."]}
 };
 Object.keys(PEXT).forEach(function(a){if(PERS[a])Object.keys(PEXT[a]).forEach(function(c){PERS[a][c]=PEXT[a][c]})});
@@ -592,7 +615,7 @@ function post_giorno(D,SQ,ST,g){
  return out;
 }
 /* Rende i cori meno perfetti e più vivi: emoji, punti esclamativi, puntini, domande insistenti, qualche errore. Tutto raro e deterministico. */
-var EMJ={il_complottista:['🕵️','🧐','💰'],il_romantico_del_pallone:['⚽','💸','😔'],ing_stadi:['🏟️','📐','🚧'],il_super_tifoso:['📣','😍','🔥'],il_barista:['☕','🥐','⚽'],il_mago_cabala:['🔮','🧿','✨'],la_suocera:['🍝','😤','🙄'],il_tassista:['🚕','📻','😅'],fidanzata_stufa:['🙄','😮‍💨','🍿'],nonno_cesare:['👴','🍷','⚽'],tifoso_arrabbiato:['😡','🤬','🔥'],mister_divano:['🛋️','📋','⚽'],radio_spogliatoio:['📻','👀','🤫'],mamma_di_capitan:['❤️','🍝','🥰'],ex_ds_provincia:['💼','🤝','😅'],var_parlante:['🖥️','🧐','🚩'],fc27_ratings:['🎮','📈','🔥'],il_cugino_del_dt:['🤫','👀','😏'],telecronista_stanco:['😴','🎙️','☕'],gufo_professionista:['🦉','😈','🔮'],il_filosofo_del_pallone:['🤔','🌌','⚽'],bomber_da_bar:['🍺','⚽','😎'],statistico_folle:['📊','🤓','🔢'],arbitro_in_pensione:['🟨','⚽','🙄']};
+var EMJ={il_complottista:['🕵️','🧐','💰'],il_romantico_del_pallone:['⚽','💸','😔'],ing_stadi:['🏟️','📐','🚧'],il_super_tifoso:['📣','😍','🔥'],il_barista:['☕','🥐','⚽'],il_mago_cabala:['🔮','🧿','✨'],la_suocera:['🍝','😤','🙄'],il_tassista:['🚕','📻','😅'],americano_spaesato:['🏈','🤔','⚽'],fidanzata_stufa:['🙄','😮‍💨','🍿'],nonno_cesare:['👴','🍷','⚽'],tifoso_arrabbiato:['😡','🤬','🔥'],mister_divano:['🛋️','📋','⚽'],radio_spogliatoio:['📻','👀','🤫'],mamma_di_capitan:['❤️','🍝','🥰'],ex_ds_provincia:['💼','🤝','😅'],var_parlante:['🖥️','🧐','🚩'],fc27_ratings:['🎮','📈','🔥'],il_cugino_del_dt:['🤫','👀','😏'],telecronista_stanco:['😴','🎙️','☕'],gufo_professionista:['🦉','😈','🔮'],il_filosofo_del_pallone:['🤔','🌌','⚽'],bomber_da_bar:['🍺','⚽','😎'],statistico_folle:['📊','🤓','🔢'],arbitro_in_pensione:['🟨','⚽','🙄']};
 var GEN=['😂','🤦‍♂️','👏','🔥','🙄','😅','⚽','😬'];
 var DOM=['Voi che dite?','Ma sono l\'unico?','Che ne pensate?','Qualcuno mi spiega?','Chi è d\'accordo?','Ma davvero?'];
 function natura(x,key,a){
@@ -625,7 +648,7 @@ function genera(D,SQ,ST,ms){
   post_giorno(D,SQ,ST,g).forEach(function(p){if(p.ts<=ms&&p.ts>=ms-96*36e5){var c=conta(p.k);p.ap=c.ap;p.ril=c.ril;p.v=c.v;p.r=p.r.filter(function(x){return x.ts<=ms});all.push(p)}});
   /* Ciro: venerdì 18:00 + un aggiornamento il lunedì */
   var dd=dalGiorno(g),mk=ctxDi(D,SQ,ST,'ciro'+g);
-  if((dd.wd===0||dd.wd===1)&&g>=oggi-3){var cl=null;try{cl=ciroLungo(D,SQ,g,dd,ms,dd.wd===0?'a':'b')}catch(e){}if(cl&&cl.ts<=ms&&cl.ts>=ms-96*36e5)all.push(cl)}
+  if((dd.wd===0||dd.wd===1||dd.wd===6)&&g>=oggi-3){var cl=null;try{cl=ciroLungo(D,SQ,g,dd,ms,dd.wd===0?'a':dd.wd===1?'b':'c')}catch(e){}if(cl&&cl.ts<=ms&&cl.ts>=ms-96*36e5)all.push(cl)}
   if((dd.wd===2||dd.wd===4||dd.wd===6)&&g>=oggi-3){var mp=null;try{mp=mercato(D,SQ,g,dd,ms)}catch(e){}if(mp&&mp.ts<=ms&&mp.ts>=ms-96*36e5)all.push(mp)}
   if((dd.wd===3||dd.wd===5)&&g>=oggi-3){var sp=null;try{sp=scambiPost(D,SQ,g,dd,ms,dd.wd===3?16:14)}catch(e){}if(sp&&sp.ts<=ms&&sp.ts>=ms-96*36e5)all.push(sp)}
   if(dd.wd===5||dd.wd===1||dd.wd===3||dd.wd===0){
@@ -733,7 +756,7 @@ function ufficiale(D,SQ,ST,tsMap,ms){
  return out}
 function ultimo(D,ms){var SQ=(D.teams||[]).map(function(t){return t.name}),L=(D.cal&&D.cal.lega)||[],u=null;L.forEach(function(g){if(g.m.some(function(m){return m[4]!=='-'}))u=g});
  var p=genera(D,SQ,{cls:SQ.map(function(n){return{n:n}}),ult:u,next:null},ms);return p.length?p[0].ts:0}
-var NOMI={il_complottista:'Il Complottista',il_romantico_del_pallone:'Il Romantico del Pallone',ing_stadi:'L\'Ingegnere degli Stadi',il_super_tifoso:'Il Super Tifoso',il_barista:'Il Barista',il_mago_cabala:'Il Mago della Cabala',la_suocera:'La Suocera',il_tassista:'Il Tassista',fidanzata_stufa:'La Fidanzata Stufa',nonno_cesare:'Nonno Cesare',tifoso_arrabbiato:'Il Tifoso Arrabbiato',mister_divano:'Il Tecnico da Divano',radio_spogliatoio:'Radio Spogliatoio',mamma_di_capitan:'Mamma di Capitan Sfortuna',ex_ds_provincia:'Ex DS di Provincia',var_parlante:'VAR Parlante',fc27_ratings:'FC27 Ratings Italia',il_cugino_del_dt:'Il Cugino del DT',telecronista_stanco:'Il Telecronista Stanco',gufo_professionista:'Gufo Professionista',il_filosofo_del_pallone:'Il Filosofo del Pallone',bomber_da_bar:'Bomber da Bar',statistico_folle:'Lo Statistico Folle',arbitro_in_pensione:'Arbitro in Pensione',ciro_trattativa:'Ciro Trattativa',lega_ofantagirrr:'Lega O Fant A Girrr',giornale_girrr:'O Giornale del Girrr'};
+var NOMI={il_complottista:'Il Complottista',il_romantico_del_pallone:'Il Romantico del Pallone',ing_stadi:'L\'Ingegnere degli Stadi',il_super_tifoso:'Il Super Tifoso',il_barista:'Il Barista',il_mago_cabala:'Il Mago della Cabala',la_suocera:'La Suocera',il_tassista:'Il Tassista',americano_spaesato:'L\'Americano Spaesato',fidanzata_stufa:'La Fidanzata Stufa',nonno_cesare:'Nonno Cesare',tifoso_arrabbiato:'Il Tifoso Arrabbiato',mister_divano:'Il Tecnico da Divano',radio_spogliatoio:'Radio Spogliatoio',mamma_di_capitan:'Mamma di Capitan Sfortuna',ex_ds_provincia:'Ex DS di Provincia',var_parlante:'VAR Parlante',fc27_ratings:'FC27 Ratings Italia',il_cugino_del_dt:'Il Cugino del DT',telecronista_stanco:'Il Telecronista Stanco',gufo_professionista:'Gufo Professionista',il_filosofo_del_pallone:'Il Filosofo del Pallone',bomber_da_bar:'Bomber da Bar',statistico_folle:'Lo Statistico Folle',arbitro_in_pensione:'Arbitro in Pensione',ciro_trattativa:'Ciro Trattativa',lega_ofantagirrr:'Lega O Fant A Girrr',giornale_girrr:'O Giornale del Girrr'};
 function anteprima(D,ms,n){var SQ=(D.teams||[]).map(function(t){return t.name}),L=(D.cal&&D.cal.lega)||[],u=null;L.forEach(function(g){if(g.m.some(function(m){return m[4]!=='-'}))u=g});
  return genera(D,SQ,{cls:SQ.map(function(x){return{n:x}}),ult:u,next:null},ms).filter(function(p){return !p.tipo}).slice(0,n).map(function(p){return{a:p.a,n:NOMI[p.a]||p.a,x:p.x.replace(/\n[\s\S]*/,'')}})}
 window.CVB={MISTER:MISTER,COMUNI:COMUNI,cupUlt:cupUlt,ufficiale:ufficiale,anteprima:anteprima,reazioni:reazioni,ultimo:ultimo,genera:genera,tendenze:tendenze,PERS:PERS,RISP:RISP,CIRO:CIRO,roma:roma,giorno:giorno,h32:h32};
