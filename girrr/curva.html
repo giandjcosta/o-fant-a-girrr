@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,viewport-fit=cover">
 <meta name="robots" content="noindex">
-<meta name="cv-ver" content="20261013e">
+<meta name="cv-ver" content="20261013f">
 <title>Curva · O Girrr</title>
 <link rel="icon" type="image/png" href="../assets/favicon-64.png">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800;900&display=swap">
@@ -663,14 +663,15 @@ function condividi(k){var p=POSTS.filter(function(q){return q.k===k})[0];if(!p)r
   g.fillStyle='#8b98ad';g.font='500 38px '+FF;g.fillText('@'+a.h+' · '+ago(p.ts),pad+170,194);
   g.fillStyle='#fff';g.font='500 50px '+FF;var y=wrap(tx,pad,y0,W-pad*2,68);
   if(im){var iw=W-pad*2,ih2=Math.round(iw*im.height/im.width),sc=ih2>620?620/ih2:1,dw=iw*sc,dh=ih2*sc,ry=y+10;g.save();g.beginPath();if(g.roundRect)g.roundRect(pad,ry,iw,dh,28);else g.rect(pad,ry,iw,dh);g.clip();g.drawImage(im,pad+(iw-dw)/2,ry,dw,dh);g.restore()}
-  g.fillStyle='#8b98ad';g.font='600 38px '+FF;g.fillText('♥ '+fmt(p.A||0)+'    ↻ '+fmt(p.R||0)+'    💬 '+(p.r||[]).length,pad,H-130);
+  g.fillStyle='#8b98ad';g.font='600 38px '+FF;g.fillText('♥ '+cn(p.A||0)+'    ↻ '+cn(p.R||0)+'    💬 '+(p.r||[]).length,pad,H-130);
   g.fillStyle='#ffd166';g.font='800 40px '+FF;g.fillText('Curva · O Girrr',pad,H-60);
   g.textAlign='right';g.fillStyle='#8b98ad';g.font='500 32px '+FF;g.fillText('O Fant A Girrr',W-pad,H-60);
   c.toBlob(function(b){if(!b){toast('Non riesco a creare l\'immagine');return}
    var f=new File([b],'coro-'+a.h+'.png',{type:'image/png'});
-   if(navigator.canShare&&navigator.canShare({files:[f]})){navigator.share({files:[f],text:nm(a)+' sulla Curva'}).catch(function(){})}
+   if(navigator.canShare&&navigator.canShare({files:[f]})){navigator.share({files:[f],text:nm(a)+' sulla Curva'}).catch(function(){}).then(riallinea)}
    else{var u=URL.createObjectURL(b),l=document.createElement('a');l.href=u;l.download=f.name;document.body.appendChild(l);l.click();l.remove();setTimeout(function(){URL.revokeObjectURL(u)},4000);toast('Immagine salvata')}
    ev1('curva/condividi','Curva: coro condiviso')},'image/png')})}
+function riallinea(){[0,150,500].forEach(function(t){setTimeout(function(){var n=document.querySelector('.nav'),y=window.scrollY;if(n){n.style.transform='translateZ(0)';void n.offsetHeight;n.style.transform=''}window.scrollTo(0,y+1);window.scrollTo(0,y);window.dispatchEvent(new Event('resize'))},t)})}
 function conta(){var tx=document.getElementById('tx'),c=document.getElementById('cnt'),go=document.getElementById('go');if(!tx)return;var r=MAX-tx.value.length;c.textContent=r;c.className='cnt'+(r<0?' over':r<20?' near':'');go.disabled=!tx.value.trim()||r<0;tx.style.height='auto';tx.style.height=tx.scrollHeight+'px'}
 
 function pollForm(){return '<input class="poi" maxlength="40" placeholder="Risposta 1"><input class="poi" maxlength="40" placeholder="Risposta 2"><button class="lnk" data-a="pollx" style="color:var(--blu);margin:2px 0 0">+ Aggiungi una risposta</button><div class="pom">Il sondaggio dura 24 ore. Ogni squadra vota una sola volta.</div>'}
