@@ -81,6 +81,19 @@ td small{color:var(--sub);font-weight:600;display:block;font-size:11px}
 .rec .d{color:var(--sub);font-weight:600;font-size:12px;margin-top:2px}
 .rec .v{font-weight:900;font-size:24px;text-align:right}
 .rec .v.ml{color:var(--hi)}
+.sto .card{padding:0;overflow:hidden}
+.sto summary{list-style:none;cursor:pointer;display:grid;grid-template-columns:auto 1fr auto;gap:12px;align-items:center;padding:14px 16px}
+.sto summary::-webkit-details-marker{display:none}
+.sto summary .y{font-weight:900;font-size:13px;letter-spacing:.12em;color:var(--hi)}
+.sto summary small{display:block;font-weight:800;font-size:10px;letter-spacing:.2em;color:var(--sub);text-transform:uppercase}
+.sto summary b{font-weight:900;font-size:17px}
+.sto summary .fr{color:var(--sub);font-weight:900;transition:transform .2s}
+.sto details[open] .fr{transform:rotate(90deg)}
+.sto table{margin:0 0 6px}.sto td,.sto th{padding-left:14px;padding-right:14px}
+.sto .nota{padding:0 16px 14px;color:var(--sub);font-weight:600;font-size:12px}
+.sala{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:14px}
+.sala span{background:rgba(0,0,0,.2);border-radius:999px;padding:8px 14px;font-weight:800;font-size:13px}
+.sala b{color:var(--hi);font-weight:900}
 </style>
 <script src="pub.js"></script>
 <script>window.goatcounter={path:function(){return location.pathname},no_onload:/[?&]demo/.test(location.search)}</script>
@@ -154,8 +167,35 @@ function recs(){
   if(se.best.n>=2)h+=row('🔥','Serie di vittorie più lunga',se.best.t,'tra campionato e coppa',se.best.n,true);
   return '<div class="card"><h3>I record della lega</h3>'+h+'</div>';
 }
+/* Storico: nomi degli allenatori come su Leghe; alias confermati da Gianluca */
+var ALIAS={'Andrew_Indium':'AndrewTT','StaCo Atto':'DJ Cst Brazil'};
+var EX={'Barny':1,'Nobile':1,'Gingleton':1,'AleDmz':1,'Nicolas':1,'17peppe17':1,'SuperBrok':1,'Pep Mariola':1};
+function al(n){n=ALIAS[n]||n;return EX[n]?n+' · ex':n}
+var STORICO=[
+ {y:'2025/26',c:'Coppa Campioni',tipo:'Finale',fin:['Mugiwara','Leanzino',1,70,'Grodah','RikyArma',4,84],v:['Grodah','RikyArma'],nota:'Gironi e semifinali non ancora inseriti.'},
+ {y:'2025/26',c:'Gioberti Cup',v:['WOA','ser'],t:[['WOA','ser',65],['Grodah','RikyArma',55],['Raimon Junior High','Maria',52],['Stif dc','stifson',52],['Mariana Coneja','Mark Lenders',50],['Real Madrink','AndrewTT',48],['Dynamo Loska','Pep Mariola',48],['Mugiwara','Leanzino',46],['Gli Spaesati','SuperBrok',46],['New Wakanda','apo',39]]},
+ {y:'2024/25',c:'Costa Cup',v:['PornHub FC','17peppe17'],t:[['PornHub FC','17peppe17',70],['Stif dc','stifson',67],['Real Madrink','AndrewTT',50],['Mugiwara','Leanzino',49],['WOA','ser',46],['Grodah','RikyArma',43],['Dynamo Loska','Pep Mariola',40],['DeadPool FC','AleDmz',39],['Virgin Van Dick','Nicolas',38],['Wakanda','apo',36]]},
+ {y:'2023/24',c:'Serie A',v:['Mugiwara','Leanzino'],t:[['Mugiwara','Leanzino',57],['SdrogoCalcioFC','AleDmz',55],['Grodah','RikyArma',55],['Barolo','Riccardo',53],['AC Risti','Nicolas',52],['Wakanda','apo',51],['Real Madrink','AndrewTT',51],['Stortenham','Barny',48],['WOA','ser',41],['ACPicchia','17peppe17',37]]},
+ {y:'2022/23',c:'Serie A',v:['Wakanda','apo'],t:[['Wakanda','apo'],['WOA','ser'],['Stortenham','Barny'],['Real Madrink','AndrewTT'],['Barolo','Nobile'],['Grodah','RikyArma']],nota:'Classifica parziale: mancano i punti e le squadre dal 7° posto in poi.'},
+ {y:'2021/22',c:'Serie A',v:['Wakanda','apo'],t:[['Wakanda','apo',70],['Mugiwara','Leanzino',65],['Dio Brigante','Andrew_Indium',64],['WOA','ser',53],['Rapid Micatant','StaCo Atto',51],['Laghetto FC','Nobile',44],['Tequila Bum Bum','RikyArma',34],['Lil plug','Gingleton',31]]}
+];
+function storico(){
+  var cnt={},ord=[];
+  STORICO.forEach(function(e){var k=al(e.v[1]);if(!cnt[k]){cnt[k]=0;ord.push(k)}cnt[k]++});
+  ord.sort(function(a,b){return cnt[b]-cnt[a]});
+  var h='<div class="sto"><h3 style="font-weight:900;font-size:13px;letter-spacing:.3em;color:var(--hi);margin:6px 0 12px;text-transform:uppercase">Le stagioni passate</h3><div class="sala">'
+   +ord.map(function(k){return '<span>🏆 '+esc(k)+' <b>'+cnt[k]+'</b></span>'}).join('')+'</div>';
+  STORICO.forEach(function(e){
+    var body='';
+    if(e.fin){var f=e.fin;body='<table><tr><td>'+esc(f[0])+'<small>'+esc(al(f[1]))+'</small></td><td><b>'+f[2]+' - '+f[6]+'</b><small>'+pt(f[3])+' - '+pt(f[7])+'</small></td><td>'+esc(f[4])+'<small>'+esc(al(f[5]))+'</small></td></tr></table>'}
+    else{body='<table><tr><th>#</th><th style="text-align:left">Squadra</th><th>Punti</th></tr>'
+      +e.t.map(function(r,i){return '<tr><td>'+(i+1)+'°</td><td style="text-align:left;font-weight:700">'+esc(r[0])+'<small>'+esc(al(r[1]))+'</small></td><td>'+(r[2]!=null?r[2]:'–')+'</td></tr>'}).join('')+'</table>'}
+    h+='<div class="card"><details><summary><span class="y">'+e.y+'</span><span><small>'+esc(e.c)+'</small><b>🏆 '+esc(e.v[0])+' · '+esc(al(e.v[1]))+'</b></span><span class="fr">›</span></summary>'+body+(e.nota?'<div class="nota">'+e.nota+'</div>':'')+'</details></div>';
+  });
+  return h+'</div>';
+}
 fetch('../data.json',{cache:'no-store'}).then(function(r){return r.json()}).then(function(d){d=window.CVPUB?CVPUB(d):d;
-  D=d;document.getElementById('al').innerHTML='<div class="card" style="background:none;border:0;padding:0;margin-bottom:6px"><h3 style="margin-bottom:12px">Le coppe in palio</h3>'+trofei()+'</div>'+recs();
+  D=d;document.getElementById('al').innerHTML='<div class="card" style="background:none;border:0;padding:0;margin-bottom:6px"><h3 style="margin-bottom:12px">Le coppe in palio</h3>'+trofei()+'</div>'+storico()+recs();
   document.getElementById('foot').textContent='Dati aggiornati al '+(D.cal.date||'');
 }).catch(function(){document.getElementById('al').innerHTML='<div class="err">Non riesco a leggere i dati.</div>'});
 })();
