@@ -740,6 +740,19 @@ function genera(D,SQ,ST,ms){
    var rs=[];for(var q=0;q<7;q++){var z=reazioni(p.k+'#'+q,p.ts,ms,SQ,p.x);rs=rs.concat(z.r)}
    rs=rs.concat(comUff(p,D,SQ,cu,ms));rs=rs.filter(function(x){return x.ts<=ms}).sort(function(x,y){return x.ts-y.ts});p.r=rs;if(p.ts<=ms)all.push(p)});
   try{var GG=null;D.cal.lega.forEach(function(g){if(g.n===n)GG=g});if(GG){var bs=null,tr=null;GG.m.forEach(function(m){if(m[4]==='-')return;[[m[0],m[1]],[m[3],m[2]]].forEach(function(t){if(!bs||t[1]>bs[1])bs=t});var df=Math.abs(m[1]-m[2]);if(!tr||df<tr.df)tr={a:m[0],b:m[3],sc:m[4],df:df}});if(bs&&tr)gp('gs:sala'+n,'Sala stampa, '+n+'ª giornata. Miglior punteggio: '+bs[0]+' con '+String(bs[1]).replace('.',',')+' punti. La partita più tirata: '+tr.a+'–'+tr.b+' '+tr.sc+', separate da appena '+String(Math.round(tr.df*10)/10).replace('.',',')+' punti. #GirrrSport #Giornata'+n,P1.ts+45*60000)}}catch(e){}
+  /* Per giornata: MVP, moviola, record e big match, calcolati dai dati */
+  try{var G2=null;D.cal.lega.forEach(function(g){if(g.n===n)G2=g});if(G2){
+   var NM2=nomi(D),sa=G2.sa,best=null,mov=null,pn=function(v){return String(v).replace('.',',')};
+   Object.keys(NM2).forEach(function(id){var v=D.votes&&D.votes[id]&&D.votes[id][sa];if(!v||v.f==null)return;
+    if(!best||v.f>best.f)best={f:v.f,n:NM2[id].n,sq:NM2[id].sq,b:v.b||[]};
+    (v.b||[]).forEach(function(b){if(/rigore sbagliato|autogol|rigore parato/.test(b)&&(!mov||b.indexOf('rigore sbagliato')>=0))mov={b:b,n:NM2[id].n,sq:NM2[id].sq}})});
+   if(best)gp('gs:mvp'+n,'MVP della '+n+'ª giornata: '+best.n+' ('+best.sq+') con fantavoto '+pn(best.f)+(best.b.length?' ('+best.b.filter(function(b){return/gol|assist|rigore|migliore/.test(b)}).join(', ')+')':'')+'. Il resto della lega può solo applaudire. #GirrrSport #MVP',P1.ts+75*60000);
+   if(mov){var txt=/sbagliato/.test(mov.b)?'Moviola: '+mov.n+' ('+mov.sq+') sbaglia un rigore. Le immagini non lasciano dubbi, il palo sì. #GirrrSport #Moviola':/autogol/.test(mov.b)?'Moviola: autogol di '+mov.n+' ('+mov.sq+'). Rivediamo l\'azione: purtroppo è proprio lui. #GirrrSport #Moviola':'Moviola: '+mov.n+' ('+mov.sq+') para un rigore. Tutto regolare, e che parata. #GirrrSport #Moviola';gp('gs:mov'+n,txt,P1.ts+100*60000)}
+   var hi=null;D.cal.lega.forEach(function(g){if(g.n>n)return;g.m.forEach(function(m){if(m[4]==='-')return;[[m[0],m[1]],[m[3],m[2]]].forEach(function(q){if(!hi||q[1]>hi.p)hi={t:q[0],p:q[1],g:g.n}})})});
+   if(hi&&hi.g===n)gp('lega:rec'+n,'Record stagionale battuto: '+hi.t+' con '+pn(hi.p)+' punti alla '+n+'ª giornata. Il punteggio più alto del campionato finora. #Giornata'+n+' #Record',P1.ts+120*60000,'lega_ofantagirrr');
+   var top=(ST.cls||[]).slice(0,3).map(function(q){return q.n}),bm=null;G2.m.forEach(function(m){if(m[4]!=='-'&&top.indexOf(m[0])>=0&&top.indexOf(m[3])>=0)bm=m});
+   if(bm)gp('lega:big'+n,'Big match della '+n+'ª giornata: '+bm[0]+'–'+bm[3]+' '+bm[4]+' ('+pn(bm[1])+' a '+pn(bm[2])+'). Lo scontro tra le prime della classe lascia il segno. #Giornata'+n+' #BigMatch',P1.ts+140*60000,'lega_ofantagirrr')
+  }}catch(e){}
  }
  /* veri scambi */
  (D.scambi||[]).forEach(function(s,i){var T=Date.parse(s.t);if(!(T<=ms))return;var cc={a:s.a,b:s.b,da:s.da,db:s.db};var p={k:'sc:'+i,a:'ciro_trattativa',x:riempi(SCAMBIO[i%2],cc,null),ts:T,r:[],ap:20,ril:6,v:900};all.push(p)});
