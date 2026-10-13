@@ -168,7 +168,7 @@ body::before{content:'';position:fixed;inset:-120px;z-index:-1;pointer-events:no
 .Tg{visibility:hidden;display:inline-block;font-style:italic;line-height:1}
 .TT{filter:drop-shadow(0 2px 0 rgba(0,0,0,.28))}
 .TT svg{position:absolute;left:0;top:0;width:2.25em;height:1em;overflow:visible;pointer-events:none}
-</style>
+.sel{background:rgba(255,255,255,.1);color:inherit;border:1px solid rgba(255,255,255,.28);border-radius:10px;padding:9px 10px;font:inherit;font-weight:700;max-width:100%}.sel option{color:#111}.prr{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin-top:10px}.prr label{font-size:12px;font-weight:800;letter-spacing:.08em;color:var(--sub);display:block;width:100%;margin-bottom:-4px}.pri{border-top:1px solid rgba(255,255,255,.14);padding:12px 0}.pri:first-child{border-top:0}.pri b{font-weight:900}.pri small{display:block;color:var(--sub);font-weight:700;font-size:12px;margin-top:3px}.mv{display:flex;justify-content:space-between;gap:12px;padding:8px 0;border-top:1px solid rgba(255,255,255,.12);font-size:14px}.mv:first-child{border-top:0}.mv b{white-space:nowrap}.mv .p{color:var(--ok)}.mv .m{color:var(--ko)}.go.sm{padding:8px 14px;font-size:13px}.go.no{background:rgba(255,255,255,.14);color:inherit}</style>
 <link rel="manifest" href="../manifest.webmanifest">
 <meta name="theme-color" content="#1d2a52">
 <meta name="mobile-web-app-capable" content="yes">
@@ -212,6 +212,10 @@ function mockStato(){
 function mockRpc(name,b){
   if(!M)mockInit();
   if(name==='toto_stato')return mockStato();
+  if(name==='toto_pr_stato'){if(!M.pr)M.pr={n:1,P:[{id:1,creditore:'Oranje VC',debitore:'Grodah',importo:50,tasso:1.1,restituito:0,stato:'richiesta',attesa_di:'Oranje VC',creato:new Date().toISOString()}],V:[{tipo:'banco',importo:-8,nota:'40% della vincita trattenuto dal banco per il prestito',creato:new Date().toISOString()}]};return{prestiti:M.pr.P,movimenti:M.pr.V,debito_p:0}}
+  if(name==='toto_pr_chiedi'){M.pr.P.push({id:++M.pr.n+1,creditore:b.p_a,debitore:'Oranje VC',importo:b.p_importo,tasso:b.p_tasso,restituito:0,stato:'richiesta',attesa_di:b.p_a,creato:new Date().toISOString()});return{id:1}}
+  if(name==='toto_pr_rispondi'){var r=M.pr.P.filter(function(x){return x.id===b.p_id})[0];if(b.p_azione==='rifiuta')r.stato='rifiutato';else if(b.p_azione==='accetta'){r.stato='attivo';r.attesa_di=null;M.conto.crediti-=r.importo;M.pr.V.unshift({tipo:'prestito_dato',importo:-r.importo,nota:'Prestito a '+r.debitore,creato:new Date().toISOString()})}else{r.tasso=b.p_tasso;r.stato='controproposta';r.attesa_di=r.debitore}return{}}
+  if(name==='toto_pr_restituisci'){var r2=M.pr.P.filter(function(x){return x.id===b.p_id})[0];r2.restituito+=b.p_importo;return{restituito:b.p_importo}}
   if(name==='toto_sussidio'){var d=50-M.conto.crediti;M.conto.crediti=50;M.conto.debito=Math.round(d*120)/100;M.conto.ultimo_prestito=1;return{crediti:50,dato:d,da_restituire:M.conto.debito}}
   if(name==='toto_gioca'){
     var st=b.p_puntata;if(!(st>=5))throw new Error('Puntata minima: 5 fantacrediti');if(st>M.conto.crediti)throw new Error('Fantacrediti insufficienti');
@@ -274,7 +278,7 @@ function head(){
   var c=S.conto;
   return (DEMO?'<div class="card" style="border:2px dashed var(--hi);font-size:13px"><b style="color:var(--hi)">PROVA</b> · Qui è tutto finto e si azzera quando ricarichi. Gioca una schedina, poi premi il pulsante per far finire le partite a caso.<br><button class="go" id="sim" style="margin-top:10px">Fai finire le partite</button></div>':'')+'<a class="back" href="index.html">‹ O GIRRR</a><div class="top"><a href="index.html" title="Torna a O Girrr" style="display:block;flex:none"><img src="../assets/logo-lega.png" alt="O Fant A Girrr" style="display:block"></a><div class="t"><div class="k">O FANT A GIRRR</div><h1><b class="TT"><em class="Tg">T</em><svg viewBox="0 0 900 400" aria-hidden="true"><path fill="currentColor" d="M185.8 85.2H181Q145.4 85.2 121.1 103Q96.9 120.8 85.6 166Q81.9 180.8 83.2 186.6Q84.6 192.4 84.4 193.2Q62.8 193.2 54.4 184.2Q46.1 175.2 51.3 154.4Q58.4 126 78.2 102.6Q98.1 79.2 132.3 64.8Q166.5 50.4 213.7 50.4Q240.1 50.4 269.3 55.2Q272.6 55.8 275.8 56.3C299.8 57.8 329.3 62.4 360.7 67.4C408.7 74.9 461.1 83.2 505 82C565 80 605 68 642 62C668 66 668 94 640 99C600 108 545 122 480 122C417.8 122 363.5 106.2 296 100.6V102Q285.1 101.7 274.5 100Q262.2 98 239.8 93.2L120.4 350H62.8Z"/></svg></b>oto<span>girrr</span></h1></div><div class="bal"><small>FANTACREDITI</small><b>'+f2(c.crediti)+'</b>'+(Number(c.debito)>0?'<small style="color:var(--hi)">DEBITO '+f2(c.debito)+'</small>':'')+'</div></div>'+
   '<div class="who">Squadra: <b>'+esc(team)+'</b><button class="x" id="out">Esci</button></div>'+
-  '<nav>'+[['partite','Partite'],['vinc','Vincenti'],['mie','Le mie'],['class','Classifica'],['regole','Regole']].map(function(t){return '<button data-tab="'+t[0]+'" class="'+(tab===t[0]?'on':'')+'">'+t[1]+'</button>'}).join('')+'</nav>'+ticker();
+  '<nav>'+[['partite','Partite'],['vinc','Vincenti'],['mie','Le mie'],['class','Classifica'],['prestiti','Prestiti'],['regole','Regole']].map(function(t){return '<button data-tab="'+t[0]+'" class="'+(tab===t[0]?'on':'')+'">'+t[1]+'</button>'}).join('')+'</nav>'+ticker();
 }
 function qbtn(p,m,lab){
   var on=slip.some(function(x){return x.p===p.id&&x.m===m});lab=lab||mlab(m);
@@ -339,9 +343,33 @@ function vClass(){
     return '<tr class="'+(c.team===team?'me':'')+'"><td class="n">'+(i+1)+'</td><td>'+esc(c.team)+'</td><td>'+f0(c.crediti)+'</td><td>'+f0(tot)+'</td></tr>'}).join('');
   return vStat()+'<div class="card"><table class="lb"><tr><th></th><th>SQUADRA</th><th>LIBERI</th><th>TOTALE</th></tr>'+rows+'</table><p style="font-size:12px;color:var(--sub);margin-top:10px">Totale = fantacrediti liberi + quelli puntati su schedine ancora aperte − eventuali debiti col banco. Chi non gioca non compare finché non entra la prima volta.</p></div>';
 }
+var PR=null,PRL=false;
+var PIMP=[10,25,50,100,150,200],PTAS=[1.02,1.05,1.10,1.15,1.20,1.30,1.50];
+function pSug(i){return i<=25?1.05:i<=50?1.10:i<=100?1.15:i<=150?1.20:1.30}
+function pPct(t){return Math.round(Number(t)*100)+'%'}
+function selOpts(a,f,sel){return a.map(function(x){return '<option value="'+x+'"'+(Number(x)===Number(sel)?' selected':'')+'>'+f(x)+'</option>'}).join('')}
+function loadPR(){PRL=true;return rpc('toto_pr_stato',{p_team:team,p_code:code}).then(function(r){PR=r;PRL=false;render()}).catch(function(e){PRL=false;PR={prestiti:[],movimenti:[],err:e.message};render()})}
+function vPrestiti(){
+  if(!PR)return '<div class="card">Carico i prestiti…</div>';
+  if(PR.err)return '<div class="card">I prestiti non sono ancora attivi: '+esc(PR.err)+'</div>';
+  var altri=teams.filter(function(t){return t!==team}),h='';
+  h+='<div class="card"><b>Chiedi fantacrediti a un altro fantallenatore</b><p style="font-size:13px;color:var(--sub);margin-top:6px">Scegli a chi, quanto e a che tasso. Il tasso è quanto restituisci: 110% vuol dire che per 100 ne rendi 110. Il banco chiede il 120%. L\'altro può rifiutare, accettare o proporti un tasso diverso.</p><div class="prr"><label>A CHI</label><select class="sel" id="pr_a">'+altri.map(function(t){return '<option>'+esc(t)+'</option>'}).join('')+'</select><label>QUANTO</label><select class="sel" id="pr_i">'+selOpts(PIMP,function(x){return x+' fantacrediti'},50)+'</select><label>TASSO</label><select class="sel" id="pr_t">'+selOpts(PTAS,pPct,pSug(50))+'</select></div><div class="prr"><button class="go sm no" id="pr_sug">Tasso consigliato: <span id="pr_sv">'+pPct(pSug(50))+'</span></button><button class="go sm" id="pr_send">Invia la richiesta</button></div></div>';
+  var P=PR.prestiti||[],att=P.filter(function(x){return(x.stato==='richiesta'||x.stato==='controproposta')&&x.attesa_di===team});
+  if(att.length)h+='<div class="card"><b>Aspettano una tua risposta</b>'+att.map(function(x){
+    var io=x.creditore===team,chi=io?x.debitore:x.creditore;
+    return '<div class="pri"><b>'+(io?esc(chi)+' ti chiede '+f0(x.importo)+' fantacrediti':esc(chi)+' ti propone di prestarti '+f0(x.importo))+'</b><small>Tasso '+pPct(x.tasso)+': '+(io?'ti renderebbe ':'dovresti rendere ')+f2(x.importo*x.tasso)+'. Consigliato per questa cifra: '+pPct(pSug(x.importo))+'.</small><div class="prr"><button class="go sm" data-pr="'+x.id+'|accetta">Accetta</button><button class="go sm no" data-pr="'+x.id+'|rifiuta">Rifiuta</button>'+(io&&x.stato==='richiesta'?'<select class="sel" id="pc'+x.id+'">'+selOpts(PTAS,pPct,pSug(x.importo))+'</select><button class="go sm no" data-pr="'+x.id+'|controproponi">Proponi questo tasso</button>':'')+'</div></div>'}).join('')+'</div>';
+  var att2=P.filter(function(x){return(x.stato==='richiesta'||x.stato==='controproposta')&&x.attesa_di!==team});
+  if(att2.length)h+='<div class="card"><b>In attesa dell\'altro</b>'+att2.map(function(x){var io=x.debitore===team;return '<div class="pri">'+(io?'Hai chiesto '+f0(x.importo)+' a <b>'+esc(x.creditore)+'</b>':'<b>'+esc(x.debitore)+'</b> aspetta la tua risposta')+'<small>Tasso '+pPct(x.tasso)+(x.stato==='controproposta'?' (proposto da chi presta)':'')+'</small></div>'}).join('')+'</div>';
+  var att3=P.filter(function(x){return x.stato==='attivo'});
+  if(att3.length)h+='<div class="card"><b>Prestiti in corso</b>'+att3.map(function(x){var io=x.debitore===team,tot=Math.round(x.importo*x.tasso*100)/100,res=Math.round((tot-x.restituito)*100)/100;
+    return '<div class="pri">'+(io?'Devi a <b>'+esc(x.creditore)+'</b> ancora <b>'+f2(res)+'</b>':'<b>'+esc(x.debitore)+'</b> ti deve ancora <b>'+f2(res)+'</b>')+'<small>Prestati '+f0(x.importo)+' al '+pPct(x.tasso)+', restituiti '+f2(x.restituito)+' su '+f2(tot)+'. Il 25% di ogni vincita di chi deve va in automatico a chi ha prestato.</small>'+(io?'<div class="prr">'+[10,25,50].filter(function(v){return v<res}).concat([res]).map(function(v){return '<button class="go sm no" data-prr="'+x.id+'|'+v+'">Restituisci '+(v===res?'tutto ('+f2(v)+')':v)+'</button>'}).join('')+'</div>':'')+'</div>'}).join('')+'</div>';
+  var M2=PR.movimenti||[];
+  h+='<div class="card"><b>Movimenti</b><p style="font-size:12px;color:var(--sub);margin:6px 0">Qui vedi dove sono finiti i fantacrediti che non trovi più: trattenute del banco, prestiti e rimborsi.</p>'+(M2.length?M2.map(function(m){var n=Number(m.importo);return '<div class="mv"><span>'+esc(m.nota||m.tipo)+'<small style="display:block;color:var(--sub);font-size:11px">'+quando(m.creato)+'</small></span><b class="'+(n>=0?'p':'m')+'">'+(n>=0?'+':'−')+f2(Math.abs(n))+'</b></div>'}).join(''):'<div class="vuoto">Ancora nessun movimento.</div>')+'</div>';
+  return h;
+}
 function vRegole(){
   var su=S.sussidio_ok?'<button class="go" id="suss" style="margin-top:12px">Chiedi il prestito al banco (porta a 50)</button>':'';
-  return '<div class="card regole"><b>Come funziona</b><ul><li>La valuta sono i <b>fantacrediti</b>: all’inizio ne hai <b>500</b>.</li><li>Scegli un esito (1 casa, X pari, 2 trasferta, Over/Under 4,5 gol totali; sotto «Altri mercati» trovi Over/Under 3,5 e 5,5, entrambe segnano e il risultato esatto) e premi su <b>Gioca</b>. Con più partite insieme fai una <b>multipla</b>: le quote si moltiplicano, ma devi indovinarle tutte (massimo 6).</li><li>Nella scheda <b>Vincenti</b> puoi puntare su chi vince il campionato e su chi vince ciascun girone di coppa: si chiude con la giornata 8 di Serie A e si incassa alla fine. Si possono mettere in multipla con le partite.</li><li>Si può scommettere fino al <b>calcio d\'inizio della prima partita di Serie A</b> della giornata.</li><li>Puntata minima 5. Sulla <b>tua</b> partita il massimo è 100.</li><li>Le vincite arrivano da sole quando il risultato è in lega, di solito la mattina dopo.</li><li>Se scendi sotto i 50 fantacrediti puoi chiedere un <b>prestito al banco</b>: ti riporta a 50, ma una volta ogni due settimane. Il banco però vuole il <b>120%</b> indietro: sulle tue vincite si tiene il <b>40%</b> finché il debito non è saldato. Il debito conta in meno nella classifica.</li><li>Le quote nascono dalla forza delle squadre, con il banco che si tiene un po\' di margine. All\'inizio sono approssimative e migliorano giornata dopo giornata.</li></ul>'+su+'</div>';
+  return '<div class="card regole"><b>Come funziona</b><ul><li>La valuta sono i <b>fantacrediti</b>: all’inizio ne hai <b>500</b>.</li><li>Scegli un esito (1 casa, X pari, 2 trasferta, Over/Under 4,5 gol totali; sotto «Altri mercati» trovi Over/Under 3,5 e 5,5, entrambe segnano e il risultato esatto) e premi su <b>Gioca</b>. Con più partite insieme fai una <b>multipla</b>: le quote si moltiplicano, ma devi indovinarle tutte (massimo 6).</li><li>Nella scheda <b>Vincenti</b> puoi puntare su chi vince il campionato e su chi vince ciascun girone di coppa: si chiude con la giornata 8 di Serie A e si incassa alla fine. Si possono mettere in multipla con le partite.</li><li>Si può scommettere fino al <b>calcio d\'inizio della prima partita di Serie A</b> della giornata.</li><li>Puntata minima 5. Sulla <b>tua</b> partita il massimo è 100.</li><li>Le vincite arrivano da sole quando il risultato è in lega, di solito la mattina dopo.</li><li>Se scendi sotto i 50 fantacrediti puoi chiedere un <b>prestito al banco</b>: ti riporta a 50, ma una volta ogni due settimane. Il banco però vuole il <b>120%</b> indietro: sulle tue vincite si tiene il <b>40%</b> finché il debito non è saldato. Il debito conta in meno nella classifica.</li><li>Nella scheda <b>Prestiti</b> puoi chiedere fantacrediti a un altro fantallenatore, a tua scelta: lui può rifiutare, accettare o proporti un altro tasso. Il <b>25%</b> di ogni tua vincita va in automatico a chi ti ha prestato, finché non hai saldato, e puoi restituire di più quando vuoi. Dove sono finiti i tuoi fantacrediti lo vedi sempre sotto <b>Movimenti</b>.</li><li>Le quote nascono dalla forza delle squadre, con il banco che si tiene un po\' di margine. All\'inizio sono approssimative e migliorano giornata dopo giornata.</li></ul>'+su+'</div>';
 }
 function vSlip(){
   if(!slip.length||tab==='mie'&&0)return '';
@@ -354,7 +382,7 @@ var QS=1,ANIM=true,LASTQ='',SLIPWAS=false,BALPREV=null;
 function render(){
   var a=document.getElementById('app');
   if(!S){a.innerHTML=gate();return}
-  var body=tab==='partite'?vPartite():tab==='vinc'?vVinc():tab==='mie'?vMie():tab==='class'?vClass():vRegole();
+  var body=tab==='partite'?vPartite():tab==='vinc'?vVinc():tab==='mie'?vMie():tab==='class'?vClass():tab==='prestiti'?vPrestiti():vRegole();
   var keep=document.getElementById('stake');
   var hs=head(),sv=vSlip(),isNew=!!sv&&!SLIPWAS;SLIPWAS=!!sv;
   a.innerHTML=hs+'<div class="pane'+(ANIM?' an':'')+'">'+body+'</div>'+(isNew?sv.replace('class="slip"','class="slip new"'):sv);
@@ -374,7 +402,14 @@ document.addEventListener('click',function(e){
   if(t.id==='enter'){team=document.getElementById('gt').value;code=document.getElementById('gc').value.trim().toUpperCase();LS.team=team;LS.code=code;save();err='';document.querySelector('.err').textContent='Controllo…';carica();return}
   if(t.id==='sim'){rpc('demo_simula',{}).then(function(){slip=[];tab='mie';ANIM=true;toast('Partite finite, pagamenti fatti');return carica()});return}
   if(t.id==='out'){LS.code='';save();code='';S=null;slip=[];render();return}
-  if(b=t.closest('[data-tab]')){tab=b.getAttribute('data-tab');ANIM=true;render();window.scrollTo(0,0);return}
+  if(t.id==='pr_sug'){var sg=document.getElementById('pr_t');sg.value=pSug(Number(document.getElementById('pr_i').value));return}
+  if(t.id==='pr_send'){var a1=document.getElementById('pr_a').value,i1=Number(document.getElementById('pr_i').value),t1=Number(document.getElementById('pr_t').value);t.disabled=true;
+   rpc('toto_pr_chiedi',{p_team:team,p_code:code,p_a:a1,p_importo:i1,p_tasso:t1}).then(function(){toast('Richiesta inviata a '+a1);return loadPR()}).catch(function(e){t.disabled=false;toast(e.message,1)});return}
+  if(b=t.closest('[data-pr]')){var pp=b.getAttribute('data-pr').split('|'),tx=document.getElementById('pc'+pp[0]);
+   rpc('toto_pr_rispondi',{p_team:team,p_code:code,p_id:Number(pp[0]),p_azione:pp[1],p_tasso:pp[1]==='controproponi'&&tx?Number(tx.value):null}).then(function(r){toast(pp[1]==='accetta'?'Prestito accettato':pp[1]==='rifiuta'?'Richiesta rifiutata':'Controproposta inviata');return Promise.all([loadPR(),carica()])}).catch(function(e){toast(e.message,1)});return}
+  if(b=t.closest('[data-prr]')){var q=b.getAttribute('data-prr').split('|');
+   rpc('toto_pr_restituisci',{p_team:team,p_code:code,p_id:Number(q[0]),p_importo:Number(q[1])}).then(function(r){toast('Restituiti '+f2(r.restituito));return Promise.all([loadPR(),carica()])}).catch(function(e){toast(e.message,1)});return}
+  if(b=t.closest('[data-tab]')){tab=b.getAttribute('data-tab');ANIM=true;render();window.scrollTo(0,0);if(tab==='prestiti')loadPR();return}
   if(b=t.closest('.q')){
     var id=b.getAttribute('data-p'),m=b.getAttribute('data-m');
     var i=slip.findIndex(function(x){return x.p===id});
@@ -396,6 +431,7 @@ document.addEventListener('click',function(e){
   }
 });
 document.addEventListener('input',function(e){if(e.target.id==='stake')upWin()});
+document.addEventListener('change',function(e){if(e.target.id==='pr_i'){var v=document.getElementById('pr_sv');document.getElementById('pr_t').value=pSug(Number(e.target.value));if(v)v.textContent=pPct(pSug(Number(e.target.value)))}if(e.target.id==='pr_t'){}});
 document.addEventListener('keydown',function(e){if(e.key==='Enter'&&e.target.id==='gc')document.getElementById('enter').click()});
 
 function fmtCd(ms){var s=Math.floor(ms/1000),d=Math.floor(s/86400),h=Math.floor(s%86400/3600),m=Math.floor(s%3600/60);return d>0?d+'g '+h+'h':h>0?h+'h '+m+'m':m+'m '+String(s%60).padStart(2,'0')+'s'}
