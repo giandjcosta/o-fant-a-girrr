@@ -328,7 +328,7 @@ function scontri(name){
   return '<h5>Scontri diretti</h5><table><tr><th style="text-align:left">Rivale</th><th>Classifiche<br>davanti–dietro</th><th>2026/27<br>V–N–P</th></tr>'
    +L.map(function(o){var x=K[o],cl=(x.dav+x.die)?x.dav+'–'+x.die:'–',st=(x.v+x.n+x.p)?x.v+'–'+x.n+'–'+x.p:'–';
      return '<tr><td style="text-align:left;font-weight:700">'+esc(lab(al(o)))+'</td><td>'+cl+'</td><td>'+st+'</td></tr>'}).join('')+'</table>'
-   +'<div class="nota" style="padding:6px 0 0">Classifiche: quante stagioni ha chiuso davanti o dietro a lui, nelle stagioni in cui c\'erano entrambi. 2026/27: campionato e Champions Cup, vittorie, pareggi e sconfitte per gol.</div>';
+   +'';
 }
 function scheda(name,ex){
   var c=CFG[name],R=percorso(name),T=titoli(name),st=STORIE[name];
