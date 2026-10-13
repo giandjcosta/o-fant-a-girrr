@@ -530,6 +530,29 @@ var PEXT={
  fidanzata_stufa:{fo:["Il mio fidanzato sta decidendo la formazione di {sq} da due ore. Io ho già deciso un'altra cosa."],cp:["Champions Cup stasera. Ho capito che dovrò cenare da sola. Di nuovo."],vt:["Il voto a {gio}? Lui lo guarda come una pagella. Io come una cosa a cui non rispondo."]}
 };
 Object.keys(PEXT).forEach(function(a){if(PERS[a])Object.keys(PEXT[a]).forEach(function(c){PERS[a][c]=PEXT[a][c]})});
+/* Storia della lega: ogni personaggio commenta un fatto vero preso da storia.js ({f}) */
+var PST={
+ nonno_cesare:["Ai miei tempi si diceva che {f}. Certe cose non cambiano.","Mi hanno raccontato che {f}. Io non mi stupisco più di niente."],
+ tifoso_arrabbiato:["Sapete che {f}? E poi mi dite di stare calmo!","{f}. Io lo dico da anni e nessuno mi ascolta."],
+ il_complottista:["Sapete che {f}? Coincidenza? Aprite gli occhi.","{f}. Guardate bene gli archivi: non è un caso."],
+ il_romantico_del_pallone:["{f}. Ecco perché amo questa lega: ogni anno una storia nuova.","Ripensavo a questo: {f}. Il calcio è fatto di ricordi."],
+ ing_stadi:["Dato dagli archivi: {f}. Fondamenta solide, quelle.","{f}. Non si costruisce una storia così in un giorno."],
+ il_super_tifoso:["{f}!!! Questa lega è leggenda pura!","Non dimentichiamolo mai: {f}. Che storia!"],
+ mister_divano:["Dal mio divano lo dico da sempre: {f}. Lo sapevo.","{f}. Si vede che ne so più io di tutti."],
+ radio_spogliatoio:["Radio Spogliatoio ricorda: {f}. Chi se lo ricordava?","Si dice negli spogliatoi che {f}. E non è una voce."],
+ mamma_di_capitan:["Mio figlio mi ha raccontato che {f}. Che bei ragazzi.","{f}. Io me lo ricordo bene, mica ero distratta."],
+ ex_ds_provincia:["Da ex direttore sportivo lo so: {f}. Succede, nei campionati lunghi.","{f}. Una cosa così vale più di un colpo di mercato."],
+ var_parlante:["Rivedendo gli archivi: {f}. Confermato dal VAR.","{f}. Dopo controllo al monitor, il dato resta valido."],
+ fc27_ratings:["Dalle mie valutazioni storiche: {f}. Roba da 90 di overall.","{f}. Statistiche alla mano, un dato che pesa."],
+ il_cugino_del_dt:["Mio cugino me lo diceva sempre: {f}.","{f}. Lui lo sapeva già da tempo, io ve lo dico adesso."],
+ telecronista_stanco:["Signore e signori, un dato dagli archivi: {f}. Io ci sono sempre stato.","{f}. Ne ho commentate tante, ma questa me la ricordo."],
+ gufo_professionista:["{f}. Vi ricordo che poi finisce sempre male per qualcuno.","Occhio: {f}. Il destino lo sa."],
+ il_filosofo_del_pallone:["{f}. Che cos'è una lega se non la somma di ciò che è stato?","Riflettevo su questo: {f}. Il tempo giudica tutti."],
+ bomber_da_bar:["{f}. Io al bar l'ho sempre detto, parola per parola.","Al bar ne parlavamo: {f}. Offre lui il caffè."],
+ statistico_folle:["Dato storico verificato: {f}. Percentuale di sorpresa: altissima.","{f}. Ho fatto la media, e la media dice che è raro."],
+ arbitro_in_pensione:["Dal mio taccuino: {f}. Regolare, nessuna segnalazione.","{f}. Nessun fischio da aggiungere, solo memoria."]
+};
+Object.keys(PST).forEach(function(a){if(PERS[a])PERS[a].st=PST[a]});
 var AUTORI=Object.keys(PERS);
 /* risposte generiche */
 var RISP=['Confermo.','Firmo.','Verissimo.','Però {sq} ha dei dubbi.','Non è colpa mia, giuro.','Seguiamo con attenzione.','Applauso, ma con riserva.','Su questo non ho nulla da aggiungere. Quindi aggiungo.','Ai posteri.','Questo coro merita un premio. O un esame.','Ho letto e sono ancora qui.','Ma anche no.','Bomba. Poi si vedrà.','Hai detto tutto. Anche troppo.','Lo dicevo anche io. Ma più forte.'];
@@ -562,7 +585,7 @@ function ctxDi(D,SQ,ST,seed){
  var r=prng(seed),NM=nomi(D),ids=Object.keys(NM);
  return function(){
   var c={};c.sq=pick(r,SQ);do{c.sq2=pick(r,SQ)}while(c.sq2===c.sq);c.all=MISTER[c.sq]||c.sq;c.all2=MISTER[c.sq2]||c.sq2;c.top=(ST.cls&&ST.cls[0]&&ST.cls[0].n)||c.sq;
-  c.gol=1+Math.floor(r()*4);
+  c.gol=1+Math.floor(r()*4);c.f=(window.CVS&&CVS.FATTI&&CVS.FATTI.length)?pick(r,CVS.FATTI):'questa lega ha una storia lunga';
   var g=ids.length?NM[pick(r,ids)]:{n:'il bomber',sq:c.sq};c.gio=g.n;c.gio_sq=g.sq;
   var ij=(D.inj||[]).filter(function(i){return NM[i.id]});
   var j=ij.length?pick(r,ij):null;c.inj=j?j.n:'il centravanti';c.inj_sq=j?NM[j.id].sq:c.sq;
@@ -576,7 +599,7 @@ function ctxDi(D,SQ,ST,seed){
  };
 }
 function riempi(t,c,tag){return t.replace(/\{(\w+)\}/g,function(m,k){return c[k]!==undefined?c[k]:m}).replace('{#}',tag?('#'+tag):'').replace(/\s+$/,'').replace(/\s{2,}/g,' ').replace(/\.\.(?!\.)/g,'.')}
-var PESI={0:{fo:1,cp:1,vt:1,live:9,pm:2,so:2,al:2,gen:2,mk:1,fc:1,cl:1,ri:0},1:{fo:2,cp:1,vt:2,pm:5,so:3,al:3,gen:3,mk:1,fc:1,cl:2,ri:1},2:{fo:1,cp:2,vt:2,cl:4,ri:6,al:3,so:3,gen:3,mk:1,fc:2,pm:1},3:{fo:2,cp:2,vt:2,cl:3,ri:5,so:3,al:2,gen:3,mk:2,fc:2,pm:1},4:{fo:1,cp:2,vt:1,mk:5,ri:3,gen:3,fc:3,so:2,al:2,cl:1,pm:0},5:{fo:1,cp:2,vt:1,mk:5,ri:1,gen:3,fc:3,so:2,al:2,cl:1,pm:0,live:2},6:{fo:1,cp:1,vt:1,live:10,pm:1,ri:1,gen:2,mk:2,so:1,fc:2,al:1,cl:0}};
+var PESI={0:{st:1,fo:1,cp:1,vt:1,live:9,pm:2,so:2,al:2,gen:2,mk:1,fc:1,cl:1,ri:0},1:{st:2,fo:2,cp:1,vt:2,pm:5,so:3,al:3,gen:3,mk:1,fc:1,cl:2,ri:1},2:{st:1,fo:1,cp:2,vt:2,cl:4,ri:6,al:3,so:3,gen:3,mk:1,fc:2,pm:1},3:{st:1,fo:2,cp:2,vt:2,cl:3,ri:5,so:3,al:2,gen:3,mk:2,fc:2,pm:1},4:{st:1,fo:1,cp:2,vt:1,mk:5,ri:3,gen:3,fc:3,so:2,al:2,cl:1,pm:0},5:{st:1,fo:1,cp:2,vt:1,mk:5,ri:1,gen:3,fc:3,so:2,al:2,cl:1,pm:0,live:2},6:{st:2,fo:1,cp:1,vt:1,live:10,pm:1,ri:1,gen:2,mk:2,so:1,fc:2,al:1,cl:0}};
 function comune(r){return COMUNI[Math.floor(r()*COMUNI.length)]}
 function post_giorno(D,SQ,ST,g){
  var dd=dalGiorno(g),tg=tendenze(D),tags=tg.map(function(x){return x[0]}),r=prng('giorno'+g),mk=ctxDi(D,SQ,ST,'ctx'+g);
@@ -679,6 +702,11 @@ function genera(D,SQ,ST,ms){
  gp('cc:campione','Si riparte. La Champions Cup 2026/27 è cominciata: dieci squadre, due gironi e una finale. Campione in carica il Grodah di RikyArma, che un anno fa batté il Mugiwara di Leanzino 4-1 (84 punti a 70). Chi riuscirà a togliergli la coppa? #ChampionsCup',Date.UTC(2026,9,13,14,10),'champions_cup');
  gp('cc:albo','Albo d\'oro della Champions Cup. 2025/26: Grodah (RikyArma). Il resto è ancora tutto da scrivere. #ChampionsCup #Albo',Date.UTC(2026,9,13,16,20),'champions_cup');
  gp('gs:finale','Dall\'archivio: la finale di Coppa Campioni 2025/26. Il Grodah di RikyArma batte il Mugiwara di Leanzino 4-1 (84 punti a 70) e alza la coppa. L\'albo d\'oro non dimentica. #GirrrSport #Albo',Date.UTC(2026,9,13,15,45));
+ gp('gs:campione','Il campione in carica è la WOA di ser, titolo 2025/26 e Gioberti Cup, con 10 punti sul secondo. Cinque stagioni, sempre la stessa squadra e mai un cambio di nome: la continuità paga. Ora tutti lo inseguono. #GirrrSport #Albo',Date.UTC(2026,9,13,9,40));
+ gp('gs:ritorno','Dopo quattro stagioni di assenza è tornato DJ Cst Brazil, che nell\'archivio compare ancora come StaCo Atto. Rientra con ambizioni da protagonista: vedremo se la lega è cambiata più di lui. #GirrrSport #Ritorno',Date.UTC(2026,9,13,11,5));
+ gp('gs:peppe','Il campione 2024/25 non c\'è più: 17peppe17 è passato dall\'ultimo posto con l\'ACPicchia al titolo con il PornHub FC, e poi ha lasciato la lega da campione. Una carriera breve e perfetta. #GirrrSport #Albo',Date.UTC(2026,9,13,12,30));
+ gp('gs:apo','Dall\'archivio: apo è l\'unico ad aver vinto due titoli, e di fila, con il Wakanda nel 2021/22 e nel 2022/23. Poi due ultimi posti consecutivi. La storia di questa lega è anche questa. #GirrrSport #Albo',Date.UTC(2026,9,13,14,10));
+ gp('gs:mario','Curiosità d\'archivio: Mario ha avuto quattro nomi, Gingleton, Barny, Pep Mariola e oggi Mario. Cinque stagioni, sempre in lotta, media posizione 6,6. Il nome cambia, la squadra resta quella del cuore. #GirrrSport #Albo',Date.UTC(2026,9,13,17,45));
  for(var g=oggi-3;g<=oggi;g++){
   post_giorno(D,SQ,ST,g).forEach(function(p){if(p.ts<=ms&&p.ts>=ms-96*36e5){var c=conta(p.k);p.ap=c.ap;p.ril=c.ril;p.v=c.v;p.r=p.r.filter(function(x){return x.ts<=ms});all.push(p)}});
   /* Ciro: venerdì 18:00 + un aggiornamento il lunedì */
