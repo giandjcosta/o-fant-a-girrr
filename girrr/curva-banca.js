@@ -623,8 +623,8 @@ function comUff(p,D,SQ,cu,ms){
  return out}
 function reazioni(k,t,ms,SQ,xt){var r=prng('rz'+k),age=(ms-t)/60000;if(age<1)return{ap:0,ril:0,r:[]};
  var fa=2+Math.floor(r()*11),fr=Math.floor(r()*4),pr=Math.pow(Math.min(1,age/360),0.6),out=[];
- var nr=Math.floor(r()*3),ord=shuffle(r,AUTORI);
- for(var i=0;i<nr;i++){var d=10+r()*240,tx=xt?risposta(r,xt,null,{sq:(SQ.filter(function(q){return xt.toLowerCase().indexOf(q.toLowerCase())>=0})[0])}):pick(r,RISP).replace('{sq}',pick(r,SQ)),a=ord[i];if(r()<0.5){var cu=comune(r);if(age>=d)out.push({a:cu[0],x:xt?crep(r,xt):pick(r,CREP),ts:t+d*60000});continue}if(age>=d)out.push({a:a,x:natura(tx,k+'z'+i,a),ts:t+d*60000})}
+ var nr=Math.max(1,Math.floor(r()*3)),ord=shuffle(r,AUTORI);
+ for(var i=0;i<nr;i++){var d=(i===0?6+r()*40:10+r()*240),tx=xt?risposta(r,xt,null,{sq:(SQ.filter(function(q){return xt.toLowerCase().indexOf(q.toLowerCase())>=0})[0])}):pick(r,RISP).replace('{sq}',pick(r,SQ)),a=ord[i];if(r()<0.5){var cu=comune(r);if(age>=d)out.push({a:cu[0],x:xt?crep(r,xt):pick(r,CREP),ts:t+d*60000});continue}if(age>=d)out.push({a:a,x:natura(tx,k+'z'+i,a),ts:t+d*60000})}
  return{ap:Math.floor(fa*pr),ril:Math.floor(fr*pr),r:out}}
 
 /* Cori automatici del profilo ufficiale: se una squadra tace per due settimane */
