@@ -222,6 +222,7 @@ var ACC={};
 function add(h,n,k,v,bio,c){ACC[h]={h:h,n:n,k:k,v:v,bio:bio,c:c}}
 function initAcc(){SQ.forEach(function(n){add(hnd(n),n,'sq','blu','',null)});
 add('lega_ofantagirrr','Lega O Fant A Girrr','org','oro','Account ufficiale della lega. Risultati e comunicazioni. Niente ricorsi.',['#d62839','#1d2a52']);
+add('girrr_sport','Girrr Sport','org','oro','La TV della lega. Sala stampa dopo ogni giornata, moviola e archivio. Il calcio è finto, il Girrr è vero.',['#13224f','#d62839']);
 add('giornale_girrr','O Giornale del Girrr','org','oro','Il settimanale della lega. Esce a fine giornata, subito dopo i risultati.',['#c8102e','#7a0a1c']);
 add('ciro_trattativa','Ciro Trattativa','pro','blu','Giornalista di mercato. Quasi sempre. Fonti: il bar sotto casa.',['#1d9bf0','#0b3d66']);
 [['il_complottista','Il Complottista','Gli arbitri? Tutti pagati. Lo dico dal 2006.','#6d597a','#2b2d42'],['il_romantico_del_pallone','Il Romantico del Pallone','Ventidue uomini in mutande dietro a un pallone. E miliardi intorno.','#2a9d8f','#14463f'],['ing_stadi','L\'Ingegnere degli Stadi','Gli stadi italiani hanno 60 anni. Io ho le misure.','#457b9d','#1d3557'],['il_super_tifoso','Il Super Tifoso','Tifo per la squadra giusta. Cioè quella che vince.','#e63946','#6a040f'],['il_barista','Il Barista','Bar Sport. Caffè, cornetti e pronostici non richiesti.','#7f5539','#3d2817'],['il_mago_cabala','Il Mago della Cabala','Numeri, stelle e calzini. Rimborsi non previsti.','#7b2cbf','#240046'],['la_suocera','La Suocera','Il fantacalcio? Non lo capisco ma ho un\'opinione.','#c1121f','#5c0a10'],['il_tassista','Il Tassista','Tutto quello che sento in macchina. Taxi sempre libero.','#f5b700','#6b4d00'],['fidanzata_stufa','La Fidanzata Stufa','Lui è in asta. Io sono qui.','#e07a9b','#6a2c40'],['nonno_cesare','Nonno Cesare','Allenatore dal 1962 (della domenica).','#6b705c','#3a3d33'],['tifoso_arrabbiato','Il Tifoso Arrabbiato','Cambiate allenatore. Sempre.','#b5179e','#560bad'],['mister_divano','Il Tecnico da Divano','Ho vinto tutto. Su un altro divano.','#3a86ff','#8338ec'],['radio_spogliatoio','Radio Spogliatoio','Voci di corridoio. Nessuna conferma, molta convinzione.','#fb8500','#9d4400'],['mamma_di_capitan','Mamma di Capitan Sfortuna','Orgogliosa di mio figlio. Soprattutto quando perde.','#ef476f','#7b1c34'],['ex_ds_provincia','Ex DS di Provincia','Ho venduto più portieri di quanti ne abbia mai parati la mia squadra.','#06d6a0','#0b5d49'],['var_parlante','VAR Parlante','Ho rivisto l\'azione. Ho dei dubbi.','#118ab2','#073b4c'],['fc27_ratings','FC27 Ratings Italia','Aggiorniamo gli overall quando ci pare. Reclami non accettati.','#2ec4b6','#0b3c3a'],['il_cugino_del_dt','Il Cugino del DT','Mio cugino lo sa. Io no.','#e07a5f','#3d405b'],['telecronista_stanco','Il Telecronista Stanco','Ancora qui. Purtroppo.','#8d99ae','#2b2d42'],['gufo_professionista','Gufo Professionista','Gufo con metodo e dedizione.','#7b2cbf','#240046'],['il_filosofo_del_pallone','Il Filosofo del Pallone','Il calcio è un\'idea. Il resto è mercato.','#264653','#0b1e24'],['bomber_da_bar','Bomber da Bar','Gol a ripetizione, ma solo al bancone.','#f4a261','#7a3e00'],['statistico_folle','Lo Statistico Folle','Il 73% delle mie statistiche è inventato.','#00b4d8','#03045e'],['arbitro_in_pensione','Arbitro in Pensione','Ho fischiato 400 partite. E diverse persone.','#adb5bd','#343a40']].forEach(function(x){add(x[0],x[1],'fan','',x[2],[x[3],x[4]])});}
@@ -233,7 +234,7 @@ var SEEN={},NOTIF={tot:0,per:{}},pimg=null,IM={},IMG_LOAD={};
 var S={ok:false,posts:[],replies:[],react:[],mine:[],follow:[],prof:{}},NET=null;
 function prof(a){return a.k==='sq'?(S.prof[a.n]||{}):{}}
 function bg(a){if(a.c)return 'linear-gradient(135deg,'+a.c[0]+','+a.c[1]+')';var p=prof(a);return 'hsl('+(p.h!=null?p.h:hue(a.n))+' 55% 42%)'}
-function avc(a){var p=prof(a);return p.e?[p.e,' e']:[a.h==='giornale_girrr'?'GG':a.h==='lega_ofantagirrr'?'LG':a.h==='ciro_trattativa'?'CT':sigla(a.n),'']}
+function avc(a){var p=prof(a);return p.e?[p.e,' e']:[a.h==='girrr_sport'?'GS':a.h==='giornale_girrr'?'GG':a.h==='lega_ofantagirrr'?'LG':a.h==='ciro_trattativa'?'CT':sigla(a.n),'']}
 /* Immagini di profilo (avatar e sfondo), scaricate a richiesta e tenute in memoria */
 var IMP={},PI_LOAD={},pit=null;
 function piKey(t,w,ts){return t+'|'+w+'|'+ts}
@@ -248,7 +249,7 @@ function AV(a,cls,extra){var c=avc(a),im=imgP(a,'a');return '<div class="av '+(c
 function nomeMio(){return me?acc(hnd(me)):null}
 /* stato */
 var D=null,ST={cls:[],ult:null,next:null},me=null,code='';
-var meH='',ap={},filt='tutti',vista='home',vprof='',qs='',notif=[],edit=false,open={},toastT=null,TR=[];
+var vseg='',meH='',ap={},filt='tutti',vista='home',vprof='',qs='',notif=[],edit=false,open={},toastT=null,TR=[];
 function login(){try{var o=JSON.parse(localStorage.getItem('fg')||'{}');if(o&&o.team&&o.code&&D&&D.lock&&hshF(o.team+'|'+o.code)===D.lock[o.team]){me=o.team;code=o.code}}catch(e){}
  var k=(location.hash||'').replace('#','').trim().toUpperCase();if(k&&D&&D.lock){SQ.forEach(function(t){if(hshF(t+'|'+k)===D.lock[t]){me=t;code=k;try{var o=JSON.parse(localStorage.getItem('fg')||'{}')||{};o.team=t;o.code=k;localStorage.setItem('fg',JSON.stringify(o))}catch(e){}try{history.replaceState(null,'',location.pathname+location.search)}catch(e){}}})}
  var q=(location.search.match(/[?&]come=([^&]+)/)||[])[1];if(q&&location.hostname==='localhost'){q=decodeURIComponent(q);if(SQ.indexOf(q)>=0){me=q;code='TEST'}}
@@ -308,7 +309,7 @@ function costruisci(){
 (S.adm||[]).forEach(function(u){var k='a'+u.id,z={ap:0,ril:0,r:[]};try{z=CVB.reazioni(k,u.ts,Date.now(),SQ,u.body)}catch(e){}var tm=SQ[4],f=fattore(tm);out.push({k:k,id:k,hi:u.hi,a:u.h,x:u.body,uf:1,ts:u.ts,ap:Math.round((z.ap+8)*f),ril:Math.round((z.ril+2)*f),v:0,f:f,tm:tm,id0:u.id,r:z.r})});
  gen.forEach(function(p){out.push(p)});
  out.forEach(function(p){var rr=(p.r||[]).concat(tuttiR[p.k]||[]);rr.sort(function(a,b){return a.ts-b.ts});p.r=rr;
-  var vb=0;if((p.real||p.uf)&&!p.v){var et0=Math.max(0,(Date.now()-p.ts)/36e5),cr0=1-Math.exp(-et0/5),j0=0.8+((p.id0||0)*37%40)/100;vb=((p.a==='lega_ofantagirrr'||p.a==='giornale_girrr')?3800000:seguaci(p.tm))*(0.01+0.09*cr0)*j0;p.ap=Math.round(vb*(0.012+(CVB.h32(p.k)%20)/1000));p.ril=Math.round(vb*(0.003+(CVB.h32(p.k+'r')%30)/10000))}
+  var vb=0;if((p.real||p.uf)&&!p.v){var et0=Math.max(0,(Date.now()-p.ts)/36e5),cr0=1-Math.exp(-et0/5),j0=0.8+((p.id0||0)*37%40)/100;vb=(p.a==='girrr_sport'?5100000:(p.a==='lega_ofantagirrr'||p.a==='giornale_girrr')?3800000:seguaci(p.tm))*(0.01+0.09*cr0)*j0;p.ap=Math.round(vb*(0.012+(CVB.h32(p.k)%20)/1000));p.ril=Math.round(vb*(0.003+(CVB.h32(p.k+'r')%30)/10000))}
   p.A=(p.ap||0)+(RC[p.k+'|a']||0);p.R=(p.ril||0)+(RC[p.k+'|r']||0);if(!p.v){var et=Math.max(0,(Date.now()-p.ts)/36e5),cr=1-Math.exp(-et/5),j=0.8+((p.id0||0)*37%40)/100;p.v=Math.round((vb||seguaci(p.tm)*(0.01+0.09*cr)*j)+30*(p.A+p.R+rr.length))}});
  out.sort(function(a,b){return b.ts-a.ts});
  NOTIF={tot:0,per:{}};
@@ -490,20 +491,24 @@ function navR(){
 }
 function topR(titolo,sott,tabs){
  var back=(vista==='u'&&vprof!==meH)||vista==='info'||vista==='adm'||vista==='seg',m=nomeMio();
- document.getElementById('top').innerHTML='<div class="bar">'+(back?'<button class="ib" data-v="'+(vista==='seg'?'profilo':'home')+'" aria-label="Indietro">'+I.back+'</button>':(m?AV(m,'sm me','data-v="profilo"'):'<span class="me"></span>'))+
+ document.getElementById('top').innerHTML='<div class="bar">'+(back?'<button class="ib" '+(vista==='seg'&&vseg&&vseg!==meH?'data-u="'+vseg+'"':'data-v="'+(vista==='seg'?'profilo':'home')+'"')+' aria-label="Indietro">'+I.back+'</button>':(m?AV(m,'sm me','data-v="profilo"'):'<span class="me"></span>'))+
   '<div class="tt">'+(vista==='home'?'<span style="display:flex;align-items:center;gap:8px"><i class="lg" style="width:28px;height:28px"></i>Curva</span>':esc(titolo)+(sott?'<small>'+esc(sott)+'</small>':''))+'</div>'+
   (me===ADMIN&&S.v>=5?'<button class="ib" data-v="adm" aria-label="Per Me" title="Per Me">'+I.adm+'</button>':'')+'<button class="ib" data-v="info" aria-label="Info" title="Come funziona">'+I.info+'</button><button class="ib" id="rfb" aria-label="Aggiorna" title="Aggiorna"><svg viewBox="0 0 24 24" '+S0+'><path d="M20 12a8 8 0 1 1-2.5-5.8"/><path d="M20 4v5h-5"/></svg></button><button class="ib" id="tg" aria-label="Cambia tema">'+(curTema()==='dark'?I.sun:I.moon)+'</button></div>'+(tabs?'<div class="tabs">'+tabs+'</div>':'')+(NET===false?'<div class="net">Non riesco a collegarmi ai cori: puoi leggere, ma non scrivere.</div>':'');
  document.getElementById('rfb').onclick=function(){rinfresca()};
  document.getElementById('tg').onclick=function(){tema(curTema()==='dark'?'light':'dark');render()};
 }
-function isDef(h){return h==='lega_ofantagirrr'||h==='giornale_girrr'||(ACC[h]&&ACC[h].k==='sq'&&h!==meH)}
+function isDef(h){return h==='lega_ofantagirrr'||h==='girrr_sport'||h==='giornale_girrr'||(ACC[h]&&ACC[h].k==='sq'&&h!==meH)}
 function isFol(h){if(!me)return false;var row=S.follow.indexOf(h)>=0;return isDef(h)?!row:row}
+function segOf(h){var a=acc(h),all=Object.keys(ACC).filter(function(k){return k!==h}),sq=SQ.map(hnd);
+ if(a.k==='org')return sq.filter(function(k){return k!==h});
+ var off=['girrr_sport','lega_ofantagirrr','giornale_girrr'].filter(function(k){return k!==h}),N=a.k==='sq'?11:12+hue(a.n)%40,pool=all.filter(function(k){return off.indexOf(k)<0}).sort(function(x,y){return CVB.h32(h+'|'+x)-CVB.h32(h+'|'+y)});
+ return off.concat(pool).slice(0,N)}
 function nSeguiti(){var n=0;Object.keys(ACC).forEach(function(h){if(h!==meH&&isFol(h))n++});return n}
 function segBtn(h,small){var s=isFol(h);return '<button class="btn blu" data-seg="'+h+'"'+(small?' style="align-self:flex-start;padding:7px 14px;font-size:13px"':'')+'>'+(s?'Seguito':'Segui')+'</button>'}
 function whoRow(h){var a=acc(h);return '<div class="who">'+AV(a,'sm','data-u="'+h+'"')+'<div class="n"><b data-u="'+h+'">'+esc(a.n)+badge(a.v)+'</b><small>@'+h+'</small></div>'+segBtn(h)+'</div>'}
 function dxR(){
  document.getElementById('dx').innerHTML='<div class="box"><h3>Tendenze</h3>'+TR.map(function(t){return '<div class="it" data-q="'+t[0]+'" style="cursor:pointer"><small>Tendenza nella lega</small><b>'+t[0]+'</b><small>'+fmt(t[1])+' cori</small></div>'}).join('')+'<div class="it"><small>Cambiano a ogni giornata.</small></div></div>'+
- '<div class="box"><h3>Chi seguire</h3>'+['giornale_girrr','lega_ofantagirrr','ciro_trattativa'].map(whoRow).join('')+'</div>'
+ '<div class="box"><h3>Chi seguire</h3>'+['girrr_sport','giornale_girrr','lega_ofantagirrr','ciro_trattativa'].map(whoRow).join('')+'</div>'
 }
 function matchQ(p,q){q=q.toLowerCase().replace(/^@/,'');var a=acc(p.a);return p.x.toLowerCase().indexOf(q)>=0||p.a.indexOf(q)>=0||a.n.toLowerCase().indexOf(q)>=0}
 var ntab='tutte',NVIEW=0,NOTI=[];
@@ -574,13 +579,13 @@ function render(){
   h+=NL.length?NL.map(nRow).join(''):'<div class="vuoto">'+(ntab==='men'?'Nessuno ti ha ancora menzionato.<br>Scrivi @ seguito dal nome di una squadra per taggare qualcuno.':'Ancora nessuna notifica.<br>Qui compaiono menzioni, risposte, rilanci e traguardi dei tuoi cori.')+'</div>';
   nSegna(null);
  }else if(vista==='seg'){
-  var SG=Object.keys(ACC).filter(function(k){return k!==meH&&isFol(k)}).sort(function(x,y){var o=['giornale_girrr','lega_ofantagirrr','ciro_trattativa'],ix=o.indexOf(x),iy=o.indexOf(y);if(ix<0)ix=9;if(iy<0)iy=9;return ix-iy||acc(x).n.localeCompare(acc(y).n)});
-  topR('Seguiti',SG.length+(SG.length===1?' account':' account'));
-  h+=SG.length?'<div class="seg"><div class="tot">Account che segui. Tocca "Seguito" per smettere.</div>'+SG.map(whoRow).join('')+'</div>':'<div class="vuoto">Non segui ancora nessuno.<br>Cerca in Esplora gli account da seguire.</div>';
+  var wh=vseg&&vseg!==meH?vseg:'',SG=wh?segOf(wh):Object.keys(ACC).filter(function(k){return k!==meH&&isFol(k)});if(!wh)SG=SG.sort(function(x,y){var o=['girrr_sport','giornale_girrr','lega_ofantagirrr','ciro_trattativa'],ix=o.indexOf(x),iy=o.indexOf(y);if(ix<0)ix=9;if(iy<0)iy=9;return ix-iy||acc(x).n.localeCompare(acc(y).n)});
+  topR('Seguiti',(wh?acc(wh).n+' · ':'')+SG.length+' account');
+  h+=SG.length?'<div class="seg"><div class="tot">'+(wh?'Gli account che segue '+esc(acc(wh).n)+'.':'Account che segui. Tocca "Seguito" per smettere.')+'</div>'+SG.map(whoRow).join('')+'</div>':'<div class="vuoto">Non segui ancora nessuno.<br>Cerca in Esplora gli account da seguire.</div>';
 }else if(vista==='adm'){
   topR('Per Me','Pannello della Curva');
   if(me!==ADMIN||S.v<5){h+='<div class="nt"><small style="margin:0">Questa pagina è riservata. Se sei Oranje VC, esegui prima l\'SQL del pannello.</small></div>'}
-  else{var uf=['lega_ofantagirrr','giornale_girrr','ciro_trattativa'],sqh=SQ.map(hnd),pe=Object.keys(ACC).filter(function(x){return uf.indexOf(x)<0&&sqh.indexOf(x)<0});
+  else{var uf=['girrr_sport','lega_ofantagirrr','giornale_girrr','ciro_trattativa'],sqh=SQ.map(hnd),pe=Object.keys(ACC).filter(function(x){return uf.indexOf(x)<0&&sqh.indexOf(x)<0});
    var op=function(x){return '<option value="'+x+'">'+esc(acc(x).n)+' (@'+x+')</option>'};
    h+='<div class="faq" style="padding:14px 16px"><b>Chi parla</b><select id="ad-h" style="width:100%;margin:6px 0 12px;padding:10px;border-radius:12px;border:1px solid var(--ln);background:var(--bg2);color:var(--tx);font:500 15px Inter"><optgroup label="Account ufficiali">'+uf.map(op).join('')+'</optgroup><optgroup label="Personaggi">'+pe.map(op).join('')+'</optgroup></select>'+
    '<b>Cosa dice</b><textarea id="ad-t" rows="4" maxlength="280" placeholder="Scrivi il coro o la frase (max 280 caratteri)" style="width:100%;margin:6px 0 4px;padding:10px;border-radius:12px;border:1px solid var(--ln);background:var(--bg2);color:var(--tx);font:500 15px Inter;resize:none"></textarea><small id="ad-c" style="color:var(--mu)">280</small>'+
@@ -603,7 +608,7 @@ function render(){
   var bh2=pf.bh!=null?pf.bh:hh;if(isSq){c1='hsl('+bh2+' 60% 40%)';c2='hsl('+((bh2+40)%360)+' 55% 22%)'}var bim=imgP(a,'b');
   h+='<div class="ban" id="ban" style="--c1:'+c1+';--c2:'+c2+(bim?';background:url('+bim+') center/cover':'')+'"></div><div class="pf"><div class="r1">'+AV(a,'xl')+(mio?'<button class="btn out" data-a="edav">'+(edit?'Chiudi':'Modifica profilo')+'</button>':segBtn(vprof))+'</div>'+
    '<h2>'+esc(nm(a))+badge(a.v)+'</h2><div class="h">@'+a.h+'</div>'+(isSq&&CVB.MISTER[a.n]?'<div class="h">Allenatore: '+esc(CVB.MISTER[a.n])+'</div>':'')+(pf.bio?'<p>'+esc(pf.bio)+'</p><p class="mu">'+esc(bio)+'</p>':'<p>'+esc(bio)+'</p>')+(a.v?'<div class="etich">'+badge(a.v)+(a.v==='oro'?' Account ufficiale':' Account verificato')+'</div>':'')+
-   '<div class="st"><span'+(mio?' data-v="seg" style="cursor:pointer"':'')+'><b>'+(mio?nSeguiti():isSq?11:12+hue(a.n)%40)+'</b> Seguiti'+(mio?' ›':'')+'</span><span><b>'+(isSq?segTxt(seguaci(a.n)):a.k==='org'?(a.h==='lega_ofantagirrr'?'4,2 milioni':a.h==='giornale_girrr'?'3,6 milioni':fmt(9000+hue(a.n)*31).replace(' mila','')+' mila'):100+hue(a.n)*3)+'</b> Follower</span></div></div>';
+   '<div class="st"><span data-v="seg" data-w="'+a.h+'" style="cursor:pointer"><b>'+(mio?nSeguiti():segOf(a.h).length)+'</b> Seguiti ›</span><span><b>'+(isSq?segTxt(seguaci(a.n)):a.k==='org'?(a.h==='girrr_sport'?'5,1 milioni':a.h==='lega_ofantagirrr'?'4,2 milioni':a.h==='giornale_girrr'?'3,6 milioni':fmt(9000+hue(a.n)*31).replace(' mila','')+' mila'):100+hue(a.n)*3)+'</b> Follower</span></div></div>';
   if(mio&&edit)h+='<div class="edav"><b>Scegli la tua icona</b><div class="emo">'+EMO.map(function(e){return '<button data-emo="'+e+'" class="'+(pf.e===e?'on':'')+'">'+e+'</button>'}).join('')+'<button data-emo="" class="'+(!pf.e?'on':'')+'" style="font-size:12px;font-weight:800">Sigla</button></div>'+(S.v>=3?'<b>Bio</b><textarea id="bioe" rows="2" maxlength="100" placeholder="Scrivi la bio della squadra (max 100 caratteri). Resta sotto la riga con posizione e punti." style="width:100%;margin:6px 0 12px;padding:10px;border-radius:12px;border:1px solid var(--ln);background:var(--bg2);color:var(--tx);font:500 15px Inter;resize:none">'+esc(pf.bio||'')+'</textarea>':'')+'<b>Colore dell\'avatar</b><input type="range" id="hue" min="0" max="359" value="'+hh+'">'+(S.v>=2?'<div class="edi"><button class="btn out" data-a="pfoto">Foto profilo</button><button class="btn out" data-a="pfoto0">Togli foto</button></div><b>Colore dello sfondo</b><input type="range" id="bhue" min="0" max="359" value="'+bh2+'"><div class="edi"><button class="btn out" data-a="bfoto">Immagine di sfondo</button><button class="btn out" data-a="bfoto0">Togli immagine</button></div><input type="file" id="fpa" accept="image/*" hidden><input type="file" id="fpb" accept="image/*" hidden>':'')+(S.v>=3?'':'<div style="margin-top:10px;font-size:12px;color:var(--mu)">Bio, foto e sfondo non sono ancora attivi: il feed del database risponde con la versione '+(S.v||1)+' invece della 3. Controlla l\'SQL v2 su Supabase.</div>')+'<button class="btn" data-a="salvaav" style="margin-top:10px">Salva</button></div>';
   if(mio&&!edit&&me)h+=compHTML(nomeMio());
   h+='<div class="tabs ptabs"><button data-pt="cori" class="'+(ptab==='cori'?'on':'')+'">Cori</button><button data-pt="risp" class="'+(ptab==='risp'?'on':'')+'">Risposte</button></div>';
@@ -636,7 +641,7 @@ function risultati(){
   h+=(ac.length?'<div class="sec">Account</div>'+ac.map(accRow).join(''):'')+'<div class="sec">Cori</div>'+feed(L.slice(0,40));
  }else{
   h+='<div class="sec">Tendenze</div>'+TR.map(function(t){return '<div class="nt" data-q="'+t[0]+'" style="cursor:pointer"><div><small style="margin:0">Tendenza nella lega</small><p style="font-weight:800">'+t[0]+'</p><small>'+fmt(t[1])+' cori</small></div></div>'}).join('')+'<div class="nt"><small style="margin:0">Le tendenze cambiano a ogni giornata.</small></div><div class="sec">Chi seguire</div>'+
-  ['lega_ofantagirrr','giornale_girrr','ciro_trattativa'].concat(Object.keys(ACC).filter(function(k){return ACC[k].k==='fan'})).map(accRow).join('');
+  ['girrr_sport','lega_ofantagirrr','giornale_girrr','ciro_trattativa'].concat(Object.keys(ACC).filter(function(k){return ACC[k].k==='fan'})).map(accRow).join('');
  }
  c.innerHTML=h;
 }
@@ -708,6 +713,7 @@ document.addEventListener('click',function(e){
  var el=e.target.closest('[data-v],[data-u],[data-f],[data-pt],[data-nf],[data-nk],[data-mn],[data-seg],[data-a],[data-q],[data-emo]');if(!el)return;
  var d=el.dataset;
  if(d.q!==undefined){e.stopPropagation();qs=d.q;vista='esplora';scrollTo(0,0);render();return}
+ if(d.v==='seg'){vseg=d.w||meH}
  if(d.v){if(d.v==='scrivi'){if(!me){toast('Entra con il codice della tua squadra per partecipare');return}vista='home';filt='tutti';render();var t=document.getElementById('tx');if(t)t.focus();return}if(d.v==='home'&&vista==='home'){if(window.scrollY>4)window.scrollTo({top:0,behavior:'smooth'});else rinfresca();return}
  if((d.v==='profilo'||d.v==='notifiche')&&!me){toast('Entra con il codice della tua squadra');return}if(d.v==='notifiche'){ntab='tutte'}vista=d.v;ptab='cori';scrollTo(0,0);if(d.v==='esplora')qs='';render();return}
  if(d.u){vprof=d.u;vista='u';edit=false;ptab='cori';scrollTo(0,0);render();return}

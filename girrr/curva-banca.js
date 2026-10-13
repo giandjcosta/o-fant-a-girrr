@@ -553,6 +553,9 @@ function conta(k,base){var r=prng(k+'n');var b=base||1;return{ap:Math.floor((4+r
 function genera(D,SQ,ST,ms){
  var r=roma(ms),oggi=giorno(ms),all=[],tg=tendenze(D).map(function(x){return x[0]});
  var tag=function(k,i){return tg[(h32(k)+i)%tg.length]};
+ function gp(k,x,t){var p={k:k,a:'girrr_sport',x:x,ts:t,r:[]},c=conta(p.k,1);p.ap=Math.floor(26000+c.ap*900);p.ril=Math.floor(3100+c.ril*280);p.v=Math.floor(1500000+c.v*950);var rs=[];for(var q=0;q<7;q++)rs=rs.concat(reazioni(p.k+'#'+q,p.ts,ms,SQ,p.x).r);p.r=rs.filter(function(y){return y.ts<=ms}).sort(function(y,z){return y.ts-z.ts});if(p.ts<=ms)all.push(p)}
+ gp('gs:intro','Benvenuti su Girrr Sport, la TV della lega. Sala stampa dopo ogni giornata, moviola per gli episodi dubbi e ogni tanto un tuffo nell\'archivio. Il calcio è finto, il Girrr è vero. #GirrrSport',Date.UTC(2026,9,13,13,30));
+ gp('gs:finale','Dall\'archivio: la finale di Coppa Campioni 2025/26. Il Grodah di RikyArma batte il Mugiwara di Leanzino 4-1 (84 punti a 70) e alza la coppa. L\'albo d\'oro non dimentica. #GirrrSport #Albo',Date.UTC(2026,9,13,15,45));
  for(var g=oggi-3;g<=oggi;g++){
   post_giorno(D,SQ,ST,g).forEach(function(p){if(p.ts<=ms&&p.ts>=ms-96*36e5){var c=conta(p.k);p.ap=c.ap;p.ril=c.ril;p.v=c.v;p.r=p.r.filter(function(x){return x.ts<=ms});all.push(p)}});
   /* Ciro: venerdì 18:00 + un aggiornamento il lunedì */
@@ -582,6 +585,7 @@ function genera(D,SQ,ST,ms){
   [P1,P2].concat(P1c?[P1c]:[]).forEach(function(p){var c=conta(p.k,1);p.ap=Math.floor(21000+c.ap*850);p.ril=Math.floor(2400+c.ril*260);p.v=Math.floor(1100000+c.v*900);
    var rs=[];for(var q=0;q<7;q++){var z=reazioni(p.k+'#'+q,p.ts,ms,SQ,p.x);rs=rs.concat(z.r)}
    rs=rs.concat(comUff(p,D,SQ,cu,ms));rs=rs.filter(function(x){return x.ts<=ms}).sort(function(x,y){return x.ts-y.ts});p.r=rs;if(p.ts<=ms)all.push(p)});
+  try{var GG=null;D.cal.lega.forEach(function(g){if(g.n===n)GG=g});if(GG){var bs=null,tr=null;GG.m.forEach(function(m){if(m[4]==='-')return;[[m[0],m[1]],[m[3],m[2]]].forEach(function(t){if(!bs||t[1]>bs[1])bs=t});var df=Math.abs(m[1]-m[2]);if(!tr||df<tr.df)tr={a:m[0],b:m[3],sc:m[4],df:df}});if(bs&&tr)gp('gs:sala'+n,'Sala stampa, '+n+'ª giornata. Miglior punteggio: '+bs[0]+' con '+String(bs[1]).replace('.',',')+' punti. La partita più tirata: '+tr.a+'–'+tr.b+' '+tr.sc+', separate da appena '+String(Math.round(tr.df*10)/10).replace('.',',')+' punti. #GirrrSport #Giornata'+n,P1.ts+45*60000)}}catch(e){}
  }
  /* veri scambi */
  (D.scambi||[]).forEach(function(s,i){var T=Date.parse(s.t);if(!(T<=ms))return;var cc={a:s.a,b:s.b,da:s.da,db:s.db};var p={k:'sc:'+i,a:'ciro_trattativa',x:riempi(SCAMBIO[i%2],cc,null),ts:T,r:[],ap:20,ril:6,v:900};all.push(p)});
