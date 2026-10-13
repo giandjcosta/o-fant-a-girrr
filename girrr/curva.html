@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,viewport-fit=cover">
 <meta name="robots" content="noindex">
-<meta name="cv-ver" content="20261013c">
+<meta name="cv-ver" content="20261013d">
 <title>Curva · O Girrr</title>
 <link rel="icon" type="image/png" href="../assets/favicon-64.png">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800;900&display=swap">
@@ -126,6 +126,9 @@ svg{display:block}
 .box h3{font-size:19px;font-weight:900;padding:12px 16px}
 .box .it{padding:10px 16px}
 .box .it small{display:block;color:var(--mu);font-size:12.5px}.box .it b{font-size:15px}
+.seg .who{display:flex;gap:14px;align-items:center;padding:16px 18px;border-bottom:1px solid var(--ln)}.seg .who:active{background:var(--hv)}
+.seg .who .n{flex:1;min-width:0}.seg .who .n b{display:block;font-size:16px;line-height:1.25;cursor:pointer;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.seg .who .n b svg{display:inline-block;vertical-align:-3px;margin-left:4px}.seg .who .n small{display:block;margin-top:3px;color:var(--mu);font-size:13.5px;overflow:hidden;text-overflow:ellipsis}
+.seg .who .btn{flex:none;padding:8px 16px;font-size:14px}.seg .tot{padding:14px 18px 6px;color:var(--mu);font-size:13px}
 .box .who{display:flex;gap:10px;align-items:center;padding:10px 16px}
 .box .who .n{flex:1;min-width:0;font-size:14.5px}.box .who .n b{display:block;cursor:pointer;line-height:1.2}.box .who .n b svg{display:inline-block;vertical-align:-3px;margin-left:3px}.box .who .n small{color:var(--mu);font-size:13px;display:block}
 .box .btn{padding:7px 12px;font-size:13px;flex:none;white-space:nowrap}
@@ -256,7 +259,7 @@ function calcola(d){
  /* Storia della stagione: più giornate passate in alto, più cresce il seguito (da 1 a 34 giornate) */
  ST.fame={};try{var cu={},W=[1,.6,.4,.15,.08,.04,.02,.01,0,0];L.forEach(function(g){if(!giocata(g))return;g.m.forEach(function(m){var gc=+m[4].split('-')[0],gf=+m[4].split('-')[1];[[m[0],m[1],gc>gf?3:gc===gf?1:0],[m[3],m[2],gf>gc?3:gf===gc?1:0]].forEach(function(x){var t=cu[x[0]]||(cu[x[0]]={pt:0,fp:0});t.pt+=x[2];t.fp+=x[1]})});
   Object.keys(cu).sort(function(a,b){return cu[b].pt-cu[a].pt||cu[b].fp-cu[a].fp}).forEach(function(k,i){ST.fame[k]=(ST.fame[k]||0)+(W[i]||0)})});
-  var tot=Math.max(34,L.length);Object.keys(ST.fame).forEach(function(k){ST.fame[k]=Math.min(1,ST.fame[k]/tot)})}catch(e){}
+  ST.np=L.filter(giocata).length;ST.fr={};Object.keys(ST.fame).forEach(function(k){ST.fr[k]=ST.fame[k]})}catch(e){}
  ST.cls=Object.keys(T).map(function(k){return T[k]}).sort(function(a,b){return b.pt-a.pt||b.fp-a.fp});
  /* Champions Cup: gironi e classifica combinata */
  var CT={};ST.ultC=null;try{ST.ultC=CVB.cupUlt(d)}catch(e){}
@@ -274,7 +277,8 @@ function attivita(n){var t=Date.now()-7*864e5,c=0,rx=0,rs=0,ids={};if(!S||!S.pos
  return 1+Math.min(0.45,0.06*c+0.012*rx+0.02*rs)}
 function posT(n){var i=(ST.tot||ST.cls).map(function(t){return t.n}).indexOf(n);return i<0?0:i+1}
 function fattore(n){var N=(ST.tot||ST.cls).length,p=posT(n);if(!p||N<2)return 1;return (1.6-(p-1)/(N-1)*1.05)*attivita(n)}
-function seguaci(n){var N=(ST.tot||ST.cls).length,p=posT(n)||N,x=N>1?(p-1)/(N-1):0,at=attivita(n),fm=(ST.fame&&ST.fame[n])||0,ex=1150000*Math.pow(fm,1.3)*(0.6+0.4*Math.min(1,(at-1)/0.45));return Math.round(330000*Math.pow(0.12,x)*(0.85+hue(n)%30/100)*at+ex)}
+function seguaci(n){var N=ST.cls.length,p=posiz(n)||N,posS=N>1?(N-p)/(N-1):0,at=attivita(n),act=Math.min(1,Math.max(0,(at-1)/0.45)),fs=(ST.fr&&ST.fr[n])||0,np=Math.max(1,ST.np||1),hist=Math.min(1,fs/np),
+ S=0.45*posS+0.35*hist+0.2*act,base=25000+425000*Math.pow(S,1.4),ex=1150000*Math.pow(Math.min(1,fs/34),1.3)*(0.6+0.4*act);return Math.round(base*(0.9+hue(n)%25/100)+ex)}
 function segTxt(v){return v>=1000000?(v/1e6).toFixed(1).replace('.',',')+' milioni':fmt(v).replace(' mila','')+' mila'}
 function fattoreH(h){for(var i=0;i<SQ.length;i++)if(hnd(SQ[i])===h)return fattore(SQ[i]);return 1}
 function posiz(n){var i=ST.cls.map(function(t){return t.n}).indexOf(n);return i<0?0:i+1}
@@ -569,7 +573,7 @@ function render(){
  }else if(vista==='seg'){
   var SG=Object.keys(ACC).filter(function(k){return k!==meH&&isFol(k)}).sort(function(x,y){var o=['giornale_girrr','lega_ofantagirrr','ciro_trattativa'],ix=o.indexOf(x),iy=o.indexOf(y);if(ix<0)ix=9;if(iy<0)iy=9;return ix-iy||acc(x).n.localeCompare(acc(y).n)});
   topR('Seguiti',SG.length+(SG.length===1?' account':' account'));
-  h+=SG.length?SG.map(whoRow).join(''):'<div class="vuoto">Non segui ancora nessuno.<br>Cerca in Esplora gli account da seguire.</div>';
+  h+=SG.length?'<div class="seg"><div class="tot">Account che segui. Tocca "Seguito" per smettere.</div>'+SG.map(whoRow).join('')+'</div>':'<div class="vuoto">Non segui ancora nessuno.<br>Cerca in Esplora gli account da seguire.</div>';
 }else if(vista==='adm'){
   topR('Per Me','Pannello della Curva');
   if(me!==ADMIN||S.v<5){h+='<div class="nt"><small style="margin:0">Questa pagina è riservata. Se sei Oranje VC, esegui prima l\'SQL del pannello.</small></div>'}
