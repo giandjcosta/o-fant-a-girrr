@@ -502,7 +502,7 @@ function topR(titolo,sott,tabs){
 function isDef(h){return h==='lega_ofantagirrr'||h==='champions_cup'||h==='girrr_sport'||h==='giornale_girrr'||(ACC[h]&&ACC[h].k==='sq'&&h!==meH)}
 function isFol(h){if(!me)return false;var row=S.follow.indexOf(h)>=0;return isDef(h)?!row:row}
 function segOf(h){var a=acc(h),all=Object.keys(ACC).filter(function(k){return k!==h}),sq=SQ.map(hnd);
- if(a.k==='org')return sq.filter(function(k){return k!==h});
+ if(a.k==='org')return Object.keys(ACC).filter(function(k){return k!==h&&ACC[k].k==='org'}).concat(sq.filter(function(k){return k!==h}));
  var off=['girrr_sport','lega_ofantagirrr','champions_cup','giornale_girrr'].filter(function(k){return k!==h}),N=a.k==='sq'?11:12+hue(a.n)%40,pool=all.filter(function(k){return off.indexOf(k)<0}).sort(function(x,y){return CVB.h32(h+'|'+x)-CVB.h32(h+'|'+y)});
  return off.concat(pool).slice(0,N)}
 function nSeguiti(){var n=0;Object.keys(ACC).forEach(function(h){if(h!==meH&&isFol(h))n++});return n}

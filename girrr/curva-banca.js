@@ -553,8 +553,10 @@ function conta(k,base){var r=prng(k+'n');var b=base||1;return{ap:Math.floor((4+r
 function genera(D,SQ,ST,ms){
  var r=roma(ms),oggi=giorno(ms),all=[],tg=tendenze(D).map(function(x){return x[0]});
  var tag=function(k,i){return tg[(h32(k)+i)%tg.length]};
- function gp(k,x,t){var p={k:k,a:'girrr_sport',x:x,ts:t,r:[]},c=conta(p.k,1);p.ap=Math.floor(26000+c.ap*900);p.ril=Math.floor(3100+c.ril*280);p.v=Math.floor(1500000+c.v*950);var rs=[];for(var q=0;q<7;q++)rs=rs.concat(reazioni(p.k+'#'+q,p.ts,ms,SQ,p.x).r);p.r=rs.filter(function(y){return y.ts<=ms}).sort(function(y,z){return y.ts-z.ts});if(p.ts<=ms)all.push(p)}
+ function gp(k,x,t,ac){var p={k:k,a:ac||'girrr_sport',x:x,ts:t,r:[]},c=conta(p.k,1);p.ap=Math.floor(26000+c.ap*900);p.ril=Math.floor(3100+c.ril*280);p.v=Math.floor(1500000+c.v*950);var rs=[];for(var q=0;q<7;q++)rs=rs.concat(reazioni(p.k+'#'+q,p.ts,ms,SQ,p.x).r);p.r=rs.filter(function(y){return y.ts<=ms}).sort(function(y,z){return y.ts-z.ts});if(p.ts<=ms)all.push(p)}
  gp('gs:intro','Benvenuti su Girrr Sport, la TV della lega. Sala stampa dopo ogni giornata, moviola per gli episodi dubbi e ogni tanto un tuffo nell\'archivio. Il calcio è finto, il Girrr è vero. #GirrrSport',Date.UTC(2026,9,13,13,30));
+ gp('cc:campione','Si riparte. La Champions Cup 2026/27 è cominciata: dieci squadre, due gironi e una finale. Campione in carica il Grodah di RikyArma, che un anno fa batté il Mugiwara di Leanzino 4-1 (84 punti a 70). Chi riuscirà a togliergli la coppa? #ChampionsCup',Date.UTC(2026,9,13,14,10),'champions_cup');
+ gp('cc:albo','Albo d\'oro della Champions Cup. 2025/26: Grodah (RikyArma). Il resto è ancora tutto da scrivere. #ChampionsCup #Albo',Date.UTC(2026,9,13,16,20),'champions_cup');
  gp('gs:finale','Dall\'archivio: la finale di Coppa Campioni 2025/26. Il Grodah di RikyArma batte il Mugiwara di Leanzino 4-1 (84 punti a 70) e alza la coppa. L\'albo d\'oro non dimentica. #GirrrSport #Albo',Date.UTC(2026,9,13,15,45));
  for(var g=oggi-3;g<=oggi;g++){
   post_giorno(D,SQ,ST,g).forEach(function(p){if(p.ts<=ms&&p.ts>=ms-96*36e5){var c=conta(p.k);p.ap=c.ap;p.ril=c.ril;p.v=c.v;p.r=p.r.filter(function(x){return x.ts<=ms});all.push(p)}});
