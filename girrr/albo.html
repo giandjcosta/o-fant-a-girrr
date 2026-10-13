@@ -6,7 +6,7 @@
 <meta name="robots" content="noindex">
 <title>Albo d'oro · O Girrr</title>
 <link rel="icon" type="image/png" href="../assets/favicon-64.png">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@500;700;800;900&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@500;700;800;900&family=Lora:ital,wght@0,500;0,600;1,500&display=swap">
 <link rel="manifest" href="../manifest.webmanifest">
 <meta name="theme-color" content="#1d2a52">
 <meta name="mobile-web-app-capable" content="yes">
@@ -116,6 +116,8 @@ td small{color:var(--sub);font-weight:600;display:block;font-size:11px}
 .sh-nome{font-weight:900;font-size:clamp(24px,6vw,32px);line-height:1.05;margin-top:2px}
 .fm{font-weight:700;font-size:11px;letter-spacing:.04em;color:var(--sub);white-space:nowrap}
 .sh-st{margin:14px 0 4px;font-weight:600;font-size:15px;line-height:1.5}
+.sh-sto{font-family:Lora,Georgia,'Times New Roman',serif;font-weight:500;font-size:16.5px;line-height:1.7;letter-spacing:.005em}
+.dsh{display:inline-block;margin:0 .45em;opacity:.7}
 .sheet h5{font-weight:900;font-size:11px;letter-spacing:.3em;color:var(--hi);text-transform:uppercase;margin:18px 0 6px}
 .sheet table{margin:0}.sheet td,.sheet th{padding-left:6px;padding-right:6px}
 </style>
@@ -332,9 +334,10 @@ function scontri(name){
   var L=Object.keys(K).filter(function(o){var x=K[o];return x.dav+x.die+x.v+x.n+x.p>0});
   L.sort(function(a,b){var x=K[a],y=K[b];return (y.dav+y.die+y.v+y.n+y.p)-(x.dav+x.die+x.v+x.n+x.p)||(a<b?-1:1)});
   if(!L.length)return '';
-  return '<h5>Scontri diretti</h5><table><tr><th style="text-align:left">Rivale</th><th>Classifiche<br>davanti–dietro</th><th>2026/27<br>V–N–P</th></tr>'
-   +L.map(function(o){var x=K[o],cl=(x.dav+x.die)?x.dav+'–'+x.die:'–',st=(x.v+x.n+x.p)?x.v+'–'+x.n+'–'+x.p:'–';
-     return '<tr><td style="text-align:left;font-weight:700">'+esc(lab(al(o)))+'</td><td>'+cl+'</td><td>'+st+'</td></tr>'}).join('')+'</table>'
+  var live=!!T,D3=function(a){return a.join('<span class="dsh">–</span>')};
+  return '<h5>Scontri diretti</h5><table><tr><th style="text-align:left">Rivale</th><th>Classifiche<br>davanti<span class="dsh">–</span>dietro</th>'+(live?'<th>2026/27<br>V<span class="dsh">–</span>N<span class="dsh">–</span>P</th>':'')+'</tr>'
+   +L.map(function(o){var x=K[o],cl=(x.dav+x.die)?D3([x.dav,x.die]):'–',st=(x.v+x.n+x.p)?D3([x.v,x.n,x.p]):'–';
+     return '<tr><td style="text-align:left;font-weight:700">'+esc(lab(al(o)))+'</td><td>'+cl+'</td>'+(live?'<td>'+st+'</td>':'')+'</tr>'}).join('')+'</table>'
    +'';
 }
 function scheda(name,ex){
@@ -345,7 +348,7 @@ function scheda(name,ex){
   var c0=ex?CFGEX:(CFG[name]||CFGEX);
   var h='<div class="sh-top" style="--c1:'+c0.bg[0]+';--c2:'+c0.bg[1]+'"><div class="sh-tx"><div class="sh-tag">'+esc(tag)+'</div><div class="sh-nome">'+esc(lab(al(name)))+(FORMER[name]?' <span class="fm">Formerly '+esc(FORMER[name])+'</span>':'')+'</div><div class="sub">'+(CUR[name]?'Oggi: '+esc(CUR[name]):'Fuori dalla lega')+'</div></div><div class="sh-av">'+av(name,128,ex)+'</div></div>';
   h+='<div class="kp"><div><small>Titoli</small><b>'+T+'</b></div><div><small>Stagioni</small><b>'+R.length+'</b></div><div><small>Miglior piazzamento</small><b>'+(best?best+'°':'–')+'</b></div><div><small>Posizione media</small><b>'+(R.length?(Math.round(R.reduce(function(a,r){return a+r.p},0)/R.length*10)/10+'').replace('.',',')+'°':'–')+'</b></div></div>';
-  h+='<p class="sh-st">'+esc(txt)+'</p>';
+  h+='<p class="sh-st sh-sto">'+esc(txt)+'</p>';
   if(AMB[name])h+='<h5>Dove punta <span class="fm">(previsione dai dati)</span></h5><p class="sh-st" style="margin-top:4px">'+esc(AMB[name])+'</p>';
   if(R.length)h+='<h5>Il percorso</h5><table><tr><th style="text-align:left">Stagione</th><th style="text-align:left">Squadra</th><th>Pos.</th><th>Punti</th></tr>'+R.map(function(r){return '<tr><td style="text-align:left">'+r.y+'<small>'+esc(r.c)+'</small></td><td style="text-align:left;font-weight:700">'+esc(r.t)+'</td><td>'+(r.v?'🏆 ':'')+r.p+'°</td><td>'+(r.pt!=null?r.pt:'–')+'</td></tr>'}).join('')+'</table>';
   h+=scontri(name);
