@@ -1,6 +1,6 @@
 # Riepilogo giornata 6 di Serie A
 
-Lega O FANT A GIRRR. Dati aggiornati al 2026-10-07.
+Lega O FANT A GIRRR. Dati aggiornati al 2026-10-13.
 
 ## Partite della giornata
 
@@ -15,39 +15,46 @@ Lega O FANT A GIRRR. Dati aggiornati al 2026-10-07.
 - Atalanta - Venezia (lun 12/10 18:30)
 - Torino - Udinese (lun 12/10 20:45)
 
-## Classic League: ultima giornata (1ª, G5 di Serie A)
+## Classic League: ultima giornata (2ª, G6 di Serie A)
 
-- Mariana Coneja 3 - 2 Grodah (punteggi 80.5 - 71)
-- Apo team 3 - 1 The Blue brothers (punteggi 77 - 70.5)
-- Atletico ma non troppo 1 - 5 Oranje VC (punteggi 67.5 - 89)
-- stif dc 1 - 3 AFA SELECCION (punteggi 68.5 - 76)
-- Real Madrink 3 - 2 WOA (punteggi 78 - 74.5)
+- The Blue brothers 0 - 0 Mariana Coneja (punteggi 62.5 - 61.5)
+- AFA SELECCION 2 - 2 Real Madrink (punteggi 74.5 - 74)
+- Oranje VC 0 - 2 stif dc (punteggi 65.5 - 75.5)
+- Grodah 2 - 1 Atletico ma non troppo (punteggi 74.5 - 69.5)
+- WOA 3 - 3 Apo team (punteggi 78.5 - 80)
 
 ### Premi della giornata
 
-- Miglior formazione: Oranje VC con 89 punti
-- Cucchiaio di legno: Atletico ma non troppo con 67.5 punti
-- Vittoria più larga: Oranje VC su Atletico ma non troppo (89 - 67.5)
-- Vittoria più sofferta: Real Madrink su WOA (78 - 74.5)
-- Il più fortunato: AFA SELECCION ha vinto con soli 76 punti
-- Il più sfortunato: WOA ha perso nonostante 74.5 punti
+- Miglior formazione: Apo team con 80 punti
+- Cucchiaio di legno: Mariana Coneja con 61.5 punti
+- Vittoria più larga: stif dc su Oranje VC (75.5 - 65.5)
+- Vittoria più sofferta: AFA SELECCION su Real Madrink (74.5 - 74)
+- Il più fortunato: The Blue brothers ha vinto con soli 62.5 punti
+- Il più sfortunato: WOA ha perso nonostante 78.5 punti
 
-## Classic League: prossima giornata (2ª, G6 di Serie A)
+## Classic League: prossima giornata (3ª, G7 di Serie A)
 
-- The Blue brothers - Mariana Coneja
-- AFA SELECCION - Real Madrink
-- Oranje VC - stif dc
-- Grodah - Atletico ma non troppo
-- WOA - Apo team
+- Mariana Coneja - WOA
+- Apo team - AFA SELECCION
+- Atletico ma non troppo - The Blue brothers
+- Grodah - Oranje VC
+- Real Madrink - stif dc
 
-## Champions Cup: prossima giornata (1ª, G6 di Serie A)
+## Champions Cup: ultima giornata (1ª, G6 di Serie A)
 
-- Girone A: Mariana Coneja - The Blue brothers
-- Girone A: stif dc - Real Madrink
-- Girone B: Grodah - WOA
-- Girone B: Oranje VC - AFA SELECCION
-- Girone A: riposa Apo team
-- Girone B: riposa Atletico ma non troppo
+- Girone A: Mariana Coneja 0 - 0 The Blue brothers (punteggi 61.5 - 62.5)
+- Girone A: stif dc 2 - 2 Real Madrink (punteggi 75.5 - 74)
+- Girone B: Grodah 2 - 3 WOA (punteggi 74.5 - 78.5)
+- Girone B: Oranje VC 0 - 2 AFA SELECCION (punteggi 65.5 - 74.5)
+
+## Champions Cup: prossima giornata (2ª, G8 di Serie A)
+
+- Girone A: Real Madrink - Mariana Coneja
+- Girone A: Apo team - stif dc
+- Girone B: WOA - Atletico ma non troppo
+- Girone B: AFA SELECCION - Grodah
+- Girone A: riposa The Blue brothers
+- Girone B: riposa Oranje VC
 
 ## Infortunati tra i giocatori delle rose
 
