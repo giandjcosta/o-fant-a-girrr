@@ -754,6 +754,12 @@ function genera(D,SQ,ST,ms){
    if(bm)gp('lega:big'+n,'Big match della '+n+'ª giornata: '+bm[0]+'–'+bm[3]+' '+bm[4]+' ('+pn(bm[1])+' a '+pn(bm[2])+'). Lo scontro tra le prime della classe lascia il segno. #Giornata'+n+' #BigMatch',P1.ts+140*60000,'lega_ofantagirrr')
   }}catch(e){}
  }
+
+ /* Girrr Sport rilancia: sotto i post della Lega e della Coppa, e sotto le indiscrezioni di Ciro */
+ all.forEach(function(p){var rr=prng('tvt'+p.k),dm=(7+rr()*50)*60000;
+  if((p.a==='lega_ofantagirrr'||p.a==='champions_cup')&&p.tipo!=='x'&&/^(lega|gior|cc)/.test(p.k)&&rr()<0.7){var L=p.a==='lega_ofantagirrr'?['@lega_ofantagirrr giornata chiusa: tutti i risultati e la sala stampa su Girrr Sport. #GirrrSport','@lega_ofantagirrr comunicato ricevuto, lo rilanciamo in diretta. #GirrrSport','@lega_ofantagirrr preso nota. Ne parliamo in studio. #GirrrSport']:['@champions_cup comunicato ricevuto: la Coppa torna protagonista, ne parliamo in studio. #GirrrSport','@champions_cup rilanciamo l\'annuncio: occhi puntati sulla finale. #GirrrSport'];if(p.ts+dm<=ms)p.r.push({a:'girrr_sport',x:L[Math.floor(rr()*L.length)],ts:p.ts+dm})}
+  if(p.a==='ciro_trattativa'&&/^(mk|sw)/.test(p.k)&&rr()<0.5){var C=['@ciro_trattativa rilanciamo: se è vero, è una delle indiscrezioni più forti del mercato. #GirrrSport','@ciro_trattativa notizia da verificare, ma le fonti sono quelle di sempre. #GirrrSport','@ciro_trattativa ne parliamo in studio nel prossimo collegamento. #GirrrSport'];if(p.ts+dm<=ms)p.r.push({a:'girrr_sport',x:C[Math.floor(rr()*C.length)],ts:p.ts+dm})}
+  p.r.sort(function(x,y){return x.ts-y.ts})});
  /* veri scambi */
  (D.scambi||[]).forEach(function(s,i){var T=Date.parse(s.t);if(!(T<=ms))return;var cc={a:s.a,b:s.b,da:s.da,db:s.db};var p={k:'sc:'+i,a:'ciro_trattativa',x:riempi(SCAMBIO[i%2],cc,null),ts:T,r:[],ap:20,ril:6,v:900};all.push(p)});
  all.sort(function(a,b){return b.ts-a.ts});
@@ -794,9 +800,18 @@ function comUff(p,D,SQ,cu,ms){
  return out}
 function reazioni(k,t,ms,SQ,xt){var r=prng('rz'+k),age=(ms-t)/60000;if(age<1)return{ap:0,ril:0,r:[]};
  var fa=2+Math.floor(r()*11),fr=Math.floor(r()*4),pr=Math.pow(Math.min(1,age/360),0.6),out=[];
- var nr=Math.floor(r()*3),rl=/^p\d/.test(k);if(rl&&nr<1)nr=1;var ord=shuffle(r,AUTORI);
+ var rl=/^p\d/.test(k),nr=rl?3+Math.floor(r()*4):Math.floor(r()*3);if(rl&&nr<1)nr=1;var ord=shuffle(r,AUTORI);
  for(var i=0;i<nr;i++){var d=(i===0&&rl?6+r()*40:10+r()*240),tx=xt?risposta(r,xt,null,{sq:(SQ.filter(function(q){return xt.toLowerCase().indexOf(q.toLowerCase())>=0})[0])}):pick(r,RISP).replace('{sq}',pick(r,SQ)),a=ord[i];if(r()<0.5){var cu=comune(r);if(age>=d)out.push({a:cu[0],x:xt?crep(r,xt):pick(r,CREP),ts:t+d*60000});continue}if(age>=d)out.push({a:a,x:natura(tx,k+'z'+i,a),ts:t+d*60000})}
+ /* a volte un personaggio ne chiama un altro nei commenti, e l'altro a volte risponde */
+ var nch=rl?(r()<0.8?1+(r()<0.4?1:0):0):(r()<0.2?1:0);
+ for(var q=0;q<nch;q++){var A1=ord[nr+q*2],B1=ord[nr+q*2+1];if(!A1||!B1||A1==='ciro_trattativa'||B1==='ciro_trattativa')continue;
+  var d1=25+r()*200,t1=t+d1*60000;if(age<d1)continue;
+  out.push({a:A1,x:CHIAMA[Math.floor(r()*CHIAMA.length)].replace('{b}',B1),ts:t1});
+  if(r()<0.55){var d2=d1+4+r()*70;if(age>=d2)out.push({a:B1,x:RISPCH[Math.floor(r()*RISPCH.length)].replace('{a}',A1),ts:t+d2*60000})}}
+ out.sort(function(x,y){return x.ts-y.ts});
  return{ap:Math.floor(fa*pr),ril:Math.floor(fr*pr),r:out}}
+var CHIAMA=["@{b} guarda qui, c'è da dire la tua.","@{b} ci sei? Questo coro è per te.","@{b} vieni a vedere cosa hanno scritto.","@{b} tu che ne pensi?","@{b} chiamo te: su questo sei l'unico che può parlare.","@{b} hai visto? Poi dici che non succede niente."];
+var RISPCH=["@{a} eccomi, ho letto. Ne parliamo.","@{a} visto, e ho le mie idee.","@{a} arrivo, lasciami prendere il caffè.","@{a} per una volta hai ragione.","@{a} non potevo mancare."];
 
 /* Cori automatici del profilo ufficiale: se una squadra tace per due settimane */
 var LANCIO=Date.UTC(2026,9,11),SILENZIO=14*864e5;
