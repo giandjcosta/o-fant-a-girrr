@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,viewport-fit=cover">
 <meta name="robots" content="noindex">
-<meta name="cv-ver" content="20261013m">
+<meta name="cv-ver" content="20261013n">
 <title>Curva · O Girrr</title>
 <link rel="icon" type="image/png" href="../assets/favicon-64.png">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800;900&display=swap">
@@ -526,7 +526,8 @@ function isDef(h){return h==='lega_ofantagirrr'||h==='champions_cup'||h==='girrr
 function isFol(h){if(!me)return false;var row=S.follow.indexOf(h)>=0;return isDef(h)?!row:row}
 function segOf(h){var a=acc(h),all=Object.keys(ACC).filter(function(k){return k!==h}),sq=SQ.map(hnd);
  if(a.k==='org')return Object.keys(ACC).filter(function(k){return k!==h&&ACC[k].k==='org'}).concat(sq.filter(function(k){return k!==h}));
- var off=['girrr_sport','lega_ofantagirrr','champions_cup','giornale_girrr'].filter(function(k){return k!==h}),N=a.k==='sq'?11:12+hue(a.n)%40,pool=all.filter(function(k){return off.indexOf(k)<0}).sort(function(x,y){return CVB.h32(h+'|'+x)-CVB.h32(h+'|'+y)});
+ var off=['girrr_sport','lega_ofantagirrr','champions_cup','giornale_girrr'].filter(function(k){return k!==h}),N=12+hue(a.n)%40,pool=all.filter(function(k){return off.indexOf(k)<0}).sort(function(x,y){return CVB.h32(h+'|'+x)-CVB.h32(h+'|'+y)});
+ if(a.k==='sq')return off.concat(Object.keys(ACC).filter(function(k){return k!==h&&ACC[k].v&&ACC[k].k==='sq'}));
  return off.concat(pool).slice(0,N)}
 function nSeguiti(){var n=0;Object.keys(ACC).forEach(function(h){if(h!==meH&&isFol(h))n++});return n}
 function segBtn(h,small){var s=isFol(h);return '<button class="btn blu" data-seg="'+h+'"'+(small?' style="align-self:flex-start;padding:7px 14px;font-size:13px"':'')+'>'+(s?'Seguito':'Segui')+'</button>'}
