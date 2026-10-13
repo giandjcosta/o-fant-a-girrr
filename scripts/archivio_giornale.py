@@ -31,7 +31,7 @@ def main():
         sj = pdf.with_suffix(".json")
         if sj.exists():
             scheda = json.loads(sj.read_text(encoding="utf-8"))
-        voci.append({"n": n, "pdf": f"riepiloghi/{pdf.name}", "copertina": f"riepiloghi/copertine/{png.name}",
+        voci.append({"n": n, "pdf": f"riepiloghi/{pdf.name}", "copertina": f"riepiloghi/copertine/{png.name}", "v": int(pdf.stat().st_mtime),
                      "data": scheda.get("data", ""), "iso": scheda.get("iso", ""), "occhiello": scheda.get("occhiello", ""),
                      "titolone": scheda.get("titolone", ""), "sommario": scheda.get("sommario", "")})
     voci.sort(key=lambda v: -v["n"])

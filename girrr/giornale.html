@@ -69,13 +69,13 @@ fetch('../riepiloghi/indice.json',{cache:'no-store'}).then(function(r){return r.
   if(!v.length){document.getElementById('ultimo').innerHTML='<div class="empty">Il primo numero esce presto.</div>';return}
   var hm=/^#(?:n-?)?(\d+)$/.exec(location.hash||''),ix=0;if(hm){v.forEach(function(x,i){if(+x.n===+hm[1])ix=i})}
   var u=v[ix];
-  document.getElementById('ultimo').innerHTML='<div class="last"><a class="cv" href="../'+u.pdf+'" target="_blank" rel="noopener"><img src="../'+u.copertina+'" alt="Copertina numero '+u.n+'"></a><div><div class="num">NUMERO '+u.n+(u.data?' · '+esc(u.data).toUpperCase():'')+'</div><h2>'+esc(u.titolone||'Ultimo numero')+'</h2><p>'+esc(u.sommario||'')+'</p><a class="btn" href="../'+u.pdf+'" target="_blank" rel="noopener">Leggi il PDF</a><a class="btn o" href="../'+u.pdf+'" download>Scarica</a></div></div>';
+  document.getElementById('ultimo').innerHTML='<div class="last"><a class="cv" href="../'+u.pdf+'?v='+(u.v||0)+'" target="_blank" rel="noopener"><img src="../'+u.copertina+'?v='+(u.v||0)+'" alt="Copertina numero '+u.n+'"></a><div><div class="num">NUMERO '+u.n+(u.data?' · '+esc(u.data).toUpperCase():'')+'</div><h2>'+esc(u.titolone||'Ultimo numero')+'</h2><p>'+esc(u.sommario||'')+'</p><a class="btn" href="../'+u.pdf+'?v='+(u.v||0)+'" target="_blank" rel="noopener">Leggi il PDF</a><a class="btn o" href="../'+u.pdf+'?v='+(u.v||0)+'" download>Scarica</a></div></div>';
   var rest=v.filter(function(x,i){return i!==ix});
   if(rest.length){document.getElementById('th').hidden=false;
-    document.getElementById('lista').innerHTML=rest.map(function(x){return '<a class="it" href="../'+x.pdf+'" target="_blank" rel="noopener"><img src="../'+x.copertina+'" alt=""><b>N° '+x.n+'</b><span>'+esc(x.titolone||'')+'</span><small>'+esc(cap(x.data||''))+'</small></a>'}).join('')}
+    document.getElementById('lista').innerHTML=rest.map(function(x){return '<a class="it" href="../'+x.pdf+'?v='+(x.v||0)+'" target="_blank" rel="noopener"><img src="../'+x.copertina+'?v='+(x.v||0)+'" alt=""><b>N° '+x.n+'</b><span>'+esc(x.titolone||'')+'</span><small>'+esc(cap(x.data||''))+'</small></a>'}).join('')}
 }).catch(function(){document.getElementById('ultimo').innerHTML='<div class="empty">Non riesco a leggere l\'archivio.</div>'});
 </script>
 <script src="../assets/app.js"></script>
-<script>document.addEventListener('click',function(e){var a=e.target.closest&&e.target.closest('a[href$=".pdf"]');if(a&&window.goatcounter&&goatcounter.count)goatcounter.count({path:'giornale/pdf',title:'Giornale PDF aperto',event:true})});</script>
+<script>document.addEventListener('click',function(e){var a=e.target.closest&&e.target.closest('a[href*=".pdf"]');if(a&&window.goatcounter&&goatcounter.count)goatcounter.count({path:'giornale/pdf',title:'Giornale PDF aperto',event:true})});</script>
 </body>
 </html>

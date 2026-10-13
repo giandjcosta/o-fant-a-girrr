@@ -185,8 +185,8 @@ function tickNx(){var e=document.getElementById('bn');if(!e||!window.NEXT)return
   e.innerHTML=ms>0?'<span class="nx">Giornata '+N.n+': si gioca fra <b>'+cdTxt(ms)+'</b></span>':now<N.e?'<span class="nx"><i class="live"></i>Giornata '+N.n+' <b>in corso</b></span>':'<span class="nx">Giornata '+N.n+' <b>conclusa</b> · risultati in arrivo</span>'}
 setInterval(tickNx,1000);
 fetch('../riepiloghi/indice.json',{cache:'no-store'}).then(function(r){return r.json()}).then(function(v){
-  if(v.length){var u=v[0];document.getElementById('bk').textContent='ULTIMO NUMERO · N° '+u.n+' · '+String(u.occhiello||'').toUpperCase();document.getElementById('bh').textContent=u.titolone;document.getElementById('bp').textContent=u.sommario;document.getElementById('bc').src='../'+u.copertina;document.getElementById('big').classList.add('on');tickNx();
-    var g=document.getElementById('gico');g.src='../'+v[0].copertina;g.style.display='block';g.style.borderRadius='4px';g.style.height='100%';document.getElementById('gtxt').style.display='none'}
+  if(v.length){var u=v[0];document.getElementById('bk').textContent='ULTIMO NUMERO · N° '+u.n+' · '+String(u.occhiello||'').toUpperCase();document.getElementById('bh').textContent=u.titolone;document.getElementById('bp').textContent=u.sommario;document.getElementById('bc').src='../'+u.copertina+'?v='+(u.v||0);document.getElementById('big').classList.add('on');tickNx();
+    var g=document.getElementById('gico');g.src='../'+v[0].copertina+'?v='+(v[0].v||0);g.style.display='block';g.style.borderRadius='4px';g.style.height='100%';document.getElementById('gtxt').style.display='none'}
 }).catch(function(){});
 })();
 
