@@ -106,6 +106,7 @@ td small{color:var(--sub);font-weight:600;display:block;font-size:11px}
 .mo.on{display:block}
 .sheet{position:relative;max-width:620px;margin:0 auto;background:linear-gradient(160deg,#2c3f7c,#141d3d);border:1px solid rgba(255,255,255,.2);border-radius:20px;padding:20px 16px 18px}
 .sheet .x{position:absolute;top:12px;right:12px;z-index:3;width:34px;height:34px;border-radius:50%;border:0;background:rgba(255,255,255,.14);color:var(--chiaro);font:800 15px Inter;cursor:pointer}
+.avi{position:relative;display:inline-block;flex:none;border-radius:24%;overflow:hidden;border:1.5px solid rgba(255,255,255,.65);box-shadow:inset 0 1px 0 rgba(255,255,255,.8),inset 0 -2px 6px rgba(0,0,0,.18),0 8px 18px rgba(0,0,0,.42);background:#fff;vertical-align:middle}.avi img{display:block;width:100%;height:100%;object-fit:cover}.avi::after{content:'';position:absolute;inset:0;background:linear-gradient(160deg,rgba(255,255,255,.34),rgba(255,255,255,0) 42%);pointer-events:none}
 .sh-top{position:relative;display:flex;justify-content:space-between;align-items:center;gap:10px;margin-top:26px;padding:16px 16px 16px 18px;border-radius:22px;overflow:hidden;background:linear-gradient(105deg,rgba(14,20,44,.97) 0,rgba(14,20,44,.92) 40%,var(--c2) 100%);border:1.5px solid rgba(255,255,255,.4);box-shadow:inset 0 1px 0 rgba(255,255,255,.5),inset 0 -1px 0 rgba(255,255,255,.12),0 12px 30px rgba(0,0,0,.4)}
 .sh-top::before{content:'';position:absolute;inset:0;background:radial-gradient(circle at 85% 40%,var(--c1),transparent 62%);opacity:.5;pointer-events:none}
 .sh-top::after{content:'';position:absolute;left:0;right:0;top:0;height:48%;background:linear-gradient(180deg,rgba(255,255,255,.14),transparent);pointer-events:none}
@@ -283,7 +284,11 @@ var PROPS={
  vino:'<path d="M84 80 h18 q0 16 -9 18 q-9 -2 -9 -18z" fill="#fff" fill-opacity=".25" stroke="#fff" stroke-width="2"/><path d="M85 88 h16 q0 9 -8 11 q-8 -2 -8 -11z" fill="#8c1230"/><path d="M93 98 v12 M86 112 h14" stroke="#fff" stroke-width="2"/>'
 };
 var AVN=0;
+var IMGS={"AndrewTT":{"f":"andrewtt","c":"#497add"},"apo":{"f":"apo","c":"#5b7499"},"ser":{"f":"ser","c":"#5b7499"},"stifson":{"f":"stifson","c":"#ff5400"},"RikyArma":{"f":"rikyarma","c":"#8cb2ff"},"Riccardo":{"f":"riccardo","c":"#dd4949"},"Maria":{"f":"maria","c":"#558dff"},"Mario":{"f":"mario","c":"#0049dd"},"Mark Lenders":{"f":"mark-lenders","c":"#0093dd"},"Leanzino":{"f":"leanzino","c":"#dd9300"}};
+function sc(h,k){var n=parseInt(h.slice(1),16),r=n>>16&255,g=n>>8&255,b=n&255;return 'rgb('+Math.round(r*k)+','+Math.round(g*k)+','+Math.round(b*k)+')'}
+function bnr(n){var i=IMGS[n];return i?'--c1:'+i.c+';--c2:'+sc(i.c,.5)+';background:linear-gradient(100deg,'+sc(i.c,.1)+' 0%,'+sc(i.c,.24)+' 34%,'+sc(i.c,.55)+' 68%,'+sc(i.c,.9)+' 100%);':''}
 function av(name,size,ex){
+  if(!ex&&IMGS[name])return '<span class="avi" style="width:'+size+'px;height:'+size+'px"><img src="../assets/albo/'+IMGS[name].f+'.jpg" alt="" loading="lazy"></span>';
   var c=ex?CFGEX:(CFG[name]||CFGEX),id='av'+(AVN++),s='';
   s+='<svg viewBox="0 0 120 120" width="'+size+'" height="'+size+'" aria-hidden="true"><defs><linearGradient id="'+id+'g" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="'+c.bg[0]+'"/><stop offset="1" stop-color="'+c.bg[1]+'"/></linearGradient><clipPath id="'+id+'c"><rect width="120" height="120" rx="26"/></clipPath><linearGradient id="'+id+'h" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fff" stop-opacity=".38"/><stop offset=".5" stop-color="#fff" stop-opacity="0"/></linearGradient></defs>';
   s+='<g clip-path="url(#'+id+'c)"><rect width="120" height="120" fill="url(#'+id+'g)"/>';
@@ -384,7 +389,7 @@ function scheda(name,ex){
   var txt=st?st[1]:'Ha lasciato la lega, ma resta nell\'albo con quello che ha fatto.';
   var best=R.length?Math.min.apply(null,R.map(function(r){return r.p})):null;
   var c0=ex?CFGEX:(CFG[name]||CFGEX);
-  var h='<div class="sh-top" style="--c1:'+c0.bg[0]+';--c2:'+c0.bg[1]+'"><div class="sh-tx"><div class="sh-tag">'+esc(tag)+'</div><div class="sh-nome">'+esc(lab(al(name)))+(FORMER[name]?' <span class="fm">Formerly '+esc(FORMER[name])+'</span>':'')+'</div><div class="sub">'+(CUR[name]?'Oggi: '+esc(CUR[name]):'Fuori dalla lega')+'</div></div><div class="sh-av">'+av(name,128,ex)+'</div></div>';
+  var h='<div class="sh-top" style="--c1:'+c0.bg[0]+';--c2:'+c0.bg[1]+';'+(ex?'':bnr(name))+'"><div class="sh-tx"><div class="sh-tag">'+esc(tag)+'</div><div class="sh-nome">'+esc(lab(al(name)))+(FORMER[name]?' <span class="fm">Formerly '+esc(FORMER[name])+'</span>':'')+'</div><div class="sub">'+(CUR[name]?'Oggi: '+esc(CUR[name]):'Fuori dalla lega')+'</div></div><div class="sh-av">'+av(name,128,ex)+'</div></div>';
   h+='<div class="kp"><div><small>Titoli</small><b>'+T+'</b></div><div><small>Stagioni</small><b>'+R.length+'</b></div><div><small>Miglior piazzamento</small><b>'+(best?best+'°':'–')+'</b></div><div><small>Posizione media</small><b>'+(R.length?(Math.round(R.reduce(function(a,r){return a+r.p},0)/R.length*10)/10+'').replace('.',',')+'°':'–')+'</b></div></div>';
   h+='<p class="sh-st sh-sto">'+esc(txt)+'</p>';
   if(AMB[name])h+='<h5>Dove punta <span class="fm">(previsione dai dati)</span></h5><p class="sh-st" style="margin-top:4px">'+esc(AMB[name])+'</p>';
