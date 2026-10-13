@@ -110,6 +110,7 @@ body::before{content:'';position:fixed;inset:-120px;z-index:-1;pointer-events:no
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-title" content="O Girrr">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<script src="pub.js"></script>
 <script>window.goatcounter={path:function(){return location.pathname},no_onload:/[?&]demo/.test(location.search)}</script>
 <script data-goatcounter="https://djcosta18.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
 </head>
@@ -155,7 +156,7 @@ function hshF(s){var h=2166136261,i;for(i=0;i<s.length;i++){h^=s.charCodeAt(i);h
 function loginDaLink(d){var k=(location.hash||'').replace('#','').trim().toUpperCase();if(!k||/^(LEGA|COPPA)/.test(k)||!d||!d.lock)return false;var ok=false;
   d.teams.forEach(function(x){if(hshF(x.name+'|'+k)===d.lock[x.name]){var o={};try{o=JSON.parse(localStorage.getItem('fg')||'{}')||{}}catch(e){}o.team=x.name;o.code=k;try{localStorage.setItem('fg',JSON.stringify(o))}catch(e){}ok=x.name}});
   if(ok){try{history.replaceState(null,'',location.pathname+location.search)}catch(e){}}return ok}
-fetch('../data.json',{cache:'no-store'}).then(function(r){return r.json()}).then(function(d){
+fetch('../data.json',{cache:'no-store'}).then(function(r){return r.json()}).then(function(d){d=window.CVPUB?CVPUB(d):d;
   loginDaLink(d);
   try{var u=CVB.ultimo(d,Date.now()),vs=+(localStorage.getItem('cv-ultimo')||0);if(u>vs)document.getElementById('cvd').hidden=false;document.getElementById('cvp').innerHTML=CVB.anteprima(d,Date.now(),2).map(function(x){return '<div><small>'+x.n.replace(/[<>&]/g,'')+'</small><p>'+x.x.replace(/[<>&]/g,'')+'</p></div>'}).join('')}catch(e){}
   var L=d.cal.lega,pl=L.filter(function(g){return g.m.some(function(m){return m[4]!=='-'})});
@@ -184,7 +185,7 @@ function cdTxt(ms){var s=Math.floor(ms/1000),d=Math.floor(s/86400),h=Math.floor(
 function tickNx(){var e=document.getElementById('bn');if(!e||!window.NEXT)return;var N=window.NEXT,now=Date.now(),ms=N.t-now;
   e.innerHTML=ms>0?'<span class="nx">Giornata '+N.n+': si gioca fra <b>'+cdTxt(ms)+'</b></span>':now<N.e?'<span class="nx"><i class="live"></i>Giornata '+N.n+' <b>in corso</b></span>':'<span class="nx">Giornata '+N.n+' <b>conclusa</b> · risultati in arrivo</span>'}
 setInterval(tickNx,1000);
-fetch('../riepiloghi/indice.json',{cache:'no-store'}).then(function(r){return r.json()}).then(function(v){
+fetch('../riepiloghi/indice.json',{cache:'no-store'}).then(function(r){return r.json()}).then(function(v){v=v.filter(function(x){return !x.pub||Date.parse(x.pub)<=Date.now()});
   if(v.length){var u=v[0];document.getElementById('bk').textContent='ULTIMO NUMERO · N° '+u.n+' · '+String(u.occhiello||'').toUpperCase();document.getElementById('bh').textContent=u.titolone;document.getElementById('bp').textContent=u.sommario;document.getElementById('bc').src='../'+u.copertina+'?v='+(u.v||0);document.getElementById('big').classList.add('on');tickNx();
     var g=document.getElementById('gico');g.src='../'+v[0].copertina+'?v='+(v[0].v||0);g.style.display='block';g.style.borderRadius='4px';g.style.height='100%';document.getElementById('gtxt').style.display='none'}
 }).catch(function(){});

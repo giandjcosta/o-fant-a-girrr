@@ -125,7 +125,7 @@ def main():
         cartella = sys.argv[sys.argv.index("--da-cartella") + 1]
     percorso = ROOT / "data.json"
     D = json.loads(percorso.read_text(encoding="utf-8"))
-    prima = json.dumps({k: D.get(k) for k in ("ps", "votes", "log", "fas")}, sort_keys=True)
+    prima = json.dumps({k: D.get(k) for k in ("ps", "votes", "log", "fas", "votiTs")}, sort_keys=True)
     P = D["P"]
     in_rosa = {str(p["id"]) for t in D["teams"] for p in t["pl"]}
     svinc = {str(i) for i in D["fa"]}
@@ -169,6 +169,15 @@ def main():
                 if str(g) not in scheda:
                     scheda[str(g)] = {"v": x["v"], "f": x["f"], "b": x["b"]}
 
+    # ---- quando sono usciti tutti i voti di una giornata di Serie A (le uscite del sito partono 1 ora dopo)
+    vts = D.setdefault("votiTs", {})
+    base = int(D.get("votiBase", 6))
+    for g, pagina in voti_g.items():
+        squadre_g = {P[i]["t"] for i in pagina if i in P}
+        if g > base and str(g) not in vts and len(squadre_g) >= 20:
+            vts[str(g)] = time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime())
+            print(f"giornata di Serie A {g}: voti completi alle {vts[str(g)]}")
+
     # ---- presenze dei giocatori delle rose
     log = D.setdefault("log", {})
     for g, pagina in voti_g.items():
@@ -203,7 +212,7 @@ def main():
         fvs = [voti_g[g][i]["f"] for g in gs if i in voti_g[g] and voti_g[g][i]["f"] is not None]
         fas[i] = {"tit": round(10 * tit / len(gs)) if gs else 0,
                   "fm": round(sum(fvs) / len(fvs), 2) if fvs else None, "h": st}
-    dopo = json.dumps({k: D.get(k) for k in ("ps", "votes", "log", "fas")}, sort_keys=True)
+    dopo = json.dumps({k: D.get(k) for k in ("ps", "votes", "log", "fas", "votiTs")}, sort_keys=True)
     if dopo == prima:
         print("niente di nuovo: data.json resta com'e'")
         return

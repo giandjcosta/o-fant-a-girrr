@@ -175,6 +175,7 @@ html,body{overscroll-behavior-y:none;touch-action:manipulation;-webkit-text-size
   <main class="col"><header class="top" id="top"></header><div class="ptrb" id="ptrb"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 12a8 8 0 1 1-2.5-5.8"/><path d="M20 4v5h-5"/></svg></div><div id="vista"></div></main>
   <aside class="dx" id="dx"></aside>
 </div>
+<script src="pub.js"></script>
 <script>window.goatcounter={path:function(){return location.pathname},no_onload:/[?&]demo/.test(location.search)}</script>
 <script data-goatcounter="https://djcosta18.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
 <script src="curva-banca.js?v=20261011r"></script>
@@ -770,7 +771,7 @@ document.addEventListener('keydown',function(e){if(e.key==='Enter'&&e.target.mat
 ['gesturestart','gesturechange','gestureend'].forEach(function(n){document.addEventListener(n,function(e){e.preventDefault()})});
 /* avvio */
 function occupato(){var a=document.activeElement;return a&&(a.tagName==='TEXTAREA'||a.tagName==='INPUT')&&a.value}
-fetch('../data.json',{cache:'no-store'}).then(function(r){return r.json()}).then(function(d){D=d;SQ=d.teams.map(function(t){return t.name});initAcc();calcola(d);login()}).catch(function(){login()}).then(function(){render();return carica()}).then(function(){render()});
+fetch('../data.json',{cache:'no-store'}).then(function(r){return r.json()}).then(function(d){d=window.CVPUB?CVPUB(d):d;D=d;SQ=d.teams.map(function(t){return t.name});initAcc();calcola(d);login()}).catch(function(){login()}).then(function(){render();return carica()}).then(function(){render()});
 function firma(){var n=0;try{n=CVB.genera(D,SQ,ST,Date.now()).length}catch(e){}return JSON.stringify([S.posts.map(function(p){return p.id}),S.replies.length,S.react,S.follow,S.prof,n,Math.floor(Date.now()/600000)])}
 function renderFermo(){var an=null,els=document.querySelectorAll('.post'),i,r;for(i=0;i<els.length;i++){r=els[i].getBoundingClientRect();if(r.bottom>0){an=[els[i].dataset.k,r.top];break}}
  render();if(an&&window.scrollY>0){var e2=document.querySelector('.post[data-k="'+an[0]+'"]');if(e2)window.scrollBy(0,e2.getBoundingClientRect().top-an[1])}}

@@ -82,6 +82,7 @@ td small{color:var(--sub);font-weight:600;display:block;font-size:11px}
 .rec .v{font-weight:900;font-size:24px;text-align:right}
 .rec .v.ml{color:var(--hi)}
 </style>
+<script src="pub.js"></script>
 <script>window.goatcounter={path:function(){return location.pathname},no_onload:/[?&]demo/.test(location.search)}</script>
 <script data-goatcounter="https://djcosta18.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
 </head>
@@ -153,7 +154,7 @@ function recs(){
   if(se.best.n>=2)h+=row('🔥','Serie di vittorie più lunga',se.best.t,'tra campionato e coppa',se.best.n,true);
   return '<div class="card"><h3>I record della lega</h3>'+h+'</div>';
 }
-fetch('../data.json',{cache:'no-store'}).then(function(r){return r.json()}).then(function(d){
+fetch('../data.json',{cache:'no-store'}).then(function(r){return r.json()}).then(function(d){d=window.CVPUB?CVPUB(d):d;
   D=d;document.getElementById('al').innerHTML='<div class="card" style="background:none;border:0;padding:0;margin-bottom:6px"><h3 style="margin-bottom:12px">Le coppe in palio</h3>'+trofei()+'</div>'+recs();
   document.getElementById('foot').textContent='Dati aggiornati al '+(D.cal.date||'');
 }).catch(function(){document.getElementById('al').innerHTML='<div class="err">Non riesco a leggere i dati.</div>'});

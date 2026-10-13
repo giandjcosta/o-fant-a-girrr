@@ -32,7 +32,7 @@ def main():
         if sj.exists():
             scheda = json.loads(sj.read_text(encoding="utf-8"))
         voci.append({"n": n, "pdf": f"riepiloghi/{pdf.name}", "copertina": f"riepiloghi/copertine/{png.name}", "v": int(pdf.stat().st_mtime),
-                     "data": scheda.get("data", ""), "iso": scheda.get("iso", ""), "occhiello": scheda.get("occhiello", ""),
+                     "data": scheda.get("data", ""), "iso": scheda.get("iso", ""), "pub": scheda.get("pub", ""), "occhiello": scheda.get("occhiello", ""),
                      "titolone": scheda.get("titolone", ""), "sommario": scheda.get("sommario", "")})
     voci.sort(key=lambda v: -v["n"])
     (RIE / "indice.json").write_text(json.dumps(voci, ensure_ascii=False, indent=1), encoding="utf-8")

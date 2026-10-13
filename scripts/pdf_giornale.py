@@ -11,7 +11,7 @@ import html
 import json
 import re
 import sys
-from datetime import datetime
+from datetime import datetime, timedelta
 from pathlib import Path
 from zoneinfo import ZoneInfo
 
@@ -256,6 +256,20 @@ def pagelle(ult, gioc):
     return righe
 
 
+def ora_uscita(giornata):
+    """Quando esce il Giornale: 1 ora dopo che Leghe ha calcolato la giornata (e non prima dell'ultimo voto di Serie A).
+    Si legge da data.json (calcTs / votiTs, chiave = giornata di Serie A); se mancano, vale l'ora attuale."""
+    adesso = datetime.now(ZoneInfo("Europe/Rome"))
+    try:
+        sa = str(giornata["sa"])  # giornata None -> eccezione -> ora attuale
+        ts = [datetime.fromisoformat(D[k][sa].replace("Z", "+00:00")) for k in ("calcTs", "votiTs") if D.get(k, {}).get(sa)]
+        if ts:
+            return (max(ts) + timedelta(hours=1)).astimezone(ZoneInfo("Europe/Rome"))
+    except Exception:  # noqa: BLE001
+        pass
+    return adesso
+
+
 def formazioni_schierate(g):
     """Formazioni schierate della giornata di Serie A g: {squadra: {tit:[id], pan:[id]}}.
     Le legge da formazioni.json (o dal file indicato in GIRRR_FORMAZIONI): {"6": {"Squadra": {"tit": [id...], "pan": [id...]}}}"""
@@ -436,7 +450,7 @@ def costruisci(t, tema="classico"):
     pross = next((x for x in cal["lega"] if not giocata(x)), None)
     coppa = next((x for x in cal["cup"] if not giocata(x)), None)
     n = ult["n"] if ult else 0
-    ora = datetime.now(ZoneInfo("Europe/Rome"))
+    ora = ora_uscita(ult)
     data = f"{GIORNI[ora.weekday()]} {ora.day} {MESI[ora.month - 1]} {ora.year}"
 
     def testata(num):
@@ -626,8 +640,9 @@ def main():
         b.close()
     tmp.unlink()
     # scheda dell'uscita per l'archivio del sito (numero, data, titolo)
-    ora = datetime.now(ZoneInfo("Europe/Rome"))
-    scheda = {"n": n, "data": f"{GIORNI[ora.weekday()]} {ora.day} {MESI[ora.month - 1]} {ora.year}", "iso": ora.date().isoformat(),
+    _g = [x for x in D["cal"]["lega"] if giocata(x)]
+    ora = ora_uscita(_g[-1] if _g else None)
+    scheda = {"n": n, "pub": ora.astimezone(ZoneInfo("UTC")).strftime("%Y-%m-%dT%H:%M:%SZ"), "data": f"{GIORNI[ora.weekday()]} {ora.day} {MESI[ora.month - 1]} {ora.year}", "iso": ora.date().isoformat(),
               "occhiello": t.get("occhiello", ""), "titolone": t.get("titolone") or t.get("titolo", ""), "sommario": t.get("sommario", "")}
     uscita.with_suffix(".json").write_text(json.dumps(scheda, ensure_ascii=False, indent=1), encoding="utf-8")
     print(uscita)

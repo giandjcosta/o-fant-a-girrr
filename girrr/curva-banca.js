@@ -27,7 +27,7 @@ function tendenze(D,ms){
 }
 function giocate(D){var L=(D.cal&&D.cal.lega)||[],n=0;L.forEach(function(g){if(g.m.some(function(m){return m[4]!=='-'}))n=Math.max(n,g.n)});return n}
 
-function cupUlt(D){var C=(D.cal&&D.cal.cup)||[],u=null;C.forEach(function(g){var mm=g.m.filter(function(m){return m[5]!=='-'});if(mm.length)u={n:g.n,sa:g.sa,m:mm.map(function(m){return [m[1],m[2],m[3],m[4],m[5],m[0]]})}});return u}
+function cupUlt(D){var C=(D.cal&&D.cal.cup)||[],u=null;C.forEach(function(g){var mm=g.m.filter(function(m){return m[5]!=='-'});if(mm.length)u={n:g.n,sa:g.sa,pub:g._pub,m:mm.map(function(m){return [m[1],m[2],m[3],m[4],m[5],m[0]]})}});return u}
 function legaSa(D){var u=null;((D.cal&&D.cal.lega)||[]).forEach(function(g){if(g.m.some(function(m){return m[4]!=='-'}))u=g});return u&&u.sa}
 /* Personaggi */
 var PERS={
@@ -576,6 +576,9 @@ function genera(D,SQ,ST,ms){
   var cu=cupUlt(D);
   if(cu){var sr=Math.max(legaSa(D)||0,cu.sa||0),tc=gTue+7*((cu.sa||sr)-sr),ac=dalGiorno(tc);P1c={k:'lega:c'+cu.n,a:'lega_ofantagirrr',x:'Fine giornata di Champions Cup. Ecco i risultati della '+cu.n+'ª giornata dei gironi. #ChampionsCup',tipo:'rc',ts:ts(ac.y,ac.mo,ac.d,14,35),r:[]}}
   if(P1c)P1.ts=P1.ts;
+  var LU=null;((D.cal&&D.cal.lega)||[]).forEach(function(g){if(g.m.some(function(m){return m[4]!=='-'}))LU=g});
+  if(LU&&LU._pub){P1.ts=LU._pub;P2.ts=LU._pub}
+  if(P1c&&cu&&cu.pub)P1c.ts=cu.pub;
   [P1,P2].concat(P1c?[P1c]:[]).forEach(function(p){var c=conta(p.k,1);p.ap=Math.floor(21000+c.ap*850);p.ril=Math.floor(2400+c.ril*260);p.v=Math.floor(1100000+c.v*900);
    var rs=[];for(var q=0;q<7;q++){var z=reazioni(p.k+'#'+q,p.ts,ms,SQ,p.x);rs=rs.concat(z.r)}
    rs=rs.concat(comUff(p,D,SQ,cu,ms));rs=rs.filter(function(x){return x.ts<=ms}).sort(function(x,y){return x.ts-y.ts});p.r=rs;if(p.ts<=ms)all.push(p)});
