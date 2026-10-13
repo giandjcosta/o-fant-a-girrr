@@ -397,6 +397,11 @@ def rpc(nome, corpo):
 def main():
     d = carica()
     ps = partite(d)
+    # copia pubblica delle quote, la legge Curva per il profilo TotoGirrr
+    try:
+        (ROOT / "toto-quote.json").write_text(json.dumps({"agg": datetime.now(ROMA).isoformat(timespec="minutes"), "partite": [{k: v for k, v in p.items() if k != "extra"} for p in ps]}, ensure_ascii=False, separators=(",", ":")), encoding="utf-8")
+    except Exception as e:
+        print("Totogirrr: toto-quote.json non scritto:", e)
     if len(sys.argv) > 1 and sys.argv[1] == "json":
         print(json.dumps(ps, ensure_ascii=False, indent=1))
         return

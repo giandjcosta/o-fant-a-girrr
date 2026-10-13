@@ -636,6 +636,31 @@ function natura(x,key,a){
  if(r()<0.14){var set=(EMJ[a]||[]).concat(GEN);var e=pick(r,set);if(r()<0.15)e+=pick(r,set);t+=' '+e}
  return t}
 function conta(k,base){var r=prng(k+'n');var b=base||1;return{ap:Math.floor((4+r()*40)*b),ril:Math.floor(r()*12*b),v:Math.floor((200+r()*2400)*b)}}
+/* TotoGirrr: quote e consigli dalla schedina della lega */
+function f2(n){return (Math.round(n*100)/100).toFixed(2).replace('.',',')}
+function totoPost(g,dd,ms,SQ){
+ var TQ=window.CVB&&CVB.TQ;if(!TQ||!TQ.partite)return null;
+ var T=ts(dd.y,dd.mo,dd.d,dd.wd===2?18:dd.wd===4?12:19,dd.wd===2?40:dd.wd===4?15:5);if(T>ms)return null;
+ var P=TQ.partite.filter(function(m){return m.comp==='lega'&&Date.parse(m.chiude)>T&&m.q1}),
+  G=TQ.partite.filter(function(m){return m.comp==='lega'&&m.gc!=null&&m.gc!==undefined&&Date.parse(m.chiude)<T});
+ if(!P.length)return null;
+ var r=prng('toto'+g),kind=(g+(dd.wd===4?1:dd.wd===5?2:0))%5,x='',M=function(m){return m.casa+'–'+m.trasf};
+ var fav=P.slice().sort(function(a,b){return Math.min(a.q1,a.q2)-Math.min(b.q1,b.q2)})[0],
+  dif=P.slice().sort(function(a,b){return Math.max(b.q1,b.q2)-Math.max(a.q1,a.q2)})[0],
+  fq=Math.min(fav.q1,fav.q2),fs=fav.q1<=fav.q2?fav.casa:fav.trasf,dq=Math.max(dif.q1,dif.q2),ds=dif.q1>=dif.q2?dif.casa:dif.trasf,
+  px=['5','10','20'][Math.floor(r()*3)];
+ if(kind===0){x='Quote della giornata '+P[0].giornata+'. '+P.slice(0,4).map(function(m){return M(m)+': 1 '+f2(m.q1)+' · X '+f2(m.qx)+' · 2 '+f2(m.q2)}).join('. ')+'. #Totogirrr'}
+ else if(kind===1){x='La quota più difficile da prendere: '+ds+' a '+f2(dq)+' in '+M(dif)+'. Se esce, è un colpo da raccontare ai nipoti. Se non esce, '+px+' fantacrediti sono comunque pochi da rimpiangere. #Totogirrr'}
+ else if(kind===2){var b=P.filter(function(m){return m!==fav}).sort(function(a,c){return Math.min(a.q1,a.q2)-Math.min(c.q1,c.q2)})[0],q2=b?Math.min(b.q1,b.q2):0,sq2=b?(b.q1<=b.q2?b.casa:b.trasf):'',mult=b?Math.round(fq*q2*100)/100:0;
+  x='Cosa puntare: la quota più bassa è '+fs+' a '+f2(fq)+' ('+M(fav)+')'+(b?'. In multipla con '+sq2+' ('+f2(q2)+') fa '+f2(mult)+'. Due partite, due modi per sbagliare':'. Una sola partita, un solo modo per sbagliare')+'. #Totogirrr'}
+ else if(kind===3){if(G.length){var c1=0,cx=0,c2=0,ov=0;G.forEach(function(m){if(m.gc>m.gt)c1++;else if(m.gc<m.gt)c2++;else cx++;if(m.gc+m.gt>4.5)ov++});
+  x='Statistiche della lega: finora '+G.length+' partite, '+c1+' vittorie in casa, '+cx+' pareggi, '+c2+' in trasferta, '+ov+' con Over 4,5. Le quote le fa il banco, le sorprese le fa il Girrr. #Totogirrr'}
+  else x='Nessuna statistica ancora: servono partite giocate. Il banco intanto ha già fatto i conti, a vostre spese. #Totogirrr'}
+ else{var best=P.slice().sort(function(a,b){return b.qo-a.qo})[0];
+  x='Quanti fantacrediti puntare? Il consiglio ufficiale è il 10% del conto, e mai più del 100 sulla vostra partita. Il non ufficiale è: se non vi basta, c\'è il prestito del banco al 120%. Il calcio è finto, il debito è vero. #Totogirrr'}
+ var p={k:'toto:'+g+':'+kind,a:'totogirrr',x:x,ts:T,r:[]},c=conta(p.k,1);p.ap=Math.floor(3000+c.ap*220);p.ril=Math.floor(300+c.ril*60);p.v=Math.floor(60000+c.v*220);
+ var rs=[];for(var q=0;q<5;q++)rs=rs.concat(reazioni(p.k+'#'+q,p.ts,ms,SQ,p.x).r);p.r=rs.filter(function(y){return y.ts<=ms}).sort(function(y,z){return y.ts-z.ts});
+ return p}
 function genera(D,SQ,ST,ms){
  var r=roma(ms),oggi=giorno(ms),all=[],tg=tendenze(D).map(function(x){return x[0]});
  var tag=function(k,i){return tg[(h32(k)+i)%tg.length]};
@@ -648,6 +673,7 @@ function genera(D,SQ,ST,ms){
   post_giorno(D,SQ,ST,g).forEach(function(p){if(p.ts<=ms&&p.ts>=ms-96*36e5){var c=conta(p.k);p.ap=c.ap;p.ril=c.ril;p.v=c.v;p.r=p.r.filter(function(x){return x.ts<=ms});all.push(p)}});
   /* Ciro: venerdì 18:00 + un aggiornamento il lunedì */
   var dd=dalGiorno(g),mk=ctxDi(D,SQ,ST,'ciro'+g);
+  if((dd.wd===2||dd.wd===4||dd.wd===5)&&g>=oggi-3){var tp=null;try{tp=totoPost(g,dd,ms,SQ)}catch(e){}if(tp&&tp.ts>=ms-96*36e5)all.push(tp)}
   if((dd.wd===0||dd.wd===1||dd.wd===6)&&g>=oggi-3){var cl=null;try{cl=ciroLungo(D,SQ,g,dd,ms,dd.wd===0?'a':dd.wd===1?'b':'c')}catch(e){}if(cl&&cl.ts<=ms&&cl.ts>=ms-96*36e5)all.push(cl)}
   if((dd.wd===2||dd.wd===4||dd.wd===6)&&g>=oggi-3){var mp=null;try{mp=mercato(D,SQ,g,dd,ms)}catch(e){}if(mp&&mp.ts<=ms&&mp.ts>=ms-96*36e5)all.push(mp)}
   if((dd.wd===3||dd.wd===5)&&g>=oggi-3){var sp=null;try{sp=scambiPost(D,SQ,g,dd,ms,dd.wd===3?16:14)}catch(e){}if(sp&&sp.ts<=ms&&sp.ts>=ms-96*36e5)all.push(sp)}
