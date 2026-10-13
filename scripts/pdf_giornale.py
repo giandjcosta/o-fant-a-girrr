@@ -463,8 +463,8 @@ def costruisci(t, tema="classico"):
         com = t.get("commenti") or []
         for k, (casa, pc, pf, fuori, ris) in enumerate(ult["m"]):
             gc, gf = ris.split("-")
-            h.append(f'<div class="mt"><div class="a r {"" if pc > pf else "l"}">{esc(cap(casa))}</div><div class="s">{gc} - {gf}</div>'
-                     f'<div class="a {"" if pf > pc else "l"}">{esc(cap(fuori))}</div></div>'
+            h.append(f'<div class="mt"><div class="a r {"l" if int(gc) < int(gf) else ""}">{esc(cap(casa))}</div><div class="s">{gc} - {gf}</div>'
+                     f'<div class="a {"l" if int(gf) < int(gc) else ""}">{esc(cap(fuori))}</div></div>'
                      f'<div class="mp"><i>{pt(pc)}</i><i style="text-align:center">fantapunti</i><i>{pt(pf)}</i></div>')
             if k < len(com) and com[k]:
                 h.append(f'<div class="cmm">{esc(com[k])}</div>')

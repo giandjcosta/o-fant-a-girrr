@@ -35,20 +35,25 @@ def giocata(g):
 
 def premi(partite):
     righe = []
-    for casa, pc, pf, fuori, _ in partite:
-        righe.append((casa, pc, fuori, pf))
-        righe.append((fuori, pf, casa, pc))
-    vinte = [x for x in righe if x[1] > x[3]]
-    perse = [x for x in righe if x[1] < x[3]]
+    for casa, pc, pf, fuori, ris in partite:
+        try:
+            gc, gf = (int(v) for v in ris.split("-"))
+        except Exception:
+            gc, gf = (1, 0) if pc > pf else (0, 1) if pc < pf else (0, 0)
+        righe.append((casa, pc, fuori, pf, gc, gf))
+        righe.append((fuori, pf, casa, pc, gf, gc))
+    # Vince chi segna più gol (non chi ha più fantapunti): i pareggi non hanno vincitore
+    vinte = [x for x in righe if x[4] > x[5]]
+    perse = [x for x in righe if x[4] < x[5]]
     out = []
     m = max(righe, key=lambda x: x[1])
     out.append(("miglior", "🏆", "Miglior formazione", cap(m[0]), f"{pt(m[1])} punti"))
     p = min(righe, key=lambda x: x[1])
     out.append(("legno", "🥄", "Cucchiaio di legno", cap(p[0]), f"{pt(p[1])} punti"))
     if vinte:
-        a = max(vinte, key=lambda x: x[1] - x[3])
+        a = max(vinte, key=lambda x: (x[4] - x[5], x[1] - x[3]))
         out.append(("larga", "💥", "Vittoria più larga", cap(a[0]), f"su {cap(a[2])} ({pt(a[1])} - {pt(a[3])})"))
-        b = min(vinte, key=lambda x: x[1] - x[3])
+        b = min(vinte, key=lambda x: (x[4] - x[5], x[1] - x[3]))
         out.append(("sofferta", "😅", "Vittoria più sofferta", cap(b[0]), f"su {cap(b[2])} ({pt(b[1])} - {pt(b[3])})"))
         c = min(vinte, key=lambda x: x[1])
         out.append(("fortunato", "🍀", "Il più fortunato", cap(c[0]), f"ha vinto con soli {pt(c[1])} punti"))
