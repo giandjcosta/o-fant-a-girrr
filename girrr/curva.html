@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,viewport-fit=cover">
 <meta name="robots" content="noindex">
-<meta name="cv-ver" content="20261013a">
+<meta name="cv-ver" content="20261013b">
 <title>Curva · O Girrr</title>
 <link rel="icon" type="image/png" href="../assets/favicon-64.png">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800;900&display=swap">
@@ -477,8 +477,8 @@ function navR(){
  document.getElementById('nav').innerHTML='<div class="logo" data-v="home"><div class="lg"></div></div>'+it.map(function(x){var on=vista===x[0]||(vista==='u'&&x[0]==='profilo'&&vprof===meH);var nb=x[0]==='notifiche'?nBadge():0,bd=nb?'<span class="bd">'+(nb>99?'99+':nb)+'</span>':'';return '<button data-v="'+x[0]+'" class="'+(on?'on':'')+'" aria-label="'+x[1]+'">'+x[2]+'<span class="t">'+x[1]+'</span>'+bd+'</button>'}).join('')+'<a class="sito" href="index.html" aria-label="Torna a O Girrr"><img src="../assets/favicon-64.png" alt=""><span class="t">O Girrr</span></a><button class="btn postbtn" data-v="scrivi">Lancia un coro</button>'
 }
 function topR(titolo,sott,tabs){
- var back=(vista==='u'&&vprof!==meH)||vista==='info'||vista==='adm',m=nomeMio();
- document.getElementById('top').innerHTML='<div class="bar">'+(back?'<button class="ib" data-v="home" aria-label="Indietro">'+I.back+'</button>':(m?AV(m,'sm me','data-v="profilo"'):'<span class="me"></span>'))+
+ var back=(vista==='u'&&vprof!==meH)||vista==='info'||vista==='adm'||vista==='seg',m=nomeMio();
+ document.getElementById('top').innerHTML='<div class="bar">'+(back?'<button class="ib" data-v="'+(vista==='seg'?'profilo':'home')+'" aria-label="Indietro">'+I.back+'</button>':(m?AV(m,'sm me','data-v="profilo"'):'<span class="me"></span>'))+
   '<div class="tt">'+(vista==='home'?'<span style="display:flex;align-items:center;gap:8px"><i class="lg" style="width:28px;height:28px"></i>Curva</span>':esc(titolo)+(sott?'<small>'+esc(sott)+'</small>':''))+'</div>'+
   (me===ADMIN&&S.v>=5?'<button class="ib" data-v="adm" aria-label="Per Me" title="Per Me">'+I.adm+'</button>':'')+'<button class="ib" data-v="info" aria-label="Info" title="Come funziona">'+I.info+'</button><button class="ib" id="rfb" aria-label="Aggiorna" title="Aggiorna"><svg viewBox="0 0 24 24" '+S0+'><path d="M20 12a8 8 0 1 1-2.5-5.8"/><path d="M20 4v5h-5"/></svg></button><button class="ib" id="tg" aria-label="Cambia tema">'+(curTema()==='dark'?I.sun:I.moon)+'</button></div>'+(tabs?'<div class="tabs">'+tabs+'</div>':'')+(NET===false?'<div class="net">Non riesco a collegarmi ai cori: puoi leggere, ma non scrivere.</div>':'');
  document.getElementById('rfb').onclick=function(){rinfresca()};
@@ -561,7 +561,11 @@ function render(){
   var NL=NOTI.filter(function(o){return ntab==='tutte'||o.tp==='men'});
   h+=NL.length?NL.map(nRow).join(''):'<div class="vuoto">'+(ntab==='men'?'Nessuno ti ha ancora menzionato.<br>Scrivi @ seguito dal nome di una squadra per taggare qualcuno.':'Ancora nessuna notifica.<br>Qui compaiono menzioni, risposte, rilanci e traguardi dei tuoi cori.')+'</div>';
   nSegna(null);
- }else if(vista==='adm'){
+ }else if(vista==='seg'){
+  var SG=Object.keys(ACC).filter(function(k){return k!==meH&&isFol(k)}).sort(function(x,y){var o=['giornale_girrr','lega_ofantagirrr','ciro_trattativa'],ix=o.indexOf(x),iy=o.indexOf(y);if(ix<0)ix=9;if(iy<0)iy=9;return ix-iy||acc(x).n.localeCompare(acc(y).n)});
+  topR('Seguiti',SG.length+(SG.length===1?' account':' account'));
+  h+=SG.length?SG.map(whoRow).join(''):'<div class="vuoto">Non segui ancora nessuno.<br>Cerca in Esplora gli account da seguire.</div>';
+}else if(vista==='adm'){
   topR('Per Me','Pannello della Curva');
   if(me!==ADMIN||S.v<5){h+='<div class="nt"><small style="margin:0">Questa pagina è riservata. Se sei Oranje VC, esegui prima l\'SQL del pannello.</small></div>'}
   else{var uf=['lega_ofantagirrr','giornale_girrr','ciro_trattativa'],sqh=SQ.map(hnd),pe=Object.keys(ACC).filter(function(x){return uf.indexOf(x)<0&&sqh.indexOf(x)<0});
@@ -587,7 +591,7 @@ function render(){
   var bh2=pf.bh!=null?pf.bh:hh;if(isSq){c1='hsl('+bh2+' 60% 40%)';c2='hsl('+((bh2+40)%360)+' 55% 22%)'}var bim=imgP(a,'b');
   h+='<div class="ban" id="ban" style="--c1:'+c1+';--c2:'+c2+(bim?';background:url('+bim+') center/cover':'')+'"></div><div class="pf"><div class="r1">'+AV(a,'xl')+(mio?'<button class="btn out" data-a="edav">'+(edit?'Chiudi':'Modifica profilo')+'</button>':segBtn(vprof))+'</div>'+
    '<h2>'+esc(nm(a))+badge(a.v)+'</h2><div class="h">@'+a.h+'</div>'+(isSq&&CVB.MISTER[a.n]?'<div class="h">Allenatore: '+esc(CVB.MISTER[a.n])+'</div>':'')+(pf.bio?'<p>'+esc(pf.bio)+'</p><p class="mu">'+esc(bio)+'</p>':'<p>'+esc(bio)+'</p>')+(a.v?'<div class="etich">'+badge(a.v)+(a.v==='oro'?' Account ufficiale':' Account verificato')+'</div>':'')+
-   '<div class="st"><span><b>'+(mio?nSeguiti():isSq?11:12+hue(a.n)%40)+'</b> Seguiti</span><span><b>'+(isSq?fmt(seguaci(a.n)).replace(' mila','')+' mila':a.k==='org'?(a.h==='lega_ofantagirrr'?'4,2 milioni':a.h==='giornale_girrr'?'3,6 milioni':fmt(9000+hue(a.n)*31).replace(' mila','')+' mila'):100+hue(a.n)*3)+'</b> Follower</span></div></div>';
+   '<div class="st"><span'+(mio?' data-v="seg" style="cursor:pointer"':'')+'><b>'+(mio?nSeguiti():isSq?11:12+hue(a.n)%40)+'</b> Seguiti'+(mio?' ›':'')+'</span><span><b>'+(isSq?fmt(seguaci(a.n)).replace(' mila','')+' mila':a.k==='org'?(a.h==='lega_ofantagirrr'?'4,2 milioni':a.h==='giornale_girrr'?'3,6 milioni':fmt(9000+hue(a.n)*31).replace(' mila','')+' mila'):100+hue(a.n)*3)+'</b> Follower</span></div></div>';
   if(mio&&edit)h+='<div class="edav"><b>Scegli la tua icona</b><div class="emo">'+EMO.map(function(e){return '<button data-emo="'+e+'" class="'+(pf.e===e?'on':'')+'">'+e+'</button>'}).join('')+'<button data-emo="" class="'+(!pf.e?'on':'')+'" style="font-size:12px;font-weight:800">Sigla</button></div>'+(S.v>=3?'<b>Bio</b><textarea id="bioe" rows="2" maxlength="100" placeholder="Scrivi la bio della squadra (max 100 caratteri). Resta sotto la riga con posizione e punti." style="width:100%;margin:6px 0 12px;padding:10px;border-radius:12px;border:1px solid var(--ln);background:var(--bg2);color:var(--tx);font:500 15px Inter;resize:none">'+esc(pf.bio||'')+'</textarea>':'')+'<b>Colore dell\'avatar</b><input type="range" id="hue" min="0" max="359" value="'+hh+'">'+(S.v>=2?'<div class="edi"><button class="btn out" data-a="pfoto">Foto profilo</button><button class="btn out" data-a="pfoto0">Togli foto</button></div><b>Colore dello sfondo</b><input type="range" id="bhue" min="0" max="359" value="'+bh2+'"><div class="edi"><button class="btn out" data-a="bfoto">Immagine di sfondo</button><button class="btn out" data-a="bfoto0">Togli immagine</button></div><input type="file" id="fpa" accept="image/*" hidden><input type="file" id="fpb" accept="image/*" hidden>':'')+(S.v>=3?'':'<div style="margin-top:10px;font-size:12px;color:var(--mu)">Bio, foto e sfondo non sono ancora attivi: il feed del database risponde con la versione '+(S.v||1)+' invece della 3. Controlla l\'SQL v2 su Supabase.</div>')+'<button class="btn" data-a="salvaav" style="margin-top:10px">Salva</button></div>';
   if(mio&&!edit&&me)h+=compHTML(nomeMio());
   h+='<div class="tabs ptabs"><button data-pt="cori" class="'+(ptab==='cori'?'on':'')+'">Cori</button><button data-pt="risp" class="'+(ptab==='risp'?'on':'')+'">Risposte</button></div>';
