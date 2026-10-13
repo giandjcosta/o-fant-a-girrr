@@ -578,13 +578,46 @@ function genera(D,SQ,ST,ms){
   if(P1c)P1.ts=P1.ts;
   [P1,P2].concat(P1c?[P1c]:[]).forEach(function(p){var c=conta(p.k,1);p.ap=Math.floor(21000+c.ap*850);p.ril=Math.floor(2400+c.ril*260);p.v=Math.floor(1100000+c.v*900);
    var rs=[];for(var q=0;q<7;q++){var z=reazioni(p.k+'#'+q,p.ts,ms,SQ,p.x);rs=rs.concat(z.r)}
-   rs=rs.filter(function(x){return x.ts<=ms}).sort(function(x,y){return x.ts-y.ts});p.r=rs;if(p.ts<=ms)all.push(p)});
+   rs=rs.concat(comUff(p,D,SQ,cu,ms));rs=rs.filter(function(x){return x.ts<=ms}).sort(function(x,y){return x.ts-y.ts});p.r=rs;if(p.ts<=ms)all.push(p)});
  }
  /* veri scambi */
  (D.scambi||[]).forEach(function(s,i){var T=Date.parse(s.t);if(!(T<=ms))return;var cc={a:s.a,b:s.b,da:s.da,db:s.db};var p={k:'sc:'+i,a:'ciro_trattativa',x:riempi(SCAMBIO[i%2],cc,null),ts:T,r:[],ap:20,ril:6,v:900};all.push(p)});
  all.sort(function(a,b){return b.ts-a.ts});
  return all;
 }
+
+/* Commenti sotto i post ufficiali (Lega, Coppa, Giornale): tanti, sparsi nelle ore */
+function comUff(p,D,SQ,cu,ms){
+ var L=(D.cal&&D.cal.lega)||[],u=null;L.forEach(function(g){if(g.m.some(function(m){return m[4]!=='-'}))u=g});
+ var coppa=p.k.indexOf('lega:c')===0,giorn=p.k.indexOf('gior:')===0,src=coppa?(cu&&cu.m):(u&&u.m);
+ if(!src)return[];
+ var r=prng('cu'+p.k),M=src.filter(function(m){return m[4]!=='-'}).map(function(m){var g=m[4].split('-').map(Number),d=g[0]-g[1];return{h:m[0],a:m[3],gh:g[0],ga:g[1],w:d>0?m[0]:d<0?m[3]:null,l:d>0?m[3]:d<0?m[0]:null,sc:m[4],tot:g[0]+g[1],dif:Math.abs(d)}});
+ if(!M.length)return[];
+ var big=M.slice().sort(function(a,b){return b.dif-a.dif})[0],pari=M.filter(function(m){return!m.w}),gol=M.slice().sort(function(a,b){return b.tot-a.tot})[0];
+ var T=[],pm=function(){return M[Math.floor(r()*M.length)]};
+ function add(x,min,max){T.push({x:x,d:min+r()*(max-min)})}
+ var X=function(m,l){return l[Math.floor(r()*l.length)].replace(/\{h\}/g,m.h).replace(/\{a\}/g,m.a).replace(/\{w\}/g,m.w||m.h).replace(/\{l\}/g,m.l||m.a).replace(/\{sc\}/g,m.sc)};
+ var VIT=['{w} vince {sc} e {l} esce ridimensionata. Zero alibi.','{sc} per {w}: {l} oggi non pervenuta.','Complimenti a {w}, {l} dovrebbe fare due chiacchiere con la panchina.','{l} in crisi nera, {w} ringrazia. {sc}.','Bella {w}, ma {l} ha lasciato punti ovunque.','{sc}. Se fossi {l} chiederei il VAR sulla formazione.','Ma {l} ha schierato la formazione a occhi chiusi?','{w} vola, {l} spiegatemi cosa è successo.'];
+ var PAR=['{h}-{a} {sc}: pareggio che non serve a nessuno.','Pareggio tra {h} e {a}, tutti scontenti e nessuno colpevole.','{sc} tra {h} e {a}. Ci sta, ma che noia.'];
+ var GEN=['Il campionato è apertissimo, io dico che ne vedremo delle belle.','Chi ha lasciato punti in panchina stasera non dorme.','Ogni giornata una sorpresa. Amo questo gioco.','Si vedono già le squadre vere e quelle da zona salvezza.','Il modificatore difesa decide più partite dell\'allenatore.','Voti pesanti questa settimana, ma i bonus fanno la differenza.','Aspetto il Giornale per capire chi sono i colpevoli.','Il mio fantavoto è ancora in sciopero.'];
+ var COP=['In Champions Cup si fa sul serio, qui non si scherza.','Girone di ferro, altro che campionato.','Quest\'anno la Coppa la vince chi ha la panchina più lunga.','Le gare di Coppa sono più belle di quelle di campionato, ammettiamolo.','Le stesse formazioni del campionato: stesso risultato, doppio dolore.'];
+ var GIO=['Le pagelle del Giornale sono troppo severe, io avrei dato un punto in più.','La Bufala di mercato questa settimana è la migliore di sempre 😂','Il Coro della settimana mi ha fatto ridere per dieci minuti.','Ho letto i Rimpianti: i punti lasciati in panchina fanno più male di una sconfitta.','Titolo di copertina perfetto, la redazione sta migliorando.','Bravi, il Giornale è l\'unica cosa seria in questa lega.','Chi ha scritto le pagelle vuole litigare con tutti, mi piace.','Ma {x} ha davvero lasciato quel punteggio in panchina? Il Giornale non perdona.','Quando esce il prossimo numero? Già dipendente.','Ho stampato il PDF e l\'ho appeso in ufficio.','Il Giornale mi ha fatto cambiare idea sulla classifica.','Non sono d\'accordo con le pagelle, ma le leggo sempre tutte.'];
+ var n=coppa?18:giorn?26:34,i,m;
+ for(i=0;i<n;i++){
+  var t=r();
+  if(giorn){m=pm();var g=GIO[Math.floor(r()*GIO.length)].replace('{x}',SQ[Math.floor(r()*SQ.length)]);
+   if(t<0.65)add(g,15,600);else if(t<0.85)add(X(m,VIT),20,500);else add(X(big,['{w} {sc} e {l} è già al Giornale come caso clinico.']),30,600)}
+  else{
+   if(t<0.5){m=pm();add(m.w?X(m,VIT):X(m,PAR),5,420)}
+   else if(t<0.62&&pari.length)add(X(pari[Math.floor(r()*pari.length)],PAR),10,400);
+   else if(t<0.74)add(X(big,['{sc} il risultato più largo: {w} ha dominato, {l} umiliata.','Il {sc} di {w} su {l} è il risultato della giornata.','{l} sotto choc dopo il {sc}.']),5,300);
+   else if(t<0.82)add(X(gol,['{sc} tra {h} e {a}: partita folle, tanti gol.','Quante reti in {h}-{a}! Lo spettacolo c\'è.']),8,360);
+   else add((coppa?COP:GEN)[Math.floor(r()*(coppa?COP:GEN).length)],5,600)}
+ }
+ var ord=shuffle(r,AUTORI),out=[];
+ T.forEach(function(e,j){var ts=p.ts+Math.round(e.d)*60000;if(ts>ms)return;
+  if(r()<0.55){var cu2=comune(r);out.push({a:cu2[0],x:e.x,ts:ts})}else{var a=ord[j%ord.length];out.push({a:a,x:natura(e.x,p.k+'c'+j,a),ts:ts})}});
+ return out}
 function reazioni(k,t,ms,SQ,xt){var r=prng('rz'+k),age=(ms-t)/60000;if(age<1)return{ap:0,ril:0,r:[]};
  var fa=2+Math.floor(r()*11),fr=Math.floor(r()*4),pr=Math.pow(Math.min(1,age/360),0.6),out=[];
  var nr=Math.floor(r()*3),ord=shuffle(r,AUTORI);
