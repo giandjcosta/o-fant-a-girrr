@@ -259,6 +259,41 @@ function mercato(D,SQ,g,dd,ms){
  for(var i=0;i<n;i++){var kind=r(),cat=kind<0.4?'d':kind<0.75?'n':'p',x=riempi(pick(r,MKR[cat]),c,null),au;if(r()<0.45){var cu=comune(r);au=cu[0];x=x.charAt(0).toLowerCase()+x.slice(1)}else au=ord[i];
   var tt=T+(8+Math.floor(r()*150))*60000;if(tt<=ms)p.r.push({a:au,x:natura(x,'mkr'+g+i,au),ts:tt})}
  p.r.sort(function(a,b){return a.ts-b.ts});var cn=conta(p.k,1.6);p.ap=cn.ap;p.ril=cn.ril;p.v=cn.v;return p}
+
+/* Ciro: thread lunghi. Domenica un giocatore da tenere d'occhio, lunedì l'elogio a un'operazione di mercato riuscita */
+var RLA=['Per una volta Ciro ha trovato un nome vero. Segnato.','{gio}? Se lo prende qualcuno io smetto di fidarmi dei numeri.','Thread bellissimo, ma il rischio c\'è e lo sai.','Io ci ho creduto da subito, ero solo senza crediti.','Ciro, ti seguo ma domani smentisci tutto.','Aspetto altre due giornate poi lo prendo. O lo piango.','Bel thread. Peccato che la mia rosa sia già piena di buoni propositi.','{gio} è l\'unico motivo per cui apro l\'app la domenica.','Il tuo "non lo so" qui vale più di mille fonti.','Letto tutto. Segnatevelo, io intanto lo scambio.'];
+var RLB=['Operazione da manuale. Complimenti a {all}.','{sq} ha fatto l\'affare e noi guardavamo il gatto.','Quanto lo hanno pagato? Poco. Troppo poco.','L\'operazione dell\'anno, e siamo solo a metà.','Io quel giocatore lo avevo in lista e mi sono distratto.','{all} fa il genio, ma c\'era anche un po\' di fortuna. Poca.','Bravi, ma non montatevi la testa. Mai.','Elogio meritato. Anche se mi costa dirlo.','Qui bisogna dare atto a chi ci ha creduto. E basta.','{gio} gioca da big. Pagato come un comprimario. Ecco.'];
+var RUL={P:'per un portiere la media è tutto, e ogni parata che vale un voto alto pesa più di un bonus altrove',D:'un difensore che porta voto e bonus insieme è raro come un rigore parato, e lui fin qui li porta entrambi',C:'un centrocampista che prende voti alti e ogni tanto segna è l\'unico investimento che non si svaluta',A:'un attaccante vive di gol, ma i gol arrivano solo se la squadra lo cerca, e lui se li cerca da solo'};
+function ciroLungo(D,SQ,g,dd,ms,kind){
+ if(kind==='b'&&giocate(D)<5)return null;
+ var PS=D.ps||{},P=D.P||{},FS=D.fas||{},FA={},own={},r=prng('cl'+kind+g);(D.fa||[]).forEach(function(i){FA[i]=1});
+ (D.teams||[]).forEach(function(t){(t.pl||[]).forEach(function(q){own[q.id]={sq:t.name,c:q.c}})});
+ var cand=Object.keys(PS).filter(function(id){var s=PS[id],pl=P[id];if(!s||!pl||!(s.pg>=4)||!(s.fmv>=7))return false;return kind==='a'?s.fmv>=7.5:!!own[id]});
+ if(kind==='b')cand=cand.filter(function(id){return own[id].c<=Math.max(8,(PS[id].fmv-6)*8)});
+ cand.sort(function(a,b){return PS[b].fmv-PS[a].fmv});cand=cand.slice(0,6);
+ if(!cand.length)return null;
+ var id=cand[Math.floor(r()*cand.length)],s=PS[id],pl=P[id],o=own[id],ruolo=RUO[pl.r]||'giocatore',mv=String(s.mv).replace('.',','),fv=String(s.fmv).replace('.',','),gv=[];
+ if(s.g)gv.push(s.g+' gol');if(s.as)gv.push(s.as+' assist');var ga=gv.length?gv.join(' e '):'zero bonus ma voti solidi';
+ var c={gio:pl.n,sa:pl.t,sq:o?o.sq:'',all:o?(MISTER[o.sq]||o.sq):''},x,th;
+ var T=ts(dd.y,dd.mo,dd.d,kind==='a'?20:21,Math.floor(r()*40));if(T>ms)return null;
+ if(kind==='a'){
+  x=pl.n+' ('+pl.t+'): il giocatore di cui parleremo tra un mese. '+ruolo.charAt(0).toUpperCase()+ruolo.slice(1)+', '+s.pg+' presenze, media '+mv+', fantamedia '+fv+', '+ga+'. Vi spiego perché vale la pena tenerlo d\'occhio. 🧵';
+  th=['1/ Partiamo dai numeri: media voto '+mv+', fantamedia '+fv+' in '+s.pg+' presenze. È il tipo di dato che al fantacalcio non guardi finché qualcuno non lo prende. Poi lo guardano tutti.',
+   '2/ Perché tenerlo d\'occhio: '+RUL[pl.r]+'. Dati alla mano, '+ga+'.',
+   o?'3/ In Lega lo ha '+cap1(o.sq)+', pagato '+o.c+' crediti. Chi se lo è trovato in rosa si sta godendo il momento. Chi non lo ha preso ormai può solo guardare.':'3/ In Lega è ancora libero. Libero. Lo ripeto per i coraggiosi: nessuno lo ha preso, e le medie stanno lì a guardarvi.',
+   '4/ Il rischio, perché c\'è sempre: '+s.pg+' partite non sono una stagione, e in questa fase della stagione ci si innamora delle medie. Io mi sono innamorato tre volte e sono ancora sposato con due.',
+   '5/ Conclusione: se va bene l\'ho detto io, se va male ero in vacanza. Seguite il thread, vi aggiorno. Forse.'];
+ }else{
+  x='👏 Parliamone. '+cap1(o.sq)+' ha preso '+pl.n+' ('+pl.t+') a '+o.c+' crediti e fin qui ha '+s.pg+' presenze con media '+mv+' e fantamedia '+fv+', '+ga+'. L\'operazione di mercato più intelligente dell\'anno? Apro il thread. 🧵';
+  th=['1/ I numeri: '+ruolo+', media voto '+mv+', fantamedia '+fv+', '+s.pg+' partite giocate. Pagato '+o.c+' crediti. Il rapporto qualità-prezzo è quello di un affare.',
+   '2/ La mossa giusta: '+RUL[pl.r]+'. Chi lo ha scelto ha letto il momento meglio degli altri.',
+   '3/ Complimenti a '+(MISTER[o.sq]||o.sq)+' e alla squadra: per una volta il mercato ha premiato chi aveva una visione, o almeno un buon intuito.',
+   '4/ Chi poteva prenderlo e non lo ha fatto ora lo guarda dal divano. Io, da giornalista, lo guardo con rispetto. E un po\' di invidia.',
+   '5/ Possiamo già dirlo: questa è un\'operazione che si ricorda. Se a fine stagione sarà ancora così, ricordatevi chi l\'ha scritto.'];
+ }
+ var p={k:'cl:'+kind+g,a:'ciro_trattativa',x:riempi(x+' {#}',{},kind==='a'?'Svincolati':'Mercato'),thr:th,long:true,ts:T,r:[],cx:c},n=5+Math.floor(r()*3),ord=shuffle(r,AUTORI.filter(function(a){return a!=='ciro_trattativa'})),L=kind==='a'?RLA:RLB;
+ for(var i=0;i<n;i++){var tx=riempi(pick(r,L),c,null),au;if(r()<0.45){var cu=comune(r);au=cu[0];tx=tx.charAt(0).toLowerCase()+tx.slice(1)}else au=ord[i];var tt=T+(8+Math.floor(r()*240))*60000;if(tt<=ms)p.r.push({a:au,x:natura(tx,'clr'+kind+g+i,au),ts:tt})}
+ p.r.sort(function(a,b){return a.ts-b.ts});var cn=conta(p.k,3);p.ap=cn.ap;p.ril=cn.ril;p.v=cn.v;return p}
 /* Motore degli scambi: copia identica di quello dello Spogliatoio (index.html), così le percentuali coincidono. */
 function scambiMotore(D){
 var MODS={'3-5-2':[3,5,2],'4-4-2':[4,4,2],'4-3-3':[4,3,3],'3-4-3':[3,4,3],'4-5-1':[4,5,1],'5-3-2':[5,3,2],'5-4-1':[5,4,1],'3-4-1-2':[3,5,2]};
@@ -590,6 +625,7 @@ function genera(D,SQ,ST,ms){
   post_giorno(D,SQ,ST,g).forEach(function(p){if(p.ts<=ms&&p.ts>=ms-96*36e5){var c=conta(p.k);p.ap=c.ap;p.ril=c.ril;p.v=c.v;p.r=p.r.filter(function(x){return x.ts<=ms});all.push(p)}});
   /* Ciro: venerdì 18:00 + un aggiornamento il lunedì */
   var dd=dalGiorno(g),mk=ctxDi(D,SQ,ST,'ciro'+g);
+  if((dd.wd===0||dd.wd===1)&&g>=oggi-3){var cl=null;try{cl=ciroLungo(D,SQ,g,dd,ms,dd.wd===0?'a':'b')}catch(e){}if(cl&&cl.ts<=ms&&cl.ts>=ms-96*36e5)all.push(cl)}
   if((dd.wd===2||dd.wd===4||dd.wd===6)&&g>=oggi-3){var mp=null;try{mp=mercato(D,SQ,g,dd,ms)}catch(e){}if(mp&&mp.ts<=ms&&mp.ts>=ms-96*36e5)all.push(mp)}
   if((dd.wd===3||dd.wd===5)&&g>=oggi-3){var sp=null;try{sp=scambiPost(D,SQ,g,dd,ms,dd.wd===3?16:14)}catch(e){}if(sp&&sp.ts<=ms&&sp.ts>=ms-96*36e5)all.push(sp)}
   if(dd.wd===5||dd.wd===1||dd.wd===3||dd.wd===0){
