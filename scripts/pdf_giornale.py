@@ -266,12 +266,23 @@ def formazioni_schierate(g):
     return json.loads(f.read_text(encoding="utf-8")).get(str(g), {})
 
 
+def fv_override(g):
+    """Fantavoti di Leghe che differiscono da quelli calcolati dai bonus pubblici (formazioni.json -> fv)."""
+    import os
+    f = Path(os.environ.get("GIRRR_FORMAZIONI") or ROOT / "formazioni.json")
+    return json.loads(f.read_text(encoding="utf-8")).get("fv", {}).get(str(g), {}) if f.exists() else {}
+
+
 def panchina(g):
     """{squadra: (punti_persi, [(fuori, fv_fuori, dentro, fv_dentro)])}: a parita' di ruolo, cosa sarebbe valso scambiare panchina e titolari."""
     voti = D.get("votes", {})
     out = {}
     for sq, fz in formazioni_schierate(g).items():
+        ov = fv_override(g)
+
         def fv(i):
+            if str(i) in ov:
+                return ov[str(i)]
             x = voti.get(str(i), {}).get(str(g))
             return x["f"] if x and x.get("f") is not None else None
         def nome(i):
@@ -535,16 +546,6 @@ def costruisci(t, tema="classico"):
         if t.get("bufala"):
             b = t["bufala"]
             h.append(f'<div class="bufala"><div class="bk">Bufala di mercato</div><div class="bh">{esc(b.get("titolo", ""))}</div><p>{esc(b.get("testo", ""))}</p></div>')
-        rim = sorted([(v[0], sq, v[1]) for sq, v in pan.items() if v[0] > 0], reverse=True)[:3]
-        if rim:
-            h.append('<div class="rimp"><div class="rk">Rimpianti</div><div class="rh">La panchina della settimana</div>')
-            for k2, (tot, sq, sw) in enumerate(rim):
-                a, fa, b, fb = sw[0]
-                h.append(f'<div class="rr"><b>{k2 + 1}. {esc(cap(sq))}</b><span>{esc(b)} in panchina ({pt(fb)}), {esc(a)} titolare ({pt(fa)})</span><em>-{pt(tot)}</em></div>')
-            zero = [cap(sq) for sq, v in pan.items() if v[0] == 0]
-            if zero:
-                h.append(f'<p class="nt" style="margin:1.2mm 0 0">Zero rimpianti: {esc(", ".join(zero))}.</p>')
-            h.append('</div>')
         h.append(piede(3) + "</section>")
 
     # ---------- pagina 4: programma e infermeria
@@ -570,6 +571,17 @@ def costruisci(t, tema="classico"):
     if t.get("coppa"):
         h.append(f'<p class="nt">{esc(t["coppa"])}</p>')
     h.append("</div></div>")
+    pan = panchina(int(ult["sa"])) if ult else {}
+    rim = sorted([(v[0], sq, v[1]) for sq, v in pan.items() if v[0] > 0], reverse=True)[:3]
+    if rim:
+        h.append('<div class="rimp"><div class="rk">Rimpianti</div><div class="rh">La panchina della settimana</div>')
+        for k2, (tot, sq, sw) in enumerate(rim):
+            a, fa, b, fb = sw[0]
+            h.append(f'<div class="rr"><b>{k2 + 1}. {esc(cap(sq))}</b><span>{esc(b)} in panchina ({pt(fb)}), {esc(a)} titolare ({pt(fa)})</span><em>-{pt(tot)}</em></div>')
+        zero = [cap(sq) for sq, v in pan.items() if v[0] == 0]
+        if zero:
+            h.append(f'<p class="nt" style="margin:1.2mm 0 0">Zero rimpianti: {esc(", ".join(zero))}.</p>')
+        h.append('</div>')
     in_rosa = {p["id"] for tt in D["teams"] for p in tt["pl"]}
     inf = [e for e in D.get("inj", []) if e.get("id") in in_rosa]
     inf.sort(key=lambda e: {"sì": 0, "in dubbio": 1}.get(e.get("k"), 2))
