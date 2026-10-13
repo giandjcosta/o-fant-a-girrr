@@ -94,6 +94,23 @@ td small{color:var(--sub);font-weight:600;display:block;font-size:11px}
 .sala{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:14px}
 .sala span{background:rgba(0,0,0,.2);border-radius:999px;padding:8px 14px;font-weight:800;font-size:13px}
 .sala b{color:var(--hi);font-weight:900}
+.hh{font-weight:900;font-size:13px;letter-spacing:.3em;color:var(--hi);margin:6px 0 12px;text-transform:uppercase}
+.cg{display:grid;grid-template-columns:repeat(auto-fill,minmax(104px,1fr));gap:10px;margin-bottom:6px}
+.cb{display:flex;flex-direction:column;align-items:center;gap:6px;background:linear-gradient(150deg,rgba(255,255,255,.12),rgba(255,255,255,.05));border:1px solid rgba(255,255,255,.14);border-radius:16px;padding:12px 6px;color:var(--chiaro);font-family:inherit;cursor:pointer;transition:transform .15s,background .2s}
+.cb:active{transform:scale(.96)}.cb:hover{background:rgba(255,255,255,.16)}
+.cb b{font-weight:900;font-size:13px;text-align:center;line-height:1.1}
+.cb small{color:var(--sub);font-weight:700;font-size:11px;text-align:center}
+.cg.ex .cb{opacity:.8}
+.mo{position:fixed;inset:0;z-index:50;background:rgba(10,16,38,.88);overflow:auto;display:none;padding:18px 12px;-webkit-overflow-scrolling:touch}
+.mo.on{display:block}
+.sheet{position:relative;max-width:620px;margin:0 auto;background:linear-gradient(160deg,#2c3f7c,#141d3d);border:1px solid rgba(255,255,255,.2);border-radius:20px;padding:20px 16px 18px}
+.sheet .x{position:absolute;top:10px;right:10px;width:34px;height:34px;border-radius:50%;border:0;background:rgba(255,255,255,.14);color:var(--chiaro);font:800 15px Inter;cursor:pointer}
+.sh-top{display:flex;gap:14px;align-items:center;padding-right:36px}
+.sh-tag{font-weight:900;font-size:11px;letter-spacing:.25em;color:var(--hi);text-transform:uppercase}
+.sh-nome{font-weight:900;font-size:clamp(24px,6vw,32px);line-height:1.05;margin-top:2px}
+.sh-st{margin:14px 0 4px;font-weight:600;font-size:15px;line-height:1.5}
+.sheet h5{font-weight:900;font-size:11px;letter-spacing:.3em;color:var(--hi);text-transform:uppercase;margin:18px 0 6px}
+.sheet table{margin:0}.sheet td,.sheet th{padding-left:6px;padding-right:6px}
 </style>
 <script src="pub.js"></script>
 <script>window.goatcounter={path:function(){return location.pathname},no_onload:/[?&]demo/.test(location.search)}</script>
@@ -194,8 +211,147 @@ function storico(){
   });
   return h+'</div>';
 }
+/* ===== Allenatori: illustrazioni, storie, scontri ===== */
+function can(n){return ALIAS[n]||n}
+var CUR={'DJ Cst Brazil':'Oranje VC','Maria':'AFA SELECCION','apo':'Apo team','Riccardo':'Atletico ma non troppo','RikyArma':'Grodah','Mark Lenders':'Mariana Coneja','AndrewTT':'Real Madrink','stifson':'stif dc','Leanzino':'The Blue brothers','Mario':'The Blue brothers','ser':'WOA'};
+var ORD=['apo','ser','RikyArma','Leanzino','Mario','AndrewTT','stifson','Maria','Mark Lenders','Riccardo','DJ Cst Brazil'];
+function lab(n){return n==='Leanzino'?'Leanzino & Mario':n}
+var CFG={
+ 'DJ Cst Brazil':{sk:'#c98f66',ha:'short',hc:'#1c1410',su:'#1f2a52',ti:'#ffd166',bg:['#1fa35b','#ffd23f'],pr:'cuffie'},
+ 'apo':{sk:'#e8b894',ha:'bald',hc:'#3a2a1a',su:'#5b2a86',ti:'#ffd166',bg:['#ffd23f','#ff9f1c'],pr:'banana'},
+ 'ser':{sk:'#f0c4a0',ha:'side',hc:'#6b4423',su:'#2b3a67',ti:'#c9d3e6',bg:['#8ec5ff','#3a6ea5'],pr:'coppa'},
+ 'RikyArma':{sk:'#d9a27a',ha:'curly',hc:'#2a1a12',su:'#c0392b',ti:'#fff',bg:['#ff8a8a','#8e44ad'],pr:'badges'},
+ 'Leanzino':{sk:'#e8b894',ha:'short',hc:'#2a2a2a',su:'#1b6ca8',ti:'#fff',bg:['#2fa4e7','#0b3d6b'],pr:'paglia'},
+ 'Mario':{sk:'#d9a27a',ha:'short',hc:'#1c1410',su:'#2e8b57',ti:'#fff',bg:['#6dd3a0','#1c6b48'],pr:'cap'},
+ 'AndrewTT':{sk:'#f0c4a0',ha:'side',hc:'#3a2a1a',su:'#23262e',ti:'#d62839',bg:['#9aa5b1','#2b2f36'],pr:'auto'},
+ 'stifson':{sk:'#e8b894',ha:'short',hc:'#8a5a2b',su:'#0f3d3e',ti:'#5fd38d',bg:['#ff9f1c','#d62839'],pr:'razzo'},
+ 'Maria':{sk:'#f0c4a0',ha:'long',hc:'#5a2e1e',su:'#d62839',ti:'#fff',bg:['#ffb3c1','#c06c84'],pr:'quaderno'},
+ 'Mark Lenders':{sk:'#e8b894',ha:'spiky',hc:'#161616',su:'#e04a3a',ti:'#fff',bg:['#ffe27a','#ff8c42'],pr:'fascia'},
+ 'Riccardo':{sk:'#e8b894',ha:'side',hc:'#3b3b3b',su:'#4a1626',ti:'#e6c27a',bg:['#8c2f4a','#3a0f1e'],pr:'vino',be:'#3b3b3b'}
+};
+var CFGEX={sk:'#b4b9cc',ha:'short',hc:'#5a607a',su:'#555a6b',ti:'#8890a8',bg:['#4a5270','#2a3150'],pr:''};
+var CAPELLI={
+ short:'<path d="M39 50 Q37 25 60 25 Q83 25 81 50 Q76 37 60 37 Q44 37 39 50Z" fill="#H"/>',
+ side:'<path d="M38 52 Q34 22 64 24 Q86 26 82 50 Q74 34 52 38 Q42 42 38 52Z" fill="#H"/>',
+ curly:'<g fill="#H"><circle cx="42" cy="36" r="9"/><circle cx="52" cy="29" r="9"/><circle cx="64" cy="28" r="9"/><circle cx="75" cy="34" r="9"/><circle cx="80" cy="45" r="8"/><circle cx="40" cy="47" r="8"/></g>',
+ long:'<path d="M38 56 Q32 20 60 22 Q88 20 82 56 L85 84 Q76 76 74 50 Q60 40 46 50 Q44 76 35 84Z" fill="#H"/>',
+ spiky:'<path d="M38 48 L36 28 L46 36 L50 20 L58 33 L66 18 L70 34 L80 24 L82 48 Q70 38 60 38 Q48 38 38 48Z" fill="#H"/>',
+ bald:'<ellipse cx="52" cy="34" rx="7" ry="3" fill="#fff" opacity=".25"/>'
+};
+function sh(x,y,c){return '<path d="M'+x+' '+y+' h14 v10 q0 8 -7 11 q-7 -3 -7 -11z" fill="'+c+'" stroke="#fff" stroke-width="1.5"/>'}
+var PROPS={
+ cuffie:'<path d="M37 56 Q36 20 60 20 Q84 20 83 56" fill="none" stroke="#222" stroke-width="5" stroke-linecap="round"/><rect x="31" y="46" width="10" height="20" rx="4" fill="#ff4d6d"/><rect x="79" y="46" width="10" height="20" rx="4" fill="#ff4d6d"/>',
+ banana:'<path d="M88 106 Q88 80 110 72 Q108 96 94 110Z" fill="#ffd23f" stroke="#a37100" stroke-width="2"/><rect x="86" y="106" width="14" height="6" rx="2" fill="#2b2f36"/>',
+ coppa:'<path d="M80 82 h20 v10 q0 10 -10 12 q-10 -2 -10 -12z" fill="#ffd166" stroke="#a37100" stroke-width="2"/><rect x="87" y="104" width="6" height="6" fill="#a37100"/><rect x="82" y="110" width="16" height="5" rx="2" fill="#a37100"/><path d="M80 86 q-8 0 -6 8 q2 4 7 4M100 86 q8 0 6 8 q-2 4 -7 4" fill="none" stroke="#a37100" stroke-width="2"/>',
+ badges:sh(80,92,'#ffd166')+sh(94,98,'#2fa4e7')+sh(14,96,'#5fd38d'),
+ paglia:'<ellipse cx="60" cy="30" rx="36" ry="9" fill="#e8c36a" stroke="#a37100" stroke-width="2"/><path d="M42 30 Q42 6 60 6 Q78 6 78 30Z" fill="#f2d98a" stroke="#a37100" stroke-width="2"/><rect x="42" y="23" width="36" height="6" fill="#d62839"/>',
+ cap:'<path d="M40 40 Q42 14 62 14 Q82 14 82 40Z" fill="#2e8b57" stroke="#1c5a3a" stroke-width="2"/><path d="M60 38 L98 40 Q98 46 60 44Z" fill="#1c5a3a"/><circle cx="62" cy="26" r="5" fill="#fff"/><circle cx="94" cy="96" r="14" fill="#ffd166"/><text x="94" y="102" font-size="18" font-weight="900" text-anchor="middle" fill="#1d2a52">?</text>',
+ auto:'<rect x="42" y="47" width="16" height="9" rx="3" fill="#111"/><rect x="62" y="47" width="16" height="9" rx="3" fill="#111"/><rect x="58" y="49" width="4" height="2" fill="#111"/><g transform="translate(66,92)"><path d="M0 18 L4 8 Q8 4 18 4 L32 4 Q38 6 42 12 L46 18Z" fill="#d62839"/><circle cx="12" cy="20" r="5" fill="#111"/><circle cx="36" cy="20" r="5" fill="#111"/><text x="24" y="14" font-size="8" font-weight="900" fill="#fff" text-anchor="middle">TT</text></g>',
+ razzo:'<g transform="rotate(35 92 28)"><path d="M92 6 Q102 20 100 38 L84 38 Q82 20 92 6Z" fill="#f2f2f2" stroke="#999" stroke-width="1.5"/><circle cx="92" cy="22" r="4" fill="#3aa0ff"/><path d="M84 30 L76 42 L84 40Z M100 30 L108 42 L100 40Z" fill="#d62839"/><path d="M86 38 L92 54 L98 38Z" fill="#ff9f1c"/></g>',
+ quaderno:'<g transform="rotate(10 88 97)"><rect x="76" y="82" width="24" height="30" rx="3" fill="#ffd166" stroke="#a37100" stroke-width="2"/><path d="M82 92 h12 M82 98 h12 M82 104 h8" stroke="#a37100" stroke-width="2"/></g><path d="M24 16 l3 7 7 1 -5 5 1 7 -6 -4 -6 4 1 -7 -5 -5 7 -1z" fill="#fff"/>',
+ fascia:'<path d="M38 40 Q60 30 82 40 L82 46 Q60 36 38 46Z" fill="#fff"/><circle cx="60" cy="38" r="4" fill="#d62839"/><text x="60" y="114" font-size="16" font-weight="900" text-anchor="middle" fill="#fff">9</text>',
+ vino:'<path d="M84 80 h18 q0 16 -9 18 q-9 -2 -9 -18z" fill="#fff" fill-opacity=".25" stroke="#fff" stroke-width="2"/><path d="M85 88 h16 q0 9 -8 11 q-8 -2 -8 -11z" fill="#8c1230"/><path d="M93 98 v12 M86 112 h14" stroke="#fff" stroke-width="2"/>'
+};
+var AVN=0;
+function av(name,size,ex){
+  var c=ex?CFGEX:(CFG[name]||CFGEX),id='av'+(AVN++),s='';
+  s+='<svg viewBox="0 0 120 120" width="'+size+'" height="'+size+'" aria-hidden="true"><defs><linearGradient id="'+id+'g" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="'+c.bg[0]+'"/><stop offset="1" stop-color="'+c.bg[1]+'"/></linearGradient><clipPath id="'+id+'c"><circle cx="60" cy="60" r="60"/></clipPath></defs>';
+  s+='<g clip-path="url(#'+id+'c)"><rect width="120" height="120" fill="url(#'+id+'g)"/>';
+  s+='<path d="M10 124 Q14 88 60 84 Q106 88 110 124Z" fill="'+c.su+'"/><path d="M47 85 L60 106 L73 85Z" fill="#fff"/><path d="M57 92 L63 92 L65 112 L60 118 L55 112Z" fill="'+c.ti+'"/>';
+  s+='<rect x="52" y="70" width="16" height="18" fill="'+c.sk+'"/><circle cx="39" cy="54" r="4.5" fill="'+c.sk+'"/><circle cx="81" cy="54" r="4.5" fill="'+c.sk+'"/><ellipse cx="60" cy="52" rx="21" ry="25" fill="'+c.sk+'"/>';
+  if(c.be)s+='<path d="M40 56 Q60 90 80 56 Q76 74 60 76 Q44 74 40 56Z" fill="'+c.be+'"/>';
+  s+=(CAPELLI[c.ha]||'').replace(/#H/g,c.hc);
+  s+='<circle cx="52" cy="52" r="2.4" fill="#222"/><circle cx="68" cy="52" r="2.4" fill="#222"/><path d="M47 45 L56 44 M64 44 L73 45" stroke="'+c.hc+'" stroke-width="2" stroke-linecap="round"/><path d="M52 64 Q60 70 68 64" fill="none" stroke="#7a3b2e" stroke-width="2.2" stroke-linecap="round"/>';
+  s+=PROPS[c.pr]||'';
+  return s+'</g></svg>';
+}
+var STORIE={
+ 'DJ Cst Brazil':['Il Ritorno','Esordio nel 2021/22 con il Rapid Micatant (e il nome StaCo Atto): 5° con 51 punti. Poi cinque anni lontano dalla lega, il tempo di cambiare nome, squadra e fuso orario. Nel 2026/27 rientra come DJ Cst Brazil con l\'Oranje VC: la voglia è la stessa, la classifica è tutta da riscrivere.'],
+ 'apo':['La Dinastia','Due titoli di fila, 2021/22 e 2022/23, con il Wakanda: nessun altro ne ha vinti due. Poi la discesa: 6° nel 2023/24, ultimo nel 2024/25 e ultimo anche nel 2025/26 con il New Wakanda. Quest\'anno riparte con l\'Apo Team: le dinastie, a volte, tornano.'],
+ 'ser':['Il Guerriero Paziente','Sempre con la WOA, sempre al suo posto: 4° nel 2021/22, 2° nel 2022/23, 9° nel 2023/24, 5° nel 2024/25. Poi, nel 2025/26, la Gioberti Cup con 65 punti. Quattro anni di attesa, un trofeo.'],
+ 'RikyArma':['L\'Uomo delle Mille Squadre','Ha cambiato più squadre di chiunque: Tequila Bum Bum nel 2021/22 (7°), poi Grodah. Piazzamenti sempre in salita: 6°, 3°, 6° e infine il 2° posto del 2025/26, più la Coppa Campioni vinta 4-1 in finale su Mugiwara. Cambia le squadre, ma i risultati migliorano.'],
+ 'Leanzino':['Da Solo, Poi in Coppia','Mugiwara dal primo anno: 2° con 65 punti nel 2021/22, assente nel 2022/23, poi il titolo del 2023/24 con 57 punti. Finalista di Coppa Campioni nel 2025/26. Dopo anni da solo, nel 2026/27 si mette in società con Mario alla The Blue Brothers.'],
+ 'Mario':['Il Nuovo Socio','Debutta nel 2026/27 in coppia con Leanzino alla The Blue Brothers. La sua storia è ancora da scrivere: stiamo verificando se ha mai giocato da solo.'],
+ 'AndrewTT':['Il Metronomo','Esordio da Andrew_Indium con il Dio Brigante: 3° con 64 punti nel 2021/22. Poi Real Madrink: 4°, 7°, 3° e 6°. Mai un titolo, due podi e sempre lì, nel gruppo. Il nome è cambiato (colpa dell\'Audi TT), il posto no.'],
+ 'stifson':['Il Razzo','Arriva nel 2024/25 e parte subito a razzo: 2° con 67 punti nella Costa Cup, a soli 3 dal titolo. Nel 2025/26 è 4°, a pari punti con il 3°. Un esordio così non si dimentica.'],
+ 'Maria':['La Novizia','Nuova e giovane: esordio nel 2025/26 con la Raimon Junior High e subito sul podio, 3° con 52 punti. Ora guida l\'AFA Seleccion.'],
+ 'Mark Lenders':['La Giovane Promessa','Nuovo e giovane: esordio nel 2025/26 con la Mariana Coneja, 5° con 50 punti. Seconda stagione in arrivo: il tiro più forte della lega è ancora da calibrare.'],
+ 'Riccardo':['Il Sommelier','Nel 2023/24 con il Barolo: 4° con 53 punti (il Barolo, nel 2022/23, era di Nobile). Poi due anni di assenza e nel 2026/27 il ritorno con l\'Atletico Ma Non Troppo.']
+};
+function percorso(name){
+  var R=[];
+  STORICO.slice().reverse().forEach(function(e){
+    if(!e.t)return;
+    e.t.forEach(function(r,i){if(can(r[1])===name)R.push({y:e.y,c:e.c,t:r[0],p:i+1,pt:r[2],v:can(e.v[1])===name})});
+  });
+  return R;
+}
+function titoli(name){return STORICO.filter(function(e){return can(e.v[1])===name}).length}
+function scontri(name){
+  var K={};
+  function k(o){return K[o]||(K[o]={dav:0,die:0,v:0,n:0,p:0})}
+  STORICO.forEach(function(e){
+    if(!e.t||e.fin)return;var me=-1;
+    e.t.forEach(function(r,i){if(can(r[1])===name)me=i});
+    if(me<0)return;
+    e.t.forEach(function(r,i){var o=can(r[1]);if(o===name)return;var x=k(o);if(me<i)x.dav++;else x.die++});
+  });
+  var T=CUR[name];
+  if(T&&D){
+    var TC={};Object.keys(CUR).forEach(function(c){if(c!=='Mario')TC[CUR[c].toLowerCase()]=c});
+    function add(a,b,ga,gb){
+      var me=a.toLowerCase()===T.toLowerCase(),yo=b.toLowerCase()===T.toLowerCase();
+      if(!me&&!yo)return;var opp=me?b:a,o=TC[opp.toLowerCase()];if(!o||CUR[o]===T)return;
+      var x=k(o),f=me?ga:gb,s=me?gb:ga;if(f>s)x.v++;else if(f===s)x.n++;else x.p++;
+    }
+    D.cal.lega.forEach(function(g){g.m.forEach(function(m){if(m[4]==='-')return;var s=m[4].split('-').map(Number);add(m[0],m[3],s[0],s[1])})});
+    D.cal.cup.forEach(function(g){g.m.forEach(function(m){if(m[5]==='-')return;var s=m[5].split('-').map(Number);add(m[1],m[4],s[0],s[1])})});
+  }
+  var L=Object.keys(K).filter(function(o){var x=K[o];return x.dav+x.die+x.v+x.n+x.p>0});
+  L.sort(function(a,b){var x=K[a],y=K[b];return (y.dav+y.die+y.v+y.n+y.p)-(x.dav+x.die+x.v+x.n+x.p)||(a<b?-1:1)});
+  if(!L.length)return '';
+  return '<h5>Scontri diretti</h5><table><tr><th style="text-align:left">Rivale</th><th>Classifiche<br>davanti–dietro</th><th>2026/27<br>V–N–P</th></tr>'
+   +L.map(function(o){var x=K[o],cl=(x.dav+x.die)?x.dav+'–'+x.die:'–',st=(x.v+x.n+x.p)?x.v+'–'+x.n+'–'+x.p:'–';
+     return '<tr><td style="text-align:left;font-weight:700">'+esc(lab(al(o)))+'</td><td>'+cl+'</td><td>'+st+'</td></tr>'}).join('')+'</table>'
+   +'<div class="nota" style="padding:6px 0 0">Classifiche: quante stagioni ha chiuso davanti o dietro a lui, nelle stagioni in cui c\'erano entrambi. 2026/27: campionato e Champions Cup, vittorie, pareggi e sconfitte per gol.</div>';
+}
+function scheda(name,ex){
+  var c=CFG[name],R=percorso(name),T=titoli(name),st=STORIE[name];
+  var tag=st?st[0]:(name==='17peppe17'?'L\'Ultimo Campione':'Ha Lasciato la Lega');
+  var txt=st?st[1]:(name==='17peppe17'?'Ha vinto la Costa Cup 2024/25 con il PornHub FC (70 punti) e poi ha lasciato la lega: ha salutato da campione.':'Ha lasciato la lega, ma resta nell\'albo con quello che ha fatto.');
+  var best=R.length?Math.min.apply(null,R.map(function(r){return r.p})):null;
+  var h='<div class="sh-top">'+av(name,112,ex)+'<div><div class="sh-tag">'+esc(tag)+'</div><div class="sh-nome">'+esc(lab(al(name)))+'</div><div class="sub">'+(CUR[name]?'Oggi: '+esc(CUR[name]):'Fuori dalla lega')+'</div></div></div>';
+  h+='<div class="kp"><div><small>Titoli</small><b>'+T+'</b></div><div><small>Stagioni</small><b>'+R.length+'</b></div><div><small>Miglior piazzamento</small><b>'+(best?best+'°':'–')+'</b></div></div>';
+  h+='<p class="sh-st">'+esc(txt)+'</p>';
+  if(R.length)h+='<h5>Il percorso</h5><table><tr><th style="text-align:left">Stagione</th><th style="text-align:left">Squadra</th><th>Pos.</th><th>Punti</th></tr>'+R.map(function(r){return '<tr><td style="text-align:left">'+r.y+'<small>'+esc(r.c)+'</small></td><td style="text-align:left;font-weight:700">'+esc(r.t)+'</td><td>'+(r.v?'🏆 ':'')+r.p+'°</td><td>'+(r.pt!=null?r.pt:'–')+'</td></tr>'}).join('')+'</table>';
+  h+=scontri(name);
+  return h;
+}
+function stato(){
+  return '<div class="card"><div class="sub" style="margin:0">Stagione 2026/27 · Campionato: giocata la '+lastN(D.cal.lega,false)+'ª giornata · Champions Cup: '+(lastN(D.cal.cup,true)?(lastN(D.cal.cup,true)===1?'giocata 1 giornata su ':'giocate '+lastN(D.cal.cup,true)+' giornate su ')+D.cal.cup.length:'parte alla prossima giornata')+'</div></div>';
+}
+function allenatori(){
+  var cur=ORD.slice().sort(function(a,b){return titoli(b)-titoli(a)||ORD.indexOf(a)-ORD.indexOf(b)});
+  var ex={};STORICO.forEach(function(e){if(!e.t)return;e.t.forEach(function(r){var n=can(r[1]);if(!CFG[n])ex[n]=1})});
+  var exl=Object.keys(ex).sort(function(a,b){return titoli(b)-titoli(a)||(a<b?-1:1)});
+  var h='<h3 class="hh">Gli allenatori</h3><div class="cg">'+cur.map(function(n){var t=titoli(n);
+    return '<button class="cb" data-co="'+esc(n)+'">'+av(n,84)+'<b>'+esc(n)+'</b><small>'+(t?'🏆 '.repeat(Math.min(t,3))+t+(t===1?' titolo':' titoli'):esc(CUR[n]))+'</small></button>'}).join('')+'</div>';
+  h+='<h3 class="hh" style="margin-top:20px">Chi ha lasciato</h3><div class="cg ex">'+exl.map(function(n){var t=titoli(n);
+    return '<button class="cb" data-co="'+esc(n)+'" data-ex="1">'+av(n,64,true)+'<b>'+esc(n)+'</b><small>'+(t?'🏆 '+t+(t===1?' titolo':' titoli'):'ex')+'</small></button>'}).join('')+'</div>';
+  return h;
+}
+function apri(n,ex){
+  var m=document.getElementById('mo');
+  if(!m){m=document.createElement('div');m.id='mo';m.className='mo';document.body.appendChild(m);
+    m.addEventListener('click',function(e){if(e.target===m||e.target.className==='x')chiudi()});
+    document.addEventListener('keydown',function(e){if(e.key==='Escape')chiudi()})}
+  m.innerHTML='<div class="sheet"><button class="x" aria-label="Chiudi">✕</button>'+scheda(n,ex)+'</div>';
+  m.classList.add('on');document.body.style.overflow='hidden';m.scrollTop=0;
+}
+function chiudi(){var m=document.getElementById('mo');if(m)m.classList.remove('on');document.body.style.overflow=''}
+document.addEventListener('click',function(e){var b=e.target.closest&&e.target.closest('[data-co]');if(b)apri(b.getAttribute('data-co'),!!b.getAttribute('data-ex'))});
 fetch('../data.json',{cache:'no-store'}).then(function(r){return r.json()}).then(function(d){d=window.CVPUB?CVPUB(d):d;
-  D=d;document.getElementById('al').innerHTML='<div class="card" style="background:none;border:0;padding:0;margin-bottom:6px"><h3 style="margin-bottom:12px">Le coppe in palio</h3>'+trofei()+'</div>'+storico()+recs();
+  D=d;document.getElementById('al').innerHTML=stato()+allenatori()+storico()+recs();
   document.getElementById('foot').textContent='Dati aggiornati al '+(D.cal.date||'');
 }).catch(function(){document.getElementById('al').innerHTML='<div class="err">Non riesco a leggere i dati.</div>'});
 })();
