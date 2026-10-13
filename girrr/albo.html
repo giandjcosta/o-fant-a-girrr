@@ -215,6 +215,8 @@ function recs(){
 var ALIAS={'Andrew_Indium':'AndrewTT','StaCo Atto':'DJ Cst Brazil'};
 var EX={'Barny':1,'Nobile':1,'Gingleton':1,'AleDmz':1,'Nicolas':1,'17peppe17':1,'SuperBrok':1,'Pep Mariola':1};
 function al(n){n=ALIAS[n]||n;return EX[n]?n+' · ex':n}
+/* nel tabellone di una stagione: nome di allora, con tra parentesi quello attuale */
+function alS(n){var c=ALIAS[n];return c?n+' ('+al(n)+')':al(n)}
 var STORICO=[
  {y:'2025/26',c:'Coppa Campioni',tipo:'Finale',fin:['Mugiwara','Leanzino',1,70,'Grodah','RikyArma',4,84],v:['Grodah','RikyArma']},
  {y:'2025/26',c:'Gioberti Cup',v:['WOA','ser'],t:[['WOA','ser',65],['Grodah','RikyArma',55],['Raimon Junior High','Maria',52],['Stif dc','stifson',52],['Mariana Coneja','Mark Lenders',50],['Real Madrink','AndrewTT',48],['Dynamo Loska','Pep Mariola',48],['Mugiwara','Leanzino',46],['Gli Spaesati','SuperBrok',46],['New Wakanda','apo',39]]},
@@ -231,10 +233,10 @@ function storico(){
    +ord.map(function(k){return '<span>🏆 '+esc(k)+' <b>'+cnt[k]+'</b></span>'}).join('')+'</div>';
   STORICO.forEach(function(e){
     var body='';
-    if(e.fin){var f=e.fin;body='<table><tr><td>'+esc(f[0])+'<small>'+esc(al(f[1]))+'</small></td><td><b>'+f[2]+' - '+f[6]+'</b><small>'+pt(f[3])+' - '+pt(f[7])+'</small></td><td>'+esc(f[4])+'<small>'+esc(al(f[5]))+'</small></td></tr></table>'}
+    if(e.fin){var f=e.fin;body='<table><tr><td>'+esc(f[0])+'<small>'+esc(alS(f[1]))+'</small></td><td><b>'+f[2]+' - '+f[6]+'</b><small>'+pt(f[3])+' - '+pt(f[7])+'</small></td><td>'+esc(f[4])+'<small>'+esc(alS(f[5]))+'</small></td></tr></table>'}
     else{body='<table><tr><th>#</th><th style="text-align:left">Squadra</th><th>Punti</th></tr>'
-      +e.t.map(function(r,i){return '<tr><td>'+(i+1)+'°</td><td style="text-align:left;font-weight:700">'+esc(r[0])+'<small>'+esc(al(r[1]))+'</small></td><td>'+(r[2]!=null?r[2]:'–')+'</td></tr>'}).join('')+'</table>'}
-    h+='<div class="card"><details><summary><span class="y">'+e.y+'</span><span><small>'+esc(e.c)+'</small><b>🏆 '+esc(e.v[0])+' · '+esc(al(e.v[1]))+'</b></span><span class="fr">›</span></summary>'+body+(e.nota?'<div class="nota">'+e.nota+'</div>':'')+'</details></div>';
+      +e.t.map(function(r,i){return '<tr><td>'+(i+1)+'°</td><td style="text-align:left;font-weight:700">'+esc(r[0])+'<small>'+esc(alS(r[1]))+'</small></td><td>'+(r[2]!=null?r[2]:'–')+'</td></tr>'}).join('')+'</table>'}
+    h+='<div class="card"><details><summary><span class="y">'+e.y+'</span><span><small>'+esc(e.c)+'</small><b>🏆 '+esc(e.v[0])+' · '+esc(alS(e.v[1]))+'</b></span><span class="fr">›</span></summary>'+body+(e.nota?'<div class="nota">'+e.nota+'</div>':'')+'</details></div>';
   });
   return h+'</div>';
 }
