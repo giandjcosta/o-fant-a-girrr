@@ -103,18 +103,18 @@ Punteggio: piu' e' alto, piu' conviene. Unisce valore e probabilita' di giocare.
 
 | Giocatore | Squadra | Stato | Avversario | Punteggio |
 |---|---|---|---|---|
-| Perri | Torino | Titolare | Udinese (C) | 42 |
+| Perri | Torino | Titolare | Udinese (C) | 49 |
 | Thiam | Monza | Panchina | Lazio (T) | 35 |
-| Mascardi | Torino | Panchina | Udinese (C) | 28 |
 | Tornqvist | Monza | Titolare | Lazio (T) | 21 |
+| Mascardi | Torino | Panchina | Udinese (C) | 21 |
 | Daffara | Parma | Panchina | Inter (T) | 15 |
 
 ### Difensori
 
 | Giocatore | Squadra | Stato | Avversario | Punteggio |
 |---|---|---|---|---|
-| Hainaut | Venezia | Titolare | Atalanta (T) | 87 |
-| Abankwah | Udinese | Panchina | Torino (T) | 84 |
+| Hainaut | Venezia | Titolare | Atalanta (T) | 92 |
+| Abankwah | Udinese | Panchina | Torino (T) | 82 |
 | Zè Pedro | Cagliari | Titolare | Juventus (C) | 78 |
 | Veiga D. | Lecce | Titolare | Bologna (C) | 77 |
 | Rodriguez Ju. | Cagliari | Titolare | Juventus (C) | 76 |
@@ -127,7 +127,7 @@ Punteggio: piu' e' alto, piu' conviene. Unisce valore e probabilita' di giocare.
 | Matic | Sassuolo | Titolare | Milan (C) | 83 |
 | Schmid | Frosinone | Titolare | Napoli (T) | 83 |
 | Winks | Cagliari | Titolare | Juventus (C) | 78 |
-| Fitz-Jim | Torino | Titolare | Udinese (C) | 76 |
+| Frendrup | Genoa | Titolare | Fiorentina (C) | 74 |
 
 ### Attaccanti
 
@@ -137,7 +137,7 @@ Punteggio: piu' e' alto, piu' conviene. Unisce valore e probabilita' di giocare.
 | Robinson J. | Monza | Titolare | Lazio (T) | 61 |
 | Ghedjemis | Frosinone | Titolare | Napoli (T) | 44 |
 | Enem | Bologna | Panchina | Lecce (T) | 30 |
-| Elphege | Parma | Riserva, ballottaggio | Inter (T) | 27 |
+| Kulenovic | Torino | Panchina | Udinese (C) | 30 |
 
 ## Correzioni da controllare
 
