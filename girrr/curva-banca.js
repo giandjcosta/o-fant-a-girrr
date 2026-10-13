@@ -758,11 +758,15 @@ function genera(D,SQ,ST,ms){
   }}catch(e){}
  }
 
- /* Girrr Sport rilancia: sotto i post della Lega e della Coppa, e sotto le indiscrezioni di Ciro */
- all.forEach(function(p){var rr=prng('tvt'+p.k),dm=(7+rr()*50)*60000;
-  if((p.a==='lega_ofantagirrr'||p.a==='champions_cup')&&p.tipo!=='x'&&/^(lega|gior|cc)/.test(p.k)&&rr()<0.7){var L=p.a==='lega_ofantagirrr'?['@lega_ofantagirrr giornata chiusa: tutti i risultati e la sala stampa su Girrr Sport. #GirrrSport','@lega_ofantagirrr comunicato ricevuto, lo rilanciamo in diretta. #GirrrSport','@lega_ofantagirrr preso nota. Ne parliamo in studio. #GirrrSport']:['@champions_cup comunicato ricevuto: la Coppa torna protagonista, ne parliamo in studio. #GirrrSport','@champions_cup rilanciamo l\'annuncio: occhi puntati sulla finale. #GirrrSport'];if(p.ts+dm<=ms)p.r.push({a:'girrr_sport',x:L[Math.floor(rr()*L.length)],ts:p.ts+dm})}
-  if(p.a==='ciro_trattativa'&&/^(mk|sw)/.test(p.k)&&rr()<0.5){var C=['@ciro_trattativa rilanciamo: se è vero, è una delle indiscrezioni più forti del mercato. #GirrrSport','@ciro_trattativa notizia da verificare, ma le fonti sono quelle di sempre. #GirrrSport','@ciro_trattativa ne parliamo in studio nel prossimo collegamento. #GirrrSport'];if(p.ts+dm<=ms)p.r.push({a:'girrr_sport',x:C[Math.floor(rr()*C.length)],ts:p.ts+dm})}
-  p.r.sort(function(x,y){return x.ts-y.ts})});
+ /* Girrr Sport: commenti senza tag sotto i post ufficiali, e propri cori che taggano Lega, Coppa o Ciro rilanciando il loro post */
+ var extraTV=[];
+ all.slice().forEach(function(p){var rr=prng('tvt'+p.k),dm=(7+rr()*50)*60000,uf=p.a==='lega_ofantagirrr'||p.a==='champions_cup',ci=p.a==='ciro_trattativa'&&/^(mk|sw)/.test(p.k);
+  if(!(uf&&/^(lega|cc)/.test(p.k))&&!ci)return;
+  if(uf&&rr()<0.7){var L=['Giornata chiusa: ne parliamo nello speciale post partita su Girrr Sport.','Ne parliamo nel nostro programma di stasera.','Preso nota, in studio ne discutiamo con gli ospiti.','Lo rilanciamo nello speciale dopo la giornata.'];if(p.ts+dm<=ms)p.r.push({a:'girrr_sport',x:L[Math.floor(rr()*L.length)],ts:p.ts+dm});p.r.sort(function(x,y){return x.ts-y.ts})}
+  var tg=p.a==='lega_ofantagirrr'?'@lega_ofantagirrr':p.a==='champions_cup'?'@champions_cup':'@ciro_trattativa';
+  var X=ci?[tg+' ha lanciato l\'indiscrezione: se è vera cambia il mercato. Ne parliamo nel nostro programma. #GirrrSport',tg+' notizia forte di mercato, la rilanciamo e ne discutiamo in studio. #GirrrSport']:p.a==='lega_ofantagirrr'?[tg+' ha chiuso la giornata: ne parliamo nello speciale post partita. #GirrrSport',tg+' comunica i risultati: li commentiamo con gli ospiti nel nostro programma. #GirrrSport']:[tg+' ha parlato: ne discutiamo nel nostro programma dedicato alla Coppa. #GirrrSport',tg+' torna in primo piano: lo rilanciamo e ne parliamo in studio. #GirrrSport'];
+  if(rr()<(ci?0.5:0.6))extraTV.push({k:'tv:'+p.k,x:X[Math.floor(rr()*X.length)],ts:p.ts+(25+rr()*70)*60000,q:{a:p.a,x:(p.x||'').slice(0,240),ts:p.ts}})});
+ extraTV.forEach(function(e){var n0=all.length;gp(e.k,e.x,e.ts);if(all.length>n0)all[all.length-1].quote=e.q});
  /* veri scambi */
  (D.scambi||[]).forEach(function(s,i){var T=Date.parse(s.t);if(!(T<=ms))return;var cc={a:s.a,b:s.b,da:s.da,db:s.db};var p={k:'sc:'+i,a:'ciro_trattativa',x:riempi(SCAMBIO[i%2],cc,null),ts:T,r:[],ap:20,ril:6,v:900};all.push(p)});
  all.forEach(function(p){if(p.r)p.r=dedup(p.r)});
