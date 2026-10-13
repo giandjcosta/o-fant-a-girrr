@@ -108,6 +108,7 @@ td small{color:var(--sub);font-weight:600;display:block;font-size:11px}
 .sh-top{display:flex;gap:14px;align-items:center;padding-right:36px}
 .sh-tag{font-weight:900;font-size:11px;letter-spacing:.25em;color:var(--hi);text-transform:uppercase}
 .sh-nome{font-weight:900;font-size:clamp(24px,6vw,32px);line-height:1.05;margin-top:2px}
+.fm{font-weight:700;font-size:11px;letter-spacing:.04em;color:var(--sub);white-space:nowrap}
 .sh-st{margin:14px 0 4px;font-weight:600;font-size:15px;line-height:1.5}
 .sheet h5{font-weight:900;font-size:11px;letter-spacing:.3em;color:var(--hi);text-transform:uppercase;margin:18px 0 6px}
 .sheet table{margin:0}.sheet td,.sheet th{padding-left:6px;padding-right:6px}
@@ -213,6 +214,7 @@ function storico(){
 }
 /* ===== Allenatori: illustrazioni, storie, scontri ===== */
 function can(n){return ALIAS[n]||n}
+var FORMER={'AndrewTT':'Andrew_Indium','DJ Cst Brazil':'StaCo Atto'};
 var CUR={'DJ Cst Brazil':'Oranje VC','Maria':'AFA SELECCION','apo':'Apo team','Riccardo':'Atletico ma non troppo','RikyArma':'Grodah','Mark Lenders':'Mariana Coneja','AndrewTT':'Real Madrink','stifson':'stif dc','Leanzino':'The Blue brothers','Mario':'The Blue brothers','ser':'WOA'};
 var ORD=['apo','ser','RikyArma','Leanzino','Mario','AndrewTT','stifson','Maria','Mark Lenders','Riccardo','DJ Cst Brazil'];
 function lab(n){return n==='Leanzino'?'Leanzino & Mario':n}
@@ -267,7 +269,7 @@ function av(name,size,ex){
 }
 var STORIE={
  'DJ Cst Brazil':['Il Ritorno','Esordio nel 2021/22 con il Rapid Micatant (e il nome StaCo Atto): 5° con 51 punti. Poi cinque anni lontano dalla lega, il tempo di cambiare nome, squadra e fuso orario. Nel 2026/27 rientra come DJ Cst Brazil con l\'Oranje VC: la voglia è la stessa, la classifica è tutta da riscrivere.'],
- 'apo':['La Dinastia','Due titoli di fila, 2021/22 e 2022/23, con il Wakanda: nessun altro ne ha vinti due. Poi la discesa: 6° nel 2023/24, ultimo nel 2024/25 e ultimo anche nel 2025/26 con il New Wakanda. Quest\'anno riparte con l\'Apo Team: le dinastie, a volte, tornano.'],
+ 'apo':['Il Re dei Traslochi','Due titoli di fila con il Wakanda, 2021/22 e 2022/23: nessun altro ne ha vinti due. Poi il crollo: 6° nel 2023/24 e ultimo nel 2024/25. Dopo la caduta ha cambiato squadra: New Wakanda nel 2025/26 (ancora ultimo, con 39 punti) e ora Apo Team. È l\'allenatore con più squadre di tutti: tre in cinque anni, sempre con lo stesso account.'],
  'ser':['Il Guerriero Paziente','Sempre con la WOA, sempre al suo posto: 4° nel 2021/22, 2° nel 2022/23, 9° nel 2023/24, 5° nel 2024/25. Poi, nel 2025/26, la Gioberti Cup con 65 punti. Quattro anni di attesa, un trofeo.'],
  'RikyArma':['La Scalata','Un solo cambio di squadra, ma quello giusto: da Tequila Bum Bum (7° nel 2021/22) a Grodah, e da lì in salita. 6° nel 2022/23, 3° nel 2023/24, 6° nel 2024/25 e 2° nel 2025/26, più la Coppa Campioni vinta 4-1 in finale su Mugiwara.'],
  'Leanzino':['Da Solo, Poi in Coppia','Mugiwara dal primo anno: 2° con 65 punti nel 2021/22, assente nel 2022/23, poi il titolo del 2023/24 con 57 punti. Finalista di Coppa Campioni nel 2025/26. Dopo anni da solo, nel 2026/27 si mette in società con Mario alla The Blue Brothers.'],
@@ -320,7 +322,7 @@ function scheda(name,ex){
   var tag=st?st[0]:(name==='17peppe17'?'L\'Ultimo Campione':'Ha Lasciato la Lega');
   var txt=st?st[1]:(name==='17peppe17'?'Ha vinto la Costa Cup 2024/25 con il PornHub FC (70 punti) e poi ha lasciato la lega: ha salutato da campione.':'Ha lasciato la lega, ma resta nell\'albo con quello che ha fatto.');
   var best=R.length?Math.min.apply(null,R.map(function(r){return r.p})):null;
-  var h='<div class="sh-top">'+av(name,112,ex)+'<div><div class="sh-tag">'+esc(tag)+'</div><div class="sh-nome">'+esc(lab(al(name)))+'</div><div class="sub">'+(CUR[name]?'Oggi: '+esc(CUR[name]):'Fuori dalla lega')+'</div></div></div>';
+  var h='<div class="sh-top">'+av(name,112,ex)+'<div><div class="sh-tag">'+esc(tag)+'</div><div class="sh-nome">'+esc(lab(al(name)))+(FORMER[name]?' <span class="fm">Formerly '+esc(FORMER[name])+'</span>':'')+'</div><div class="sub">'+(CUR[name]?'Oggi: '+esc(CUR[name]):'Fuori dalla lega')+'</div></div></div>';
   h+='<div class="kp"><div><small>Titoli</small><b>'+T+'</b></div><div><small>Stagioni</small><b>'+R.length+'</b></div><div><small>Miglior piazzamento</small><b>'+(best?best+'°':'–')+'</b></div></div>';
   h+='<p class="sh-st">'+esc(txt)+'</p>';
   if(R.length)h+='<h5>Il percorso</h5><table><tr><th style="text-align:left">Stagione</th><th style="text-align:left">Squadra</th><th>Pos.</th><th>Punti</th></tr>'+R.map(function(r){return '<tr><td style="text-align:left">'+r.y+'<small>'+esc(r.c)+'</small></td><td style="text-align:left;font-weight:700">'+esc(r.t)+'</td><td>'+(r.v?'🏆 ':'')+r.p+'°</td><td>'+(r.pt!=null?r.pt:'–')+'</td></tr>'}).join('')+'</table>';
