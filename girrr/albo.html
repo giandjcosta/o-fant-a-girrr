@@ -280,6 +280,19 @@ var STORIE={
  'Mark Lenders':['La Giovane Promessa','Esordio nel 2025/26 con la Mariana Coneja: 5° con 50 punti. Ora è al secondo anno: il tiro più forte della lega è ancora da calibrare.'],
  'Riccardo':['Il Sommelier','Nel 2023/24 con il Barolo: 4° con 53 punti (il Barolo, nel 2022/23, era di Nobile). Poi due anni di assenza e nel 2026/27 il ritorno con l\'Atletico Ma Non Troppo.']
 };
+var AMB={
+ 'DJ Cst Brazil':'Una stagione sola alle spalle e un 5° posto da migliorare: il primo obiettivo è chiudere sopra il vecchio StaCo Atto.',
+ 'apo':'Risalire dal fondo: due titoli in bacheca e due ultimi posti di fila vogliono dire una sola cosa, riprendersi la dinastia.',
+ 'ser':'Confermarsi. Nella sua storia i risultati sono andati su e giù (dal 9° al 1°): ora deve dimostrare che il titolo non era un caso.',
+ 'RikyArma':'Il titolo di campionato. Ha già la Coppa Campioni e una scalata fatta di 7°, 6°, 3°, 6° e 2°: manca solo il gradino più alto.',
+ 'Leanzino':'Tornare in alto con Mario: dopo il titolo del 2023/24 è passato dal 4° all\'8° posto e ora cambia formula per invertire la rotta.',
+ 'Mario':'Per ora si fa conoscere: debutta in coppia e punta a non far rimpiangere la Mugiwara.',
+ 'AndrewTT':'Il primo titolo. È il più costante della lega (sempre tra il 3° e il 7° posto, 4,6° di media) e la domanda è quando farà il salto.',
+ 'stifson':'Il titolo, e presto: due anni, 2° e 4°, media di 3° posto. Per ora nessuno parte meglio di lui.',
+ 'Maria':'Confermare il podio del debutto. Un 3° posto al primo anno alza l\'asticella.',
+ 'Mark Lenders':'Salire dal 5° del debutto: il secondo anno è quello in cui si capisce se la promessa è tale.',
+ 'Riccardo':'Ritrovare il 4° posto del 2023/24, o fare meglio, dopo due anni fuori.'
+};
 function percorso(name){
   var R=[];
   STORICO.slice().reverse().forEach(function(e){
@@ -325,6 +338,7 @@ function scheda(name,ex){
   var h='<div class="sh-top">'+av(name,112,ex)+'<div><div class="sh-tag">'+esc(tag)+'</div><div class="sh-nome">'+esc(lab(al(name)))+(FORMER[name]?' <span class="fm">Formerly '+esc(FORMER[name])+'</span>':'')+'</div><div class="sub">'+(CUR[name]?'Oggi: '+esc(CUR[name]):'Fuori dalla lega')+'</div></div></div>';
   h+='<div class="kp"><div><small>Titoli</small><b>'+T+'</b></div><div><small>Stagioni</small><b>'+R.length+'</b></div><div><small>Miglior piazzamento</small><b>'+(best?best+'°':'–')+'</b></div></div>';
   h+='<p class="sh-st">'+esc(txt)+'</p>';
+  if(AMB[name])h+='<h5>Dove punta <span class="fm">(a leggere i numeri)</span></h5><p class="sh-st" style="margin-top:4px">'+esc(AMB[name])+'</p>';
   if(R.length)h+='<h5>Il percorso</h5><table><tr><th style="text-align:left">Stagione</th><th style="text-align:left">Squadra</th><th>Pos.</th><th>Punti</th></tr>'+R.map(function(r){return '<tr><td style="text-align:left">'+r.y+'<small>'+esc(r.c)+'</small></td><td style="text-align:left;font-weight:700">'+esc(r.t)+'</td><td>'+(r.v?'🏆 ':'')+r.p+'°</td><td>'+(r.pt!=null?r.pt:'–')+'</td></tr>'}).join('')+'</table>';
   h+=scontri(name);
   return h;
