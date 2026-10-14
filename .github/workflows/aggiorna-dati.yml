@@ -34,6 +34,9 @@ jobs:
       - name: Infortunati, quotazioni e probabili formazioni
         continue-on-error: true
         run: python3 scripts/aggiorna_prossima.py
+      - name: Probabili formazioni, seconda fonte (Gazzetta) e media pesata
+        continue-on-error: true
+        run: python3 scripts/aggiorna_fonti.py
       - name: Rifaccio il riepilogo
         run: python3 scripts/riepilogo.py
       - name: Totogirrr (quote, risultati, pagamenti e ping al database)
