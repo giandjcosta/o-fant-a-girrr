@@ -589,7 +589,7 @@ function ctxDi(D,SQ,ST,seed){
  return function(){
   var c={};c.sq=pick(r,SQ);do{c.sq2=pick(r,SQ)}while(c.sq2===c.sq);c.all=MISTER[c.sq]||c.sq;c.all2=MISTER[c.sq2]||c.sq2;c.top=(ST.cls&&ST.cls[0]&&ST.cls[0].n)||c.sq;
   c.gol=1+Math.floor(r()*4);c.f=(window.CVS&&CVS.FATTI&&CVS.FATTI.length)?pick(r,CVS.FATTI):'questa lega ha una storia lunga';
-  var g=ids.length?NM[pick(r,ids)]:{n:'il bomber',sq:c.sq};c.gio=g.n;c.gio_sq=g.sq;
+  var g=ids.length?NM[pick(r,ids)]:{n:'il bomber',sq:c.sq};var mie=ids.filter(function(i){return NM[i].sq===c.sq});if(mie.length)g=NM[mie[Math.floor(r()*mie.length)]];c.gio=g.n;c.gio_sq=g.sq;
   var ij=(D.inj||[]).filter(function(i){return NM[i.id]});
   var j=ij.length?pick(r,ij):null;c.inj=j?j.n:'il centravanti';c.inj_sq=j?NM[j.id].sq:c.sq;
   var pos=ST.cls.map(function(t){return t.n}).indexOf(c.sq);c.pos=pos<0?'?':pos+1;
