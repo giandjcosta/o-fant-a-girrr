@@ -25,6 +25,9 @@ jobs:
           python-version: "3.12"
       - name: Leggo statistiche e voti
         run: python3 scripts/aggiorna_dati.py
+      - name: Calendario di Serie A
+        continue-on-error: true
+        run: python3 scripts/aggiorna_calendario.py
       - name: Infortunati, quotazioni e probabili formazioni
         continue-on-error: true
         run: python3 scripts/aggiorna_prossima.py
