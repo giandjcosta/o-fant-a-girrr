@@ -127,11 +127,11 @@ Punteggio: piu' e' alto, piu' conviene. Unisce valore e probabilita' di giocare.
 
 | Giocatore | Squadra | Stato | Avversario | Punteggio |
 |---|---|---|---|---|
-| Lontani | Parma | Titolare | Inter (T) | 62 |
-| Robinson J. | Monza | Titolare | Lazio (T) | 61 |
+| Lontani | Parma | Riserva, ballottaggio | Inter (T) | 62 |
+| Robinson J. | Monza | Panchina | Lazio (T) | 61 |
 | Ghedjemis | Frosinone | Titolare | Napoli (T) | 44 |
 | Enem | Bologna | Panchina | Lecce (T) | 30 |
-| Kulenovic | Torino | Panchina | Udinese (C) | 30 |
+| Kulenovic | Torino | Riserva, ballottaggio | Udinese (C) | 30 |
 
 ## Correzioni da controllare
 
