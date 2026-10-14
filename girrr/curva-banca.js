@@ -718,12 +718,13 @@ function fcRatings(D,SQ,ms,n,pub){
  var out=[],NM=nomi(D),V=D.votes||{},P=D.P||{},RU={P:'POR',D:'DIF',C:'CEN',A:'ATT'},S=legaSa(D)||n;
  function fv(id,k){var m=V[id]&&V[id][k];return m&&m.f!=null?m.f:null}
  function media(id,k){var s=0,c=0;for(var j=1;j<=k;j++){var x=fv(id,j);if(x!=null){s+=x;c++}}return c?{a:s/c,c:c}:null}
- function ovr(a){return Math.max(48,Math.min(94,Math.round(65+(a-6)*12)))}
+ function ovr(a){return Math.max(48,Math.min(90,Math.round(65+(a-6)*10)))}
  function cand(R){return Object.keys(NM).filter(function(id){var p=P[id],m=media(id,R-1);return p&&m&&m.c>=2&&m.c>=(R-1)*0.6}).sort(function(a,b){return a-b})}
  function scegli(R){var c=cand(R);return c.length?c[Math.floor(prng('fcr'+R)()*c.length)]:null}
  function dec(x){return String(Math.round(x*10)/10).replace('.',',')}
- function mk(k,x,t,id,ov,d){var p=P[id],q={k:k,a:'fc27_ratings',x:x,ts:t,r:[],imgt:'carta',cx:{gio:p.n,club:p.t,ov:ov,d:d||0,ruolo:RU[p.r]||'ATT',rs:'fcr'+id}},c=conta(k,2);q.ap=c.ap;q.ril=c.ril;q.v=c.v;
+ function raw(k,x,t,imgt,cx){var q={k:k,a:'fc27_ratings',x:x,ts:t,r:[],imgt:imgt,cx:cx},c=conta(k,2);q.ap=c.ap;q.ril=c.ril;q.v=c.v;
   var rs=[];for(var i=0;i<7;i++)rs=rs.concat(reazioni(k+'#'+i,t,ms,SQ,x).r);q.r=rs.filter(function(y){return y.ts<=ms}).sort(function(y,z){return y.ts-z.ts});if(t<=ms)out.push(q)}
+ function mk(k,x,t,id,ov,d){var p=P[id];raw(k,x,t,'carta',{gio:p.n,club:p.t,ov:ov,d:d||0,ruolo:RU[p.r]||'ATT',rs:'fcr'+id})}
  var A1=['Sotto osservazione per la {g}ª giornata: {n} ({c}). Overall {o}. Aggiorniamo a fine giornata. #FC27','Il nostro osservato speciale: {n} ({c}), overall {o}. Vediamo cosa fa in campo. #FC27'];
  function pre(g,h){return A1[h%2].replace('{g}',g).replace('{n}','').replace('{c}','').replace('{o}','')}
  /* giornata appena giocata (lega n, Serie A S): prima e dopo */
@@ -742,6 +743,15 @@ function fcRatings(D,SQ,ms,n,pub){
  if(idn){var pn=P[idn],on=ovr(media(idn,R-1).a),t0=null;
   D.sa[R].forEach(function(g){var mm=/(\d\d)\/(\d\d)\s+(\d\d):(\d\d)/.exec(g[2]||'');if(!mm)return;var mo=+mm[2],y=mo>=7?2026:2027,t=ts(y,mo,+mm[1],+mm[3],+mm[4]);if(t0===null||t<t0)t0=t});
   if(t0!==null)mk('fc:pre'+R,A1[h32('fcd'+R)%2].replace('{g}',nl).replace('{n}',pn.n).replace('{c}',pn.t).replace('{o}',on),t0-20*36e5,idn,on,0)}
+ /* squadra della settimana e giocatore dei tifosi: dopo la giornata */
+ var gio=Object.keys(NM).filter(function(i){return P[i]&&fv(i,S)!=null}).sort(function(a,b){return fv(b,S)-fv(a,S)||a-b});
+ function cm(i){var m=media(i,S);return {n:P[i].n.replace(/\s+[A-Z]\.?$/,''),ov:ovr(m.a),r:RU[P[i].r]||'ATT'}}
+ function top(ruolo,k){return gio.filter(function(i){return P[i].r===ruolo}).slice(0,k)}
+ var T11=top('P',1).concat(top('D',4),top('C',3),top('A',3));
+ if(T11.length===11){var best=T11.map(cm).sort(function(a,b){return b.ov-a.ov})[0];
+  raw('fc:totw'+S,'La squadra della settimana di FC27 Ratings dopo la '+n+'ª giornata. Miglior overall: '+best.n+' ('+best.ov+'). Gli altri guardano dalla panchina. #FC27 #SquadraDellaSettimana',pub+100*6e4,'totw',{g:n,team:T11.map(cm),rs:'fct'+S})}
+ if(gio.length>=3){var c3=gio.slice(0,3),rz=prng('fct'+S),w=Math.floor(rz()*3),wp=38+Math.floor(rz()*22),sp=Math.floor((100-wp)*(0.55+rz()*0.2)),tot=8000+Math.floor(rz()*9000),sh=[wp,sp,100-wp-sp],ord=[c3[w]].concat(c3.filter(function(x,j){return j!==w})),tf=String(tot).replace(/\B(?=(\d{3})+(?!\d))/g,'.'),wi=ord[0];
+  raw('fc:tifosi'+S,'I tifosi hanno votato: dopo la '+n+'ª giornata il loro giocatore è '+P[wi].n+' ('+P[wi].t+'), con il '+wp+'% dei voti e rating '+cm(wi).ov+'. '+tf+' voti in 24 ore. #FC27 #Tifosi',pub+27*36e5,'tifosi',{g:n,tot:tf,vt:ord.map(function(i,j){var o=cm(i);return {n:P[i].n,pc:sh[j],ov:o.ov}}),rs:'fcv'+S})}
  return out}
 function genera(D,SQ,ST,ms){
  var r=roma(ms),oggi=giorno(ms),all=[],tg=tendenze(D).map(function(x){return x[0]});
