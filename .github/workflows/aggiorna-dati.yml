@@ -44,3 +44,4 @@ jobs:
           git diff --cached --quiet || git commit -m "Aggiorna statistiche e voti in automatico"
           git pull --rebase origin gh-pages
           git push origin gh-pages
+# formazioni: da 3 giorni prima
