@@ -752,6 +752,15 @@ function fcRatings(D,SQ,ms,n,pub){
   raw('fc:totw'+S,'La squadra della settimana di FC27 Ratings dopo la '+n+'ª giornata. Miglior overall: '+best.n+' ('+best.ov+'). Gli altri guardano dalla panchina. #FC27 #SquadraDellaSettimana',pub+100*6e4,'totw',{g:n,team:T11.map(cm),rs:'fct'+S})}
  if(gio.length>=3){var c3=gio.slice(0,3),rz=prng('fct'+S),w=Math.floor(rz()*3),wp=38+Math.floor(rz()*22),sp=Math.floor((100-wp)*(0.55+rz()*0.2)),tot=8000+Math.floor(rz()*9000),sh=[wp,sp,100-wp-sp],ord=[c3[w]].concat(c3.filter(function(x,j){return j!==w})),tf=String(tot).replace(/\B(?=(\d{3})+(?!\d))/g,'.'),wi=ord[0];
   raw('fc:tifosi'+S,'I tifosi hanno votato: dopo la '+n+'ª giornata il loro giocatore è '+P[wi].n+' ('+P[wi].t+'), con il '+wp+'% dei voti e rating '+cm(wi).ov+'. '+tf+' voti in 24 ore. #FC27 #Tifosi',pub+27*36e5,'tifosi',{g:n,tot:tf,vt:ord.map(function(i,j){var o=cm(i);return {n:P[i].n,pc:sh[j],ov:o.ov}}),rs:'fcv'+S})}
+ /* griglie di carte: Star Performers (pronostico e consuntivo) e Top 18 dell'overall */
+ function cg(i,R){var m=media(i,R),a=m.a;return {n:P[i].n.replace(/\s+[A-Z]\.?$/,''),t:P[i].t,ov:ovr(a),r:RU[P[i].r]||'ATT'}}
+ var pr=cand(S+1).sort(function(a,b){return media(b,S).a-media(a,S).a||a-b}).slice(0,7);
+ if(pr.length===7&&D.sa&&D.sa[R]){var t1=null;D.sa[R].forEach(function(g){var mm=/(\d\d)\/(\d\d)\s+(\d\d):(\d\d)/.exec(g[2]||'');if(!mm)return;var mo=+mm[2],y=mo>=7?2026:2027,t=ts(y,mo,+mm[1],+mm[3],+mm[4]);if(t1===null||t<t1)t1=t});
+  if(t1!==null)raw('fc:star'+R,'Star Performers, pronostico per la '+nl+'ª giornata: i sette che per FC27 Ratings possono spaccare. Chi merita di stare nella lista? #FC27 #StarPerformers',t1-30*36e5,'griglia',{tit:'STAR PERFORMERS',sub:'PREDICTION',cols:4,foot:'PREDICTION · '+nl+'ª GIORNATA',cards:pr.map(function(i){return cg(i,S)}),rs:'fcs'+R})}
+ if(gio.length>=7){var cd=gio.slice(0,7).map(function(i){var a=cg(i,S),m0=media(i,S-1);a.d=m0?a.ov-ovr(m0.a):0;return a}).sort(function(a,b){return b.ov-a.ov});
+  raw('fc:starp'+S,'Star Performers della '+n+'ª giornata: '+cd[0].n+' ('+cd[0].ov+') guida i migliori della giornata, ma guardate chi c\'è dietro. Il pronostico? Dal vivo è sempre un\'altra storia. #FC27 #StarPerformers',pub+150*6e4,'griglia',{tit:'STAR PERFORMERS',sub:'OF THE WEEK',cols:4,foot:n+'ª GIORNATA',cards:cd,rs:'fcsp'+S})}
+ var tp=Object.keys(NM).filter(function(i){var m=P[i]&&media(i,S);return m&&m.c>=Math.max(2,S*0.5)}).sort(function(a,b){return media(b,S).a-media(a,S).a||a-b}).slice(0,12);
+ if(tp.length===12)raw('fc:top'+S,'Top 12 dei rating FC27 dopo la '+n+'ª giornata. Siete d\'accordo? '+cg(tp[0],S).n+' al comando con '+cg(tp[0],S).ov+'. #FC27 #Top12',pub+30*36e5,'griglia',{tit:'TOP 12',sub:'RATINGS',sty:'top',cols:6,foot:'DOPO LA '+n+'ª GIORNATA',cards:tp.map(function(i){return cg(i,S)}),rs:'fctop'+S})
  return out}
 function genera(D,SQ,ST,ms){
  var r=roma(ms),oggi=giorno(ms),all=[],tg=tendenze(D).map(function(x){return x[0]});
