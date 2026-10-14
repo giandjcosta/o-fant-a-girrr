@@ -335,7 +335,21 @@ function costruisci(){
    pr=pool[h%pool.length];
    var k='gsq:'+q.k,ts=q.ts+(25+h%120)*60000;if(ts>now)ts=now-60000;if(ts<q.ts)ts=q.ts+60000;
    var z={ap:0,ril:0,r:[]};try{z=CVB.reazioni(k,ts,now,SQ,pr)}catch(e){}
-   out.push({k:k,a:'girrr_sport',x:pr,uf:1,ts:ts,quote:{a:q.a,x:q.x,ts:q.ts,tm:t,id:q.id,hi:q.hi},ap:z.ap+8,ril:z.ril+2,v:0,f:1,id0:CVB.h32(k)%1000,r:z.r})})})()}catch(e){}
+   out.push({k:k,a:'girrr_sport',x:pr,uf:1,ts:ts,quote:{a:q.a,x:q.x,ts:q.ts,tm:t,id:q.id,hi:q.hi},ap:z.ap+8,ril:z.ril+2,v:0,f:1,id0:CVB.h32(k)%1000,r:z.r})});
+  /* Girrr Sport rilancia ogni tanto anche i post scritti a mano per Ciro, Lega, Champions Cup e Giornale, e quelli del Giornale e di Ciro non già coperti dal generatore (non Totogirrr né i personaggi) */
+  var UFF={ciro_trattativa:['Mercato: Ciro Trattativa ha una notizia e il Girrr la rilancia.','Ciro Trattativa torna sul mercato. Il Girrr rilancia, la verifica è un\'altra storia.','Voci di mercato da Ciro Trattativa: prendetele con le pinze, ma leggetele.'],
+   lega_ofantagirrr:['Comunicazione della Lega: il Girrr la rilancia.','Dalla Lega ufficiale: ecco l\'aggiornamento che aspettavate.','La Lega ha parlato e il Girrr rilancia.'],
+   champions_cup:['Champions Cup: il Girrr rilancia l\'aggiornamento di coppa.','Dalla Champions Cup arriva un nuovo capitolo, e il Girrr lo rilancia.','Coppa in primo piano: ecco cosa scrive la Champions Cup.'],
+   giornale_girrr:['È uscito il Giornale: il Girrr lo rilancia.','Dal Giornale del Girrr: la prima pagina da non perdere.','Il Giornale parla e il Girrr rilancia.']};
+  var UFM=[[/mvp|migliore in campo|miglior giocatore/i,{lega_ofantagirrr:'L\'MVP della giornata è ufficiale: la Lega lo annuncia e il Girrr rilancia.',giornale_girrr:'Il Giornale incorona l\'MVP della giornata. Il Girrr rilancia.',champions_cup:'L\'MVP della coppa è servito. Il Girrr rilancia.'}],
+   [/risultat|punteggi|finit|vinc|passa|turno|giornata/i,{lega_ofantagirrr:'I risultati sono ufficiali: la Lega ha pubblicato e il Girrr rilancia.',champions_cup:'Risultati di coppa ufficiali: il Girrr rilancia.',giornale_girrr:'Risultati e commenti sul Giornale: il Girrr rilancia.'}]];
+  var srcU=out.concat(gen).filter(function(q){var adm=/^a\d/.test(q.k),altri=q.a==='giornale_girrr'||(q.a==='ciro_trattativa'&&!/^(mk|sw)/.test(q.k));return UFF[q.a]&&q.x&&(adm||altri)&&q.ts>=now-48*36e5&&q.ts<=now&&CVB.h32('gso'+q.k)%100<40}).sort(function(a,b){return b.ts-a.ts}).slice(0,2);
+  srcU.forEach(function(q){var h=CVB.h32('gsu'+q.k),pr=UFF[q.a][h%UFF[q.a].length];
+   UFM.forEach(function(m){if(m[0].test(q.x)&&m[1][q.a])pr=m[1][q.a]});
+   var k='gsu:'+q.k,ts=q.ts+(20+h%90)*60000;if(ts>now)ts=now-60000;if(ts<q.ts)ts=q.ts+60000;
+   var z={ap:0,ril:0,r:[]};try{z=CVB.reazioni(k,ts,now,SQ,pr)}catch(e){}
+   out.push({k:k,a:'girrr_sport',x:pr,uf:1,ts:ts,quote:{a:q.a,x:q.x,ts:q.ts,id:q.id,hi:q.hi},ap:z.ap+8,ril:z.ril+2,v:0,f:1,id0:CVB.h32(k)%1000,r:z.r})});
+ })()}catch(e){}
  gen.forEach(function(p){out.push(p)});
  out.forEach(function(p){var rr=(p.r||[]).concat(tuttiR[p.k]||[]);rr.sort(function(a,b){return a.ts-b.ts});p.r=rr;
   var vb=0;if((p.real||p.uf)&&!p.v){var et0=Math.max(0,(Date.now()-p.ts)/36e5),cr0=1-Math.exp(-et0/5),j0=0.8+((p.id0||0)*37%40)/100;vb=(p.a==='girrr_sport'?5100000:p.a==='champions_cup'?2900000:(p.a==='lega_ofantagirrr'||p.a==='giornale_girrr')?3800000:seguaci(p.tm))*(0.01+0.09*cr0)*j0;p.ap=Math.round(vb*(0.012+(CVB.h32(p.k)%20)/1000));p.ril=Math.round(vb*(0.003+(CVB.h32(p.k+'r')%30)/10000))}
