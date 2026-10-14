@@ -717,7 +717,7 @@ function prestitoPost(l,ms,SQ){
 function fcRatings(D,SQ,ms,n,pub){
  var out=[],NM=nomi(D),V=D.votes||{},P=D.P||{},RU={P:'POR',D:'DIF',C:'CEN',A:'ATT'},S=legaSa(D)||n;
  function fv(id,k){var m=V[id]&&V[id][k];return m&&m.f!=null?m.f:null}
- function media(id,k){var s=0,c=0;for(var j=1;j<=k;j++){var x=fv(id,j);if(x!=null){s+=x;c++}}return c?{a:s/c,c:c}:null}
+ function media(id,k){var s=0,c=0;for(var j=1;j<=k;j++){var x=fv(id,j);if(x!=null){s+=Math.max(4,Math.min(9,x));c++}}return c?{a:s/c,c:c}:null}
  function ovr(a){return Math.max(48,Math.min(90,Math.round(65+(a-6)*10)))}
  function cand(R){return Object.keys(NM).filter(function(id){var p=P[id],m=media(id,R-1);return p&&m&&m.c>=2&&m.c>=(R-1)*0.6}).sort(function(a,b){return a-b})}
  function scegli(R){var c=cand(R);return c.length?c[Math.floor(prng('fcr'+R)()*c.length)]:null}
@@ -770,6 +770,16 @@ function fcRatings(D,SQ,ms,n,pub){
   raw('fc:starp'+S,'Star Performers della '+n+'ª giornata: '+cd[0].n+' ('+cd[0].ov+') guida i migliori della giornata, ma guardate chi c\'è dietro. Il pronostico? Dal vivo è sempre un\'altra storia. #FC27 #StarPerformers',pub+150*6e4,'griglia',{tit:'STAR PERFORMERS',sub:'OF THE WEEK',cols:4,foot:n+'ª GIORNATA',cards:cd,rs:'fcsp'+S})}
  var tp=Object.keys(NM).filter(function(i){var m=P[i]&&media(i,S);return m&&m.c>=Math.max(2,S*0.5)}).sort(function(a,b){return media(b,S).a-media(a,S).a||a-b}).slice(0,12);
  if(tp.length===12)raw('fc:top'+S,'Top 12 dei rating FC27 dopo la '+n+'ª giornata. Siete d\'accordo? '+cg(tp[0],S).n+' al comando con '+cg(tp[0],S).ov+'. #FC27 #Top12',pub+30*36e5,'griglia',{tit:'TOP 12',sub:'RATINGS',sty:'top',cols:6,foot:'DOPO LA '+n+'ª GIORNATA',cards:tp.map(function(i){return cg(i,S)}),rs:'fctop'+S})
+ /* MVP, flop e movers della giornata */
+ function dl(i){var m1=media(i,S),m0=media(i,S-1);return m1&&m0?ovr(m1.a)-ovr(m0.a):0}
+ if(gio.length>=3){var mv=gio[0],pm=P[mv],xm=fv(mv,S),bm=((V[mv][S].b)||[]).join(', '),om=ovr(media(mv,S).a);
+  mk('fc:mvp'+S,'MVP della '+n+'ª giornata secondo FC27 Ratings: '+pm.n+' ('+pm.t+'), fantavoto '+dec(xm)+(bm?' ('+bm+')':'')+'. Nuovo overall '+om+(dl(mv)>0?' ('+'+'+dl(mv)+')':'')+'. Chi ha da ridire? #FC27 #MVP',pub+3*36e5,mv,om,dl(mv));
+  var fl=gio.filter(function(i){return fv(i,S)<6}).pop();
+  if(fl){var pf=P[fl],xf=fv(fl,S),of=ovr(media(fl,S).a),df=dl(fl);
+   mk('fc:flop'+S,'Flop della '+n+'ª giornata: '+pf.n+' ('+pf.t+'), fantavoto '+dec(xf)+'. Overall '+of+(df?' ('+df+')':'')+'. Giornata da dimenticare, la card lo ricorderà. #FC27 #Flop',pub+5*36e5,fl,of,df)}
+  var mo=gio.filter(function(i){return media(i,S-1)}).map(function(i){return{i:i,d:dl(i)}}),up=mo.filter(function(o){return o.d>0}).sort(function(a,b){return b.d-a.d||a.i-b.i}).slice(0,4),dn=mo.filter(function(o){return o.d<0}).sort(function(a,b){return a.d-b.d||a.i-b.i}).slice(0,4);
+  if(up.length&&dn.length){var k4=Math.min(up.length,dn.length,4),cc=up.slice(0,k4).concat(dn.slice(0,k4)).map(function(o){var a=cg(o.i,S);a.d=o.d;return a});
+   raw('fc:mov'+S,'Chi sale e chi scende dopo la '+n+'ª giornata: '+cg(up[0].i,S).n+' guadagna '+up[0].d+', '+cg(dn[0].i,S).n+' ne perde '+Math.abs(dn[0].d)+'. Il triangolino non perdona. #FC27 #Movers',pub+8*36e5,'griglia',{tit:'SU E GIÙ',sub:'RATING',cols:k4,foot:'DOPO LA '+n+'ª GIORNATA',cards:cc,rs:'fcmo'+S})}}
  return out}
 function genera(D,SQ,ST,ms){
  var r=roma(ms),oggi=giorno(ms),all=[],tg=tendenze(D).map(function(x){return x[0]});
