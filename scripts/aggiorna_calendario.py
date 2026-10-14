@@ -44,6 +44,19 @@ def partite(pagina, giornata):
     return out
 
 
+def classifica(pagina):
+    """squadra -> [partite, gol fatti, gol subiti, punti] dalla tabella classifica della pagina."""
+    out = {}
+    for nome, corpo in re.findall(r'<tr data-name="([^"]+)"(.*?)</tr>', pagina, re.S):
+        celle = [re.sub(r"<[^>]+>", "", c).strip() for c in re.findall(r"<td[^>]*>(.*?)</td>", corpo, re.S)]
+        try:
+            pt, g, gf, gs = int(celle[2]), int(celle[3]), int(celle[7]), int(celle[8])
+        except (IndexError, ValueError):
+            continue
+        out[html.unescape(nome).strip()] = [g, gf, gs, pt]
+    return out
+
+
 def main():
     cartella = None
     if "--da-cartella" in sys.argv:
@@ -52,6 +65,7 @@ def main():
     D = json.loads(fp.read_text(encoding="utf-8"))
     prima = int(D.get("nx") or D.get("round") or 1)
     sa = {}
+    sf = {}
     for g in range(prima, 39):
         try:
             pag = (cartella / f"girrr_cal{g}.html").read_text(encoding="utf-8") if cartella else scarica(g)
@@ -60,6 +74,8 @@ def main():
                 continue
             print(f"calendario: giornata {g} non letta ({e})")
             continue
+        if not sf:
+            sf = classifica(pag)
         p = partite(pag, g)
         if len(p) == 10:
             sa[str(g)] = p
@@ -70,7 +86,9 @@ def main():
         return
     vecchio = D.get("sa") or {}
     nuovo = sa
-    if nuovo == vecchio:
+    if len(sf) == 20:
+        D["sf"] = sf
+    if nuovo == vecchio and D.get("sf") == sf:
         print(f"calendario: già aggiornato ({len(nuovo)} giornate)")
         return
     D["sa"] = nuovo

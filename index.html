@@ -643,12 +643,15 @@ function editor(p){
 }
 var mkH=LS.mkh==='l'?'l':'b';
 var MKC={},MKSTRICT=true;
+function oppOf(t,r){var L=(D.fx||{})[r]||(D.sa||{})[r]||[],i;for(i=0;i<L.length;i++){if(L[i][0]===t)return L[i][1];if(L[i][1]===t)return L[i][0]}return null}
+function diffX(p){var sf=D.sf,o=sf&&oppOf(p.t,D.round),a,tg=0,gf=0,gs=0,k;if(!o||!sf[o])return 1;for(k in sf){tg+=sf[k][0];gf+=sf[k][1];gs+=sf[k][2]}if(tg<20)return 1;var av=gf/tg,g=sf[o][0],z=(p.r==='A'||p.r==='C')?((sf[o][2]+av*3)/(g+3)-av)/av:-(((sf[o][1]+av*3)/(g+3)-av)/av);return 1+Math.max(-0.06,Math.min(0.06,0.15*z))}
+function bonusX(id){var a=(D.rg||{})[id],b=(D.cp||{})[id];return (a===1?0.3:a===2?0.1:0)+(b===1?0.1:b===2?0.04:0)}
 var INJM=null,INJK='';
 function injOf(id){var k=D.updated+'|'+(D.inj||[]).length;if(INJK!==k){INJM={};(D.inj||[]).forEach(function(e){if(e.id!=null)INJM[e.id]=e});INJK=k}return INJM[id]||INJM[+id]}
 function mkVals(T,hz,rb,mf){
-  var out=T.pl.map(function(x){var id=String(x.id),p=P(id),q=(D.ps||{})[id]||{},n=q.pg||0,b=rb[p.r],pc=pct(id)/100,s=nxt(id).s;
-    var yl=(D.ly||{})[id],wy=yl?yl[0]/(yl[0]+12):0,lf=yl?(yl[2]*yl[0]+b*6)/(yl[0]+6):b,pb=b+(lf-b)*wy*0.5,fb=q.fmv!=null?(q.fmv*n+pb*3)/(n+3):pb,eb=pc*fb;
-    var pr0=b*(0.88+0.24*Math.min(1,0.5*(p.f||0)/mf[p.r]+0.5*(p.q||0)/mf.q[p.r])),prior=wy*lf+(1-wy)*pr0,fl=q.fmv!=null?(q.fmv*n+prior*8)/(n+8):prior,qr=Math.min(1,0.3+0.7*(p.q||0)/mf.q[p.r]),pp=yl?0.7*Math.min(1,yl[0]/34)+0.3*qr:qr,pcl=pc,ij=injOf(id);if(s==='I'&&ij){var dd=ij.w==='Squalificato'?7:(ij.d?(Date.parse(ij.d)-Date.now())/864e5:null);if(dd!=null)pcl=(q.pct!=null?q.pct/100:0.5)*Math.max(0,Math.min(1,(200-Math.max(0,dd))/200))}var el=(0.7*pcl+0.3*pp)*fl;
+  var out=T.pl.map(function(x){var id=String(x.id),p=P(id),q=(D.ps||{})[id]||{},n=q.pg||0,b=rb[p.r],pc=pct(id)/100,s=nxt(id).s,bn=bonusX(id),df=diffX(p),tg=(D.sf&&D.sf[p.t]?D.sf[p.t][0]:0);
+    var yl=(D.ly||{})[id],wy=yl?yl[0]/(yl[0]+12):0,lf=yl?(yl[2]*yl[0]+b*6)/(yl[0]+6):b,pb=b+(lf-b)*wy*0.5,fb=q.fmv!=null?(q.fmv*n+pb*3)/(n+3):pb,eb=pc*(fb+bn*3/(n+3))*df;
+    var pr0=b*(0.88+0.24*Math.min(1,0.5*(p.f||0)/mf[p.r]+0.5*(p.q||0)/mf.q[p.r])),prior=wy*lf+(1-wy)*pr0,fl=q.fmv!=null?(q.fmv*n+prior*8)/(n+8):prior,qr=Math.min(1,0.3+0.7*(p.q||0)/mf.q[p.r]),pp=yl?0.7*Math.min(1,yl[0]/34)+0.3*qr:qr,pcl=(n>=3&&tg>0)?0.6*pc+0.4*Math.min(1,n/tg):pc,ij=injOf(id);if(s==='I'&&ij){var dd=ij.w==='Squalificato'?7:(ij.d?(Date.parse(ij.d)-Date.now())/864e5:null);if(dd!=null)pcl=(q.pct!=null?q.pct/100:0.5)*Math.max(0,Math.min(1,(200-Math.max(0,dd))/200))}var el=(0.7*pcl+0.3*pp)*(fl+bn*8/(n+8));
     return {id:id,r:p.r,f:p.f||0,m:mvEff(p,rb),q:hz==='b'?0.8*fb+0.2*fl:fl,e:hz==='b'?0.8*eb+0.2*el:el}});
   var gk=out.filter(function(v){return v.r==='P'}).sort(function(a,b){return b.e-a.e});if(gk[2])gk[2].third=true;
   return out;
