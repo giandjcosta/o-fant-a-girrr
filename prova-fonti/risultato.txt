@@ -1,0 +1,7 @@
+404 154478  https://www.gazzetta.it/calcio/fantacalcio/probabili-formazioni-serie-a/  title=<title>La Gazzetta dello Sport - Tutto il rosa della vita
+200 416864  https://www.gazzetta.it/calcio/fantacalcio/  title=<title> Fantacalcio: consigli, voti live e ultime dai campi | La Gazzetta dello Sport 
+200 360406  https://www.legaseriea.it/serie-a/calendario-risultati  title=<title>Calendario | Serie A Enilive | Lega Serie A
+200 2  https://www.legaseriea.it/api/auth/session  title=
+404 326183  https://www.sky.it/sport/serie-a/probabili-formazioni  title=
+200 347363  https://www.corrieredellosport.it/calcio/serie-a/probabili-formazioni  title=<title>Probabili Formazioni: novità e approfondimenti
+200 751387  https://www.fantacalcio.it/probabili-formazioni-serie-a  title=<title>Probabili formazioni Serie A
