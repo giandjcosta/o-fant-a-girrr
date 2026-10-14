@@ -76,7 +76,6 @@ Notizie pubbliche, senza indicare di chi e' ogni giocatore.
 | Yildiz | Juventus | Problema al piede | Inizio dicembre | Salta |
 | Grabara | Juventus | Lesione al crociato anteriore del ginocchio destro | Da aprile | Salta |
 | Gudmundsson A. | Lazio | Problema alla spalla destra dopo una caduta | Metà ottobre | In dubbio |
-| Stulic | Lecce | Fastidio muscolare alla gamba | Prossimo turno | In dubbio |
 | Saelemaekers | Milan | Problema alla caviglia destra e operata il | Da febbraio | Salta |
 | Buongiorno | Napoli | Operato nella seconda metà di luglio al | Fine dicembre | Salta |
 | Vergara | Napoli | Lesione distrattiva al polpaccio destro | Inizio novembre | Salta |
@@ -109,7 +108,7 @@ Punteggio: piu' e' alto, piu' conviene. Unisce valore e probabilita' di giocare.
 | Giocatore | Squadra | Stato | Avversario | Punteggio |
 |---|---|---|---|---|
 | Hainaut | Venezia | Titolare | Atalanta (T) | 92 |
-| Abankwah | Udinese | Fuori | Torino (T) | 82 |
+| Abankwah | Udinese | In dubbio | Torino (T) | 82 |
 | Zè Pedro | Cagliari | Titolare | Juventus (C) | 78 |
 | Veiga D. | Lecce | Titolare | Bologna (C) | 77 |
 | Rodriguez Ju. | Cagliari | Titolare | Juventus (C) | 76 |
@@ -128,8 +127,8 @@ Punteggio: piu' e' alto, piu' conviene. Unisce valore e probabilita' di giocare.
 
 | Giocatore | Squadra | Stato | Avversario | Punteggio |
 |---|---|---|---|---|
-| Lontani | Parma | Riserva, ballottaggio | Inter (T) | 62 |
-| Robinson J. | Monza | Panchina | Lazio (T) | 61 |
+| Lontani | Parma | Titolare, ballottaggio | Inter (T) | 62 |
+| Robinson J. | Monza | Riserva, ballottaggio | Lazio (T) | 61 |
 | Ghedjemis | Frosinone | Titolare | Napoli (T) | 44 |
 | Enem | Bologna | Panchina | Lecce (T) | 30 |
 | Kulenovic | Torino | Riserva, ballottaggio | Udinese (C) | 30 |
