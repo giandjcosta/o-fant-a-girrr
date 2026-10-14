@@ -5,7 +5,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,viewport-fit=cover">
 <meta name="robots" content="noindex">
-<meta name="cv-ver" content="20261014f">
+<meta name="cv-ver" content="20261014g">
 <title>Curva · O Girrr</title>
 <link rel="icon" type="image/png" href="../assets/favicon-64.png">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800;900&display=swap">
@@ -184,7 +184,7 @@ html,body{overscroll-behavior-y:none;touch-action:manipulation;-webkit-text-size
 <script>window.goatcounter={path:function(){return location.pathname},no_onload:/[?&]demo/.test(location.search)}</script>
 <script data-goatcounter="https://djcosta18.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
 <script src="storia.js?v=1"></script>
-<script src="curva-banca.js?v=20261014f"></script>
+<script src="curva-banca.js?v=20261014g"></script>
 <script>
 (function(){
 'use strict';
@@ -525,12 +525,12 @@ function topR(titolo,sott,tabs){
  document.getElementById('rfb').onclick=function(){rinfresca()};
  document.getElementById('tg').onclick=function(){tema(curTema()==='dark'?'light':'dark');render()};
 }
-function isDef(h){return h==='lega_ofantagirrr'||h==='champions_cup'||h==='girrr_sport'||h==='giornale_girrr'||h==='totogirrr'||(ACC[h]&&ACC[h].k==='sq'&&h!==meH)}
+function isDef(h){return h==='lega_ofantagirrr'||h==='champions_cup'||h==='girrr_sport'||h==='giornale_girrr'||(ACC[h]&&ACC[h].k==='sq'&&h!==meH)}
 function isFol(h){if(!me)return false;var row=S.follow.indexOf(h)>=0;return isDef(h)?!row:row}
 function segOf(h){var a=acc(h),all=Object.keys(ACC).filter(function(k){return k!==h}),sq=SQ.map(hnd);
  if(a.k==='org')return Object.keys(ACC).filter(function(k){return k!==h&&ACC[k].k==='org'}).concat(sq.filter(function(k){return k!==h}));
  var off=['girrr_sport','lega_ofantagirrr','champions_cup','giornale_girrr'].filter(function(k){return k!==h}),N=12+hue(a.n)%40,pool=all.filter(function(k){return off.indexOf(k)<0}).sort(function(x,y){return CVB.h32(h+'|'+x)-CVB.h32(h+'|'+y)});
- if(a.k==='sq')return off.concat(Object.keys(ACC).filter(function(k){return k!==h&&(ACC[k].v&&ACC[k].k==='sq'||k==='totogirrr')}));
+ if(a.k==='sq')return off.concat(Object.keys(ACC).filter(function(k){return k!==h&&ACC[k].v&&ACC[k].k==='sq'}));
  return off.concat(pool).slice(0,N)}
 function nSeguiti(){var n=0;Object.keys(ACC).forEach(function(h){if(h!==meH&&isFol(h))n++});return n}
 function segBtn(h,small){var s=isFol(h);return '<button class="btn blu" data-seg="'+h+'"'+(small?' style="align-self:flex-start;padding:7px 14px;font-size:13px"':'')+'>'+(s?'Seguito':'Segui')+'</button>'}

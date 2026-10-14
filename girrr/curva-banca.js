@@ -666,7 +666,7 @@ function conta(k,base){var r=prng(k+'n');var b=base||1;return{ap:Math.floor((4+r
 function f2(n){return (Math.round(n*100)/100).toFixed(2).replace('.',',')}
 function totoPost(g,dd,ms,SQ){
  var TQ=window.CVB&&CVB.TQ;if(!TQ||!TQ.partite)return null;
- var T=ts(dd.y,dd.mo,dd.d,dd.wd===2?18:dd.wd===4?12:19,dd.wd===2?40:dd.wd===4?15:5);if(T>ms)return null;
+ var T=ts(dd.y,dd.mo,dd.d,[11,18,18,17,12,19,10][dd.wd],[30,20,40,45,15,5,25][dd.wd]);if(T>ms)return null;
  var P=TQ.partite.filter(function(m){return m.comp==='lega'&&Date.parse(m.chiude)>T&&m.q1}),
   G=TQ.partite.filter(function(m){return m.comp==='lega'&&m.gc!=null&&m.gc!==undefined&&Date.parse(m.chiude)<T});
  if(!P.length)return null;
@@ -686,6 +686,21 @@ function totoPost(g,dd,ms,SQ){
   x='Quanti fantacrediti puntare? Il consiglio ufficiale è il 10% del conto, e mai più del 100 sulla vostra partita. Il non ufficiale è: se non vi basta, c\'è il prestito del banco al 120%. Il calcio è finto, il debito è vero. #Totogirrr'}
  var p={k:'toto:'+g+':'+kind,a:'totogirrr',x:x,ts:T,r:[]},c=conta(p.k,1);p.ap=Math.floor(3000+c.ap*220);p.ril=Math.floor(300+c.ril*60);p.v=Math.floor(60000+c.v*220);
  var rs=[];for(var q=0;q<5;q++)rs=rs.concat(reazioni(p.k+'#'+q,p.ts,ms,SQ,p.x).r);p.r=rs.filter(function(y){return y.ts<=ms}).sort(function(y,z){return y.ts-z.ts});
+ return p}
+
+/* Dopo le partite: TotoGirrr commenta cosa ha pagato, con più enfasi */
+function totoDopo(g,dd,ms,SQ){
+ var TQ=window.CVB&&CVB.TQ;if(!TQ||!TQ.partite)return null;
+ var T=ts(dd.y,dd.mo,dd.d,[22,23,22,22,22,22,22][dd.wd],[10,5,15,20,10,10,40][dd.wd]);if(T>ms)return null;
+ var G=TQ.partite.filter(function(m){var c=Date.parse(m.chiude);return m.gc!=null&&m.gt!=null&&c<T&&c>T-36*36e5});
+ if(!G.length)return null;
+ var r=prng('totod'+g),M=function(m){return m.casa+'–'+m.trasf};
+ var rr=G.map(function(m){var e=m.gc>m.gt?'1':m.gc<m.gt?'2':'X',q=e==='1'?m.q1:e==='2'?m.q2:m.qx;return{m:m,e:e,q:q}}).sort(function(a,b){return b.q-a.q}),top=rr[0],bassa=rr[rr.length-1];
+ var x=['ATTENZIONE, ha pagato! '+M(top.m)+' '+top.m.gc+'–'+top.m.gt+': il '+top.e+' era a '+f2(top.q)+'. Chi ci ha creduto stasera incassa, gli altri guardano. #Totogirrr',
+  'Dopo le partite, il banco ha parlato. '+M(top.m)+' '+top.m.gc+'–'+top.m.gt+', esito '+top.e+' a '+f2(top.q)+'. E con '+rr.length+' partite chiuse, la più prevedibile era '+M(bassa.m)+' a '+f2(bassa.q)+'. #Totogirrr',
+  'Conti fatti: '+rr.length+' partite chiuse, la sorpresa è '+M(top.m)+' con il '+top.e+' a '+f2(top.q)+'. Controllate i Movimenti: se avete vinto, il banco vi ha già pagato. #Totogirrr'][Math.floor(r()*3)];
+ var p={k:'totod:'+g,a:'totogirrr',x:x,ts:T,r:[]},c=conta(p.k,1);p.ap=Math.floor(3500+c.ap*260);p.ril=Math.floor(380+c.ril*70);p.v=Math.floor(70000+c.v*240);
+ var rs=[];for(var q=0;q<6;q++)rs=rs.concat(reazioni(p.k+'#'+q,p.ts,ms,SQ,p.x).r);p.r=rs.filter(function(y){return y.ts<=ms}).sort(function(y,z){return y.ts-z.ts});
  return p}
 /* TotoGirrr commenta i prestiti tra fantallenatori */
 function prestitoPost(l,ms,SQ){
@@ -714,7 +729,7 @@ function genera(D,SQ,ST,ms){
   post_giorno(D,SQ,ST,g).forEach(function(p){if(p.ts<=ms&&p.ts>=ms-96*36e5){var c=conta(p.k);p.ap=c.ap;p.ril=c.ril;p.v=c.v;p.r=p.r.filter(function(x){return x.ts<=ms});all.push(p)}});
   /* Ciro: venerdì 18:00 + un aggiornamento il lunedì */
   var dd=dalGiorno(g),mk=ctxDi(D,SQ,ST,'ciro'+g);
-  if((dd.wd===2||dd.wd===4||dd.wd===5)&&g>=oggi-3){var tp=null;try{tp=totoPost(g,dd,ms,SQ)}catch(e){}if(tp&&tp.ts>=ms-96*36e5)all.push(tp)}
+  if(g>=oggi-3){var tp=null,td=null;try{tp=totoPost(g,dd,ms,SQ)}catch(e){}try{td=totoDopo(g,dd,ms,SQ)}catch(e){}if(tp&&tp.ts>=ms-96*36e5)all.push(tp);if(td&&td.ts>=ms-96*36e5)all.push(td)}
   if((dd.wd===0||dd.wd===1||dd.wd===6)&&g>=oggi-3){var cl=null;try{cl=ciroLungo(D,SQ,g,dd,ms,dd.wd===0?'a':dd.wd===1?'b':'c')}catch(e){}if(cl&&cl.ts<=ms&&cl.ts>=ms-96*36e5)all.push(cl)}
   if((dd.wd===2||dd.wd===4||dd.wd===6)&&g>=oggi-3){var mp=null;try{mp=mercato(D,SQ,g,dd,ms)}catch(e){}if(mp&&mp.ts<=ms&&mp.ts>=ms-96*36e5)all.push(mp)}
   if((dd.wd===3||dd.wd===5)&&g>=oggi-3){var sp=null;try{sp=scambiPost(D,SQ,g,dd,ms,dd.wd===3?16:14)}catch(e){}if(sp&&sp.ts<=ms&&sp.ts>=ms-96*36e5)all.push(sp)}
