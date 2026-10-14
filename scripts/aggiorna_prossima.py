@@ -22,7 +22,7 @@ import re
 import sys
 import unicodedata
 import urllib.request
-from datetime import date, datetime, timedelta
+from datetime import date, datetime, timedelta, timezone
 from pathlib import Path
 from zoneinfo import ZoneInfo
 
@@ -320,6 +320,8 @@ def main():
         else:
             print(f"probabili: lette {len(partite)} partite ({len(buone)} con formazione), non aggiorno")
 
+    if cambi:
+        D["updated"] = datetime.now(timezone.utc).astimezone(ZoneInfo("Europe/Rome")).strftime("%Y-%m-%d")
     fp.write_text(json.dumps(D, ensure_ascii=False, separators=(",", ":")), encoding="utf-8")
     for c in cambi:
         print(c)
