@@ -321,7 +321,7 @@ function costruisci(){
  try{(function(){var L=(D.cal&&D.cal.lega)||[],ult={},np=ST.np||0,now=Date.now(),n=0,cls=ST.cls||[];
   L.forEach(function(g){g.m.forEach(function(m){if(m[4]==='-')return;var a=m[4].split('-').map(Number);ult[m[0]]={g:g.n,gf:a[0],gc:a[1],o:m[3]};ult[m[3]]={g:g.n,gf:a[1],gc:a[0],o:m[0]}})});
   function pos(t){for(var i=0;i<cls.length;i++)if(cls[i].n===t)return i+1;return 0}
-  var src=out.filter(function(q){return(q.real||q.uf)&&q.tm&&SQ.indexOf(q.tm)>=0&&q.ts>=now-((q.real||q.hi)?120:72)*36e5&&(q.real||q.hi||/^a/.test(q.k)||CVB.h32('gsq'+q.k)%100<28)}).sort(function(a,b){return b.ts-a.ts}).slice(0,4);
+  var src=out.filter(function(q){return(q.real||q.uf)&&q.tm&&SQ.indexOf(q.tm)>=0&&q.a===hnd(q.tm)&&q.ts>=now-((q.real||q.hi)?120:72)*36e5&&(q.real||q.hi||CVB.h32('gsq'+q.k)%100<28)}).sort(function(a,b){return b.ts-a.ts}).slice(0,4);
   src.forEach(function(q){var t=q.tm,u=ult[t],ps=pos(t),h=CVB.h32('gsp'+q.k),pr,sc=u?u.gf+'-'+u.gc:'';
    var pool=[];
    if(u&&u.gf>u.gc){pool.push(t+' ha postato dopo la vittoria per '+sc+' contro '+u.o+'. 🔊','Dopo il successo per '+sc+' contro '+u.o+', ecco cosa scrive '+t+'.','Vittoria a '+sc+' contro '+u.o+' e '+t+' ha già qualcosa da dire.')}
@@ -329,7 +329,9 @@ function costruisci(){
    else if(u){pool.push(t+' ha postato dopo il pareggio per '+sc+' contro '+u.o+'. 🔊','Dopo il pari per '+sc+' contro '+u.o+', ecco cosa dice '+t+'.')}
    if(np>=5&&ps&&ps<=2)pool.push('Dopo '+np+' giornate '+t+' è '+ps+'ª in classifica e ha parlato.','In alto in classifica ('+ps+'º posto) e con '+np+' giornate alle spalle: ecco cosa scrive '+t+'.');
    if(np>=5&&ps&&ps>=cls.length-1)pool.push(t+' è '+ps+'ª in classifica dopo '+np+' giornate e rompe il silenzio.','Classifica complicata per '+t+' ('+ps+'º posto), e intanto arriva questo coro.');
-   pool.push(t+' dice la sua.','Gira questo coro di '+t+' e il Girrr ne parla.','Su questo coro di '+t+' si discuterà tutta la settimana.');
+   var tp=argomento(q.x,t);
+   if(tp.length)pool=tp;
+   else if(!pool.length)pool.push(t+' dice la sua.','Gira questo coro di '+t+' e il Girrr ne parla.','Su questo coro di '+t+' si discuterà tutta la settimana.');
    pr=pool[h%pool.length];
    var k='gsq:'+q.k,ts=q.ts+(25+h%120)*60000;if(ts>now)ts=now-60000;if(ts<q.ts)ts=q.ts+60000;
    var z={ap:0,ril:0,r:[]};try{z=CVB.reazioni(k,ts,now,SQ,pr)}catch(e){}
@@ -351,6 +353,20 @@ var POSTS=[];
 function tendenze(){var t=CVB.tendenze(D),real={};S.posts.forEach(function(p){(p.body.match(/#\w+/g)||[]).forEach(function(h){real[h.slice(1).toLowerCase()]=(real[h.slice(1).toLowerCase()]||0)+1})});
  return t.map(function(x){return['#'+x[0],x[1]+(real[x[0].toLowerCase()]||0)*30]})}
 /* rendering */
+function argomento(x,t){x=String(x||'').toLowerCase();var o=[],m=x.match(/(^|\s)@(\w+)/g),men=m&&m.length&&ACC[m[0].trim().slice(1)]?ACC[m[0].trim().slice(1)].n:'';
+ var R=[[/mercato|scambi|svincolat|trattativ|offert|propost|asta|credit/,[t+' parla di mercato: il Girrr prende nota.','Mercato in movimento: ecco cosa scrive '+t+'.','Aria di trattative in casa '+t+'.']],
+ [/formazion|modulo|titolar|panchin|schier|turnover|ballottagg/,['Scelte di formazione in casa '+t+': ecco cosa scrive.',t+' parla di formazione e di titolari.']],
+ [/arbitr|\bvar\b|rigor|moviola|espuls|fallo/,['Polemica arbitrale? '+t+' dice la sua, la moviola è già pronta.','Rigori e arbitri al centro del coro di '+t+'.']],
+ [/infortun|squalific|infermeria|lesion|stop/,['Notizie dall\'infermeria di '+t+'.',t+' parla di infortuni: il Girrr tiene il conto.']],
+ [/gol|rete|bonus|bomber|doppiett|tripletta|assist|capocannonier/,[t+' parla di gol e bonus: ecco il coro.','Bomber e bonus al centro del coro di '+t+'.']],
+ [/portier|parat|difes|clean|imbattut|subit/,['Difesa e portiere al centro del coro di '+t+'.',t+' parla di difesa: il Girrr ascolta.']],
+ [/vittori|vint|vincer|tre punti|trionf|festegg/,[t+' festeggia: ecco il coro.','Aria di festa in casa '+t+'.']],
+ [/sconfitt|persa|perso|ko\b|crollo|disfatt|amar/,[t+' rompe il silenzio dopo il momento no.','Giornata storta? Ecco cosa scrive '+t+'.']],
+ [/classific|primo posto|vetta|scudett|champions|coppa|titolo|sorpass/,[t+' guarda la classifica e lo scrive.','Classifica e ambizioni: il coro di '+t+'.']],
+ [/prossim|sfid|derby|contro|scontr|giornata/,['Sfida in vista: ecco cosa scrive '+t+'.',t+' parla della prossima partita.']]];
+ R.forEach(function(r){if(r[0].test(x))o=o.concat(r[1])});
+ if(men)o.push(t+' chiama in causa '+men+': il Girrr osserva.');
+ return o}
 function testo(s){return esc(s).replace(/#(\w+)/g,'<span class="hs" data-q="#$1">#$1</span>').replace(/(^|\s)@(\w+)/g,function(m,sp,h){return ACC[h]?sp+'<span class="hs" data-u="'+h+'">@'+h+'</span>':m})}
 /* Immagini dei bot: tabelline e copertine disegnate al volo */
 var IMGB={},TEMI={lega:{b1:'#d62839',b2:'#1d2a52',bg:'#1d2a52',bg2:'#141d3b',acc:'#ffd166',sub:'#ffe3a3',src:'../assets/logo-lega.png'},cup:{b1:'#3f92d6',b2:'#12305c',bg:'#12305c',bg2:'#0c2142',acc:'#c9e4fb',sub:'#c9e4fb',src:'../assets/loghi/logo-cup-champions-cup.png'}};
