@@ -62,38 +62,32 @@ Notizie pubbliche, senza indicare di chi e' ogni giocatore.
 
 | Giocatore | Squadra | Motivo | Rientro | Giornata |
 |---|---|---|---|---|
-| Raspadori | Atalanta | Distrazione bicipite femorale destro | 15-20 giorni | Salta |
-| Dovbyk | Bologna | Tornato in gruppo dopo infortunio | Da valutare | In dubbio |
-| Odgaard | Bologna | Problema muscolare | 3-4 settimane | Salta |
-| Holm | Bologna | Grave lesione bicipite femorale destro | 4-6 mesi | Salta |
-| Obert | Cagliari | Dolore al ginocchio | Da valutare | In dubbio |
-| Kevin Carlos | Cagliari | Problema muscolare | Da valutare | In dubbio |
-| Kean | Como | Affaticamento muscolare | Da valutare | In dubbio |
-| Raimondo | Frosinone | Tendinopatia al tendine d'Achille | Almeno 2 settimane | Salta |
-| Colombo | Genoa | Problema alla caviglia | Da valutare | In dubbio |
-| Calhanoglu | Inter | Fastidio all'adduttore destro | Da valutare | In dubbio |
-| Stones | Inter | Fastidio ai flessori | Da valutare | In dubbio |
-| Yildiz | Juventus | Infortunio al metatarso sinistro | Inizio-metà dicembre | Salta |
-| Ekhator | Juventus | Lesione al semitendinoso | Fine ottobre | Salta |
-| Boga | Juventus | Lesione bicipite femorale sinistro | Fine ottobre | Salta |
-| Grabara | Juventus | Rottura crociato anteriore | Stagione finita | Salta |
-| Gudmundsson A. | Lazio | Lussazione della spalla | 3-4 settimane | Salta |
-| Saelemaekers | Milan | Operato alla caviglia | Febbraio-marzo 2027 | Salta |
-| Buongiorno | Napoli | Intervento al menisco | Fine 2026-inizio 2027 | Salta |
-| McTominay | Napoli | Intervento per aritmia cardiaca | Da valutare | In dubbio |
-| Santos A. | Napoli | Lesione bicipite femorale sinistro | Da valutare | In dubbio |
-| Zambo Anguissa | Napoli | Lesione all'adduttore destro | Da valutare | In dubbio |
-| Vergara | Napoli | Lesione al soleo | Un mese | Salta |
-| Tourè E. | Parma | Lieve problema fisico | Da valutare | In dubbio |
-| Cristante | Roma | Fastidio al ginocchio | Da valutare | Salta |
-| Volpato | Sassuolo | Infortunio muscolare | Da valutare | In dubbio |
-| Idzes | Sassuolo | Lesione al quadricipite | Da valutare | In dubbio |
-| Muric | Sassuolo | Infortunio muscolare | Da valutare | In dubbio |
-| Adams C. | Torino | Lesione agli adduttori | Da valutare | In dubbio |
-| Solet | Udinese | Lesione al pettineo | Da valutare | In dubbio |
-| Zaniolo | Udinese | Lesione bicipite femorale destro | 3-4 settimane | Salta |
-| Gueye | Udinese | Intervento alla caviglia | Gennaio-febbraio 2027 | Salta |
-| Busio | Venezia | Distrazione bicipite femorale destro | Da valutare | Salta |
+| Scalvini | Atalanta | Risentimento muscolare al flessore della coscia sinistra | Da valutare | In dubbio |
+| Elmas | Atalanta | Squalificato | Rientra dalla 8ª giornata | Salta |
+| Holm | Bologna | Problema al tendine della coscia destra | Fine febbraio | Salta |
+| Orsolini | Bologna | Lesione di primo grado al bicipite femorale | Prima metà di novembre | Salta |
+| Diao | Como | Noie muscolari alla gamba che andranno valutate | Prossimo turno | Salta |
+| Kean | Como | Fastidio alla tibia e ha saltato la | Da valutare | In dubbio |
+| Atta | Fiorentina | Sovraccarico funzionale dell'addome | Prossimo turno | In dubbio |
+| Colombo | Genoa | Problema alla caviglia | Inizio novembre | Salta |
+| Jones C. | Inter | Risentimento miofasciale agli adduttori della coscia destra | Fine ottobre | Salta |
+| Boga | Juventus | Lesione di medio grado del bicipite femorale | Metà novembre | Salta |
+| Ekhator | Juventus | Lesione di medio grado del muscolo semitendinoso | Metà novembre | Salta |
+| Yildiz | Juventus | Problema al piede | Inizio dicembre | Salta |
+| Grabara | Juventus | Lesione al crociato anteriore del ginocchio destro | Da aprile | Salta |
+| Gudmundsson A. | Lazio | Problema alla spalla destra dopo una caduta | Metà ottobre | In dubbio |
+| Stulic | Lecce | Fastidio muscolare alla gamba | Prossimo turno | In dubbio |
+| Saelemaekers | Milan | Problema alla caviglia destra e operata il | Da febbraio | Salta |
+| Buongiorno | Napoli | Operato nella seconda metà di luglio al | Fine dicembre | Salta |
+| Vergara | Napoli | Lesione distrattiva al polpaccio destro | Inizio novembre | Salta |
+| Cristante | Roma | Infiammazione al ginocchio e | Prossimo turno | Salta |
+| Svilar | Roma | Frattura a un dito del piede e | Metà novembre | Salta |
+| Malen | Roma | Squalificato | Rientra dalla 8ª giornata | Salta |
+| Idzes | Sassuolo | Lesione di grado moderato al quadricipite della | Seconda metà di ottobre | Salta |
+| Fortini | Torino | Affaticamento muscolare all'adduttore che lo ha escluso | Da valutare | In dubbio |
+| Zaniolo | Udinese | Lesione muscolare al bicipite femorale destro | Fine ottobre | Salta |
+| Gueye | Udinese | Problema alla caviglia a fine settembre | Fine gennaio | Salta |
+| Busio | Venezia | Distrazione intratendinea del bicipite femorale destro | Seconda metà di ottobre | Salta |
 
 ## Migliori svincolati
 
@@ -114,7 +108,7 @@ Punteggio: piu' e' alto, piu' conviene. Unisce valore e probabilita' di giocare.
 | Giocatore | Squadra | Stato | Avversario | Punteggio |
 |---|---|---|---|---|
 | Hainaut | Venezia | Titolare | Atalanta (T) | 92 |
-| Abankwah | Udinese | Panchina | Torino (T) | 82 |
+| Abankwah | Udinese | Fuori | Torino (T) | 82 |
 | Zè Pedro | Cagliari | Titolare | Juventus (C) | 78 |
 | Veiga D. | Lecce | Titolare | Bologna (C) | 77 |
 | Rodriguez Ju. | Cagliari | Titolare | Juventus (C) | 76 |
