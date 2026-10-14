@@ -86,11 +86,12 @@ def main():
         return
     vecchio = D.get("sa") or {}
     nuovo = sa
-    if len(sf) == 20:
-        D["sf"] = sf
-    if nuovo == vecchio and D.get("sf") == sf:
+    sf_ok = len(sf) == 20
+    if nuovo == vecchio and (not sf_ok or D.get("sf") == sf):
         print(f"calendario: già aggiornato ({len(nuovo)} giornate)")
         return
+    if sf_ok:
+        D["sf"] = sf
     D["sa"] = nuovo
     fp.write_text(json.dumps(D, ensure_ascii=False, separators=(",", ":")), encoding="utf-8")
     print(f"calendario: salvate {len(nuovo)} giornate (dalla {min(map(int, nuovo))}ª alla {max(map(int, nuovo))}ª)")
