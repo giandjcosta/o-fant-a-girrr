@@ -200,7 +200,8 @@ def leggi_probabili(h):
 
 def primo_calcio(D, nx):
     best = None
-    for part in (D.get("fx") or {}).get(str(nx), []):
+    parti = (D.get("fx") or {}).get(str(nx)) or (D.get("sa") or {}).get(str(nx)) or []
+    for part in parti:
         m = re.search(r"(\d{1,2})/(\d{1,2})\s+(\d{1,2}):(\d{2})", part[2])
         if m:
             g, mese, hh, mi = map(int, m.groups())
