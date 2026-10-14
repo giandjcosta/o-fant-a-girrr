@@ -4,6 +4,7 @@ name: Aggiorna statistiche e voti
 on:
   schedule:
     - cron: "30 4 * * *"
+    - cron: "20 7-22/3 * * *"
   workflow_dispatch:
   push:
     branches: [main]
@@ -24,6 +25,9 @@ jobs:
           python-version: "3.12"
       - name: Leggo statistiche e voti
         run: python3 scripts/aggiorna_dati.py
+      - name: Infortunati, quotazioni e probabili formazioni
+        continue-on-error: true
+        run: python3 scripts/aggiorna_prossima.py
       - name: Rifaccio il riepilogo
         run: python3 scripts/riepilogo.py
       - name: Totogirrr (quote, risultati, pagamenti e ping al database)
@@ -36,6 +40,7 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add data.json toto-quote.json RIEPILOGO.md riepilogo.html riepiloghi
+          git reset -q scripts/__pycache__ 2>/dev/null || true
           git diff --cached --quiet || git commit -m "Aggiorna statistiche e voti in automatico"
           git pull --rebase origin gh-pages
           git push origin gh-pages
