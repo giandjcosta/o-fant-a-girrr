@@ -554,7 +554,7 @@ function vLega(){
 function vInj(){
   var own={},mine={};D.teams.forEach(function(t){t.pl.forEach(function(x){own[x.id]=1;if(t.name===team)mine[x.id]=1})});
   var inj=(D.inj||[]).filter(function(e){return e.id&&own[e.id]}).sort(function(a,b){return a.t.localeCompare(b.t)});
-  function rows(l){return l.length?l.map(function(e){return '<div class="gr"><div style="min-width:0"><span class="nm">'+esc(P(e.id).n)+'</span> <span class="meta">'+esc(e.t)+'</span><div class="meta">'+esc(e.w)+' · Rientro: '+esc(e.b)+'</div></div><span class="stb '+(e.k==='sì'?'s-I':'s-D')+'">'+(e.k==='sì'?'Salta G'+D.round:'In dubbio')+'</span></div>'}).join(''):'<div class="meta">Nessuno.</div>'}
+  function rows(l){return l.length?l.map(function(e){return '<div class="gr"><div style="min-width:0"><span class="nm">'+esc(P(e.id).n)+'</span> <span class="meta">'+esc(e.t)+'</span><div class="meta">'+esc(e.w)+' · Rientro: '+esc(e.b)+(e.d&&Math.ceil((Date.parse(e.d)-Date.now())/864e5)>0?' (tra circa '+Math.ceil((Date.parse(e.d)-Date.now())/864e5)+' giorni)':'')+'</div></div><span class="stb '+(e.k==='sì'?'s-I':'s-D')+'">'+(e.k==='sì'?'Salta G'+D.round:'In dubbio')+'</span></div>'}).join(''):'<div class="meta">Nessuno.</div>'}
   var a=inj.filter(function(e){return mine[e.id]}),b=inj.filter(function(e){return !mine[e.id]});
   var h='<div class="note">Infortunati e acciaccati in vista della '+D.round+'ª giornata. Sono notizie pubbliche e qui non viene indicato a quale squadra della lega appartiene ogni giocatore.</div><h2 class="sec">I tuoi</h2><div class="card">'+rows(a)+'</div>';
   if(D.teams.length>1)h+='<h2 class="sec">Altri giocatori nelle rose della lega</h2><div class="card">'+rows(b)+'</div>';
@@ -960,7 +960,7 @@ app.addEventListener('change',function(e){
 function shrink(file,cb){var img=new Image(),url=URL.createObjectURL(file);img.onload=function(){var c=document.createElement('canvas');c.width=c.height=96;var x=c.getContext('2d'),s=Math.min(img.width,img.height);x.drawImage(img,(img.width-s)/2,(img.height-s)/2,s,s,0,0,96,96);URL.revokeObjectURL(url);cb(c.toDataURL('image/jpeg',0.72))};img.src=url}
 function byHash(){var k=(location.hash||'').replace('#','').trim().toUpperCase();if(!k||!D.lock)return;D.teams.forEach(function(x){if(hsh(x.name+'|'+k)===D.lock[x.name]){team=x.name;LS.team=team;LS.code=k;save()}})}
 byHash();render();
-fetch('data.json',{cache:'no-store'}).then(function(r){return r.ok?r.json():null}).then(function(j){if(j&&j.teams&&j.P&&(j.updated>=D.updated)){D=j;byHash();render()}trackOpen()}).catch(function(){trackOpen()});
+fetch('data.json',{cache:'no-store'}).then(function(r){return r.ok?r.json():null}).then(function(j){if(j&&j.teams&&j.P&&(j.updated>=D.updated)){D=j;if(D.nx&&D.nx>D.round)D.round=D.nx;byHash();render()}trackOpen()}).catch(function(){trackOpen()});
 })();
 </script>
 

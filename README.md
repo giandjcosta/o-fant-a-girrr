@@ -40,6 +40,7 @@ App web della nostra lega di fantacalcio (Classic League e Champions Cup). Si ap
 ## Aggiornamenti automatici
 
 - Il riepilogo della giornata si rigenera a ogni aggiornamento di `data.json` (workflow `Riepilogo della giornata` in `.github/workflows`).
+- Ogni giorno (e più spesso nelle 12 ore prima della prima partita) infortunati con tempi di recupero, quotazioni e probabili formazioni si aggiornano da soli (`scripts/aggiorna_prossima.py`).
 - Dati, Giornale, tabellone e quote entrano dopo ogni giornata calcolata, seguendo `scripts/PROCEDURA.md`.
 - Un registro con tutte le modifiche, giorno per giorno, è nel sito separato [o-girrr-registro](https://github.com/giandjcosta/o-girrr-registro), che legge i commit di questo repository.
 
