@@ -80,13 +80,14 @@ Notizie pubbliche, senza indicare di chi e' ogni giocatore.
 | Saelemaekers | Milan | Problema alla caviglia destra e operata il | Da febbraio | Salta |
 | Buongiorno | Napoli | Operato nella seconda metà di luglio al | Fine dicembre | Salta |
 | Vergara | Napoli | Lesione distrattiva al polpaccio destro | Inizio novembre | Salta |
-| Cristante | Roma | Infiammazione al ginocchio e | Prossimo turno | Salta |
+| Konè M. | Roma | Fastidio muscolare alla gamba il 14 ottobre | Prossimo turno | Salta |
 | Svilar | Roma | Frattura a un dito del piede e | Metà novembre | Salta |
+| Cristante | Roma | Infiammazione al ginocchio e | Prossimo turno | Salta |
 | Malen | Roma | Squalificato | Rientra dalla 8ª giornata | Salta |
 | Idzes | Sassuolo | Lesione di grado moderato al quadricipite della | Seconda metà di ottobre | Salta |
 | Fortini | Torino | Affaticamento muscolare all'adduttore che lo ha escluso | Da valutare | In dubbio |
-| Zaniolo | Udinese | Lesione muscolare al bicipite femorale destro | Fine ottobre | Salta |
 | Gueye | Udinese | Problema alla caviglia a fine settembre | Fine gennaio | Salta |
+| Zaniolo | Udinese | Lesione muscolare al bicipite femorale destro | Fine ottobre | Salta |
 | Busio | Venezia | Distrazione intratendinea del bicipite femorale destro | Seconda metà di ottobre | Salta |
 
 ## Migliori svincolati
