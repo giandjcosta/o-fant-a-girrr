@@ -752,6 +752,15 @@ function fcRatings(D,SQ,ms,n,pub){
   raw('fc:totw'+S,'La squadra della settimana di FC27 Ratings dopo la '+n+'ª giornata. Miglior overall: '+best.n+' ('+best.ov+'). Gli altri guardano dalla panchina. #FC27 #SquadraDellaSettimana',pub+100*6e4,'totw',{g:n,team:T11.map(cm),rs:'fct'+S})}
  if(gio.length>=3){var c3=gio.slice(0,3),rz=prng('fct'+S),w=Math.floor(rz()*3),wp=38+Math.floor(rz()*22),sp=Math.floor((100-wp)*(0.55+rz()*0.2)),tot=8000+Math.floor(rz()*9000),sh=[wp,sp,100-wp-sp],ord=[c3[w]].concat(c3.filter(function(x,j){return j!==w})),tf=String(tot).replace(/\B(?=(\d{3})+(?!\d))/g,'.'),wi=ord[0];
   raw('fc:tifosi'+S,'I tifosi hanno votato: dopo la '+n+'ª giornata il loro giocatore è '+P[wi].n+' ('+P[wi].t+'), con il '+wp+'% dei voti e rating '+cm(wi).ov+'. '+tf+' voti in 24 ore. #FC27 #Tifosi',pub+27*36e5,'tifosi',{g:n,tot:tf,vt:ord.map(function(i,j){var o=cm(i);return {n:P[i].n,pc:sh[j],ov:o.ov}}),rs:'fcv'+S})}
+  var tq=out[out.length-1];if(tq&&tq.k==='fc:tifosi'+S){var rv=prng('fcvr'+S),w1=P[ord[0]].n.replace(/\s+[A-Z]\.?$/,''),s1=P[ord[1]].n.replace(/\s+[A-Z]\.?$/,''),t0=tq.ts,
+   PL=['Meritatissimo {w}, per una volta il pubblico ci vede giusto.','{w} oggi era di un altro livello. Voto convinto.','Ho votato {w} e rifarei tutto. Che giornata.','Evviva {w}! Finalmente qualcuno se lo ricorda.','{w} ogni settimana più forte, bravi i tifosi.'],
+   MN=['Ma come si fa a votare {w} e non {s}? Roba da matti.','Votazione truccata, {s} meritava il doppio dei voti.','{w} giocatore dei tifosi? Ho letto male, vero?','Ancora {w}? Ci sono altri giocatori in lega, sapete?','Il {pc}% per {w}? Avete votato con gli occhi chiusi.'.replace('{pc}',String(wp)),'Io ho votato {s} e mi sento truffato.'],
+   NC=['Tanto non cambia niente: il fantavoto lo decide il campo.','Il rating sale, il mio fantavoto no. Quindi?','Votate quanto volete, il banco decide comunque.','Bello il sondaggio, ma il mio portiere continua a prendere gol.','Il rating dei tifosi vale come il meteo a Zero Branco.'],
+   TG=['{t} hai visto chi ha vinto? Dì qualcosa.','{t} questo è il tuo giocatore, fai finta di niente?','{t} chiamo te: i tifosi hanno parlato.','{t} commenta, non nasconderti.'],
+   sets=[PL,PL,MN,MN,NC,TG],rl=[];
+   for(var q=0;q<18;q++){var st=sets[Math.floor(rv()*sets.length)],tx=st[Math.floor(rv()*st.length)].split('{w}').join(w1).split('{s}').join(s1).split('{t}').join('@'+AUTORI[Math.floor(rv()*AUTORI.length)]),cu=comune(rv),au=rv()<0.45?AUTORI[Math.floor(rv()*AUTORI.length)]:cu[0],tt=t0+(40+rv()*(22*60))*6e4;
+    if(tt<=ms&&tt>=tq.ts)rl.push({a:au,x:tx,ts:tt})}
+   tq.r=dedup(tq.r.concat(rl)).sort(function(a,b){return a.ts-b.ts});var bst=Math.min(1,Math.max(.3,(ms-tq.ts)/864e5));tq.ap=Math.floor(tq.ap*0+160+rv()*140*bst);tq.ril=Math.floor(35+rv()*50*bst);tq.v=Math.floor(22000+rv()*14000*bst)}
  /* griglie di carte: Star Performers (pronostico e consuntivo) e Top 18 dell'overall */
  function cg(i,R){var m=media(i,R),a=m.a;return {n:P[i].n.replace(/\s+[A-Z]\.?$/,''),t:P[i].t,ov:ovr(a),r:RU[P[i].r]||'ATT'}}
  var pr=cand(S+1).sort(function(a,b){return media(b,S).a-media(a,S).a||a-b}).slice(0,7);
