@@ -1,6 +1,6 @@
 # Riepilogo giornata 6 di Serie A
 
-Lega O FANT A GIRRR. Dati aggiornati al 2026-10-14.
+Lega O FANT A GIRRR. Dati aggiornati al 2026-10-15.
 
 ## Partite della giornata
 
