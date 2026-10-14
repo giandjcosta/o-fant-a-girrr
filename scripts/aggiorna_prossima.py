@@ -11,7 +11,7 @@
 Regole di sicurezza: ogni parte si aggiorna solo se la pagina risulta letta per intero (numero minimo di squadre, partite e
 giocatori); altrimenti quella parte resta com'era e lo script lo dice. Un giocatore guarito sparisce dall'elenco infortunati,
 uno nuovo ci entra: la lista viene sempre sostituita per intero, mai "sommata".
-Le formazioni (T, B, R) si applicano da 12 ore prima della prima partita della giornata; prima, restano quelle precedenti
+Le formazioni (T, B, R) si applicano da 3 giorni prima della prima partita della giornata; prima, restano quelle precedenti
 tranne chi risulta nel frattempo fuori o in dubbio.
 
 Uso:  python3 scripts/aggiorna_prossima.py [--da-cartella DIR]   (DIR = pagine gia' scaricate, per le prove)
@@ -277,7 +277,7 @@ def main():
                 for i in m["dub"]:
                     dubbio[i] = "In dubbio"
             inizio = primo_calcio(D, sa)
-            applica = (inizio is None) or (ora >= inizio - timedelta(hours=12))
+            applica = (inizio is None) or (ora >= inizio - timedelta(hours=72))
             vecchio = D.get("st") or {}
             nuovo = {}
             if applica:
@@ -316,7 +316,7 @@ def main():
             cambi.append(f"probabili formazioni della {sa}ª: {sum(1 for v in nuovo.values() if v['s']=='T')} titolari, "
                          f"{sum(1 for v in nuovo.values() if v['s'] in ('B','R'))} ballottaggi, "
                          f"{sum(1 for v in nuovo.values() if v['s']=='I')} fuori, {sum(1 for v in nuovo.values() if v['s']=='D')} in dubbio; "
-                         + ("formazioni applicate" if applica else f"formazioni in attesa (si applicano da 12 ore prima di {inizio:%d/%m %H:%M})"))
+                         + ("formazioni applicate" if applica else f"formazioni in attesa (si applicano da 3 giorni prima di {inizio:%d/%m %H:%M})"))
         else:
             print(f"probabili: lette {len(partite)} partite ({len(buone)} con formazione), non aggiorno")
 
