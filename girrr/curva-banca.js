@@ -712,6 +712,37 @@ function prestitoPost(l,ms,SQ){
  var p={k:'toto:pr:'+l.id+l.stato,a:'totogirrr',x:x,ts:T,r:[]},c=conta(p.k,1);p.ap=Math.floor(3000+c.ap*220);p.ril=Math.floor(300+c.ril*60);p.v=Math.floor(60000+c.v*220);
  var rs=[];for(var q=0;q<4;q++)rs=rs.concat(reazioni(p.k+'#'+q,p.ts,ms,SQ,p.x).r);p.r=rs.filter(function(y){return y.ts<=ms}).sort(function(y,z){return y.ts-z.ts});
  return p}
+
+/* FC27 Ratings: un giocatore delle nostre rose sotto osservazione prima della giornata e la sua card aggiornata dopo i fantapunti */
+function fcRatings(D,SQ,ms,n,pub){
+ var out=[],NM=nomi(D),V=D.votes||{},P=D.P||{},RU={P:'POR',D:'DIF',C:'CEN',A:'ATT'},S=legaSa(D)||n;
+ function fv(id,k){var m=V[id]&&V[id][k];return m&&m.f!=null?m.f:null}
+ function media(id,k){var s=0,c=0;for(var j=1;j<=k;j++){var x=fv(id,j);if(x!=null){s+=x;c++}}return c?{a:s/c,c:c}:null}
+ function ovr(a){return Math.max(48,Math.min(94,Math.round(65+(a-6)*12)))}
+ function cand(R){return Object.keys(NM).filter(function(id){var p=P[id],m=media(id,R-1);return p&&m&&m.c>=2&&m.c>=(R-1)*0.6}).sort(function(a,b){return a-b})}
+ function scegli(R){var c=cand(R);return c.length?c[Math.floor(prng('fcr'+R)()*c.length)]:null}
+ function dec(x){return String(Math.round(x*10)/10).replace('.',',')}
+ function mk(k,x,t,id,ov,d){var p=P[id],q={k:k,a:'fc27_ratings',x:x,ts:t,r:[],imgt:'carta',cx:{gio:p.n,club:p.t,ov:ov,d:d||0,ruolo:RU[p.r]||'ATT',rs:'fcr'+id}},c=conta(k,2);q.ap=c.ap;q.ril=c.ril;q.v=c.v;
+  var rs=[];for(var i=0;i<7;i++)rs=rs.concat(reazioni(k+'#'+i,t,ms,SQ,x).r);q.r=rs.filter(function(y){return y.ts<=ms}).sort(function(y,z){return y.ts-z.ts});if(t<=ms)out.push(q)}
+ var A1=['Sotto osservazione per la {g}ª giornata: {n} ({c}). Overall {o}. Aggiorniamo a fine giornata. #FC27','Il nostro osservato speciale: {n} ({c}), overall {o}. Vediamo cosa fa in campo. #FC27'];
+ function pre(g,h){return A1[h%2].replace('{g}',g).replace('{n}','').replace('{c}','').replace('{o}','')}
+ /* giornata appena giocata (lega n, Serie A S): prima e dopo */
+ var id=scegli(S);
+ if(id){var p=P[id],h=h32('fcd'+S),m0=media(id,S-1),m1=media(id,S),o0=ovr(m0.a),x=fv(id,S);
+  mk('fc:pre'+S,A1[h%2].replace('{g}',n).replace('{n}',p.n).replace('{c}',p.t).replace('{o}',o0),pub-4*864e5,id,o0,0);
+  if(x==null)mk('fc:post'+S,p.n+' ('+p.t+') non è sceso in campo: overall invariato a '+o0+'. Resta sotto osservazione. #FC27',pub+70*6e4,id,o0,0);
+  else{var o1=ovr(m1.a),d=o1-o0,b=((V[id][S].b)||[]).join(', ');if(!d&&x!==6){d=x>6?1:-1;o1=o0+d}
+   var tx=!d?p.n+' ('+p.t+') conferma: fantavoto '+dec(x)+(b?' ('+b+')':'')+', overall fermo a '+o1+'. #FC27':
+    d>0?p.n+' ('+p.t+') '+(x>=6.5?'risponde sul campo':'sale di poco')+': fantavoto '+dec(x)+(b?' ('+b+')':'')+'. Overall da '+o0+' a '+o1+' (+'+d+'). '+(x>=6.5?'Promosso.':'Un passo avanti.')+' #FC27':
+    p.n+' ('+p.t+') '+(x>=6?'frena':'delude')+': fantavoto '+dec(x)+(b?' ('+b+')':'')+'. Overall da '+o0+' a '+o1+' ('+d+'). '+(x>=6?'Un passo indietro.':'Bocciato.')+' #FC27';
+   mk('fc:post'+S,tx,pub+70*6e4,id,o1,d)}}
+ /* prossima giornata: solo il "prima" */
+ var nl=n+1,R=S+1;((D.cal&&D.cal.lega)||[]).forEach(function(g){if(g.n===nl&&g.sa)R=g.sa});
+ var idn=D.sa&&D.sa[R]?scegli(R):null;
+ if(idn){var pn=P[idn],on=ovr(media(idn,R-1).a),t0=null;
+  D.sa[R].forEach(function(g){var mm=/(\d\d)\/(\d\d)\s+(\d\d):(\d\d)/.exec(g[2]||'');if(!mm)return;var mo=+mm[2],y=mo>=7?2026:2027,t=ts(y,mo,+mm[1],+mm[3],+mm[4]);if(t0===null||t<t0)t0=t});
+  if(t0!==null)mk('fc:pre'+R,A1[h32('fcd'+R)%2].replace('{g}',nl).replace('{n}',pn.n).replace('{c}',pn.t).replace('{o}',on),t0-20*36e5,idn,on,0)}
+ return out}
 function genera(D,SQ,ST,ms){
  var r=roma(ms),oggi=giorno(ms),all=[],tg=tendenze(D).map(function(x){return x[0]});
  var tag=function(k,i){return tg[(h32(k)+i)%tg.length]};
@@ -753,6 +784,7 @@ function genera(D,SQ,ST,ms){
   if(P1c)P1.ts=P1.ts;
   var LU=null;((D.cal&&D.cal.lega)||[]).forEach(function(g){if(g.m.some(function(m){return m[4]!=='-'}))LU=g});
   if(LU&&LU._pub){P1.ts=LU._pub;P2.ts=LU._pub}
+  try{fcRatings(D,SQ,ms,n,P1.ts).forEach(function(q){all.push(q)})}catch(e){}
   if(P1c&&cu&&cu.pub)P1c.ts=cu.pub;
   [P1,P2].concat(P1c?[P1c]:[]).forEach(function(p){var c=conta(p.k,1);p.ap=Math.floor(21000+c.ap*850);p.ril=Math.floor(2400+c.ril*260);p.v=Math.floor(1100000+c.v*900);
    var rs=[];for(var q=0;q<7;q++){var z=reazioni(p.k+'#'+q,p.ts,ms,SQ,p.x);rs=rs.concat(z.r)}
