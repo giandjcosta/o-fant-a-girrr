@@ -593,6 +593,7 @@ function segOf(h){var a=acc(h),all=Object.keys(ACC).filter(function(k){return k!
  if(a.k==='org')return Object.keys(ACC).filter(function(k){return k!==h&&ACC[k].k==='org'}).concat(sq.filter(function(k){return k!==h}));
  var off=['girrr_sport','lega_ofantagirrr','champions_cup','giornale_girrr'].filter(function(k){return k!==h}),N=12+hue(a.n)%40,pool=all.filter(function(k){return off.indexOf(k)<0}).sort(function(x,y){return CVB.h32(h+'|'+x)-CVB.h32(h+'|'+y)});
  if(a.k==='sq')return off.concat(Object.keys(ACC).filter(function(k){return k!==h&&ACC[k].v&&ACC[k].k==='sq'}));
+ if(a.k==='pro'){var sqs=sq.filter(function(k){return k!==h&&ACC[k]});return off.concat(sqs,pool.filter(function(k){return sqs.indexOf(k)<0})).slice(0,Math.max(N,off.length+sqs.length+3))}
  return off.concat(pool).slice(0,N)}
 function nSeguiti(){var n=0;Object.keys(ACC).forEach(function(h){if(h!==meH&&isFol(h))n++});return n}
 function segBtn(h,small){var s=isFol(h);return '<button class="btn blu" data-seg="'+h+'"'+(small?' style="align-self:flex-start;padding:7px 14px;font-size:13px"':'')+'>'+(s?'Seguito':'Segui')+'</button>'}
