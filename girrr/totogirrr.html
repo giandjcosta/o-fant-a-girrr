@@ -264,7 +264,7 @@ function ticker(){
   return it?'<div class="tick"><div class="tk">'+it+it+'</div></div>':'';
 }
 function evid(){
-  var vis={},ap=S.partite.filter(function(p){return aperta(p)&&p.comp!=='vinc'}).filter(function(p){var k=[p.casa,p.trasf].sort().join('|');if(vis[k])return false;vis[k]=1;return true});if(!ap.length)return '';
+  var vis={},ap=S.partite.filter(function(p){return aperta(p)&&p.comp!=='vinc'}).filter(function(p){var k=p.comp+'|'+[p.casa,p.trasf].sort().join('|');if(vis[k])return false;vis[k]=1;return true});if(!ap.length)return '';
   var fav=ap.map(function(p){var s1=p.q1<=p.q2;return{p:p,m:s1?'1':'2',q:s1?p.q1:p.q2,n:s1?p.casa:p.trasf}}).sort(function(a,b){return a.q-b.q}).slice(0,2);
   var used={};fav.forEach(function(x){used[x.p.id]=1});
   var col=ap.filter(function(p){return !used[p.id]}).map(function(p){var s1=p.q1>=p.q2;return{p:p,m:s1?'1':'2',q:s1?p.q1:p.q2,n:s1?p.casa:p.trasf}}).sort(function(a,b){return b.q-a.q}).slice(0,2);
@@ -273,7 +273,7 @@ function evid(){
 }
 function card(x,tag){
   var on=slip.some(function(y){return y.p===x.p.id&&y.m===x.m});
-  return '<div class="fc"><div class="tg">'+tag+'</div><div class="mm">'+esc(x.p.casa)+' – '+esc(x.p.trasf)+'</div><button class="q'+(on?' on':'')+'" data-p="'+x.p.id+'" data-m="'+x.m+'"><small>'+esc(x.n)+'</small><b>'+f2(x.q)+'</b></button></div>';
+  return '<div class="fc"><div class="tg" style="display:flex;justify-content:space-between;gap:6px"><span>'+tag+'</span><span style="letter-spacing:.06em;color:var(--chiaro)">'+(x.p.comp==='coppa'?'COPPA':'CAMPIONATO')+'</span></div><div class="mm">'+esc(x.p.casa)+' – '+esc(x.p.trasf)+'</div><button class="q'+(on?' on':'')+'" data-p="'+x.p.id+'" data-m="'+x.m+'"><small>'+esc(x.n)+'</small><b>'+f2(x.q)+'</b></button></div>';
 }
 function head(){
   var c=S.conto;
