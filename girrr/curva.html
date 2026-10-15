@@ -5,7 +5,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,viewport-fit=cover">
 <meta name="robots" content="noindex">
-<meta name="cv-ver" content="20261015e">
+<meta name="cv-ver" content="20261015f">
 <title>Curva · O Girrr</title>
 <link rel="icon" type="image/png" href="../assets/favicon-64.png">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800;900&display=swap">
@@ -291,7 +291,7 @@ function attivita(n){var t=Date.now()-7*864e5,c=0,rx=0,rs=0,ids={};if(!S||!S.pos
 function posT(n){var i=(ST.tot||ST.cls).map(function(t){return t.n}).indexOf(n);return i<0?0:i+1}
 function fattore(n){var N=(ST.tot||ST.cls).length,p=posT(n);if(!p||N<2)return 1;return (1.6-(p-1)/(N-1)*1.05)*attivita(n)}
 function seguaci(n){var N=ST.cls.length,p=posiz(n)||N,posS=N>1?(N-p)/(N-1):0,at=attivita(n),act=Math.min(1,Math.max(0,(at-1)/0.45)),fs=(ST.fr&&ST.fr[n])||0,np=Math.max(1,ST.np||1),hist=Math.min(1,fs/np),
- S=0.45*posS+0.35*hist+0.2*act,base=25000+425000*Math.pow(S,1.4),ex=1150000*Math.pow(Math.min(1,fs/34),1.3)*(0.6+0.4*act);return Math.round(base*(0.9+hue(n)%25/100)+ex)}
+ Sc=0.45*posS+0.35*hist+0.2*act,base=25000+425000*Math.pow(Sc,1.4),ex=1150000*Math.pow(Math.min(1,fs/34),1.3)*(0.6+0.4*act);var cp=0,t14=Date.now()-14*864e5;if(S&&S.posts)S.posts.forEach(function(q){if(q.team===n&&q.ts>t14)cp++});return Math.round((base*(0.9+hue(n)%25/100)+ex)*(1+Math.min(0.08,0.005*cp)))}
 function segTxt(v){return v>=1000000?(v/1e6).toFixed(1).replace('.',',')+' milioni':fmt(v).replace(' mila','')+' mila'}
 function fattoreH(h){for(var i=0;i<SQ.length;i++)if(hnd(SQ[i])===h)return fattore(SQ[i]);return 1}
 function posiz(n){var i=ST.cls.map(function(t){return t.n}).indexOf(n);return i<0?0:i+1}
