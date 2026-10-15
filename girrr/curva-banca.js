@@ -890,7 +890,7 @@ function genera(D,SQ,ST,ms){
   var tg=p.a==='lega_ofantagirrr'?'@lega_ofantagirrr':p.a==='champions_cup'?'@champions_cup':'@ciro_trattativa';
   var X=ci?[tg+' ha lanciato l\'indiscrezione: se è vera cambia il mercato. Ne parliamo nel nostro programma. #GirrrSport',tg+' notizia forte di mercato, la rilanciamo e ne discutiamo in studio. #GirrrSport']:p.a==='lega_ofantagirrr'?[tg+' ha chiuso la giornata: ne parliamo nello speciale post partita. #GirrrSport',tg+' comunica i risultati: li commentiamo con gli ospiti nel nostro programma. #GirrrSport']:[tg+' ha parlato: ne discutiamo nel nostro programma dedicato alla Coppa. #GirrrSport',tg+' torna in primo piano: lo rilanciamo e ne parliamo in studio. #GirrrSport'];
   if(ci){var tgs=SQ.filter(function(n){return(p.x||'').indexOf(n)>=0}).map(function(n){return '@'+n.toLowerCase().replace(/[^a-z0-9]+/g,'_').replace(/^_|_$/g,'')}).join(' ');if(tgs)X=X.map(function(t){return t.replace(' #GirrrSport',' '+tgs+' #GirrrSport')})}
-  if(rr()<(ci?0.5:0.6))extraTV.push({k:'tv:'+p.k,x:X[Math.floor(rr()*X.length)],ts:p.ts+(25+rr()*70)*60000,q:{a:p.a,x:(p.x||'').slice(0,240),ts:p.ts}})});
+  if(rr()<(ci?0.3:0.3))extraTV.push({k:'tv:'+p.k,x:X[Math.floor(rr()*X.length)],ts:p.ts+(25+rr()*70)*60000,q:{a:p.a,x:(p.x||'').slice(0,240),ts:p.ts}})});
  extraTV.forEach(function(e){var n0=all.length;gp(e.k,e.x,e.ts);if(all.length>n0)all[all.length-1].quote=e.q});
  /* veri scambi */
  (D.scambi||[]).forEach(function(s,i){var T=Date.parse(s.t);if(!(T<=ms))return;var cc={a:s.a,b:s.b,da:s.da,db:s.db};var p={k:'sc:'+i,a:'ciro_trattativa',x:riempi(SCAMBIO[i%2],cc,null),ts:T,r:[],ap:20,ril:6,v:900};all.push(p)});
