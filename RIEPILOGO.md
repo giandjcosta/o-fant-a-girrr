@@ -62,10 +62,10 @@ Notizie pubbliche, senza indicare di chi e' ogni giocatore.
 
 | Giocatore | Squadra | Motivo | Rientro | Giornata |
 |---|---|---|---|---|
-| Scalvini | Atalanta | Risentimento muscolare al flessore della coscia sinistra | Da valutare | In dubbio |
+| Scalvini | Atalanta | Distrazione di basso grado dei muscoli flessori | Fine ottobre | Salta |
 | Elmas | Atalanta | Squalificato | Rientra dalla 8ª giornata | Salta |
-| Holm | Bologna | Problema al tendine della coscia destra | Fine febbraio | Salta |
 | Orsolini | Bologna | Lesione di primo grado al bicipite femorale | Prima metà di novembre | Salta |
+| Holm | Bologna | Problema al tendine della coscia destra | Fine febbraio | Salta |
 | Diao | Como | Noie muscolari alla gamba che andranno valutate | Prossimo turno | Salta |
 | Kean | Como | Fastidio alla tibia e ha saltato la | Da valutare | In dubbio |
 | Atta | Fiorentina | Sovraccarico funzionale dell'addome | Prossimo turno | In dubbio |
@@ -75,18 +75,19 @@ Notizie pubbliche, senza indicare di chi e' ogni giocatore.
 | Ekhator | Juventus | Lesione di medio grado del muscolo semitendinoso | Metà novembre | Salta |
 | Yildiz | Juventus | Problema al piede | Inizio dicembre | Salta |
 | Grabara | Juventus | Lesione al crociato anteriore del ginocchio destro | Da aprile | Salta |
+| Marusic | Lazio | Lesione muscolare alla coscia | Seconda metà di ottobre | Salta |
 | Gudmundsson A. | Lazio | Problema alla spalla destra dopo una caduta | Metà ottobre | In dubbio |
 | Saelemaekers | Milan | Problema alla caviglia destra e operata il | Da febbraio | Salta |
 | Buongiorno | Napoli | Operato nella seconda metà di luglio al | Fine dicembre | Salta |
 | Vergara | Napoli | Lesione distrattiva al polpaccio destro | Inizio novembre | Salta |
-| Konè M. | Roma | Fastidio muscolare alla gamba il 14 ottobre | Prossimo turno | Salta |
-| Svilar | Roma | Frattura a un dito del piede e | Metà novembre | Salta |
 | Cristante | Roma | Infiammazione al ginocchio e | Prossimo turno | Salta |
+| Svilar | Roma | Frattura a un dito del piede e | Metà novembre | Salta |
+| Konè M. | Roma | Fastidio muscolare alla gamba il 14 ottobre | Prossimo turno | Salta |
 | Malen | Roma | Squalificato | Rientra dalla 8ª giornata | Salta |
 | Idzes | Sassuolo | Lesione di grado moderato al quadricipite della | Seconda metà di ottobre | Salta |
 | Fortini | Torino | Affaticamento muscolare all'adduttore che lo ha escluso | Da valutare | In dubbio |
-| Gueye | Udinese | Problema alla caviglia a fine settembre | Fine gennaio | Salta |
 | Zaniolo | Udinese | Lesione muscolare al bicipite femorale destro | Fine ottobre | Salta |
+| Gueye | Udinese | Problema alla caviglia a fine settembre | Fine gennaio | Salta |
 | Busio | Venezia | Distrazione intratendinea del bicipite femorale destro | Seconda metà di ottobre | Salta |
 
 ## Migliori svincolati
