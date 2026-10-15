@@ -133,9 +133,9 @@ nav button{transition:background-color .2s,color .2s,transform .15s}nav button:a
 .tick:hover .tk{animation-play-state:paused}
 .tk span b{color:var(--chiaro)}.tk span i{font-style:normal;color:var(--hi)}
 @keyframes tick{to{transform:translateX(-50%)}}
-.feat{display:flex;gap:10px;overflow-x:auto;scroll-snap-type:x proximity;margin:0 -14px 4px;padding:2px 14px 8px;scrollbar-width:none}
-.feat::-webkit-scrollbar{display:none}
-.fc{flex:none;width:210px;scroll-snap-align:start;background:linear-gradient(150deg,rgba(255,209,102,.2),rgba(255,255,255,.06));border-radius:14px;padding:10px 12px;border:1px solid rgba(255,209,102,.3)}
+.feat{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin:0 0 10px}
+@media(min-width:700px){.feat{grid-template-columns:repeat(4,minmax(0,1fr))}}
+.fc{min-width:0;background:linear-gradient(150deg,rgba(255,209,102,.2),rgba(255,255,255,.06));border-radius:14px;padding:10px 12px;border:1px solid rgba(255,209,102,.3)}
 .fc .tg{font-weight:900;font-size:9px;letter-spacing:.2em;color:var(--hi)}
 .fc .mm{font-weight:800;font-size:13px;margin:4px 0 8px;line-height:1.2;min-height:32px}
 .fc .q{width:100%;display:flex;justify-content:space-between;align-items:center;padding:8px 10px}
@@ -264,8 +264,8 @@ function ticker(){
   return it?'<div class="tick"><div class="tk">'+it+it+'</div></div>':'';
 }
 function evid(){
-  var ap=S.partite.filter(function(p){return aperta(p)&&p.comp!=='vinc'});if(!ap.length)return '';
-  var fav=ap.map(function(p){var s1=p.q1<=p.q2;return{p:p,m:s1?'1':'2',q:s1?p.q1:p.q2,n:s1?p.casa:p.trasf}}).sort(function(a,b){return a.q-b.q}).slice(0,3);
+  var vis={},ap=S.partite.filter(function(p){return aperta(p)&&p.comp!=='vinc'}).filter(function(p){var k=[p.casa,p.trasf].sort().join('|');if(vis[k])return false;vis[k]=1;return true});if(!ap.length)return '';
+  var fav=ap.map(function(p){var s1=p.q1<=p.q2;return{p:p,m:s1?'1':'2',q:s1?p.q1:p.q2,n:s1?p.casa:p.trasf}}).sort(function(a,b){return a.q-b.q}).slice(0,2);
   var used={};fav.forEach(function(x){used[x.p.id]=1});
   var col=ap.filter(function(p){return !used[p.id]}).map(function(p){var s1=p.q1>=p.q2;return{p:p,m:s1?'1':'2',q:s1?p.q1:p.q2,n:s1?p.casa:p.trasf}}).sort(function(a,b){return b.q-a.q}).slice(0,2);
   var cards=fav.map(function(x){return card(x,'FAVORITA')}).concat(col.map(function(x){return card(x,'COLPACCIO')})).join('');
