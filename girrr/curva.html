@@ -5,7 +5,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,viewport-fit=cover">
 <meta name="robots" content="noindex">
-<meta name="cv-ver" content="20261015j">
+<meta name="cv-ver" content="20261015k">
 <title>Curva · O Girrr</title>
 <link rel="icon" type="image/png" href="../assets/favicon-64.png">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800;900&display=swap">
@@ -797,7 +797,9 @@ function condividi(k){var p=POSTS.filter(function(q){return q.k===k})[0];if(!p)r
    if(navigator.canShare&&navigator.canShare({files:[f]})){navigator.share({files:[f],text:nm(a)+' sulla Curva'}).catch(function(){}).then(riallinea)}
    else{var u=URL.createObjectURL(b),l=document.createElement('a');l.href=u;l.download=f.name;document.body.appendChild(l);l.click();l.remove();setTimeout(function(){URL.revokeObjectURL(u)},4000);toast('Immagine salvata')}
    ev1('curva/condividi','Curva: coro condiviso')},'image/png')})}
-function riallinea(){[0,150,500].forEach(function(t){setTimeout(function(){var n=document.querySelector('.nav'),y=window.scrollY;if(n){n.style.transform='translateZ(0)';void n.offsetHeight;n.style.transform=''}window.scrollTo(0,y+1);window.scrollTo(0,y);window.dispatchEvent(new Event('resize'))},t)})}
+function fixNav(){var n=document.querySelector('.nav');if(!n||window.innerWidth>=760)return;n.style.transform='';var vv=window.visualViewport,H=Math.max(window.innerHeight,vv?vv.height+vv.offsetTop:0,document.documentElement.clientHeight),g=Math.round(H-n.getBoundingClientRect().bottom);if(g>4)n.style.transform='translateY('+g+'px)'}
+(function(){var tm;function q(){clearTimeout(tm);tm=setTimeout(fixNav,120)}['resize','pageshow','focus','orientationchange','scroll'].forEach(function(e){window.addEventListener(e,q,{passive:true})});document.addEventListener('visibilitychange',q);if(window.visualViewport){window.visualViewport.addEventListener('resize',q);window.visualViewport.addEventListener('scroll',q)}})();
+function riallinea(){[0,150,500,1200,2500].forEach(function(t){setTimeout(fixNav,t)});[0,150,500].forEach(function(t){setTimeout(function(){var n=document.querySelector('.nav'),y=window.scrollY;if(n){n.style.transform='translateZ(0)';void n.offsetHeight;n.style.transform=''}window.scrollTo(0,y+1);window.scrollTo(0,y);window.dispatchEvent(new Event('resize'))},t)})}
 function conta(){var tx=document.getElementById('tx'),c=document.getElementById('cnt'),go=document.getElementById('go');if(!tx)return;var r=MAX-tx.value.length;c.textContent=r;c.className='cnt'+(r<0?' over':r<20?' near':'');go.disabled=!tx.value.trim()||r<0;tx.style.height='auto';tx.style.height=tx.scrollHeight+'px'}
 
 function pollForm(){return '<input class="poi" maxlength="40" placeholder="Risposta 1"><input class="poi" maxlength="40" placeholder="Risposta 2"><button class="lnk" data-a="pollx" style="color:var(--blu);margin:2px 0 0">+ Aggiungi una risposta</button><div class="pom">Il sondaggio dura 24 ore. Ogni squadra vota una sola volta.</div>'}
