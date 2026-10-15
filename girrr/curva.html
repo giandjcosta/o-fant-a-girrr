@@ -5,7 +5,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,viewport-fit=cover">
 <meta name="robots" content="noindex">
-<meta name="cv-ver" content="20261015c">
+<meta name="cv-ver" content="20261015e">
 <title>Curva · O Girrr</title>
 <link rel="icon" type="image/png" href="../assets/favicon-64.png">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800;900&display=swap">
@@ -353,8 +353,8 @@ function costruisci(){
  })()}catch(e){}
  gen.forEach(function(p){out.push(p)});
  out.forEach(function(p){var rr=(p.r||[]).concat(tuttiR[p.k]||[]);rr.sort(function(a,b){return a.ts-b.ts});p.r=rr;
-  var ci=p.a==='ciro_trattativa'&&!p.real;if(ci)p.v=0;var vb=0;if((p.real||p.uf||ci)&&!p.v){var et0=Math.max(0,(Date.now()-p.ts)/36e5),cr0=1-Math.exp(-et0/5),j0=0.8+((p.id0||0)*37%40)/100;vb=(ci?512000:p.a==='girrr_sport'?5100000:p.a==='champions_cup'?2900000:(p.a==='lega_ofantagirrr'||p.a==='giornale_girrr')?3800000:seguaci(p.tm))*(0.01+0.09*cr0)*j0;p.ap=Math.round(vb*(0.012+(CVB.h32(p.k)%20)/1000));p.ril=Math.round(vb*(0.003+(CVB.h32(p.k+'r')%30)/10000))}
-  p.A=(p.ap||0)+(RC[p.k+'|a']||0);p.R=(p.ril||0)+(RC[p.k+'|r']||0);if(!p.v){var et=Math.max(0,(Date.now()-p.ts)/36e5),cr=1-Math.exp(-et/5),j=0.8+((p.id0||0)*37%40)/100;p.v=Math.round((vb||seguaci(p.tm)*(0.01+0.09*cr)*j)+30*(p.A+p.R+rr.length))}});
+  var ci=p.a==='ciro_trattativa'&&!p.real;if(ci)p.v=0;var vb=0;if((p.real||p.uf||ci)&&!p.v){var et0=Math.max(0,(Date.now()-p.ts)/36e5),cr0=1-Math.exp(-et0/2.5),j0=0.8+((p.id0||0)*37%40)/100;var fo=(ci?512000:p.a==='girrr_sport'?5100000:p.a==='champions_cup'?2900000:(p.a==='lega_ofantagirrr'||p.a==='giornale_girrr')?3800000:seguaci(p.tm)),E=fo*0.10*cr0*j0;vb=fo*(0.04+0.46*cr0)*j0;p.ap=Math.round(E*(0.7+(CVB.h32(p.k)%20)/100));p.ril=Math.round(E*(0.10+(CVB.h32(p.k+'r')%10)/100))}
+  p.A=(p.ap||0)+(RC[p.k+'|a']||0);p.R=(p.ril||0)+(RC[p.k+'|r']||0);if(!p.v){var et=Math.max(0,(Date.now()-p.ts)/36e5),cr=1-Math.exp(-et/5),j=0.8+((p.id0||0)*37%40)/100;p.v=Math.round((vb||seguaci(p.tm)*(0.01+0.09*cr)*j)+(vb?8:30)*(p.A+p.R+rr.length))}});
  out.sort(function(a,b){return b.ts-a.ts});
  NOTIF={tot:0,per:{}};
  if(me){var key='cv-snap-'+me,snap=null;try{snap=JSON.parse(localStorage.getItem(key)||'null')}catch(e){}
