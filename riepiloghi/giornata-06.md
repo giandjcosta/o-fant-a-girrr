@@ -1,6 +1,6 @@
 # Riepilogo giornata 6 di Serie A
 
-Lega O FANT A GIRRR. Dati aggiornati al 2026-10-15.
+Lega O FANT A GIRRR. Dati aggiornati al 2026-10-16.
 
 ## Partite della giornata
 
@@ -63,6 +63,7 @@ Notizie pubbliche, senza indicare di chi e' ogni giocatore.
 | Giocatore | Squadra | Motivo | Rientro | Giornata |
 |---|---|---|---|---|
 | Scalvini | Atalanta | Distrazione di basso grado dei muscoli flessori | Fine ottobre | Salta |
+| Raspadori | Atalanta | Fastidio alla gamba che andrà valutato nelle | Prossimo turno | Salta |
 | Elmas | Atalanta | Squalificato | Rientra dalla 8ª giornata | Salta |
 | Holm | Bologna | Problema al tendine della coscia destra | Fine febbraio | Salta |
 | Orsolini | Bologna | Lesione di primo grado al bicipite femorale | Prima metà di novembre | Salta |
@@ -71,8 +72,7 @@ Notizie pubbliche, senza indicare di chi e' ogni giocatore.
 | Atta | Fiorentina | Sovraccarico funzionale dell'addome | Prossimo turno | In dubbio |
 | Colombo | Genoa | Problema alla caviglia | Inizio novembre | Salta |
 | Jones C. | Inter | Risentimento miofasciale agli adduttori della coscia destra | Fine ottobre | Salta |
-| Martinez L. | Inter | Risentimento muscolare ai flessori della coscia sinistra | Fine novembre | Salta |
-| Boga | Juventus | Lesione di medio grado del bicipite femorale | Già convocabile con la Lazio | In dubbio |
+| Martinez L. | Inter | Risentimento muscolare ai flessori della coscia sinistra | Prossimo turno | Salta |
 | Ekhator | Juventus | Lesione di medio grado del muscolo semitendinoso | Metà novembre | Salta |
 | Yildiz | Juventus | Problema al piede | Inizio dicembre | Salta |
 | Grabara | Juventus | Lesione al crociato anteriore del ginocchio destro | Da aprile | Salta |
@@ -84,10 +84,9 @@ Notizie pubbliche, senza indicare di chi e' ogni giocatore.
 | Neres | Napoli | Lesione di basso grado al muscolo semimembranoso | Prima metà di novembre | Salta |
 | Cristante | Roma | Infiammazione al ginocchio e | Prossimo turno | Salta |
 | Svilar | Roma | Frattura a un dito del piede e | Metà novembre | Salta |
-| Konè M. | Roma | Fastidio muscolare alla gamba il 14 ottobre | Circa un mese, dopo la sosta di novembre | Salta |
+| Konè M. | Roma | Fastidio muscolare alla gamba il 14 ottobre | Prossimo turno | Salta |
 | Malen | Roma | Squalificato | Rientra dalla 8ª giornata | Salta |
 | Idzes | Sassuolo | Lesione di grado moderato al quadricipite della | Seconda metà di ottobre | Salta |
-| Volpato | Sassuolo | Lesione di grado moderato al flessore della gamba destra | Fine ottobre | Salta |
 | Fortini | Torino | Affaticamento muscolare all'adduttore che lo ha escluso | Da valutare | In dubbio |
 | Zaniolo | Udinese | Lesione muscolare al bicipite femorale destro | Fine ottobre | Salta |
 | Gueye | Udinese | Problema alla caviglia a fine settembre | Fine gennaio | Salta |
