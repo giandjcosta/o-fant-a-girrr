@@ -72,7 +72,7 @@ Notizie pubbliche, senza indicare di chi e' ogni giocatore.
 | Colombo | Genoa | Problema alla caviglia | Inizio novembre | Salta |
 | Jones C. | Inter | Risentimento miofasciale agli adduttori della coscia destra | Fine ottobre | Salta |
 | Martinez L. | Inter | Risentimento muscolare ai flessori della coscia sinistra | Prossimo turno | Salta |
-| Boga | Juventus | Lesione di medio grado del bicipite femorale | Metà novembre | Salta |
+| Boga | Juventus | Lesione di medio grado del bicipite femorale | Già convocabile con la Lazio | In dubbio |
 | Ekhator | Juventus | Lesione di medio grado del muscolo semitendinoso | Metà novembre | Salta |
 | Yildiz | Juventus | Problema al piede | Inizio dicembre | Salta |
 | Grabara | Juventus | Lesione al crociato anteriore del ginocchio destro | Da aprile | Salta |
