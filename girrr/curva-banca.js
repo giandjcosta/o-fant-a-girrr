@@ -702,6 +702,21 @@ function totoDopo(g,dd,ms,SQ){
  var p={k:'totod:'+g,a:'totogirrr',x:x,ts:T,r:[]},c=conta(p.k,1);p.ap=Math.floor(3500+c.ap*260);p.ril=Math.floor(380+c.ril*70);p.v=Math.floor(70000+c.v*240);
  var rs=[];for(var q=0;q<6;q++)rs=rs.concat(reazioni(p.k+'#'+q,p.ts,ms,SQ,p.x).r);p.r=rs.filter(function(y){return y.ts<=ms}).sort(function(y,z){return y.ts-z.ts});
  return p}
+/* TotoGirrr: ogni tanto una schedina consigliata, con immagine */
+function schedinaPost(g,dd,ms,SQ){
+ var TQ=window.CVB&&CVB.TQ;if(!TQ||!TQ.partite||h32('sch'+g)%100>=38)return null;
+ var T=ts(dd.y,dd.mo,dd.d,13,10+h32('sct'+g)%40);if(T>ms)return null;
+ var P=TQ.partite.filter(function(m){var c=Date.parse(m.chiude);return m.comp==='lega'&&m.q1&&c>T+3*36e5&&c<T+72*36e5}).sort(function(a,b){return Date.parse(a.chiude)-Date.parse(b.chiude)}).slice(0,3);
+ if(P.length<2)return null;
+ var righe=P.map(function(m){var h=h32('schm'+m.id)%100,fa=m.q1<=m.q2,e=h<66?(fa?'1':'2'):h<84?'X':(fa?'2':'1'),q=e==='1'?m.q1:e==='2'?m.q2:m.qx;return{p:m.casa+' – '+m.trasf,e:e,q:q}});
+ var qt=Math.round(righe.reduce(function(a,r){return a*r.q},1)*100)/100,pu=[10,20,25][h32('scp'+g)%3],vi=Math.round(pu*qt*100)/100;
+ var A=['Schedina del giorno per chi ha coraggio: ','Totogirrr suggerisce: ','Idea per la giornata: '][h32('scx'+g)%3];
+ var x=A+righe.map(function(r){return r.p+' '+r.e+' ('+f2(r.q)+')'}).join(', ')+'. Quota '+f2(qt)+': con '+pu+' fantacrediti ne incassi '+f2(vi)+'. Giocatela, o guardate gli altri farlo. #Totogirrr';
+ if(x.length>280)x=x.slice(0,277)+'…';
+ var p={k:'toto:sc:'+g,a:'totogirrr',x:x,ts:T,r:[],imgt:'schedina',cx:{pu:pu,qt:f2(qt),vi:f2(vi),righe:righe.map(function(r){return{p:r.p,e:r.e,q:f2(r.q)}}),rs:'sch'+g}},c=conta(p.k,1);
+ p.ap=Math.floor(3800+c.ap*270);p.ril=Math.floor(420+c.ril*75);p.v=Math.floor(72000+c.v*250);
+ var rs=[];for(var q=0;q<6;q++)rs=rs.concat(reazioni(p.k+'#'+q,p.ts,ms,SQ,p.x).r);p.r=rs.filter(function(y){return y.ts<=ms}).sort(function(y,z){return y.ts-z.ts});
+ return p}
 /* TotoGirrr commenta i prestiti tra fantallenatori */
 function prestitoPost(l,ms,SQ){
  var T0=Date.parse(l.ts);if(!(T0>0))return null;var r=prng('pr'+l.id+l.stato),T=T0+(8+Math.floor(r()*40))*6e4;if(T>ms)return null;
@@ -821,6 +836,7 @@ function genera(D,SQ,ST,ms){
   /* Ciro: venerdì 18:00 + un aggiornamento il lunedì */
   var dd=dalGiorno(g),mk=ctxDi(D,SQ,ST,'ciro'+g);
   if(g>=oggi-3){var tp=null,td=null;try{tp=totoPost(g,dd,ms,SQ)}catch(e){}try{td=totoDopo(g,dd,ms,SQ)}catch(e){}if(tp&&tp.ts>=ms-96*36e5)all.push(tp);if(td&&td.ts>=ms-96*36e5)all.push(td)}
+  if(g>=oggi-3){var sc=null;try{sc=schedinaPost(g,dd,ms,SQ)}catch(e){}if(sc&&sc.ts>=ms-96*36e5)all.push(sc)}
   if((dd.wd===0||dd.wd===1||dd.wd===6)&&g>=oggi-3){var cl=null;try{cl=ciroLungo(D,SQ,g,dd,ms,dd.wd===0?'a':dd.wd===1?'b':'c')}catch(e){}if(cl&&cl.ts<=ms&&cl.ts>=ms-96*36e5)all.push(cl)}
   if((dd.wd===2||dd.wd===4||dd.wd===6)&&g>=oggi-3){var mp=null;try{mp=mercato(D,SQ,g,dd,ms)}catch(e){}if(mp&&mp.ts<=ms&&mp.ts>=ms-96*36e5)all.push(mp)}
   if((dd.wd===3||dd.wd===5)&&g>=oggi-3){var sp=null;try{sp=scambiPost(D,SQ,g,dd,ms,dd.wd===3?16:14)}catch(e){}if(sp&&sp.ts<=ms&&sp.ts>=ms-96*36e5)all.push(sp)}

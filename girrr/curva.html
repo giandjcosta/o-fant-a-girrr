@@ -468,6 +468,11 @@ function memeImg(p){
   L.forEach(function(o,i){T(lin(o),32,276+i*44,'700 28px '+F,'#fff','left',400)});R.forEach(function(o,i){T(lin(o),W-32,276+i*44,'700 28px '+F,'#fff','right',400)});
   if(!rowsL&&!rowsR)T('Nessun marcatore',W/2,276,'700 26px '+F,'#9fb3d9','center');
   T('O FANT A GIRRR',W/2,H-18,'800 16px '+F,'rgba(255,255,255,.55)','center')}
+ else if(t==='schedina'){var Rg=cx.righe||[];c.fillStyle='#f4f1e8';c.fillRect(0,0,W,H);c.fillStyle='#0b7a3b';c.fillRect(0,0,W,78);T('TOTOGIRRR',32,50,'900 38px '+F,'#fff');T('SCHEDINA DEL GIORNO',W-32,48,'800 22px '+F,'#ffe08a','right');
+  Rg.forEach(function(o,i){var y=136+i*90;c.fillStyle='#111';c.fillRect(32,y+40,W-64,1);T(o.p,32,y+16,'800 '+(o.p.length>30?26:33)+'px '+F,'#111','left',610);T(o.e,W-215,y+16,'900 38px '+F,'#0b7a3b','center');T('@ '+o.q,W-32,y+16,'800 33px '+F,'#111','right')});
+  var yb=136+Rg.length*90+22;T('Puntata '+(cx.pu||''),32,yb+10,'700 28px '+F,'#555','left');T('Quota '+(cx.qt||''),W-32,yb+10,'900 34px '+F,'#111','right');
+  c.fillStyle='#e7f7ec';c.fillRect(32,yb+34,W-64,84);c.strokeStyle='#0b7a3b';c.lineWidth=3;c.strokeRect(32,yb+34,W-64,84);T('VINCITA POTENZIALE '+(cx.vi||''),W/2,yb+88,'900 40px '+F,'#0b7a3b','center');
+  T('O FANT A GIRRR',W/2,H-16,'800 16px '+F,'rgba(0,0,0,.4)','center')}
  else if(t==='tifosi'){var vt=cx.vt||[];c.fillStyle='#0c1630';c.fillRect(0,0,W,H);T('IL GIOCATORE DEI TIFOSI',40,70,'900 38px '+F,'#ffd166');T((cx.g||'')+'ª GIORNATA · '+(cx.tot||'')+' VOTI',40,108,'700 22px '+F,'#9fb3d9');
   vt.forEach(function(o,i){var y=160+i*115,w=Math.max(30,(W-300)*o.pc/100);c.fillStyle=i===0?'#ffd166':'#3a4a75';c.fillRect(40,y+30,w,42);T(o.pc+'%',40+w+12,y+62,'900 34px '+F,'#fff');T(o.n,40,y+22,'800 26px '+F,i===0?'#ffd166':'#fff','left',500);T('OVR '+o.ov,W-40,y+22,'800 24px '+F,'#9fb3d9','right')});
   T('FC27 RATINGS',W-30,H-18,'700 18px '+F,'#7f8fb5','right')}
