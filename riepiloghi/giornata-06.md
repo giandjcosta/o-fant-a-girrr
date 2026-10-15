@@ -87,6 +87,7 @@ Notizie pubbliche, senza indicare di chi e' ogni giocatore.
 | Konè M. | Roma | Fastidio muscolare alla gamba il 14 ottobre | Prossimo turno | Salta |
 | Malen | Roma | Squalificato | Rientra dalla 8ª giornata | Salta |
 | Idzes | Sassuolo | Lesione di grado moderato al quadricipite della | Seconda metà di ottobre | Salta |
+| Volpato | Sassuolo | Lesione di grado moderato al flessore della gamba destra | Fine ottobre | Salta |
 | Fortini | Torino | Affaticamento muscolare all'adduttore che lo ha escluso | Da valutare | In dubbio |
 | Zaniolo | Udinese | Lesione muscolare al bicipite femorale destro | Fine ottobre | Salta |
 | Gueye | Udinese | Problema alla caviglia a fine settembre | Fine gennaio | Salta |
