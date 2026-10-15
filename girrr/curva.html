@@ -346,6 +346,7 @@ function costruisci(){
   var srcU=out.concat(gen).filter(function(q){var adm=/^a\d/.test(q.k),altri=q.a==='giornale_girrr'||(q.a==='ciro_trattativa'&&!/^(mk|sw)/.test(q.k));return UFF[q.a]&&q.x&&(adm||altri)&&q.ts>=now-48*36e5&&q.ts<=now&&CVB.h32('gso'+q.k)%100<40}).sort(function(a,b){return b.ts-a.ts}).slice(0,2);
   srcU.forEach(function(q){var h=CVB.h32('gsu'+q.k),pr=UFF[q.a][h%UFF[q.a].length];
    UFM.forEach(function(m){if(m[0].test(q.x)&&m[1][q.a])pr=m[1][q.a]});
+   if(q.a==='ciro_trattativa'){var tgs=SQ.filter(function(n){return q.x.indexOf(n)>=0}).map(function(n){return '@'+hnd(n)}).join(' ');if(tgs&&(pr+' '+tgs).length<=270)pr+=' '+tgs}
    var k='gsu:'+q.k,ts=q.ts+(20+h%90)*60000;if(ts>now)ts=now-60000;if(ts<q.ts)ts=q.ts+60000;
    var z={ap:0,ril:0,r:[]};try{z=CVB.reazioni(k,ts,now,SQ,pr)}catch(e){}
    out.push({k:k,a:'girrr_sport',x:pr,uf:1,ts:ts,quote:{a:q.a,x:q.x,ts:q.ts,id:q.id,hi:q.hi},ap:z.ap+8,ril:z.ril+2,v:0,f:1,id0:CVB.h32(k)%1000,r:z.r})});
@@ -665,7 +666,7 @@ function render(){
   else{var uf=['girrr_sport','lega_ofantagirrr','champions_cup','giornale_girrr','ciro_trattativa','totogirrr'],sqh=SQ.map(hnd),pe=Object.keys(ACC).filter(function(x){return uf.indexOf(x)<0&&sqh.indexOf(x)<0});
    var op=function(x){return '<option value="'+x+'">'+esc(acc(x).n)+' (@'+x+')</option>'};
    h+='<div class="faq" style="padding:14px 16px"><b>Chi parla</b><select id="ad-h" style="width:100%;margin:6px 0 12px;padding:10px;border-radius:12px;border:1px solid var(--ln);background:var(--bg2);color:var(--tx);font:500 15px Inter"><optgroup label="Account ufficiali">'+uf.map(op).join('')+'</optgroup><optgroup label="Personaggi">'+pe.map(op).join('')+'</optgroup></select>'+
-   '<div class="exb" style="margin:0 0 14px;padding:12px;border:1px dashed var(--ln);border-radius:12px"><b>Scambio in esclusiva (per Ciro)</b><div style="font-size:13px;color:var(--mu);margin:2px 0 8px">Scegli le squadre e i giocatori: il testo con i tag e la card "Ultim\'ora" si compilano da soli qui sotto.</div>'+exUI()+'</div>'+'<b>Cosa dice</b><textarea id="ad-t" rows="4" maxlength="280" placeholder="Scrivi il coro o la frase (max 280 caratteri)" style="width:100%;margin:6px 0 4px;padding:10px;border-radius:12px;border:1px solid var(--ln);background:var(--bg2);color:var(--tx);font:500 15px Inter;resize:none"></textarea><small id="ad-c" style="color:var(--mu)">280</small>'+
+   '<div class="exb" style="margin:0 0 14px;padding:12px;border:1px dashed var(--ln);border-radius:12px"><b>Scambio in esclusiva (per Ciro)</b><div style="font-size:13px;color:var(--mu);margin:2px 0 8px">Scegli le squadre e i giocatori: il testo e la card "Ultim\'ora" si compilano da soli qui sotto.</div>'+exUI()+'</div>'+'<b>Cosa dice</b><textarea id="ad-t" rows="4" maxlength="280" placeholder="Scrivi il coro o la frase (max 280 caratteri)" style="width:100%;margin:6px 0 4px;padding:10px;border-radius:12px;border:1px solid var(--ln);background:var(--bg2);color:var(--tx);font:500 15px Inter;resize:none"></textarea><small id="ad-c" style="color:var(--mu)">280</small>'+
    '<div id="ad-p">'+(aimg?'<div class="pv"><img src="'+aimg+'" alt=""><button id="ad-px" aria-label="Togli la foto">×</button></div>':'')+'</div>'+
    '<div class="edi" style="margin-top:10px"><button class="btn out" data-a="adfoto">Aggiungi foto</button></div><input type="file" id="ad-f" accept="image/*" hidden>'+
    '<b style="display:block;margin-top:12px">Quando</b><input type="datetime-local" id="ad-q" style="width:100%;margin:6px 0 4px;padding:10px;border-radius:12px;border:1px solid var(--ln);background:var(--bg2);color:var(--tx);font:500 15px Inter"><small style="color:var(--mu)">Lascia vuoto per pubblicare subito.</small>'+
@@ -731,9 +732,9 @@ function exUI(){var o=function(v){return '<option value="">Scegli la squadra</op
 function exNomi(k){return EX['g'+k].map(function(i){return D.P[i].n}).join(' e ')}
 function exGenera(){if(!EX.a||!EX.b||EX.a===EX.b){toast('Scegli due squadre diverse');return}if(!EX.ga.length||!EX.gb.length){toast('Scegli almeno un giocatore per lato');return}
  var f=EXF[EX.f],A=exNomi('a'),B=exNomi('b'),ha=hnd(EX.a),hb=hnd(EX.b),v=[
-  'ESCLUSIVA. '+f+': '+EX.a+' e '+EX.b+' trattano. '+A+' verso '+EX.b+', in cambio di '+B+'. Si lavora sui dettagli. @'+ha+' @'+hb+' #Calciomercato',
-  'ULTIM\'ORA. Contatto avviato tra @'+ha+' e @'+hb+': sul tavolo '+A+' per '+B+'. Fonte: '+f.toLowerCase()+'. #Calciomercato',
-  'Fonti: '+f.toLowerCase()+'. Scambio in preparazione tra @'+ha+' e @'+hb+'. '+A+' da una parte, '+B+' dall\'altra. Se ne parla. #Calciomercato'],tx=v[Math.floor(Math.random()*v.length)];
+  'ESCLUSIVA. '+f+': '+EX.a+' e '+EX.b+' trattano. '+A+' verso '+EX.b+', in cambio di '+B+'. Si lavora sui dettagli. #Calciomercato',
+  'ULTIM\'ORA. Contatto avviato tra '+EX.a+' e '+EX.b+': sul tavolo '+A+' per '+B+'. Fonte: '+f.toLowerCase()+'. #Calciomercato',
+  'Fonti: '+f.toLowerCase()+'. Scambio in preparazione tra '+EX.a+' e '+EX.b+'. '+A+' da una parte, '+B+' dall\'altra. Se ne parla. #Calciomercato'],tx=v[Math.floor(Math.random()*v.length)];
  if(tx.length>280)tx=tx.slice(0,277)+'…';
  var cv=document.createElement('canvas'),W=900,H=506;cv.width=W;cv.height=H;var c=cv.getContext('2d'),F='Inter,Arial,sans-serif';
  var g=c.createLinearGradient(0,0,W,H);g.addColorStop(0,'#b3121f');g.addColorStop(1,'#4a060c');c.fillStyle=g;c.fillRect(0,0,W,H);
