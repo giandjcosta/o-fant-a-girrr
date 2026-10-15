@@ -79,6 +79,7 @@ td small{color:var(--sub);font-weight:600;display:block;font-size:11px}
 .cols i{display:block;width:100%;border-radius:5px 5px 0 0;background:linear-gradient(0deg,var(--acc),var(--hi));min-height:2px;transition:height .6s ease}
 .cols em{font-style:normal;font-weight:800;font-size:11px;margin-bottom:3px}
 .cols small{font-size:10px;color:var(--sub);font-weight:700;margin-top:5px;white-space:nowrap}
+@media(max-width:600px){.cols small.x{visibility:hidden}.cols small{font-size:11px}}
 .ore{display:grid;grid-template-columns:repeat(24,1fr);gap:3px;height:90px;align-items:end}
 .ore i{display:block;border-radius:3px 3px 0 0;background:linear-gradient(0deg,var(--acc),var(--hi));min-height:2px}
 .orel{display:flex;justify-content:space-between;color:var(--sub);font-size:10px;font-weight:700;margin-top:4px}
@@ -140,7 +141,7 @@ function disegna(j){
   /* giorni */
   var last=[];for(i=13;i>=0;i--)last.push(new Date(Date.now()-i*864e5).toISOString().slice(0,10));
   var mx=Math.max.apply(null,last.map(function(k){return days[k]||0}).concat([1]));
-  h+='<div class="card"><h3>Visite al giorno</h3><div class="cols">'+last.map(function(k){var n=days[k]||0,dt=new Date(k+'T12:00:00Z');return '<div><em>'+(n||'')+'</em><i style="height:'+Math.round(n/mx*100)+'%"></i><small>'+dt.getUTCDate()+'/'+(dt.getUTCMonth()+1)+'</small></div>'}).join('')+'</div></div>';
+  h+='<div class="card"><h3>Visite al giorno</h3><div class="cols">'+last.map(function(k,ix){var n=days[k]||0,dt=new Date(k+'T12:00:00Z');return '<div><em>'+(n||'')+'</em><i style="height:'+Math.round(n/mx*100)+'%"></i><small'+((last.length-1-ix)%2?' class="x"':'')+'>'+dt.getUTCDate()+'/'+(dt.getUTCMonth()+1)+'</small></div>'}).join('')+'</div></div>';
   /* sezioni */
   var m2=Math.max.apply(null,SEZ.map(function(s){return per[s[0]]}).concat([1]));
   h+='<div class="card"><h3>Dove si entra di più</h3>'+SEZ.slice().sort(function(a,b){return per[b[0]]-per[a[0]]}).map(function(s){return bar(s[1],per[s[0]],m2)}).join('')+'</div>';
