@@ -781,6 +781,28 @@ function fcRatings(D,SQ,ms,n,pub){
   if(up.length&&dn.length){var k4=Math.min(up.length,dn.length,4),cc=up.slice(0,k4).concat(dn.slice(0,k4)).map(function(o){var a=cg(o.i,S);a.d=o.d;return a});
    raw('fc:mov'+S,'Chi sale e chi scende dopo la '+n+'ª giornata: '+cg(up[0].i,S).n+' guadagna '+up[0].d+', '+cg(dn[0].i,S).n+' ne perde '+Math.abs(dn[0].d)+'. Il triangolino non perdona. #FC27 #Movers',pub+8*36e5,'griglia',{tit:'SU E GIÙ',sub:'RATING',cols:k4,foot:'DOPO LA '+n+'ª GIORNATA',cards:cc,rs:'fcmo'+S})}}
  return out}
+/* Girrr Sport: risultato della partita di lega con marcatori coerenti con il punteggio. I gol vengono assegnati a chi ha fatto più punti. */
+function risultatoSport(D,SQ,ms,n,pub){
+ var S=legaSa(D);if(!S)return null;var g=((D.cal&&D.cal.lega)||[]).filter(function(x){return x.n===n})[0];if(!g)return null;
+ var P=D.P||{},V=D.votes||{},FZ=(window.CVB&&CVB.FZ&&CVB.FZ[String(S)])||null,TM={};(D.teams||[]).forEach(function(t){TM[t.name]=(t.pl||[]).map(function(p){return String(p.id)})});
+ var best=null;g.m.forEach(function(m){if(m[4]==='-')return;var a=m[4].split('-'),tot=(+a[0])+(+a[1]),df=Math.abs(m[1]-m[2]);var sc=tot*100-df;if(!best||sc>best.sc)best={m:m,sc:sc}});if(!best)return null;
+ var m=best.m,gl=m[4].split('-').map(Number),eq=[m[0],m[3]],pt=[m[1],m[2]];
+ function vo(i){var x=V[i]&&V[i][S];return x&&x.f!=null?x:null}
+ function pool(t){var ids=FZ&&FZ[t]?FZ[t].tit.concat(FZ[t].pan).map(String):TM[t]||[];return ids.filter(function(i){return P[i]&&vo(i)})}
+ function ev(i,re){var b=(vo(i).b||[]),k=0;b.forEach(function(x){var q=re.exec(x);if(q&&!/subito/.test(x))k+=+q[1]});return k}
+ var og=[0,1].map(function(j){return pool(eq[j]).filter(function(i){return ev(i,/^(\d+)\s*autogol/)>0})});
+ var sc=[0,1].map(function(j){var N=Math.max(0,gl[j]-og[1-j].length),pl=pool(eq[j]).filter(function(i){return P[i].r!=='P'||ev(i,/^(\d+)\s*(?:gol|rigore)/)>0}),
+   rank=function(a,b){return vo(b).f-vo(a).f||ev(b,/^(\d+)\s*(?:gol|rigore)/)-ev(a,/^(\d+)\s*(?:gol|rigore)/)||a-b},
+   con=pl.filter(function(i){return ev(i,/^(\d+)\s*(?:gol|rigore)/)>0}).sort(rank),sen=pl.filter(function(i){return ev(i,/^(\d+)\s*(?:gol|rigore)/)===0&&ev(i,/^(\d+)\s*autogol/)===0}).sort(rank),out=[],i;
+   for(i=0;i<con.length&&out.length<N;i++){var k=Math.min(N-out.length,ev(con[i],/^(\d+)\s*(?:gol|rigore)/));out.push({n:P[con[i]].n.replace(/\s+[A-Z]\.?$/,''),k:k,rig:k===1&&(vo(con[i]).b||[]).some(function(x){return /rigore/.test(x)})})}
+   for(i=0;i<sen.length&&out.length<N;i++)out.push({n:P[sen[i]].n.replace(/\s+[A-Z]\.?$/,''),k:1});
+   og[1-j].forEach(function(o){out.push({n:P[o].n.replace(/\s+[A-Z]\.?$/,''),og:1})});return out});
+ var f1=function(x){return String(x).replace('.',',')},h1=function(x){return x.toLowerCase().replace(/[^a-z0-9]+/g,'_').replace(/^_|_$/g,'')},r=prng('gsr'+n),
+  fr=['Una partita che il Girrr ricorderà.','Cronaca in studio con gli ospiti.','Il campo ha parlato.','Ne discutiamo nel nostro programma.'][Math.floor(r()*4)];
+ var x='Finale: '+eq[0]+' '+gl[0]+'–'+gl[1]+' '+eq[1]+' ('+f1(pt[0])+'–'+f1(pt[1])+'). '+fr+' @'+h1(eq[0])+' @'+h1(eq[1])+' #GirrrSport';if(x.length>280)x=x.slice(0,277)+'…';
+ var p={k:'gs:ris'+n,a:'girrr_sport',x:x,ts:pub+40*6e4,r:[],imgt:'risultato',cx:{g:n,a:eq[0],b:eq[1],ga:gl[0],gb:gl[1],pa:f1(pt[0]),pb:f1(pt[1]),sa:sc[0],sb:sc[1],rs:'gsr'+n}},c=conta(p.k,1);
+ p.ap=Math.floor(26000+c.ap*900);p.ril=Math.floor(3100+c.ril*280);p.v=Math.floor(1500000+c.v*950);var rs=[];for(var q=0;q<7;q++)rs=rs.concat(reazioni(p.k+'#'+q,p.ts,ms,SQ,p.x).r);p.r=rs.filter(function(y){return y.ts<=ms}).sort(function(y,z){return y.ts-z.ts});
+ return p.ts<=ms?p:null}
 function genera(D,SQ,ST,ms){
  var r=roma(ms),oggi=giorno(ms),all=[],tg=tendenze(D).map(function(x){return x[0]});
  var tag=function(k,i){return tg[(h32(k)+i)%tg.length]};
@@ -823,6 +845,7 @@ function genera(D,SQ,ST,ms){
   var LU=null;((D.cal&&D.cal.lega)||[]).forEach(function(g){if(g.m.some(function(m){return m[4]!=='-'}))LU=g});
   if(LU&&LU._pub){P1.ts=LU._pub;P2.ts=LU._pub}
   try{fcRatings(D,SQ,ms,n,P1.ts).forEach(function(q){all.push(q)})}catch(e){}
+  try{var rsp=risultatoSport(D,SQ,ms,n,P1.ts);if(rsp)all.push(rsp)}catch(e){}
   if(P1c&&cu&&cu.pub)P1c.ts=cu.pub;
   [P1,P2].concat(P1c?[P1c]:[]).forEach(function(p){var c=conta(p.k,1);p.ap=Math.floor(21000+c.ap*850);p.ril=Math.floor(2400+c.ril*260);p.v=Math.floor(1100000+c.v*900);
    var rs=[];for(var q=0;q<7;q++){var z=reazioni(p.k+'#'+q,p.ts,ms,SQ,p.x);rs=rs.concat(z.r)}
