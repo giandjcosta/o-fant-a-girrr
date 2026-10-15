@@ -713,7 +713,7 @@ function schedinaPost(g,dd,ms,SQ){
  var A=['Schedina del giorno per chi ha coraggio: ','Totogirrr suggerisce: ','Idea per la giornata: '][h32('scx'+g)%3];
  var x=A+righe.map(function(r){return r.p+' '+r.e+' ('+f2(r.q)+')'}).join(', ')+'. Quota '+f2(qt)+': con '+pu+' fantacrediti ne incassi '+f2(vi)+'. Giocatela, o guardate gli altri farlo. #Totogirrr';
  if(x.length>280)x=x.slice(0,277)+'…';
- var p={k:'toto:sc:'+g,a:'totogirrr',x:x,ts:T,r:[],imgt:'schedina',cx:{pu:pu,qt:f2(qt),vi:f2(vi),righe:righe.map(function(r){return{p:r.p,e:r.e,q:f2(r.q)}}),rs:'sch'+g}},c=conta(p.k,1);
+ var p={k:'toto:sc:'+g,a:'totogirrr',x:x,ts:T,r:[],imgt:'schedtoto',cx:{pu:pu,qt:f2(qt),vi:f2(vi),righe:righe.map(function(r){return{p:r.p,e:r.e,q:f2(r.q)}}),rs:'sch'+g}},c=conta(p.k,1);
  p.ap=Math.floor(3800+c.ap*270);p.ril=Math.floor(420+c.ril*75);p.v=Math.floor(72000+c.v*250);
  var rs=[];for(var q=0;q<6;q++)rs=rs.concat(reazioni(p.k+'#'+q,p.ts,ms,SQ,p.x).r);p.r=rs.filter(function(y){return y.ts<=ms}).sort(function(y,z){return y.ts-z.ts});
  return p}
