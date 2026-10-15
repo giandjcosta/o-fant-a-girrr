@@ -71,7 +71,7 @@ Notizie pubbliche, senza indicare di chi e' ogni giocatore.
 | Atta | Fiorentina | Sovraccarico funzionale dell'addome | Prossimo turno | In dubbio |
 | Colombo | Genoa | Problema alla caviglia | Inizio novembre | Salta |
 | Jones C. | Inter | Risentimento miofasciale agli adduttori della coscia destra | Fine ottobre | Salta |
-| Martinez L. | Inter | Risentimento muscolare ai flessori della coscia sinistra | Prossimo turno | Salta |
+| Martinez L. | Inter | Risentimento muscolare ai flessori della coscia sinistra | Fine novembre | Salta |
 | Boga | Juventus | Lesione di medio grado del bicipite femorale | Già convocabile con la Lazio | In dubbio |
 | Ekhator | Juventus | Lesione di medio grado del muscolo semitendinoso | Metà novembre | Salta |
 | Yildiz | Juventus | Problema al piede | Inizio dicembre | Salta |
@@ -84,7 +84,7 @@ Notizie pubbliche, senza indicare di chi e' ogni giocatore.
 | Neres | Napoli | Lesione di basso grado al muscolo semimembranoso | Prima metà di novembre | Salta |
 | Cristante | Roma | Infiammazione al ginocchio e | Prossimo turno | Salta |
 | Svilar | Roma | Frattura a un dito del piede e | Metà novembre | Salta |
-| Konè M. | Roma | Fastidio muscolare alla gamba il 14 ottobre | Prossimo turno | Salta |
+| Konè M. | Roma | Fastidio muscolare alla gamba il 14 ottobre | Circa un mese, dopo la sosta di novembre | Salta |
 | Malen | Roma | Squalificato | Rientra dalla 8ª giornata | Salta |
 | Idzes | Sassuolo | Lesione di grado moderato al quadricipite della | Seconda metà di ottobre | Salta |
 | Volpato | Sassuolo | Lesione di grado moderato al flessore della gamba destra | Fine ottobre | Salta |
