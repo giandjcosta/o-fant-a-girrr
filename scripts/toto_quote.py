@@ -11,6 +11,7 @@ import json
 import math
 import os
 import random
+import re
 import sys
 import urllib.request
 from datetime import datetime
@@ -56,16 +57,70 @@ def stima_giocatori(d):
     return out
 
 
-def forza_rosa(d):
-    """Somma dei fantavoti attesi della miglior formazione possibile di ogni squadra."""
+ORIZZONTE_INF = 21   # giorni: oltre questo orizzonte gli infortuni non incidono sulle quote
+
+
+def _ritorno(d, e, adesso):
+    """Quando torna disponibile (datetime): data indicata, 'dalla giornata N', altrimenti 14 giorni."""
+    from datetime import timedelta
+    if e.get("d"):
+        try:
+            return datetime.fromisoformat(e["d"]).replace(tzinfo=ROMA)
+        except ValueError:
+            pass
+    m = re.search(r"dalla (\d+)", e.get("b") or "")
+    if m:
+        c = chiusura(d, int(m.group(1)))
+        if c:
+            return c
+    return adesso + timedelta(days=14)
+
+
+def disponibilita(d, ch, adesso=None):
+    """{id: 0..1} probabilita' che il giocatore giochi nella giornata che chiude a `ch` (solo prossimi 21 giorni)."""
+    from datetime import timedelta
+    adesso = adesso or datetime.now(ROMA)
+    if ch is None or ch < adesso or ch > adesso + timedelta(days=ORIZZONTE_INF):
+        return {}
+    # prossima giornata di Serie A non ancora iniziata
+    chius = sorted(c for c in (chiusura(d, int(k)) for k in d["fx"]) if c and c > adesso)
+    prossima = (chius[1] if len(chius) > 1 else adesso + timedelta(days=14)) - timedelta(minutes=1)
+    out = {}
+    inj = {str(e["id"]): e for e in d.get("inj", [])}
+    for pid, st in d.get("st", {}).items():
+        if st.get("s") != "I":
+            continue
+        e = inj.get(pid, {})
+        ritorno = _ritorno(d, e, adesso)
+        if e.get("w") == "Squalificato" or "rossimo" in (e.get("b") or ""):
+            # assente solo se questa e' la prossima giornata
+            assente = bool(chius) and ch <= chius[0] + timedelta(hours=1)
+        else:
+            assente = ritorno > ch
+        if assente:
+            out[pid] = 0.5 if e.get("k") == "in dubbio" else 0.0
+    return out
+
+
+def forza_rosa(d, disp=None):
+    """Somma dei fantavoti attesi della miglior formazione possibile di ogni squadra.
+    `disp` = {id: probabilita' di esserci}: gli assenti (0) escono, i dubbi valgono meta' + sostituto."""
     est = stima_giocatori(d)
+    disp = disp or {}
+    medie = {}
+    for r_, v_ in est.values():
+        medie.setdefault(r_, []).append(v_)
     forza = {}
     for t in d["teams"]:
         by = {"P": [], "D": [], "C": [], "A": []}
         for pl in t["pl"]:
             e = est.get(str(pl["id"]))
             if e:
-                by[e[0]].append(e[1])
+                a = disp.get(str(pl["id"]), 1.0)
+                if a <= 0:
+                    continue
+                v = e[1] if a >= 1 else a * e[1] + (1 - a) * (sum(medie[e[0]]) / len(medie[e[0]]) - 0.5)
+                by[e[0]].append(v)
         for r in by:
             by[r].sort(reverse=True)
         best = None
@@ -182,15 +237,31 @@ def chiusura(d, sa):
     return best
 
 
+def ratings_giornata(d, rt, ch, cache):
+    """Rating di ogni squadra per una giornata: base + effetto degli assenti (solo prossime 3 settimane)."""
+    disp = disponibilita(d, ch)
+    if not disp:
+        return rt
+    chiave = tuple(sorted(disp.items()))
+    if chiave not in cache:
+        pieno, con = forza_rosa(d), forza_rosa(d, disp)
+        m = sum(pieno.values()) / len(pieno)
+        sd = (sum((x - m) ** 2 for x in pieno.values()) / len(pieno)) ** 0.5 or 1.0
+        cache[chiave] = {t: rt[t] + 0.5 * SPREAD * (con.get(t, pieno.get(t, 0)) - pieno.get(t, 0)) / sd for t in rt}
+    return cache[chiave]
+
+
 def partite(d):
     rt = ratings(d)
+    cache = {}
     out = []
 
     def aggiungi(pid, comp, g, sa, casa, fuori, ris):
         ch = chiusura(d, sa)
         if ch is None:
             return
-        p1, px, p2, po, ex = probabilita(rt[casa], rt[fuori])
+        rg = ratings_giornata(d, rt, ch, cache)
+        p1, px, p2, po, ex = probabilita(rg[casa], rg[fuori])
         o = {"id": pid, "comp": comp, "giornata": g, "casa": casa, "trasf": fuori,
              "chiude": ch.isoformat(), "q1": quota(p1), "qx": quota(px), "q2": quota(p2),
              "qo": quota(po), "qu": quota(1 - po), "extra": mercati_extra(ex)}
