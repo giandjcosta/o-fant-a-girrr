@@ -92,7 +92,8 @@ def disponibilita(d, ch, adesso=None):
             continue
         e = inj.get(pid, {})
         ritorno = _ritorno(d, e, adesso)
-        if e.get("w") == "Squalificato" or "rossimo" in (e.get("b") or ""):
+        if not re.search(r"dalla (\d+)", e.get("b") or "") and not e.get("d") and (
+                e.get("w") == "Squalificato" or "rossimo" in (e.get("b") or "")):
             # assente solo se questa e' la prossima giornata
             assente = bool(chius) and ch <= chius[0] + timedelta(hours=1)
         else:
