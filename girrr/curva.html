@@ -5,7 +5,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,viewport-fit=cover">
 <meta name="robots" content="noindex">
-<meta name="cv-ver" content="20261015k">
+<meta name="cv-ver" content="20261015l">
 <title>Curva · O Girrr</title>
 <link rel="icon" type="image/png" href="../assets/favicon-64.png">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800;900&display=swap">
@@ -348,7 +348,8 @@ function costruisci(){
   var srcU=out.concat(gen).filter(function(q){var adm=/^a\d/.test(q.k),altri=q.a==='giornale_girrr'||(q.a==='ciro_trattativa'&&!/^(mk|sw)/.test(q.k));return UFF[q.a]&&q.x&&(adm||altri)&&q.ts>=now-48*36e5&&q.ts<=now&&(CVB.h32('gso'+q.k)%100<22||(adm&&q.a==='ciro_trattativa'))}).sort(function(a,b){return b.ts-a.ts}).slice(0,2);
   srcU.forEach(function(q){var h=CVB.h32('gsu'+q.k),pr=UFF[q.a][h%UFF[q.a].length];
    UFM.forEach(function(m){if(m[0].test(q.x)&&m[1][q.a])pr=m[1][q.a]});
-   if(q.a==='ciro_trattativa'&&/ufficial|habemus|firmat|chius[oa]|conclus[oa]|accettat/i.test(q.x)&&!/a un passo|vicin|filtra|rilancia|può valutare/i.test(q.x)){var UFO=['È ufficiale: lo scambio è chiuso. Il Girrr conferma.','Mercato, notizia ufficiale: il Girrr conferma e rilancia.','Nessuna voce, stavolta: scambio fatto e Girrr Sport conferma.','Il sigillo è apposto: scambio ufficiale, confermato dalla TV.'];pr=UFO[h%UFO.length]}
+   if(q.a==='ciro_trattativa'&&/infortun|si ferma|problema fisico/i.test(q.x)){var UFI=['Dall\'infermeria: la notizia è fresca, il Girrr rilancia e aspetta gli esami.','Brutta notizia dal campo: Ciro Trattativa la segnala, il Girrr attende conferme dagli esami.','Stop improvviso: il Girrr rilancia e segue gli aggiornamenti dall\'infermeria.'];pr=UFI[h%UFI.length]}
+   else if(q.a==='ciro_trattativa'&&/ufficial|habemus|firmat|chius[oa]|conclus[oa]|accettat/i.test(q.x)&&!/a un passo|vicin|filtra|rilancia|può valutare/i.test(q.x)){var UFO=['È ufficiale: lo scambio è chiuso. Il Girrr conferma.','Mercato, notizia ufficiale: il Girrr conferma e rilancia.','Nessuna voce, stavolta: scambio fatto e Girrr Sport conferma.','Il sigillo è apposto: scambio ufficiale, confermato dalla TV.'];pr=UFO[h%UFO.length]}
    if(q.a==='ciro_trattativa'){var tgs=SQ.filter(function(n){return q.x.indexOf(n)>=0}).map(function(n){return '@'+hnd(n)}).join(' ');if(tgs&&(pr+' '+tgs).length<=270)pr+=' '+tgs}
    var k='gsu:'+q.k,ts=q.ts+(20+h%90)*60000;if(ts>now)ts=stab2(k,ts);if(ts<q.ts)ts=q.ts+60000;
    var z={ap:0,ril:0,r:[]};try{z=CVB.reazioni(k,ts,now,SQ,pr)}catch(e){}
