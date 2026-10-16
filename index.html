@@ -10,6 +10,7 @@
 <meta property="og:title" content="Spogliatoio · O Fant A Girrr">
 <meta property="og:description" content="Rosa, giornata, scambi, svincolati e infortunati della nostra lega di fantacalcio.">
 <meta name="description" content="Rosa, giornata, scambi, svincolati e infortunati della nostra lega di fantacalcio.">
+<script>(function(){var s='';try{s=(JSON.parse(localStorage.getItem('fg')||'{}')||{}).skin||''}catch(e){}if(!s){var m=document.cookie.match(/(?:^|; )gskin=([a-z]+)/);if(m)s=m[1]}if(s==='diretta')s='seriea';if(['girrr','viola','azzurro','seriea','campo'].indexOf(s)<0)s='girrr';document.documentElement.setAttribute('data-skin',s)})()</script>
 <style>body{margin:0}[hidden]{display:none!important}img{max-width:100%}</style>
 <title>Spogliatoio · O Fant A Girrr</title>
 <link rel="icon" type="image/png" href="assets/favicon-64.png">
@@ -415,6 +416,7 @@ LS.log=LS.log||{};LS.base=LS.base||{};LS.photo=LS.photo||{};
 var cfg={kit:LS.kit||'club',shirt:LS.shirt||'#ff6a13',shirtNew:LS.shirtNew||'#f4f4ee'};
 var tab='rosa',role='D',sortBy='score',filter='ALL',open=null,uid=0,team=LS.team||'';
 var app=document.getElementById('app');
+function skinCk(){try{var m=document.cookie.match(/(?:^|; )gskin=([a-z]+)/);return m?m[1]:''}catch(e){return ''}}
 function save(){try{localStorage.setItem('fg',JSON.stringify(LS))}catch(e){}}
 function esc(s){return String(s==null?'':s).replace(/[&<>"']/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]})}
 function col(c){return /^#[0-9a-fA-F]{6}$/.test(c)?c:'#ff6a13'}
@@ -483,8 +485,8 @@ function score(id){
 function render(){
   document.getElementById('lg').textContent='Fantacalcio 2026/27 · '+D.league;
   document.getElementById('upd').textContent='Dati al '+new Date(D.updated).toLocaleDateString('it-IT',{day:'numeric',month:'long'})+' · Prossima: G'+D.round;
-  if(LS.skin==='diretta')LS.skin='seriea';document.documentElement.setAttribute('data-skin',LS.skin||'viola');
-  document.getElementById('skin').innerHTML=[['viola','Stile FantaLab'],['azzurro','Stile Leghe'],['seriea','Stile Serie A'],['campo','Stile Figurine'],['girrr','Stile O Girrr']].map(function(x){return '<button data-skin="'+x[0]+'" aria-pressed="'+((LS.skin||'viola')===x[0])+'">'+x[1]+'</button>'}).join('');
+  if(LS.skin==='diretta')LS.skin='seriea';var SK=LS.skin||skinCk()||'girrr';document.documentElement.setAttribute('data-skin',SK);
+  document.getElementById('skin').innerHTML=[['girrr','Stile O Girrr'],['viola','Stile FantaLab'],['azzurro','Stile Leghe'],['seriea','Stile Serie A'],['campo','Stile Figurine']].map(function(x){return '<button data-skin="'+x[0]+'" aria-pressed="'+(SK===x[0])+'">'+x[1]+'</button>'}).join('');
   var ok=authed();document.getElementById('tabs').hidden=!ok;
   document.getElementById('who').innerHTML=ok?'<b class="name">'+esc(team)+'</b><button class="btn" id="out">Esci</button>':'';
   if(!ok){app.innerHTML=vGate();return}
@@ -960,7 +962,7 @@ function vSet(){
     ['Fonti','Quotazioni, statistiche e tabellini da Fantacalcio, rose e calendari da Leghe Fantacalcio, probabili formazioni e infortunati da Fantamaster e TuttoFantacalcio, calendario di Serie A da Sky Sport. La difficoltà degli avversari è una stima.']]);
   return h;
 }
-document.getElementById('skin').addEventListener('click',function(e){var b=e.target.closest('button');if(b){LS.skin=b.dataset.skin;save();render()}});
+document.getElementById('skin').addEventListener('click',function(e){var b=e.target.closest('button');if(b){LS.skin=b.dataset.skin;save();try{document.cookie='gskin='+LS.skin+'; max-age=31536000; path=/; SameSite=Lax'}catch(e){}render()}});
 document.getElementById('tabs').addEventListener('click',function(e){var b=e.target.closest('button');if(b){tab=b.dataset.t;enter=true;render();track()}});
 document.getElementById('who').addEventListener('click',function(e){if(e.target.id==='out'){LS.code='';save();gateErr=false;render()}});
 app.addEventListener('click',function(e){
