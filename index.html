@@ -528,7 +528,7 @@ function vRosa(){
     h+='<tr class="'+(xi[p.id]?'xi':'')+'"><td class="n"><span class="rb '+p.r+'">'+p.r+'</span> <span class="nm">'+esc(p.n)+'</span><div class="pb"><i class="b-'+nxt(p.id).s+'" style="width:'+pc+'%"></i></div><span class="meta">'+pc+'% · '+NXT[nxt(p.id).s]+'</span></td>'+
     '<td>'+esc(P(p.id).q)+'</td><td>'+v(s.mv)+'</td><td>'+v(s.fmv)+'</td><td>'+v(s.pg)+'</td><td>'+v(s.g)+'</td><td>'+v(s.as)+'</td><td>'+(f?'<span class="fx '+diff(f.o)+'">'+esc(f.o.slice(0,3).toUpperCase())+(f.h?' (C)':' (T)')+'</span>':'–')+'</td><td><span class="isb" style="background:'+(pr<35?'var(--ok)':pr<60?'var(--warn)':'var(--bad)')+';color:#111">'+pr+'%</span></td></tr>';
   });
-  h+='</tbody></table></div><div class="hint">'+(D.ps&&Object.keys(D.ps).length?'Medie, presenze, gol e assist sono tratti dalle statistiche di Fantacalcio aggiornate al '+new Date(D.psDate||D.updated).toLocaleDateString('it-IT')+'. Il trattino indica che il giocatore non è ancora sceso in campo.':'Medie e presenze non sono ancora disponibili.')+'</div></div></div>';
+  h+='</tbody></table></div><div class="hint">'+(D.ps&&Object.keys(D.ps).length?'Medie, presenze, gol e assist arrivano dalle statistiche di Fantacalcio fino all\'ultima giornata giocata (voti del '+new Date(D.psDate||D.updated).toLocaleDateString('it-IT')+'): cambiano solo dopo nuove partite. Il trattino indica che il giocatore non è ancora sceso in campo.':'Medie e presenze non sono ancora disponibili.')+'</div></div></div>';
   return h;
 }
 function vDay(){
