@@ -1,6 +1,6 @@
 # Riepilogo giornata 6 di Serie A
 
-Lega O FANT A GIRRR. Dati aggiornati al 2026-10-16.
+Lega O FANT A GIRRR. Dati aggiornati al 2026-10-17.
 
 ## Partite della giornata
 
@@ -124,8 +124,8 @@ Punteggio: piu' e' alto, piu' conviene. Unisce valore e probabilita' di giocare.
 | Giocatore | Squadra | Stato | Avversario | Punteggio |
 |---|---|---|---|---|
 | Romano | Cagliari | Titolare | Juventus (C) | 89 |
-| Matic | Sassuolo | Titolare | Milan (C) | 83 |
 | Schmid | Frosinone | Titolare | Napoli (T) | 83 |
+| Matic | Sassuolo | Titolare | Milan (C) | 81 |
 | Winks | Cagliari | Titolare | Juventus (C) | 78 |
 | Frendrup | Genoa | Titolare | Fiorentina (C) | 74 |
 
@@ -135,7 +135,7 @@ Punteggio: piu' e' alto, piu' conviene. Unisce valore e probabilita' di giocare.
 |---|---|---|---|---|
 | Lontani | Parma | Titolare, ballottaggio | Inter (T) | 62 |
 | Robinson J. | Monza | Riserva, ballottaggio | Lazio (T) | 61 |
-| Ghedjemis | Frosinone | Titolare | Napoli (T) | 44 |
+| Ghedjemis | Frosinone | Titolare | Napoli (T) | 52 |
 | Enem | Bologna | Panchina | Lecce (T) | 30 |
 | Kulenovic | Torino | Riserva, ballottaggio | Udinese (C) | 30 |
 
