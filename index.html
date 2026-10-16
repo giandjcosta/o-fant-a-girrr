@@ -14,7 +14,7 @@
 <title>Spogliatoio · O Fant A Girrr</title>
 <link rel="icon" type="image/png" href="assets/favicon-64.png">
 <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@500;600;700&family=Lato:wght@400;700;900&family=Sora:wght@400;600;700;800&family=Archivo+Black&family=Archivo:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@500;600;700&family=Lato:wght@400;700;900&family=Sora:wght@400;600;700;800&family=Archivo+Black&family=Archivo:wght@400;500;600;700&family=Lobster&family=Inter:wght@500;700;800;900&display=swap">
 <style>
 /* Layout: night-stadium app. Header + tile tabs, glowing violet cards, swap cards (cedi/prendi), ring gauges.
    Single dark look by choice. Palette: deep indigo ground, violet cards, orange = cedi/risk, lime = prendi/ok, gold = gauge. */
@@ -131,6 +131,31 @@ button:focus-visible,input:focus-visible,select:focus-visible,[role=button]:focu
 :root[data-skin="campo"] h2.sec{display:inline-block;background:#172a63;color:#ffd400;padding:3px 10px;font-size:1rem}
 :root[data-skin="azzurro"] .card,:root[data-skin="campo"] .card{box-shadow:0 4px 14px rgba(var(--halo),.14)}
 :root[data-skin="azzurro"] h1,:root[data-skin="campo"] h1,:root[data-skin="seriea"] h1{text-shadow:none}
+/* Skin 5: O Girrr (colori, font e grafica ufficiali della lega, liquid glass) */
+:root[data-skin="girrr"]{--hl:#ffd166;--hl-ink:#141d3d;--hl-bg:rgba(255,209,102,.16);--hl-name:#ffd166;--fieldA:#27468c;--fieldB:#1f3a78;--fh:Lobster,'Lobster Two',cursive;--fb:Inter,system-ui,-apple-system,sans-serif;--tt:none;color-scheme:dark;--rad:20px;--tileA:rgba(255,255,255,.14);--tileB:rgba(255,255,255,.05);--accA:#d62839;--accB:#a81c2c;--acc-ink:#ffffff;--acc-line:#ff7a88;--halo:214,40,57;--head:linear-gradient(135deg,rgba(255,255,255,.18),rgba(255,255,255,.06));--head-ink:#fbf6ec;--body:radial-gradient(900px 520px at 85% -8%,rgba(214,40,57,.34),transparent 62%),radial-gradient(1000px 640px at -10% 18%,rgba(61,147,214,.30),transparent 60%),repeating-linear-gradient(115deg,rgba(255,255,255,.035) 0 36px,transparent 36px 72px),linear-gradient(180deg,#2c3f7c,#1d2a52 55%,#141d3d);--sel:#d62839;--sel-ink:#ffffff;--num:#ffd166;--bg:#1d2a52;--bg2:#2c3f7c;--card:rgba(255,255,255,.13);--card2:rgba(255,255,255,.05);--ink:#fbf6ec;--mute:#bfe3ff;--line:rgba(255,255,255,.22);--glow:#3d93d6;--or:#ff8a5c;--or-ink:#141d3d;--ok:#7be495;--mid:#5aaaf0;--warn:#ffd166;--bad:#ff6b7a;--skin:#e6dccf;--skin2:#c9bba8;--hair:#2b2622;--out:#0b1230;--chalk:#fbf6ec}
+:root[data-skin="girrr"] header,:root[data-skin="girrr"] .card,:root[data-skin="girrr"] .tw,:root[data-skin="girrr"] .kpi div,:root[data-skin="girrr"] .note,:root[data-skin="girrr"] .empty,:root[data-skin="girrr"] nav button,:root[data-skin="girrr"] .seg button,:root[data-skin="girrr"] .skin button,:root[data-skin="girrr"] .btn{-webkit-backdrop-filter:blur(18px) saturate(170%);backdrop-filter:blur(18px) saturate(170%);border:1px solid rgba(255,255,255,.26);box-shadow:inset 0 1px 0 rgba(255,255,255,.38),inset 0 -1px 0 rgba(255,255,255,.06),0 10px 28px rgba(7,12,35,.38)}
+:root[data-skin="girrr"] header{border-radius:24px;padding:14px 18px;position:relative;overflow:hidden}
+:root[data-skin="girrr"] header::after{content:'';position:absolute;left:0;right:0;bottom:0;height:3px;background:linear-gradient(90deg,#d62839 0 60%,#ffd166 60% 100%)}
+:root[data-skin="girrr"] header img{height:52px;width:auto;filter:drop-shadow(0 6px 10px rgba(0,0,0,.45))}
+:root[data-skin="girrr"] h1{font-size:2.5rem;font-weight:400;letter-spacing:.01em;color:#fbf6ec;text-shadow:0 2px 0 rgba(214,40,57,.85),0 0 24px rgba(214,40,57,.35)}
+:root[data-skin="girrr"] .sub,:root[data-skin="girrr"] header .sub{font-weight:800;font-size:.7rem;letter-spacing:.22em;text-transform:uppercase;color:#ffd166;opacity:1}
+:root[data-skin="girrr"] .name,:root[data-skin="girrr"] .swap .nm,:root[data-skin="girrr"] .gr .nm{font-weight:800;letter-spacing:0;font-size:1rem}
+:root[data-skin="girrr"] h2.sec{font-size:1.5rem;font-weight:400;color:#fbf6ec;text-shadow:0 2px 0 rgba(214,40,57,.8)}
+:root[data-skin="girrr"] nav button{font:800 .88rem Inter,system-ui,sans-serif;letter-spacing:.04em;border-radius:999px}
+:root[data-skin="girrr"] nav button[aria-selected=true]{background:linear-gradient(160deg,rgba(255,92,108,.95),rgba(168,28,44,.95));border-color:rgba(255,200,205,.7);box-shadow:inset 0 1px 0 rgba(255,255,255,.5),0 6px 20px rgba(214,40,57,.5)}
+:root[data-skin="girrr"] .card{background:linear-gradient(150deg,rgba(255,255,255,.17),rgba(255,255,255,.05))}
+:root[data-skin="girrr"] .note{background:linear-gradient(150deg,rgba(61,147,214,.2),rgba(255,255,255,.05));color:#dff0ff;font-weight:600}
+:root[data-skin="girrr"] .kpi b{color:#ffd166}
+:root[data-skin="girrr"] .seg button[aria-pressed=true],:root[data-skin="girrr"] .skin button[aria-pressed=true]{background:linear-gradient(160deg,rgba(255,92,108,.95),rgba(168,28,44,.95));color:#fff;border-color:rgba(255,200,205,.7)}
+:root[data-skin="girrr"] .rosa .field{background:none;border:0;padding:22px 14px 16px;overflow:visible}
+:root[data-skin="girrr"] .field::before{inset:0;border:1px solid rgba(255,255,255,.3);border-radius:0;clip-path:polygon(7% 0,93% 0,100% 100%,0 100%);background:linear-gradient(180deg,rgba(255,255,255,.14),rgba(255,255,255,.03)),repeating-linear-gradient(0deg,var(--fieldA) 0 60px,var(--fieldB) 60px 120px)}
+:root[data-skin="girrr"] .field::after{border-color:rgba(251,246,236,.55)}
+:root[data-skin="girrr"] .pp .pf{border:2px solid rgba(255,255,255,.7);background:linear-gradient(180deg,#3d93d6,#1d2a52);box-shadow:0 0 14px rgba(61,147,214,.55)}
+:root[data-skin="girrr"] .field .pp .lab{background:rgba(251,246,236,.92);color:#141d3d;font-weight:800;box-shadow:0 2px 6px rgba(0,0,0,.35)}
+:root[data-skin="girrr"] .verdict,:root[data-skin="girrr"] .stb,:root[data-skin="girrr"] .fx{border-radius:999px}
+:root[data-skin="girrr"] .nm,:root[data-skin="girrr"] .rt td.n .nm,:root[data-skin="girrr"] .swap .nm{font-family:Inter,system-ui,sans-serif}
+:root[data-skin="girrr"] .name,:root[data-skin="girrr"] header .name,:root[data-skin="girrr"] .gr .nm,:root[data-skin="girrr"] .sw .nm{font-family:Inter,system-ui,sans-serif;font-weight:800}
+:root[data-skin="girrr"] .rt tr.xi td{background:rgba(255,209,102,.12)}
 .skin{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:12px}
 .skin button{padding:6px 12px;border-radius:999px;border:1px solid var(--line);background:var(--card);color:var(--ink);font:600 .82rem var(--fb);cursor:pointer}
 .skin button[aria-pressed=true]{background:var(--sel);color:var(--sel-ink);border-color:var(--sel)}
@@ -459,7 +484,7 @@ function render(){
   document.getElementById('lg').textContent='Fantacalcio 2026/27 · '+D.league;
   document.getElementById('upd').textContent='Dati al '+new Date(D.updated).toLocaleDateString('it-IT',{day:'numeric',month:'long'})+' · Prossima: G'+D.round;
   if(LS.skin==='diretta')LS.skin='seriea';document.documentElement.setAttribute('data-skin',LS.skin||'viola');
-  document.getElementById('skin').innerHTML=[['viola','Stile FantaLab'],['azzurro','Stile Leghe'],['seriea','Stile Serie A'],['campo','Stile Figurine']].map(function(x){return '<button data-skin="'+x[0]+'" aria-pressed="'+((LS.skin||'viola')===x[0])+'">'+x[1]+'</button>'}).join('');
+  document.getElementById('skin').innerHTML=[['viola','Stile FantaLab'],['azzurro','Stile Leghe'],['seriea','Stile Serie A'],['campo','Stile Figurine'],['girrr','Stile O Girrr']].map(function(x){return '<button data-skin="'+x[0]+'" aria-pressed="'+((LS.skin||'viola')===x[0])+'">'+x[1]+'</button>'}).join('');
   var ok=authed();document.getElementById('tabs').hidden=!ok;
   document.getElementById('who').innerHTML=ok?'<b class="name">'+esc(team)+'</b><button class="btn" id="out">Esci</button>':'';
   if(!ok){app.innerHTML=vGate();return}
