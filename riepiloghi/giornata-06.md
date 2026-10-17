@@ -63,31 +63,31 @@ Notizie pubbliche, senza indicare di chi e' ogni giocatore.
 | Giocatore | Squadra | Motivo | Rientro | Giornata |
 |---|---|---|---|---|
 | Scalvini | Atalanta | Distrazione di basso grado dei muscoli flessori | Fine ottobre | Salta |
-| Raspadori | Atalanta | Fastidio alla gamba che andrà valutato nelle | Prossimo turno | Salta |
+| Raspadori | Atalanta | Distrazione muscolare di basso grado al bicipite | Inizio novembre | Salta |
 | Kessiè | Atalanta | Distrazione di basso grado al polpaccio della | Seconda metà di ottobre | Salta |
 | Elmas | Atalanta | Squalificato | Rientra dalla 8ª giornata | Salta |
 | Holm | Bologna | Problema al tendine della coscia destra | Fine febbraio | Salta |
 | Orsolini | Bologna | Lesione di primo grado al bicipite femorale | Prima metà di novembre | Salta |
-| Diao | Como | Noie muscolari alla gamba che andranno valutate | Prossimo turno | Salta |
-| Kean | Como | Fastidio alla tibia e ha saltato la | Da valutare | In dubbio |
+| Diao | Como | Lesione muscolare al flessore della gamba | Metà novembre | Salta |
+| Kean | Como | Fastidio alla tibia e | Da valutare | In dubbio |
 | Atta | Fiorentina | Sovraccarico funzionale dell'addome | Prossimo turno | In dubbio |
 | Colombo | Genoa | Problema alla caviglia | Inizio novembre | Salta |
 | Pavard | Inter | Risentimento agli adduttori della coscia destra | Inizio novembre | Salta |
-| Martinez L. | Inter | Risentimento muscolare ai flessori della coscia sinistra | Metà novembre | Salta |
 | Jones C. | Inter | Risentimento miofasciale agli adduttori della coscia destra | Fine ottobre | Salta |
+| Martinez L. | Inter | Risentimento muscolare ai flessori della coscia sinistra | Metà novembre | Salta |
 | Ekhator | Juventus | Lesione di medio grado del muscolo semitendinoso | Metà novembre | Salta |
-| Grabara | Juventus | Lesione al crociato anteriore del ginocchio destro | Da aprile | Salta |
 | Yildiz | Juventus | Problema al piede | Inizio dicembre | Salta |
+| Grabara | Juventus | Lesione al crociato anteriore del ginocchio destro | Da aprile | Salta |
 | Marusic | Lazio | Lesione muscolare alla coscia | Seconda metà di ottobre | Salta |
 | Gudmundsson A. | Lazio | Problema alla spalla destra dopo una caduta | Metà ottobre | In dubbio |
 | Saelemaekers | Milan | Problema alla caviglia destra e operata il | Da febbraio | Salta |
-| Neres | Napoli | Lesione di basso grado al muscolo semimembranoso | Prima metà di novembre | Salta |
 | Buongiorno | Napoli | Operato nella seconda metà di luglio al | Fine dicembre | Salta |
 | Vergara | Napoli | Lesione distrattiva al polpaccio destro | Inizio novembre | Salta |
-| Cristante | Roma | Infiammazione al ginocchio e | Prossimo turno | Salta |
-| Konè M. | Roma | Lesione di primo grado al bicipite femorale | Prima metà di novembre | Salta |
+| Neres | Napoli | Lesione di basso grado al muscolo semimembranoso | Prima metà di novembre | Salta |
 | Dybala | Roma | Affaticamento sul gemello del polpaccio | Da valutare | Salta |
 | Svilar | Roma | Frattura a un dito del piede e | Metà novembre | Salta |
+| Cristante | Roma | Infiammazione al ginocchio e | Prossimo turno | Salta |
+| Konè M. | Roma | Lesione di primo grado al bicipite femorale | Prima metà di novembre | Salta |
 | Malen | Roma | Squalificato | Rientra dalla 8ª giornata | Salta |
 | Idzes | Sassuolo | Lesione di grado moderato al quadricipite della | Seconda metà di ottobre | Salta |
 | Fortini | Torino | Affaticamento muscolare all'adduttore che lo ha escluso | Da valutare | In dubbio |
@@ -113,8 +113,8 @@ Punteggio: piu' e' alto, piu' conviene. Unisce valore e probabilita' di giocare.
 
 | Giocatore | Squadra | Stato | Avversario | Punteggio |
 |---|---|---|---|---|
-| Hainaut | Venezia | Titolare | Atalanta (T) | 92 |
-| Abankwah | Udinese | Fuori | Torino (T) | 82 |
+| Hainaut | Venezia | Titolare | Atalanta (T) | 90 |
+| Abankwah | Udinese | In dubbio | Torino (T) | 82 |
 | Zè Pedro | Cagliari | Titolare | Juventus (C) | 78 |
 | Veiga D. | Lecce | Titolare | Bologna (C) | 77 |
 | Rodriguez Ju. | Cagliari | Titolare | Juventus (C) | 76 |
@@ -133,8 +133,8 @@ Punteggio: piu' e' alto, piu' conviene. Unisce valore e probabilita' di giocare.
 
 | Giocatore | Squadra | Stato | Avversario | Punteggio |
 |---|---|---|---|---|
-| Lontani | Parma | Titolare, ballottaggio | Inter (T) | 62 |
-| Robinson J. | Monza | Riserva, ballottaggio | Lazio (T) | 61 |
+| Lontani | Parma | Riserva, ballottaggio | Inter (T) | 62 |
+| Robinson J. | Monza | Panchina | Lazio (T) | 61 |
 | Ghedjemis | Frosinone | Titolare | Napoli (T) | 52 |
 | Enem | Bologna | Panchina | Lecce (T) | 30 |
 | Kulenovic | Torino | Riserva, ballottaggio | Udinese (C) | 30 |
