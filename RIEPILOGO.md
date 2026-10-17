@@ -126,8 +126,8 @@ Punteggio: piu' e' alto, piu' conviene. Unisce valore e probabilita' di giocare.
 | Romano | Cagliari | Titolare | Juventus (C) | 89 |
 | Schmid | Frosinone | Titolare | Napoli (T) | 83 |
 | Matic | Sassuolo | Titolare | Milan (C) | 81 |
+| Pobega | Bologna | Titolare | Lecce (T) | 78 |
 | Winks | Cagliari | Titolare | Juventus (C) | 78 |
-| Frendrup | Genoa | Titolare | Fiorentina (C) | 74 |
 
 ### Attaccanti
 
@@ -136,8 +136,8 @@ Punteggio: piu' e' alto, piu' conviene. Unisce valore e probabilita' di giocare.
 | Lontani | Parma | Riserva, ballottaggio | Inter (T) | 62 |
 | Robinson J. | Monza | Panchina | Lazio (T) | 61 |
 | Ghedjemis | Frosinone | Titolare | Napoli (T) | 52 |
-| Enem | Bologna | Panchina | Lecce (T) | 30 |
 | Kulenovic | Torino | Riserva, ballottaggio | Udinese (C) | 30 |
+| Elphege | Parma | Fuori | Inter (T) | 27 |
 
 ## Correzioni da controllare
 
