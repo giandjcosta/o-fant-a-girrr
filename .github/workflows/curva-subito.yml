@@ -6,6 +6,11 @@ on:
   schedule:
     - cron: "5,35 * * * *"
   workflow_dispatch:
+    inputs:
+      solo_segna:
+        description: "Solo registro: segna i post attuali come già usciti, senza inviarli"
+        type: boolean
+        default: false
 permissions:
   contents: write
 concurrency:
@@ -29,12 +34,12 @@ jobs:
       - name: Faccio i post e li pubblico (o li metto in coda)
         run: |
           python3 calcoli/post_curva.py calcoli/eventi.json calcoli/post_curva.json
-          python3 calcoli/pubblica_curva.py --vai
+          python3 calcoli/pubblica_curva.py --vai ${{ inputs.solo_segna && '--segna-tutti' || '' }}
       - name: Salvo la coda e i post già pubblicati
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add calcoli/pubblicati.json calcoli/coda_curva.json
+          for f in calcoli/pubblicati.json calcoli/coda_curva.json; do [ -f "$f" ] && git add "$f"; done; true
           git diff --cached --quiet || git commit -m "Curva: post nuovi"
-          git pull --rebase origin main
+          git pull --rebase --autostash origin main
           git push origin main

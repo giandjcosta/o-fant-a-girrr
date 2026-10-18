@@ -128,6 +128,14 @@ def main():
         riepilogo(f"Pubblicati {len(scelti)} post.")
         return
 
+    if "--segna-tutti" in a:
+        # Solo registro: segna come già usciti i post attuali, senza inviare niente (per recuperare uno stato perso)
+        for p in leggi(POST, []):
+            fatti.add(p["chiave"])
+        scrivi(FATTI, sorted(fatti))
+        riepilogo(f"Segnati come già usciti {len(fatti)} post, senza inviare niente.")
+        return
+
     # Giro normale: i post nuovi vanno in coda o escono, secondo il modo
     post = leggi(POST, [])
     visti = fatti | {q["chiave"] for q in coda}
