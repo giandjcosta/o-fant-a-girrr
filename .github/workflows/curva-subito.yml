@@ -1,0 +1,40 @@
+name: Curva, post quasi subito
+# Ogni 10 minuti legge dal database le sfide e le risposte nuove, ne fa i post della Curva e li pubblica
+# (o li mette in coda di approvazione, finché dura il periodo deciso in calcoli/curva_config.json).
+# Ogni evento esce una sola volta. Non fa i calcoli di fine giornata: quelli restano in "Calcoli dopo la giornata".
+on:
+  schedule:
+    - cron: "*/10 * * * *"
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: calcoli-giornata
+  cancel-in-progress: false
+env:
+  CURVA_URL: ${{ secrets.CURVA_URL }}
+  CURVA_KEY: ${{ secrets.CURVA_KEY }}
+  CURVA_TEAM: ${{ secrets.CURVA_TEAM }}
+  CURVA_CODE: ${{ secrets.CURVA_CODE }}
+jobs:
+  post:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+      - name: Leggo sfide e risposte dal database
+        run: python3 calcoli/leggi_eventi.py calcoli/eventi.json
+      - name: Faccio i post e li pubblico (o li metto in coda)
+        run: |
+          python3 calcoli/post_curva.py calcoli/eventi.json calcoli/post_curva.json
+          python3 calcoli/pubblica_curva.py --vai
+      - name: Salvo la coda e i post già pubblicati
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add calcoli/pubblicati.json calcoli/coda_curva.json
+          git diff --cached --quiet || git commit -m "Curva: post nuovi"
+          git pull --rebase origin main
+          git push origin main
