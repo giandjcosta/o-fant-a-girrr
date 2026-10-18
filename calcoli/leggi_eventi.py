@@ -5,7 +5,8 @@ Usa solo funzioni di lettura libera (come il feed di Curva): derby_stato (sfide 
 Servono CURVA_URL e CURVA_KEY (chiave publishable). Non scrive nel database.
 Uso: python3 calcoli/leggi_eventi.py [uscita.json]
 Sfide: ogni sfida produce l'evento 'sfida'; se poi è rifiutata/scaduta/accettata con nome concordato, anche 'rifiuto'/'scaduta'/'derby'.
-Il testo della frase scelta non è nel database (solo il numero 0-2): il post della sfida non la cita.
+Il testo vero della frase scelta (frase_testo, da derby_stato) finisce nell'evento come "testo": serve all'Intervista speciale. Le sfide vecchie, senza testo, hanno solo il numero 0-2.
+Conferenze: ogni conferenza pubblicata dell'ultima giornata (conf_pubbliche) produce l'evento 'conferenza'.
 """
 import json, os, sys, urllib.request
 from pathlib import Path
@@ -30,7 +31,10 @@ def eventi(stato, promesse):
     out = []
     for s in sorted(stato.get("sfide", []), key=lambda x: x["id"]):
         k = f"S{s['id']}"
-        out.append(dict(tipo="sfida", k=k, da=s["da"], a=s["a"], f=s.get("frase")))
+        ev = dict(tipo="sfida", k=k, da=s["da"], a=s["a"], f=s.get("frase"))
+        if (s.get("frase_testo") or "").strip():
+            ev["testo"] = s["frase_testo"].strip()
+        out.append(ev)
         if s["stato"] == "rifiutata":
             out.append(dict(tipo="rifiuto", k=k, da=s["da"], a=s["a"]))
         elif s["stato"] == "scaduta":
@@ -44,9 +48,24 @@ def eventi(stato, promesse):
     return out
 
 
+def eventi_conferenza(conf):
+    """Un evento 'conferenza' per ogni conferenza pubblicata dell'ultima giornata (le vecchie non si ripostano)."""
+    if not conf:
+        return []
+    ultima = max(c["giornata"] for c in conf)
+    out = []
+    for c in sorted(conf, key=lambda x: x["team"]):
+        if c["giornata"] != ultima:
+            continue
+        ris = [r.get("t", "").strip() for r in (c.get("risposte") or []) if r.get("a") != "free" and r.get("t")]
+        out.append(dict(tipo="conferenza", k=f"C{c['giornata']}-{c['team']}", team=c["team"], giornata=c["giornata"],
+                        libera=(c.get("libera") or "").strip(), risposte=ris, promessa=(c.get("promessa") or "").strip()))
+    return out
+
+
 if __name__ == "__main__":
     prom = rpc("conf_promesse", {})
-    ev = eventi(rpc("derby_stato", {}), prom)
+    ev = eventi(rpc("derby_stato", {}), prom) + eventi_conferenza(rpc("conf_pubbliche", {}))
     USCITA.write_text(json.dumps(ev, ensure_ascii=False, indent=1), encoding="utf-8")
     # le promesse grezze servono a fiducia.py (che ricalcola l'esito dai risultati veri)
     (USCITA.parent / "conferenze.json").write_text(json.dumps(prom, ensure_ascii=False, indent=1), encoding="utf-8")
