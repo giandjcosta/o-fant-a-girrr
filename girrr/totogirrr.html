@@ -411,13 +411,17 @@ function vSlip(){
   var st=Number(LS.puntata||10);
   return '<div class="slip"><div class="in"><div class="sel">'+sel+'</div><div class="ln"><input id="stake" type="number" inputmode="decimal" min="5" step="1" value="'+st+'"><div class="info">'+(slip.length>1?'Multipla ':'Singola ')+'· Quota <b>'+f2(q)+'</b><br>Vincita <b id="win">'+f2(st*q)+'</b></div><button class="go" id="gioca"'+(busy?' disabled':'')+'>Gioca</button></div><div class="chips"><button data-st="10">10</button><button data-st="25">25</button><button data-st="50">50</button><button data-st="100">100</button><button class="x" id="svuota" style="margin-left:auto">Svuota</button></div></div></div>';
 }
-var QS=1,ANIM=true,LASTQ='',SLIPWAS=false,BALPREV=null;
+var LASTHS='',LASTSV='',QS=1,ANIM=true,LASTQ='',SLIPWAS=false,BALPREV=null;
 function render(){
   var a=document.getElementById('app');
   if(!S){a.innerHTML=gate();return}
   var body=tab==='partite'?vPartite():tab==='vinc'?vVinc():tab==='mie'?vMie():tab==='class'?vClass():tab==='prestiti'?vPrestiti():tab==='prob'?vProbT():tab==='sfide'?vSfideT():vRegole();
   navPre();var keep=document.getElementById('stake');
   var hs=head(),sv=vSlip(),isNew=!!sv&&!SLIPWAS;SLIPWAS=!!sv;
+  var pn=a.querySelector('.pane'),hsK=hs.replace(/class="on"/g,'class=""');
+  if(pn&&hsK===LASTHS&&sv===LASTSV){pn.className='pane'+(ANIM?' an':'');pn.innerHTML=body;ANIM=false;
+    [].forEach.call(a.querySelectorAll('nav [data-tab]'),function(x){x.classList.toggle('on',x.getAttribute('data-tab')===tab)});tickCd();return}
+  LASTHS=hsK;LASTSV=sv;
   a.innerHTML=hs+'<div class="pane'+(ANIM?' an':'')+'">'+body+'</div>'+(isNew?sv.replace('class="slip"','class="slip new"'):sv);
   ANIM=false;
   tickCd();navPost();
