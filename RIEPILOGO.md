@@ -115,10 +115,10 @@ Punteggio: piu' e' alto, piu' conviene. Unisce valore e probabilita' di giocare.
 | Giocatore | Squadra | Stato | Avversario | Punteggio |
 |---|---|---|---|---|
 | Hainaut | Venezia | Titolare | Atalanta (T) | 90 |
-| Abankwah | Udinese | In dubbio | Torino (T) | 82 |
+| Veiga D. | Lecce | Titolare | Bologna (C) | 78 |
 | Zè Pedro | Cagliari | Titolare | Juventus (C) | 78 |
-| Veiga D. | Lecce | Titolare | Bologna (C) | 77 |
 | Rodriguez Ju. | Cagliari | Titolare | Juventus (C) | 76 |
+| Abankwah | Udinese | In dubbio | Torino (T) | 75 |
 
 ### Centrocampisti
 
@@ -137,8 +137,8 @@ Punteggio: piu' e' alto, piu' conviene. Unisce valore e probabilita' di giocare.
 | Lontani | Parma | Riserva, ballottaggio | Inter (T) | 62 |
 | Robinson J. | Monza | Panchina | Lazio (T) | 61 |
 | Ghedjemis | Frosinone | Titolare | Napoli (T) | 52 |
-| Kulenovic | Torino | Riserva, ballottaggio | Udinese (C) | 30 |
-| Elphege | Parma | Fuori | Inter (T) | 27 |
+| N'Dri | Lecce | Titolare | Bologna (C) | 41 |
+| Fatah | Lecce | Titolare | Bologna (C) | 32 |
 
 ## Correzioni da controllare
 
