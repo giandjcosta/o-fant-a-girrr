@@ -13,8 +13,8 @@ var STORICO=[
 /* frasi vere sulla storia degli allenatori, usate dai personaggi di Curva */
 var FATTI=[
  'Mario ha cambiato nome quattro volte: Gingleton, Barny, Pep Mariola e adesso Mario',
- 'ser è l\'unico che in cinque stagioni non ha mai cambiato né squadra né nome: la WOA',
- 'apo è l\'unico ad aver vinto due titoli, e di fila: 2021/22 e 2022/23 con il Wakanda',
+ 'ser è l\'unico che dal 2021 non ha mai cambiato né squadra né nome: la WOA',
+ 'apo ha tre titoli, più di chiunque altro: il 2017/18 e poi 2021/22 e 2022/23 di fila con il Wakanda',
  'apo è passato da campione per due anni a ultimo per due anni di fila',
  '17peppe17 è passato da ultimo con l\'ACPicchia a campione con il PornHub FC, e poi ha lasciato la lega',
  'DJ Cst Brazil, che una volta era StaCo Atto, è tornato dopo quattro stagioni di assenza',
@@ -23,9 +23,11 @@ var FATTI=[
  'stifson è arrivato nel 2024/25 ed è stato subito secondo, a 3 punti dal campione',
  'RikyArma è passato dall\'ultimo posto del 2022/23 alla Coppa Campioni del 2025/26',
  'ser ha vinto la Gioberti Cup 2025/26 con 10 punti sul secondo, il margine più largo tra i titoli che conosciamo',
+ 'Mario ha vinto il primo campionato della storia della lega, nel 2016/17, con Mertens',
+ 'Urba ha vinto il titolo 2018/19 e ha lasciato la lega da campione',
  'Il Wakanda di apo ha vinto il titolo già al debutto, nel 2021/22',
  'Mario e Leanzino hanno formato la coppia della The Blue Brothers',
- 'in cinque stagioni di campionato nessuno si è confermato campione tranne apo',
+ 'nella storia della lega solo apo si è confermato campione: 2021/22 e 2022/23',
  'AndrewTT, che una volta era Andrew_Indium, ha due podi in cinque anni e mai un titolo'
 ];
 window.CVS={ALIAS:ALIAS,EX:EX,STORICO:STORICO,FATTI:FATTI};

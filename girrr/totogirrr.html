@@ -113,14 +113,14 @@ html{overflow-y:scroll;scrollbar-gutter:stable}
 @keyframes up{from{transform:translateY(100%)}to{transform:none}}
 @keyframes glow{0%,100%{box-shadow:0 0 0 0 rgba(255,209,102,0)}50%{box-shadow:0 0 22px 2px rgba(255,209,102,.55)}}
 @keyframes shine{from{background-position:-200% 0}to{background-position:200% 0}}
-.q{transition:transform .15s,background-color .2s,border-color .2s}
-.q:not(:disabled):hover{transform:translateY(-2px);border-color:var(--hi)}
+.q{transition:transform .15s,background-color .2s,border-color .2s}@media (hover:hover) and (pointer:fine){
+.q:not(:disabled):hover{transform:translateY(-2px);border-color:var(--hi)}}
 .q:not(:disabled):active{transform:scale(.94)}
 .q.pop{animation:pop .35s}
-.card.m{transition:transform .2s,box-shadow .2s}
-.card.m:hover{transform:translateY(-2px);box-shadow:0 10px 24px rgba(0,0,0,.3)}
+.card.m{transition:transform .2s,box-shadow .2s}@media (hover:hover) and (pointer:fine){
+.card.m:hover{transform:translateY(-2px);box-shadow:0 10px 24px rgba(0,0,0,.3)}}
 .slip.new{animation:up .35s cubic-bezier(.2,.8,.2,1)}
-.go{transition:transform .15s,filter .2s}.go:not(:disabled):hover{filter:brightness(1.12);transform:translateY(-1px)}.go:not(:disabled):active{transform:scale(.96)}
+.go{transition:transform .15s,filter .2s}@media (hover:hover) and (pointer:fine){.go:not(:disabled):hover{filter:brightness(1.12);transform:translateY(-1px)}}.go:not(:disabled):active{transform:scale(.96)}
 .bal{animation:glow 2.4s ease-in-out 1}
 .bal.up{animation:pop .5s,glow 1.2s}
 .top h1 span{background:linear-gradient(90deg,var(--hi) 30%,#fff 50%,var(--hi) 70%);background-size:200% 100%;-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;animation:shine 3.2s linear 2}
@@ -129,8 +129,8 @@ html{overflow-y:scroll;scrollbar-gutter:stable}
 nav button{transition:background-color .2s,color .2s,transform .15s}nav button:active{transform:scale(.94)}
 @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
 .tick{overflow:hidden;white-space:nowrap;margin:0 -14px 12px;border-block:1px solid rgba(255,255,255,.12);background:rgba(0,0,0,.2);font-size:12px;font-weight:700;color:var(--sub);-webkit-mask-image:linear-gradient(90deg,transparent,#000 6%,#000 94%,transparent);mask-image:linear-gradient(90deg,transparent,#000 6%,#000 94%,transparent)}
-.tk{display:inline-flex;gap:30px;padding:7px 0;animation:tick 55s linear infinite}
-.tick:hover .tk{animation-play-state:paused}
+.tk{display:inline-flex;gap:30px;padding:7px 0;animation:tick 55s linear infinite}@media (hover:hover) and (pointer:fine){
+.tick:hover .tk{animation-play-state:paused}}
 .tk span b{color:var(--chiaro)}.tk span i{font-style:normal;color:var(--hi)}
 @keyframes tick{to{transform:translateX(-50%)}}
 .feat{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin:0 0 10px}
@@ -169,7 +169,36 @@ body::before{content:'';position:fixed;inset:-120px;z-index:-1;pointer-events:no
 .Tg{visibility:hidden;display:inline-block;font-style:italic;line-height:1}
 .TT{filter:drop-shadow(0 2px 0 rgba(0,0,0,.28))}
 .TT svg{position:absolute;left:0;top:0;width:2.25em;height:1em;overflow:visible;pointer-events:none}
-.sel{background:rgba(255,255,255,.1);color:inherit;border:1px solid rgba(255,255,255,.28);border-radius:10px;padding:9px 10px;font:inherit;font-weight:700;max-width:100%}.sel option{color:#111}.prr{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin-top:10px}.prr label{font-size:12px;font-weight:800;letter-spacing:.08em;color:var(--sub);display:block;width:100%;margin-bottom:-4px}.pri{border-top:1px solid rgba(255,255,255,.14);padding:12px 0}.pri:first-child{border-top:0}.pri b{font-weight:900}.pri small{display:block;color:var(--sub);font-weight:700;font-size:12px;margin-top:3px}.mv{display:flex;justify-content:space-between;gap:12px;padding:8px 0;border-top:1px solid rgba(255,255,255,.12);font-size:14px}.mv:first-child{border-top:0}.mv b{white-space:nowrap}.mv .p{color:var(--ok)}.mv .m{color:var(--ko)}.go.sm{padding:8px 14px;font-size:13px}.go.no{background:rgba(255,255,255,.14);color:inherit}</style>
+.sel{background:rgba(255,255,255,.1);color:inherit;border:1px solid rgba(255,255,255,.28);border-radius:10px;padding:9px 10px;font:inherit;font-weight:700;max-width:100%}.sel option{color:#111}.prr{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin-top:10px}.prr label{font-size:12px;font-weight:800;letter-spacing:.08em;color:var(--sub);display:block;width:100%;margin-bottom:-4px}.pri{border-top:1px solid rgba(255,255,255,.14);padding:12px 0}.pri:first-child{border-top:0}.pri b{font-weight:900}.pri small{display:block;color:var(--sub);font-weight:700;font-size:12px;margin-top:3px}.mv{display:flex;justify-content:space-between;gap:12px;padding:8px 0;border-top:1px solid rgba(255,255,255,.12);font-size:14px}.mv:first-child{border-top:0}.mv b{white-space:nowrap}.mv .p{color:var(--ok)}.mv .m{color:var(--ko)}.go.sm{padding:8px 14px;font-size:13px}.go.no{background:rgba(255,255,255,.14);color:inherit}nav{display:block;overflow-x:auto;overflow-y:hidden;scrollbar-width:none;-webkit-overflow-scrolling:touch;overscroll-behavior-x:auto}
+nav::-webkit-scrollbar{display:none}
+nav .nvi{display:flex;gap:6px;width:max-content;min-width:100%;will-change:transform}
+nav button{flex:1 0 auto;white-space:nowrap;padding:10px 13px}
+.ph{font:900 24px Inter;margin:2px 0 8px}
+.psub{color:var(--sub);font-size:13px;line-height:1.5;margin:6px 0 12px}
+.seg2{display:flex;gap:6px;margin-bottom:12px}
+.seg2 button{flex:1;font:900 11px Inter;letter-spacing:.04em;text-transform:uppercase;padding:10px 6px;border:0;border-radius:10px;background:rgba(255,255,255,.1);color:var(--chiaro)}
+.seg2 button.on{background:var(--hi);color:var(--bg)}
+.avt{flex:none;width:34px;height:34px;border-radius:50%;display:inline-grid;place-items:center;font:900 13px Inter;color:#fff;border:2px solid rgba(255,255,255,.4)}
+.prt,.dr{display:grid;grid-template-columns:34px 1fr auto;gap:10px;align-items:center;padding:9px 0;border-top:1px solid rgba(255,255,255,.12)}
+.dr{grid-template-columns:34px 1fr auto auto}
+.gh+.prt,.gh+.dr,.gh+p{border-top:0}
+.pg small,.ppc small{display:block;font-size:11px;font-weight:700;color:var(--sub)}
+.pg b{font-weight:800}
+.pbar{height:10px;border-radius:99px;background:rgba(255,255,255,.1);overflow:hidden;margin-top:5px}
+.pbar i{display:block;height:100%;border-radius:99px;background:linear-gradient(90deg,var(--az),var(--hi));transition:width .5s}
+.ppc{font-weight:900;font-size:17px;text-align:right;min-width:64px}
+.ppc small.up{color:var(--ok)}.ppc small.dn{color:var(--ko)}
+.vsr{display:grid;grid-template-columns:1fr auto 1fr;gap:10px;align-items:start;text-align:center;margin:10px 0}
+.vsr>div:not(.vsx){display:flex;flex-direction:column;align-items:center;gap:4px}
+.vsr small{color:var(--sub);font-size:11px;font-weight:700}
+.vsx{font-weight:900;color:var(--hi);align-self:center}
+.vsr select,#dopp{font-size:16px;max-width:100%;padding:8px 10px;border-radius:10px;border:1px solid rgba(255,255,255,.3);background:rgba(255,255,255,.12);color:var(--chiaro);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px)}
+.vsr select option{color:#111}
+.prow{display:flex;justify-content:space-between;align-items:center;margin:14px 0 6px}.pv{font-size:20px;color:var(--hi)}
+#dstake{width:100%;accent-color:#ffd166;margin-bottom:6px}
+.tg{font-size:10px;font-weight:900;letter-spacing:.06em;text-transform:uppercase;padding:4px 8px;border-radius:99px;background:rgba(255,255,255,.14)}
+.dby{display:inline-block;margin-left:6px;padding:2px 7px;border-radius:99px;background:var(--hi);color:var(--bg);font:900 9px Inter;letter-spacing:.06em;text-transform:uppercase;vertical-align:middle}
+</style>
 <link rel="manifest" href="../manifest.webmanifest">
 <meta name="theme-color" content="#1d2a52">
 <meta name="mobile-web-app-capable" content="yes">
@@ -178,6 +207,7 @@ body::before{content:'';position:fixed;inset:-120px;z-index:-1;pointer-events:no
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <script>window.goatcounter={path:function(){return location.pathname},no_onload:/[?&]demo/.test(location.search)}</script>
 <script data-goatcounter="https://djcosta18.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
+<script src="transizioni.js"></script>
 </head>
 <body>
 <div class="wrap" id="app"></div>
@@ -194,7 +224,7 @@ var teams=[],team=DEMO?'Oranje VC':(LS.team||''),code=DEMO?'demo':(LS.code||''),
 var MORE={};
 function mlab(m){var t={'1':'1','X':'X','2':'2','O':'Over 4,5','U':'Under 4,5','O35':'Over 3,5','U35':'Under 3,5','O55':'Over 5,5','U55':'Under 5,5','GG':'Entrambe segnano','NG':'Non segnano entrambe'};if(t[m])return t[m];if(m.indexOf('T:')===0)return m.slice(2);if(m.indexOf('E:')===0)return 'Esatto '+m.slice(2).replace('-','–');return m}
 function esitoJS(m,a,b){var t=a+b;return m==='1'?a>b:m==='X'?a===b:m==='2'?a<b:m==='O'?t>=5:m==='U'?t<=4:m==='O35'?t>=4:m==='U35'?t<=3:m==='O55'?t>=6:m==='U55'?t<=5:m==='GG'?a>=1&&b>=1:m==='NG'?(a===0||b===0):m==='E:'+a+'-'+b}
-function nm(p){return p.comp==='vinc'?esc(p.casa):esc(p.casa)+' – '+esc(p.trasf)}
+function nm(p){return p.comp==='vinc'?esc(p.casa):esc(p.casa)+' – '+esc(p.trasf)+(p.derby?'<span class="dby">Derby</span>':'')}
 
 var M=null;
 function mockInit(){
@@ -221,7 +251,7 @@ function mockRpc(name,b){
   if(name==='toto_gioca'){
     var st=b.p_puntata;if(!(st>=5))throw new Error('Puntata minima: 5 fantacrediti');if(st>M.conto.crediti)throw new Error('Fantacrediti insufficienti');
     var q=1,sel=b.p_sel.map(function(x){var p=M.partite.filter(function(y){return y.id===x.p})[0];if(p.casa==='Oranje VC'&&st>100)throw new Error('Sulla tua partita puntata massima 100');var qq=quotaDi(p,x.m);q*=qq;return{partita:p.id,mercato:x.m,quota:qq,esito:null}});
-    q=Math.min(500,Math.round(q*100)/100);M.conto.crediti=Math.round((M.conto.crediti-st)*100)/100;
+    q=Math.min(500,Math.round(q*(slipDerby()?1.1:1)*100)/100);M.conto.crediti=Math.round((M.conto.crediti-st)*100)/100;
     M.schedine.push({id:++M.n,puntata:st,quota:q,stato:'aperta',vincita:0,creata:new Date().toISOString(),sel:sel});
     return{id:M.n,quota:q,vincita_possibile:Math.round(st*q*100)/100};
   }
@@ -251,7 +281,8 @@ function carica(){
     render()}).catch(function(e){busy=false;S=null;err=e.message;if(/Codice/.test(err)){LS.code='';code='';save()}render()});
 }
 function pm(id){return S&&S.partite.filter(function(p){return p.id===id})[0]}
-function quotaDi(p,m){var f={'1':p.q1,'X':p.qx,'2':p.q2,'O':p.qo,'U':p.qu}[m];return Number(f!=null?f:(p.extra||{})[m])}
+function quotaDi(p,m){var f={'1':p.q1,'X':p.qx,'2':p.q2,'O':p.qo,'U':p.qu}[m],v=Number(f!=null?f:(p.extra||{})[m]);return p.derby?Math.round(Math.round(v*100)*115/100)/100:v}
+function slipDerby(){return slip.some(function(x){var p=pm(x.p);return p&&p.derby})}
 function aperta(p){return !p.chiusa&&new Date(p.chiude)>new Date()}
 
 function gate(){
@@ -279,7 +310,7 @@ function head(){
   var c=S.conto;
   return (DEMO?'<div class="card" style="border:2px dashed var(--hi);font-size:13px"><b style="color:var(--hi)">PROVA</b> · Qui è tutto finto e si azzera quando ricarichi. Gioca una schedina, poi premi il pulsante per far finire le partite a caso.<br><button class="go" id="sim" style="margin-top:10px">Fai finire le partite</button></div>':'')+'<a class="back" href="index.html">‹ O GIRRR</a><div class="top"><a href="index.html" title="Torna a O Girrr" style="display:block;flex:none"><img src="../assets/logo-lega.png" alt="O Fant A Girrr" style="display:block"></a><div class="t"><div class="k">O FANT A GIRRR</div><h1><b class="TT"><em class="Tg">T</em><svg viewBox="0 0 900 400" aria-hidden="true"><path fill="currentColor" d="M185.8 85.2H181Q145.4 85.2 121.1 103Q96.9 120.8 85.6 166Q81.9 180.8 83.2 186.6Q84.6 192.4 84.4 193.2Q62.8 193.2 54.4 184.2Q46.1 175.2 51.3 154.4Q58.4 126 78.2 102.6Q98.1 79.2 132.3 64.8Q166.5 50.4 213.7 50.4Q240.1 50.4 269.3 55.2Q272.6 55.8 275.8 56.3C299.8 57.8 329.3 62.4 360.7 67.4C408.7 74.9 461.1 83.2 505 82C565 80 605 68 642 62C668 66 668 94 640 99C600 108 545 122 480 122C417.8 122 363.5 106.2 296 100.6V102Q285.1 101.7 274.5 100Q262.2 98 239.8 93.2L120.4 350H62.8Z"/></svg></b>oto<span>girrr</span></h1></div><div class="bal"><small>FANTACREDITI</small><b>'+f2(c.crediti)+'</b>'+(Number(c.debito)>0?'<small style="color:var(--hi)">DEBITO '+f2(c.debito)+'</small>':'')+'</div></div>'+
   '<div class="who">Squadra: <b>'+esc(team)+'</b><button class="x" id="out">Esci</button></div>'+
-  '<nav>'+[['partite','Partite'],['vinc','Vincenti'],['mie','Le mie'],['class','Classifica'],['prestiti','Prestiti'],['regole','Regole']].map(function(t){return '<button data-tab="'+t[0]+'" class="'+(tab===t[0]?'on':'')+'">'+t[1]+'</button>'}).join('')+'</nav>'+ticker();
+  '<nav><div class="nvi">'+[['partite','Partite'],['vinc','Vincenti'],['mie','Le mie'],['class','Classifica'],['prob','Probabilità'],['sfide','Sfida 1 contro 1'],['prestiti','Prestiti'],['regole','Regole']].map(function(t){return '<button data-tab="'+t[0]+'" class="'+(tab===t[0]?'on':'')+'">'+t[1]+'</button>'}).join('')+'</div></nav>'+ticker();
 }
 function qbtn(p,m,lab){
   var on=slip.some(function(x){return x.p===p.id&&x.m===m});lab=lab||mlab(m);
@@ -368,34 +399,35 @@ function vPrestiti(){
   h+='<div class="card"><b>Movimenti</b><p style="font-size:12px;color:var(--sub);margin:6px 0">Qui vedi dove sono finiti i fantacrediti che non trovi più: trattenute del banco, prestiti e rimborsi.</p>'+(M2.length?M2.map(function(m){var n=Number(m.importo);return '<div class="mv"><span>'+esc(m.nota||m.tipo)+'<small style="display:block;color:var(--sub);font-size:11px">'+quando(m.creato)+'</small></span><b class="'+(n>=0?'p':'m')+'">'+(n>=0?'+':'−')+f2(Math.abs(n))+'</b></div>'}).join(''):'<div class="vuoto">Ancora nessun movimento.</div>')+'</div>';
   return h;
 }
-function vRegole(){
+function vRegole(){return vRegole0()+REGDERBY}
+function vRegole0(){
   var su=S.sussidio_ok?'<button class="go" id="suss" style="margin-top:12px">Chiedi il prestito al banco (porta a 50)</button>':'';
   return '<div class="card regole"><b>Come funziona</b><ul><li>La valuta sono i <b>fantacrediti</b>: all’inizio ne hai <b>500</b>.</li><li>Scegli un esito (1 casa, X pari, 2 trasferta, Over/Under 4,5 gol totali; sotto «Altri mercati» trovi Over/Under 3,5 e 5,5, entrambe segnano e il risultato esatto) e premi su <b>Gioca</b>. Con più partite insieme fai una <b>multipla</b>: le quote si moltiplicano, ma devi indovinarle tutte (massimo 6).</li><li>Nella scheda <b>Vincenti</b> puoi puntare su chi vince il campionato e su chi vince ciascun girone di coppa: si chiude con la giornata 8 di Serie A e si incassa alla fine. Si possono mettere in multipla con le partite.</li><li>Si può scommettere fino al <b>calcio d\'inizio della prima partita di Serie A</b> della giornata.</li><li>Puntata minima 5. Sulla <b>tua</b> partita il massimo è 100.</li><li>Le vincite arrivano da sole quando il risultato è in lega, di solito la mattina dopo.</li><li>Se scendi sotto i 50 fantacrediti puoi chiedere un <b>prestito al banco</b>: ti riporta a 50, ma una volta ogni due settimane. Il banco però vuole il <b>120%</b> indietro: sulle tue vincite si tiene il <b>40%</b> finché il debito non è saldato. Il debito conta in meno nella classifica.</li><li>Nella scheda <b>Prestiti</b> puoi chiedere fantacrediti a un altro fantallenatore, a tua scelta: lui può rifiutare, accettare o proporti un altro tasso. Il <b>25%</b> di ogni tua vincita va in automatico a chi ti ha prestato, finché non hai saldato, e puoi restituire di più quando vuoi. Dove sono finiti i tuoi fantacrediti lo vedi sempre sotto <b>Movimenti</b>.</li><li>Le quote nascono dalla forza delle squadre, con il banco che si tiene un po\' di margine. All\'inizio sono approssimative e migliorano giornata dopo giornata.</li></ul>'+su+'</div>';
 }
 function vSlip(){
   if(!slip.length||tab==='mie'&&0)return '';
   var q=1,sel=slip.map(function(x){var p=pm(x.p),qq=quotaDi(p,x.m);q*=qq;return '<div><span>'+nm(p)+' · <b>'+mlab(x.m)+'</b></span><span>'+f2(qq)+'</span></div>'}).join('');
-  q=Math.min(500,Math.round(q*100)/100);
+  q=Math.min(500,Math.round(q*(slipDerby()?1.1:1)*100)/100);
   var st=Number(LS.puntata||10);
-  return '<div class="slip"><div class="in"><div class="sel">'+sel+'</div><div class="ln"><input id="stake" type="number" inputmode="decimal" min="5" step="1" value="'+st+'"><div class="info">'+(slip.length>1?'Multipla ':'Singola ')+'· quota <b>'+f2(q)+'</b><br>Vincita <b id="win">'+f2(st*q)+'</b></div><button class="go" id="gioca"'+(busy?' disabled':'')+'>Gioca</button></div><div class="chips"><button data-st="10">10</button><button data-st="25">25</button><button data-st="50">50</button><button data-st="100">100</button><button class="x" id="svuota" style="margin-left:auto">Svuota</button></div></div></div>';
+  return '<div class="slip"><div class="in"><div class="sel">'+sel+'</div><div class="ln"><input id="stake" type="number" inputmode="decimal" min="5" step="1" value="'+st+'"><div class="info">'+(slip.length>1?'Multipla ':'Singola ')+'· Quota <b>'+f2(q)+'</b><br>Vincita <b id="win">'+f2(st*q)+'</b></div><button class="go" id="gioca"'+(busy?' disabled':'')+'>Gioca</button></div><div class="chips"><button data-st="10">10</button><button data-st="25">25</button><button data-st="50">50</button><button data-st="100">100</button><button class="x" id="svuota" style="margin-left:auto">Svuota</button></div></div></div>';
 }
 var QS=1,ANIM=true,LASTQ='',SLIPWAS=false,BALPREV=null;
 function render(){
   var a=document.getElementById('app');
   if(!S){a.innerHTML=gate();return}
-  var body=tab==='partite'?vPartite():tab==='vinc'?vVinc():tab==='mie'?vMie():tab==='class'?vClass():tab==='prestiti'?vPrestiti():vRegole();
-  var keep=document.getElementById('stake');
+  var body=tab==='partite'?vPartite():tab==='vinc'?vVinc():tab==='mie'?vMie():tab==='class'?vClass():tab==='prestiti'?vPrestiti():tab==='prob'?vProbT():tab==='sfide'?vSfideT():vRegole();
+  navPre();var keep=document.getElementById('stake');
   var hs=head(),sv=vSlip(),isNew=!!sv&&!SLIPWAS;SLIPWAS=!!sv;
   a.innerHTML=hs+'<div class="pane'+(ANIM?' an':'')+'">'+body+'</div>'+(isNew?sv.replace('class="slip"','class="slip new"'):sv);
   ANIM=false;
-  tickCd();
+  tickCd();navPost();
   var tk=document.querySelector('.tk');if(tk)tk.style.animationDuration=Math.max(70,Math.round(tk.scrollWidth/2/35))+'s';
   if(LASTQ){var qb=a.querySelector('.q[data-p="'+LASTQ.split('|')[0]+'"][data-m="'+LASTQ.split('|')[1]+'"]');if(qb&&qb.classList.contains('on'))qb.classList.add('pop');LASTQ=''}
   var bb=document.querySelector('.bal b');if(bb&&S){var v=Number(S.conto.crediti);if(BALPREV!==null&&BALPREV!==v){var from=BALPREV,t0=performance.now();document.querySelector('.bal').classList.add('up');(function st(t){var k=Math.min(1,(t-t0)/700),e=1-Math.pow(1-k,3);bb.textContent=f2(from+(v-from)*e);if(k<1)requestAnimationFrame(st)})(t0)}BALPREV=v}
 }
 function setStake(v){LS.puntata=v;save();var s=document.getElementById('stake');if(s)s.value=v;upWin()}
 function upWin(){
-  var q=1;slip.forEach(function(x){q*=quotaDi(pm(x.p),x.m)});q=Math.min(500,Math.round(q*100)/100);
+  var q=1;slip.forEach(function(x){q*=quotaDi(pm(x.p),x.m)});q=Math.min(500,Math.round(q*(slipDerby()?1.1:1)*100)/100);
   var s=document.getElementById('stake'),w=document.getElementById('win');if(s&&w)w.textContent=f2((parseFloat(s.value)||0)*q);
 }
 document.addEventListener('click',function(e){
@@ -410,7 +442,7 @@ document.addEventListener('click',function(e){
    rpc('toto_pr_rispondi',{p_team:team,p_code:code,p_id:Number(pp[0]),p_azione:pp[1],p_tasso:pp[1]==='controproponi'&&tx?Number(tx.value):null}).then(function(r){toast(pp[1]==='accetta'?'Prestito accettato':pp[1]==='rifiuta'?'Richiesta rifiutata':'Controproposta inviata');return Promise.all([loadPR(),carica()])}).catch(function(e){toast(e.message,1)});return}
   if(b=t.closest('[data-prr]')){var q=b.getAttribute('data-prr').split('|');
    rpc('toto_pr_restituisci',{p_team:team,p_code:code,p_id:Number(q[0]),p_importo:Number(q[1])}).then(function(r){toast('Restituiti '+f2(r.restituito));return Promise.all([loadPR(),carica()])}).catch(function(e){toast(e.message,1)});return}
-  if(b=t.closest('[data-tab]')){tab=b.getAttribute('data-tab');ANIM=true;render();window.scrollTo(0,0);if(tab==='prestiti')loadPR();return}
+  if(b=t.closest('[data-tab]')){tab=b.getAttribute('data-tab');ANIM=true;render();window.scrollTo(0,0);if(tab==='prestiti')loadPR();if(tab==='prob')probLoad();if(tab==='sfide')duLoad(false);return}
   if(b=t.closest('.q')){
     var id=b.getAttribute('data-p'),m=b.getAttribute('data-m');
     var i=slip.findIndex(function(x){return x.p===id});
@@ -435,6 +467,111 @@ document.addEventListener('input',function(e){if(e.target.id==='stake')upWin()})
 document.addEventListener('change',function(e){if(e.target.id==='pr_i'){var v=document.getElementById('pr_sv');document.getElementById('pr_t').value=pSug(Number(e.target.value));if(v)v.textContent=pPct(pSug(Number(e.target.value)))}if(e.target.id==='pr_t'){}});
 document.addEventListener('keydown',function(e){if(e.key==='Enter'&&e.target.id==='gc')document.getElementById('enter').click()});
 
+/* === Schede nuove di Totogirrr (5.0): Probabilità e Sfide 1 contro 1, nello stile della pagina === */
+var LABDATI=["dati/lab-dati.json"],PB=null,PBK='s',PBERR='',PBBUSY=false,NAVX=0;
+function f1T(x){return (Math.round(x*10)/10).toFixed(1).replace('.',',')}
+function avT(t){var i=(PB&&PB.teams?PB.teams:teams).indexOf(t),h=i<0?200:(i*36+10)%360;return '<span class="avt" style="background:hsl('+h+',58%,'+(h>40&&h<190?'32':'40')+'%)">'+esc(String(t).replace(/[^A-Za-z]/g,'').slice(0,2).toUpperCase())+'</span>'}
+function probLoad(){
+  if(PB||PBBUSY)return;PBBUSY=true;PBERR='';
+  var i=0;(function tenta(){
+    if(i>=LABDATI.length){PBBUSY=false;PBERR='Non riesco a leggere le probabilità adesso.';if(tab==='prob')render();return}
+    fetch(LABDATI[i++],{cache:'no-cache'}).then(function(r){if(!r.ok)throw 0;return r.json()}).then(function(j){if(!j||!j.prob)throw 0;PB=j;PBBUSY=false;if(tab==='prob')render()}).catch(tenta)})();
+}
+function vProbT(){
+  if(!PB){probLoad();return '<h2 class="ph">Chi vince la lega</h2><div class="vuoto">'+(PBERR||'Carico le probabilità…')+'</div>'}
+  var k=PBK,lab={s:'Scudetto',p:'Podio',u:'Ultimo posto'}[k],g=0;(PB.tab||[]).forEach(function(r){g=Math.max(g,r.g||0)});
+  var pr=function(t){return (PB.prob[t]||{s:[0,0],p:[0,0],u:[0,0]})[k]};
+  var arr=PB.teams.slice().sort(function(a,b){return pr(b)[1]-pr(a)[1]});
+  var h='<h2 class="ph">Chi vince la lega</h2><p class="psub">Dopo ogni giornata simulo le giornate rimaste migliaia di volte, partendo dai punti fatti finora e dal calendario vero. Il numero è la percentuale di stagioni in cui la squadra chiude in quella posizione.</p>';
+  h+='<div class="seg2" role="group" aria-label="Tipo di probabilità">'+[['s','Scudetto'],['p','Podio'],['u','Ultimo']].map(function(x){return '<button data-pk="'+x[0]+'" class="'+(k===x[0]?'on':'')+'">'+x[1]+'</button>'}).join('')+'</div>';
+  h+='<div class="card"><div class="gh"><span>'+lab.toUpperCase()+' · DOPO LA GIORNATA '+g+'</span></div>';
+  arr.forEach(function(t){var p=pr(t),d=p[1]-p[0],row=(PB.tab||[]).filter(function(r){return r.t===t})[0]||{};
+    h+='<div class="prt">'+avT(t)+'<div class="pg"><b>'+esc(t)+'</b> <small>'+(row.pos?row.pos+'° · '+row.pts+' pt':'')+'</small><div class="pbar'+(k==='u'?' u':'')+'"><i style="width:'+Math.min(100,p[1])+'%"></i></div></div><div class="ppc">'+f1T(p[1])+'%<small class="'+((k==='u'?d<0:d>0)?'up':'dn')+'">'+(d>=0?'+':'')+f1T(d)+' dalla G'+Math.max(1,g-1)+'</small></div></div>'});
+  return h+'</div><p class="psub">Con poche giornate giocate le percentuali ballano molto: dalla quinta o sesta diventano affidabili.</p>';
+}
+/* ---- Sfida 1 contro 1 ---- */
+var DU={ok:null,prossima:null,crediti:{},duelli:[]},DUBUSY=false,DUOPP=null,DUPOSTA=50;
+function duLoad(quiet){
+  if(DUBUSY||!team||!code||DEMO)return Promise.resolve();DUBUSY=true;
+  return rpc('duello_stato',{p_team:team,p_code:code}).then(function(r){var a=JSON.stringify(DU),b=JSON.stringify(r);DU=r;
+    if(a!==b&&tab==='sfide'){var e=document.activeElement;if(!(quiet&&e&&/INPUT|SELECT/.test(e.tagName)))render()}
+  }).catch(function(){if(DU.ok===null){DU={ok:false,crediti:{},duelli:[]};if(tab==='sfide')render()}}).then(function(){DUBUSY=false},function(){DUBUSY=false});
+}
+function duCall(nome,body,ok){return rpc(nome,body).then(function(){toast(ok);return Promise.all([duLoad(false),carica()])}).catch(function(e){toast(e.message||'Qualcosa non ha funzionato',1);return duLoad(false)})}
+function duCap(o){var c=DU.crediti||{};return Math.max(0,Math.min(200,c[team]||0,c[o]==null?0:c[o]))}
+function vSfideT(){
+  var h='<h2 class="ph">Sfida 1 contro 1</h2><p class="psub">Sfida un\'altra squadra con i tuoi fantacrediti: nella prossima giornata <b>vince chi fa più punti</b> e prende la posta dell\'altro. In caso di pareggio ognuno si riprende i suoi. Puoi puntare al massimo 200 e mai più di quello che hanno tu e l\'avversario.</p>';
+  if(DEMO)return h+'<div class="vuoto">Nella prova le sfide 1 contro 1 non ci sono.</div>';
+  if(DU.ok===null){duLoad(false);return h+'<div class="vuoto">Carico le sfide…</div>'}
+  if(DU.ok===false)return h+'<div class="vuoto">Non riesco a leggere le sfide adesso. Riprova tra un attimo.</div>';
+  var cr=DU.crediti||{},mio=cr[team],G=DU.prossima,opp=teams.filter(function(t){return t!==team&&cr[t]!=null});
+  if(mio==null)return h+'<div class="vuoto">La tua squadra non ha ancora un conto: gioca una schedina e si attiva da solo.</div>';
+  if(!DUOPP||opp.indexOf(DUOPP)<0)DUOPP=opp[0];
+  var mx=duCap(DUOPP);if(DUPOSTA>mx)DUPOSTA=mx;if(mx>=10&&DUPOSTA<10)DUPOSTA=10;
+  var att=DU.duelli.filter(function(d){return d.giornata===G&&(d.stato==='attesa'||d.stato==='accettato')&&d.da===team}).length;
+  h+='<div class="card"><div class="gh"><span>LANCIA UNA SFIDA</span><small>Giornata '+G+'</small></div><div class="vsr"><div>'+avT(team)+'<b>'+esc(team)+'</b><small>'+f2(mio)+' fantacrediti</small></div><div class="vsx">vs</div><div>'+avT(DUOPP)+'<select id="dopp" aria-label="Avversario">'+opp.map(function(t){return '<option'+(t===DUOPP?' selected':'')+'>'+esc(t)+'</option>'}).join('')+'</select><small>'+f2(cr[DUOPP])+' fantacrediti</small></div></div>';
+  if(mx<10)h+='<p class="psub">Non puoi sfidare '+esc(DUOPP)+': la posta minima è 10 e il massimo possibile tra voi due è '+f2(mx)+'.</p>';
+  else h+='<div class="prow"><b>Posta</b><b class="pv" id="dstk">'+DUPOSTA+' fantacrediti</b></div><input type="range" id="dstake" min="10" max="'+Math.floor(mx)+'" step="1" value="'+DUPOSTA+'" aria-label="Posta"><p class="psub">Massimo '+Math.floor(mx)+': il minimo tra quello che hai tu, quello che ha l\'avversario e il tetto di 200. I tuoi fantacrediti restano bloccati finché lui non risponde: se rifiuta o non risponde in tre giorni tornano indietro.</p><button class="go" id="dgo" style="width:100%"'+(att>=3?' disabled':'')+'>Sfida per <span id="dgo2">'+DUPOSTA+'</span></button>'+(att>=3?'<p class="psub">Hai già tre sfide per questa giornata.</p>':'');
+  h+='</div>';
+  var rx=DU.duelli.filter(function(d){return d.a===team&&d.stato==='attesa'});
+  if(rx.length){h+='<div class="card"><div class="gh"><span>SFIDE RICEVUTE</span></div>';
+    rx.forEach(function(d){h+='<div class="dr">'+avT(d.da)+'<div class="pg"><b>'+esc(d.da)+'</b> ti sfida<small>Giornata '+d.giornata+' · Posta '+f2(d.posta)+'</small></div><button class="go" data-dr="accetta" data-id="'+d.id+'"'+(mio<d.posta?' disabled':'')+'>Accetta</button><button class="x" data-dr="rifiuta" data-id="'+d.id+'">Rifiuta</button></div>'+(mio<d.posta?'<p class="psub">Per accettare servono '+f2(d.posta)+' fantacrediti, ne hai '+f2(mio)+'.</p>':'')});
+    h+='</div>'}
+  var els=DU.duelli.filter(function(d){return d.stato==='attesa'||d.stato==='accettato'||d.stato==='chiuso'||d.da===team||d.a===team});
+  h+='<div class="card"><div class="gh"><span>SFIDE DELLA LEGA</span></div>';
+  if(!els.length)h+='<p class="psub">Ancora nessuna sfida.</p>';
+  els.forEach(function(x){var tag={attesa:'In attesa',accettato:'Accettata',chiuso:'Chiusa',rifiutato:'Rifiutata',scaduto:'Scaduta'}[x.stato]||x.stato;
+    h+='<div class="dr">'+avT(x.da)+'<div class="pg"><b>'+esc(x.da)+'</b> vs <b>'+esc(x.a)+'</b><small>Giornata '+x.giornata+' · Posta '+f2(x.posta)+'</small>'+(x.stato==='chiuso'?'<small>'+f1T(x.pa)+' - '+f1T(x.pb)+' · '+(x.vincitore?'Vince '+esc(x.vincitore)+', incassa '+f2(x.posta*2):'Pareggio: ognuno si riprende i suoi')+'</small>':'')+'</div><span class="tg">'+tag+'</span></div>'});
+  return h+'</div>';
+}
+document.addEventListener('click',function(e){var t=e.target,b;
+  if(b=t.closest('[data-pk]')){PBK=b.getAttribute('data-pk');render();return}
+  if(t.id==='dgo'||(t.closest&&t.closest('#dgo'))){if(DU.ok!==true)return;var bt=document.getElementById('dgo');if(bt)bt.disabled=true;duCall('duello_lancia',{p_team:team,p_code:code,p_rival:DUOPP,p_posta:DUPOSTA,p_giornata:null},'Sfida lanciata a '+DUOPP);return}
+  if(b=t.closest('[data-dr]')){var az=b.getAttribute('data-dr');b.disabled=true;duCall('duello_rispondi',{p_team:team,p_code:code,p_id:Number(b.getAttribute('data-id')),p_azione:az},az==='accetta'?'Hai accettato la sfida':'Hai rifiutato la sfida');return}
+});
+document.addEventListener('change',function(e){if(e.target.id==='dopp'){DUOPP=e.target.value;render()}});
+document.addEventListener('input',function(e){if(e.target.id==='dstake'){DUPOSTA=Number(e.target.value);var a=document.getElementById('dstk'),b=document.getElementById('dgo2');if(a)a.textContent=DUPOSTA+' fantacrediti';if(b)b.textContent=DUPOSTA}});
+setInterval(function(){if(tab==='sfide'&&!document.hidden)duLoad(true)},45000);
+/* ---- Menu a scorrimento: non gira all'infinito, la scheda toccata si vede per intero, agli estremi rimbalza ---- */
+function navPre(){var n=document.querySelector('nav');if(n)NAVX=n.scrollLeft}
+function navPost(){var n=document.querySelector('nav');if(!n)return;n.scrollLeft=NAVX;
+  var b=n.querySelector('button.on');
+  if(b){var sl=n.scrollLeft,cw=n.clientWidth,l=b.offsetLeft,r=l+b.offsetWidth,m=10,to=null;
+    if(l-m<sl)to=Math.max(0,l-m);else if(r+m>sl+cw)to=Math.min(n.scrollWidth-cw,r+m-cw);
+    if(to!==null&&Math.abs(to-sl)>1)n.scrollTo({left:to,behavior:'smooth'})}
+  navBounce(n)}
+function navBounce(n){
+  var inn=n.firstChild;if(!inn||!inn.classList||!inn.classList.contains('nvi'))return;
+  var ios=/iP(hone|ad|od)/.test(navigator.userAgent)||(navigator.platform==='MacIntel'&&navigator.maxTouchPoints>1);
+  var over=0,edge=null,drag=null,tm=null;
+  function set(v,molla){over=v;inn.style.transition=molla?'transform .55s cubic-bezier(.2,1.35,.4,1)':'none';inn.style.transform=v?'translate3d('+v+'px,0,0)':''}
+  function atEdge(dir){return dir>0?n.scrollLeft<=0:n.scrollLeft>=n.scrollWidth-n.clientWidth-1}
+  function res(d){return Math.max(-70,Math.min(70,d*0.4))}
+  if(!ios){
+    n.addEventListener('touchstart',function(ev){edge=null;drag=ev.touches[0].clientX;set(0,false)},{passive:true});
+    n.addEventListener('touchmove',function(ev){var x=ev.touches[0].clientX,dx=x-drag;
+      if(edge===null){if(dx!==0&&atEdge(dx>0?1:-1))edge=drag}
+      if(edge!==null){var d=x-edge;if((d>0&&atEdge(1))||(d<0&&atEdge(-1)))set(res(d),false);else{edge=null;set(0,false)}}},{passive:true});
+    n.addEventListener('touchend',function(){edge=null;set(0,true)},{passive:true});
+    n.addEventListener('touchcancel',function(){edge=null;set(0,true)},{passive:true});
+  }
+  /* mouse: trascinamento con il pulsante premuto */
+  var md=null;
+  n.addEventListener('pointerdown',function(ev){if(ev.pointerType!=='mouse'||ev.button!==0)return;md={x:ev.clientX,s:n.scrollLeft,moved:false,id:ev.pointerId}});
+  n.addEventListener('pointermove',function(ev){if(!md||ev.pointerType!=='mouse')return;var dx=ev.clientX-md.x;
+    if(!md.moved&&Math.abs(dx)>4){md.moved=true;try{n.setPointerCapture(md.id)}catch(x){}}
+    if(!md.moved)return;
+    var want=md.s-dx,max=n.scrollWidth-n.clientWidth;
+    if(want<0){n.scrollLeft=0;set(res(-want),false)}else if(want>max){n.scrollLeft=max;set(res(-(want-max)),false)}else{n.scrollLeft=want;if(over)set(0,false)}});
+  function fine(){if(md&&md.moved){var h=function(c){c.stopPropagation();c.preventDefault()};n.addEventListener('click',h,true);setTimeout(function(){n.removeEventListener('click',h,true)},120)}md=null;if(over)set(0,true)}
+  n.addEventListener('pointerup',fine);n.addEventListener('pointercancel',fine);
+  /* trackpad e rotella orizzontale */
+  n.addEventListener('wheel',function(ev){var dx=Math.abs(ev.deltaX)>Math.abs(ev.deltaY)?ev.deltaX:0;if(!dx)return;
+    var dir=dx<0?1:-1;if(atEdge(dir)){set(res(over-dx),false);clearTimeout(tm);tm=setTimeout(function(){set(0,true)},110)}},{passive:true});
+}
+
+var REGDERBY='<div class="card"><b>Quote Derby</b><p style="margin-top:6px;line-height:1.5">Le partite tra squadre che hanno un Derby ufficiale hanno la quota maggiorata del 15% su ogni esito. Se la tua schedina contiene un Derby la quota finale vale il 10% in più, e se la schedina perde ti torna il 20% della puntata. Valgono dalla giornata successiva alla nascita del Derby: le schedine già giocate non cambiano.</p></div>';
+var _qi=/[?&]t=(prob|sfide)/.exec(location.search);if(_qi){tab=_qi[1]}
 function fmtCd(ms){var s=Math.floor(ms/1000),d=Math.floor(s/86400),h=Math.floor(s%86400/3600),m=Math.floor(s%3600/60);return d>0?d+'g '+h+'h':h>0?h+'h '+m+'m':m+'m '+String(s%60).padStart(2,'0')+'s'}
 function tickCd(){document.querySelectorAll('.cd').forEach(function(e){var ms=new Date(e.getAttribute('data-t'))-Date.now();if(ms<=0){if(!e.dataset.done){e.dataset.done=1;e.textContent='0s';if(S&&!busy)carica()}return}e.textContent=fmtCd(ms);e.className='cd'+(ms<3600e3?' hot':ms<86400e3?' warn':'')})}
 setInterval(tickCd,1000);

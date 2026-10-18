@@ -1,0 +1,226 @@
+{
+ "aggiornato": "2026-10-18",
+ "giornata": 2,
+ "squadre": {
+  "The Blue brothers": {
+   "posizione": 9,
+   "giornate": 2,
+   "punti": 1,
+   "fiducia": 37,
+   "aspettativa": 2,
+   "obiettivo": "Chiudere tra le prime due",
+   "storico": [
+    {
+     "giornata": 1,
+     "posizione": 8,
+     "fiducia": 40
+    },
+    {
+     "giornata": 2,
+     "posizione": 9,
+     "fiducia": 37
+    }
+   ],
+   "promesse": [],
+   "promesse_tradite": 0
+  },
+  "Apo team": {
+   "posizione": 1,
+   "giornate": 2,
+   "punti": 4,
+   "fiducia": 54,
+   "aspettativa": 3,
+   "obiettivo": "Tornare sul podio dopo gli ultimi anni",
+   "storico": [
+    {
+     "giornata": 1,
+     "posizione": 2,
+     "fiducia": 52
+    },
+    {
+     "giornata": 2,
+     "posizione": 1,
+     "fiducia": 54
+    }
+   ],
+   "promesse": [],
+   "promesse_tradite": 0
+  },
+  "AFA SELECCION": {
+   "posizione": 2,
+   "giornate": 2,
+   "punti": 4,
+   "fiducia": 53,
+   "aspettativa": 3,
+   "obiettivo": "Chiudere sul podio",
+   "storico": [
+    {
+     "giornata": 1,
+     "posizione": 3,
+     "fiducia": 51
+    },
+    {
+     "giornata": 2,
+     "posizione": 2,
+     "fiducia": 53
+    }
+   ],
+   "promesse": [],
+   "promesse_tradite": 0
+  },
+  "Oranje VC": {
+   "posizione": 5,
+   "giornate": 2,
+   "punti": 3,
+   "fiducia": 48,
+   "aspettativa": 4,
+   "obiettivo": "Chiudere tra le prime 4",
+   "storico": [
+    {
+     "giornata": 1,
+     "posizione": 1,
+     "fiducia": 55
+    },
+    {
+     "giornata": 2,
+     "posizione": 5,
+     "fiducia": 48
+    }
+   ],
+   "promesse": [],
+   "promesse_tradite": 0
+  },
+  "Real Madrink": {
+   "posizione": 3,
+   "giornate": 2,
+   "punti": 4,
+   "fiducia": 54,
+   "aspettativa": 5,
+   "obiettivo": "Entrare nella metà alta",
+   "storico": [
+    {
+     "giornata": 1,
+     "posizione": 5,
+     "fiducia": 51
+    },
+    {
+     "giornata": 2,
+     "posizione": 3,
+     "fiducia": 54
+    }
+   ],
+   "promesse": [],
+   "promesse_tradite": 0
+  },
+  "Grodah": {
+   "posizione": 6,
+   "giornate": 2,
+   "punti": 3,
+   "fiducia": 48,
+   "aspettativa": 5,
+   "obiettivo": "Entrare nella metà alta",
+   "storico": [
+    {
+     "giornata": 1,
+     "posizione": 7,
+     "fiducia": 46
+    },
+    {
+     "giornata": 2,
+     "posizione": 6,
+     "fiducia": 48
+    }
+   ],
+   "promesse": [],
+   "promesse_tradite": 0
+  },
+  "WOA": {
+   "posizione": 8,
+   "giornate": 2,
+   "punti": 1,
+   "fiducia": 39,
+   "aspettativa": 2,
+   "obiettivo": "Ripetersi: difendere il titolo",
+   "storico": [
+    {
+     "giornata": 1,
+     "posizione": 6,
+     "fiducia": 43
+    },
+    {
+     "giornata": 2,
+     "posizione": 8,
+     "fiducia": 39
+    }
+   ],
+   "promesse": [],
+   "promesse_tradite": 0
+  },
+  "Mariana Coneja": {
+   "posizione": 4,
+   "giornate": 2,
+   "punti": 4,
+   "fiducia": 52,
+   "aspettativa": 5,
+   "obiettivo": "Puntare alla parte alta",
+   "storico": [
+    {
+     "giornata": 1,
+     "posizione": 4,
+     "fiducia": 52
+    },
+    {
+     "giornata": 2,
+     "posizione": 4,
+     "fiducia": 52
+    }
+   ],
+   "promesse": [],
+   "promesse_tradite": 0
+  },
+  "stif dc": {
+   "posizione": 7,
+   "giornate": 2,
+   "punti": 3,
+   "fiducia": 47,
+   "aspettativa": 5,
+   "obiettivo": "Puntare alla parte alta",
+   "storico": [
+    {
+     "giornata": 1,
+     "posizione": 9,
+     "fiducia": 43
+    },
+    {
+     "giornata": 2,
+     "posizione": 7,
+     "fiducia": 47
+    }
+   ],
+   "promesse": [],
+   "promesse_tradite": 0
+  },
+  "Atletico ma non troppo": {
+   "posizione": 10,
+   "giornate": 2,
+   "punti": 0,
+   "fiducia": 42,
+   "aspettativa": 6,
+   "obiettivo": "Salire gradualmente verso l'alto",
+   "storico": [
+    {
+     "giornata": 1,
+     "posizione": 10,
+     "fiducia": 43
+    },
+    {
+     "giornata": 2,
+     "posizione": 10,
+     "fiducia": 42
+    }
+   ],
+   "promesse": [],
+   "promesse_tradite": 0
+  }
+ }
+}

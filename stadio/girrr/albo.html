@@ -1,0 +1,441 @@
+<!doctype html>
+<html lang="it">
+<head>
+<script src="ospite.js?v=1"></script>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="robots" content="noindex">
+<title>Albo d'oro · O Girrr</title>
+<link rel="icon" type="image/png" href="../../assets/favicon-64.png">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@500;700;800;900&family=Lora:ital,wght@0,500;0,600;1,500&display=swap">
+<link rel="manifest" href="../../manifest.webmanifest">
+<meta name="theme-color" content="#1d2a52">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="O Girrr">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<link rel="apple-touch-icon" href="../../assets/apple-touch-icon.png">
+<style>
+:root{--acc:#d62839;--bg:#1d2a52;--bg2:#2c3f7c;--bg3:#141d3d;--chiaro:#fbf6ec;--hi:#ffd166;--sub:#bfe3ff;--ok:#5fd38d;--bad:#ff7d86}
+*{box-sizing:border-box;margin:0;padding:0}
+body{min-height:100vh;font-family:Inter,system-ui,-apple-system,Segoe UI,sans-serif;color:var(--chiaro);background:var(--bg);
+ background-image:radial-gradient(1200px 700px at 80% -10%,var(--bg2) 0,var(--bg) 55%,var(--bg3) 100%);background-attachment:fixed}
+body::before{content:'';position:fixed;inset:-120px;z-index:-1;pointer-events:none;background:repeating-linear-gradient(115deg,rgba(255,255,255,.04) 0 36px,transparent 36px 72px);animation:strisce 9s linear infinite}
+@keyframes strisce{to{transform:translate3d(79.45px,0,0)}}
+@media (prefers-reduced-motion:reduce){body::before{animation:none}}
+.wrap{max-width:1080px;margin:0 auto;padding:18px 16px 30px}
+.back{display:inline-block;margin-bottom:10px;font-weight:800;font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:var(--hi);text-decoration:none}
+.top{display:flex;align-items:center;gap:16px}
+.top img{height:clamp(70px,13vw,120px);cursor:pointer;filter:drop-shadow(0 8px 14px rgba(0,0,0,.4))}
+.kick{font-weight:900;font-size:clamp(11px,1.6vw,14px);letter-spacing:.4em;color:var(--hi)}
+h1{font-weight:900;font-size:clamp(26px,5vw,44px);line-height:1.05;margin-top:4px}
+.chips{display:flex;gap:8px;overflow-x:auto;scrollbar-width:none;padding:14px 2px 6px;margin-bottom:6px}
+.chips::-webkit-scrollbar{display:none}
+.chips button{flex:none;border-radius:999px;border:2px solid transparent;background:rgba(255,255,255,.1);color:var(--chiaro);font:800 13px Inter;padding:9px 14px;cursor:pointer;opacity:.7;transition:all .25s}
+.chips button.mia{border-color:rgba(255,209,102,.5)}
+.chips button.sel{background:var(--acc);opacity:1;transform:scale(1.04)}
+.swap{transition:opacity .22s ease,transform .22s ease}
+.swap.out{opacity:0;transform:translateY(8px)}
+.card{background:linear-gradient(150deg,rgba(255,255,255,.12),rgba(255,255,255,.05));border:1px solid rgba(255,255,255,.14);border-radius:16px;padding:16px;margin-bottom:14px}
+.card h3{font-weight:900;font-size:13px;letter-spacing:.3em;color:var(--hi);margin-bottom:10px;text-transform:uppercase}
+.nome{font-weight:900;font-size:clamp(26px,5vw,40px);text-transform:uppercase;line-height:1.05}
+.sub{color:var(--sub);font-weight:600;font-size:14px;margin-top:4px}
+.kp{display:grid;grid-template-columns:repeat(auto-fit,minmax(110px,1fr));gap:10px;margin-top:14px}
+.kp div{background:rgba(0,0,0,.2);border-radius:12px;padding:10px 12px}
+.kp small{display:block;font-weight:800;font-size:10px;letter-spacing:.2em;color:var(--sub);text-transform:uppercase}
+.kp b{display:block;font-weight:900;font-size:24px;margin-top:2px}
+.grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:14px;align-items:start}
+@media(max-width:860px){.grid{grid-template-columns:1fr}}
+.ris{display:grid;grid-template-columns:30px 1fr auto;gap:10px;align-items:center;padding:9px 0;border-bottom:1px solid rgba(255,255,255,.12);font-weight:700;font-size:14px}
+.ris:last-child{border-bottom:0}
+.ris .e{width:28px;height:28px;border-radius:50%;display:grid;place-items:center;font-weight:900;font-size:13px;color:#10192f}
+.e.v{background:var(--ok)}.e.n{background:var(--hi)}.e.p{background:var(--bad)}.e.d{background:rgba(255,255,255,.2);color:var(--chiaro)}
+.ris small{display:block;color:var(--sub);font-weight:600;font-size:12px;margin-top:2px}
+.ris .s{font-weight:900;font-size:17px;text-align:right}
+.top5 .g{display:grid;grid-template-columns:1fr auto;gap:8px;padding:8px 0;border-bottom:1px solid rgba(255,255,255,.12);font-weight:700;font-size:14px}
+.top5 .g:last-child{border-bottom:0}.top5 small{color:var(--sub);font-weight:600}
+.top5 b{font-weight:900;font-size:16px}
+.bar{height:10px;border-radius:6px;background:rgba(255,255,255,.14);overflow:hidden;margin-top:8px}
+.bar i{display:block;height:100%;background:linear-gradient(90deg,var(--acc),var(--hi));border-radius:6px;transition:width .6s ease}
+table{width:100%;border-collapse:collapse;font-size:14px;font-weight:600}
+th{font-size:10px;letter-spacing:.16em;color:var(--sub);text-align:right;padding:0 6px 6px;font-weight:800;text-transform:uppercase}
+th:first-child{text-align:left}
+td{padding:7px 6px;text-align:right;border-bottom:1px solid rgba(255,255,255,.1)}
+td:first-child{text-align:left;font-weight:800}
+td small{color:var(--sub);font-weight:600;display:block;font-size:11px}
+.ruolo{font-weight:900;font-size:11px;letter-spacing:.3em;color:var(--hi);margin:14px 0 4px}
+.vuoto{color:var(--sub);font-weight:600;font-size:14px}
+.err{padding:30px;text-align:center;font-weight:700}
+.foot{margin-top:14px;text-align:center;font-size:12px;color:var(--sub);opacity:.8}
+
+.tr{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px}
+.tr .card{margin:0;text-align:center;padding:20px 16px}
+.tr .coppa{font-size:44px;line-height:1}
+.tr h4{font-weight:900;font-size:15px;letter-spacing:.14em;text-transform:uppercase;margin-top:10px}
+.tr .st{color:var(--sub);font-weight:600;font-size:13px;margin-top:6px}
+.tr .vinc{font-weight:900;font-size:22px;margin-top:8px;color:var(--hi)}
+.rec{display:grid;grid-template-columns:42px 1fr auto;gap:12px;align-items:center;padding:12px 0;border-bottom:1px solid rgba(255,255,255,.12)}
+.rec:last-child{border-bottom:0}
+.rec .i{width:42px;height:42px;border-radius:12px;background:rgba(255,255,255,.1);display:grid;place-items:center;font-size:22px}
+.rec small{display:block;font-weight:800;font-size:10px;letter-spacing:.2em;color:var(--sub);text-transform:uppercase}
+.rec b{display:block;font-weight:900;font-size:16px;margin-top:2px}
+.rec .d{color:var(--sub);font-weight:600;font-size:12px;margin-top:2px}
+.rec .v{font-weight:900;font-size:24px;text-align:right}
+.rec .v.ml{color:var(--hi)}
+.sto .card{padding:0;overflow:hidden}
+.sto summary{list-style:none;cursor:pointer;display:grid;grid-template-columns:auto 1fr auto;gap:12px;align-items:center;padding:14px 16px}
+.sto summary::-webkit-details-marker{display:none}
+.sto summary .y{font-weight:900;font-size:13px;letter-spacing:.12em;color:var(--hi)}
+.sto summary small{display:block;font-weight:800;font-size:10px;letter-spacing:.2em;color:var(--sub);text-transform:uppercase}
+.sto summary b{font-weight:900;font-size:17px}
+.sto summary .fr{color:var(--sub);font-weight:900;transition:transform .2s}
+.sto details[open] .fr{transform:rotate(90deg)}
+.sto table{margin:0 0 6px}.sto td,.sto th{padding-left:14px;padding-right:14px}
+.sto .nota{padding:0 16px 14px;color:var(--sub);font-weight:600;font-size:12px}
+.sala{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:14px}
+.sala span{background:rgba(0,0,0,.2);border-radius:999px;padding:8px 14px;font-weight:800;font-size:13px}
+.sala b{color:var(--hi);font-weight:900}
+.hh{font-weight:900;font-size:13px;letter-spacing:.3em;color:var(--hi);margin:6px 0 12px;text-transform:uppercase}
+.cg{display:grid;grid-template-columns:repeat(auto-fill,minmax(104px,1fr));gap:10px;margin-bottom:6px}
+.cb{display:flex;flex-direction:column;align-items:center;gap:6px;background:linear-gradient(150deg,rgba(255,255,255,.12),rgba(255,255,255,.05));border:1px solid rgba(255,255,255,.14);border-radius:16px;padding:12px 6px;color:var(--chiaro);font-family:inherit;cursor:pointer;transition:transform .15s,background .2s}
+.cb:active{transform:scale(.96)}@media (hover:hover) and (pointer:fine){.cb:hover{background:rgba(255,255,255,.16)}}
+.cb svg{filter:drop-shadow(0 6px 10px rgba(0,0,0,.4))}
+.cb b{font-weight:900;font-size:13px;text-align:center;line-height:1.1}
+.cb small{color:var(--sub);font-weight:700;font-size:11px;text-align:center}
+.cg.ex .cb{opacity:.8}
+.mo{position:fixed;inset:0;z-index:50;background:rgba(10,16,38,.88);overflow:auto;display:none;padding:18px 12px;-webkit-overflow-scrolling:touch}
+.mo.on{display:block}
+.sheet{position:relative;max-width:620px;margin:0 auto;background:linear-gradient(160deg,#2c3f7c,#141d3d);border:1px solid rgba(255,255,255,.2);border-radius:20px;padding:20px 16px 18px}
+.sheet .x{position:absolute;top:12px;right:12px;z-index:3;width:34px;height:34px;border-radius:50%;border:0;background:rgba(255,255,255,.14);color:var(--chiaro);font:800 15px Inter;cursor:pointer}
+.avi{position:relative;display:inline-block;flex:none;border-radius:24%;overflow:hidden;border:1.5px solid rgba(255,255,255,.65);box-shadow:inset 0 1px 0 rgba(255,255,255,.8),inset 0 -2px 6px rgba(0,0,0,.18),0 8px 18px rgba(0,0,0,.42);background:#fff;vertical-align:middle}.avi img{display:block;width:100%;height:100%;object-fit:cover}.avi::after{content:'';position:absolute;inset:0;background:linear-gradient(160deg,rgba(255,255,255,.34),rgba(255,255,255,0) 42%);pointer-events:none}
+.sh-top{position:relative;display:flex;justify-content:space-between;align-items:center;gap:10px;margin-top:26px;padding:16px 16px 16px 18px;border-radius:22px;overflow:hidden;background:linear-gradient(105deg,rgba(14,20,44,.97) 0,rgba(14,20,44,.92) 40%,var(--c2) 100%);border:1.5px solid rgba(255,255,255,.4);box-shadow:inset 0 1px 0 rgba(255,255,255,.5),inset 0 -1px 0 rgba(255,255,255,.12),0 12px 30px rgba(0,0,0,.4)}
+.sh-top::before{content:'';position:absolute;inset:0;background:radial-gradient(circle at 85% 40%,var(--c1),transparent 62%);opacity:.5;pointer-events:none}
+.sh-top::after{content:'';position:absolute;left:0;right:0;top:0;height:48%;background:linear-gradient(180deg,rgba(255,255,255,.14),transparent);pointer-events:none}
+.sh-tx{position:relative;z-index:1;min-width:0}
+.sh-av{position:relative;z-index:1;flex:none;filter:drop-shadow(0 8px 14px rgba(0,0,0,.45))}
+.sh-tx .sub{text-shadow:0 1px 6px rgba(0,0,0,.6)}
+.sh-tag{font-weight:900;font-size:11px;letter-spacing:.25em;color:var(--hi);text-transform:uppercase}
+.sh-nome{font-weight:900;font-size:clamp(24px,6vw,32px);line-height:1.05;margin-top:2px}
+.fm{font-weight:700;font-size:11px;letter-spacing:.04em;color:var(--sub);white-space:nowrap}
+.sh-st{margin:14px 0 4px;font-weight:600;font-size:15px;line-height:1.5}
+.sh-sto{font-family:Lora,Georgia,'Times New Roman',serif;font-weight:500;font-size:16.5px;line-height:1.7;letter-spacing:.005em}
+.dsh{display:inline-block;margin:0 .45em;opacity:.7}
+.sheet h5{font-weight:900;font-size:11px;letter-spacing:.3em;color:var(--hi);text-transform:uppercase;margin:18px 0 6px}
+.rv-b{display:flex;align-items:center;gap:10px;width:100%;margin-top:18px;padding:14px 16px;border-radius:18px;font:800 15px Inter;color:var(--chiaro);cursor:pointer;text-align:left;background:linear-gradient(135deg,rgba(255,255,255,.2),rgba(255,255,255,.06));border:1.5px solid rgba(255,255,255,.38);box-shadow:inset 0 1px 0 rgba(255,255,255,.5),0 8px 22px rgba(0,0,0,.3);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);transition:transform .15s,background .2s}
+.rv-b:active{transform:scale(.98)}
+.rv-b small{margin-left:auto;font-weight:700;color:var(--sub);font-size:12px}
+.rv-ch{transition:transform .35s;font-size:24px;line-height:1;color:var(--hi)}
+.rv-b[aria-expanded=true] .rv-ch{transform:rotate(90deg)}
+.rv-p{display:grid;grid-template-rows:0fr;transition:grid-template-rows .55s cubic-bezier(.2,.8,.2,1)}
+.rv-p.on{grid-template-rows:1fr}
+.rv-in{overflow:hidden;min-height:0}
+.rvr{margin-top:10px;padding:12px 14px;border-radius:16px;background:linear-gradient(135deg,rgba(255,255,255,.13),rgba(255,255,255,.04));border:1px solid rgba(255,255,255,.18);box-shadow:inset 0 1px 0 rgba(255,255,255,.18);opacity:0;transform:translateY(12px);transition:opacity .4s ease,transform .45s cubic-bezier(.2,.8,.2,1);transition-delay:calc(var(--i)*70ms)}
+.rv-p.on .rvr{opacity:1;transform:none}
+.rvt{display:flex;justify-content:space-between;align-items:center;gap:8px;font-weight:800}
+.rvl{font-size:11px;letter-spacing:.14em;text-transform:uppercase;font-weight:900;color:var(--cl);white-space:nowrap}
+.rvbar{height:10px;border-radius:99px;margin:9px 0 7px;background:rgba(255,255,255,.1);overflow:hidden;box-shadow:inset 0 1px 2px rgba(0,0,0,.45)}
+.rvbar i{display:block;height:100%;width:0;border-radius:99px;background:linear-gradient(90deg,rgba(255,255,255,.18),var(--cl));box-shadow:0 0 14px var(--cl);transition:width 1s cubic-bezier(.2,.8,.2,1);transition-delay:calc(var(--i)*70ms + .25s)}
+.rv-p.on .rvbar i{width:var(--w)}
+.rvr small{color:var(--sub);font-weight:600;font-size:12px}
+.rvk{display:flex;gap:14px;flex-wrap:wrap;margin:12px 2px 2px;font-size:11px;font-weight:700;color:var(--sub)}
+.rvk span::before{content:'';display:inline-block;width:9px;height:9px;border-radius:50%;background:var(--cl);margin-right:6px;box-shadow:0 0 8px var(--cl)}
+.sheet table{margin:0}.sheet td,.sheet th{padding-left:6px;padding-right:6px}
+</style>
+<script src="pub.js"></script>
+<script src="storia.js?v=1"></script>
+<script>window.goatcounter={path:function(){return location.pathname},no_onload:/[?&]demo/.test(location.search)}</script>
+<script data-goatcounter="https://djcosta18.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
+<script src="novita.js?v=1792322690"></script>
+<script src="novita-dati.js?v=1792322690"></script>
+<script src="novita-badge.js?v=1792322690"></script>
+<script src="transizioni.js"></script>
+<style>@media(min-width:1500px){.wrap{max-width:1380px}}</style>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lobster&display=swap">
+<style id="skin-nuova">.c h2 .nt-nv{display:block;width:max-content;margin:6px 0 0!important}.lg-leghe .go,button.go,.btn:not(.o):not(.ghost),.chips button.sel,.sq button.sel,button.sel{background:#ffd166!important;color:#1d2a52!important;border-color:#ffd166!important}.btn.o,.btn.ghost{background:rgba(255,255,255,.14)!important;color:#fbf6ec!important;border:1px solid rgba(255,255,255,.28)!important}.mn b,.tt,.tt>span{font-family:Lobster,'Brush Script MT',cursive!important;font-weight:400!important;letter-spacing:0!important}.mn b{font-size:21px!important;line-height:1.15}.tt{font-size:25px!important}.tt small{font-family:Inter,system-ui,sans-serif!important;font-size:12px!important}.at button[aria-selected=true]{background:#ffd166!important;color:#1d2a52!important}.tabs button[aria-selected=true]{background:#ffd166!important;color:#1d2a52!important;border-color:transparent!important}.seg button[aria-pressed=true]{background:#ffd166!important;color:#1d2a52!important}header.hero,header.top,.ohead{position:relative;padding-bottom:24px!important;margin-bottom:20px!important}header.hero::after,header.top::after,.ohead::after{content:'';position:absolute;left:0;right:0;bottom:0;height:10px;border-radius:2px;transform:skewX(-45deg);background:linear-gradient(90deg,#d62839 0 10%,#ffd166 10% calc(10% + 11px),#1d2a52 calc(10% + 11px) 100%);box-shadow:0 0 0 .5px rgba(251,246,236,.4),0 2px 8px rgba(0,0,0,.35)}
+html{background:#141d3d}
+body{background:radial-gradient(900px 520px at 85% -8%,rgba(214,40,57,.26),transparent 62%),radial-gradient(1000px 640px at -10% 18%,rgba(61,147,214,.26),transparent 60%),linear-gradient(180deg,#2c3f7c,#1d2a52 45%,#141d3d)!important;background-attachment:fixed!important}
+body::before{display:none!important}
+h1,h2,.nome,.sh-nome,.hh{font-family:Lobster,'Brush Script MT',cursive!important;font-weight:400!important;text-transform:none!important;letter-spacing:0!important}
+h1{font-size:clamp(30px,6vw,48px)!important}
+.cards{grid-template-columns:1fr 1fr!important;gap:10px!important}.c{min-height:0!important;padding:12px!important}.c .ic{height:64px!important;margin-bottom:8px!important}.c .ic img[src*="albo-alloro"],.c .ic img[src*="carriera-micro"]{height:62px!important;margin-top:0!important}.c .ic img{max-width:100%}.c h2{font-size:19px!important}.c p{display:none!important}.c .go{font-size:11px!important;margin-top:6px}.card,.c,.mn,.lg-leghe{background:linear-gradient(150deg,rgba(255,255,255,.12),rgba(255,255,255,.05))!important}</style>
+</head>
+<body>
+<div class="wrap">
+  <a class="back" href="index.html">‹ O Girrr</a>
+  <header class="top"><img id="lg" src="../../assets/loghi/logo-lega-o-fant-a-girrr.png" alt="O Fant A Girrr" title="Torna a O Girrr"><div><div class="kick">O FANT A GIRRR · 2026/27</div><h1>Albo d'oro</h1></div></header>
+  <div class="swap" id="al" style="margin-top:16px"><div class="vuoto">Carico i record…</div></div>
+  <div class="foot" id="foot">O Girrr · I dati arrivano dallo Spogliatoio</div>
+</div>
+<script>
+(function(){
+var D=null;
+function cap(s){s=String(s);return s.charAt(0).toUpperCase()+s.slice(1)}
+function esc(s){return String(s).replace(/[&<>"]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})}
+function pt(x){return String(Math.round(x*100)/100).replace('.',',')}
+document.getElementById('lg').onclick=function(){location.href='index.html'};
+/* tutte le partite giocate, in un'unica lista */
+function tutte(){
+  var L=[];
+  D.cal.lega.forEach(function(g){g.m.forEach(function(m){if(m[4]==='-')return;var s=m[4].split('-').map(Number);
+    L.push({c:m[0],f:m[3],pc:m[1],pf:m[2],gc:s[0],gf:s[1],sa:g.sa,n:g.n,comp:'Campionato'})})});
+  D.cal.cup.forEach(function(g){g.m.forEach(function(m){if(m[5]==='-')return;var s=m[5].split('-').map(Number);
+    L.push({c:m[1],f:m[4],pc:m[2],pf:m[3],gc:s[0],gf:s[1],sa:g.sa,n:g.n,comp:'Champions Cup'})})});
+  return L;
+}
+function dove(m){return m.comp+' · '+m.n+'ª giornata'}
+function trofei(){
+  var h='<div class="tr">'
+   +'<div class="card"><div class="coppa">🏆</div><h4>Campionato 2026/27</h4><div class="st">In corso · Giocata la '+(lastN(D.cal.lega,false))+'ª giornata</div><div class="vinc">Da assegnare</div></div>'
+   +'<div class="card"><div class="coppa">⭐</div><h4>Champions Cup 2026/27</h4><div class="st">'+(lastN(D.cal.cup,true)?'In corso · Gironi giocati: '+lastN(D.cal.cup,true)+' giornate su '+D.cal.cup.length:'Parte alla prossima giornata · '+D.cal.cup.length+' giornate di gironi')+'</div><div class="vinc">Da assegnare</div></div></div>';
+  return h;
+}
+function lastN(c,cup){var l=0,i=cup?5:4;c.forEach(function(g){if(g.m.some(function(m){return m[i]!=='-'}))l=g.n});return l}
+function serie(L){
+  /* serie di vittorie piu' lunga di ogni squadra, in ordine di giornata di Serie A */
+  var best={n:0,t:''},cur={},ord=L.slice().sort(function(a,b){return a.sa-b.sa});
+  ord.forEach(function(m){[[m.c,m.gc,m.gf],[m.f,m.gf,m.gc]].forEach(function(x){var t=x[0];
+    if(x[1]>x[2]){cur[t]=(cur[t]||0)+1;if(cur[t]>best.n)best={n:cur[t],t:t}}else cur[t]=0})});
+  return {best:best,cur:cur};
+}
+function recs(){
+  var L=tutte();if(!L.length)return '<div class="card"><div class="vuoto">I record si riempiono dopo la prima giornata.</div></div>';
+  var R=[];
+  function best(f,cmp){var b=null;L.forEach(function(m){var v=f(m);if(v&&(b===null||cmp(v.val,b.val)))b=v});return b}
+  var hi=best(function(m){return m.pc>=m.pf?{val:m.pc,t:m.c,m:m,o:m.f}:{val:m.pf,t:m.f,m:m,o:m.c}},function(a,b){return a>b});
+  L.forEach(function(m){var o=m.pf>m.pc?{val:m.pf,t:m.f,m:m,o:m.c}:null;if(o&&o.val>hi.val)hi=o});
+  var lo=null;L.forEach(function(m){[[m.c,m.pc,m.f],[m.f,m.pf,m.c]].forEach(function(x){if(lo===null||x[1]<lo.val)lo={val:x[1],t:x[0],m:m,o:x[2]}})});
+  var largo=best(function(m){var d=Math.abs(m.pc-m.pf);return {val:d,t:m.pc>m.pf?m.c:m.f,m:m,o:m.pc>m.pf?m.f:m.c}},function(a,b){return a>b});
+  var stretta=best(function(m){var d=Math.abs(m.pc-m.pf);return {val:d,t:m.pc>m.pf?m.c:m.f,m:m,o:m.pc>m.pf?m.f:m.c}},function(a,b){return a<b});
+  var gol=best(function(m){return {val:m.gc+m.gf,t:m.c,m:m,o:m.f}},function(a,b){return a>b});
+  var sfort=null;L.forEach(function(m){[[m.f,m.pc,m.c,m.pf,m.gc>m.gf],[m.c,m.pf,m.f,m.pc,m.gf>m.gc]].forEach(function(x){/* x: vincitrice,pt vincitrice? */})});
+  /* piu' sfortunata: piu' punti in una sconfitta; piu' fortunata: meno punti in una vittoria */
+  var sf=null,fo=null;
+  L.forEach(function(m){
+    if(m.gc>m.gf){ if(!fo||m.pc<fo.val)fo={val:m.pc,t:m.c,m:m,o:m.f}; if(!sf||m.pf>sf.val)sf={val:m.pf,t:m.f,m:m,o:m.c} }
+    else if(m.gf>m.gc){ if(!fo||m.pf<fo.val)fo={val:m.pf,t:m.f,m:m,o:m.c}; if(!sf||m.pc>sf.val)sf={val:m.pc,t:m.c,m:m,o:m.f} }
+  });
+  var se=serie(L);
+  function row(i,lab,t,det,v,ml){return '<div class="rec"><div class="i">'+i+'</div><div><small>'+lab+'</small><b>'+(t.indexOf(' - ')>=0?t:esc(cap(t)))+'</b><div class="d">'+det+'</div></div><div class="v'+(ml?' ml':'')+'">'+v+'</div></div>'}
+  var h='';
+  h+=row('🚀','Punteggio più alto',hi.t,'contro '+esc(cap(hi.o))+' · '+dove(hi.m),pt(hi.val));
+  h+=row('🧊','Punteggio più basso',lo.t,'contro '+esc(cap(lo.o))+' · '+dove(lo.m),pt(lo.val));
+  h+=row('💥','Vittoria più larga',largo.t,'su '+esc(cap(largo.o))+' · '+dove(largo.m),'+'+pt(largo.val));
+  h+=row('😬','Vittoria più sofferta',stretta.t,'su '+esc(cap(stretta.o))+' · '+dove(stretta.m),'+'+pt(stretta.val));
+  h+=row('⚽','Più gol in una partita',esc(cap(gol.m.c))+' '+gol.m.gc+' - '+gol.m.gf+' '+esc(cap(gol.m.f)),dove(gol.m),gol.val);
+  if(sf)h+=row('😭','La più sfortunata',sf.t,'ha perso con '+pt(sf.val)+' punti contro '+esc(cap(sf.o))+' · '+dove(sf.m),pt(sf.val));
+  if(fo)h+=row('🍀','La più fortunata',fo.t,'ha vinto con soli '+pt(fo.val)+' punti su '+esc(cap(fo.o))+' · '+dove(fo.m),pt(fo.val));
+  if(se.best.n>=2)h+=row('🔥','Serie di vittorie più lunga',se.best.t,'tra campionato e coppa',se.best.n,true);
+  return '<div class="card"><h3>I record della lega</h3>'+h+'</div>';
+}
+/* Storico: nomi degli allenatori come su Leghe; alias confermati da Gianluca */
+var ALIAS=CVS.ALIAS,EX=CVS.EX;
+function al(n){n=ALIAS[n]||n;return EX[n]?n+' · Ex':n}
+/* nel tabellone di una stagione: nome di allora, con tra parentesi quello attuale */
+function alS(n){var c=ALIAS[n];return c?n+' ('+al(n)+')':al(n)}
+var STORICO=CVS.STORICO;
+
+function storico(){
+  var cnt={},ord=[];
+  STORICO.forEach(function(e){var k=al(e.v[1]);if(!cnt[k]){cnt[k]=0;ord.push(k)}cnt[k]++});
+  ord.sort(function(a,b){return cnt[b]-cnt[a]});
+  var h='<div class="sto"><h3 style="font-weight:900;font-size:13px;letter-spacing:.3em;color:var(--hi);margin:6px 0 12px;text-transform:uppercase">L\'Era Contemporanea · Le stagioni</h3><div class="sala">'
+   +ord.map(function(k){return '<span>🏆 '+esc(k)+' <b>'+cnt[k]+'</b></span>'}).join('')+'</div>';
+  STORICO.forEach(function(e){
+    var body='';
+    if(e.fin){var f=e.fin;body='<table><tr><td>'+esc(f[0])+'<small>'+esc(alS(f[1]))+'</small></td><td><b>'+f[2]+' - '+f[6]+'</b></td><td>'+esc(f[4])+'<small>'+esc(alS(f[5]))+'</small></td></tr></table>'}
+    else{body='<table><tr><th>#</th><th style="text-align:left">Squadra</th><th>Punti</th></tr>'
+      +e.t.map(function(r,i){return '<tr><td>'+(i+1)+'°</td><td style="text-align:left;font-weight:700">'+esc(r[0])+'<small>'+esc(alS(r[1]))+'</small></td><td>'+(r[2]!=null?r[2]:'–')+'</td></tr>'}).join('')+'</table>'}
+    h+='<div class="card"><details><summary><span class="y">'+e.y+'</span><span><small>'+esc(e.c)+'</small><b>🏆 '+esc(e.v[0])+' · '+esc(alS(e.v[1]))+'</b></span><span class="fr">›</span></summary>'+body+(e.nota?'<div class="nota">'+e.nota+'</div>':'')+'</details></div>';
+  });
+  return h+'</div>';
+}
+/* ===== Allenatori: illustrazioni, storie, scontri ===== */
+function can(n){return ALIAS[n]||n}
+var FORMER={'AndrewTT':'Andrew_Indium','DJ Cst Brazil':'StaCo Atto','Mario':'Pep Mariola · Barny · Gingleton'};
+var CUR={'DJ Cst Brazil':'Oranje VC','Maria':'AFA SELECCION','apo':'Apo team','Riccardo':'Atletico ma non troppo','RikyArma':'Grodah','Mark Lenders':'Mariana Coneja','AndrewTT':'Real Madrink','stifson':'stif dc','Leanzino':'The Blue brothers','Mario':'The Blue brothers','ser':'WOA'};
+var ORD=['apo','ser','RikyArma','Leanzino','Mario','AndrewTT','stifson','Maria','Mark Lenders','Riccardo','DJ Cst Brazil'];
+function lab(n){return n==='Leanzino'?'Leanzino & Mario':n}
+var CFG={
+ 'DJ Cst Brazil':{sk:'#c98f66',ha:'short',hc:'#1c1410',su:'#1f2a52',ti:'#ffd166',bg:['#1fa35b','#ffd23f'],pr:'cuffie'},
+ 'apo':{sk:'#e8b894',ha:'bald',hc:'#3a2a1a',su:'#5b2a86',ti:'#ffd166',bg:['#ffd23f','#ff9f1c'],pr:'banana'},
+ 'ser':{sk:'#f0c4a0',ha:'side',hc:'#6b4423',su:'#2b3a67',ti:'#c9d3e6',bg:['#8ec5ff','#3a6ea5'],pr:'coppa'},
+ 'RikyArma':{sk:'#d9a27a',ha:'curly',hc:'#2a1a12',su:'#c0392b',ti:'#fff',bg:['#ff8a8a','#8e44ad'],pr:'badges'},
+ 'Leanzino':{sk:'#e8b894',ha:'short',hc:'#2a2a2a',su:'#1b6ca8',ti:'#fff',bg:['#2fa4e7','#0b3d6b'],pr:'paglia'},
+ 'Mario':{sk:'#d9a27a',ha:'short',hc:'#1c1410',su:'#2e8b57',ti:'#fff',bg:['#6dd3a0','#1c6b48'],pr:'cap'},
+ 'AndrewTT':{sk:'#f0c4a0',ha:'side',hc:'#3a2a1a',su:'#23262e',ti:'#d62839',bg:['#9aa5b1','#2b2f36'],pr:'auto'},
+ 'stifson':{sk:'#e8b894',ha:'short',hc:'#8a5a2b',su:'#0f3d3e',ti:'#5fd38d',bg:['#ff9f1c','#d62839'],pr:'razzo'},
+ 'Maria':{sk:'#f0c4a0',ha:'long',hc:'#5a2e1e',su:'#d62839',ti:'#fff',bg:['#ffb3c1','#c06c84'],pr:'quaderno'},
+ 'Mark Lenders':{sk:'#e8b894',ha:'spiky',hc:'#161616',su:'#e04a3a',ti:'#fff',bg:['#ffe27a','#ff8c42'],pr:'fascia'},
+ 'Riccardo':{sk:'#e8b894',ha:'side',hc:'#3b3b3b',su:'#4a1626',ti:'#e6c27a',bg:['#8c2f4a','#3a0f1e'],pr:'vino',be:'#3b3b3b'}
+};
+var CFGEX={sk:'#b4b9cc',ha:'short',hc:'#5a607a',su:'#555a6b',ti:'#8890a8',bg:['#4a5270','#2a3150'],pr:''};
+var CAPELLI={
+ short:'<path d="M39 50 Q37 25 60 25 Q83 25 81 50 Q76 37 60 37 Q44 37 39 50Z" fill="#H"/>',
+ side:'<path d="M38 52 Q34 22 64 24 Q86 26 82 50 Q74 34 52 38 Q42 42 38 52Z" fill="#H"/>',
+ curly:'<g fill="#H"><circle cx="42" cy="36" r="9"/><circle cx="52" cy="29" r="9"/><circle cx="64" cy="28" r="9"/><circle cx="75" cy="34" r="9"/><circle cx="80" cy="45" r="8"/><circle cx="40" cy="47" r="8"/></g>',
+ long:'<path d="M38 56 Q32 20 60 22 Q88 20 82 56 L85 84 Q76 76 74 50 Q60 40 46 50 Q44 76 35 84Z" fill="#H"/>',
+ spiky:'<path d="M38 48 L36 28 L46 36 L50 20 L58 33 L66 18 L70 34 L80 24 L82 48 Q70 38 60 38 Q48 38 38 48Z" fill="#H"/>',
+ bald:'<ellipse cx="52" cy="34" rx="7" ry="3" fill="#fff" opacity=".25"/>'
+};
+function sh(x,y,c){return '<path d="M'+x+' '+y+' h14 v10 q0 8 -7 11 q-7 -3 -7 -11z" fill="'+c+'" stroke="#fff" stroke-width="1.5"/>'}
+var PROPS={
+ cuffie:'<path d="M37 56 Q36 20 60 20 Q84 20 83 56" fill="none" stroke="#222" stroke-width="5" stroke-linecap="round"/><rect x="31" y="46" width="10" height="20" rx="4" fill="#ff4d6d"/><rect x="79" y="46" width="10" height="20" rx="4" fill="#ff4d6d"/>',
+ banana:'<path d="M88 106 Q88 80 110 72 Q108 96 94 110Z" fill="#ffd23f" stroke="#a37100" stroke-width="2"/><rect x="86" y="106" width="14" height="6" rx="2" fill="#2b2f36"/>',
+ coppa:'<path d="M80 82 h20 v10 q0 10 -10 12 q-10 -2 -10 -12z" fill="#ffd166" stroke="#a37100" stroke-width="2"/><rect x="87" y="104" width="6" height="6" fill="#a37100"/><rect x="82" y="110" width="16" height="5" rx="2" fill="#a37100"/><path d="M80 86 q-8 0 -6 8 q2 4 7 4M100 86 q8 0 6 8 q-2 4 -7 4" fill="none" stroke="#a37100" stroke-width="2"/>',
+ badges:sh(80,92,'#ffd166')+sh(94,98,'#2fa4e7')+sh(14,96,'#5fd38d'),
+ paglia:'<ellipse cx="60" cy="30" rx="36" ry="9" fill="#e8c36a" stroke="#a37100" stroke-width="2"/><path d="M42 30 Q42 6 60 6 Q78 6 78 30Z" fill="#f2d98a" stroke="#a37100" stroke-width="2"/><rect x="42" y="23" width="36" height="6" fill="#d62839"/>',
+ cap:'<path d="M40 40 Q42 14 62 14 Q82 14 82 40Z" fill="#2e8b57" stroke="#1c5a3a" stroke-width="2"/><path d="M60 38 L98 40 Q98 46 60 44Z" fill="#1c5a3a"/><circle cx="62" cy="26" r="5" fill="#fff"/><circle cx="94" cy="96" r="14" fill="#ffd166"/><text x="94" y="102" font-size="18" font-weight="900" text-anchor="middle" fill="#1d2a52">?</text>',
+ auto:'<rect x="42" y="47" width="16" height="9" rx="3" fill="#111"/><rect x="62" y="47" width="16" height="9" rx="3" fill="#111"/><rect x="58" y="49" width="4" height="2" fill="#111"/><g transform="translate(66,92)"><path d="M0 18 L4 8 Q8 4 18 4 L32 4 Q38 6 42 12 L46 18Z" fill="#d62839"/><circle cx="12" cy="20" r="5" fill="#111"/><circle cx="36" cy="20" r="5" fill="#111"/><text x="24" y="14" font-size="8" font-weight="900" fill="#fff" text-anchor="middle">TT</text></g>',
+ razzo:'<g transform="rotate(35 92 28)"><path d="M92 6 Q102 20 100 38 L84 38 Q82 20 92 6Z" fill="#f2f2f2" stroke="#999" stroke-width="1.5"/><circle cx="92" cy="22" r="4" fill="#3aa0ff"/><path d="M84 30 L76 42 L84 40Z M100 30 L108 42 L100 40Z" fill="#d62839"/><path d="M86 38 L92 54 L98 38Z" fill="#ff9f1c"/></g>',
+ quaderno:'<g transform="rotate(10 88 97)"><rect x="76" y="82" width="24" height="30" rx="3" fill="#ffd166" stroke="#a37100" stroke-width="2"/><path d="M82 92 h12 M82 98 h12 M82 104 h8" stroke="#a37100" stroke-width="2"/></g><path d="M24 16 l3 7 7 1 -5 5 1 7 -6 -4 -6 4 1 -7 -5 -5 7 -1z" fill="#fff"/>',
+ fascia:'<path d="M38 40 Q60 30 82 40 L82 46 Q60 36 38 46Z" fill="#fff"/><circle cx="60" cy="38" r="4" fill="#d62839"/><text x="60" y="114" font-size="16" font-weight="900" text-anchor="middle" fill="#fff">9</text>',
+ vino:'<path d="M84 80 h18 q0 16 -9 18 q-9 -2 -9 -18z" fill="#fff" fill-opacity=".25" stroke="#fff" stroke-width="2"/><path d="M85 88 h16 q0 9 -8 11 q-8 -2 -8 -11z" fill="#8c1230"/><path d="M93 98 v12 M86 112 h14" stroke="#fff" stroke-width="2"/>'
+};
+var AVN=0;
+var IMGS={"AndrewTT":{"f":"andrewtt","c":"#497add"},"apo":{"f":"apo","c":"#5b7499"},"ser":{"f":"ser","c":"#5b7499"},"stifson":{"f":"stifson","c":"#ff5400"},"RikyArma":{"f":"rikyarma","c":"#8cb2ff"},"Riccardo":{"f":"riccardo","c":"#dd4949"},"Maria":{"f":"maria","c":"#558dff"},"Mario":{"f":"mario","c":"#0049dd"},"Mark Lenders":{"f":"mark-lenders","c":"#0093dd"},"Leanzino":{"f":"leanzino","c":"#d9a441"},"DJ Cst Brazil":{"f":"dj-cst-brazil","c":"#f5c830"}};
+function sc(h,k){var n=parseInt(h.slice(1),16),r=n>>16&255,g=n>>8&255,b=n&255;return 'rgb('+Math.round(r*k)+','+Math.round(g*k)+','+Math.round(b*k)+')'}
+function bnr(n){var i=IMGS[n];return i?'--c1:'+i.c+';--c2:'+sc(i.c,.5)+';background:linear-gradient(100deg,'+sc(i.c,.1)+' 0%,'+sc(i.c,.24)+' 34%,'+sc(i.c,.55)+' 68%,'+sc(i.c,.9)+' 100%);':''}
+function av(name,size,ex){
+  if(ex)return '<span class="avi" style="width:'+size+'px;height:'+size+'px"><img src="../../assets/albo/ex.jpg" alt="" loading="lazy"></span>';
+  if(!ex&&IMGS[name])return '<span class="avi" style="width:'+size+'px;height:'+size+'px"><img src="../../assets/albo/'+IMGS[name].f+'.jpg" alt="" loading="lazy"></span>';
+  var c=ex?CFGEX:(CFG[name]||CFGEX),id='av'+(AVN++),s='';
+  s+='<svg viewBox="0 0 120 120" width="'+size+'" height="'+size+'" aria-hidden="true"><defs><linearGradient id="'+id+'g" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="'+c.bg[0]+'"/><stop offset="1" stop-color="'+c.bg[1]+'"/></linearGradient><clipPath id="'+id+'c"><rect width="120" height="120" rx="26"/></clipPath><linearGradient id="'+id+'h" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fff" stop-opacity=".38"/><stop offset=".5" stop-color="#fff" stop-opacity="0"/></linearGradient></defs>';
+  s+='<g clip-path="url(#'+id+'c)"><rect width="120" height="120" fill="url(#'+id+'g)"/>';
+  s+='<path d="M10 124 Q14 88 60 84 Q106 88 110 124Z" fill="'+c.su+'"/><path d="M47 85 L60 106 L73 85Z" fill="#fff"/><path d="M57 92 L63 92 L65 112 L60 118 L55 112Z" fill="'+c.ti+'"/>';
+  s+='<rect x="52" y="70" width="16" height="18" fill="'+c.sk+'"/><circle cx="39" cy="54" r="4.5" fill="'+c.sk+'"/><circle cx="81" cy="54" r="4.5" fill="'+c.sk+'"/><ellipse cx="60" cy="52" rx="21" ry="25" fill="'+c.sk+'"/>';
+  if(c.be)s+='<path d="M40 56 Q60 90 80 56 Q76 74 60 76 Q44 74 40 56Z" fill="'+c.be+'"/>';
+  s+=(CAPELLI[c.ha]||'').replace(/#H/g,c.hc);
+  s+='<circle cx="52" cy="52" r="2.4" fill="#222"/><circle cx="68" cy="52" r="2.4" fill="#222"/><path d="M47 45 L56 44 M64 44 L73 45" stroke="'+c.hc+'" stroke-width="2" stroke-linecap="round"/><path d="M52 64 Q60 70 68 64" fill="none" stroke="#7a3b2e" stroke-width="2.2" stroke-linecap="round"/>';
+  s+=PROPS[c.pr]||'';
+  return s+'<rect width="120" height="60" fill="url(#'+id+'h)"/></g><rect x="1.5" y="1.5" width="117" height="117" rx="25" fill="none" stroke="#fff" stroke-opacity=".6" stroke-width="3"/></svg>';
+}
+var STORIE={
+ "DJ Cst Brazil":["Il Ritorno","Nel 2021/22 si presenta in lega un tipo misterioso, con il nome di StaCo Atto e una squadra, il Rapid Micatant, che nessuno prende troppo sul serio. Invece chiude 5° con 51 punti, a due soli dal 4° posto e a 19 dall'apo campione: abbastanza per farsi notare, ma troppo poco per farsi ricordare. Subito dopo sparisce, e intorno a lui nascono le leggende: c'è chi giura che sia partito per un lungo viaggio, chi che si sia chiuso in uno studio di registrazione a cercare il beat perfetto, chi che sia semplicemente andato a vincere altrove. Cinque stagioni dopo, quando la lega parla ormai d'altro, una porta si apre e lui torna con un nome nuovo, DJ Cst Brazil, un altro fuso orario e una squadra con i colori dell'Olanda, l'Oranje VC. Nessuno sa bene da dove arrivi, ma tutti hanno capito che non è tornato per fare presenza: le cuffie sono già sulle orecchie, il volume è alto e la classifica, stavolta, è la sua pista da ballo."],
+ "apo":["Il Re dei Traslochi","Il Wakanda nasce da re: campione al debutto nel 2021/22, campione ancora nel 2022/23, e due titoli di fila, ancora oggi, non li ha vinti nessun altro. Poi il regno comincia a scricchiolare, con il 6° posto del 2023/24 e il tracollo del 2024/25, ultimo e a 34 punti dal PornHub FC campione. L'anno dopo, con il nome New Wakanda, chiude ultimo ancora. A quel punto cambia di nuovo casa e quest'anno riparte con l'Apo Team, la terza squadra in cinque anni ma sempre con lo stesso allenatore al timone: uno che fa i traslochi ma non dimentica la strada del trono. Da dinastia a cantiere aperto, ma le dinastie hanno la memoria lunga."],
+ "ser":["Il Guerriero Paziente","Cinque stagioni, una sola squadra, un solo nome, e mai un passo indietro nella lealtà: la WOA c'è dal 2021/22 e non si è mai mossa di un millimetro, neanche quando sarebbe stato più comodo. Esordisce con un 4° posto e l'anno dopo è 2°, dietro soltanto all'apo. Poi arriva il 2023/24, l'anno nero, 9° e penultimo, quello in cui chiunque avrebbe cambiato squadra, nome e magari città. Lui no. Risale al 5° posto nel 2024/25 e nel 2025/26 arriva il momento che aspettava da quattro anni: la Gioberti Cup, vinta con 65 punti, 10 più del Grodah secondo, il margine più largo tra i titoli che conosciamo. Dal 9° al 1° in due anni, perché la pazienza, a volte, è solo un trofeo che non ha ancora il tuo nome sopra."],
+ "RikyArma":["La Scalata","Comincia dal basso, anzi dal basso del basso: 7° nel 2021/22 con il Tequila Bum Bum, e quando cambia squadra e passa al Grodah il 2022/23 va ancora peggio, ultimo in un campionato a sei. Qualcuno, a quel punto, avrebbe cambiato lega; lui ha cambiato soltanto marcia. Il 2023/24 lo porta sul podio, 3° con gli stessi punti del 2°. Poi una frenata, il 6° posto del 2024/25, e infine il 2025/26 che sembrava già scritto: 2° in campionato, a soli 10 punti dalla WOA, e per di più la Coppa Campioni, vinta in finale contro il Mugiwara per 4-1. Dall'ultimo posto alla coppa in tre stagioni, con un solo cambio di squadra e tanta pazienza: in bacheca c'è un trofeo, e c'è un posto vuoto, quello dello scudetto."],
+ "Leanzino":["Da Solo, Poi in Coppia","Il Mugiwara debutta da protagonista, 2° nel 2021/22 a soli 5 punti dal Wakanda. Poi un anno di silenzio, perché nel 2022/23 il suo nome non compare, e un ritorno da campione nel 2023/24, con il titolo conquistato per appena 2 punti su Sdrogo e Grodah. Da lì comincia la lenta discesa: 4° nel 2024/25 a un solo punto dal podio e 8° nel 2025/26, anche se nello stesso anno trova la forza per arrivare in finale di Coppa Campioni, persa 4-1 proprio contro il Grodah. Dopo anni da solo, quest'anno cambia formula: il Mugiwara diventa The Blue Brothers e nasce la coppia con Mario, uno che nella lega ha già cambiato nome tre volte. E resta una domanda: se vincono, chi dei due porta il trofeo a casa?"],
+ "Mario":["L'Uomo dai Quattro Nomi","Comincia come Gingleton, con la Lil plug, e il debutto del 2021/22 è il più duro: 8° e ultimo con 31 punti. Poi cambia nome e squadra, diventa Barny con lo Stortenham e trova il suo momento migliore: 3° nel 2022/23, sul podio, e 8° nel 2023/24 con 48 punti, il calo che spesso arriva dopo il picco. Cambia ancora, stavolta in Pep Mariola con il Dynamo Loska, e si stabilizza a centro classifica: 7° nel 2024/25 con 40 punti e 7° ancora nel 2025/26 con 48. Nel 2026/27 cambia di nuovo tutto, nome, squadra e compagnia: Mario, in coppia con Leanzino alla The Blue Brothers, la Mugiwara che riparte dall'8° posto. Quattro nomi in cinque stagioni, un podio nel curriculum e un debutto da dimenticare: se il passato conta, il socio di Leanzino sa già come si risale."],
+ "AndrewTT":["Il Metronomo","Esordisce come Andrew_Indium con il Dio Brigante, 3° al debutto, a un solo punto dal 2° e a sei dal titolo, e subito cambia tutto: nuova squadra, il Real Madrink, e anche nuovo nome, AndrewTT, colpa dell'Audi TT. Da lì in poi è un metronomo: 4° nel 2022/23, 7° nel 2023/24, di nuovo 3° nel 2024/25 e 6° nel 2025/26. Mai un titolo, ma mai fuori dai primi sette, con due podi in cinque anni, sempre dentro il gruppo che conta. Il più costante della lega, e finché il ritmo è quello giusto non c'è motivo di fermarsi."],
+ "stifson":["Il Razzo","Arriva nel 2024/25 e parte come un razzo: 2° al debutto con la stif dc, a soli 3 punti dal PornHub FC campione, un esordio che nessuno si aspettava così vicino al trono. Nel 2025/26 scende di due gradini, 4° e fuori dal podio per un soffio, a pari punti con il 3°. Adesso la domanda è se il razzo è già arrivato in orbita o se deve ancora accendere i motori: in due anni un secondo posto e un quarto, sempre in alto. Il titolo non l'ha ancora vinto, ma ha già dimostrato di essere lì vicino."],
+ "Maria":["La Matricola","Esordisce nel 2025/26 con la Raimon Junior High e fa subito il colpaccio: podio al primo anno, 3° a pari punti con stif dc. Poi cambia squadra, AFA Seleccion, ed è qui che si capisce chi è. Partire bene è facile, ripetersi è un'altra storia, e il secondo anno è quello in cui le matricole smettono di essere matricole."],
+ "Mark Lenders":["La Giovane Promessa","Esordisce nel 2025/26 con la Mariana Coneja e chiude 5°, a due soli punti dal podio, senza clamore e senza figuracce: un debutto da giocatore che sa dove sta andando. Quest'anno resta con la stessa squadra e prova a fare il salto. Il nome promette tiri potentissimi, ora serve il gol."],
+ "Riccardo":["Il Sommelier","Nel 2023/24 prende in mano il Barolo, la squadra che l'anno prima era di Nobile e aveva chiuso solo 5°: un cambio al timone per rimediare, e il vino comincia a migliorare davvero. Chiude 4° con 53 punti, a due soli punti dal podio e a quattro dal titolo del Mugiwara. Poi sparisce per due stagioni, il 2024/25 e il 2025/26, e nel 2026/27 cambia squadra e torna con l'Atletico Ma Non Troppo. Il vino invecchia bene, speriamo anche lui."],
+ "17peppe17":["L'Ultimo Campione","Nel 2023/24 chiude ultimo con l'ACPicchia e sembra la fine di una storia mai cominciata. E invece l'anno dopo cambia tutto: nuova squadra, il PornHub FC, e la Costa Cup 2024/25 finisce nelle sue mani, con 3 punti più di stif dc. Ultimo un anno, campione quello dopo, e poi ha lasciato la lega, salutando da campione: di quelli che se ne vanno all'apice e restano nella leggenda."]
+};
+var AMB={
+ "DJ Cst Brazil":"Una sola stagione alle spalle (5° su 8, a due punti dalla zona alta), e con una lega a dieci squadre il punto di partenza realistico è il centro classifica, con il primo traguardo di migliorare quel 5° e avvicinare il podio.",
+ "apo":"Media di 5,6° posto ma con una tendenza nettamente in discesa (1°, 1°, 6°, 10°, 10°), e dopo due ultimi posti l'unica direzione è l'alto, quindi l'obiettivo realistico è uscire dal fondo, visto che i due titoli dicono che il potenziale c'è.",
+ "ser":"Media di 4,2° posto con un'oscillazione enorme, dal 1° al 9°, e da campione in carica parte con il peso del favorito, anche se l'unica volta che era arrivato così in alto (2° nel 2022/23) l'anno dopo è crollato al 9°, quindi l'obiettivo è non ripetersi e restare in zona alta.",
+ "RikyArma":"Media di 4,8° posto con tendenza in salita (7°, 6°, 3°, 6°, 2°), e il 2025/26 è il suo picco, ma dopo il 3° del 2023/24 era sceso al 6°, quindi la domanda è se confermarsi o rifare l'altalena, con un obiettivo scritto nei numeri: il titolo di campionato.",
+ "Leanzino":"Media di 3,8° posto (2°, 1°, 4°, 8°) ma in discesa da due anni, e la Blue Brothers nasce proprio per invertire la rotta, con l'obiettivo di tornare nelle prime quattro e giocarsi di nuovo il titolo.",
+ "Mario":"Media del 6,6° posto su cinque stagioni, con un podio (3°) nel 2022/23: dopo un debutto da ultimo si è sempre ripreso e, con la Blue Brothers, l'obiettivo è tornare ai piani alti, almeno fino alle prime quattro.",
+ "AndrewTT":"Media di 4,6° posto, la più stabile della lega, sempre tra il 3° e il 7°, con un profilo da prime cinque e il podio come obiettivo realistico, mentre il salto al titolo è l'unica cosa che manca ai suoi numeri.",
+ "stifson":"Media di 3° posto in due stagioni (2° e 4°), anche se il campione è piccolo, e il dato dice livello da zona podio, con il titolo come passo che manca e che nel 2024/25 ha sfiorato.",
+ "Maria":"Una sola stagione (3° al debutto), quindi nessuna tendenza, con l'obiettivo di confermare il podio e restare in zona alta.",
+ "Mark Lenders":"Una sola stagione (5°), ma già nella parte alta e a due punti dal podio, quindi l'obiettivo è guadagnare quei due punti e giocarsela con i primi.",
+ "Riccardo":"Una sola stagione (4°), dopo due anni di pausa, e il dato lo colloca in zona alta, con l'obiettivo di tornare almeno al 4° posto e magari superarlo."
+};
+function percorso(name){
+  var R=[];
+  STORICO.slice().reverse().forEach(function(e){
+    if(!e.t)return;
+    e.t.forEach(function(r,i){if(can(r[1])===name)R.push({y:e.y,c:e.c,t:r[0],p:i+1,pt:r[2],v:can(e.v[1])===name})});
+  });
+  return R;
+}
+function titoli(name){return STORICO.filter(function(e){return can(e.v[1])===name}).length+(window.NOV&&NOV.pre?NOV.pre.filter(function(x){return x[2]===name}).length:0)}
+function scontri(name){
+  var K={};
+  function k(o){return K[o]||(K[o]={dav:0,die:0,v:0,n:0,p:0})}
+  STORICO.forEach(function(e){
+    if(!e.t||e.fin)return;var me=-1;
+    e.t.forEach(function(r,i){if(can(r[1])===name)me=i});
+    if(me<0)return;
+    e.t.forEach(function(r,i){var o=can(r[1]);if(o===name)return;var x=k(o);if(me<i)x.dav++;else x.die++});
+  });
+  var T=CUR[name];
+  if(T&&D){
+    var TC={};Object.keys(CUR).forEach(function(c){if(c!=='Mario')TC[CUR[c].toLowerCase()]=c});
+    function add(a,b,ga,gb){
+      var me=a.toLowerCase()===T.toLowerCase(),yo=b.toLowerCase()===T.toLowerCase();
+      if(!me&&!yo)return;var opp=me?b:a,o=TC[opp.toLowerCase()];if(!o||CUR[o]===T)return;
+      var x=k(o),f=me?ga:gb,s=me?gb:ga;if(f>s)x.v++;else if(f===s)x.n++;else x.p++;
+    }
+    D.cal.lega.forEach(function(g){g.m.forEach(function(m){if(m[4]==='-')return;var s=m[4].split('-').map(Number);add(m[0],m[3],s[0],s[1])})});
+    D.cal.cup.forEach(function(g){g.m.forEach(function(m){if(m[5]==='-')return;var s=m[5].split('-').map(Number);add(m[1],m[4],s[0],s[1])})});
+  }
+  var L=Object.keys(K).filter(function(o){var x=K[o];return x.dav+x.die+x.v+x.n+x.p>0});
+  L.sort(function(a,b){var x=K[a],y=K[b];return (y.dav+y.die+y.v+y.n+y.p)-(x.dav+x.die+x.v+x.n+x.p)||(a<b?-1:1)});
+  if(!L.length)return '';
+  var live=!!T,D3=function(a){return a.join('<span class="dsh">–</span>')};
+  return '<h5>Scontri diretti</h5><table><tr><th style="text-align:left">Rivale</th><th>Classifiche<br>davanti<span class="dsh">–</span>dietro</th>'+(live?'<th>2026/27<br>V<span class="dsh">–</span>N<span class="dsh">–</span>P</th>':'')+'</tr>'
+   +L.map(function(o){var x=K[o],cl=(x.dav+x.die)?D3([x.dav,x.die]):'–',st=(x.v+x.n+x.p)?D3([x.v,x.n,x.p]):'–';
+     return '<tr><td style="text-align:left;font-weight:700">'+esc(lab(al(o)))+'</td><td>'+cl+'</td>'+(live?'<td>'+st+'</td>':'')+'</tr>'}).join('')+'</table>'
+   +'';
+}
+function rivalita(name){
+  var K={};function k(o){return K[o]||(K[o]={s:0,c:0,d:0,f:0,fx:''})}
+  STORICO.forEach(function(e){
+    if(e.fin){var a=can(e.fin[1]),b=can(e.fin[5]);if(a===name||b===name){var o=a===name?b:a,x=k(o);x.f++;x.fx=e.c+' '+e.y}return}
+    if(!e.t)return;var me=-1;e.t.forEach(function(r,i){if(can(r[1])===name)me=i});if(me<0)return;
+    e.t.forEach(function(r,i){var o=can(r[1]);if(o===name)return;var x=k(o),dd=Math.abs(i-me);x.s++;if(dd<=1)x.c+=1.5;else if(dd===2)x.c+=.5;if(dd===1&&Math.min(i,me)===0)x.d++})});
+  var L=Object.keys(K).map(function(o){var x=K[o];return {o:o,x:x,sc:x.s*.8+x.c+x.d*3+x.f*4}}).filter(function(r){return r.sc>0}).sort(function(a,b){return b.sc-a.sc});
+  if(!L.length)return '';
+  var N=L.length;L=L.slice(0,8);
+  var LV=[[3,'Poca','#3ddc84'],[6,'Moderata','#ffd23f'],[9,'Tanta','#ff9f1c'],[1e9,'Infuocata','#ff4d5e']];
+  function lv(sc){for(var i=0;i<LV.length;i++)if(sc<LV[i][0])return LV[i]}
+  var rows=L.map(function(r,i){var l=lv(r.sc),x=r.x,pct=Math.max(8,Math.min(100,Math.round(r.sc/12*100)));
+    var why=x.f?'Finale '+x.fx:x.d?'Duello al vertice per il titolo':x.c>=3?'Spesso a pochi posti di distanza':x.s+(x.s>1?' stagioni':' stagione')+' insieme';
+    return '<div class="rvr" style="--i:'+i+';--w:'+pct+'%;--cl:'+l[2]+'"><div class="rvt"><span>'+esc(lab(al(r.o)))+'</span><span class="rvl">'+l[1]+'</span></div><div class="rvbar"><i></i></div><small>'+esc(why)+'</small></div>'}).join('');
+  var key='<div class="rvk">'+LV.map(function(l){return '<span style="--cl:'+l[2]+'">'+l[1]+'</span>'}).join('')+'</div>';
+  return '<button class="rv-b" type="button" aria-expanded="false"><span>⚔️</span>Rivalità<small>'+(N>L.length?'Le '+L.length+' più accese':L.length+(L.length>1?' sfidanti':' sfidante'))+'</small><span class="rv-ch">›</span></button><div class="rv-p"><div class="rv-in">'+rows+key+'</div></div>';
+}
+document.addEventListener('click',function(e){var b=e.target.closest&&e.target.closest('.rv-b');if(!b)return;var p=b.nextElementSibling,on=!p.classList.contains('on');p.classList.toggle('on',on);b.setAttribute('aria-expanded',on?'true':'false')});
+function scheda(name,ex){
+  var c=CFG[name],R=percorso(name),T=titoli(name),st=STORIE[name];
+  var tag=st?st[0]:'Ha Lasciato la Lega';
+  var txt=st?st[1]:'Ha lasciato la lega, ma resta nell\'albo con quello che ha fatto.';
+  var best=R.length?Math.min.apply(null,R.map(function(r){return r.p})):null;
+  var c0=ex?CFGEX:(CFG[name]||CFGEX);
+  var h='<div class="sh-top" style="--c1:'+c0.bg[0]+';--c2:'+c0.bg[1]+';'+(ex?'':bnr(name))+'"><div class="sh-tx"><div class="sh-tag">'+esc(tag)+'</div><div class="sh-nome">'+esc(lab(al(name)))+(FORMER[name]?' <span class="fm">Formerly '+esc(FORMER[name])+'</span>':'')+'</div><div class="sub">'+(CUR[name]?'Oggi: '+esc(CUR[name]):'Fuori dalla lega')+'</div></div><div class="sh-av">'+av(name,128,ex)+'</div></div>';
+  h+='<div class="kp"><div><small>Titoli</small><b>'+T+'</b></div><div><small>Stagioni</small><b>'+R.length+'</b></div><div><small>Miglior piazzamento</small><b>'+(best?best+'°':'–')+'</b></div><div><small>Posizione media</small><b>'+(R.length?(Math.round(R.reduce(function(a,r){return a+r.p},0)/R.length*10)/10+'').replace('.',',')+'°':'–')+'</b></div></div>';
+  h+='<p class="sh-st sh-sto">'+esc(txt)+'</p>';
+  if(AMB[name])h+='<h5>Dove punta <span class="fm">(previsione dai dati)</span></h5><p class="sh-st" style="margin-top:4px">'+esc(AMB[name])+'</p>';
+  if(R.length)h+='<h5>Il percorso</h5><table><tr><th style="text-align:left">Stagione</th><th style="text-align:left">Squadra</th><th>Pos.</th><th>Punti</th></tr>'+R.map(function(r){return '<tr><td style="text-align:left">'+r.y+'<small>'+esc(r.c)+'</small></td><td style="text-align:left;font-weight:700">'+esc(r.t)+'</td><td>'+(r.v?'🏆 ':'')+r.p+'°</td><td>'+(r.pt!=null?r.pt:'–')+'</td></tr>'}).join('')+'</table>';
+  h+=rivalita(name);
+  h+=scontri(name);
+  return h;
+}
+function stato(){
+  return '<div class="card"><div class="sub" style="margin:0">Stagione 2026/27 · Campionato: giocata la '+lastN(D.cal.lega,false)+'ª giornata · Champions Cup: '+(lastN(D.cal.cup,true)?(lastN(D.cal.cup,true)===1?'giocata 1 giornata su ':'giocate '+lastN(D.cal.cup,true)+' giornate su ')+D.cal.cup.length:'parte alla prossima giornata')+'</div></div>';
+}
+function allenatori(){
+  var cur=ORD.slice().sort(function(a,b){return titoli(b)-titoli(a)||ORD.indexOf(a)-ORD.indexOf(b)});
+  var ex={};STORICO.forEach(function(e){if(!e.t)return;e.t.forEach(function(r){var n=can(r[1]);if(!CFG[n])ex[n]=1})});
+  if(window.NOV&&NOV.pre)NOV.pre.forEach(function(x){if(x[2]&&!CFG[can(x[2])])ex[can(x[2])]=1});var exl=Object.keys(ex).sort(function(a,b){return titoli(b)-titoli(a)||(a<b?-1:1)});
+  var h='<h3 class="hh">Gli allenatori</h3><div class="cg">'+cur.map(function(n){var t=titoli(n);
+    return '<button class="cb" data-co="'+esc(n)+'">'+av(n,84)+'<b>'+esc(n)+'</b><small>'+(t?'🏆 '.repeat(Math.min(t,3))+t+(t===1?' titolo':' titoli'):esc(CUR[n]))+'</small></button>'}).join('')+'</div>';
+  h+='<h3 class="hh" style="margin-top:20px">Chi ha lasciato</h3><div class="cg ex">'+exl.map(function(n){var t=titoli(n);
+    return '<button class="cb" data-co="'+esc(n)+'" data-ex="1">'+av(n,64,true)+'<b>'+esc(n)+'</b><small>'+(t?'🏆 '+t+(t===1?' titolo':' titoli'):'ex')+'</small></button>'}).join('')+'</div>';
+  return h;
+}
+function apri(n,ex){
+  var m=document.getElementById('mo');
+  if(!m){m=document.createElement('div');m.id='mo';m.className='mo';document.body.appendChild(m);
+    m.addEventListener('click',function(e){if(e.target===m||e.target.className==='x')chiudi()});
+    document.addEventListener('keydown',function(e){if(e.key==='Escape')chiudi()})}
+  m.innerHTML='<div class="sheet"><button class="x" aria-label="Chiudi">✕</button>'+scheda(n,ex)+'</div>';
+  m.classList.add('on');document.body.style.overflow='hidden';m.scrollTop=0;
+}
+function chiudi(){var m=document.getElementById('mo');if(m)m.classList.remove('on');document.body.style.overflow=''}
+document.addEventListener('click',function(e){var b=e.target.closest&&e.target.closest('[data-co]');if(b)apri(b.getAttribute('data-co'),!!b.getAttribute('data-ex'))});
+fetch('../../data.json',{cache:'no-store'}).then(function(r){return r.json()}).then(function(d){d=window.CVPUB?CVPUB(d):d;
+  D=d;document.getElementById('al').innerHTML=window.ALBOTABS?ALBOTABS(D,{stato:stato(),allenatori:allenatori(),storico:storico(),recs:recs()}):stato()+allenatori()+storico()+recs();
+  document.getElementById('foot').textContent='Dati aggiornati al '+(D.cal.date||'');
+}).catch(function(){document.getElementById('al').innerHTML='<div class="err">Non riesco a leggere i dati.</div>'});
+})();
+</script>
+<script src="../../assets/app.js"></script>
+</body>
+</html>

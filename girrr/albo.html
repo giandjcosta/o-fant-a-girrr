@@ -98,7 +98,7 @@ td small{color:var(--sub);font-weight:600;display:block;font-size:11px}
 .hh{font-weight:900;font-size:13px;letter-spacing:.3em;color:var(--hi);margin:6px 0 12px;text-transform:uppercase}
 .cg{display:grid;grid-template-columns:repeat(auto-fill,minmax(104px,1fr));gap:10px;margin-bottom:6px}
 .cb{display:flex;flex-direction:column;align-items:center;gap:6px;background:linear-gradient(150deg,rgba(255,255,255,.12),rgba(255,255,255,.05));border:1px solid rgba(255,255,255,.14);border-radius:16px;padding:12px 6px;color:var(--chiaro);font-family:inherit;cursor:pointer;transition:transform .15s,background .2s}
-.cb:active{transform:scale(.96)}.cb:hover{background:rgba(255,255,255,.16)}
+.cb:active{transform:scale(.96)}@media (hover:hover) and (pointer:fine){.cb:hover{background:rgba(255,255,255,.16)}}
 .cb svg{filter:drop-shadow(0 6px 10px rgba(0,0,0,.4))}
 .cb b{font-weight:900;font-size:13px;text-align:center;line-height:1.1}
 .cb small{color:var(--sub);font-weight:700;font-size:11px;text-align:center}
@@ -145,13 +145,18 @@ td small{color:var(--sub);font-weight:600;display:block;font-size:11px}
 <script src="storia.js?v=1"></script>
 <script>window.goatcounter={path:function(){return location.pathname},no_onload:/[?&]demo/.test(location.search)}</script>
 <script data-goatcounter="https://djcosta18.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
+<script src="novita.js?v=1792322690"></script>
+<script src="novita-dati.js?v=1792322690"></script>
+<script src="novita-badge.js?v=1792322690"></script>
+<script src="transizioni.js"></script>
+<style>@media(min-width:1500px){.wrap{max-width:1380px}}</style>
 </head>
 <body>
 <div class="wrap">
   <a class="back" href="index.html">‹ O Girrr</a>
   <header class="top"><img id="lg" src="../assets/loghi/logo-lega-o-fant-a-girrr.png" alt="O Fant A Girrr" title="Torna a O Girrr"><div><div class="kick">O FANT A GIRRR · 2026/27</div><h1>Albo d'oro</h1></div></header>
   <div class="swap" id="al" style="margin-top:16px"><div class="vuoto">Carico i record…</div></div>
-  <div class="foot" id="foot">O Girrr · i dati arrivano dallo Spogliatoio</div>
+  <div class="foot" id="foot">O Girrr · I dati arrivano dallo Spogliatoio</div>
 </div>
 <script>
 (function(){
@@ -216,7 +221,7 @@ function recs(){
 }
 /* Storico: nomi degli allenatori come su Leghe; alias confermati da Gianluca */
 var ALIAS=CVS.ALIAS,EX=CVS.EX;
-function al(n){n=ALIAS[n]||n;return EX[n]?n+' · ex':n}
+function al(n){n=ALIAS[n]||n;return EX[n]?n+' · Ex':n}
 /* nel tabellone di una stagione: nome di allora, con tra parentesi quello attuale */
 function alS(n){var c=ALIAS[n];return c?n+' ('+al(n)+')':al(n)}
 var STORICO=CVS.STORICO;
@@ -225,11 +230,11 @@ function storico(){
   var cnt={},ord=[];
   STORICO.forEach(function(e){var k=al(e.v[1]);if(!cnt[k]){cnt[k]=0;ord.push(k)}cnt[k]++});
   ord.sort(function(a,b){return cnt[b]-cnt[a]});
-  var h='<div class="sto"><h3 style="font-weight:900;font-size:13px;letter-spacing:.3em;color:var(--hi);margin:6px 0 12px;text-transform:uppercase">Le stagioni passate</h3><div class="sala">'
+  var h='<div class="sto"><h3 style="font-weight:900;font-size:13px;letter-spacing:.3em;color:var(--hi);margin:6px 0 12px;text-transform:uppercase">L\'Era Contemporanea · Le stagioni</h3><div class="sala">'
    +ord.map(function(k){return '<span>🏆 '+esc(k)+' <b>'+cnt[k]+'</b></span>'}).join('')+'</div>';
   STORICO.forEach(function(e){
     var body='';
-    if(e.fin){var f=e.fin;body='<table><tr><td>'+esc(f[0])+'<small>'+esc(alS(f[1]))+'</small></td><td><b>'+f[2]+' - '+f[6]+'</b><small>'+pt(f[3])+' - '+pt(f[7])+'</small></td><td>'+esc(f[4])+'<small>'+esc(alS(f[5]))+'</small></td></tr></table>'}
+    if(e.fin){var f=e.fin;body='<table><tr><td>'+esc(f[0])+'<small>'+esc(alS(f[1]))+'</small></td><td><b>'+f[2]+' - '+f[6]+'</b></td><td>'+esc(f[4])+'<small>'+esc(alS(f[5]))+'</small></td></tr></table>'}
     else{body='<table><tr><th>#</th><th style="text-align:left">Squadra</th><th>Punti</th></tr>'
       +e.t.map(function(r,i){return '<tr><td>'+(i+1)+'°</td><td style="text-align:left;font-weight:700">'+esc(r[0])+'<small>'+esc(alS(r[1]))+'</small></td><td>'+(r[2]!=null?r[2]:'–')+'</td></tr>'}).join('')+'</table>'}
     h+='<div class="card"><details><summary><span class="y">'+e.y+'</span><span><small>'+esc(e.c)+'</small><b>🏆 '+esc(e.v[0])+' · '+esc(alS(e.v[1]))+'</b></span><span class="fr">›</span></summary>'+body+(e.nota?'<div class="nota">'+e.nota+'</div>':'')+'</details></div>';
@@ -331,7 +336,7 @@ function percorso(name){
   });
   return R;
 }
-function titoli(name){return STORICO.filter(function(e){return can(e.v[1])===name}).length}
+function titoli(name){return STORICO.filter(function(e){return can(e.v[1])===name}).length+(window.NOV&&NOV.pre?NOV.pre.filter(function(x){return x[2]===name}).length:0)}
 function scontri(name){
   var K={};
   function k(o){return K[o]||(K[o]={dav:0,die:0,v:0,n:0,p:0})}
@@ -400,7 +405,7 @@ function stato(){
 function allenatori(){
   var cur=ORD.slice().sort(function(a,b){return titoli(b)-titoli(a)||ORD.indexOf(a)-ORD.indexOf(b)});
   var ex={};STORICO.forEach(function(e){if(!e.t)return;e.t.forEach(function(r){var n=can(r[1]);if(!CFG[n])ex[n]=1})});
-  var exl=Object.keys(ex).sort(function(a,b){return titoli(b)-titoli(a)||(a<b?-1:1)});
+  if(window.NOV&&NOV.pre)NOV.pre.forEach(function(x){if(x[2]&&!CFG[can(x[2])])ex[can(x[2])]=1});var exl=Object.keys(ex).sort(function(a,b){return titoli(b)-titoli(a)||(a<b?-1:1)});
   var h='<h3 class="hh">Gli allenatori</h3><div class="cg">'+cur.map(function(n){var t=titoli(n);
     return '<button class="cb" data-co="'+esc(n)+'">'+av(n,84)+'<b>'+esc(n)+'</b><small>'+(t?'🏆 '.repeat(Math.min(t,3))+t+(t===1?' titolo':' titoli'):esc(CUR[n]))+'</small></button>'}).join('')+'</div>';
   h+='<h3 class="hh" style="margin-top:20px">Chi ha lasciato</h3><div class="cg ex">'+exl.map(function(n){var t=titoli(n);
@@ -418,7 +423,7 @@ function apri(n,ex){
 function chiudi(){var m=document.getElementById('mo');if(m)m.classList.remove('on');document.body.style.overflow=''}
 document.addEventListener('click',function(e){var b=e.target.closest&&e.target.closest('[data-co]');if(b)apri(b.getAttribute('data-co'),!!b.getAttribute('data-ex'))});
 fetch('../data.json',{cache:'no-store'}).then(function(r){return r.json()}).then(function(d){d=window.CVPUB?CVPUB(d):d;
-  D=d;document.getElementById('al').innerHTML=stato()+allenatori()+storico()+recs();
+  D=d;document.getElementById('al').innerHTML=window.ALBOTABS?ALBOTABS(D,{stato:stato(),allenatori:allenatori(),storico:storico(),recs:recs()}):stato()+allenatori()+storico()+recs();
   document.getElementById('foot').textContent='Dati aggiornati al '+(D.cal.date||'');
 }).catch(function(){document.getElementById('al').innerHTML='<div class="err">Non riesco a leggere i dati.</div>'});
 })();

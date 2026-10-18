@@ -23,8 +23,8 @@ h1 span{color:var(--acc);filter:brightness(1.25)}
 .sub{margin-top:6px;color:var(--sub);font-weight:600;font-size:15px}
 .last{display:grid;grid-template-columns:minmax(0,300px) 1fr;gap:22px;background:rgba(255,255,255,.08);border-left:8px solid var(--acc);border-radius:4px 16px 16px 4px;padding:18px;margin-bottom:26px}
 @media(max-width:700px){.last{grid-template-columns:1fr}}
-.cv{display:block;border-radius:6px;overflow:hidden;box-shadow:0 14px 30px rgba(0,0,0,.45);transition:transform .25s}
-.cv:hover{transform:translateY(-4px) rotate(-.6deg)}
+.cv{display:block;border-radius:6px;overflow:hidden;box-shadow:0 14px 30px rgba(0,0,0,.45);transition:transform .25s}@media (hover:hover) and (pointer:fine){
+.cv:hover{transform:translateY(-4px) rotate(-.6deg)}}
 .cv img{display:block;width:100%;height:auto;background:#f3eee1}
 .num{font-weight:900;font-size:13px;letter-spacing:.3em;color:var(--hi)}
 .last h2{font-size:clamp(22px,3.6vw,34px);line-height:1.1;font-weight:900;margin:6px 0 8px;text-transform:uppercase}
@@ -33,8 +33,8 @@ h1 span{color:var(--acc);filter:brightness(1.25)}
 .btn.o{background:rgba(255,255,255,.14)}
 h3{font-weight:900;font-size:14px;letter-spacing:.34em;color:var(--hi);margin-bottom:12px}
 .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:14px}
-.it{display:block;text-decoration:none;color:inherit;background:rgba(255,255,255,.07);border-radius:12px;padding:12px;transition:transform .2s,background .2s}
-.it:hover{transform:translateY(-4px);background:rgba(255,255,255,.12)}
+.it{display:block;text-decoration:none;color:inherit;background:rgba(255,255,255,.07);border-radius:12px;padding:12px;transition:transform .2s,background .2s}@media (hover:hover) and (pointer:fine){
+.it:hover{transform:translateY(-4px);background:rgba(255,255,255,.12)}}
 .it img{display:block;width:100%;border-radius:4px;background:#f3eee1;box-shadow:0 8px 18px rgba(0,0,0,.4)}
 .it b{display:block;margin-top:10px;font-weight:900;font-size:13px;letter-spacing:.2em;color:var(--hi)}
 .it span{display:block;margin-top:4px;font-weight:700;font-size:14px;line-height:1.3}
@@ -53,6 +53,8 @@ body::before{content:'';position:fixed;inset:-120px;z-index:-1;pointer-events:no
 <link rel="apple-touch-icon" href="../assets/apple-touch-icon.png">
 <script>window.goatcounter={path:function(){return location.pathname},no_onload:/[?&]demo/.test(location.search)}</script>
 <script data-goatcounter="https://djcosta18.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
+<script src="transizioni.js"></script>
+<style>@media(min-width:1500px){.wrap{max-width:1380px}}</style>
 </head>
 <body>
 <div class="wrap">

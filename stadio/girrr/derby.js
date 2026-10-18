@@ -1,0 +1,47 @@
+/* Pagina Derby: rivalità storiche, Derby con nome e storia, rivalità forti e sfide decisive. Stesso stile dell'Albo d'oro. */
+(function(){
+var N=window.NOV,D=null;
+function esc(s){return String(s).replace(/[&<>"]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})}
+var st=document.createElement('style');st.textContent='.rac{margin:12px 0 0;padding:12px 14px;border-radius:14px;background:rgba(0,0,0,.2);border-left:3px solid var(--hi)}.rac .rt{font-weight:900;font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:var(--hi);margin-bottom:6px}.rac p{font-weight:600;font-size:14px;line-height:1.6;margin:0}.nt{color:var(--sub);font-weight:600;font-size:12px;margin-top:8px;line-height:1.5}.pb{height:10px;border-radius:99px;background:rgba(255,255,255,.12);overflow:hidden;margin:8px 0 4px}.pb i{display:block;height:100%;border-radius:99px;background:linear-gradient(90deg,#7be495,#ffd166,#ff6b7a)}.vs{display:flex;justify-content:space-between;gap:8px;font-weight:900;font-size:16px}.vs span{color:var(--sub);font-weight:800;font-size:12px;align-self:center}.tg{display:inline-block;border-radius:999px;background:var(--acc);color:#fff;font-weight:900;font-size:10px;letter-spacing:.14em;padding:3px 9px;text-transform:uppercase}.tg.f{background:rgba(255,255,255,.16)}.dv{padding:12px 0;border-top:1px solid rgba(255,255,255,.12)}.dv:first-of-type{border-top:0}.dd{border:2px solid var(--hi);border-radius:14px;padding:12px 14px;margin-top:10px}.dd.f{border:2px dashed rgba(255,255,255,.4)}.dd .k{font-weight:900;font-size:11px;letter-spacing:.25em;text-transform:uppercase;color:var(--hi)}';document.head.appendChild(st);
+var VOTI={},VETO={},NOMI={},DBU='https://qmjqfgmvimsuxvghetgi.supabase.co',DBK='sb_publishable_qPhimkrF4iUvIad7JPoH8A_i-eOqG7n';
+function key(a,b){return [a,b].map(function(x){return x.toLowerCase()}).sort().join('|')}
+var RIVM={};N.riv.forEach(function(o){RIVM[key(o.a,o.b)]=o});
+function info(a,b){var o=RIVM[key(a,b)]||{a:a,b:b,r:0,h:0,z:0,n:'',s:''},k=key(a,b),V=VOTI[k]?100:0;return {o:o,der:VETO[k]?false:(VOTI[k]?true:o.r>=50),riv:Math.round(Math.min(100,o.r+.6*V))}}
+/* Voti e sfide dal database (lettura libera): un Derby è ufficiale se votato dai più o nato da una sfida accettata con il nome concordato; se i più dicono no, non lo è */
+function caricaDb(){return fetch(DBU+'/rest/v1/rpc/derby_stato',{method:'POST',headers:{apikey:DBK,Authorization:'Bearer '+DBK,'Content-Type':'application/json'},body:'{}'}).then(function(r){return r.json()}).then(function(r){VOTI={};VETO={};NOMI={};(r.voti||[]).forEach(function(v){var k=key(v.a,v.b);if(v.si>v.no)VOTI[k]=1;else if(v.no>v.si)VETO[k]=1});(r.sfide||[]).slice().reverse().forEach(function(x){if(x.stato==='accettata'&&x.nome_ok){var k=key(x.da,x.a);VOTI[k]=1;delete VETO[k];NOMI[k]=x.nome}})}).catch(function(){})}
+function word(p){return p>=70?'Infuocata':p>=50?'Alta':p>=25?'Media':'Bassa'}
+function bar(p){return '<div class="pb"><i style="width:'+Math.max(4,p)+'%"></i></div>'}
+function rac(o){return o.s?'<div class="rac"><div class="rt">'+esc(o.n)+'</div><p>'+esc(o.s)+'</p></div>':''}
+var TAB=null;
+function classifica(){var T={};D.cal.lega.forEach(function(g){g.m.forEach(function(m){if(m[4]==='-')return;var s=m[4].split('-').map(Number);[[m[0],m[1],s[0],s[1]],[m[3],m[2],s[1],s[0]]].forEach(function(x){var r=T[x[0]]=T[x[0]]||{t:x[0],pt:0,fp:0,g:0};r.g++;r.fp+=x[1];r.pt+=x[2]>x[3]?3:x[2]===x[3]?1:0})})});
+  TAB=Object.keys(T).map(function(k){return T[k]}).sort(function(a,b){return b.pt-a.pt||b.fp-a.fp});TAB.forEach(function(r,i){r.pos=i+1})}
+function row(t){return TAB&&TAB.filter(function(x){return x.t.toLowerCase()===t.toLowerCase()})[0]}
+var PH={1:'è capolista',2:'è in scia, al secondo posto',3:'è sul podio',4:'è ai piedi del podio',5:'è in zona alta',6:'è a metà classifica',7:'è a metà classifica',8:'è nella parte bassa',9:'è nella parte bassa',10:'è fanalino di coda'};
+function ctx(a,b){var A=row(a),B=row(b);if(!A||!B)return '';var ap=A.fp/Math.max(1,A.g),bp=B.fp/Math.max(1,B.g),dp=Math.abs(ap-bp),best=ap>=bp?a:b;return a+' '+PH[A.pos]+', '+b+' '+PH[B.pos]+'. '+(dp<2?'In campo se la giocano punto a punto.':dp<6?best+' ha un passo leggermente migliore.':best+' sta facendo la differenza.')}
+function nome(o){return NOMI[key(o.a,o.b)]||o.n||('Derby '+o.a+' – '+o.b)}
+function prossima(){var L=D.cal.lega,i;for(i=0;i<L.length;i++){if(L[i].m.some(function(m){return m[4]==='-'}))return L[i]}return L[L.length-1]}
+function render(){
+  var RIV=window.PAGINA==='rivalita',r=prossima(),h='';
+  if(!RIV){
+    h+='<div class="card"><h3>Giornata '+r.n+'</h3><p class="nt" style="margin:0 0 6px">Un Derby nasce da due cose: quanto lo sentono gli amici della lega e quanto è vecchia e importante la rivalità (stagioni insieme, zone alte, podi, anzianità).</p>';
+    var ders=r.m.filter(function(m){return info(m[0],m[3]).der});
+    if(ders.length)h+=ders.map(function(m){var i=info(m[0],m[3]);return '<div class="dd"><div class="k">Derby della giornata</div><div style="font-weight:800;margin:4px 0">'+esc(nome(i.o))+'</div><div class="vs"><b>'+esc(m[0])+'</b><span>contro</span><b>'+esc(m[3])+'</b></div>'+bar(i.riv)+'<div class="nt" style="margin:0">Rivalità: <b>'+word(i.riv)+'</b> · '+i.o.h+' stagioni insieme, '+i.o.z+' nelle zone alte insieme</div>'+rac(i.o)+'</div>'}).join('');
+    else h+='<p class="nt">Questa giornata non ha nessun Derby.</p>';
+    h+='</div>';
+    var DT=N.riv.filter(function(o){return o.n||info(o.a,o.b).der}).sort(function(x,y){return info(y.a,y.b).riv-info(x.a,x.b).riv});
+    h+='<div class="card"><h3>I Derby della Lega</h3>'+DT.map(function(o){var i=info(o.a,o.b);return '<div class="dv"><div style="font-weight:900;font-size:15px">'+esc(nome(o))+(i.der?' <span class="tg">Derby</span>':'')+'</div><div class="vs" style="margin-top:6px"><b>'+esc(o.a)+'</b><span>contro</span><b>'+esc(o.b)+'</b></div>'+bar(i.riv)+'<div class="nt" style="margin:0">Rivalità: <b>'+word(i.riv)+'</b> · '+o.h+' stagioni insieme · '+o.z+' nelle zone alte insieme</div>'+(o.s?'<p style="font-weight:600;font-size:14px;line-height:1.6;margin-top:8px">'+esc(o.s)+'</p>':'')+'</div>'}).join('')+'</div>';
+  }else{
+    h+='<div class="card"><h3>Giornata '+r.n+'</h3><p class="nt" style="margin:0 0 6px">Le rivalità sono un gradino sotto il Derby: sfide con una storia lunga che gli amici non hanno votato come Derby.</p>';
+    var fo=r.m.filter(function(m){var i=info(m[0],m[3]);return !i.der&&i.riv>=75});
+    if(fo.length)h+=fo.map(function(m){var i=info(m[0],m[3]);return '<div class="dd f"><div class="k">Rivalità forte</div><div class="vs" style="margin-top:4px"><b>'+esc(m[0])+'</b><span>contro</span><b>'+esc(m[3])+'</b></div>'+bar(i.riv)+'<div class="nt" style="margin:0">'+esc(ctx(m[0],m[3]))+'</div>'+rac(i.o)+'</div>'}).join('');
+    else h+='<p class="nt">Questa giornata non ha rivalità forti.</p>';
+    h+='</div>';
+    var F=N.riv.filter(function(o){var i=info(o.a,o.b);return !i.der&&i.riv>=75}).sort(function(x,y){return info(y.a,y.b).riv-info(x.a,x.b).riv});
+    h+='<div class="card"><h3>Rivalità forti</h3><p class="nt" style="margin:0 0 6px">Contano per la radio e per la Curva, e si leggono sempre con la classifica e il rendimento di quest\'anno.</p>'+F.map(function(o){return '<div class="dv"><div class="vs"><b>'+esc(o.a)+' – '+esc(o.b)+'</b><span class="tg f">'+word(info(o.a,o.b).riv)+'</span></div><div class="nt" style="margin:4px 0 0">'+esc(ctx(o.a,o.b))+'</div></div>'}).join('')+'</div>';
+    h+='<div class="card"><h3>Sfide decisive</h3><p class="nt" style="margin:0">Si accendono da gennaio, dalla 18ª giornata di Serie A (mercoledì 6 gennaio 2027). Quando due squadre si giocano il 1º e il 2º posto, oppure il 3º e il 4º, la sfida va in radio e in Curva. Nelle ultime giornate il tono diventa quello della volata. Si attiva da sola: guarda il calendario vero e la classifica del momento.</p></div>';
+  }
+  document.getElementById('al').innerHTML=h;
+}
+document.getElementById('lg').onclick=function(){location.href='index.html'};
+fetch('../../data.json',{cache:'no-store'}).then(function(r){return r.json()}).then(function(d){D=d;classifica();render();caricaDb().then(render);document.getElementById('foot').textContent='Dati aggiornati al '+(D.cal.date||'')}).catch(function(e){document.getElementById('al').innerHTML='<div class="err">Non riesco a leggere i dati.</div>'});
+})();
