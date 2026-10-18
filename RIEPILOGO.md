@@ -81,12 +81,13 @@ Notizie pubbliche, senza indicare di chi e' ogni giocatore.
 | Marusic | Lazio | Lesione muscolare alla coscia | Seconda metà di ottobre | Salta |
 | Gudmundsson A. | Lazio | Problema alla spalla destra dopo una caduta | Metà ottobre | In dubbio |
 | Saelemaekers | Milan | Problema alla caviglia destra e operata il | Da febbraio | Salta |
+| Zeballos | Monza | Fastidio fisico che andrà valutato in vista | Da valutare | In dubbio |
 | Buongiorno | Napoli | Operato nella seconda metà di luglio al | Fine dicembre | Salta |
 | Vergara | Napoli | Lesione distrattiva al polpaccio destro | Inizio novembre | Salta |
 | Neres | Napoli | Lesione di basso grado al muscolo semimembranoso | Prima metà di novembre | Salta |
 | Dybala | Roma | Affaticamento sul gemello del polpaccio | Da valutare | Salta |
-| Svilar | Roma | Frattura a un dito del piede e | Metà novembre | Salta |
 | Cristante | Roma | Infiammazione al ginocchio e | Prossimo turno | Salta |
+| Svilar | Roma | Frattura a un dito del piede e | Metà novembre | Salta |
 | Konè M. | Roma | Lesione di primo grado al bicipite femorale | Prima metà di novembre | Salta |
 | Malen | Roma | Squalificato | Rientra dalla 8ª giornata | Salta |
 | Idzes | Sassuolo | Lesione di grado moderato al quadricipite della | Seconda metà di ottobre | Salta |
