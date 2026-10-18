@@ -79,6 +79,7 @@ Notizie pubbliche, senza indicare di chi e' ogni giocatore.
 | Yildiz | Juventus | Problema al piede | Inizio dicembre | Salta |
 | Grabara | Juventus | Lesione al crociato anteriore del ginocchio destro | Da aprile | Salta |
 | Marusic | Lazio | Lesione muscolare alla coscia | Seconda metà di ottobre | Salta |
+| Cancellieri | Lazio | Noie fisiche e il suo rientro tra | Da valutare | Salta |
 | Gudmundsson A. | Lazio | Problema alla spalla destra dopo una caduta | Metà ottobre | In dubbio |
 | Saelemaekers | Milan | Problema alla caviglia destra e operata il | Da febbraio | Salta |
 | Zeballos | Monza | Fastidio fisico che andrà valutato in vista | Da valutare | In dubbio |
@@ -115,10 +116,10 @@ Punteggio: piu' e' alto, piu' conviene. Unisce valore e probabilita' di giocare.
 | Giocatore | Squadra | Stato | Avversario | Punteggio |
 |---|---|---|---|---|
 | Hainaut | Venezia | Titolare | Atalanta (T) | 90 |
+| Provstgaard | Lazio | Titolare | Monza (C) | 80 |
 | Veiga D. | Lecce | Titolare | Bologna (C) | 78 |
 | Zè Pedro | Cagliari | Titolare | Juventus (C) | 78 |
 | Rodriguez Ju. | Cagliari | Titolare | Juventus (C) | 76 |
-| Abankwah | Udinese | In dubbio | Torino (T) | 75 |
 
 ### Centrocampisti
 
