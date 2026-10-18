@@ -1,0 +1,86 @@
+{
+ "nota": "Aspettative del presidente a inizio stagione 2026/27, calcolate dal Laboratorio (storia dell'allenatore, forza della rosa, ambizioni). Restano fisse per tutta la stagione.",
+ "giornate_totali": 34,
+ "squadre": {
+  "The Blue brothers": {
+   "attesa": 2,
+   "obiettivo": "Chiudere tra le prime due",
+   "obiettivo_allenatore": "Stare tra le prime due",
+   "coppa": "Tornare in finale di Champions Cup",
+   "forza_rosa": 99,
+   "storia": 53
+  },
+  "Apo team": {
+   "attesa": 3,
+   "obiettivo": "Tornare sul podio dopo gli ultimi anni",
+   "obiettivo_allenatore": "Rifarmi dagli ultimi anni: tornare tra le prime tre",
+   "coppa": "Vincere la Champions Cup",
+   "forza_rosa": 100,
+   "storia": 46
+  },
+  "AFA SELECCION": {
+   "attesa": 3,
+   "obiettivo": "Chiudere sul podio",
+   "obiettivo_allenatore": "Puntare al podio",
+   "coppa": "Arrivare in finale di Champions Cup",
+   "forza_rosa": 88,
+   "storia": 65
+  },
+  "Oranje VC": {
+   "attesa": 4,
+   "obiettivo": "Chiudere tra le prime 4",
+   "obiettivo_allenatore": "Entrare tra le prime 4",
+   "coppa": "Arrivare in finale di Champions Cup",
+   "forza_rosa": 94,
+   "storia": 50
+  },
+  "Real Madrink": {
+   "attesa": 5,
+   "obiettivo": "Entrare nella metà alta",
+   "obiettivo_allenatore": "Stare nella metà alta",
+   "coppa": "Passare il girone di Champions Cup",
+   "forza_rosa": 86,
+   "storia": 59
+  },
+  "Grodah": {
+   "attesa": 5,
+   "obiettivo": "Entrare nella metà alta",
+   "obiettivo_allenatore": "Stare nella metà alta",
+   "coppa": "Difendere la Champions Cup",
+   "forza_rosa": 84,
+   "storia": 60
+  },
+  "WOA": {
+   "attesa": 2,
+   "obiettivo": "Ripetersi: difendere il titolo",
+   "obiettivo_allenatore": "Ripetermi",
+   "coppa": "Passare il girone di Champions Cup",
+   "forza_rosa": 81,
+   "storia": 64
+  },
+  "Mariana Coneja": {
+   "attesa": 5,
+   "obiettivo": "Puntare alla parte alta",
+   "obiettivo_allenatore": "Stare nella parte alta",
+   "coppa": "Non chiudere ultimi nel girone di Champions Cup",
+   "forza_rosa": 77,
+   "storia": 55
+  },
+  "stif dc": {
+   "attesa": 5,
+   "obiettivo": "Puntare alla parte alta",
+   "obiettivo_allenatore": "Stare nella parte alta",
+   "coppa": "Non chiudere ultimi nel girone di Champions Cup",
+   "forza_rosa": 66,
+   "storia": 69
+  },
+  "Atletico ma non troppo": {
+   "attesa": 6,
+   "obiettivo": "Salire gradualmente verso l'alto",
+   "obiettivo_allenatore": "Salire un passo alla volta",
+   "coppa": "Non chiudere ultimi nel girone di Champions Cup",
+   "forza_rosa": 65,
+   "storia": 55
+  }
+ }
+}

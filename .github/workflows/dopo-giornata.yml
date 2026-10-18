@@ -1,0 +1,103 @@
+name: Calcoli dopo la giornata
+# Parte da solo: ogni due ore controlla se c'è una giornata chiusa (tutti i risultati in data.json) e, tre ore dopo averla vista chiusa,
+# fa i calcoli. Si può lanciare anche a mano (Actions, Run workflow): in quel caso li fa subito.
+# Chiude le promesse delle conferenze, ricalcola fiducia, probabilità e Borsino, prepara i dati per le pagine nuove
+# e mette i nuovi post della Curva in coda (o li pubblica, quando finisce il periodo di approvazione).
+# Non tocca il workflow "Aggiorna statistiche e voti".
+on:
+  schedule:
+    - cron: "40 */2 * * *"
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: calcoli-giornata
+env:
+  CURVA_URL: ${{ secrets.CURVA_URL }}
+  CURVA_KEY: ${{ secrets.CURVA_KEY }}
+  CURVA_TEAM: ${{ secrets.CURVA_TEAM }}
+  CURVA_CODE: ${{ secrets.CURVA_CODE }}
+jobs:
+  calcola:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+          path: code
+      - uses: actions/checkout@v4
+        with:
+          ref: gh-pages
+          path: site
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: C'è una giornata da calcolare?
+        id: c
+        run: |
+          if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
+            echo "esegui=true" >> "$GITHUB_OUTPUT"
+            python3 - <<'PY' >> "$GITHUB_OUTPUT"
+          import json
+          lega = json.load(open("site/data.json"))["cal"]["lega"]
+          ch = [r["n"] for r in lega if r["m"] and all(m[4] and m[4] != "-" for m in r["m"])]
+          print("giornata=%s" % (max(ch) if ch else ""))
+          PY
+          else
+            python3 code/calcoli/giornata_chiusa.py site/data.json >> "$GITHUB_OUTPUT"
+          fi
+      - name: Leggo sfide e promesse dal database
+        if: steps.c.outputs.esegui == 'true'
+        run: python3 code/calcoli/leggi_eventi.py code/calcoli/eventi.json
+      - name: Chiudo le promesse dopo le partite
+        if: steps.c.outputs.esegui == 'true'
+        run: python3 code/calcoli/risolvi_conferenze.py site/data.json --vai
+      - name: Chiudo le sfide 1 contro 1 di Totogirrr
+        if: steps.c.outputs.esegui == 'true' && steps.c.outputs.giornata != ''
+        env:
+          CURVA_URL: ${{ secrets.CURVA_URL }}
+          CURVA_KEY: ${{ secrets.CURVA_KEY }}
+          CURVA_TEAM: ${{ secrets.CURVA_TEAM }}
+          CURVA_CODE: ${{ secrets.CURVA_CODE }}
+        run: python3 code/calcoli/chiudi_duelli.py site/data.json "${{ steps.c.outputs.giornata }}" --vai
+      - name: Rileggo con gli esiti aggiornati
+        if: steps.c.outputs.esegui == 'true'
+        run: python3 code/calcoli/leggi_eventi.py code/calcoli/eventi.json
+      - name: Fiducia, probabilità e Borsino
+        if: steps.c.outputs.esegui == 'true'
+        run: |
+          mkdir -p site/girrr/dati
+          python3 code/calcoli/fiducia.py site/data.json site/girrr/dati/fiducia.json
+          python3 code/calcoli/probabilita.py site/data.json site/girrr/dati/probabilita.json site/scripts
+          python3 code/calcoli/borsino.py site/data.json site/girrr/dati/borsino.json
+      - name: Dati per le pagine nuove
+        if: steps.c.outputs.esegui == 'true'
+        run: python3 code/calcoli/dati_lab.py site/data.json site/girrr/dati/probabilita.json site/girrr/dati/lab-dati.json site/scripts site/girrr/dati/borsino.json site/girrr/dati/fiducia.json
+      - name: Post della Curva (in coda o pubblicati, secondo il periodo)
+        if: steps.c.outputs.esegui == 'true'
+        run: |
+          python3 code/calcoli/post_curva.py code/calcoli/eventi.json code/calcoli/post_curva.json
+          python3 code/calcoli/pubblica_curva.py --vai
+      - name: Salvo i dati del sito
+        if: steps.c.outputs.esegui == 'true'
+        run: |
+          cd site
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add girrr/dati
+          git diff --cached --quiet || git commit -m "Calcoli dopo la giornata"
+          git pull --rebase origin gh-pages
+          git push origin gh-pages
+      - name: Salvo la coda e i post già pubblicati
+        if: always()
+        run: |
+          if [ "${{ steps.c.outputs.esegui }}" = "true" ] && [ -n "${{ steps.c.outputs.giornata }}" ] && [ "${{ job.status }}" = "success" ]; then
+            python3 code/calcoli/giornata_chiusa.py site/data.json --fatta "${{ steps.c.outputs.giornata }}"
+          fi
+          cd code
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add calcoli/*.json
+          git diff --cached --quiet || git commit -m "Curva: coda e post aggiornati"
+          git pull --rebase origin main
+          git push origin main

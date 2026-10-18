@@ -1,0 +1,5 @@
+{
+ "rilascio": "2026-10-18",
+ "giorni_coda": 14,
+ "nota": "Metti in 'rilascio' la data in cui la 5.0 va in linea (AAAA-MM-GG). Per 14 giorni da quella data i post aspettano il tuo ok in coda; dopo escono da soli. Finché è null resta sempre la coda."
+}
