@@ -1,5 +1,5 @@
 {
  "rilascio": "2026-10-18",
  "giorni_coda": 0,
- "nota": "Con giorni_coda a 0 i post escono subito, senza il tuo ok. Per rimettere la coda: metti 14 (o altri giorni) e la data di rilascio."
+ "nota": "Con giorni_coda a 0 i post escono subito, senza coda di approvazione. Se vuoi tornare alla coda per un periodo: metti in 'rilascio' la data (AAAA-MM-GG) e in 'giorni_coda' i giorni."
 }
