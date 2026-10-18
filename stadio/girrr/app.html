@@ -1112,7 +1112,7 @@ function sfidaCard(){
   var mine=DBS.sfide.filter(function(s){return s.da===ME}),usate=mine.filter(function(s){return s.stagione===LV.stag}).length,L=S.lancio;
   var h='<div class="card"><h3>Lancia una sfida</h3><p class="sm mut" style="margin-bottom:8px">Una dichiarazione in conferenza stampa fa salire la rivalità, ma il Derby diventa ufficiale solo se il rivale accetta. Una sfida alla volta, e al massimo due all\'anno per squadra.</p>'+lvStato();
   var act=mine.filter(function(s){return s.stato==='attesa'||(s.stato==='accettata'&&!s.nome_ok)})[0],last=mine[0];
-  function postMio(s){return '<div class="post"><div class="hd">'+av(ME)+'<div><b>'+esc(ME)+'</b><span class="mut sm">In conferenza stampa</span></div></div><q>«'+esc(lvTesto(s))+'»</q></div>'+gsPost('<b>SFIDA LANCIATA</b><br>'+esc(s.da)+' contro '+esc(s.a)+': la dichiarazione fa rumore in lega. Sta per nascere un nuovo Derby? #GirrrSport #Derby')}
+  function postMio(s){return '<div class="post"><div class="hd">'+av(ME)+'<div><b>'+esc(ME)+'</b><span class="mut sm">In conferenza stampa</span></div></div><q>«'+esc(lvTesto(s))+'»</q></div>'+gsPost('<b>SFIDA LANCIATA</b><br>'+esc(s.da)+' contro '+esc(s.a)+': la dichiarazione fa rumore in lega. Sta per nascere un nuovo Derby? #GirrrSport #Derby','Esce in Curva al prossimo aggiornamento')}
   if(act){
     h+=postMio(act);
     if(act.stato==='attesa'){var lf=lvLeft(act.ts);h+='<p class="sm mut" style="margin-top:8px">La rivalità è già salita. '+esc(act.a)+' ha ancora '+(lf||'pochissimo tempo')+' per rispondere: accetta, rifiuta o lascia cadere la sfida.</p>'}
