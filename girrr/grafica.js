@@ -2,6 +2,9 @@
    Nomi provvisori delle due grafiche: si cambiano solo qui e in confronto.html (NOMI). */
 (function(){
 var NOMI={a:'Lega',n:'Stadio'};
+/* Cambio fluido tra Lega e Stadio: dove il browser sa dissolvere da una pagina all'altra (Chrome, Edge, Safari recenti) lo fa lui; negli altri la pagina sfuma in uscita e rientra in entrata */
+var VT=('CSSViewTransitionRule' in window);
+try{var _s=document.createElement('style');_s.textContent=VT?'@view-transition{navigation:auto}::view-transition-old(root),::view-transition-new(root){animation-duration:.45s;animation-timing-function:ease}':'html.gsw-out body{opacity:0;transition:opacity .3s ease}'+(sessionStorage.getItem('gsw_da')?'body{animation:gswin .45s ease both}@keyframes gswin{from{opacity:0}to{opacity:1}}':'');document.head.appendChild(_s)}catch(x){}
 function go(){
 var h=document.querySelector('.hero');if(!h||document.getElementById('gsw'))return;
 var nuova=location.pathname.indexOf('/stadio/girrr/')>=0;
@@ -13,6 +16,8 @@ d.innerHTML=['a','n'].map(function(m){return '<button data-m="'+m+'" aria-presse
 var th=document.createElement('i');th.className='th'+(nuova?' n':'');d.insertBefore(th,d.firstChild);
 function pos(m,anim){var b=d.querySelector('[data-m="'+m+'"]');if(!b)return;if(!anim)th.style.transition='none';th.style.width=b.offsetWidth+'px';th.style.transform='translateX('+b.offsetLeft+'px)';th.classList.toggle('n',m==='n');if(!anim){void th.offsetWidth;th.style.transition=''}}
 h.appendChild(d);
+/* la pagina dell'altra grafica si scarica in anticipo, così il cambio non aspetta la rete */
+try{var p=location.pathname,_p=p,_o=(!nuova?p.replace('/girrr/','/stadio/girrr/'):p.replace('/stadio/girrr/','/girrr/'));if(_o!==_p){var _l=document.createElement('link');_l.rel='prefetch';_l.href=_o;document.head.appendChild(_l)}}catch(x){}
 var da=null;try{da=sessionStorage.getItem('gsw_da');sessionStorage.removeItem('gsw_da')}catch(x){}
 var cur=nuova?'n':'a';
 if(da&&da!==cur){pos(da,false);requestAnimationFrame(function(){requestAnimationFrame(function(){pos(cur,true)})})}else pos(cur,false);
@@ -26,7 +31,8 @@ if(window.top!==window.self){try{window.parent.postMessage({orrGrafica:m},locati
 var p=location.pathname,dest=(m==='n'?p.replace('/girrr/','/stadio/girrr/'):p.replace('/stadio/girrr/','/girrr/'))+location.search+location.hash;
 d.classList.add('mv');d.querySelectorAll('button').forEach(function(x){x.setAttribute('aria-pressed',x===bt)});pos(m,true);
 try{sessionStorage.setItem('gsw_da',cur)}catch(x){}
-setTimeout(function(){location.href=dest},340)};
+if(!VT)document.documentElement.classList.add('gsw-out');
+setTimeout(function(){location.href=dest},VT?340:330)};
 }
 if(document.body)go();else document.addEventListener('DOMContentLoaded',go);
 })();

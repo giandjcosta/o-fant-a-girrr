@@ -620,7 +620,11 @@ var FZ={"The Blue brothers": 99, "Apo team": 100, "Grodah": 84, "WOA": 81, "Real
 var NG=34;
 function mgrsOf(t){return t==='The Blue brothers'?['Leanzino','Mario']:[mg(t)]}
 function histScore(t){var qs=[];mgrsOf(t).forEach(function(m){var h=(HIST[m]||[]).slice().sort(function(a,b){return a[0]<b[0]?1:-1}),w=1,sw=1,sq=.5;h.forEach(function(r){var q=(r[2]+1-r[1])/r[2];sq+=w*q;sw+=w;w*=.85});qs.push(sq/sw*100)});return qs.reduce(function(a,b){return a+b},0)/qs.length}
-function potenza(t){return .5*histScore(t)+.5*Math.max(0,Math.min(100,((FZ[t]||0)-60)/40*100))}
+/* Ogni titolo di campionato conta, di più se è recente: ultimo anno +12, 2-3 anni fa +6, più vecchio +3 (massimo 25 in tutto), comprese le stagioni prima del 2021 (PRE). Champions Cup in carica +6 */
+var STB=['2025/26','2024/25','2023/24'];
+function bonusTitoli(t){var b=0;mgrsOf(t).forEach(function(m){(HIST[m]||[]).forEach(function(r){if(r[1]===1){var i=STB.indexOf(r[0]);b+=i===0?12:i>0?6:3}});PRE.forEach(function(x){if(x[2]===m)b+=3})});b=Math.min(25,b);if(t==='Grodah')b+=6;return b}
+function potenza(t){return .5*histScore(t)+.5*Math.max(0,Math.min(100,((FZ[t]||0)-60)/40*100))+bonusTitoli(t)}
+function fascia(t){var e=(OB[t]||{}).er||5;return e<=3?'Big':e<=6?'Emergente':'Outsider'}
 var EXPPRES=JSON.parse(JSON.stringify(EXP));
 function lastPos(t){var v=mgrsOf(t).map(function(m){var h=(HIST[m]||[]).filter(function(r){return r[0]==='2025/26'});return h.length?h[0][1]:null}).filter(function(x){return x!=null});return v.length?Math.round(v.reduce(function(a,b){return a+b},0)/v.length):null}
 var LADP=['Vincere il titolo','Chiudere tra le prime due','Chiudere sul podio','Chiudere tra le prime 4','Entrare nella metà alta'];
@@ -650,13 +654,29 @@ function maxPts(t){var m=0;D.aw.forEach(function(a){a.rows.forEach(function(r){i
 function fid(t){if(D.fid&&D.fid[t]!=null)return Math.round(D.fid[t]);var r=row(t);return fidA(t,r.pos,r.g||0,(r.v||0)-(r.p||0))}
 function gauge(v){var a=Math.PI*(1-v/100),cx=110,cy=100,R=82,x=cx+R*Math.cos(a),y=cy-R*Math.sin(a),c=v>=60?'#7be495':v>=30?'#ffd166':'#ff6b7a';
   return '<svg class="gauge" viewBox="0 0 220 128" width="260" role="img" aria-label="Fiducia del presidente '+v+' su 100"><path d="M28 100A82 82 0 0 1 192 100" fill="none" stroke="rgba(255,255,255,.18)" stroke-width="16" stroke-linecap="round"/><path d="M28 100A82 82 0 0 1 '+x.toFixed(1)+' '+y.toFixed(1)+'" fill="none" stroke="'+c+'" stroke-width="16" stroke-linecap="round"/><text x="110" y="96" text-anchor="middle" font-size="40" font-weight="900" style="fill:var(--ink)">'+v+'</text><text x="8" y="122" text-anchor="start" font-size="10">Esonero</text><text x="212" y="122" text-anchor="end" font-size="10">Fiducia piena</text></svg>'}
+
+/* Ogni allenatore ha obiettivi suoi: il presidente guarda storia, rosa e ambizione; lo sponsor è diverso e chiede una cosa diversa, sempre misurabile */
+function vittObj(t){var er=(OB[t]||{}).er||5;return er<=2?6:er<=4?5:er<=7?4:3}
+function ptsGiornate(t,soglia){var n=0;D.aw.forEach(function(a){a.rows.forEach(function(r){if(r[0]===t&&r[1]>=soglia)n++})});return n}
+function sponsorDi(t){var ob=OB[t]||{},er=ob.er||5,fz=ob.fz||70,lp=lastPos(t),r=row(t),mp=maxPts(t);
+  var fa=fascia(t);
+  if(fa==='Big'){var x=Math.max(60,Math.min(80,5*Math.round((58+(fz-60)*.45)/5)));return {nome:'Bomber Gym Club',testo:'Supera '+x+' punti in una giornata',pct:Math.min(100,Math.round(mp/x*100)),stato:'Massimo '+f1(mp)}}
+  var h=0;for(var i=0;i<t.length;i++)h=(h*31+t.charCodeAt(i))%997;var n60=ptsGiornate(t,60),n65=ptsGiornate(t,65);
+  var P=fa==='Emergente'?[0,1,5]:[2,3,4],k=P[(er-(fa==='Emergente'?4:7))%3];
+  if(k===0&&!(lp&&lp>=4))k=4;
+  if(k===0)return {nome:'Cassa di Risparmio Girrr',testo:'Chiudi meglio dello scorso anno ('+lp+'°)',pct:Math.min(100,Math.round((lp/Math.max(r.pos,1))*70)),stato:'Ora '+r.pos+'°'};
+  if(k===1)return {nome:'Termoidraulica Bepi',testo:'Resta nella metà alta dopo la 10ª giornata',pct:Math.min(100,Math.round(5/Math.max(r.pos,1)*100)),stato:'Ora '+r.pos+'°'};
+  if(k===2)return {nome:'Pizzeria Da Gigi',testo:'Fai almeno 2 giornate sopra i 65 punti',pct:Math.min(100,Math.round(n65/2*100)),stato:n65+' su 2'};
+  if(k===3)return {nome:'Ottica Visione',testo:'Resta fuori dagli ultimi 3 dopo la 10ª giornata',pct:Math.min(100,Math.round(7/Math.max(r.pos,1)*100)),stato:'Ora '+r.pos+'°'};
+  if(k===4)return {nome:'Panificio Zanon',testo:'Fai almeno 3 giornate sopra i 60 punti',pct:Math.min(100,Math.round(n60/3*100)),stato:n60+' su 3'};
+  return {nome:'Autofficina Rossi',testo:'Supera 70 punti in una giornata',pct:Math.min(100,Math.round(mp/70*100)),stato:'Massimo '+f1(mp)}}
 function vCarL(){
   var t=S.cteam,r=row(t),e=EXP[t]||5,f=fid(t),mp=maxPts(t);
   var stat=f>=70?'Il presidente è entusiasta.':f>=45?'Il presidente è soddisfatto, per ora.':f>=25?'Il presidente comincia a perdere la pazienza.':'Il presidente sta cercando un sostituto.';
   var h=where('Spogliatoio','Carriera')+'<h2>Carriera da allenatore</h2><p class="lead">Poche cose, tutte misurabili. A inizio stagione il presidente dice dove ti aspetta, e un paio di obiettivi arrivano da lui e dallo sponsor. Se rendi meno del previsto la fiducia scende, e sotto una soglia arriva un esonero a titolo simbolico.</p>';
   h+='<select id="cteam" aria-label="Allenatore" style="margin-bottom:12px">'+D.teams.map(function(x){return '<option'+(x===t?' selected':'')+'>'+esc(x)+'</option>'}).join('')+'</select>';
-  h+='<div class="card" style="text-align:center"><h3>Fiducia del presidente</h3>'+gauge(f)+'<p style="font-weight:700;margin-top:2px">'+stat+'</p><p class="sm mut">Obiettivo: '+OB[t].pres.toLowerCase().replace(/^./,function(c){return c.toUpperCase()})+' · Ora '+r.pos+'°</p></div>';
-  var o=[['P','Presidente',OB[t].pres,Math.min(100,Math.round((e/Math.max(r.pos,1))*100)),r.pos<=e?'In linea':'Da recuperare'],['P','Presidente','Almeno 3 vittorie nelle prime 8 giornate',Math.min(100,Math.round(r.v/3*100)),r.v+' su 3'],['P','Presidente',OB[t].cp,0,'Da giocare'],[null,'Bomber Gym Club','Supera 75 punti in una giornata',Math.min(100,Math.round(mp/75*100)),'Massimo '+f1(mp)]];
+  h+='<div class="card" style="text-align:center"><h3>Fiducia del presidente</h3>'+gauge(f)+'<p style="font-weight:700;margin-top:2px">'+stat+'</p><p class="sm mut">Fascia: '+fascia(t)+' · Obiettivo: '+OB[t].pres.toLowerCase().replace(/^./,function(c){return c.toUpperCase()})+' · Ora '+r.pos+'°</p></div>';
+  var sp=sponsorDi(t),wn=vittObj(t);var o=[['P','Presidente',OB[t].pres,Math.min(100,Math.round((e/Math.max(r.pos,1))*100)),r.pos<=e?'In linea':'Da recuperare'],['P','Presidente','Almeno '+wn+(wn===1?' vittoria':' vittorie')+' nelle prime 8 giornate',Math.min(100,Math.round(r.v/wn*100)),r.v+' su '+wn],['P','Presidente',OB[t].cp,0,'Da giocare'],[null,sp.nome,sp.testo,sp.pct,sp.stato]];
   var ob=OB[t]||{};S.fdem=S.fdem||{g:2,p:8};
   h+='<div class="card"><h3>Come nasce l\'aspettativa</h3><p class="sm mut" style="margin-bottom:8px">Il presidente guarda tre cose: la storia dell\'allenatore (posizioni e squadre avute), la forza della rosa al completo (11 titolari al modulo migliore e panchina) e la sua ambizione per la stagione.</p>'
    +'<div class="h2h" style="grid-template-columns:1fr 1fr;margin:14px 0 12px"><div><small>Storia</small><b class="num" style="font-size:26px;display:block;margin-top:6px">'+ob.hs+'</b><span class="mut sm" style="display:block;margin-top:4px">su 100</span></div><div><small>Forza rosa</small><b class="num" style="font-size:26px;display:block;margin-top:6px">'+ob.fz+'</b><span class="mut sm" style="display:block;margin-top:4px">su 100</span></div></div>'
