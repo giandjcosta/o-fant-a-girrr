@@ -450,7 +450,7 @@ document.addEventListener('click',function(e){
    rpc('toto_pr_rispondi',{p_team:team,p_code:code,p_id:Number(pp[0]),p_azione:pp[1],p_tasso:pp[1]==='controproponi'&&tx?Number(tx.value):null}).then(function(r){toast(pp[1]==='accetta'?'Prestito accettato':pp[1]==='rifiuta'?'Richiesta rifiutata':'Controproposta inviata');return Promise.all([loadPR(),carica()])}).catch(function(e){toast(e.message,1)});return}
   if(b=t.closest('[data-prr]')){var q=b.getAttribute('data-prr').split('|');
    rpc('toto_pr_restituisci',{p_team:team,p_code:code,p_id:Number(q[0]),p_importo:Number(q[1])}).then(function(r){toast('Restituiti '+f2(r.restituito));return Promise.all([loadPR(),carica()])}).catch(function(e){toast(e.message,1)});return}
-  if(b=t.closest('[data-tab]')){tab=b.getAttribute('data-tab');ANIM=true;render();window.scrollTo(0,0);if(tab==='prestiti')loadPR();if(tab==='prob')probLoad();if(tab==='sfide')duLoad(false);return}
+  if(b=t.closest('[data-tab]')){tab=b.getAttribute('data-tab');render();window.scrollTo(0,0);if(tab==='prestiti')loadPR();if(tab==='prob')probLoad();if(tab==='sfide')duLoad(false);return}
   if(b=t.closest('.q')){
     var id=b.getAttribute('data-p'),m=b.getAttribute('data-m');
     var i=slip.findIndex(function(x){return x.p===id});

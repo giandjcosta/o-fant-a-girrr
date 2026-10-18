@@ -1238,7 +1238,7 @@ document.addEventListener('click',function(e){
   if(d.lr){L.r=d.lr;return render()}
   if(d.lf){L.f=+d.lf;return render()}
   if(d.lnew){S.sfnew=true;return render()}
-  if(d.lgo){if(DBN!==1)return;S.sfnew=false;return lvCall('derby_sfida_lancia',{p_team:ME,p_code:CODE,p_rival:L.r,p_frase:L.f,p_nome:null,p_stagione:LV.stag},'Sfida lanciata')}
+  if(d.lgo){if(DBN!==1)return;S.sfnew=false;var ft=sfF(L.r),tx=((ft[L.f]||ft[0])||'').replace('{X}',SFR[L.r][1]);return lvCall('derby_sfida_lancia',{p_team:ME,p_code:CODE,p_rival:L.r,p_frase:L.f,p_nome:null,p_stagione:LV.stag,p_testo:tx},'Sfida lanciata')}
   if(d.lrx)return lvCall('derby_sfida_rispondi',{p_team:ME,p_code:CODE,p_id:+d.id,p_azione:d.lrx,p_nome:null},d.lrx==='accetta'?'Hai accettato la sfida':'Hai rifiutato la sfida');
   if(d.lnome==='ok')return lvCall('derby_nome_accetta',{p_team:ME,p_code:CODE,p_id:+d.id},'Nome accettato');
   if(d.lnome==='prop'){var box=q.closest('.card'),ip=box&&box.querySelector('.nmin'),v=(d.v||(ip&&ip.value)||'').replace(/^\s+|\s+$/g,'').slice(0,40);
