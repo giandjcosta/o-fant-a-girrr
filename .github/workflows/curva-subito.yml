@@ -1,10 +1,10 @@
 name: Curva, post quasi subito
-# Ogni 10 minuti legge dal database le sfide e le risposte nuove, ne fa i post della Curva e li pubblica
+# Ogni mezz'ora legge dal database le sfide e le risposte nuove, ne fa i post della Curva e li pubblica
 # (o li mette in coda di approvazione, finché dura il periodo deciso in calcoli/curva_config.json).
 # Ogni evento esce una sola volta. Non fa i calcoli di fine giornata: quelli restano in "Calcoli dopo la giornata".
 on:
   schedule:
-    - cron: "*/10 * * * *"
+    - cron: "5,35 * * * *"
   workflow_dispatch:
 permissions:
   contents: write
