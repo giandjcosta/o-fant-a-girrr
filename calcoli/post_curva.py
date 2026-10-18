@@ -24,6 +24,13 @@ NOMI = json.loads((QUI / "nomi.json").read_text(encoding="utf-8"))
 GS, LEGA, GIORNALE = "girrr_sport", "lega_ofantagirrr", "giornale_girrr"
 
 
+# Frasi scritte a mano per le coppie con storia lunga (le stesse dell'app). {X} = il rivale.
+FRASI = {("Oranje VC", "Apo team"): [
+    "{X} c'è dal primo giorno e ha tre titoli: io sono andato e tornato, e il conto aperto lo chiudo io.",
+    "{X} non si è mai mosso, io ho girato il mondo: vediamo chi arriva prima, andata e ritorno.",
+    "Nel 2016/17 chiusi quarto a un passo dal podio: stavolta il podio lo voglio, e passo sopra {X}."]}
+
+
 def m(t):
     return NOMI.get(t, t)
 
@@ -32,7 +39,11 @@ def post(e):
     t = e["tipo"]
     if t == "sfida":
         fr = f": «{e['frase']}»" if e.get("frase") else "."
-        return [(GS, f"SFIDA LANCIATA\n{m(e['da'])} contro {m(e['a'])}{fr} Sta per nascere un nuovo Derby? #GirrrSport #Derby")]
+        out = [(GS, f"SFIDA LANCIATA\n{m(e['da'])} contro {m(e['a'])}{fr} Sta per nascere un nuovo Derby? #GirrrSport #Derby")]
+        fz = FRASI.get((e["da"], e["a"]))
+        if fz and e.get("f") in (0, 1, 2):   # le parole della sfida, come intervista a Girrr Sport (non sul profilo della squadra)
+            out.append((GS, f"INTERVISTA SPECIALE\n{m(e['da'])} lancia la sfida a {m(e['a'])}: «{fz[e['f']].replace('{X}', m(e['a']))}» #GirrrSport #Derby"))
+        return out
     if t == "rifiuto":
         return [(GS, f"RIFIUTO CLAMOROSO\n{m(e['a'])} non considera {m(e['da'])} nemmeno degno di un Derby. La rivalità, intanto, sale. #GirrrSport")]
     if t == "scaduta":

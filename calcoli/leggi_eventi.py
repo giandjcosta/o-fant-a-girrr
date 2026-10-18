@@ -30,7 +30,7 @@ def eventi(stato, promesse):
     out = []
     for s in sorted(stato.get("sfide", []), key=lambda x: x["id"]):
         k = f"S{s['id']}"
-        out.append(dict(tipo="sfida", k=k, da=s["da"], a=s["a"]))
+        out.append(dict(tipo="sfida", k=k, da=s["da"], a=s["a"], f=s.get("frase")))
         if s["stato"] == "rifiutata":
             out.append(dict(tipo="rifiuto", k=k, da=s["da"], a=s["a"]))
         elif s["stato"] == "scaduta":
