@@ -5,7 +5,7 @@ try{var _v=localStorage.getItem('orr_gv'),_p=location.pathname,_st=_p.indexOf('/
 var _g=document.createElement('style');_g.textContent='html{scrollbar-gutter:stable}';document.head.appendChild(_g);
 if(window.matchMedia&&matchMedia('(prefers-reduced-motion:reduce)').matches)return;
 var st=document.createElement('style');
-st.textContent='@keyframes fxin{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}.fx-in{animation:fxin .62s cubic-bezier(.22,.61,.36,1) both;animation-delay:calc(var(--fxd,0)*70ms)}[role=tab],.seg button,.at button,.chips button,.sw button,.ptabs button,.tabs button{transition:background-color .5s ease,color .5s ease,border-color .5s ease,opacity .5s ease,transform .5s ease}';
+st.textContent='@keyframes fxin{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}.fx-in{animation:fxin .62s cubic-bezier(.22,.61,.36,1) both;animation-delay:calc(var(--fxd,0)*70ms)}[role=tab],.seg button,.at button,.chips button,.sw button,.ptabs button,.tabs button{transition:background-color .1s linear,color .1s linear,border-color .1s linear,opacity .15s ease,transform .25s ease}';
 document.head.appendChild(st);
 /* il logo della lega riporta alla Home dell'anteprima (stessa grafica) */
 document.addEventListener('click',function(e){var l=e.target.closest&&e.target.closest('#lg,#olg');if(!l)return;var p=location.pathname,d=null;

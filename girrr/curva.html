@@ -173,8 +173,9 @@ html,body{overscroll-behavior-y:none;touch-action:manipulation;-webkit-text-size
 .net{margin:0;padding:8px 14px;background:rgba(244,33,46,.12);color:#f4212e;font-size:13px;font-weight:700}
 .av{font-size:15px}.av.e{font-size:22px}.av.sm.e{font-size:17px}.av.xl.e{font-size:44px}
 </style>
+<script>document.addEventListener("click",function(e){var l=e.target.closest&&e.target.closest("[data-lega]");if(l){e.preventDefault();e.stopPropagation();location.href="index.html"}},true)</script>
 <style>@media(hover:none){.post:hover,.nav button:hover,.ib:hover,.tabs button:hover,.acts button:hover{background:transparent!important}.acts .rsp:hover:not(.on),.acts .ril:hover:not(.on),.acts .app:hover:not(.on),.acts .del:hover{color:var(--mu)!important}.pn b:hover{text-decoration:none}}.post,.acts button,.tabs button{-webkit-tap-highlight-color:transparent}</style>
-<script src="novita-dati.js?v=1792330792"></script>
+<script src="novita-dati.js?v=1792331309"></script>
 <script src="transizioni.js"></script>
 </head>
 <body>
@@ -584,12 +585,12 @@ function profiloPosts(a){var L=POSTS.filter(function(p){return p.a===vprof});
 function feed(L){return L.length?L.map(postHTML).join(''):'<div class="vuoto">Ancora niente qui.</div>'}
 function navR(){
  var it=[['home','Home',I.home],['esplora','Esplora',I.expl]];if(me)it.push(['notifiche','Notifiche',I.bell]);it.push(['profilo','Profilo',I.user]);
- document.getElementById('nav').innerHTML='<div class="logo" data-v="home"><div class="lg"></div></div>'+it.map(function(x){var on=vista===x[0]||(vista==='u'&&x[0]==='profilo'&&vprof===meH);var nb=x[0]==='notifiche'?nBadge():0,bd=nb?'<span class="bd">'+(nb>99?'99+':nb)+'</span>':'';return '<button data-v="'+x[0]+'" class="'+(on?'on':'')+'" aria-label="'+x[1]+'">'+x[2]+'<span class="t">'+x[1]+'</span>'+bd+'</button>'}).join('')+'<a class="sito" href="index.html" aria-label="Torna a O Girrr"><img src="../assets/favicon-64.png" alt=""><span class="t">O Girrr</span></a><button class="btn postbtn" data-v="scrivi">Lancia un coro</button>'
+ document.getElementById('nav').innerHTML='<div class="logo" data-lega="1"><div class="lg"></div></div>'+it.map(function(x){var on=vista===x[0]||(vista==='u'&&x[0]==='profilo'&&vprof===meH);var nb=x[0]==='notifiche'?nBadge():0,bd=nb?'<span class="bd">'+(nb>99?'99+':nb)+'</span>':'';return '<button data-v="'+x[0]+'" class="'+(on?'on':'')+'" aria-label="'+x[1]+'">'+x[2]+'<span class="t">'+x[1]+'</span>'+bd+'</button>'}).join('')+'<a class="sito" href="index.html" aria-label="Torna a O Girrr"><img src="../assets/favicon-64.png" alt=""><span class="t">O Girrr</span></a><button class="btn postbtn" data-v="scrivi">Lancia un coro</button>'
 }
 function topR(titolo,sott,tabs){
  var back=(vista==='u'&&vprof!==meH)||vista==='info'||vista==='adm'||vista==='seg',m=nomeMio();
  document.getElementById('top').innerHTML='<div class="bar">'+(back?'<button class="ib" '+(vista==='seg'&&vseg&&vseg!==meH?'data-u="'+vseg+'"':'data-v="'+(vista==='seg'?'profilo':'home')+'"')+' aria-label="Indietro">'+I.back+'</button>':(m?AV(m,'sm me','data-v="profilo"'):'<span class="me"></span>'))+
-  '<div class="tt">'+(vista==='home'?'<span style="display:flex;align-items:center;gap:8px"><i class="lg" style="width:28px;height:28px"></i>Curva</span>':esc(titolo)+(sott?'<small>'+esc(sott)+'</small>':''))+'</div>'+
+  '<div class="tt">'+(vista==='home'?'<span style="display:flex;align-items:center;gap:8px"><i class="lg" data-lega="1" style="width:28px;height:28px;cursor:pointer"></i>Curva</span>':esc(titolo)+(sott?'<small>'+esc(sott)+'</small>':''))+'</div>'+
   (me===ADMIN&&S.v>=5?'<button class="ib" data-v="adm" aria-label="Per Me" title="Per Me">'+I.adm+'</button>':'')+'<button class="ib" data-v="info" aria-label="Info" title="Come funziona">'+I.info+'</button><button class="ib" id="rfb" aria-label="Aggiorna" title="Aggiorna"><svg viewBox="0 0 24 24" '+S0+'><path d="M20 12a8 8 0 1 1-2.5-5.8"/><path d="M20 4v5h-5"/></svg></button><button class="ib" id="tg" aria-label="Cambia tema">'+(curTema()==='dark'?I.sun:I.moon)+'</button></div>'+(tabs?'<div class="tabs">'+tabs+'</div>':'')+(NET===false?'<div class="net">Non riesco a collegarmi ai cori: puoi leggere, ma non scrivere.</div>':'');
  document.getElementById('rfb').onclick=function(){rinfresca()};
  document.getElementById('tg').onclick=function(){tema(curTema()==='dark'?'light':'dark');render()};
