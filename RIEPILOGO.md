@@ -87,8 +87,8 @@ Notizie pubbliche, senza indicare di chi e' ogni giocatore.
 | Vergara | Napoli | Lesione distrattiva al polpaccio destro | Inizio novembre | Salta |
 | Neres | Napoli | Lesione di basso grado al muscolo semimembranoso | Prima metà di novembre | Salta |
 | Dybala | Roma | Affaticamento sul gemello del polpaccio | Da valutare | Salta |
-| Cristante | Roma | Infiammazione al ginocchio e | Prossimo turno | Salta |
 | Svilar | Roma | Frattura a un dito del piede e | Metà novembre | Salta |
+| Cristante | Roma | Infiammazione al ginocchio e | Prossimo turno | Salta |
 | Konè M. | Roma | Lesione di primo grado al bicipite femorale | Prima metà di novembre | Salta |
 | Malen | Roma | Squalificato | Rientra dalla 8ª giornata | Salta |
 | Idzes | Sassuolo | Lesione di grado moderato al quadricipite della | Seconda metà di ottobre | Salta |
@@ -105,10 +105,10 @@ Punteggio: piu' e' alto, piu' conviene. Unisce valore e probabilita' di giocare.
 
 | Giocatore | Squadra | Stato | Avversario | Punteggio |
 |---|---|---|---|---|
-| Perri | Torino | Titolare | Udinese (C) | 49 |
+| Perri | Torino | Titolare, ballottaggio | Udinese (C) | 49 |
 | Thiam | Monza | Panchina | Lazio (T) | 35 |
 | Tornqvist | Monza | Titolare | Lazio (T) | 21 |
-| Mascardi | Torino | Panchina | Udinese (C) | 21 |
+| Mascardi | Torino | Riserva, ballottaggio | Udinese (C) | 21 |
 | Daffara | Parma | Panchina | Inter (T) | 15 |
 
 ### Difensori
@@ -135,10 +135,10 @@ Punteggio: piu' e' alto, piu' conviene. Unisce valore e probabilita' di giocare.
 
 | Giocatore | Squadra | Stato | Avversario | Punteggio |
 |---|---|---|---|---|
-| Lontani | Parma | Riserva, ballottaggio | Inter (T) | 62 |
+| Lontani | Parma | Titolare, ballottaggio | Inter (T) | 62 |
 | Robinson J. | Monza | Panchina | Lazio (T) | 61 |
 | Ghedjemis | Frosinone | Titolare | Napoli (T) | 52 |
-| N'Dri | Lecce | Titolare | Bologna (C) | 41 |
+| N'Dri | Lecce | Titolare, ballottaggio | Bologna (C) | 41 |
 | Fatah | Lecce | Titolare | Bologna (C) | 32 |
 
 ## Correzioni da controllare
