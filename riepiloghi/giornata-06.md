@@ -106,8 +106,8 @@ Punteggio: piu' e' alto, piu' conviene. Unisce valore e probabilita' di giocare.
 | Giocatore | Squadra | Stato | Avversario | Punteggio |
 |---|---|---|---|---|
 | Perri | Torino | Titolare, ballottaggio | Udinese (C) | 49 |
-| Thiam | Monza | Panchina | Lazio (T) | 35 |
-| Tornqvist | Monza | Titolare | Lazio (T) | 21 |
+| Tornqvist | Monza | Titolare | Lazio (T) | 28 |
+| Thiam | Monza | Panchina | Lazio (T) | 28 |
 | Mascardi | Torino | Riserva, ballottaggio | Udinese (C) | 21 |
 | Daffara | Parma | Panchina | Inter (T) | 15 |
 
@@ -117,26 +117,26 @@ Punteggio: piu' e' alto, piu' conviene. Unisce valore e probabilita' di giocare.
 |---|---|---|---|---|
 | Hainaut | Venezia | Titolare | Atalanta (T) | 90 |
 | Provstgaard | Lazio | Titolare | Monza (C) | 80 |
+| Kouadio | Monza | Titolare | Lazio (T) | 79 |
 | Veiga D. | Lecce | Titolare | Bologna (C) | 78 |
-| Zè Pedro | Cagliari | Titolare | Juventus (C) | 78 |
-| Rodriguez Ju. | Cagliari | Titolare | Juventus (C) | 76 |
+| Abankwah | Udinese | In dubbio | Torino (T) | 75 |
 
 ### Centrocampisti
 
 | Giocatore | Squadra | Stato | Avversario | Punteggio |
 |---|---|---|---|---|
-| Romano | Cagliari | Titolare | Juventus (C) | 89 |
+| Romano | Cagliari | Titolare | Juventus (C) | 85 |
 | Schmid | Frosinone | Titolare | Napoli (T) | 83 |
 | Matic | Sassuolo | Titolare | Milan (C) | 81 |
 | Pobega | Bologna | Titolare | Lecce (T) | 78 |
-| Winks | Cagliari | Titolare | Juventus (C) | 78 |
+| Winks | Cagliari | Titolare | Juventus (C) | 75 |
 
 ### Attaccanti
 
 | Giocatore | Squadra | Stato | Avversario | Punteggio |
 |---|---|---|---|---|
-| Lontani | Parma | Titolare, ballottaggio | Inter (T) | 62 |
-| Robinson J. | Monza | Panchina | Lazio (T) | 61 |
+| Robinson J. | Monza | Titolare, ballottaggio | Lazio (T) | 72 |
+| Lontani | Parma | Riserva, ballottaggio | Inter (T) | 53 |
 | Ghedjemis | Frosinone | Titolare | Napoli (T) | 52 |
 | N'Dri | Lecce | Titolare, ballottaggio | Bologna (C) | 41 |
 | Fatah | Lecce | Titolare | Bologna (C) | 32 |
