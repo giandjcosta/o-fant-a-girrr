@@ -64,7 +64,7 @@ Notizie pubbliche, senza indicare di chi e' ogni giocatore.
 |---|---|---|---|---|
 | Scalvini | Atalanta | Distrazione di basso grado dei muscoli flessori | Fine ottobre | Salta |
 | Raspadori | Atalanta | Distrazione muscolare di basso grado al bicipite | Inizio novembre | Salta |
-| Kessiè | Atalanta | Distrazione di basso grado al polpaccio della | Tra la 9ª e la 10ª giornata | Salta |
+| Kessiè | Atalanta | Distrazione di basso grado al polpaccio della | Seconda metà di ottobre | Salta |
 | Elmas | Atalanta | Squalificato | Rientra dalla 8ª giornata | Salta |
 | Holm | Bologna | Problema al tendine della coscia destra | Fine febbraio | Salta |
 | Orsolini | Bologna | Lesione di primo grado al bicipite femorale | Prima metà di novembre | Salta |
@@ -72,16 +72,15 @@ Notizie pubbliche, senza indicare di chi e' ogni giocatore.
 | Kean | Como | Fastidio alla tibia e | Da valutare | In dubbio |
 | Atta | Fiorentina | Sovraccarico funzionale dell'addome | Prossimo turno | In dubbio |
 | Colombo | Genoa | Problema alla caviglia | Inizio novembre | Salta |
-| Stones | Inter | Risentimento ai flessori della coscia sinistra | Rientro dalla 9ª giornata | Salta |
-| Pavard | Inter | Risentimento agli adduttori della coscia destra | Dopo la sosta | Salta |
-| Jones C. | Inter | Risentimento miofasciale agli adduttori della coscia destra | Inizio novembre | Salta |
-| Martinez L. | Inter | Risentimento muscolare ai flessori della coscia sinistra | Dopo la sosta | Salta |
-| Ekhator | Juventus | Lesione di medio grado del muscolo semitendinoso | Fine ottobre | Salta |
+| Pavard | Inter | Risentimento agli adduttori della coscia destra | Inizio novembre | Salta |
+| Jones C. | Inter | Risentimento miofasciale agli adduttori della coscia destra | Fine ottobre | Salta |
+| Martinez L. | Inter | Risentimento muscolare ai flessori della coscia sinistra | Metà novembre | Salta |
+| Ekhator | Juventus | Lesione di medio grado del muscolo semitendinoso | Metà novembre | Salta |
 | Yildiz | Juventus | Problema al piede | Inizio dicembre | Salta |
 | Grabara | Juventus | Lesione al crociato anteriore del ginocchio destro | Da aprile | Salta |
 | Marusic | Lazio | Lesione muscolare alla coscia | Seconda metà di ottobre | Salta |
 | Cancellieri | Lazio | Noie fisiche e il suo rientro tra | Da valutare | Salta |
-| Gudmundsson A. | Lazio | Lussazione della spalla ridotta spontaneamente e piccola frattura del trochite | Da valutare (esami 20/10) | Salta |
+| Gudmundsson A. | Lazio | Problema alla spalla destra dopo una caduta | Metà ottobre | In dubbio |
 | Saelemaekers | Milan | Problema alla caviglia destra e operata il | Da febbraio | Salta |
 | Zeballos | Monza | Fastidio fisico che andrà valutato in vista | Da valutare | In dubbio |
 | Buongiorno | Napoli | Operato nella seconda metà di luglio al | Fine dicembre | Salta |
