@@ -66,7 +66,7 @@ Notizie pubbliche, senza indicare di chi e' ogni giocatore.
 | Raspadori | Atalanta | Distrazione muscolare di basso grado al bicipite | Inizio novembre | Salta |
 | Holm | Bologna | Problema al tendine della coscia destra | Fine febbraio | Salta |
 | Orsolini | Bologna | Lesione di primo grado al bicipite femorale | Prima metà di novembre | Salta |
-| Piccoli | Bologna | Problema muscolare alla gamba che andrà valutato | Da valutare | In dubbio |
+| Piccoli | Bologna | Infortunio | Metà novembre | Salta |
 | Diao | Como | Lesione muscolare al flessore della gamba | Metà novembre | Salta |
 | Chalobah T. | Como | Infortunio | Prossimo turno | Salta |
 | Atta | Fiorentina | Sovraccarico funzionale dell'addome | Prossimo turno | Salta |
