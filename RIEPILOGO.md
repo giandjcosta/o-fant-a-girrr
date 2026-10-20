@@ -64,38 +64,36 @@ Notizie pubbliche, senza indicare di chi e' ogni giocatore.
 |---|---|---|---|---|
 | Scalvini | Atalanta | Distrazione di basso grado dei muscoli flessori | Fine ottobre | Salta |
 | Raspadori | Atalanta | Distrazione muscolare di basso grado al bicipite | Inizio novembre | Salta |
-| Kessiè | Atalanta | Distrazione di basso grado al polpaccio della | Seconda metà di ottobre | Salta |
-| Elmas | Atalanta | Squalificato | Rientra dalla 8ª giornata | Salta |
 | Holm | Bologna | Problema al tendine della coscia destra | Fine febbraio | Salta |
 | Orsolini | Bologna | Lesione di primo grado al bicipite femorale | Prima metà di novembre | Salta |
+| Piccoli | Bologna | Problema muscolare alla gamba che andrà valutato | Da valutare | In dubbio |
 | Diao | Como | Lesione muscolare al flessore della gamba | Metà novembre | Salta |
-| Kean | Como | Fastidio alla tibia e | Da valutare | In dubbio |
-| Atta | Fiorentina | Sovraccarico funzionale dell'addome | Prossimo turno | In dubbio |
+| Chalobah T. | Como | Infortunio | Prossimo turno | Salta |
+| Atta | Fiorentina | Sovraccarico funzionale dell'addome | Prossimo turno | Salta |
 | Colombo | Genoa | Problema alla caviglia | Inizio novembre | Salta |
-| Pavard | Inter | Risentimento agli adduttori della coscia destra | Inizio novembre | Salta |
 | Jones C. | Inter | Risentimento miofasciale agli adduttori della coscia destra | Fine ottobre | Salta |
 | Martinez L. | Inter | Risentimento muscolare ai flessori della coscia sinistra | Metà novembre | Salta |
+| Pavard | Inter | Risentimento agli adduttori della coscia destra | Inizio novembre | Salta |
+| Conceicao | Juventus | Lussazione alla spalla sinistra | Metà novembre | Salta |
 | Ekhator | Juventus | Lesione di medio grado del muscolo semitendinoso | Metà novembre | Salta |
 | Yildiz | Juventus | Problema al piede | Inizio dicembre | Salta |
 | Grabara | Juventus | Lesione al crociato anteriore del ginocchio destro | Da aprile | Salta |
-| Marusic | Lazio | Lesione muscolare alla coscia | Seconda metà di ottobre | Salta |
-| Cancellieri | Lazio | Noie fisiche e il suo rientro tra | Da valutare | Salta |
+| Marusic | Lazio | Lesione muscolare alla coscia | Seconda metà di ottobre | In dubbio |
 | Gudmundsson A. | Lazio | Problema alla spalla destra dopo una caduta | Metà ottobre | In dubbio |
+| Coulibaly L. | Lecce | Problema muscolare alla coscia destra | Prossimo turno | Salta |
 | Saelemaekers | Milan | Problema alla caviglia destra e operata il | Da febbraio | Salta |
-| Zeballos | Monza | Fastidio fisico che andrà valutato in vista | Da valutare | In dubbio |
+| Neres | Napoli | Lesione di basso grado al muscolo semimembranoso | Prima metà di novembre | Salta |
+| Santos A. | Napoli | Lesione distrattiva di medio grado del bicipite | Inizio dicembre | Salta |
 | Buongiorno | Napoli | Operato nella seconda metà di luglio al | Fine dicembre | Salta |
 | Vergara | Napoli | Lesione distrattiva al polpaccio destro | Inizio novembre | Salta |
-| Neres | Napoli | Lesione di basso grado al muscolo semimembranoso | Prima metà di novembre | Salta |
-| Dybala | Roma | Affaticamento sul gemello del polpaccio | Da valutare | Salta |
 | Svilar | Roma | Frattura a un dito del piede e | Metà novembre | Salta |
-| Cristante | Roma | Infiammazione al ginocchio e | Prossimo turno | Salta |
 | Konè M. | Roma | Lesione di primo grado al bicipite femorale | Prima metà di novembre | Salta |
-| Malen | Roma | Squalificato | Rientra dalla 8ª giornata | Salta |
+| Dybala | Roma | Lesione al gemello del polpaccio destro | Inizio novembre | Salta |
 | Idzes | Sassuolo | Lesione di grado moderato al quadricipite della | Seconda metà di ottobre | Salta |
 | Fortini | Torino | Affaticamento muscolare all'adduttore che lo ha escluso | Da valutare | In dubbio |
 | Zaniolo | Udinese | Lesione muscolare al bicipite femorale destro | Fine ottobre | Salta |
 | Gueye | Udinese | Problema alla caviglia a fine settembre | Fine gennaio | Salta |
-| Busio | Venezia | Distrazione intratendinea del bicipite femorale destro | Seconda metà di ottobre | Salta |
+| Busio | Venezia | Distrazione intratendinea del bicipite femorale destro | Seconda metà di ottobre | In dubbio |
 
 ## Migliori svincolati
 
@@ -119,7 +117,7 @@ Punteggio: piu' e' alto, piu' conviene. Unisce valore e probabilita' di giocare.
 | Provstgaard | Lazio | Titolare | Monza (C) | 80 |
 | Kouadio | Monza | Titolare | Lazio (T) | 79 |
 | Veiga D. | Lecce | Titolare | Bologna (C) | 78 |
-| Abankwah | Udinese | In dubbio | Torino (T) | 75 |
+| Abankwah | Udinese | Panchina | Torino (T) | 75 |
 
 ### Centrocampisti
 
