@@ -67,20 +67,21 @@ Notizie pubbliche, senza indicare di chi e' ogni giocatore.
 | Holm | Bologna | Problema al tendine della coscia destra | Fine febbraio | Salta |
 | Orsolini | Bologna | Lesione di primo grado al bicipite femorale | Prima metà di novembre | Salta |
 | Piccoli | Bologna | Infortunio | Metà novembre | Salta |
+| Rodriguez Je. | Como | Infortunio | Prossimo turno | Salta |
 | Diao | Como | Lesione muscolare al flessore della gamba | Metà novembre | Salta |
-| Chalobah T. | Como | Infortunio | Prossimo turno | Salta |
+| Chalobah T. | Como | Infortunio | Inizio novembre | Salta |
 | Atta | Fiorentina | Sovraccarico funzionale dell'addome | Prossimo turno | Salta |
 | Colombo | Genoa | Problema alla caviglia | Inizio novembre | Salta |
 | Jones C. | Inter | Risentimento miofasciale agli adduttori della coscia destra | Fine ottobre | Salta |
-| Martinez L. | Inter | Risentimento muscolare ai flessori della coscia sinistra | Metà novembre | Salta |
 | Pavard | Inter | Risentimento agli adduttori della coscia destra | Inizio novembre | Salta |
+| Martinez L. | Inter | Risentimento muscolare ai flessori della coscia sinistra | Metà novembre | Salta |
 | Conceicao | Juventus | Lussazione alla spalla sinistra | Metà novembre | Salta |
 | Ekhator | Juventus | Lesione di medio grado del muscolo semitendinoso | Metà novembre | Salta |
 | Yildiz | Juventus | Problema al piede | Inizio dicembre | Salta |
 | Grabara | Juventus | Lesione al crociato anteriore del ginocchio destro | Da aprile | Salta |
 | Marusic | Lazio | Lesione muscolare alla coscia | Seconda metà di ottobre | In dubbio |
 | Gudmundsson A. | Lazio | Problema alla spalla destra dopo una caduta | Metà ottobre | In dubbio |
-| Coulibaly L. | Lecce | Problema muscolare alla coscia destra | Prossimo turno | Salta |
+| Coulibaly L. | Lecce | Lesione muscolare al bicipite femorale della coscia | Inizio novembre | Salta |
 | Saelemaekers | Milan | Problema alla caviglia destra e operata il | Da febbraio | Salta |
 | Neres | Napoli | Lesione di basso grado al muscolo semimembranoso | Prima metà di novembre | Salta |
 | Santos A. | Napoli | Lesione distrattiva di medio grado del bicipite | Inizio dicembre | Salta |
