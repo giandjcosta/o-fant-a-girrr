@@ -1,6 +1,6 @@
 # Riepilogo giornata 6 di Serie A
 
-Lega O FANT A GIRRR. Dati aggiornati al 2026-10-20.
+Lega O FANT A GIRRR. Dati aggiornati al 2026-10-21.
 
 ## Partite della giornata
 
@@ -84,9 +84,9 @@ Notizie pubbliche, senza indicare di chi e' ogni giocatore.
 | Coulibaly L. | Lecce | Lesione muscolare al bicipite femorale della coscia | Inizio novembre | Salta |
 | Saelemaekers | Milan | Problema alla caviglia destra e operata il | Da febbraio | Salta |
 | Neres | Napoli | Lesione di basso grado al muscolo semimembranoso | Prima metà di novembre | Salta |
+| Vergara | Napoli | Lesione distrattiva al polpaccio destro | Fine ottobre | Salta |
 | Santos A. | Napoli | Lesione distrattiva di medio grado del bicipite | Inizio dicembre | Salta |
 | Buongiorno | Napoli | Operato nella seconda metà di luglio al | Fine dicembre | Salta |
-| Vergara | Napoli | Lesione distrattiva al polpaccio destro | Inizio novembre | Salta |
 | Svilar | Roma | Frattura a un dito del piede e | Metà novembre | Salta |
 | Konè M. | Roma | Lesione di primo grado al bicipite femorale | Prima metà di novembre | Salta |
 | Dybala | Roma | Lesione al gemello del polpaccio destro | Inizio novembre | Salta |
@@ -104,10 +104,10 @@ Punteggio: piu' e' alto, piu' conviene. Unisce valore e probabilita' di giocare.
 
 | Giocatore | Squadra | Stato | Avversario | Punteggio |
 |---|---|---|---|---|
-| Perri | Torino | Titolare, ballottaggio | Udinese (C) | 49 |
+| Perri | Torino | Titolare | Udinese (C) | 49 |
 | Tornqvist | Monza | Titolare | Lazio (T) | 28 |
 | Thiam | Monza | Panchina | Lazio (T) | 28 |
-| Mascardi | Torino | Riserva, ballottaggio | Udinese (C) | 21 |
+| Mascardi | Torino | Panchina | Udinese (C) | 21 |
 | Daffara | Parma | Panchina | Inter (T) | 15 |
 
 ### Difensori
@@ -118,7 +118,7 @@ Punteggio: piu' e' alto, piu' conviene. Unisce valore e probabilita' di giocare.
 | Provstgaard | Lazio | Titolare | Monza (C) | 80 |
 | Kouadio | Monza | Titolare | Lazio (T) | 79 |
 | Veiga D. | Lecce | Titolare | Bologna (C) | 78 |
-| Abankwah | Udinese | Panchina | Torino (T) | 75 |
+| Abankwah | Udinese | Riserva, ballottaggio | Torino (T) | 75 |
 
 ### Centrocampisti
 
@@ -138,7 +138,7 @@ Punteggio: piu' e' alto, piu' conviene. Unisce valore e probabilita' di giocare.
 | Lontani | Parma | Riserva, ballottaggio | Inter (T) | 53 |
 | Ghedjemis | Frosinone | Titolare | Napoli (T) | 52 |
 | N'Dri | Lecce | Titolare, ballottaggio | Bologna (C) | 41 |
-| Fatah | Lecce | Titolare | Bologna (C) | 32 |
+| Fatah | Lecce | Titolare, ballottaggio | Bologna (C) | 32 |
 
 ## Correzioni da controllare
 
