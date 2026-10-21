@@ -1,1 +1,129 @@
-[]
+[
+ {
+  "titolo": "Radio Girrr · Giornata 3",
+  "tag": "Lega Giornata 3",
+  "file": "puntata-g03.mp3",
+  "testo": [
+   {
+    "chi": "Beppe Rovesciata",
+    "ruolo": "Conduttore",
+    "testo": "Buongiorno, buonasera e buonanotte a tutti, siete su Radio Girrr, la radio ufficiale della Lega O Fant A Girrr! Oggi siamo qui con Beppe Rovesciata"
+   },
+   {
+    "chi": "Luigi Fischietti",
+    "ruolo": "Commentatore",
+    "testo": "e Luigi Fischietti! Si parte!"
+   },
+   {
+    "chi": "Beppe Rovesciata",
+    "ruolo": "Conduttore",
+    "testo": "Giornata numero 3! Luigi, hai già guardato i punteggi?"
+   },
+   {
+    "chi": "Luigi Fischietti",
+    "ruolo": "Commentatore",
+    "testo": "Sì, con una tazza di tè in mano, come ogni buon britannico. E mi sono rovinato la colazione."
+   },
+   {
+    "chi": "Beppe Rovesciata",
+    "ruolo": "Conduttore",
+    "testo": "Il re della giornata è Mariana Coneja! 86 punti! Che prestazione!"
+   },
+   {
+    "chi": "Luigi Fischietti",
+    "ruolo": "Commentatore",
+    "testo": "86 punti!"
+   },
+   {
+    "chi": "Beppe Rovesciata",
+    "ruolo": "Conduttore",
+    "testo": "E la sconfitta più pesante è quella di Atletico ma non troppo, battuta da The Blue brothers con 13 punti di scarto! Una mazzata!"
+   },
+   {
+    "chi": "Beppe Rovesciata",
+    "ruolo": "Conduttore",
+    "testo": "In classifica comanda Mariana Coneja con 7 punti! Seguono AFA SELECCION e Oranje VC."
+   },
+   {
+    "chi": "Luigi Fischietti",
+    "ruolo": "Commentatore",
+    "testo": "Mark Lenders l'anno scorso ha chiuso quinto. Quest'anno vuole di più!"
+   },
+   {
+    "chi": "Beppe Rovesciata",
+    "ruolo": "Conduttore",
+    "testo": "In fondo c'è Atletico ma non troppo. Può risalire e sperare di uscire dall'ultima posizione?"
+   },
+   {
+    "chi": "Luigi Fischietti",
+    "ruolo": "Commentatore",
+    "testo": "Io dico di sì. Poi però bisogna scrivere la formazione!"
+   },
+   {
+    "chi": "Luigi Fischietti",
+    "ruolo": "Commentatore",
+    "testo": "Atletico ma non troppo non vince da 3 partite. Il nostro modello la dà ultima nel 82 per cento dei casi!"
+   },
+   {
+    "chi": "Beppe Rovesciata",
+    "ruolo": "Conduttore",
+    "testo": "Il presidente di WOA non è molto contento ultimamente!"
+   },
+   {
+    "chi": "Luigi Fischietti",
+    "ruolo": "Commentatore",
+    "testo": "Se continua così si parla di esonero. Sottovoce, eh."
+   },
+   {
+    "chi": "Luigi Fischietti",
+    "ruolo": "Commentatore",
+    "testo": "Riccardo è sparito per due stagioni ed è tornato con l'Atletico Ma Non Troppo!"
+   },
+   {
+    "chi": "Beppe Rovesciata",
+    "ruolo": "Conduttore",
+    "testo": "Ora ci colleghiamo con la nostra inviata sul campo! Giulia, a te!"
+   },
+   {
+    "chi": "Giulia Cronaca",
+    "ruolo": "Inviata speciale",
+    "testo": "Grazie Beppe! Qui è un bel caos! Prima notizia: Mariana Coneja sta superando le aspettative! Il presidente la voleva intorno al sesto posto, e invece oggi è prima!"
+   },
+   {
+    "chi": "Beppe Rovesciata",
+    "ruolo": "Conduttore",
+    "testo": "Passiamo alla Champions Cup, la coppa della nostra lega! Si è chiusa la giornata 1!"
+   },
+   {
+    "chi": "Beppe Rovesciata",
+    "ruolo": "Conduttore",
+    "testo": "Vittoria di AFA SELECCION contro Oranje VC: due a zero."
+   },
+   {
+    "chi": "Luigi Fischietti",
+    "ruolo": "Commentatore",
+    "testo": "Vittoria di WOA contro Grodah: tre a due."
+   },
+   {
+    "chi": "Luigi Fischietti",
+    "ruolo": "Commentatore",
+    "testo": "Cade la campionessa in carica! L'anno scorso la Coppa Campioni era sua!"
+   },
+   {
+    "chi": "Beppe Rovesciata",
+    "ruolo": "Conduttore",
+    "testo": "Alla prossima giornata c'è il derby: The Blue brothers contro Grodah! Una rivalità storica!"
+   },
+   {
+    "chi": "Beppe Rovesciata",
+    "ruolo": "Conduttore",
+    "testo": "Per Radio Girrr, la radio ufficiale della Lega, è tutto! Mettete la formazione, vi vogliamo bene!"
+   },
+   {
+    "chi": "Luigi Fischietti",
+    "ruolo": "Commentatore",
+    "testo": "Ci sentiamo mercoledì prossimo! Ciao a tutti!"
+   }
+  ]
+ }
+]
