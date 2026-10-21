@@ -92,7 +92,6 @@ Notizie pubbliche, senza indicare di chi e' ogni giocatore.
 | Dybala | Roma | Lesione al gemello del polpaccio destro | Inizio novembre | Salta |
 | Idzes | Sassuolo | Lesione di grado moderato al quadricipite della | Seconda metà di ottobre | Salta |
 | Fortini | Torino | Affaticamento muscolare all'adduttore che lo ha escluso | Da valutare | In dubbio |
-| Zaniolo | Udinese | Lesione muscolare al bicipite femorale destro | Fine ottobre | Salta |
 | Gueye | Udinese | Problema alla caviglia a fine settembre | Fine gennaio | Salta |
 | Busio | Venezia | Distrazione intratendinea del bicipite femorale destro | Seconda metà di ottobre | In dubbio |
 
