@@ -1,11 +1,24 @@
 [
  {
+  "n": 3,
+  "pdf": "riepiloghi/settimana-03.pdf",
+  "copertina": "riepiloghi/copertine/settimana-03.png",
+  "v": 1792617771,
+  "data": "mercoledì 21 ottobre 2026",
+  "iso": "2026-10-21",
+  "pub": "2026-10-21T21:10:00Z",
+  "occhiello": "Campionato · Terza giornata",
+  "titolone": "Raimondo in panchina, la WOA cade 5-4: Mariana Coneja e AFA SELECCION in testa a 7",
+  "sommario": "Nove gol nella sfida più pazza del turno, vinta da Mariana Coneja per 5-4. Alle spalle dei due battistrada l'Oranje VC si porta a 6, mentre l'Atletico ma non troppo resta a zero con nove gol subiti."
+ },
+ {
   "n": 2,
   "pdf": "riepiloghi/settimana-02.pdf",
   "copertina": "riepiloghi/copertine/settimana-02.png",
-  "v": 1791895521,
+  "v": 1792617593,
   "data": "martedì 13 ottobre 2026",
   "iso": "2026-10-13",
+  "pub": "",
   "occhiello": "Campionato · Seconda giornata · Champions Cup · Prima giornata",
   "titolone": "Quattro in testa, tutti a 4: Krstovic fa 16,5 in panchina",
   "sommario": "Cinque partite, due vittorie, tre pareggi: Apo team, Real Madrink, AFA SELECCION e Mariana Coneja guidano a quota 4. De Bruyne firma 15 punti, ma il caso della settimana è in panchina."
@@ -14,9 +27,10 @@
   "n": 1,
   "pdf": "riepiloghi/settimana-01.pdf",
   "copertina": "riepiloghi/copertine/settimana-01.png",
-  "v": 1791620391,
+  "v": 1792617593,
   "data": "venerdì 9 ottobre 2026",
   "iso": "2026-10-09",
+  "pub": "",
   "occhiello": "Campionato · Prima giornata",
   "titolone": "Oranje VC dilaga: cinque gol e 89 punti",
   "sommario": "Esordio senza pareggi nella lega: l'Apo team e Mariana Coneja vincono con autorità, Real Madrink piega la WOA per soli 3,5 punti. In Coppa si parte da zero."

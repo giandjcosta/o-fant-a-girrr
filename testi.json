@@ -1,43 +1,43 @@
 {
- "occhiello": "Campionato · Seconda giornata · Champions Cup · Prima giornata",
- "titolone": "Quattro in testa, tutti a 4: Krstovic fa 16,5 in panchina",
- "sommario": "Cinque partite, due vittorie, tre pareggi: Apo team, Real Madrink, AFA SELECCION e Mariana Coneja guidano a quota 4. De Bruyne firma 15 punti, ma il caso della settimana è in panchina.",
- "apertura": "Giornata di pareggi e di rimpianti. Tre partite su cinque finite in parità (0-0, 2-2, 3-3) e quattro squadre, Apo team, Real Madrink, AFA SELECCION e Mariana Coneja, a 4 punti, divise solo dai fantapunti totali. Dalle panchine sono rimasti fuori oltre cinquanta punti: il caso più grosso è Krstovic, 16,5 lasciati nell'AFA SELECCION.",
+ "occhiello": "Campionato · Terza giornata",
+ "titolone": "Raimondo in panchina, la WOA cade 5-4: Mariana Coneja e AFA SELECCION in testa a 7",
+ "sommario": "Nove gol nella sfida più pazza del turno, vinta da Mariana Coneja per 5-4. Alle spalle dei due battistrada l'Oranje VC si porta a 6, mentre l'Atletico ma non troppo resta a zero con nove gol subiti.",
+ "apertura": "Una giornata da ricordare per l'attacco di Mariana Coneja, che batte la WOA 5-4 con 86 punti: la miglior formazione della settimana. La WOA, però, ha lasciato in panchina Raimondo, 17,5 in pagella, e saluta la giornata con un solo punto in classifica. In testa ci sono Mariana Coneja e AFA SELECCION a 7, davanti all'Oranje VC a 6 e alla Real Madrink a 5.",
  "commenti": [
-  "0-0 con un solo punto di scarto: Malen espulso mette il carico.",
-  "Due gol per parte. Krstovic in panchina grida vendetta: 13 punti fuori.",
-  "Vittoria netta di stif dc con Noslin e Tavares da 10. Oranje VC non punge.",
-  "Grodah vince con Osmajic da 12 e Thuram da 10, nonostante i 2,5 di Okoye.",
-  "3-3 con De Bruyne da 15 e Isaksen da 11. L'Apo team supera la WOA di 1,5 fantapunti."
+  "Nove gol e tanti rimpianti: Simeone entra dalla panchina e ne mette due, Raimondo resta fuori e la WOA paga.",
+  "AFA SELECCION chiude senza subire: Paz da 12,5 e Calò da 11,5 firmano lo 0-2 sull'Apo team.",
+  "Blue brothers senza storie con Varela da 16 e Lulli da 10,5. Per l'Atletico è il terzo ko di fila.",
+  "Oranje VC vince 2-1 con soli 72,5 punti: Grodah ci ha provato con Thuram da 9,5 ma non basta.",
+  "72 a 72: più equilibrio di così non si poteva. Bonny e Douvikas da 10 lasciano il 2-2 in famiglia."
  ],
  "numero": {
-  "valore": "16,5",
-  "testo": "I fantapunti di Krstovic, rimasti in panchina nell'AFA SELECCION: più di qualunque titolare della giornata."
+  "valore": "17,5",
+  "testo": "I punti di Raimondo, rimasto in panchina nella WOA, battuta 5-4 da Mariana Coneja: più di qualunque titolare della giornata."
  },
- "premi": "Il palmarès guarda i gol, non i fantapunti: in cinque partite solo due vittorie. Grodah passa sull'Atletico con 74,5, mentre l'Oranje VC cade 0-2 con 65,5 e un attacco che non punge.",
- "classifiche": "In campionato il quartetto di testa è separato da pochi fantapunti: Apo team 157, Real Madrink 152, AFA SELECCION 150,5, Mariana Coneja 142. Chiude l'Atletico a zero. In Coppa nel girone B il passo è di WOA e AFA SELECCION, a 3 punti; nel girone A quattro squadre sono a 1 punto.",
+ "premi": "Mariana Coneja è la miglior formazione con 86 punti, la Blue brothers firma la vittoria più larga sull'Atletico (73,5 a 60,5), che si prende anche il cucchiaio di legno con 60,5. Il più fortunato è l'Oranje VC, che vince con soli 72,5 punti; il più sfortunato la WOA, battuta pur con 81,5.",
+ "classifiche": "Mariana Coneja e AFA SELECCION guidano a 7 punti, con le due che si sfidano alla quarta giornata. Oranje VC terzo a 6, Real Madrink a 5, poi Apo team, stif dc e Blue brothers a 4. Grodah a 3, WOA a 1, Atletico ultimo a zero.",
  "pagelle": {
-  "woa": "Sopra le attese, ma resta a un punto: Isaksen e Rabiot da 11 e 10 non bastano.",
-  "stif dc": "Il voto più alto in difesa, e un 2-0 meritato. Noslin e Tavares fanno la differenza.",
-  "apo team": "Con De Bruyne da 15 il 3-3 è quasi una rapina. Ma Cambiaghi e Mota in panchina fanno rimpiangere.",
-  "atletico ma non troppo": "Sufficiente con due difensori sostituiti in corsa. Kolo Muani porta due gol, ma non basta.",
-  "real madrink": "Pareggio con la formazione cambiata in corsa. Bene Kessiè subentrato.",
-  "afa seleccion": "Il 2-2 vale un punto, ma i 16,5 di Krstovic in panchina valgono una settimana di rimpianti.",
-  "grodah": "Vittoria sporca con Osmajic da 12. Okoye però è un problema da risolvere.",
-  "oranje vc": "Una giornata da dimenticare, con Maignan a 5,5 e un attacco senza gol.",
-  "mariana coneja": "Quattro punti con il rimpianto più grande della lega: Sucic a 11,5 in panchina.",
-  "the blue brothers": "Con 62,5 fantapunti porta a casa un punto, ma Malen espulso (3,5) pesa."
+  "mariana coneja": "Cinque gol e il comando della classifica: Carlos Augusto da 12,5 e Castro da 11, con Simeone dalla panchina da fuoriclasse.",
+  "woa": "Quattro gol segnati e 81,5 punti, ma Raimondo in panchina vale una settimana di rimpianti. Rabiot e Gila sopra gli 11.",
+  "apo team": "Zero gol e una giornata storta: De Bruyne sbaglia un rigore, Adams in panchina vale 11.",
+  "afa seleccion": "Solida e concreta: 2-0, difesa blindata e Paz da 12,5. Krstovic e Thorstvedt a 9,5 in panchina fanno ancora rumore.",
+  "atletico ma non troppo": "Ultimo a zero punti con nove gol subiti in tre partite. Serve una svolta, e in fretta.",
+  "the blue brothers": "Varela da 16 con due gol e un assist trascina la squadra. Un successo netto che ridà fiato alla classifica.",
+  "grodah": "Sconfitta di misura con 70 punti: Thuram da 9,5 e Moreira da 8, ma Okoye a 3,5 pesa.",
+  "oranje vc": "Vince con soli 72,5 punti ma vince: Belghali da 9 e una panchina che avrebbe potuto dare ancora di più con Stankovic da 12,5.",
+  "real madrink": "Pareggio a 72 pari: Bonny da 10 e un bel cambio in corsa con Caqueret.",
+  "stif dc": "Stesso 72 degli avversari, Douvikas da 10 e Zielinski da 8: un punto che sta stretto."
  },
  "coro": {
-  "squadra": "Mariana Coneja",
-  "testo": "Sucic in panchina: 11,5. Lang in panchina: 10. Avevo il dubbio, poi ho dato retta al cuore. Lunedì ho fatto pace col fantacalcio, e tra un'ora lo odio di nuovo."
+  "squadra": "Atletico ma non troppo",
+  "testo": "Zero punti, nove gol subiti, due fatti. Non siamo ultimi: siamo semplicemente in anticipo sul resto della classifica."
  },
  "bufala": {
-  "titolo": "L'AFA tiene Krstovic in panchina per non spaventare gli avversari",
-  "testo": "Secondo indiscrezioni, la scelta di lasciare fuori l'attaccante da 16,5 sarebbe stata dettata da motivi di sicurezza: troppi gol in una domenica sono considerati un rischio per l'equilibrio del campionato. Il club smentisce. A modo suo."
+  "titolo": "La WOA chiede il VAR sulla panchina: Raimondo avrebbe giocato in spirito",
+  "testo": "Secondo indiscrezioni, la dirigenza della WOA avrebbe presentato ricorso per far valere i 17,5 punti di Raimondo, rimasto in panchina nel 5-4 contro Mariana Coneja. La Lega ha risposto che l'attaccante era comunque presente, a modo suo."
  },
- "prossima": "Sfida di vertice tra Apo team e AFA SELECCION.",
- "coppa": "Gironi aperti: nel B WOA e AFA SELECCION già a 3 punti.",
- "infortunati": "Controllate il bollettino prima di schierare: un voto sbagliato in panchina si paga anche questa settimana.",
- "chiusura": "Questa settimana quattro squadre hanno lasciato in panchina più di 5 punti. Il fantacalcio non perdona: nemmeno chi, come Krstovic, ha fatto 16,5 dalla panchina."
+ "prossima": "Al vertice, AFA SELECCION contro Mariana Coneja: prima contro seconda, entrambe a 7 punti.",
+ "coppa": "Questa settimana la Champions Cup riposa: si riparte con la seconda giornata.",
+ "infortunati": "Controllate il bollettino prima di schierare: i recuperi dell'ultima ora possono cambiare tutto.",
+ "chiusura": "Questa settimana la panchina ha lasciato fuori tanti punti: da Raimondo a Stankovic, da Adams a Krstovic. Chi sceglie bene, vince."
 }
