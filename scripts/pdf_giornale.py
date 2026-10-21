@@ -618,6 +618,43 @@ def costruisci(t, tema="classico"):
     return "<!doctype html><html lang='it'><head><meta charset='utf-8'><title>O Giornale del Girrr</title></head><body>" + "".join(h) + "</body></html>", n
 
 
+# Controllo e correzione dell'impaginazione. Ogni pagina e' alta 297 mm con overflow nascosto: il contenuto che supera il
+# piede verrebbe tagliato. Qui si misura e, se serve, si compatta a gradini (titolo, campo, testi, spazi) e in ultima
+# istanza si riduce in scala, fino a un minimo leggibile. Se non basta, il PDF non esce (vedi main).
+FIT_JS = """() => {
+  const MM = 96 / 25.4, GAP = 2.5 * MM, MINSCALA = 0.84;
+  const fs = (e) => parseFloat(getComputedStyle(e).fontSize);
+  const mul = (sel, f, root) => root.querySelectorAll(sel).forEach(e => { e.style.fontSize = (fs(e) * f) + 'px'; });
+  const SCALINI = [
+    pc => { mul('.tit', 0.9, pc); pc.querySelectorAll('.fig').forEach(e => { if (e.style.width) e.style.width = '88mm'; }); },
+    pc => { mul('.tit', 0.9, pc); mul('.txt', 0.95, pc); mul('.cmm', 0.95, pc); mul('.taglio', 0.95, pc); pc.querySelectorAll('.fig').forEach(e => { if (e.style.width) e.style.width = '76mm'; }); },
+    pc => { mul('.big', 0.85, pc); mul('.som', 0.94, pc); mul('.fin', 0.95, pc);
+            pc.querySelectorAll('.tab').forEach(e => { e.style.marginTop = '2.6mm'; });
+            pc.querySelectorAll('.box').forEach(e => { e.style.marginBottom = '2.2mm'; });
+            pc.querySelectorAll('.taglio').forEach(e => { e.style.marginTop = '2.4mm'; e.style.padding = '2mm 3mm'; }); },
+  ];
+  return [...document.querySelectorAll('.pg')].map((pg, i) => {
+    const foot = pg.querySelector('.foot');
+    const pc = document.createElement('div');
+    pc.className = 'pc';
+    [...pg.children].forEach(c => { if (c !== foot) pc.appendChild(c); });
+    pg.insertBefore(pc, foot);
+    const limite = () => foot.getBoundingClientRect().top - GAP;
+    const fondo = () => { let m = 0; pc.querySelectorAll('*').forEach(e => { const r = e.getBoundingClientRect(); if (r.height > 0 && r.bottom > m) m = r.bottom; }); return m; };
+    let livello = 0, scala = 1;
+    while (fondo() > limite() && livello < SCALINI.length) { SCALINI[livello](pc); livello++; }
+    pc.style.transformOrigin = 'top left';
+    while (fondo() > limite() && scala > MINSCALA) {
+      scala = Math.round((scala - 0.01) * 100) / 100;
+      pc.style.transform = 'scale(' + scala + ')';
+      pc.style.width = (100 / scala) + '%';
+    }
+    const margine = (limite() - fondo()) / MM;
+    return { pag: i + 1, livello, scala, margine: margine.toFixed(1), ci_sta: fondo() <= limite() };
+  });
+}"""
+
+
 def main():
     tema = "classico"
     if "--tema" in sys.argv:  # ignorato: il Giornale ha un solo tema
@@ -636,9 +673,19 @@ def main():
         b = p.chromium.launch()
         pg = b.new_page()
         pg.goto(tmp.resolve().as_uri())
+        # Controllo impaginazione: se una pagina sborda oltre il piede, la si compatta finche' ci sta
+        esito = pg.evaluate(FIT_JS)
         pg.pdf(path=str(uscita), width="210mm", height="297mm", print_background=True, prefer_css_page_size=True)
         b.close()
     tmp.unlink()
+    male = []
+    for r in esito:
+        liv = f"compattata (livello {r['livello']}" + (f", scala {r['scala']}" if r["scala"] < 1 else "") + ")" if r["livello"] or r["scala"] < 1 else "ok"
+        print(f"Pagina {r['pag']}: {liv}, margine finale {r['margine']} mm")
+        if not r["ci_sta"]:
+            male.append(r["pag"])
+    if male:
+        sys.exit(f"ERRORE impaginazione: le pagine {male} sbordano anche dopo la compattazione. Accorcia i testi in testi.json.")
     # scheda dell'uscita per l'archivio del sito (numero, data, titolo)
     _g = [x for x in D["cal"]["lega"] if giocata(x)]
     ora = ora_uscita(_g[-1] if _g else None)

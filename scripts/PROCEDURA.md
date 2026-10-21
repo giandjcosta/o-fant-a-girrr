@@ -13,3 +13,7 @@
 5. **Giornale.** Si scrive `testi.json` (titolone, tabellini, pagelle, Coro, Bufala, panchina/Rimpianti), poi
    `python3 -I scripts/pdf_giornale.py testi.json`, `python3 -I scripts/archivio_giornale.py`,
    `python3 -I scripts/tabellone.py lega|coppa riepiloghi/tabellone-lega-NN.png` (e coppa), commit e push su gh-pages.
+
+**Controllo impaginazione (automatico).** `pdf_giornale.py` misura ogni pagina: se il contenuto supera il piede lo compatta a gradini
+(titolo, campo, testi, spazi, poi scala minima 0,84) e stampa l'esito di ogni pagina. Se una pagina non ci sta nemmeno così il PDF non
+è valido: si accorciano i testi in `testi.json` e si rigenera. Prima di pubblicare si guardano le 4 pagine rasterizzate.
