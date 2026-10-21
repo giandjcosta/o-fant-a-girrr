@@ -82,8 +82,8 @@ def post(e):
             testo = monta(ris, "")
         out = [(GS, testo)]
         if e.get("tono") in (0, 1, 2):   # nell'app c'è anche il tono e la risposta di Ciro Trattativa
-            tono, parola = CIRO[e["tono"]]
-            out.append((CIRO_H, f"Su {me} in conferenza stampa, tono {tono}: «{parola}»"))
+            _, parola = CIRO[e["tono"]]
+            out.append((CIRO_H, parola, 0))   # il commento di Ciro, tale e quale all'app: esce sotto il post della conferenza (indice 0)
         return out
     if t == "rifiuto":
         return [(GS, f"RIFIUTO CLAMOROSO\n{m(e['a'])} non considera {m(e['da'])} nemmeno degno di un Derby. La rivalità, intanto, sale. #GirrrSport")]
@@ -104,9 +104,15 @@ def main():
     eventi = json.loads(EVENTI.read_text(encoding="utf-8")) if EVENTI.exists() else []
     out = []
     for e in eventi:
-        for i, (h, body) in enumerate(post(e)):
+        lista = post(e)
+        for i, voce in enumerate(lista):
+            h, body = voce[0], voce[1]
             assert len(body) <= 280, (e["k"], len(body))
-            out.append(dict(chiave=f"{e['tipo']}:{e['k']}:{i}", h=h, body=body))
+            d = dict(chiave=f"{e['tipo']}:{e['k']}:{i}", h=h, body=body)
+            if len(voce) > 2:   # è un commento sotto un altro post dello stesso evento
+                padre = lista[voce[2]]
+                d.update(re=f"{e['tipo']}:{e['k']}:{voce[2]}", re_h=padre[0], re_body=padre[1])
+            out.append(d)
     USCITA.write_text(json.dumps(out, ensure_ascii=False, indent=1), encoding="utf-8")
     print("post_curva.json scritto:", len(out), "post")
 

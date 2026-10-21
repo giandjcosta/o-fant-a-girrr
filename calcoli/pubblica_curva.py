@@ -60,19 +60,44 @@ def riepilogo(testo):
             fh.write(testo + "\n")
 
 
-def invia(p):
+def trova_id(url, key, h, body):
+    """Id del post ufficiale già pubblicato (stesso profilo e stesso testo), cercato nel feed pubblico della Curva."""
+    try:
+        rich = urllib.request.Request(f"{url}/rest/v1/rpc/curva_feed", json.dumps({"p_team": None, "p_code": None}).encode(),
+                                      {"apikey": key, "Authorization": "Bearer " + key, "Content-Type": "application/json"})
+        for u in json.loads(urllib.request.urlopen(rich, timeout=30).read()).get("adm", []):   # dal più recente
+            if u.get("h") == h and (u.get("body") or "").strip() == body.strip():
+                return u["id"]
+    except Exception as e:
+        print("Feed della Curva non letto:", e)
+    return None
+
+
+def invia(p, ids=None):
+    """Pubblica il post e ne restituisce l'id. Un post con "re" è un commento sotto un altro post: nel database è un post
+    ufficiale che inizia con [re:aID], e la pagina della Curva lo mostra sotto il post a cui risponde."""
     url, key, team, code = (os.environ.get(k) for k in ("CURVA_URL", "CURVA_KEY", "CURVA_TEAM", "CURVA_CODE"))
     if not all((url, key, team, code)):
         sys.exit("Mancano CURVA_URL, CURVA_KEY, CURVA_TEAM o CURVA_CODE: non pubblico niente.")
-    if len(p["body"]) > 280:
+    testo = p["body"]
+    if p.get("re"):
+        padre = (ids or {}).get(p["re"]) or trova_id(url, key, p.get("re_h", ""), p.get("re_body", ""))
+        if not padre:
+            print("Commento senza il post a cui rispondere, lo salto:", breve(p))
+            return None
+        testo = f"[re:a{padre}] {testo}"
+    if len(testo) > 280:
         sys.exit("Post troppo lungo (oltre 280 caratteri), mi fermo: " + breve(p))
-    corpo = json.dumps(dict(p_team=team, p_code=code, p_h=p["h"], p_body=p["body"])).encode()
+    corpo = json.dumps(dict(p_team=team, p_code=code, p_h=p["h"], p_body=testo)).encode()
     rich = urllib.request.Request(f"{url}/rest/v1/rpc/curva_adm_scrivi", corpo,
                                   {"apikey": key, "Authorization": "Bearer " + key, "Content-Type": "application/json"})
     try:
-        urllib.request.urlopen(rich, timeout=30).read()
+        nuovo = json.loads(urllib.request.urlopen(rich, timeout=30).read())
     except Exception as e:  # database non raggiungibile o risposta di errore: ci si ferma qui
         sys.exit(f"Il database non ha accettato il post ({e}). Mi fermo senza segnare niente come pubblicato.")
+    if ids is not None and isinstance(nuovo, int):
+        ids[p["chiave"]] = nuovo
+    return nuovo
 
 
 def segna(fatti, chiave):
@@ -120,8 +145,9 @@ def main():
         if not vai:
             print("Prova a vuoto: aggiungi --vai per pubblicare davvero.")
             return
+        ids = {}
         for q in scelti:
-            invia(q)
+            invia(q, ids)
             q["stato"] = "pubblicato"
             segna(fatti, q["chiave"])
             scrivi(CODA, coda)
@@ -161,8 +187,9 @@ def main():
     if not vai:
         print("Prova a vuoto: aggiungi --vai per pubblicare davvero.")
         return
+    ids = {}
     for p in nuovi:
-        invia(p)
+        invia(p, ids)
         segna(fatti, p["chiave"])
     riepilogo(f"Pubblicati {len(nuovi)} post.")
 
