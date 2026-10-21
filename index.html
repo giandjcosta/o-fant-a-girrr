@@ -398,6 +398,7 @@ h2.sec{font-size:1.35rem;margin-block:18px 8px}
 <button role="tab" data-t="fa" aria-selected="false">Svincolati</button>
 <button role="tab" data-t="pitch" aria-selected="false">Sostituzioni</button>
 <button role="tab" data-t="inj" aria-selected="false">Infortunati</button>
+<button role="tab" data-t="bor" aria-selected="false">Borsino</button>
 <button role="tab" data-t="lega" aria-selected="false">Calendario</button>
 <button role="tab" data-t="set" aria-selected="false">Info</button>
 <button role="tab" data-t="stat" aria-selected="false">Statistiche</button>
@@ -494,7 +495,7 @@ function render(){
   [].forEach.call(document.querySelectorAll('#tabs button'),function(b){b.setAttribute('aria-selected',b.dataset.t===tab);if(b.dataset.t==='stat')b.hidden=team!=='Oranje VC'});
   uid=0;
   app.classList.toggle('enter',enter);
-  app.innerHTML=tab==='rosa'?vRosa():tab==='day'?vDay():tab==='swap'?vSwap():tab==='mkt'?vMkt():tab==='fa'?vFa():tab==='pitch'?vPitch():tab==='inj'?vInj():tab==='lega'?vLega():tab==='stat'?vStat():vSet();
+  app.innerHTML=tab==='rosa'?vRosa():tab==='day'?vDay():tab==='swap'?vSwap():tab==='mkt'?vMkt():tab==='fa'?vFa():tab==='pitch'?vPitch():tab==='inj'?vInj():tab==='bor'?vBor():tab==='lega'?vLega():tab==='stat'?vStat():vSet();
   if(enter&&!(window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches)){
     [].forEach.call(app.querySelectorAll('.ring text,.score,.kpi b'),function(el){var m=el.textContent.match(/^(\d+)(%?)$/);if(!m)return;var to=+m[1],suf=m[2],t0=null;function step(ts){if(t0===null)t0=ts;var k=Math.min(1,(ts-t0)/700),e=1-Math.pow(1-k,3);el.textContent=Math.round(to*e)+suf;if(k<1)requestAnimationFrame(step)}el.textContent='0'+suf;requestAnimationFrame(step)});
   }
@@ -577,6 +578,20 @@ function vLega(){
   mine.forEach(function(e){var pl=e.x&&played(e.x),opp=e.x?(e.x.a===me?e.x.b:e.x.a):'';
     h+='<div class="gr"><div style="min-width:0"><span class="fx '+(e.c==='cup'?'m':'e')+'">'+(e.c==='cup'?'Coppa':'Lega')+' '+e.n+'</span> <span class="meta">G'+e.sa+'</span> <span class="nm">'+(e.rest?'Riposo':esc(opp)+' <span class="meta">'+(e.x.a===me?'(C)':'(T)')+'</span>')+'</span></div>'+(pl?'<span style="display:flex;gap:6px;align-items:center">'+esito(e.x)+'<span class="res">'+esc(e.x.res.replace('-',' – '))+'</span></span>':(e.sa===D.round?'<span class="stb s-B">Prossima</span>':''))+'</div>'});
   return h+'</div>';
+}
+var BOR=null,BORerr=false;
+function borLoad(){if(BOR||BORerr)return;fetch('girrr/dati/borsino.json',{cache:'no-store'}).then(function(r){if(!r.ok)throw 0;return r.json()}).then(function(j){BOR=j;if(tab==='bor')render()}).catch(function(){BORerr=true;if(tab==='bor')render()})}
+function borSpark(v,w,h){var mn=Math.min.apply(null,v),mx=Math.max.apply(null,v),r=(mx-mn)||1,pts=v.map(function(y,i){return (i*(w-4)/(v.length-1)+2).toFixed(1)+','+(h-3-(y-mn)/r*(h-6)).toFixed(1)}).join(' '),up=v[v.length-1]>=v[0];return '<svg width="'+w+'" height="'+h+'" viewBox="0 0 '+w+' '+h+'" aria-hidden="true"><polyline points="'+pts+'" fill="none" stroke="'+(up?'#2fbf71':'#e5484d')+'" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>'}
+function vBor(){
+  borLoad();
+  if(BORerr)return '<div class="note">Il Borsino non è raggiungibile in questo momento. Riprova tra poco.</div>';
+  if(!BOR)return '<div class="note">Carico il Borsino…</div>';
+  var L=((BOR.squadre||{})[team]||[]).slice().sort(function(a,b){return b.valore-a.valore});
+  var f1=function(x){return (Math.round(x*10)/10).toFixed(1).replace('.',',')};
+  var h='<div class="note">Il Borsino dà un valore a ogni giocatore della tua rosa: sale e scende con le prestazioni, come un titolo in borsa. Il numero colorato è la variazione sulle ultime giornate. Serve a capire chi tenere e chi vendere prima che cali.</div><h2 class="sec">La tua rosa</h2><div class="card">';
+  if(!L.length)return h+'<div class="meta">Nessun dato per la tua squadra.</div></div>';
+  h+=L.map(function(p){var up=p.variazione>=0;return '<div class="gr"><div style="min-width:0"><span class="nm">'+esc(p.nome)+'</span> <span class="meta">'+esc(p.club)+' · '+esc(p.ruolo)+'</span><div class="meta">'+esc(p.consiglio||'')+'</div></div><div style="display:flex;align-items:center;gap:10px;flex:none">'+borSpark(p.serie,84,32)+'<div style="text-align:right;min-width:52px"><b>'+f1(p.valore)+'</b><div class="meta" style="color:'+(up?'#2fbf71':'#e5484d')+'">'+(up?'+':'')+f1(p.variazione)+'</div></div></div></div>'}).join('')+'</div>';
+  return h+'<div class="meta" style="margin-top:8px">Aggiornato al '+new Date(BOR.aggiornato).toLocaleDateString('it-IT',{day:'numeric',month:'long'})+'.</div>';
 }
 function vInj(){
   var own={},mine={};D.teams.forEach(function(t){t.pl.forEach(function(x){own[x.id]=1;if(t.name===team)mine[x.id]=1})});

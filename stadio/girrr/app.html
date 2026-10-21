@@ -526,7 +526,7 @@ function vDerby(){
   h+='<div class="card"><h3>I Derby della lega</h3><p class="sm mut" style="margin-bottom:8px">Tocca un Derby per leggerne la storia.</p><div class="seg" role="group" aria-label="Derby" style="flex-wrap:wrap">'+DT.map(function(x,j){return '<button data-dtab="'+j+'" aria-pressed="'+(S.dtab===j)+'">'+esc(derName(x))+'</button>'}).join('')+'</div>';
   h+='<div style="margin-top:12px"><div class="mt"><div class="t">'+esc(o.a)+'<div class="mut sm">'+esc(mg(o.a))+'</div></div><span class="tag">vs</span><div class="t">'+esc(o.b)+'<div class="mut sm">'+esc(mg(o.b))+'</div></div></div>'
    +'<div class="h2h" style="grid-template-columns:1fr 1fr;margin-top:10px"><div><small>Stagioni insieme</small><b class="num" style="font-size:24px">'+o.h+'</b></div><div><small>Nelle zone alte insieme</small><b class="num" style="font-size:24px">'+o.z+'</b></div></div>'
-   +'<div class="mut sm" style="margin-top:8px">Rivalità: <b>'+rvWord(i.riv)+'</b> '+(i.der?'<span class="tag g">Derby</span>':'')+'</div>'+rvBar(i.riv)
+   +'<div class="mut sm" style="margin-top:8px">Rivalità: <b>'+rvWord(i.riv)+'</b></div>'+rvBar(i.riv)
    +(o.s?racconto(o):(S.dn[rvKey(o.a,o.b)]?storiaNuova(o):'<p class="sm mut" style="margin-top:8px">Nessuna storia scritta per questa sfida.</p>'))
    +(GUEST?'<p class="sm mut" style="margin-top:8px">Entra con il tuo codice squadra per dire se lo senti come Derby.</p>':'<button class="tag '+(S.mine[rvKey(o.a,o.b)]?'o':'')+'" data-lvote="'+esc(rvKey(o.a,o.b))+'" aria-pressed="'+(!!S.mine[rvKey(o.a,o.b)])+'" style="margin-top:8px">Lo sento come Derby</button>')+'</div></div>';
   h+='<p class="note">Le storie vengono dall\'Albo d\'oro e compariranno anche lì, una per ogni Derby. I voti sono quelli degli amici della lega.</p>';
