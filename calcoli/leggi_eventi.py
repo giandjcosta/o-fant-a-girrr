@@ -3,7 +3,7 @@
 
 Usa solo funzioni di lettura libera (come il feed di Curva): derby_stato (sfide recenti) e conf_promesse (promesse con esito).
 Servono CURVA_URL e CURVA_KEY (chiave publishable). Non scrive nel database.
-Uso: python3 calcoli/leggi_eventi.py [uscita.json]
+Uso: python3 calcoli/leggi_eventi.py [uscita.json] [data.json del sito, per l'avversario delle conferenze]
 Sfide: ogni sfida produce l'evento 'sfida'; se poi è rifiutata/scaduta/accettata con nome concordato, anche 'rifiuto'/'scaduta'/'derby'.
 Il testo vero della frase scelta (frase_testo, da derby_stato) finisce nell'evento come "testo": serve all'Intervista speciale. Le sfide vecchie, senza testo, hanno solo il numero 0-2.
 Conferenze: ogni conferenza pubblicata dell'ultima giornata (conf_pubbliche) produce l'evento 'conferenza'.
@@ -48,8 +48,36 @@ def eventi(stato, promesse):
     return out
 
 
-def eventi_conferenza(conf):
-    """Un evento 'conferenza' per ogni conferenza pubblicata dell'ultima giornata (le vecchie non si ripostano)."""
+SITO_DATI = "https://giandjcosta.github.io/o-fant-a-girrr/data.json"
+
+
+def calendario_lega():
+    """Calendario del campionato dal sito (data.json): serve a sapere chi è l'avversario della conferenza.
+    Si usa il file dato come terzo argomento (nei workflow, la copia di gh-pages), altrimenti la copia pubblica del sito.
+    Se non si riesce a leggerlo, restituisce None: la conferenza esce lo stesso, senza il nome dell'avversario."""
+    try:
+        if len(sys.argv) > 2 and Path(sys.argv[2]).exists():
+            return json.loads(Path(sys.argv[2]).read_text(encoding="utf-8"))["cal"]["lega"]
+        return json.loads(urllib.request.urlopen(SITO_DATI, timeout=30).read())["cal"]["lega"]
+    except Exception as e:
+        print("Calendario non letto, le conferenze escono senza avversario:", e)
+        return None
+
+
+def avversario(cal, team, giornata):
+    for g in cal or []:
+        if g.get("n") == giornata:
+            for m in g.get("m", []):          # [casa, punti casa, punti trasferta, trasferta, risultato]
+                if m[0] == team:
+                    return m[3]
+                if m[3] == team:
+                    return m[0]
+    return ""
+
+
+def eventi_conferenza(conf, cal=None):
+    """Un evento 'conferenza' per ogni conferenza pubblicata dell'ultima giornata (le vecchie non si ripostano).
+    Porta le tre risposte nell'ordine dell'app (anche quella scritta a mano), il tono e l'avversario."""
     if not conf:
         return []
     ultima = max(c["giornata"] for c in conf)
@@ -57,15 +85,19 @@ def eventi_conferenza(conf):
     for c in sorted(conf, key=lambda x: x["team"]):
         if c["giornata"] != ultima:
             continue
-        ris = [r.get("t", "").strip() for r in (c.get("risposte") or []) if r.get("a") != "free" and r.get("t")]
+        righe = [r for r in (c.get("risposte") or []) if r.get("t")]
+        ris = [r["t"].strip() for r in righe]
+        # stesso calcolo dell'app: tono 0 Sicuro, 1 Umile, 2 Provocatorio = media dei toni delle tre risposte, arrotondata per eccesso a .5
+        tono = min(2, int(sum(int(r.get("k", 1)) for r in righe) / 3 + 0.5)) if len(righe) == 3 else None
         out.append(dict(tipo="conferenza", k=f"C{c['giornata']}-{c['team']}", team=c["team"], giornata=c["giornata"],
+                        avversario=avversario(cal, c["team"], c["giornata"]), tono=tono,
                         libera=(c.get("libera") or "").strip(), risposte=ris, promessa=(c.get("promessa") or "").strip()))
     return out
 
 
 if __name__ == "__main__":
     prom = rpc("conf_promesse", {})
-    ev = eventi(rpc("derby_stato", {}), prom) + eventi_conferenza(rpc("conf_pubbliche", {}))
+    ev = eventi(rpc("derby_stato", {}), prom) + (lambda c: eventi_conferenza(c, calendario_lega() if c else None))(rpc("conf_pubbliche", {}))
     USCITA.write_text(json.dumps(ev, ensure_ascii=False, indent=1), encoding="utf-8")
     # le promesse grezze servono a fiducia.py (che ricalcola l'esito dai risultati veri)
     (USCITA.parent / "conferenze.json").write_text(json.dumps(prom, ensure_ascii=False, indent=1), encoding="utf-8")
