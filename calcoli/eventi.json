@@ -5,5 +5,45 @@
   "da": "Oranje VC",
   "a": "Apo team",
   "f": 0
+ },
+ {
+  "tipo": "derby",
+  "k": "S4",
+  "da": "Oranje VC",
+  "a": "Apo team",
+  "nome": "The Continental"
+ },
+ {
+  "tipo": "sfida",
+  "k": "S5",
+  "da": "The Blue brothers",
+  "a": "Oranje VC",
+  "f": 1,
+  "testo": "Bentornato, DJ: i posti in alto sono occupati, e il mio è già scelto."
+ },
+ {
+  "tipo": "conferenza",
+  "k": "C3-Apo team",
+  "team": "Apo team",
+  "giornata": 3,
+  "libera": "Il nostro obbiettivo al momento é rialzarci dopo due stagioni da cancellare",
+  "risposte": [
+   "AFA SELECCION è un ottimo avversario: serve attenzione.",
+   "Grazie, continuiamo a lavorare a testa bassa."
+  ],
+  "promessa": ""
+ },
+ {
+  "tipo": "conferenza",
+  "k": "C3-The Blue brothers",
+  "team": "The Blue brothers",
+  "giornata": 3,
+  "libera": "",
+  "risposte": [
+   "È presto: lavoriamo e vediamo.",
+   "Atletico ma non troppo è un ottimo avversario: serve attenzione.",
+   "Chiedo tempo: i risultati arriveranno."
+  ],
+  "promessa": ""
  }
 ]
