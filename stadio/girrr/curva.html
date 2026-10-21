@@ -317,11 +317,13 @@ var RC={},MN={},RTS={},PM={};
 function costruisci(){
  RC={};MN={};RTS={};PM={};(S.polls||[]).forEach(function(q){PM[q.id]=q});(S.rt||[]).forEach(function(r){(RTS[r.k]=RTS[r.k]||[]).push(r)});S.react.forEach(function(r){RC[r.k+'|'+r.kind]=r.n});S.mine.forEach(function(r){MN[r.k+'|'+r.kind]=1});
  var tuttiR={};S.replies.forEach(function(r){(tuttiR[r.k]=tuttiR[r.k]||[]).push({id:r.id,a:hnd(r.team),x:r.body,ts:r.ts,real:1})});
+ /* Risposte dei profili ufficiali (es. Ciro Trattativa): sono post speciali che iniziano con [re:a123] e vanno come commento sotto il post a123 */
+ var RER=/^\[re:(a\d+)\]\s*/;(S.adm||[]).forEach(function(u){var m=RER.exec(u.body||'');if(m)(tuttiR[m[1]]=tuttiR[m[1]]||[]).push({id:'ar'+u.id,a:u.h,x:u.body.slice(m[0].length),ts:u.ts,real:1})});
  var out=[];
  S.posts.forEach(function(p){var z={ap:0,ril:0,r:[]};try{z=CVB.reazioni('p'+p.id,p.ts,Date.now(),SQ,p.body)}catch(e){}var f=fattore(p.team);out.push({k:'p'+p.id,id:p.id,hi:p.hi,real:1,a:hnd(p.team),x:p.body,ts:p.ts,ap:Math.round(z.ap*f),ril:Math.round(z.ril*f),v:0,f:f,tm:p.team,id0:p.id,r:z.r.map(function(r){var q=CVB.h32(r.x+p.id)%100,co=CVB.MISTER[p.team];return q<30?{a:r.a,x:'@'+hnd(p.team)+' '+r.x,ts:r.ts}:q<45&&co?{a:r.a,x:co+', '+r.x,ts:r.ts}:q<55?{a:r.a,x:p.team+', '+r.x,ts:r.ts}:r})})});
  var gen=[];try{gen=CVB.genera(D,SQ,ST,Date.now())}catch(e){}
  try{var tm={};S.posts.forEach(function(p){(tm[p.team]=tm[p.team]||[]).push(p.ts)});CVB.ufficiale(D,SQ,ST,tm,Date.now()).forEach(function(u){var z=CVB.reazioni(u.k,u.ts,Date.now(),SQ,u.x),f=fattore(u.team);out.push({k:u.k,a:hnd(u.team),x:u.x,uf:1,ts:u.ts,ap:Math.round((z.ap+8)*f),ril:Math.round((z.ril+2)*f),v:0,f:f,tm:u.team,id0:CVB.h32(u.k)%1000,r:z.r})})}catch(e){}
-(S.adm||[]).forEach(function(u){var k='a'+u.id,z={ap:0,ril:0,r:[]};try{z=CVB.reazioni(k,u.ts,Date.now(),SQ,u.body)}catch(e){}var tm=SQ[4],f=fattore(tm);out.push({k:k,id:k,hi:u.hi,a:u.h,x:u.body,uf:1,ts:u.ts,ap:Math.round((z.ap+8)*f),ril:Math.round((z.ril+2)*f),v:0,f:f,tm:tm,id0:u.id,r:z.r})});
+(S.adm||[]).forEach(function(u){if(RER.test(u.body||''))return;var k='a'+u.id,z={ap:0,ril:0,r:[]};try{z=CVB.reazioni(k,u.ts,Date.now(),SQ,u.body)}catch(e){}var tm=SQ[4],f=fattore(tm);out.push({k:k,id:k,hi:u.hi,a:u.h,x:u.body,uf:1,ts:u.ts,ap:Math.round((z.ap+8)*f),ril:Math.round((z.ril+2)*f),v:0,f:f,tm:tm,id0:u.id,r:z.r})});
 
  /* Girrr Sport rilancia alcuni cori delle squadre, con una premessa legata a risultato e classifica */
  try{(function(){var L=(D.cal&&D.cal.lega)||[],ult={},np=ST.np||0,now=Date.now(),n=0,cls=ST.cls||[];
