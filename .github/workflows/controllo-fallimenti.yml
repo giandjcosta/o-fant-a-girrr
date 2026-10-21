@@ -1,0 +1,20 @@
+name: Controllo fallimenti
+# Ogni giorno alle 07:50 (Roma) cerca workflow falliti o dati fermi (anche per schedule che non partono, es. "limite di utilizzo raggiunto").
+# Se trova un problema apre una Issue nel repo (notifica GitHub) e fallisce; se e' tutto a posto chiude la Issue.
+on:
+  schedule:
+    - cron: "50 5 * * *"
+  workflow_dispatch:
+permissions:
+  contents: read
+  actions: read
+  issues: write
+jobs:
+  controllo:
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    steps:
+      - uses: actions/checkout@v4
+      - run: python3 calcoli/controllo_fallimenti.py
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
