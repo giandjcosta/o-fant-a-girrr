@@ -23,7 +23,7 @@
    sq[lato][(q.top+scrollY)<py?'tit':'pan'].push([nm.textContent.trim(),n[0]?num(n[0]):null,n[1]?num(n[1]):null,m.classList.contains('opacity-50')?0:1]);
   });
   const i8=T.indexOf('-');
-  const mods=[],inv=[];T.forEach((s,i)=>{if(s==='modificatore difesa')mods.push(num(T[i-1]));if(s==='Formazione inviata via app'||s==='Formazione inviata via web')inv.push(T[i+1])});
+  const mods=[],inv=[];T.forEach((s,i)=>{if(s==='modificatore difesa'){mods.push(num(T[i-1]),/^\d+(\.\d+)?$/.test(T[i+1]||'')?num(T[i+1]):0)}if(s==='Formazione inviata via app'||s==='Formazione inviata via web')inv.push(T[i+1])});
   return {A:{s:T[0],mi:T[1],mo:T[2],g:num(T[i8-2]),fp:num(T[i8-1]),...sq.A,md:mods[0],inv:inv[0]},B:{s:T[i8+3],mi:T[i8+4],mo:T[i8+5],g:num(T[i8+1]),fp:num(T[i8+2]),...sq.B,md:mods[1],inv:inv[1]}};
  };
  const out=[];
