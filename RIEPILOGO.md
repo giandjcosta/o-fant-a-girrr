@@ -79,8 +79,7 @@ Notizie pubbliche, senza indicare di chi e' ogni giocatore.
 | Ekhator | Juventus | Lesione di medio grado del muscolo semitendinoso | Metà novembre | Salta |
 | Yildiz | Juventus | Problema al piede | Inizio dicembre | Salta |
 | Grabara | Juventus | Lesione al crociato anteriore del ginocchio destro | Da aprile | Salta |
-| Gudmundsson A. | Lazio | Problema alla spalla destra dopo una caduta | Metà ottobre | In dubbio |
-| Marusic | Lazio | Lesione muscolare alla coscia | Seconda metà di ottobre | In dubbio |
+| Gudmundsson A. | Lazio | Problema alla spalla destra dopo una caduta | Inizio novembre | In dubbio |
 | Coulibaly L. | Lecce | Lesione muscolare al bicipite femorale della coscia | Inizio novembre | Salta |
 | Saelemaekers | Milan | Problema alla caviglia destra e operata il | Da febbraio | Salta |
 | Chukwueze | Milan | Problema all'anca e viaggia verso il forfait | Prossimo turno | Salta |
