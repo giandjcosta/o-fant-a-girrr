@@ -82,10 +82,10 @@ Notizie pubbliche, senza indicare di chi e' ogni giocatore.
 | Gudmundsson A. | Lazio | Problema alla spalla destra dopo una caduta | Metà novembre | In dubbio |
 | Coulibaly L. | Lecce | Lesione muscolare al bicipite femorale della coscia | Inizio novembre | Salta |
 | Saelemaekers | Milan | Problema alla caviglia destra e operata il | Da febbraio | Salta |
-| Chukwueze | Milan | Problema all'anca e viaggia verso il forfait | Prossimo turno | Salta |
+| Chukwueze | Milan | Problema all'anca sinistra e non sarà a | Da valutare | Salta |
 | Neres | Napoli | Lesione di basso grado al muscolo semimembranoso | Prima metà di novembre | Salta |
-| Santos A. | Napoli | Lesione distrattiva di medio grado del bicipite | Inizio dicembre | Salta |
 | Buongiorno | Napoli | Operato nella seconda metà di luglio al | Fine dicembre | Salta |
+| Santos A. | Napoli | Lesione distrattiva di medio grado del bicipite | Inizio dicembre | Salta |
 | Konè M. | Roma | Lesione di primo grado al bicipite femorale | Prima metà di novembre | Salta |
 | Dybala | Roma | Lesione al gemello del polpaccio destro | Inizio novembre | Salta |
 | Svilar | Roma | Frattura a un dito del piede e | Metà novembre | Salta |
@@ -135,7 +135,7 @@ Punteggio: piu' e' alto, piu' conviene. Unisce valore e probabilita' di giocare.
 | Robinson J. | Monza | Titolare, ballottaggio | Cagliari (C) | 72 |
 | Lontani | Parma | Riserva, ballottaggio | Torino (C) | 53 |
 | Ghedjemis | Frosinone | Titolare | Sassuolo (C) | 52 |
-| N'Dri | Lecce | Titolare, ballottaggio | Udinese (T) | 41 |
+| N'Dri | Lecce | Titolare | Udinese (T) | 41 |
 | Fatah | Lecce | Titolare, ballottaggio | Udinese (T) | 32 |
 
 ## Correzioni da controllare
