@@ -11,6 +11,7 @@ Formato di eventi.json: lista di oggetti con "tipo" e "k" (chiave unica dell'eve
   {"tipo":"conferenza","k":"C3-Apo team", "team":"Apo team", "giornata":3, "libera":"...", "promessa":"", "risposte":["...","..."]}   (conferenza pre partita, su Girrr Sport; opzionali "avversario" e "tono" 0-2: se ci sono, esce anche il commento di Ciro Trattativa)
   {"tipo":"rifiuto", "k":"S12", "da":"Oranje VC", "a":"Grodah"}                     (a ha rifiutato)
   {"tipo":"scaduta", "k":"S12", "da":"Oranje VC", "a":"Grodah"}                     (nessuna risposta in 3 giorni)
+  {"tipo":"accettata","k":"S12", "da":"Oranje VC", "a":"Grodah"}                     (a ha accettato: il Derby nasce quando si accordano sul nome)
   {"tipo":"derby",   "k":"S12", "da":"Oranje VC", "a":"Grodah", "nome":"Il Derby della Rivincita"}
   {"tipo":"promessa","k":"C7-Apo", "team":"Apo team", "giornata":3, "promessa":"Vinciamo noi", "esito":"v"|"s"}   (v mantenuta, s tradita, p pareggio: come nel database)
 Regole (decise da Gianluca): i post usano i nomi degli allenatori; i post ufficiali non parlano mai di scommesse; "Derby" sempre con la D maiuscola.
@@ -89,6 +90,8 @@ def post(e):
         return [(GS, f"RIFIUTO CLAMOROSO\n{m(e['a'])} non considera {m(e['da'])} nemmeno degno di un Derby. La rivalità, intanto, sale. #GirrrSport")]
     if t == "scaduta":
         return [(GS, f"SILENZIO\n{m(e['a'])} non ha risposto alla sfida di {m(e['da'])}: la sfida decade, ma la rivalità resta più alta di prima. #GirrrSport")]
+    if t == "accettata":
+        return [(GS, f"SFIDA ACCETTATA\n{m(e['a'])} ha detto sì a {m(e['da'])}. Manca solo il nome: appena si accordano nasce il Derby. #GirrrSport #Derby")]
     if t == "derby":
         return [(GS, f"NASCE UN DERBY\n{m(e['da'])} e {m(e['a'])} hanno trovato l'accordo: da oggi è «{e['nome']}». #GirrrSport #Derby"),
                 (LEGA, f"Novità dall'Albo d'oro: nasce «{e['nome']}», il Derby tra {m(e['da'])} e {m(e['a'])}. Entra nella storia della Lega. #Derby #AlboDoro")]

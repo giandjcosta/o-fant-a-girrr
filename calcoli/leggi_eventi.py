@@ -27,6 +27,9 @@ def rpc(nome, corpo):
         sys.exit(f"Il database non risponde su {nome} ({e}). Non scrivo eventi.")
 
 
+ULTIMA_SENZA_ACCETTATA = 5   # sfide già accettate al 22 ottobre 2026
+
+
 def eventi(stato, promesse):
     out = []
     for s in sorted(stato.get("sfide", []), key=lambda x: x["id"]):
@@ -39,8 +42,12 @@ def eventi(stato, promesse):
             out.append(dict(tipo="rifiuto", k=k, da=s["da"], a=s["a"]))
         elif s["stato"] == "scaduta":
             out.append(dict(tipo="scaduta", k=k, da=s["da"], a=s["a"]))
-        elif s["stato"] == "accettata" and s.get("nome") and s.get("nome_ok"):
-            out.append(dict(tipo="derby", k=k, da=s["da"], a=s["a"], nome=s["nome"]))
+        elif s["stato"] == "accettata":
+            # le sfide 1-5 sono nate prima di questo post: niente post d'accettazione retroattivi
+            if s["id"] > ULTIMA_SENZA_ACCETTATA:
+                out.append(dict(tipo="accettata", k=k, da=s["da"], a=s["a"]))
+            if s.get("nome") and s.get("nome_ok"):
+                out.append(dict(tipo="derby", k=k, da=s["da"], a=s["a"], nome=s["nome"]))
     for p in promesse:
         if p.get("esito") in ("v", "s") and p.get("promessa"):
             out.append(dict(tipo="promessa", k=f"C{p['giornata']}-{p['team']}", team=p["team"], giornata=p["giornata"],
