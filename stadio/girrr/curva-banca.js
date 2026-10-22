@@ -819,7 +819,7 @@ function risultatoSport(D,SQ,ms,n,pub){
  p.ap=Math.floor(26000+c.ap*900);p.ril=Math.floor(3100+c.ril*280);p.v=Math.floor(1500000+c.v*950);var rs=[];for(var q=0;q<7;q++)rs=rs.concat(reazioni(p.k+'#'+q,p.ts,ms,SQ,p.x).r);p.r=rs.filter(function(y){return y.ts<=ms}).sort(function(y,z){return y.ts-z.ts});
  return p.ts<=ms?p:null}
 function genera(D,SQ,ST,ms){
- var r=roma(ms),oggi=giorno(ms),all=[],FL=Date.UTC(2026,9,22),WB=Math.max(FL,ms-14*864e5),WC=Math.max(FL,ms-60*864e5),tg=tendenze(D).map(function(x){return x[0]});
+ var r=roma(ms),oggi=giorno(ms),all=[],FL=Date.UTC(2026,9,22),WB=Math.max(FL,ms-14*864e5),WC=FL,G0=Math.min(giorno(FL),oggi),tg=tendenze(D).map(function(x){return x[0]});
  var tag=function(k,i){return tg[(h32(k)+i)%tg.length]};
  function gp(k,x,t,ac){var p={k:k,a:ac||'girrr_sport',x:x,ts:t,r:[]},c=conta(p.k,1);p.ap=Math.floor(26000+c.ap*900);p.ril=Math.floor(3100+c.ril*280);p.v=Math.floor(1500000+c.v*950);var rs=[];for(var q=0;q<7;q++)rs=rs.concat(reazioni(p.k+'#'+q,p.ts,ms,SQ,p.x).r);p.r=rs.filter(function(y){return y.ts<=ms}).sort(function(y,z){return y.ts-z.ts});if(p.ts<=ms)all.push(p)}
  gp('gs:intro','Benvenuti su Girrr Sport, la TV della lega. Sala stampa dopo ogni giornata, moviola per gli episodi dubbi e ogni tanto un tuffo nell\'archivio. Il calcio è finto, il Girrr è vero. #GirrrSport',Date.UTC(2026,9,13,13,30));
@@ -831,16 +831,16 @@ function genera(D,SQ,ST,ms){
  gp('gs:peppe','Il campione 2024/25 non c\'è più: 17peppe17 è passato dall\'ultimo posto con l\'ACPicchia al titolo con il PornHub FC, e poi ha lasciato la lega da campione. Una carriera breve e perfetta. #GirrrSport #Albo',Date.UTC(2026,9,13,12,30));
  gp('gs:apo','Dall\'archivio: apo è l\'unico ad aver vinto due titoli, e di fila, con il Wakanda nel 2021/22 e nel 2022/23. Poi due ultimi posti consecutivi. La storia di questa lega è anche questa. #GirrrSport #Albo',Date.UTC(2026,9,13,14,10));
  gp('gs:mario','Curiosità d\'archivio: Mario ha avuto quattro nomi, Gingleton, Barny, Pep Mariola e oggi Mario. Cinque stagioni, sempre in lotta, media posizione 6,6. Il nome cambia, la squadra resta quella del cuore. #GirrrSport #Albo',Date.UTC(2026,9,13,17,45));
- /* Bot e personaggi: restano 14 giorni. Ciro, schedine, mercato e scambi: restano 60 giorni. Niente prima del 22 ottobre */
- for(var g=oggi-60;g<=oggi;g++){
+ /* Bot e personaggi: restano 14 giorni. Ciro, schedine, mercato e scambi: restano per sempre. Niente prima del 22 ottobre */
+ for(var g=G0;g<=oggi;g++){
   if(g>=oggi-14)post_giorno(D,SQ,ST,g).forEach(function(p){if(p.ts<=ms&&p.ts>=WB){var c=conta(p.k);p.ap=c.ap;p.ril=c.ril;p.v=c.v;p.r=p.r.filter(function(x){return x.ts<=ms});all.push(p)}});
   /* Ciro: venerdì 18:00 + un aggiornamento il lunedì */
   var dd=dalGiorno(g),mk=ctxDi(D,SQ,ST,'ciro'+g);
-  if(g>=oggi-60){var tp=null,td=null;try{tp=totoPost(g,dd,ms,SQ)}catch(e){}try{td=totoDopo(g,dd,ms,SQ)}catch(e){}if(tp&&tp.ts>=WC)all.push(tp);if(td&&td.ts>=WC)all.push(td)}
-  if(g>=oggi-60){var sc=null;try{sc=schedinaPost(g,dd,ms,SQ)}catch(e){}if(sc&&sc.ts>=WC)all.push(sc)}
-  if((dd.wd===0||dd.wd===1||dd.wd===6)&&g>=oggi-60){var cl=null;try{cl=ciroLungo(D,SQ,g,dd,ms,dd.wd===0?'a':dd.wd===1?'b':'c')}catch(e){}if(cl&&cl.ts<=ms&&cl.ts>=WC)all.push(cl)}
-  if((dd.wd===2||dd.wd===4||dd.wd===6)&&g>=oggi-60){var mp=null;try{mp=mercato(D,SQ,g,dd,ms)}catch(e){}if(mp&&mp.ts<=ms&&mp.ts>=WC)all.push(mp)}
-  if((dd.wd===3||dd.wd===5)&&g>=oggi-60){var sp=null;try{sp=scambiPost(D,SQ,g,dd,ms,dd.wd===3?16:14)}catch(e){}if(sp&&sp.ts<=ms&&sp.ts>=WC)all.push(sp)}
+  if(g>=G0){var tp=null,td=null;try{tp=totoPost(g,dd,ms,SQ)}catch(e){}try{td=totoDopo(g,dd,ms,SQ)}catch(e){}if(tp&&tp.ts>=WC)all.push(tp);if(td&&td.ts>=WC)all.push(td)}
+  if(g>=G0){var sc=null;try{sc=schedinaPost(g,dd,ms,SQ)}catch(e){}if(sc&&sc.ts>=WC)all.push(sc)}
+  if((dd.wd===0||dd.wd===1||dd.wd===6)&&g>=G0){var cl=null;try{cl=ciroLungo(D,SQ,g,dd,ms,dd.wd===0?'a':dd.wd===1?'b':'c')}catch(e){}if(cl&&cl.ts<=ms&&cl.ts>=WC)all.push(cl)}
+  if((dd.wd===2||dd.wd===4||dd.wd===6)&&g>=G0){var mp=null;try{mp=mercato(D,SQ,g,dd,ms)}catch(e){}if(mp&&mp.ts<=ms&&mp.ts>=WC)all.push(mp)}
+  if((dd.wd===3||dd.wd===5)&&g>=G0){var sp=null;try{sp=scambiPost(D,SQ,g,dd,ms,dd.wd===3?16:14)}catch(e){}if(sp&&sp.ts<=ms&&sp.ts>=WC)all.push(sp)}
   if(dd.wd===5||dd.wd===1||dd.wd===3||dd.wd===0){
    var cr=prng('ciro'+g),tpl=CIRO[(g*3)%CIRO.length],cc=mk(),T=ts(dd.y,dd.mo,dd.d,dd.wd===5?18:dd.wd===1?12:10,Math.floor(cr()*50));
    var p={k:'c:'+g,a:'ciro_trattativa',x:riempi(tpl.x,cc,tag('c'+g,0)),thr:tpl.t.map(function(t){return riempi(t,cc,null)}),ts:T,r:[]};
@@ -896,6 +896,12 @@ function genera(D,SQ,ST,ms){
    var ak=dalGiorno(gTk+7*((g.sa||srk)-srk)),T0=g._pub||ts(ak.y,ak.mo,ak.d,14,30);
    postPassato({k:'lega:'+g.n,a:'lega_ofantagirrr',x:'Fine giornata. Ecco i risultati della '+g.n+'ª giornata di campionato. #Giornata'+g.n,tipo:'ris',gn:g.n,ts:T0,r:[]},cuL);
    postPassato({k:'gior:'+g.n,a:'giornale_girrr',x:'È uscito il numero '+g.n+' del Giornale: pagelle, il Coro della settimana e la Bufala di mercato. #Giornata'+g.n,tipo:'gio',gn:g.n,ts:T0,r:[]},cuL)});
+  /* Radio Girrr: per ogni puntata in archivio, un secondo post di Girrr Sport un'oretta dopo il Giornale */
+  ((window.CVB&&CVB.RADIO)||[]).forEach(function(gn){
+   var g=((D.cal&&D.cal.lega)||[]).filter(function(z){return z.n===gn})[0];if(!g||gn<KEEP_L||gn>n)return;
+   var ak=dalGiorno(gTk+7*((g.sa||srk)-srk)),T1=(g._pub||ts(ak.y,ak.mo,ak.d,14,30))+60*60000,n0=all.length;
+   gp('gs:radio'+gn,'Radio Girrr · Giornata '+gn+': la puntata è online. Beppe Rovesciata e Luigi Fischietti commentano la giornata, con Giulia Cronaca dal campo. Ascoltatela in Girrr Sport. #GirrrSport #Radio',T1);
+   if(all.length>n0)all[all.length-1].tipo='radio'});
   ((D.cal&&D.cal.cup)||[]).forEach(function(g){
    if(g.n<KEEP_C||!cuL||g.n>=cuL.n||!g.m.some(function(m){return m[5]!=='-'}))return;
    var tc=gTk+7*((g.sa||srk)-srk),ac=dalGiorno(tc),cuX=cupUlt(D,g.n);
