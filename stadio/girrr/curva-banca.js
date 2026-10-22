@@ -27,7 +27,7 @@ function tendenze(D,ms){
 }
 function giocate(D){var L=(D.cal&&D.cal.lega)||[],n=0;L.forEach(function(g){if(g.m.some(function(m){return m[4]!=='-'}))n=Math.max(n,g.n)});return n}
 
-function cupUlt(D){var C=(D.cal&&D.cal.cup)||[],u=null;C.forEach(function(g){var mm=g.m.filter(function(m){return m[5]!=='-'});if(mm.length)u={n:g.n,sa:g.sa,pub:g._pub,m:mm.map(function(m){return [m[1],m[2],m[3],m[4],m[5],m[0]]})}});return u}
+function cupUlt(D,nn){var C=(D.cal&&D.cal.cup)||[],u=null;C.forEach(function(g){if(nn&&g.n!==nn)return;var mm=g.m.filter(function(m){return m[5]!=='-'});if(mm.length)u={n:g.n,sa:g.sa,pub:g._pub,m:mm.map(function(m){return [m[1],m[2],m[3],m[4],m[5],m[0]]})}});return u}
 function legaSa(D){var u=null;((D.cal&&D.cal.lega)||[]).forEach(function(g){if(g.m.some(function(m){return m[4]!=='-'}))u=g});return u&&u.sa}
 /* Personaggi */
 var PERS={
@@ -853,10 +853,10 @@ function genera(D,SQ,ST,ms){
  if(n&&D.cal&&D.cal.date){
   var dp=D.cal.date.split('-').map(Number),gd=Math.floor(Date.UTC(dp[0],dp[1]-1,dp[2])/864e5),wd=dalGiorno(gd).wd;
   var cu0=cupUlt(D),sr0=Math.max(legaSa(D)||0,(cu0&&cu0.sa)||0),gTue=gd-((wd-2+7)%7),gWed=gd-((wd-3+7)%7),a=dalGiorno(gTue+7*((legaSa(D)||sr0)-sr0)),b=dalGiorno(gWed);
-  var P1c=null,P1={k:'lega:'+n,a:'lega_ofantagirrr',x:'Fine giornata. Ecco i risultati della '+n+'ª giornata di campionato. #Giornata'+n,tipo:'ris',ts:ts(a.y,a.mo,a.d,14,30),r:[]};
-  var P2={k:'gior:'+n,a:'giornale_girrr',x:'È uscito il numero '+n+' del Giornale: pagelle, il Coro della settimana e la Bufala di mercato. #Giornata'+n,tipo:'gio',ts:ts(a.y,a.mo,a.d,14,30),r:[]};
+  var P1c=null,P1={k:'lega:'+n,a:'lega_ofantagirrr',x:'Fine giornata. Ecco i risultati della '+n+'ª giornata di campionato. #Giornata'+n,tipo:'ris',gn:n,ts:ts(a.y,a.mo,a.d,14,30),r:[]};
+  var P2={k:'gior:'+n,a:'giornale_girrr',x:'È uscito il numero '+n+' del Giornale: pagelle, il Coro della settimana e la Bufala di mercato. #Giornata'+n,tipo:'gio',gn:n,ts:ts(a.y,a.mo,a.d,14,30),r:[]};
   var cu=cupUlt(D);
-  if(cu){var sr=Math.max(legaSa(D)||0,cu.sa||0),tc=gTue+7*((cu.sa||sr)-sr),ac=dalGiorno(tc);P1c={k:'lega:c'+cu.n,a:'champions_cup',x:'Fine giornata di Champions Cup. Ecco i risultati della '+cu.n+'ª giornata dei gironi. #ChampionsCup',tipo:'rc',ts:ts(ac.y,ac.mo,ac.d,14,30),r:[]}}
+  if(cu){var sr=Math.max(legaSa(D)||0,cu.sa||0),tc=gTue+7*((cu.sa||sr)-sr),ac=dalGiorno(tc);P1c={k:'lega:c'+cu.n,a:'champions_cup',x:'Fine giornata di Champions Cup. Ecco i risultati della '+cu.n+'ª giornata dei gironi. #ChampionsCup',tipo:'rc',gn:cu.n,ts:ts(ac.y,ac.mo,ac.d,14,30),r:[]}}
   if(P1c)P1.ts=P1.ts;
   var LU=null;((D.cal&&D.cal.lega)||[]).forEach(function(g){if(g.m.some(function(m){return m[4]!=='-'}))LU=g});
   if(LU&&LU._pub){P1.ts=LU._pub;P2.ts=LU._pub}
@@ -882,6 +882,24 @@ function genera(D,SQ,ST,ms){
   }}catch(e){}
  }
 
+
+ /* Giornate passate: dalle giornate indicate in poi i post di Lega, Giornale e Champions Cup restano in Curva e non si cancellano più quando esce la giornata dopo */
+ try{if(n&&D.cal&&D.cal.date){
+  var KEEP_L=3,KEEP_C=1;
+  var dpk=D.cal.date.split('-').map(Number),gdk=Math.floor(Date.UTC(dpk[0],dpk[1]-1,dpk[2])/864e5),wdk=dalGiorno(gdk).wd,gTk=gdk-((wdk-2+7)%7),cuL=cupUlt(D),srk=Math.max(legaSa(D)||0,(cuL&&cuL.sa)||0);
+  function postPassato(p,cuX){var c=conta(p.k,1);p.ap=Math.floor(21000+c.ap*850);p.ril=Math.floor(2400+c.ril*260);p.v=Math.floor(1100000+c.v*900);
+   var rs=[];for(var q=0;q<7;q++){var z=reazioni(p.k+'#'+q,p.ts,ms,SQ,p.x);rs=rs.concat(z.r)}
+   rs=rs.concat(comUff(p,D,SQ,cuX,ms,p.gn));rs=rs.filter(function(x){return x.ts<=ms}).sort(function(x,y){return x.ts-y.ts});p.r=rs;if(p.ts<=ms)all.push(p)}
+  ((D.cal&&D.cal.lega)||[]).forEach(function(g){
+   if(g.n<KEEP_L||g.n>=n||!g.m.some(function(m){return m[4]!=='-'}))return;
+   var ak=dalGiorno(gTk+7*((g.sa||srk)-srk)),T0=g._pub||ts(ak.y,ak.mo,ak.d,14,30);
+   postPassato({k:'lega:'+g.n,a:'lega_ofantagirrr',x:'Fine giornata. Ecco i risultati della '+g.n+'ª giornata di campionato. #Giornata'+g.n,tipo:'ris',gn:g.n,ts:T0,r:[]},cuL);
+   postPassato({k:'gior:'+g.n,a:'giornale_girrr',x:'È uscito il numero '+g.n+' del Giornale: pagelle, il Coro della settimana e la Bufala di mercato. #Giornata'+g.n,tipo:'gio',gn:g.n,ts:T0,r:[]},cuL)});
+  ((D.cal&&D.cal.cup)||[]).forEach(function(g){
+   if(g.n<KEEP_C||!cuL||g.n>=cuL.n||!g.m.some(function(m){return m[5]!=='-'}))return;
+   var tc=gTk+7*((g.sa||srk)-srk),ac=dalGiorno(tc),cuX=cupUlt(D,g.n);
+   postPassato({k:'lega:c'+g.n,a:'champions_cup',x:'Fine giornata di Champions Cup. Ecco i risultati della '+g.n+'ª giornata dei gironi. #ChampionsCup',tipo:'rc',gn:g.n,ts:g._pub||ts(ac.y,ac.mo,ac.d,14,30),r:[]},cuX)})
+ }}catch(e){}
  /* Girrr Sport: commenti senza tag sotto i post ufficiali, e propri cori che taggano Lega, Coppa o Ciro rilanciando il loro post */
  var extraTV=[];
  all.slice().forEach(function(p){var rr=prng('tvt'+p.k),dm=(7+rr()*50)*60000,uf=p.a==='lega_ofantagirrr'||p.a==='champions_cup',ci=p.a==='ciro_trattativa'&&/^(mk|sw)/.test(p.k);
@@ -900,8 +918,8 @@ function genera(D,SQ,ST,ms){
 }
 
 /* Commenti sotto i post ufficiali (Lega, Coppa, Giornale): tanti, sparsi nelle ore */
-function comUff(p,D,SQ,cu,ms){
- var L=(D.cal&&D.cal.lega)||[],u=null;L.forEach(function(g){if(g.m.some(function(m){return m[4]!=='-'}))u=g});
+function comUff(p,D,SQ,cu,ms,gk){
+ var L=(D.cal&&D.cal.lega)||[],u=null;L.forEach(function(g){if(gk&&g.n!==gk)return;if(g.m.some(function(m){return m[4]!=='-'}))u=g});
  var coppa=p.k.indexOf('lega:c')===0,giorn=p.k.indexOf('gior:')===0,src=coppa?(cu&&cu.m):(u&&u.m);
  if(!src)return[];
  var r=prng('cu'+p.k),M=src.filter(function(m){return m[4]!=='-'}).map(function(m){var g=m[4].split('-').map(Number),d=g[0]-g[1];return{h:m[0],a:m[3],gh:g[0],ga:g[1],w:d>0?m[0]:d<0?m[3]:null,l:d>0?m[3]:d<0?m[0]:null,sc:m[4],tot:g[0]+g[1],dif:Math.abs(d)}});
