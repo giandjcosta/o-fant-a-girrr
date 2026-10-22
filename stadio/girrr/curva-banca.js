@@ -892,7 +892,7 @@ function genera(D,SQ,ST,ms){
 
  /* Giornate passate: dalle giornate indicate in poi i post di Lega, Giornale e Champions Cup restano in Curva e non si cancellano più quando esce la giornata dopo */
  try{if(n&&D.cal&&D.cal.date){
-  var KEEP_L=3,KEEP_C=1;
+  var KEEP_L=1,KEEP_G=3,KEEP_C=1;
   var dpk=D.cal.date.split('-').map(Number),gdk=Math.floor(Date.UTC(dpk[0],dpk[1]-1,dpk[2])/864e5),wdk=dalGiorno(gdk).wd,gTk=gdk-((wdk-2+7)%7),cuL=cupUlt(D),srk=Math.max(legaSa(D)||0,(cuL&&cuL.sa)||0);
   function postPassato(p,cuX){var c=conta(p.k,1);p.ap=Math.floor(21000+c.ap*850);p.ril=Math.floor(2400+c.ril*260);p.v=Math.floor(1100000+c.v*900);
    var rs=[];for(var q=0;q<7;q++){var z=reazioni(p.k+'#'+q,p.ts,ms,SQ,p.x);rs=rs.concat(z.r)}
@@ -902,10 +902,10 @@ function genera(D,SQ,ST,ms){
    var ak=dalGiorno(gTk+7*((g.sa||srk)-srk)),T0=g._pub||ts(ak.y,ak.mo,ak.d,14,30);
    postPassato({k:'lega:'+g.n,a:'lega_ofantagirrr',x:'Fine giornata. Ecco i risultati della '+g.n+'ª giornata di campionato. #Giornata'+g.n,tipo:'ris',gn:g.n,ts:T0,r:[]},cuL);
    postPassato({k:'gior:'+g.n,a:'giornale_girrr',x:'È uscito il numero '+g.n+' del Giornale: pagelle, il Coro della settimana e la Bufala di mercato. #Giornata'+g.n,tipo:'gio',gn:g.n,ts:T0,r:[]},cuL);
-   perG(g.n,T0)});
+   if(g.n>=KEEP_G)perG(g.n,T0)});
   /* Radio Girrr: per ogni puntata in archivio, un secondo post di Girrr Sport un'oretta dopo il Giornale */
   ((window.CVB&&CVB.RADIO)||[]).forEach(function(gn){
-   var g=((D.cal&&D.cal.lega)||[]).filter(function(z){return z.n===gn})[0];if(!g||gn<KEEP_L||gn>n)return;
+   var g=((D.cal&&D.cal.lega)||[]).filter(function(z){return z.n===gn})[0];if(!g||gn<KEEP_G||gn>n)return;
    var ak=dalGiorno(gTk+7*((g.sa||srk)-srk)),T1=(g._pub||ts(ak.y,ak.mo,ak.d,14,30))+60*60000,n0=all.length;
    gp('gs:radio'+gn,'Radio Girrr · Giornata '+gn+': la puntata è online. Beppe Rovesciata e Luigi Fischietti commentano la giornata, con Giulia Cronaca dal campo. Ascoltatela in Girrr Sport. #GirrrSport #Radio',T1);
    if(all.length>n0)all[all.length-1].tipo='radio'});

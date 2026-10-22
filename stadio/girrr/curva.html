@@ -327,11 +327,18 @@ function costruisci(){
 (S.adm||[]).forEach(function(u){if(RER.test(u.body||''))return;var k='a'+u.id,z={ap:0,ril:0,r:[]};try{z=CVB.reazioni(k,u.ts,Date.now(),SQ,u.body)}catch(e){}var tm=SQ[4],f=fattore(tm);out.push({k:k,id:k,hi:u.hi,a:u.h,x:u.body,uf:1,ts:u.ts,ap:Math.round((z.ap+8)*f),ril:Math.round((z.ril+2)*f),v:0,f:f,tm:tm,id0:u.id,r:z.r})});
 
  /* Girrr Sport rilancia alcuni cori delle squadre, con una premessa legata a risultato e classifica */
- try{(function(){var L=(D.cal&&D.cal.lega)||[],ult={},np=ST.np||0,now=Date.now(),n=0,cls=ST.cls||[];
+ try{(function(){var FLR=Date.UTC(2026,9,22),L=(D.cal&&D.cal.lega)||[],ult={},np=ST.np||0,now=Date.now(),n=0,cls=ST.cls||[];
   var hist={},nxo={};L.forEach(function(g){g.m.forEach(function(m){if(m[4]==='-')return;var a=m[4].split('-').map(Number);ult[m[0]]={g:g.n,gf:a[0],gc:a[1],o:m[3],pf:m[1],pa:m[2]};ult[m[3]]={g:g.n,gf:a[1],gc:a[0],o:m[0],pf:m[2],pa:m[1]};(hist[m[0]]=hist[m[0]]||[]).push(a[0]>a[1]?'V':a[0]<a[1]?'S':'P');(hist[m[3]]=hist[m[3]]||[]).push(a[1]>a[0]?'V':a[1]<a[0]?'S':'P')})});if(ST.next)ST.next.m.forEach(function(m){nxo[m[0]]=m[3];nxo[m[3]]=m[0]});
   function pos(t){for(var i=0;i<cls.length;i++)if(cls[i].n===t)return i+1;return 0}
-  var src=out.filter(function(q){return(q.real||q.uf)&&q.tm&&SQ.indexOf(q.tm)>=0&&q.a===hnd(q.tm)&&q.ts>=now-72*36e5&&CVB.h32('gsq'+q.k)%100<(q.real?30:12)}).sort(function(a,b){return b.ts-a.ts}).filter(function(q,i,A){return A.findIndex(function(z){return z.tm===q.tm})===i}).slice(0,2);
-  src.forEach(function(q){var t=q.tm,u=ult[t],ps=pos(t),h=CVB.h32('gsp'+q.k),pr,sc=u?u.gf+'-'+u.gc:'';
+  /* Fotografia dei dati al momento del rilancio: risultati, serie, classifica e prossimo turno com'erano allora, così un rilancio vecchio non cambia con le giornate nuove */
+  function fot(rts){var u2={},h2={},T={},np2=0,nx=null,nxo2={};L.forEach(function(g){var pl=g.m.some(function(m){return m[4]!=='-'});
+    if(pl&&(!g._pub||g._pub<=rts)){np2++;g.m.forEach(function(m){if(m[4]==='-')return;var a=m[4].split('-').map(Number);u2[m[0]]={g:g.n,gf:a[0],gc:a[1],o:m[3],pf:m[1],pa:m[2]};u2[m[3]]={g:g.n,gf:a[1],gc:a[0],o:m[0],pf:m[2],pa:m[1]};(h2[m[0]]=h2[m[0]]||[]).push(a[0]>a[1]?'V':a[0]<a[1]?'S':'P');(h2[m[3]]=h2[m[3]]||[]).push(a[1]>a[0]?'V':a[1]<a[0]?'S':'P');
+      [[m[0],m[1],a[0]>a[1]?3:a[0]===a[1]?1:0],[m[3],m[2],a[1]>a[0]?3:a[0]===a[1]?1:0]].forEach(function(x){var t=T[x[0]]||(T[x[0]]={n:x[0],pt:0,fp:0});t.pt+=x[2];t.fp+=x[1]})})}
+    else if(!nx)nx=g});
+   if(nx)nx.m.forEach(function(m){nxo2[m[0]]=m[3];nxo2[m[3]]=m[0]});SQ.forEach(function(n){if(!T[n])T[n]={n:n,pt:0,fp:0}});
+   return{ult:u2,hist:h2,np:np2,nxo:nxo2,cls:Object.keys(T).map(function(k){return T[k]}).sort(function(a,b){return b.pt-a.pt||b.fp-a.fp})}}
+  var src=out.filter(function(q){return(q.real||q.uf)&&q.tm&&SQ.indexOf(q.tm)>=0&&q.a===hnd(q.tm)&&q.ts>=FLR&&q.ts<=now&&CVB.h32('gsq'+q.k)%100<(q.real?30:12)}).sort(function(a,b){return a.ts-b.ts}).filter(function(q,i,A){var dk=Math.floor((q.ts+72e5)/864e5);return A.findIndex(function(z){return z.tm===q.tm&&Math.floor((z.ts+72e5)/864e5)===dk})===i});
+  src.forEach(function(q){var F=fot(q.ts+(25+CVB.h32('gsp'+q.k)%120)*60000),ult=F.ult,hist=F.hist,np=F.np,nxo=F.nxo,cls=F.cls,pos=function(t){for(var i=0;i<cls.length;i++)if(cls[i].n===t)return i+1;return 0};var t=q.tm,u=ult[t],ps=pos(t),h=CVB.h32('gsp'+q.k),pr,sc=u?u.gf+'-'+u.gc:'';
    var pool=[],pf=function(v){return String(v).replace('.',',')},hs=hist[t]||[],sk=hs.length?hs[hs.length-1]:'',stk=0,j2,op=nxo[t],tail=op?' Prossimo turno contro '+op+'.':'';
    for(j2=hs.length-1;j2>=0&&hs[j2]===sk;j2--)stk++;
    var fp=u?' ('+pf(u.pf)+' a '+pf(u.pa)+' ai fantapunti)':'',pl=ps?', '+ps+'º posto':'';
@@ -354,7 +361,7 @@ function costruisci(){
    giornale_girrr:['È uscito il Giornale: il Girrr lo rilancia.','Dal Giornale del Girrr: la prima pagina da non perdere.','Il Giornale parla e il Girrr rilancia.']};
   var UFM=[[/mvp|migliore in campo|miglior giocatore/i,{lega_ofantagirrr:'L\'MVP della giornata è ufficiale: la Lega lo annuncia e il Girrr rilancia.',giornale_girrr:'Il Giornale incorona l\'MVP della giornata. Il Girrr rilancia.',champions_cup:'L\'MVP della coppa è servito. Il Girrr rilancia.'}],
    [/risultat|punteggi|finit|vinc|passa|turno|giornata/i,{lega_ofantagirrr:'I risultati sono ufficiali: la Lega ha pubblicato e il Girrr rilancia.',champions_cup:'Risultati di coppa ufficiali: il Girrr rilancia.',giornale_girrr:'Risultati e commenti sul Giornale: il Girrr rilancia.'}]];
-  var srcU=out.concat(gen).filter(function(q){var adm=/^a\d/.test(q.k),altri=q.a==='giornale_girrr'||(q.a==='ciro_trattativa'&&!/^(mk|sw)/.test(q.k));return UFF[q.a]&&q.x&&(adm||altri)&&q.ts>=now-48*36e5&&q.ts<=now&&(CVB.h32('gso'+q.k)%100<22||(adm&&q.a==='ciro_trattativa'))}).sort(function(a,b){return b.ts-a.ts}).slice(0,2);
+  var srcU=out.concat(gen).filter(function(q){var adm=/^a\d/.test(q.k),altri=q.a==='giornale_girrr'||(q.a==='ciro_trattativa'&&!/^(mk|sw)/.test(q.k));return UFF[q.a]&&q.x&&(adm||altri)&&q.ts>=FLR&&q.ts<=now&&(CVB.h32('gso'+q.k)%100<22||(adm&&q.a==='ciro_trattativa'))}).sort(function(a,b){return a.ts-b.ts}).filter(function(q,i,A){var dk=Math.floor((q.ts+72e5)/864e5);return A.findIndex(function(z){return z.a===q.a&&Math.floor((z.ts+72e5)/864e5)===dk})===i});
   srcU.forEach(function(q){var h=CVB.h32('gsu'+q.k),pr=UFF[q.a][h%UFF[q.a].length];
    UFM.forEach(function(m){if(m[0].test(q.x)&&m[1][q.a])pr=m[1][q.a]});
    if(q.a==='ciro_trattativa'&&/infortun|si ferma|problema fisico/i.test(q.x)){var UFI=['Dall\'infermeria: la notizia è fresca, il Girrr rilancia e aspetta gli esami.','Brutta notizia dal campo: Ciro Trattativa la segnala, il Girrr attende conferme dagli esami.','Stop improvviso: il Girrr rilancia e segue gli aggiornamenti dall\'infermeria.'];pr=UFI[h%UFI.length]}
