@@ -1,6 +1,6 @@
 # Riepilogo giornata 7 di Serie A
 
-Lega O FANT A GIRRR. Dati aggiornati al 2026-10-22.
+Lega O FANT A GIRRR. Dati aggiornati al 2026-10-23.
 
 ## Partite della giornata
 
@@ -75,6 +75,7 @@ Notizie pubbliche, senza indicare di chi e' ogni giocatore.
 | Jones C. | Inter | Risentimento miofasciale agli adduttori della coscia destra | Fine ottobre | Salta |
 | Martinez L. | Inter | Risentimento muscolare ai flessori della coscia sinistra | Metà novembre | Salta |
 | Pavard | Inter | Risentimento agli adduttori della coscia destra | Inizio novembre | Salta |
+| Celik | Juventus | Fastidio muscolare alla gamba che andrà valutato | Prossimo turno | Salta |
 | Conceicao | Juventus | Lussazione alla spalla sinistra | Metà novembre | Salta |
 | Ekhator | Juventus | Lesione di medio grado del muscolo semitendinoso | Metà novembre | Salta |
 | Yildiz | Juventus | Problema al piede | Inizio dicembre | Salta |
@@ -83,9 +84,9 @@ Notizie pubbliche, senza indicare di chi e' ogni giocatore.
 | Coulibaly L. | Lecce | Lesione muscolare al bicipite femorale della coscia | Inizio novembre | Salta |
 | Saelemaekers | Milan | Problema alla caviglia destra e operata il | Da febbraio | Salta |
 | Chukwueze | Milan | Problema all'anca sinistra e non sarà a | Da valutare | Salta |
-| Neres | Napoli | Lesione di basso grado al muscolo semimembranoso | Prima metà di novembre | Salta |
-| Buongiorno | Napoli | Operato nella seconda metà di luglio al | Fine dicembre | Salta |
 | Santos A. | Napoli | Lesione distrattiva di medio grado del bicipite | Inizio dicembre | Salta |
+| Buongiorno | Napoli | Operato nella seconda metà di luglio al | Fine dicembre | Salta |
+| Neres | Napoli | Lesione di basso grado al muscolo semimembranoso | Prima metà di novembre | Salta |
 | Konè M. | Roma | Lesione di primo grado al bicipite femorale | Prima metà di novembre | Salta |
 | Dybala | Roma | Lesione al gemello del polpaccio destro | Inizio novembre | Salta |
 | Svilar | Roma | Frattura a un dito del piede e | Metà novembre | Salta |
