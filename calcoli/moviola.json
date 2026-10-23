@@ -1,0 +1,169 @@
+{
+ "giocate": [
+  1,
+  2,
+  3
+ ],
+ "giornate": {
+  "1": {
+   "sa": 5,
+   "scritta": "2026-10-23",
+   "episodi": [],
+   "scartati": [
+    {
+     "tipo": "sbagliato",
+     "giocatore": "Yeboah J.",
+     "id": "6904",
+     "motivo": "squadra non ricavabile dalla formazione"
+    },
+    {
+     "tipo": "parato",
+     "giocatore": "Mandas",
+     "id": "6482",
+     "motivo": "squadra non ricavabile dalla formazione"
+    }
+   ],
+   "automatici": []
+  },
+  "2": {
+   "sa": 6,
+   "scritta": "2026-10-23",
+   "episodi": [
+    {
+     "tipo": "autogol",
+     "titolo": "Autogol",
+     "verdetto": "Ha deciso la partita",
+     "testo": "Un tocco sfortunato e la partita prende un'altra strada: l'autogol di Vasquez decide AFA SELECCION–Real Madrink 2‑2. Senza quella deviazione Real Madrink avrebbe vinto.",
+     "giocatore": "Vasquez",
+     "squadra": "Real Madrink",
+     "allenatori": [
+      "AndrewTT"
+     ],
+     "squadra_reale": "Genoa",
+     "avversario_reale": "Fiorentina",
+     "in_casa": true,
+     "data_partita": "sab 10/10 15:00"
+    }
+   ],
+   "scartati": [],
+   "automatici": [
+    {
+     "tipo": "autogol",
+     "titolo": "Autogol",
+     "verdetto": "Ha deciso la partita",
+     "testo": "Un tocco sfortunato e la partita prende un'altra strada: l'autogol di Vasquez decide AFA SELECCION–Real Madrink 2‑2. Senza quella deviazione Real Madrink avrebbe vinto.",
+     "giocatore": "Vasquez",
+     "squadra": "Real Madrink",
+     "allenatori": [
+      "AndrewTT"
+     ],
+     "squadra_reale": "Genoa",
+     "avversario_reale": "Fiorentina",
+     "in_casa": true,
+     "data_partita": "sab 10/10 15:00"
+    }
+   ]
+  },
+  "3": {
+   "sa": 7,
+   "scritta": "2026-10-23",
+   "episodi": [
+    {
+     "tipo": "sbagliato",
+     "titolo": "Rigore sbagliato",
+     "verdetto": "Regolare",
+     "testo": "De Bruyne va sul dischetto e non trova la porta. Il rigore era netto, l'errore pure: sulla panchina di apo nessuno ci crede.",
+     "giocatore": "De Bruyne",
+     "squadra": "Apo team",
+     "allenatori": [
+      "apo"
+     ],
+     "squadra_reale": "Napoli",
+     "avversario_reale": "Venezia",
+     "in_casa": false,
+     "data_partita": "sab 17/10 15:00"
+    },
+    {
+     "tipo": "sbagliato",
+     "titolo": "Rigore sbagliato",
+     "verdetto": "Regolare",
+     "testo": "Dal replay il contatto c'è: rigore giusto. Poi però Ramos G. lo calcia male e Apo team resta a bocca asciutta.",
+     "giocatore": "Ramos G.",
+     "squadra": "Apo team",
+     "allenatori": [
+      "apo"
+     ],
+     "squadra_reale": "Milan",
+     "avversario_reale": "Atalanta",
+     "in_casa": true,
+     "data_partita": "dom 18/10 18:00"
+    },
+    {
+     "tipo": "parato",
+     "titolo": "Rigore parato",
+     "verdetto": "Regolare",
+     "testo": "Dal dischetto parte il tiro, Carnesecchi lo respinge. Controllato il posizionamento: regolare. Una parata che vale come un gol.",
+     "giocatore": "Carnesecchi",
+     "squadra": "The Blue brothers",
+     "allenatori": [
+      "Leanzino",
+      "Mario"
+     ],
+     "squadra_reale": "Atalanta",
+     "avversario_reale": "Milan",
+     "in_casa": false,
+     "data_partita": "dom 18/10 18:00"
+    }
+   ],
+   "scartati": [],
+   "automatici": [
+    {
+     "tipo": "sbagliato",
+     "titolo": "Rigore sbagliato",
+     "verdetto": "Regolare",
+     "testo": "De Bruyne va sul dischetto e non trova la porta. Il rigore era netto, l'errore pure: sulla panchina di apo nessuno ci crede.",
+     "giocatore": "De Bruyne",
+     "squadra": "Apo team",
+     "allenatori": [
+      "apo"
+     ],
+     "squadra_reale": "Napoli",
+     "avversario_reale": "Venezia",
+     "in_casa": false,
+     "data_partita": "sab 17/10 15:00"
+    },
+    {
+     "tipo": "sbagliato",
+     "titolo": "Rigore sbagliato",
+     "verdetto": "Regolare",
+     "testo": "Dal replay il contatto c'è: rigore giusto. Poi però Ramos G. lo calcia male e Apo team resta a bocca asciutta.",
+     "giocatore": "Ramos G.",
+     "squadra": "Apo team",
+     "allenatori": [
+      "apo"
+     ],
+     "squadra_reale": "Milan",
+     "avversario_reale": "Atalanta",
+     "in_casa": true,
+     "data_partita": "dom 18/10 18:00"
+    },
+    {
+     "tipo": "parato",
+     "titolo": "Rigore parato",
+     "verdetto": "Regolare",
+     "testo": "Dal dischetto parte il tiro, Carnesecchi lo respinge. Controllato il posizionamento: regolare. Una parata che vale come un gol.",
+     "giocatore": "Carnesecchi",
+     "squadra": "The Blue brothers",
+     "allenatori": [
+      "Leanzino",
+      "Mario"
+     ],
+     "squadra_reale": "Atalanta",
+     "avversario_reale": "Milan",
+     "in_casa": false,
+     "data_partita": "dom 18/10 18:00"
+    }
+   ]
+  }
+ }
+}

@@ -88,7 +88,10 @@ def invia(p, ids=None):
         testo = f"[re:a{padre}] {testo}"
     if len(testo) > 280:
         sys.exit("Post troppo lungo (oltre 280 caratteri), mi fermo: " + breve(p))
-    corpo = json.dumps(dict(p_team=team, p_code=code, p_h=p["h"], p_body=testo)).encode()
+    arg = dict(p_team=team, p_code=code, p_h=p["h"], p_body=testo)
+    if p.get("quando"):   # orario di uscita (la Moviola dopo Giornale e Radio): nel passato compare subito al suo posto, nel futuro aspetta
+        arg["p_quando"] = p["quando"]
+    corpo = json.dumps(arg).encode()
     rich = urllib.request.Request(f"{url}/rest/v1/rpc/curva_adm_scrivi", corpo,
                                   {"apikey": key, "Authorization": "Bearer " + key, "Content-Type": "application/json"})
     try:
