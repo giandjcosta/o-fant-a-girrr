@@ -70,17 +70,19 @@ Notizie pubbliche, senza indicare di chi e' ogni giocatore.
 | Rodriguez Je. | Como | Infortunio | Prossimo turno | Salta |
 | Diao | Como | Lesione muscolare al flessore della gamba | Metà novembre | Salta |
 | Chalobah T. | Como | Infortunio | Inizio novembre | Salta |
+| Kean | Como | Fastidio alla tibia e | Da valutare | Salta |
 | Atta | Fiorentina | Sovraccarico funzionale dell'addome | Prossimo turno | Salta |
 | Colombo | Genoa | Problema alla caviglia | Fine ottobre | Salta |
 | Pavard | Inter | Risentimento agli adduttori della coscia destra | Fine ottobre | Salta |
 | Jones C. | Inter | Risentimento miofasciale agli adduttori della coscia destra | Fine ottobre | Salta |
 | Martinez L. | Inter | Risentimento muscolare ai flessori della coscia sinistra | Metà novembre | Salta |
-| Celik | Juventus | Fastidio muscolare alla gamba che andrà valutato | Prossimo turno | Salta |
 | Conceicao | Juventus | Lussazione alla spalla sinistra | Metà novembre | Salta |
 | Ekhator | Juventus | Lesione di medio grado del muscolo semitendinoso | Metà novembre | Salta |
 | Yildiz | Juventus | Problema al piede | Inizio dicembre | Salta |
 | Grabara | Juventus | Lesione al crociato anteriore del ginocchio destro | Da aprile | Salta |
-| Marusic | Lazio | Lesione muscolare alla coscia | Fine ottobre | In dubbio |
+| Gonzalez N. | Juventus | Lesione di basso grado del soleo destro | Metà novembre | Salta |
+| Celik | Juventus | Lesione di basso grado del bicipite femorale | Metà novembre | Salta |
+| Marusic | Lazio | Lesione muscolare alla coscia | Fine ottobre | Salta |
 | Gudmundsson A. | Lazio | Problema alla spalla destra dopo una caduta | Metà novembre | In dubbio |
 | Coulibaly L. | Lecce | Lesione muscolare al bicipite femorale della coscia | Inizio novembre | Salta |
 | Saelemaekers | Milan | Problema alla caviglia destra e operata il | Da febbraio | Salta |
@@ -127,7 +129,7 @@ Punteggio: piu' e' alto, piu' conviene. Unisce valore e probabilita' di giocare.
 | Romano | Cagliari | Titolare | Monza (T) | 85 |
 | Schmid | Frosinone | Titolare | Sassuolo (C) | 83 |
 | Matic | Sassuolo | Titolare | Frosinone (T) | 81 |
-| Pobega | Bologna | Titolare, ballottaggio | Inter (C) | 78 |
+| Pobega | Bologna | Titolare | Inter (C) | 78 |
 | Winks | Cagliari | Titolare | Monza (T) | 75 |
 
 ### Attaccanti
