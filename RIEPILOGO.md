@@ -80,6 +80,7 @@ Notizie pubbliche, senza indicare di chi e' ogni giocatore.
 | Ekhator | Juventus | Lesione di medio grado del muscolo semitendinoso | Metà novembre | Salta |
 | Yildiz | Juventus | Problema al piede | Inizio dicembre | Salta |
 | Grabara | Juventus | Lesione al crociato anteriore del ginocchio destro | Da aprile | Salta |
+| Marusic | Lazio | Lesione muscolare alla coscia | Fine ottobre | In dubbio |
 | Gudmundsson A. | Lazio | Problema alla spalla destra dopo una caduta | Metà novembre | In dubbio |
 | Coulibaly L. | Lecce | Lesione muscolare al bicipite femorale della coscia | Inizio novembre | Salta |
 | Saelemaekers | Milan | Problema alla caviglia destra e operata il | Da febbraio | Salta |
@@ -117,7 +118,7 @@ Punteggio: piu' e' alto, piu' conviene. Unisce valore e probabilita' di giocare.
 | Provstgaard | Lazio | Titolare | Juventus (T) | 80 |
 | Kouadio | Monza | Titolare | Cagliari (C) | 79 |
 | Veiga D. | Lecce | Titolare | Udinese (T) | 78 |
-| Abankwah | Udinese | Riserva, ballottaggio | Lecce (C) | 75 |
+| Abankwah | Udinese | Titolare, ballottaggio | Lecce (C) | 75 |
 
 ### Centrocampisti
 
@@ -126,7 +127,7 @@ Punteggio: piu' e' alto, piu' conviene. Unisce valore e probabilita' di giocare.
 | Romano | Cagliari | Titolare | Monza (T) | 85 |
 | Schmid | Frosinone | Titolare | Sassuolo (C) | 83 |
 | Matic | Sassuolo | Titolare | Frosinone (T) | 81 |
-| Pobega | Bologna | Titolare | Inter (C) | 78 |
+| Pobega | Bologna | Titolare, ballottaggio | Inter (C) | 78 |
 | Winks | Cagliari | Titolare | Monza (T) | 75 |
 
 ### Attaccanti
@@ -134,7 +135,7 @@ Punteggio: piu' e' alto, piu' conviene. Unisce valore e probabilita' di giocare.
 | Giocatore | Squadra | Stato | Avversario | Punteggio |
 |---|---|---|---|---|
 | Robinson J. | Monza | Titolare, ballottaggio | Cagliari (C) | 72 |
-| Lontani | Parma | Riserva, ballottaggio | Torino (C) | 53 |
+| Lontani | Parma | Titolare, ballottaggio | Torino (C) | 53 |
 | Ghedjemis | Frosinone | Titolare | Sassuolo (C) | 52 |
 | N'Dri | Lecce | Titolare | Udinese (T) | 41 |
 | Fatah | Lecce | Titolare, ballottaggio | Udinese (T) | 32 |
