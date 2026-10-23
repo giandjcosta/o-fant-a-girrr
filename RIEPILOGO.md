@@ -1,6 +1,6 @@
 # Riepilogo giornata 7 di Serie A
 
-Lega O FANT A GIRRR. Dati aggiornati al 2026-10-23.
+Lega O FANT A GIRRR. Dati aggiornati al 2026-10-24.
 
 ## Partite della giornata
 
@@ -106,11 +106,11 @@ Punteggio: piu' e' alto, piu' conviene. Unisce valore e probabilita' di giocare.
 
 | Giocatore | Squadra | Stato | Avversario | Punteggio |
 |---|---|---|---|---|
-| Perri | Torino | Titolare | Parma (T) | 49 |
-| Tornqvist | Monza | Titolare | Cagliari (C) | 28 |
+| Perri | Torino | Titolare | Parma (T) | 56 |
+| Tornqvist | Monza | Titolare | Cagliari (C) | 35 |
 | Thiam | Monza | Panchina | Cagliari (C) | 28 |
-| Mascardi | Torino | Panchina | Parma (T) | 21 |
 | Daffara | Parma | Panchina | Torino (C) | 15 |
+| Happonen | Bologna | Panchina | Inter (C) | 15 |
 
 ### Difensori
 
@@ -118,9 +118,9 @@ Punteggio: piu' e' alto, piu' conviene. Unisce valore e probabilita' di giocare.
 |---|---|---|---|---|
 | Hainaut | Venezia | Titolare | Napoli (C) | 90 |
 | Provstgaard | Lazio | Titolare | Juventus (T) | 80 |
-| Kouadio | Monza | Titolare | Cagliari (C) | 79 |
 | Veiga D. | Lecce | Titolare | Udinese (T) | 78 |
 | Abankwah | Udinese | Titolare, ballottaggio | Lecce (C) | 75 |
+| Zè Pedro | Cagliari | Titolare | Monza (T) | 75 |
 
 ### Centrocampisti
 
@@ -136,7 +136,7 @@ Punteggio: piu' e' alto, piu' conviene. Unisce valore e probabilita' di giocare.
 
 | Giocatore | Squadra | Stato | Avversario | Punteggio |
 |---|---|---|---|---|
-| Robinson J. | Monza | Titolare | Cagliari (C) | 72 |
+| Robinson J. | Monza | Titolare | Cagliari (C) | 70 |
 | Lontani | Parma | Titolare, ballottaggio | Torino (C) | 53 |
 | Ghedjemis | Frosinone | Titolare | Sassuolo (C) | 52 |
 | N'Dri | Lecce | Titolare | Udinese (T) | 41 |
