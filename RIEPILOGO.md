@@ -72,7 +72,6 @@ Notizie pubbliche, senza indicare di chi e' ogni giocatore.
 | Chalobah T. | Como | Infortunio | Inizio novembre | Salta |
 | Kean | Como | Fastidio alla tibia e | Da valutare | Salta |
 | Atta | Fiorentina | Sovraccarico funzionale dell'addome | Prossimo turno | Salta |
-| Colombo | Genoa | Problema alla caviglia | Fine ottobre | Salta |
 | Jones C. | Inter | Risentimento miofasciale agli adduttori della coscia destra | Fine ottobre | Salta |
 | Martinez L. | Inter | Risentimento muscolare ai flessori della coscia sinistra | Metà novembre | Salta |
 | Pavard | Inter | Risentimento agli adduttori della coscia destra | Fine ottobre | Salta |
@@ -83,6 +82,7 @@ Notizie pubbliche, senza indicare di chi e' ogni giocatore.
 | Grabara | Juventus | Lesione al crociato anteriore del ginocchio destro | Da aprile | Salta |
 | Gonzalez N. | Juventus | Lesione di basso grado del soleo destro | Metà novembre | Salta |
 | Gudmundsson A. | Lazio | Problema alla spalla destra dopo una caduta | Metà novembre | In dubbio |
+| Pinamonti | Lazio | Noie fisiche che restano da valutare in | Da valutare | In dubbio |
 | Marusic | Lazio | Lesione muscolare alla coscia | Fine ottobre | Salta |
 | Coulibaly L. | Lecce | Lesione muscolare al bicipite femorale della coscia | Inizio novembre | Salta |
 | Gila | Milan | Sovraccarico alla caviglia sinistra | Prossimo turno | In dubbio |
@@ -121,7 +121,7 @@ Punteggio: piu' e' alto, piu' conviene. Unisce valore e probabilita' di giocare.
 | Giocatore | Squadra | Stato | Avversario | Punteggio |
 |---|---|---|---|---|
 | Hainaut | Venezia | Titolare | Napoli (C) | 90 |
-| Provstgaard | Lazio | Titolare | Juventus (T) | 80 |
+| Provstgaard | Lazio | Titolare | Juventus (T) | 79 |
 | Veiga D. | Lecce | Titolare | Udinese (T) | 78 |
 | Abankwah | Udinese | Riserva, ballottaggio | Lecce (C) | 75 |
 | Zè Pedro | Cagliari | Titolare | Monza (T) | 75 |
@@ -141,8 +141,8 @@ Punteggio: piu' e' alto, piu' conviene. Unisce valore e probabilita' di giocare.
 | Giocatore | Squadra | Stato | Avversario | Punteggio |
 |---|---|---|---|---|
 | Robinson J. | Monza | Titolare | Cagliari (C) | 70 |
-| Lontani | Parma | Riserva, ballottaggio | Torino (C) | 53 |
 | Ghedjemis | Frosinone | Titolare | Sassuolo (C) | 52 |
+| Lontani | Parma | Panchina | Torino (C) | 51 |
 | N'Dri | Lecce | Titolare | Udinese (T) | 41 |
 | Fatah | Lecce | Titolare, ballottaggio | Udinese (T) | 32 |
 
