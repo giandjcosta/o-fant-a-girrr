@@ -119,6 +119,7 @@ body::before{content:'';position:fixed;inset:-120px;z-index:-1;pointer-events:no
 <script src="grafica.js"></script>
 <style>@media(min-width:1500px){.wrap{max-width:1380px}.wrap .cards{grid-template-columns:repeat(3,1fr)!important}}</style>
 <style>.cards{grid-template-columns:repeat(3,1fr)!important}@media(max-width:820px){.cards{grid-template-columns:1fr 1fr!important}.c h2 .nt-nv{display:block;width:max-content;margin:6px 0 0}}@media(max-width:480px){.cards{grid-template-columns:1fr!important}.c h2 .nt-nv{display:inline-block;margin-left:8px}}</style>
+<style>.st0{grid-column:1/-1;display:flex;align-items:center;gap:12px;flex-wrap:wrap}.st0 span{margin:0!important}.st0 .gir{width:14px;height:14px;flex:none;border-radius:50%;border:2px solid var(--sub);border-top-color:var(--hi);animation:stgir .9s linear infinite}@keyframes stgir{to{transform:rotate(360deg)}}@media(prefers-reduced-motion:reduce){.st0 .gir{animation:none}}.st0 button{margin-left:auto;font:800 12px Inter,system-ui,sans-serif;letter-spacing:.08em;padding:8px 14px;border-radius:99px;border:0;background:var(--hi);color:#1d2a52;cursor:pointer}.agg{margin:-18px 0 26px;font-size:12px;font-weight:600;color:var(--sub);text-align:right}.agg:empty{display:none}</style>
 </head>
 <body>
 <div class="wrap">
@@ -132,7 +133,8 @@ body::before{content:'';position:fixed;inset:-120px;z-index:-1;pointer-events:no
   else if(/iPhone|iPad|iPod/i.test(u)||(/Macintosh/.test(u)&&navigator.maxTouchPoints>1)){a.href='https://apps.apple.com/it/app/id977629806';a.removeAttribute('target')}
   }catch(e){}})()</script>
   <section class="big" id="big"><div class="tx"><div class="bk" id="bk"></div><h2 id="bh"></h2><p id="bp"></p><div id="bn"></div><div class="bt"><a href="giornale.html">Leggi il giornale ›</a><a class="s" href="tabellone.html">Tabellone</a><a class="s" href="totogirrr.html">Totogirrr</a></div></div><a class="cv" href="giornale.html"><img id="bc" alt="Copertina"></a></section>
-  <section class="strip" id="strip"></section>
+  <section class="strip" id="strip" aria-live="polite"><div class="st st0"><i class="gir" aria-hidden="true"></i><span>Aggiorno i dati…</span></div></section>
+  <p class="agg" id="agg"></p>
   <section class="cards">
     <a class="c" href="../index.html"><div class="ic"><img src="../assets/logo-lega.png" alt=""></div><h2>Spogliatoio</h2><p>La tua rosa, la giornata, gli scambi e il Mercato Scambi, svincolati e infortunati.</p><div class="go">ENTRA ›</div></a>
     <a class="c" href="app.html#sport"><div class="ic"><img src="girrr-sport.png" alt="Girrr Sport" style="height:54px;width:auto;border-radius:8px"></div><h2>Girrr Sport<span class="nt-nv">NOVITÀ</span></h2><p>La TV, il giornale e la radio della lega: tutto quello che si legge, si ascolta e si guarda.</p><div class="go">ENTRA ›</div></a>
@@ -166,6 +168,7 @@ function loginDaLink(d){var k=(location.hash||'').replace('#','').trim().toUpper
 fetch('../data.json',{cache:'no-store'}).then(function(r){return r.json()}).then(function(d){d=window.CVPUB?CVPUB(d):d;
   loginDaLink(d);
   try{var u=CVB.ultimo(d,Date.now()),vs=+(localStorage.getItem('cv-ultimo')||0);if(u>vs)document.getElementById('cvd').hidden=false;document.getElementById('cvp').innerHTML=CVB.anteprima(d,Date.now(),2).map(function(x){return '<div><small>'+x.n.replace(/[<>&]/g,'')+'</small><p>'+x.x.replace(/[<>&]/g,'')+'</p></div>'}).join('')}catch(e){}
+  try{var _u=new Date(d.updated+'T12:00:00'),_o=new Date();document.getElementById('agg').textContent=isNaN(_u)?'':(_u.toDateString()===_o.toDateString()?'Dati aggiornati oggi':'Dati aggiornati a '+_u.toLocaleDateString('it-IT',{weekday:'long',day:'numeric',month:'long'}))}catch(e){}
   var L=d.cal.lega,pl=L.filter(function(g){return g.m.some(function(m){return m[4]!=='-'})});
   var h='';
   if(pl.length){
@@ -178,7 +181,7 @@ fetch('../data.json',{cache:'no-store'}).then(function(r){return r.json()}).then
     var cn=(d.cal.cup||[]).filter(function(g){return g.m.every(function(m){return m[5]==='-'})})[0];
     if(cn)h+='<a class="st" href="tabellone.html#coppa-'+cn.n+'"><small>CHAMPIONS CUP · TURNO '+cn.n+'</small><b>Serie A, giornata '+cn.sa+'</b><span>'+cn.m.map(function(m){return esc(cap(m[1]))+' – '+esc(cap(m[4]))}).slice(0,2).join('<br>')+'<br>…</span><span class="vai">VEDI I GIRONI ›</span></a>';
   }
-  document.getElementById('strip').innerHTML=h;
+  document.getElementById('strip').innerHTML=h||'<div class="st st0"><span>Il campionato non è ancora cominciato: qui arrivano classifica e risultati.</span></div>';
   var nx2=L.filter(function(g){return g.m.every(function(m){return m[4]==='-'})})[0];
   if(nx2&&d.fx&&d.fx[nx2.sa]){
     var best=null,worst=null;d.fx[nx2.sa].forEach(function(f){var q=(f[2]||'').split(' ');if(q.length<3)return;var dm=q[1].split('/').map(Number),hm=q[2].split(':').map(Number);
@@ -187,7 +190,7 @@ fetch('../data.json',{cache:'no-store'}).then(function(r){return r.json()}).then
       var t=new Date(iso+'Z').getTime()-off*3600e3;if(best===null||t<best)best=t;if(worst===null||t>worst)worst=t});
     if(best)window.NEXT={t:best,e:worst+2*3600e3,n:nx2.n};
   }
-}).catch(function(){});
+}).catch(function(){var s=document.getElementById('strip');if(s&&s.querySelector('.gir'))s.innerHTML='<div class="st st0"><span>I dati della lega non si sono caricati. Controlla la connessione.</span><button type="button" onclick="location.reload()">RIPROVA</button></div>'});
 function cdTxt(ms){var s=Math.floor(ms/1000),d=Math.floor(s/86400),h=Math.floor(s%86400/3600),m=Math.floor(s%3600/60);return d>0?d+'g '+h+'h':h>0?h+'h '+m+'m':m+'m '+String(s%60).padStart(2,'0')+'s'}
 function tickNx(){var e=document.getElementById('bn');if(!e||!window.NEXT)return;var N=window.NEXT,now=Date.now(),ms=N.t-now;
   e.innerHTML=ms>0?'<span class="nx">Giornata '+N.n+': si gioca fra <b>'+cdTxt(ms)+'</b></span>':now<N.e?'<span class="nx"><i class="live"></i>Giornata '+N.n+' <b>in corso</b></span>':'<span class="nx">Giornata '+N.n+' <b>conclusa</b> · Risultati in arrivo</span>'}
