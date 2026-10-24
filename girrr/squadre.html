@@ -182,6 +182,9 @@ function render(){
   var pl=T.pl.map(function(x){var id=String(x.id),p=D.P[id],v=voti(id),s=v.reduce(function(a,b){return a+b.f},0);return {id:id,p:p,c:x.c,n:v.length,m:v.length?s/v.length:null,e:stima(id),last:v.length?v[v.length-1].f:null}}).filter(function(x){return x.p});
   var top=pl.filter(function(x){return x.n>0}).sort(function(a,b){return b.m-a.m}).slice(0,5);
   var ht='<div class="card top5"><h3>I migliori della rosa</h3>'+(top.length?top.map(function(x){return '<div class="g"><span>'+esc(nome(x.p.n))+' <small>'+esc(x.p.t)+' · '+x.n+(x.n>1?' voti':' voto')+'</small></span><b>'+pt(x.m)+'</b></div>'}).join(''):'<div class="vuoto">Appena inizia il campionato qui compaiono i migliori.</div>')+'</div>';
+  /* allenatore: stesso elenco di CUR nell'Albo d'oro (albo.html) */
+  var AL={'Oranje VC':['DJ Cst Brazil'],'AFA SELECCION':['Maria'],'Apo team':['apo'],'Atletico ma non troppo':['Riccardo'],'Grodah':['RikyArma'],'Mariana Coneja':['Mark Lenders'],'Real Madrink':['AndrewTT'],'stif dc':['stifson'],'The Blue brothers':['Leanzino','Mario'],'WOA':['ser']}[sel]||[];
+  var hal='<div class="card"><h3>'+(AL.length>1?'Allenatori':'Allenatore')+'</h3>'+(AL.length?'<div style="font-weight:900;font-size:22px;letter-spacing:-.01em;line-height:1.2">'+AL.map(function(n){return esc(n)}).join(' e ')+'</div>':'<div class="vuoto">Allenatore non ancora indicato.</div>')+'</div>';
   /* rosa per ruolo */
   var ruoli=[['P','Portieri'],['D','Difensori'],['C','Centrocampisti'],['A','Attaccanti']];
   var hro='<div class="card"><h3>La rosa</h3>'+ruoli.map(function(r){
@@ -191,7 +194,7 @@ function render(){
     +'<div class="vuoto" style="margin-top:10px;font-size:12px">La media è quella dei fantavoti di questa stagione.</div></div>';
   var sc=document.getElementById('sch');
   sc.classList.add('out');
-  setTimeout(function(){sc.innerHTML=h+'<div class="grid"><div>'+hr+hc+'</div><div>'+hf+ht+'</div></div>'+hro;sc.classList.remove('out')},200);
+  setTimeout(function(){sc.innerHTML=h+'<div class="grid"><div>'+hr+hc+'</div><div>'+hf+ht+hal+'</div></div>'+hro;sc.classList.remove('out')},200);
   var ch=document.getElementById('chips');[].forEach.call(ch.children,function(b){b.classList.toggle('sel',b.dataset.t===sel)});
 }
 function chips(){
