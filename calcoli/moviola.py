@@ -7,6 +7,9 @@ Uso:  python3 calcoli/moviola.py [data.json] [formazioni.json] [moviola.json] [-
 
 Regole:
   - Episodi: rosso, rigore sbagliato, autogol, rigore parato, partita vinta per meno di 1 punto (i pareggi no).
+    In più, solo quando hanno deciso la partita: gol (anche su rigore), assist e gol o assist di chi è entrato a partita
+    in corso nella partita vera (titolo "Decisivo dalla panchina"). Una card sola per giocatore: gol e assist dello stesso
+    giocatore si tolgono insieme. Chi segna e non cambia il risultato non è un episodio.
   - La squadra del giocatore viene solo dalla formazione di quella giornata (titolari e panchina). Se non si ricava,
     l'episodio non esce, finisce tra gli "scartati" e lo script lo scrive nell'output.
   - Ha deciso la partita: si toglie l'effetto dell'episodio dal punteggio della squadra, si ricalcolano i gol e si guarda
@@ -15,15 +18,16 @@ Regole:
     e l'episodio resta Regolare (o Da rivedere se la partita è sul filo).
   - Verdetto: rosso → Rosso confermato; ha cambiato l'esito → Ha deciso la partita; partita decisa per meno di 1 punto
     → Da rivedere; altrimenti Regolare.
-  - Ordine (al massimo 3): prima quelli che hanno deciso, poi per peso sul risultato (gol spostati, poi punti dell'effetto),
-    poi rosso, rigore sbagliato, autogol, rigore parato, partita sul filo.
+  - Ordine (al massimo 4, di cui al massimo 2 tra gol, assist e panchina, così restano posti per rigori e autogol): prima
+    quelli che hanno deciso, poi per peso sul risultato (gol spostati, poi punti dell'effetto), poi rosso, panchina, gol,
+    assist, rigore sbagliato, autogol, rigore parato, partita sul filo.
   - Testo scelto tra le varianti in modo stabile (stessa giornata, stesso tipo e stesso giocatore danno lo stesso testo).
   - Solo le giornate con tutti i risultati entrano. Una giornata già scritta non cambia più, anche se i voti vengono
     corretti dopo: --rigenera riscrive tutto, --rigenera 2,3 solo quelle. Il file si riscrive solo se cambia qualcosa.
   - Voci a mano (calcoli/moviola-manuale.json, vedi calcoli/LEGGIMI.md): se corrispondono a un episodio automatico
     (stessa giornata, giocatore e tipo) aggiungono solo i campi che mancano, per esempio il video; altrimenti sono episodi
     nuovi (rosso → Rosso confermato, testo dai modelli se non c'è). "nascondi" toglie un automatico sbagliato. Entrano sempre,
-    prima del taglio a 3, e si riapplicano a ogni giro: valgono anche sulle giornate già scritte e dopo --rigenera.
+    prima del taglio a 4, e si riapplicano a ogni giro: valgono anche sulle giornate già scritte e dopo --rigenera.
     Per questo ogni giornata tiene anche "automatici" (tutti gli episodi trovati, senza taglio) e "episodi" è quello da mostrare.
   - Video: solo link https; il secondo di partenza vale per YouTube.
   - Squadra e avversario reali (Serie A) si salvano quando data.json li ha (fx e sa coprono solo le ultime giornate e le
@@ -51,11 +55,15 @@ FORM = Path(ARG[1]) if len(ARG) > 1 else QUI.parent / "formazioni.json"
 USCITA = Path(ARG[2]) if len(ARG) > 2 else QUI / "moviola.json"
 MANUALE = QUI / "moviola-manuale.json"
 PAGINA = QUI.parent / "moviola-video.html"
-MAX = 3
+MAX = 4
+MAX_GOL = 2   # al massimo 2 episodi automatici tra gol, assist e panchina
+GOLLIKE = {"gol", "assist", "panchina"}
 
 MGR = json.loads((QUI / "nomi.json").read_text(encoding="utf-8"))
-PRIO = {"rosso": 0, "sbagliato": 1, "autogol": 2, "parato": 3, "altro": 4, "stretta": 5}
-TIPI = {"rosso": "rosso", "rigore sbagliato": "sbagliato", "autogol": "autogol", "rigore parato": "parato", "altro": "altro"}   # come si scrivono a mano
+PRIO = {"rosso": 0, "panchina": 1, "gol": 2, "assist": 3, "sbagliato": 4, "autogol": 5, "parato": 6, "altro": 7, "stretta": 8}
+TIPI = {"rosso": "rosso", "rigore sbagliato": "sbagliato", "autogol": "autogol", "rigore parato": "parato", "altro": "altro",
+        "gol": "gol", "assist": "assist", "dalla panchina": "panchina"}
+POSITIVE = ("gol", "rigore segnato", "assist")   # voci che contano solo se decidono la partita   # come si scrivono a mano
 NOME_TIPO = {v: k for k, v in TIPI.items()}
 
 MVT = {
@@ -79,6 +87,15 @@ MVT = {
  "altro": {"t": "Episodio da rivedere", "x": [
   "Episodio da rivedere per {G}: sulla panchina di {A} se ne parla ancora. Al replay qualche dubbio resta.",
   "Al centro della discussione c'è {G}. Immagini al rallentatore e opinioni diverse: {S} aspetta un chiarimento."]},
+ "gol": {"t": "Gol decisivo", "x": [
+  "{GL} di {G} per {S}. Rivista l'azione, nessun fallo e nessun fuorigioco: tutto regolare, e sulla panchina di {A} si esulta.",
+  "Al replay il pallone di {G} è tutto dentro. Niente da segnalare: {gl} è regolare."]},
+ "assist": {"t": "Assist decisivo", "x": [
+  "Il passaggio giusto è di {G}: rivista l'azione, la posizione è regolare e il gol è valido.",
+  "Assist di {G} e gol buono: al replay nessun fuorigioco a inizio azione."]},
+ "panchina": {"t": "Decisivo dalla panchina", "x": [
+  "{G} entra a partita in corso e lascia il segno. Rivista l'azione, tutto regolare: per {S} un cambio azzeccato.",
+  "Dalla panchina al centro della scena: {G} entra e cambia la partita di {S}. Nessun dubbio al replay."]},
  "stretta": {"t": "Partita decisa sul filo", "x": [
   "{C} {R} {O}: finisce {P}, decisa da un soffio. Basta un episodio per cambiare tutto, e in studio se ne parlerà a lungo.",
   "Un dettaglio separa {C} e {O}: {R} e punteggio di {P}. Festa per {AC}, rabbia per {AO}: c'è chi chiede di rivedere tutto.",
@@ -103,8 +120,22 @@ DECISO = {
   "{G} para il rigore e si prende la copertina: {M}. Senza quella parata {S} {E}, e sulla panchina di {A} lo sanno bene.",
   "Il rigore che decide la partita è quello che non entra. {G} vola, respinge e consegna il risultato a {S}: finisce {M}.",
   "Piedi sulla linea, tuffo giusto, pallone fuori: al replay la parata di {G} è regolare ed è quella che decide {M}. Per {A} vale quanto un gol.",
-  "Dal dischetto parte il tiro, {G} lo respinge e cambia la giornata di {S}. Finisce {M}: senza quella parata {S} {E}, invece è festa per {A}."]}
+  "Dal dischetto parte il tiro, {G} lo respinge e cambia la giornata di {S}. Finisce {M}: senza quella parata {S} {E}, invece è festa per {A}."],
+ "gol": [
+  "{GL} di {G} decide {M}. Rivista l'azione, nessun fallo e nessun fuorigioco: tutto regolare. Senza {gl} {S} {E}.",
+  "Al replay è tutto pulito: {gl} di {G} decide {M}. Senza, {S} {E}, e sulla panchina di {A} lo sanno bene.",
+  "Tutto gira intorno a {G}: {gl} decide {M}. Nessun dubbio dalla moviola, e senza {gl} {S} {E}.",
+  "La moviola dice gol regolare, il tabellone dice {M}. {GL} di {G} vale il risultato: senza, {S} {E}."],
+ "assist": [
+  "Il pallone giusto lo mette {G}: è l'assist che decide {M}. Al replay posizione regolare. Senza quel passaggio {S} {E}.",
+  "Rivista l'azione, l'assist di {G} è pulito ed è quello che decide {M}. Per {A} un passaggio che vale il risultato.",
+  "Non segna, ma decide: il passaggio di {G} cambia {M}. Senza quell'assist {S} {E}."],
+ "panchina": [
+  "{G} entra a partita in corso e la decide: finisce {M}. Senza il suo ingresso {S} {E}, e sulla panchina di {A} si parla di cambio perfetto.",
+  "Il cambio che vale il risultato: {G} parte dalla panchina e decide {M}. Al replay tutto regolare. Senza di lui {S} {E}.",
+  "Seduto in panchina all'inizio, decisivo alla fine. {G} entra, lascia il segno e consegna {M} a {S}: senza, {S} {E}."]}
 CONTRO = {1: "avrebbe vinto", 0: "avrebbe pareggiato", -1: "avrebbe perso"}
+GOLN = {1: "Il gol", 2: "La doppietta", 3: "La tripletta"}
 
 
 def h(s):   # lo stesso hash del Lab: stessa giornata e stesso giocatore danno sempre lo stesso testo
@@ -231,6 +262,27 @@ def episodi(G, d, F, val, sg):
                     if esito(senza, gs) != esito(gm, gs):
                         e.update(deciso=True, contro=esito(senza, gs))
             ep.append(e)
+        # gol, rigori segnati e assist: entrano solo se decidono la partita (sempre un titolare con voto)
+        c = voci(v)
+        pos = {k: c[k] for k in POSITIVE if c.get(k)}
+        if not pos or pid not in chi or not sg:
+            continue
+        sq, titolare = chi[pid]
+        m = partita(sq)
+        eff = sum((val.get(k) or 0) * n for k, n in pos.items())
+        if not titolare or not m or eff <= 0:
+            continue
+        casa = m[0] == sq
+        mio = m[1] if casa else m[2]
+        gm, gs = map(int, m[4].split("-")) if casa else map(int, m[4].split("-")[::-1])
+        senza = gol(mio - eff, *sg)
+        if esito(senza, gs) == esito(gm, gs):
+            continue
+        ng = pos.get("gol", 0) + pos.get("rigore segnato", 0)
+        k = "panchina" if c.get("subentrato") else "gol" if ng else "assist"
+        ep.append(dict(k=k, g=P[pid]["n"], s=sq, id=pid, deciso=True, contro=esito(senza, gs), peso=eff, gol=abs(gm - senza),
+                       ng=ng, o=m[3] if casa else m[0], m=m, sul_filo=gm != gs and abs(m[1] - m[2]) < 1,
+                       reale=reale(d, sa, P[pid].get("t"))))
     for m in partite:
         r = m[4].split("-")
         if r[0] != r[1] and abs(m[1] - m[2]) < 1:
@@ -238,7 +290,21 @@ def episodi(G, d, F, val, sg):
                            p=f"{m[1]:g} a {m[2]:g}".replace(".", ",")))
     ep.sort(key=lambda e: (not e["deciso"], -e["gol"], -e["peso"], PRIO[e["k"]], (e.get("g") or e.get("c")).casefold()))
     tutti = [scheda(G["n"], e) for e in ep]
-    return {"sa": G["sa"], "scritta": date.today().isoformat(), "episodi": tutti[:MAX], "scartati": scartati, "automatici": tutti}
+    return {"sa": G["sa"], "scritta": date.today().isoformat(), "episodi": taglia(tutti), "scartati": scartati, "automatici": tutti}
+
+
+def taglia(eps, posti=MAX, ngol=0):
+    """I primi episodi fino a riempire i posti, con al massimo MAX_GOL tra gol, assist e panchina (ngol: quelli già dentro)."""
+    r = []
+    for e in eps:
+        if len(r) >= posti:
+            break
+        if e["tipo"] in GOLLIKE:
+            if ngol >= MAX_GOL:
+                continue
+            ngol += 1
+        r.append(e)
+    return r
 
 
 def scheda(n, e):
@@ -257,7 +323,9 @@ def scheda(n, e):
     rep = {"G": e.get("g", ""), "S": e.get("s", ""), "A": " e ".join(allenatori(e["s"])) if e.get("s") else "",
            "C": e.get("c", ""), "O": e.get("o", ""), "R": ris(e.get("r", "")), "P": e.get("p", ""),
            "AC": " e ".join(allenatori(e["c"])) if e.get("c") else "", "AO": " e ".join(allenatori(e["o"])) if e.get("o") else "",
-           "M": f"{m[0]}–{m[3]} {ris(m[4])}" if m else "", "E": CONTRO.get(e.get("contro"), "")}
+           "M": f"{m[0]}–{m[3]} {ris(m[4])}" if m else "", "E": CONTRO.get(e.get("contro"), ""),
+           "GL": GOLN.get(e.get("ng") or 1, f"I {e.get('ng')} gol")}
+    rep["gl"] = rep["GL"][0].lower() + rep["GL"][1:]   # {GL} a inizio frase, {gl} a metà
     if not e.get("testo"):
         x = re.sub(r"\{(\w+)\}", lambda z: rep[z.group(1)], x)
     r = {"tipo": k, "titolo": MVT[k]["t"], "verdetto": ver, "testo": x}
@@ -328,7 +396,7 @@ def video(v, avvisi, dove):
 
 def applica_manuale(gg, voci_mano, d, avvisi):
     """Rifà "episodi" di ogni giornata dagli automatici e dalle voci a mano. Le voci a mano entrano sempre;
-    gli automatici riempiono i posti rimasti fino a 3, nel loro ordine."""
+    gli automatici riempiono i posti rimasti fino a 4 (al massimo 2 tra gol, assist e panchina), nel loro ordine."""
     P = d.get("P") or {}
     giocatori = [(i, p["n"]) for i, p in P.items()]
     squadre = {t["name"] for t in d.get("teams") or []}
@@ -373,12 +441,9 @@ def applica_manuale(gg, voci_mano, d, avvisi):
             e["manuale"] = True
             nuovi.append(e)
         dentro = [i for i in range(len(auto)) if i in tenuti and i not in nascosti]
-        posti = MAX - len(dentro) - len(nuovi)
-        for i in range(len(auto)):
-            if posti <= 0:
-                break
-            if i not in tenuti and i not in nascosti:
-                dentro.append(i); posti -= 1
+        liberi = [i for i in range(len(auto)) if i not in tenuti and i not in nascosti]
+        scelti = taglia([auto[i] for i in liberi], MAX - len(dentro) - len(nuovi), sum(1 for i in dentro if auto[i]["tipo"] in GOLLIKE))
+        dentro += [i for i in liberi if any(auto[i] is e for e in scelti)]
         dentro.sort()
         # prima gli automatici che hanno deciso la partita, poi quelli a mano (rosso, rigori, autogol, altro), poi gli altri automatici
         decisi = [auto[i] for i in dentro if auto[i]["verdetto"] == "Ha deciso la partita"]
