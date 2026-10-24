@@ -27,8 +27,40 @@
   },
   "2": {
    "sa": 6,
-   "scritta": "2026-10-23",
+   "scritta": "2026-10-24",
    "episodi": [
+    {
+     "tipo": "gol",
+     "titolo": "Gol decisivo",
+     "verdetto": "Ha deciso la partita",
+     "testo": "La moviola dice gol regolare, il tabellone dice WOA–Apo team 3‑3. La doppietta di De Bruyne vale il risultato: senza, Apo team avrebbe perso.",
+     "giocatore": "De Bruyne",
+     "squadra": "Apo team",
+     "allenatori": [
+      "apo"
+     ],
+     "id": "2517",
+     "squadra_reale": "Napoli",
+     "avversario_reale": "Frosinone",
+     "in_casa": true,
+     "data_partita": "sab 10/10 20:45"
+    },
+    {
+     "tipo": "gol",
+     "titolo": "Gol decisivo",
+     "verdetto": "Ha deciso la partita",
+     "testo": "Al replay è tutto pulito: il gol di Osmajic decide Grodah–Atletico ma non troppo 2‑1. Senza, Grodah avrebbe pareggiato, e sulla panchina di RikyArma lo sanno bene.",
+     "giocatore": "Osmajic",
+     "squadra": "Grodah",
+     "allenatori": [
+      "RikyArma"
+     ],
+     "id": "7600",
+     "squadra_reale": "Genoa",
+     "avversario_reale": "Fiorentina",
+     "in_casa": true,
+     "data_partita": "sab 10/10 15:00"
+    },
     {
      "tipo": "autogol",
      "titolo": "Autogol",
@@ -39,6 +71,7 @@
      "allenatori": [
       "AndrewTT"
      ],
+     "id": "5514",
      "squadra_reale": "Genoa",
      "avversario_reale": "Fiorentina",
      "in_casa": true,
@@ -48,6 +81,70 @@
    "scartati": [],
    "automatici": [
     {
+     "tipo": "gol",
+     "titolo": "Gol decisivo",
+     "verdetto": "Ha deciso la partita",
+     "testo": "La moviola dice gol regolare, il tabellone dice WOA–Apo team 3‑3. La doppietta di De Bruyne vale il risultato: senza, Apo team avrebbe perso.",
+     "giocatore": "De Bruyne",
+     "squadra": "Apo team",
+     "allenatori": [
+      "apo"
+     ],
+     "id": "2517",
+     "squadra_reale": "Napoli",
+     "avversario_reale": "Frosinone",
+     "in_casa": true,
+     "data_partita": "sab 10/10 20:45"
+    },
+    {
+     "tipo": "gol",
+     "titolo": "Gol decisivo",
+     "verdetto": "Ha deciso la partita",
+     "testo": "Al replay è tutto pulito: il gol di Osmajic decide Grodah–Atletico ma non troppo 2‑1. Senza, Grodah avrebbe pareggiato, e sulla panchina di RikyArma lo sanno bene.",
+     "giocatore": "Osmajic",
+     "squadra": "Grodah",
+     "allenatori": [
+      "RikyArma"
+     ],
+     "id": "7600",
+     "squadra_reale": "Genoa",
+     "avversario_reale": "Fiorentina",
+     "in_casa": true,
+     "data_partita": "sab 10/10 15:00"
+    },
+    {
+     "tipo": "gol",
+     "titolo": "Gol decisivo",
+     "verdetto": "Ha deciso la partita",
+     "testo": "Tutto gira intorno a Isaksen: il gol decide WOA–Apo team 3‑3. Nessun dubbio dalla moviola, e senza il gol WOA avrebbe perso.",
+     "giocatore": "Isaksen",
+     "squadra": "WOA",
+     "allenatori": [
+      "ser"
+     ],
+     "id": "6398",
+     "squadra_reale": "Lazio",
+     "avversario_reale": "Monza",
+     "in_casa": true,
+     "data_partita": "dom 11/10 15:00"
+    },
+    {
+     "tipo": "gol",
+     "titolo": "Gol decisivo",
+     "verdetto": "Ha deciso la partita",
+     "testo": "Al replay è tutto pulito: il gol di Rabiot decide WOA–Apo team 3‑3. Senza, WOA avrebbe perso, e sulla panchina di ser lo sanno bene.",
+     "giocatore": "Rabiot",
+     "squadra": "WOA",
+     "allenatori": [
+      "ser"
+     ],
+     "id": "2379",
+     "squadra_reale": "Milan",
+     "avversario_reale": "Sassuolo",
+     "in_casa": false,
+     "data_partita": "dom 11/10 18:00"
+    },
+    {
      "tipo": "autogol",
      "titolo": "Autogol",
      "verdetto": "Ha deciso la partita",
@@ -57,6 +154,7 @@
      "allenatori": [
       "AndrewTT"
      ],
+     "id": "5514",
      "squadra_reale": "Genoa",
      "avversario_reale": "Fiorentina",
      "in_casa": true,
@@ -66,8 +164,40 @@
   },
   "3": {
    "sa": 7,
-   "scritta": "2026-10-23",
+   "scritta": "2026-10-24",
    "episodi": [
+    {
+     "tipo": "gol",
+     "titolo": "Gol decisivo",
+     "verdetto": "Ha deciso la partita",
+     "testo": "Tutto gira intorno a Simeone: la doppietta decide Mariana Coneja–WOA 5‑4. Nessun dubbio dalla moviola, e senza la doppietta Mariana Coneja avrebbe perso.",
+     "giocatore": "Simeone",
+     "squadra": "Mariana Coneja",
+     "allenatori": [
+      "Mark Lenders"
+     ],
+     "id": "2061",
+     "squadra_reale": "Torino",
+     "avversario_reale": "Parma",
+     "in_casa": false,
+     "data_partita": "lun 19/10 20:45"
+    },
+    {
+     "tipo": "panchina",
+     "titolo": "Decisivo dalla panchina",
+     "verdetto": "Ha deciso la partita",
+     "testo": "Carlos Augusto entra a partita in corso e la decide: finisce Mariana Coneja–WOA 5‑4. Senza il suo ingresso Mariana Coneja avrebbe pareggiato, e sulla panchina di Mark Lenders si parla di cambio perfetto.",
+     "giocatore": "Carlos Augusto",
+     "squadra": "Mariana Coneja",
+     "allenatori": [
+      "Mark Lenders"
+     ],
+     "id": "5877",
+     "squadra_reale": "Inter",
+     "avversario_reale": "Bologna",
+     "in_casa": false,
+     "data_partita": "sab 17/10 18:00"
+    },
     {
      "tipo": "sbagliato",
      "titolo": "Rigore sbagliato",
@@ -78,6 +208,7 @@
      "allenatori": [
       "apo"
      ],
+     "id": "2517",
      "squadra_reale": "Napoli",
      "avversario_reale": "Venezia",
      "in_casa": false,
@@ -93,31 +224,112 @@
      "allenatori": [
       "apo"
      ],
+     "id": "6397",
      "squadra_reale": "Milan",
      "avversario_reale": "Atalanta",
      "in_casa": true,
-     "data_partita": "dom 18/10 18:00"
-    },
-    {
-     "tipo": "parato",
-     "titolo": "Rigore parato",
-     "verdetto": "Regolare",
-     "testo": "Dal dischetto parte il tiro, Carnesecchi lo respinge. Controllato il posizionamento: regolare. Una parata che vale come un gol.",
-     "giocatore": "Carnesecchi",
-     "squadra": "The Blue brothers",
-     "allenatori": [
-      "Leanzino",
-      "Mario"
-     ],
-     "squadra_reale": "Atalanta",
-     "avversario_reale": "Milan",
-     "in_casa": false,
      "data_partita": "dom 18/10 18:00"
     }
    ],
    "scartati": [],
    "automatici": [
     {
+     "tipo": "gol",
+     "titolo": "Gol decisivo",
+     "verdetto": "Ha deciso la partita",
+     "testo": "Tutto gira intorno a Simeone: la doppietta decide Mariana Coneja–WOA 5‑4. Nessun dubbio dalla moviola, e senza la doppietta Mariana Coneja avrebbe perso.",
+     "giocatore": "Simeone",
+     "squadra": "Mariana Coneja",
+     "allenatori": [
+      "Mark Lenders"
+     ],
+     "id": "2061",
+     "squadra_reale": "Torino",
+     "avversario_reale": "Parma",
+     "in_casa": false,
+     "data_partita": "lun 19/10 20:45"
+    },
+    {
+     "tipo": "panchina",
+     "titolo": "Decisivo dalla panchina",
+     "verdetto": "Ha deciso la partita",
+     "testo": "Carlos Augusto entra a partita in corso e la decide: finisce Mariana Coneja–WOA 5‑4. Senza il suo ingresso Mariana Coneja avrebbe pareggiato, e sulla panchina di Mark Lenders si parla di cambio perfetto.",
+     "giocatore": "Carlos Augusto",
+     "squadra": "Mariana Coneja",
+     "allenatori": [
+      "Mark Lenders"
+     ],
+     "id": "5877",
+     "squadra_reale": "Inter",
+     "avversario_reale": "Bologna",
+     "in_casa": false,
+     "data_partita": "sab 17/10 18:00"
+    },
+    {
+     "tipo": "panchina",
+     "titolo": "Decisivo dalla panchina",
+     "verdetto": "Ha deciso la partita",
+     "testo": "Bonny entra a partita in corso e la decide: finisce Real Madrink–stif dc 2‑2. Senza il suo ingresso Real Madrink avrebbe perso, e sulla panchina di AndrewTT si parla di cambio perfetto.",
+     "giocatore": "Bonny",
+     "squadra": "Real Madrink",
+     "allenatori": [
+      "AndrewTT"
+     ],
+     "id": "6669",
+     "squadra_reale": "Inter",
+     "avversario_reale": "Bologna",
+     "in_casa": false,
+     "data_partita": "sab 17/10 18:00"
+    },
+    {
+     "tipo": "gol",
+     "titolo": "Gol decisivo",
+     "verdetto": "Ha deciso la partita",
+     "testo": "La moviola dice gol regolare, il tabellone dice Mariana Coneja–WOA 5‑4. Il gol di Castro S. vale il risultato: senza, Mariana Coneja avrebbe pareggiato.",
+     "giocatore": "Castro S.",
+     "squadra": "Mariana Coneja",
+     "allenatori": [
+      "Mark Lenders"
+     ],
+     "id": "6572",
+     "squadra_reale": "Roma",
+     "avversario_reale": "Genoa",
+     "in_casa": true,
+     "data_partita": "sab 17/10 20:45"
+    },
+    {
+     "tipo": "gol",
+     "titolo": "Gol decisivo",
+     "verdetto": "Ha deciso la partita",
+     "testo": "Il gol di Douvikas decide Real Madrink–stif dc 2‑2. Rivista l'azione, nessun fallo e nessun fuorigioco: tutto regolare. Senza il gol stif dc avrebbe perso.",
+     "giocatore": "Douvikas",
+     "squadra": "stif dc",
+     "allenatori": [
+      "stifson"
+     ],
+     "id": "7017",
+     "squadra_reale": "Como",
+     "avversario_reale": "Fiorentina",
+     "in_casa": false,
+     "data_partita": "dom 18/10 15:00"
+    },
+    {
+     "tipo": "assist",
+     "titolo": "Assist decisivo",
+     "verdetto": "Ha deciso la partita",
+     "testo": "Non segna, ma decide: il passaggio di Belghali cambia Grodah–Oranje VC 1‑2. Senza quell'assist Oranje VC avrebbe pareggiato.",
+     "giocatore": "Belghali",
+     "squadra": "Oranje VC",
+     "allenatori": [
+      "DJ Cst Brazil"
+     ],
+     "id": "7220",
+     "squadra_reale": "Torino",
+     "avversario_reale": "Parma",
+     "in_casa": false,
+     "data_partita": "lun 19/10 20:45"
+    },
+    {
      "tipo": "sbagliato",
      "titolo": "Rigore sbagliato",
      "verdetto": "Regolare",
@@ -127,6 +339,7 @@
      "allenatori": [
       "apo"
      ],
+     "id": "2517",
      "squadra_reale": "Napoli",
      "avversario_reale": "Venezia",
      "in_casa": false,
@@ -142,6 +355,7 @@
      "allenatori": [
       "apo"
      ],
+     "id": "6397",
      "squadra_reale": "Milan",
      "avversario_reale": "Atalanta",
      "in_casa": true,
@@ -158,10 +372,27 @@
       "Leanzino",
       "Mario"
      ],
+     "id": "4431",
      "squadra_reale": "Atalanta",
      "avversario_reale": "Milan",
      "in_casa": false,
      "data_partita": "dom 18/10 18:00"
+    },
+    {
+     "tipo": "parato",
+     "titolo": "Rigore parato",
+     "verdetto": "Regolare",
+     "testo": "Rigore contro Oranje VC, ma Stankovic F. ci arriva. Nessun movimento in anticipo: la parata è buona e la panchina di DJ Cst Brazil esulta.",
+     "giocatore": "Stankovic F.",
+     "squadra": "Oranje VC",
+     "allenatori": [
+      "DJ Cst Brazil"
+     ],
+     "id": "6248",
+     "squadra_reale": "Venezia",
+     "avversario_reale": "Napoli",
+     "in_casa": true,
+     "data_partita": "sab 17/10 15:00"
     }
    ]
   }
