@@ -1,13 +1,42 @@
 <!doctype html>
 <html lang="it">
 <head>
+<script src="ospite.js?v=1"></script>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,viewport-fit=cover">
+<meta name="robots" content="noindex">
+<meta name="cv-ver" content="20261015l">
 <title>Curva · O Girrr</title>
-<meta http-equiv="refresh" content="0;url=https://giandjcosta.github.io/o-girrr-registro/ufficiale/girrr/curva.html">
-<script>location.replace('https://giandjcosta.github.io/o-girrr-registro/ufficiale/girrr/curva.html'+location.search+location.hash)</script>
+<link rel="icon" type="image/png" href="../assets/favicon-64.png">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800;900&display=swap">
+<meta name="theme-color" content="#ffffff" id="tc">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="O Girrr">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<style>
+:root{--bg:#fff;--bg2:#f7f9f9;--tx:#0f1419;--mu:#536471;--ln:#eff3f4;--hv:rgba(15,20,25,.05);--acc:#d62839;--blu:#1d9bf0;--ora:#f5b301;--pk:#f91880;--gr:#00ba7c}
+:root[data-theme=dark]{--bg:#0b0f14;--bg2:#16202a;--tx:#e7e9ea;--mu:#8b98a5;--ln:#2f3336;--hv:rgba(255,255,255,.06)}
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+html{overflow-y:scroll}
+body{font-family:Inter,system-ui,-apple-system,Segoe UI,sans-serif;background:var(--bg);color:var(--tx);min-height:100vh;transition:background .25s,color .25s}
+/* FULL FILE TOO LARGE FOR SINGLE TOOL CALL - see restore instructions */
+</style>
 </head>
 <body>
-<p>Apro la Curva… <a href="https://giandjcosta.github.io/o-girrr-registro/ufficiale/girrr/curva.html">clicca qui</a> se non parte.</p>
+<script>
+// Bootstrap: carica la copia integra dal registro e la sostituisce
+fetch('https://raw.githubusercontent.com/giandjcosta/o-girrr-registro/main/ufficiale/src/sito/girrr/curva.html',{cache:'no-store'})
+.then(function(r){return r.text()})
+.then(function(html){
+  document.open();
+  document.write(html);
+  document.close();
+})
+.catch(function(){
+  location.replace('https://giandjcosta.github.io/o-girrr-registro/ufficiale/girrr/curva.html');
+});
+</script>
+<p>Carico la Curva…</p>
 </body>
 </html>
