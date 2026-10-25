@@ -132,6 +132,10 @@ svg{display:block}
 .box .it{padding:10px 16px}
 .box .it small{display:block;color:var(--mu);font-size:12.5px}.box .it b{font-size:15px}
 .acts button{white-space:nowrap}
+/* riga azioni: sta sempre nello schermo, anche a 320 px e con contatori lunghi */
+.acts{flex-wrap:wrap;row-gap:2px;min-width:0}.acts button{flex:0 1 auto;min-width:0}
+@media(max-width:420px){.acts{margin-left:-4px}.acts button{padding:6px 4px;gap:3px;font-size:12px}.acts button svg{width:17px;height:17px}}
+@media(max-width:340px){.acts button{padding:6px 2px;gap:2px}.acts button svg{width:16px;height:16px}}
 .seg .who{display:flex;gap:14px;align-items:center;padding:16px 18px;border-bottom:1px solid var(--ln)}.seg .who:active{background:var(--hv)}
 .seg .who .n{flex:1;min-width:0}.seg .who .n b{display:block;font-size:16px;line-height:1.25;cursor:pointer;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.seg .who .n b svg{display:inline-block;vertical-align:-3px;margin-left:4px}.seg .who .n small{display:block;margin-top:3px;color:var(--mu);font-size:13.5px;overflow:hidden;text-overflow:ellipsis}
 .seg .who .btn{flex:none;padding:8px 16px;font-size:14px}.seg .tot{padding:14px 18px 6px;color:var(--mu);font-size:13px}
