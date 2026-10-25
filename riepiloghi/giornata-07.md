@@ -1,6 +1,6 @@
 # Riepilogo giornata 7 di Serie A
 
-Lega O FANT A GIRRR. Dati aggiornati al 2026-10-24.
+Lega O FANT A GIRRR. Dati aggiornati al 2026-10-25.
 
 ## Partite della giornata
 
