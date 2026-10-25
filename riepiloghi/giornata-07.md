@@ -121,7 +121,7 @@ Punteggio: piu' e' alto, piu' conviene. Unisce valore e probabilita' di giocare.
 
 | Giocatore | Squadra | Stato | Avversario | Punteggio |
 |---|---|---|---|---|
-| Hainaut | Venezia | Titolare | Napoli (C) | 90 |
+| Hainaut | Venezia | Titolare | Napoli (C) | 87 |
 | Provstgaard | Lazio | Titolare | Juventus (T) | 79 |
 | Veiga D. | Lecce | Titolare | Udinese (T) | 78 |
 | Abankwah | Udinese | Riserva, ballottaggio | Lecce (C) | 75 |
@@ -131,8 +131,8 @@ Punteggio: piu' e' alto, piu' conviene. Unisce valore e probabilita' di giocare.
 
 | Giocatore | Squadra | Stato | Avversario | Punteggio |
 |---|---|---|---|---|
+| Schmid | Frosinone | Titolare | Sassuolo (C) | 94 |
 | Romano | Cagliari | Titolare | Monza (T) | 83 |
-| Schmid | Frosinone | Titolare | Sassuolo (C) | 83 |
 | Matic | Sassuolo | Titolare | Frosinone (T) | 80 |
 | Pobega | Bologna | Titolare | Inter (C) | 77 |
 | Winks | Cagliari | Titolare | Monza (T) | 75 |
@@ -142,10 +142,10 @@ Punteggio: piu' e' alto, piu' conviene. Unisce valore e probabilita' di giocare.
 | Giocatore | Squadra | Stato | Avversario | Punteggio |
 |---|---|---|---|---|
 | Robinson J. | Monza | Titolare | Cagliari (C) | 70 |
-| Ghedjemis | Frosinone | Titolare | Sassuolo (C) | 52 |
+| Ghedjemis | Frosinone | Titolare | Sassuolo (C) | 61 |
 | Lontani | Parma | Panchina | Torino (C) | 51 |
 | N'Dri | Lecce | Titolare | Udinese (T) | 41 |
-| Fatah | Lecce | Titolare, ballottaggio | Udinese (T) | 32 |
+| Fatah | Lecce | Titolare | Udinese (T) | 32 |
 
 ## Correzioni da controllare
 
