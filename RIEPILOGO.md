@@ -64,43 +64,42 @@ Notizie pubbliche, senza indicare di chi e' ogni giocatore.
 |---|---|---|---|---|
 | Scalvini | Atalanta | Distrazione di basso grado dei muscoli flessori | Fine ottobre | Salta |
 | Raspadori | Atalanta | Distrazione muscolare di basso grado al bicipite | Inizio novembre | Salta |
-| Holm | Bologna | Problema al tendine della coscia destra | Fine febbraio | Salta |
 | Orsolini | Bologna | Lesione di primo grado al bicipite femorale | Prima metà di novembre | Salta |
 | Piccoli | Bologna | Infortunio | Metà novembre | Salta |
+| Holm | Bologna | Problema al tendine della coscia destra | Fine febbraio | Salta |
 | Rodriguez Je. | Como | Infortunio | Prossimo turno | Salta |
 | Diao | Como | Lesione muscolare al flessore della gamba | Metà novembre | Salta |
 | Chalobah T. | Como | Infortunio | Inizio novembre | Salta |
 | Kean | Como | Fastidio alla tibia e | Da valutare | Salta |
 | Atta | Fiorentina | Sovraccarico funzionale dell'addome | Prossimo turno | Salta |
-| Jones C. | Inter | Risentimento miofasciale agli adduttori della coscia destra | Fine ottobre | Salta |
-| Martinez L. | Inter | Risentimento muscolare ai flessori della coscia sinistra | Metà novembre | Salta |
 | Pavard | Inter | Risentimento agli adduttori della coscia destra | Fine ottobre | Salta |
-| Celik | Juventus | Lesione di basso grado del bicipite femorale | Metà novembre | Salta |
+| Martinez L. | Inter | Risentimento muscolare ai flessori della coscia sinistra | Metà novembre | Salta |
+| Jones C. | Inter | Risentimento miofasciale agli adduttori della coscia destra | Fine ottobre | Salta |
 | Conceicao | Juventus | Lussazione alla spalla sinistra | Metà novembre | Salta |
-| Ekhator | Juventus | Lesione di medio grado del muscolo semitendinoso | Metà novembre | Salta |
-| Yildiz | Juventus | Problema al piede | Inizio dicembre | Salta |
-| Grabara | Juventus | Lesione al crociato anteriore del ginocchio destro | Da aprile | Salta |
 | Gonzalez N. | Juventus | Lesione di basso grado del soleo destro | Metà novembre | Salta |
-| Gudmundsson A. | Lazio | Problema alla spalla destra dopo una caduta | Metà novembre | In dubbio |
-| Pinamonti | Lazio | Noie fisiche che restano da valutare in | Da valutare | In dubbio |
+| Grabara | Juventus | Lesione al crociato anteriore del ginocchio destro | Da aprile | Salta |
+| Yildiz | Juventus | Problema al piede | Inizio dicembre | Salta |
+| Ekhator | Juventus | Lesione di medio grado del muscolo semitendinoso | Metà novembre | Salta |
+| Celik | Juventus | Lesione di basso grado del bicipite femorale | Metà novembre | Salta |
 | Marusic | Lazio | Lesione muscolare alla coscia | Fine ottobre | Salta |
+| Pinamonti | Lazio | Noie fisiche che restano da valutare in | Da valutare | In dubbio |
+| Gudmundsson A. | Lazio | Problema alla spalla destra dopo una caduta | Metà novembre | In dubbio |
 | Coulibaly L. | Lecce | Lesione muscolare al bicipite femorale della coscia | Inizio novembre | Salta |
+| Moreira | Milan | Affaticamento muscolare al flessore sinistro | Prossimo turno | Salta |
+| Chukwueze | Milan | Problema all'anca sinistra e non sarà a | Da valutare | Salta |
+| Rabiot | Milan | Affaticamento muscolare al polpaccio rimediato nella rifinitura | Prossimo turno | Salta |
 | Gila | Milan | Sovraccarico alla caviglia sinistra | Prossimo turno | In dubbio |
 | Saelemaekers | Milan | Problema alla caviglia destra e operata il | Da febbraio | Salta |
-| Rabiot | Milan | Affaticamento muscolare al polpaccio rimediato nella rifinitura | Prossimo turno | Salta |
-| Chukwueze | Milan | Problema all'anca sinistra e non sarà a | Da valutare | Salta |
-| Moreira | Milan | Affaticamento muscolare al flessore sinistro | Prossimo turno | Salta |
 | Buongiorno | Napoli | Operato nella seconda metà di luglio al | Fine dicembre | Salta |
-| Neres | Napoli | Lesione di basso grado al muscolo semimembranoso | Prima metà di novembre | Salta |
 | Rrahmani | Napoli | Infortunio | Prossimo turno | Salta |
 | Santos A. | Napoli | Lesione distrattiva di medio grado del bicipite | Inizio dicembre | Salta |
-| Svilar | Roma | Frattura a un dito del piede e | Metà novembre | Salta |
-| Konè M. | Roma | Lesione di primo grado al bicipite femorale | Prima metà di novembre | Salta |
+| Neres | Napoli | Lesione di basso grado al muscolo semimembranoso | Prima metà di novembre | Salta |
 | Dybala | Roma | Lesione al gemello del polpaccio destro | Da valutare | Salta |
+| Konè M. | Roma | Lesione di primo grado al bicipite femorale | Prima metà di novembre | Salta |
+| Svilar | Roma | Frattura a un dito del piede e | Metà novembre | Salta |
 | Idzes | Sassuolo | Lesione di grado moderato al quadricipite della | Fine ottobre | Salta |
 | Fortini | Torino | Affaticamento muscolare all'adduttore che lo ha escluso | Da valutare | In dubbio |
 | Gueye | Udinese | Problema alla caviglia a fine settembre | Fine gennaio | Salta |
-| Busio | Venezia | Distrazione intratendinea del bicipite femorale destro | Seconda metà di ottobre | In dubbio |
 
 ## Migliori svincolati
 
