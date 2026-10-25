@@ -10,7 +10,7 @@ function tendina(t,sub,corpo){return '<div class="era dvc"><button class="eh" ty
 var VOTI={},VETO={},NOMI={},DBU='https://qmjqfgmvimsuxvghetgi.supabase.co',DBK='sb_publishable_qPhimkrF4iUvIad7JPoH8A_i-eOqG7n';
 function key(a,b){return [a,b].map(function(x){return x.toLowerCase()}).sort().join('|')}
 var RIVM={};N.riv.forEach(function(o){RIVM[key(o.a,o.b)]=o});
-function info(a,b){var o=RIVM[key(a,b)]||{a:a,b:b,r:0,h:0,z:0,n:'',s:''},k=key(a,b),V=VOTI[k]?100:0;return {o:o,der:VETO[k]?false:(VOTI[k]?true:o.r>=50),riv:Math.round(Math.min(100,o.r+.6*V))}}
+function info(a,b){var o=RIVM[key(a,b)]||{a:a,b:b,r:0,h:0,z:0,n:'',s:''},k=key(a,b),V=VOTI[k]?100:0;return {o:o,der:VETO[k]?false:(VOTI[k]?true:o.r>=80),riv:Math.round(Math.min(100,o.r+.6*V))}}
 /* Voti e sfide dal database (lettura libera): un Derby è ufficiale se votato dai più o nato da una sfida accettata con il nome concordato; se i più dicono no, non lo è */
 function caricaDb(){return fetch(DBU+'/rest/v1/rpc/derby_stato',{method:'POST',headers:{apikey:DBK,Authorization:'Bearer '+DBK,'Content-Type':'application/json'},body:'{}'}).then(function(r){return r.json()}).then(function(r){VOTI={};VETO={};NOMI={};(r.voti||[]).forEach(function(v){var k=key(v.a,v.b);if(v.si>v.no)VOTI[k]=1;else if(v.no>v.si)VETO[k]=1});(r.sfide||[]).slice().reverse().forEach(function(x){if(x.stato==='accettata'&&x.nome_ok){var k=key(x.da,x.a);VOTI[k]=1;delete VETO[k];NOMI[k]=x.nome}})}).catch(function(){})}
 function word(p){return p>=70?'Infuocata':p>=50?'Alta':p>=25?'Media':'Bassa'}

@@ -422,7 +422,7 @@ function rvKey(a,b){return [a,b].map(function(x){return x.toLowerCase()}).sort()
 var MGR={'Apo team':'apo','WOA':'ser','Grodah':'RikyArma','The Blue brothers':'Leanzino & Mario','Real Madrink':'AndrewTT','stif dc':'stifson','AFA SELECCION':'Maria','Mariana Coneja':'Mark Lenders','Atletico ma non troppo':'Riccardo','Oranje VC':'DJ Cst Brazil'};function mg(t){return MGR[t]||t}
 var RIVM={};RIV.forEach(function(o){RIVM[rvKey(o.a,o.b)]=o});
 function rvInfo(a,b){var o=RIVM[rvKey(a,b)]||{a:a,b:b,r:0,h:0,z:0,n:'',s:''},k=rvKey(a,b),V=S.vote[k]?100:(S.pend[k]?35:0),any=Object.keys(S.vote).some(function(x){return S.vote[x]});
-  var inten=Math.round((.6*V+.4*o.r)*10)/10,der=S.veto&&S.veto[k]?false:(S.vote[k]?true:o.r>=50),riv=Math.min(100,o.r+.6*V);
+  var inten=Math.round((.6*V+.4*o.r)*10)/10,der=S.veto&&S.veto[k]?false:(S.vote[k]?true:o.r>=80),riv=Math.min(100,o.r+.6*V);
   return {o:o,V:V,inten:inten,der:der,riv:Math.round(riv)}}
 function isDer(a,b){return rvInfo(a,b).der}
 function derName(o){return S.dn[rvKey(o.a,o.b)]||o.n||('Derby '+o.a+' – '+o.b)}

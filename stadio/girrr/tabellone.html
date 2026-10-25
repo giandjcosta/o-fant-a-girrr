@@ -64,6 +64,9 @@ body[data-mode=coppa] .sw i{transform:translateX(100%)}
 .swap.out{opacity:0;transform:translateY(8px)}
 .m{display:grid;grid-template-columns:1fr auto 1fr;gap:clamp(8px,2vw,22px);align-items:center;padding:clamp(10px,2vw,16px) clamp(10px,2vw,16px) clamp(10px,2vw,16px) clamp(12px,2vw,18px);margin-bottom:12px;background:rgba(255,255,255,.08);border-left:8px solid var(--acc);border-radius:4px 14px 14px 4px;animation:in .5s both;transition:border-color .8s}
 @keyframes in{from{opacity:0;transform:translateX(-14px)}to{opacity:1;transform:none}}
+.m.dby{border-left-color:var(--hi);background:linear-gradient(90deg,rgba(255,209,102,.17),rgba(255,255,255,.08) 65%);box-shadow:inset 0 0 0 1px rgba(255,209,102,.38)}
+.m .dn{grid-column:1/-1;font-weight:800;font-size:clamp(11px,1.6vw,13px);color:var(--hi);letter-spacing:.04em;margin-bottom:-2px;min-width:0;overflow-wrap:anywhere}
+.m .dn b{font-weight:900;letter-spacing:.22em}
 .m.cp{grid-template-columns:auto 1fr auto 1fr}
 .g{width:clamp(30px,5vw,44px);height:clamp(30px,5vw,44px);border-radius:50%;background:var(--hi);color:var(--bg);display:grid;place-items:center;font-weight:900;font-size:clamp(16px,2.6vw,24px)}
 .t{display:flex;flex-direction:column;gap:2px;font-weight:800;text-transform:uppercase;font-size:clamp(13px,2.1vw,22px);letter-spacing:.02em;opacity:.6;min-width:0;overflow-wrap:anywhere}
@@ -113,6 +116,7 @@ body::before{content:'';position:fixed;inset:-120px;z-index:-1;pointer-events:no
 <script>window.goatcounter={path:function(){return location.pathname},no_onload:/[?&]demo/.test(location.search)}</script>
 <script data-goatcounter="https://djcosta18.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
 <style>img.shield[alt="O Fant A Girrr"]{cursor:pointer}</style><script>document.addEventListener("click",function(e){var i=e.target.closest&&e.target.closest('img.shield[alt="O Fant A Girrr"]');if(i&&!i.closest("a"))location.href="index.html"})</script>
+<script src="novita-dati.js?v=1792337985"></script>
 <script src="transizioni.js"></script>
 <style>.sqb{display:flex;align-items:center;gap:10px;margin:14px 0 0;max-width:440px;padding:11px 16px;border-radius:16px;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.16);color:inherit;text-decoration:none}.sqb span{font-size:20px}.sqb b{font-weight:800}.sqb i{font-style:normal;font-size:12px;opacity:.75;margin-left:auto}</style>
 <style>@media(min-width:1500px){.wrap{max-width:1380px}}</style>
@@ -149,6 +153,16 @@ var ORD=["The Blue brothers","Apo team","Mariana Coneja","stif dc","Real Madrink
 var D=null, mode='lega', sel={lega:1,coppa:1};
 function cap(s){s=String(s);return s.charAt(0).toUpperCase()+s.slice(1)}
 function esc(s){return String(s).replace(/[&<>"]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})}
+/* Derby ufficiali, con la stessa regola della pagina Derby: votato dai più o nato da una sfida accettata col nome; altrimenti rivalità da 80 in su, se i più non l'hanno bocciato */
+/* Sfide di classifica nelle ultime 10 giornate di campionato, con la classifica prima della giornata: 1ª-2ª scudetto, 3ª-4ª podio, ultime due salvezza */
+function sfidaCl(L,n,a,b){if(!L||!L.length||n<=L.length-10)return '';var T={};function r(x){return T[x]||(T[x]={n:x,pt:0,fp:0})}
+  L.forEach(function(g){g.m.forEach(function(m){var A=r(m[0]),B=r(m[3]);if(g.n>=n||m[4]==='-')return;var s=m[4].split('-').map(Number);A.pt+=s[0]>s[1]?3:s[0]===s[1]?1:0;B.pt+=s[1]>s[0]?3:s[0]===s[1]?1:0;A.fp+=m[1];B.fp+=m[2]})});
+  var C=Object.keys(T).map(function(k){return T[k]}).sort(function(x,y){return y.pt-x.pt||y.fp-x.fp}).map(function(x){return x.n}),N=C.length,p=[C.indexOf(a)+1,C.indexOf(b)+1].sort(function(x,y){return x-y});
+  if(!p[0])return '';if(p[0]===1&&p[1]===2)return 'Sfida scudetto';if(p[0]===3&&p[1]===4)return 'Sfida podio';if(p[0]===N-1&&p[1]===N)return 'Sfida salvezza';return ''}
+var DBU='https://qmjqfgmvimsuxvghetgi.supabase.co',DBK='sb_publishable_qPhimkrF4iUvIad7JPoH8A_i-eOqG7n',DV={},DX={},DN={},RIVM={};
+function dk(a,b){return [a,b].map(function(x){return String(x).toLowerCase()}).sort().join('|')}
+((window.NOV&&NOV.riv)||[]).forEach(function(o){RIVM[dk(o.a,o.b)]=o});
+function derby(a,b){var k=dk(a,b),o=RIVM[k];if(DX[k]||!(DV[k]||(o&&o.r>=80)))return null;return DN[k]||(o&&o.n)||''}
 function pt(x){return String(Math.round(x*100)/100).replace('.',',')}
 function played(g,cup){var i=cup?5:4;return g.m.some(function(m){return m[i]!=='-'})}
 var KO=[{n:11,lab:'Quarti',tit:'Quarti di finale',ic:'Q',k:4},{n:12,lab:'Semi',tit:'Semifinali',ic:'S',k:2},{n:13,lab:'Finale',tit:'Finale',ic:'F',k:1}];
@@ -195,7 +209,8 @@ function render(){
     if(ris!=='-'){var s=ris.split('-').map(Number);wc=s[0]>=s[1]?'w':'';wf=s[1]>=s[0]?'w':'';
       if(s[0]>s[1])wf='';if(s[1]>s[0])wc='';
       sc='<b>'+s[0]+'</b><i></i><b>'+s[1]+'</b>';fc='<small>'+pt(pc)+'</small>';ff='<small>'+pt(pf)+'</small>'}
-    b+='<div class="m'+(cup?' cp':'')+'" style="animation-delay:'+(k*70)+'ms">'+(cup?'<div class="g">'+esc(gir)+'</div>':'')+'<div class="t h '+wc+(casa===ME?' mine':'')+'"><span>'+esc(cap(casa))+'</span>'+fc+'</div><div class="sc">'+sc+'</div><div class="t '+wf+(fuori===ME?' mine':'')+'"><span>'+esc(cap(fuori))+'</span>'+ff+'</div></div>';
+    var dn=derby(casa,fuori),scl=cup?'':sfidaCl(D.cal.lega,n,casa,fuori),tg=[];if(dn!==null)tg.push('<b>DERBY</b>'+(dn?' · '+esc(dn):''));if(scl)tg.push('<b>'+scl.toUpperCase()+'</b>');
+    b+='<div class="m'+(cup?' cp':'')+(tg.length?' dby':'')+'" style="animation-delay:'+(k*70)+'ms">'+(tg.length?'<div class="dn">'+tg.join(' · ')+'</div>':'')+(cup?'<div class="g">'+esc(gir)+'</div>':'')+'<div class="t h '+wc+(casa===ME?' mine':'')+'"><span>'+esc(cap(casa))+'</span>'+fc+'</div><div class="sc">'+sc+'</div><div class="t '+wf+(fuori===ME?' mine':'')+'"><span>'+esc(cap(fuori))+'</span>'+ff+'</div></div>';
   });
   if(cup&&g.rest&&g.rest.length)b+='<div class="rip">Riposano: '+g.rest.map(function(x){return (x[1]===ME?'<b>'+esc(cap(x[1]))+'</b>':esc(cap(x[1])))+' (gir. '+esc(x[0])+')'}).join(' · ')+'</div>';
   var upto=c.filter(function(x){return x.n<=n&&played(x,cup)});
@@ -254,6 +269,7 @@ fetch('../../data.json',{cache:'no-store'}).then(function(r){return r.json()}).t
   var hm=/^#(lega|coppa)(?:-(\d+))?$/.exec(location.hash||'');
   if(hm){if(hm[1]==='coppa'){mode='coppa';document.body.setAttribute('data-mode','coppa')}if(hm[2]){var nn=+hm[2],mx=(hm[1]==='coppa'?d.cal.cup:d.cal.lega).length;sel[hm[1]]=Math.min(Math.max(1,nn),mx)}}
   render();
+  fetch(DBU+'/rest/v1/rpc/derby_stato',{method:'POST',headers:{apikey:DBK,Authorization:'Bearer '+DBK,'Content-Type':'application/json'},body:'{}'}).then(function(r){return r.json()}).then(function(r){(r.voti||[]).forEach(function(x){var k=dk(x.a,x.b);if(x.si>x.no)DV[k]=1;else if(x.no>x.si)DX[k]=1});(r.sfide||[]).slice().reverse().forEach(function(x){if(x.stato==='accettata'&&x.nome_ok){var k=dk(x.da,x.a);DV[k]=1;delete DX[k];DN[k]=x.nome}});render()}).catch(function(){});
   document.getElementById('foot').textContent='Dati aggiornati al '+(d.cal.date||'');
 }).catch(function(){document.getElementById('board').innerHTML='<div class="err">Non riesco a leggere i dati.</div>'});
 })();

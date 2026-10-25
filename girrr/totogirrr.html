@@ -225,7 +225,15 @@ var teams=[],team=DEMO?'Oranje VC':(LS.team||''),code=DEMO?'demo':(LS.code||''),
 var MORE={};
 function mlab(m){var t={'1':'1','X':'X','2':'2','O':'Over 4,5','U':'Under 4,5','O35':'Over 3,5','U35':'Under 3,5','O55':'Over 5,5','U55':'Under 5,5','GG':'Entrambe segnano','NG':'Non segnano entrambe'};if(t[m])return t[m];if(m.indexOf('T:')===0)return m.slice(2);if(m.indexOf('E:')===0)return 'Esatto '+m.slice(2).replace('-','–');return m}
 function esitoJS(m,a,b){var t=a+b;return m==='1'?a>b:m==='X'?a===b:m==='2'?a<b:m==='O'?t>=5:m==='U'?t<=4:m==='O35'?t>=4:m==='U35'?t<=3:m==='O55'?t>=6:m==='U55'?t<=5:m==='GG'?a>=1&&b>=1:m==='NG'?(a===0||b===0):m==='E:'+a+'-'+b}
-function nm(p){return p.comp==='vinc'?esc(p.casa):esc(p.casa)+' – '+esc(p.trasf)+(p.derby?'<span class="dby">Derby</span>':'')}
+var CAL=null;
+/* Etichette sulla riga della partita: Derby e sfide di classifica */
+function tags(p){var sc=p.comp==='lega'&&CAL?sfidaCl(CAL,p.giornata,p.casa,p.trasf):'';return (p.derby?'<span class="dby">Derby</span>':'')+(sc?'<span class="dby">'+sc+'</span>':'')}
+function nm(p){return p.comp==='vinc'?esc(p.casa):esc(p.casa)+' – '+esc(p.trasf)+tags(p)}
+/* Sfide di classifica nelle ultime 10 giornate di campionato, con la classifica prima della giornata: 1ª-2ª scudetto, 3ª-4ª podio, ultime due salvezza */
+function sfidaCl(L,n,a,b){if(!L||!L.length||n<=L.length-10)return '';var T={};function r(x){return T[x]||(T[x]={n:x,pt:0,fp:0})}
+  L.forEach(function(g){g.m.forEach(function(m){var A=r(m[0]),B=r(m[3]);if(g.n>=n||m[4]==='-')return;var s=m[4].split('-').map(Number);A.pt+=s[0]>s[1]?3:s[0]===s[1]?1:0;B.pt+=s[1]>s[0]?3:s[0]===s[1]?1:0;A.fp+=m[1];B.fp+=m[2]})});
+  var C=Object.keys(T).map(function(k){return T[k]}).sort(function(x,y){return y.pt-x.pt||y.fp-x.fp}).map(function(x){return x.n}),N=C.length,p=[C.indexOf(a)+1,C.indexOf(b)+1].sort(function(x,y){return x-y});
+  if(!p[0])return '';if(p[0]===1&&p[1]===2)return 'Sfida scudetto';if(p[0]===3&&p[1]===4)return 'Sfida podio';if(p[0]===N-1&&p[1]===N)return 'Sfida salvezza';return ''}
 
 var M=null;
 function mockInit(){
@@ -343,7 +351,7 @@ function vPartite(){
     return h+a.map(function(p){
       var body=p.chiusa?'<div class="res">'+p.gc+' – '+p.gt+' <span class="chiusa">Finita</span></div>':
         '<div class="row">'+qbtn(p,'1')+qbtn(p,'X')+qbtn(p,'2')+'</div><div class="row two">'+qbtn(p,'O')+qbtn(p,'U')+'</div>'+(aperta(p)?altri(p):'<div class="chiusa">Scommesse chiuse, si aspetta il risultato.</div>');
-      return '<div class="card m'+(MORE[p.id]?' open':'')+'" data-id="'+p.id+'"><div class="nm"><span>'+esc(p.casa)+' <i>vs</i> '+esc(p.trasf)+'</span></div>'+body+'</div>';
+      return '<div class="card m'+(MORE[p.id]?' open':'')+'" data-id="'+p.id+'"><div class="nm"><span>'+esc(p.casa)+' <i>vs</i> '+esc(p.trasf)+tags(p)+'</span></div>'+body+'</div>';
     }).join('');
   }).join('');
 }
@@ -585,7 +593,7 @@ function hshF(s){var h=2166136261,i;for(i=0;i<s.length;i++){h^=s.charCodeAt(i);h
 function loginDaLink(d){var k=(location.hash||'').replace('#','').trim().toUpperCase();if(!k||/^(LEGA|COPPA)/.test(k)||!d||!d.lock)return false;var ok=false;
   d.teams.forEach(function(x){if(hshF(x.name+'|'+k)===d.lock[x.name]){var o={};try{o=JSON.parse(localStorage.getItem('fg')||'{}')||{}}catch(e){}o.team=x.name;o.code=k;try{localStorage.setItem('fg',JSON.stringify(o))}catch(e){}ok=x.name}});
   if(ok){try{history.replaceState(null,'',location.pathname+location.search)}catch(e){}}return ok}
-fetch('../data.json',{cache:'no-cache'}).then(function(r){return r.json()}).then(function(d){teams=d.teams.map(function(t){return t.name});
+fetch('../data.json',{cache:'no-cache'}).then(function(r){return r.json()}).then(function(d){teams=d.teams.map(function(t){return t.name});CAL=(d.cal&&d.cal.lega)||null;
   var lg=loginDaLink(d);if(lg){try{LS=JSON.parse(localStorage.getItem('fg')||'{}')||{}}catch(e){}team=LS.team;code=LS.code}
   if(team&&code)carica();else render();
 }).catch(function(){teams=['Oranje VC'];render()});
