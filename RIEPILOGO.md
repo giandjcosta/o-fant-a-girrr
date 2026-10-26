@@ -64,12 +64,14 @@ Notizie pubbliche, senza indicare di chi e' ogni giocatore.
 |---|---|---|---|---|
 | Bellanova | Atalanta | Risentimento muscolare all’inguine | Prossimo turno | Salta |
 | Raspadori | Atalanta | Distrazione muscolare di basso grado al bicipite | Inizio novembre | Salta |
+| Kessiè | Atalanta | Distrazione di basso grado al polpaccio della | Prossimo turno | Salta |
 | Orsolini | Bologna | Lesione di primo grado al bicipite femorale | Prima metà di novembre | Salta |
 | Piccoli | Bologna | Infortunio | Metà novembre | Salta |
 | Holm | Bologna | Problema al tendine della coscia destra | Fine febbraio | Salta |
 | Rodriguez Je. | Como | Infortunio | Metà dicembre | In dubbio |
 | Diao | Como | Lesione muscolare al flessore della gamba | Metà novembre | Salta |
 | Chalobah T. | Como | Infortunio | Inizio novembre | Salta |
+| Kean | Como | Fastidio alla tibia e | Da valutare | Salta |
 | Atta | Fiorentina | Sovraccarico funzionale dell'addome | Prossimo turno | Salta |
 | Stones | Inter | Risentimento ai flessori della coscia sinistra | Fine ottobre | In dubbio |
 | Pavard | Inter | Risentimento agli adduttori della coscia destra | Fine ottobre | Salta |
@@ -85,8 +87,10 @@ Notizie pubbliche, senza indicare di chi e' ogni giocatore.
 | Gudmundsson A. | Lazio | Problema alla spalla destra dopo una caduta | Metà novembre | In dubbio |
 | Coulibaly L. | Lecce | Lesione muscolare al bicipite femorale della coscia | Inizio novembre | Salta |
 | Gaspar K. | Lecce | Squalificato | Rientra dalla 11ª giornata | Salta |
+| Moreira | Milan | Affaticamento muscolare al flessore sinistro e out | Prossimo turno | Salta |
 | Chukwueze | Milan | Problema all'anca sinistra | Da valutare | Salta |
 | Rabiot | Milan | Affaticamento muscolare al polpaccio rimediato nella rifinitura | Prossimo turno | Salta |
+| Gila | Milan | Sovraccarico alla caviglia sinistra | Prossimo turno | In dubbio |
 | Saelemaekers | Milan | Problema alla caviglia destra e operata il | Da febbraio | Salta |
 | Buongiorno | Napoli | Operato nella seconda metà di luglio al | Fine dicembre | Salta |
 | Spinazzola | Napoli | Lesione di basso grado del bicipite femorale | Metà novembre | Salta |
@@ -143,7 +147,7 @@ Punteggio: piu' e' alto, piu' conviene. Unisce valore e probabilita' di giocare.
 | Ghedjemis | Frosinone | Titolare | Atalanta (T) | 61 |
 | Lontani | Parma | Titolare, ballottaggio | Lazio (T) | 51 |
 | N'Dri | Lecce | Titolare | Juventus (C) | 46 |
-| Fatah | Lecce | Titolare, ballottaggio | Juventus (C) | 37 |
+| Fatah | Lecce | Titolare | Juventus (C) | 37 |
 
 ## Correzioni da controllare
 
