@@ -5,7 +5,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,viewport-fit=cover">
 <meta name="robots" content="noindex">
-<meta name="cv-ver" content="20261015l">
+<meta name="cv-ver" content="20261026-infinite-1">
 <title>Curva · O Girrr</title>
 <link rel="icon" type="image/png" href="../../assets/favicon-64.png">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800;900&display=swap">
@@ -309,7 +309,11 @@ function prossimo(n){if(!ST.next)return null;for(var i=0;i<ST.next.m.length;i++)
 /* rete */
 function rpc(name,body){return fetch(URL_+'/rest/v1/rpc/'+name,{method:'POST',headers:{'apikey':KEY,'Authorization':'Bearer '+KEY,'Content-Type':'application/json'},body:JSON.stringify(body)}).then(function(r){return r.text().then(function(x){var j=null;try{j=x?JSON.parse(x):null}catch(e){}if(!r.ok)throw new Error(j&&j.message?j.message:'Errore di rete');return j})})}
 try{fetch('../../girrr/voci/archivio.json',{cache:'no-cache'}).then(function(r){return r.json()}).then(function(j){var R=[];(j||[]).forEach(function(e){var m=/Giornata (\d+)/.exec((e.tag||'')+' '+(e.titolo||''));if(m)R.push(+m[1])});if(window.CVB){CVB.RADIO=R;if(typeof render==='function'&&D)render()}}).catch(function(){})}catch(e){}
-function carica(){return rpc('curva_feed',{p_team:me,p_code:me?code:null}).then(function(f){if(!f||!f.posts)throw new Error('feed');S=f;NET=true;if(me&&!f.ok){/* codice non più valido */}}).catch(function(){NET=false}).then(function(){return rpc('toto_pr_pubblico',{}).then(function(r){if(window.CVB&&Array.isArray(r))CVB.PRS=r}).catch(function(){})})}
+function carica(){return rpc('curva_feed',{p_team:me,p_code:me?code:null,p_limit:FEED_PAGE}).then(function(f){if(!f||!f.posts)throw new Error('feed');var prima=S.posts||[],avevoArchivio=prima.length>FEED_PAGE,altri=FEED_MORE,nuovi={};
+f.posts.forEach(function(p){nuovi[p.id]=true});
+prima.forEach(function(p){if(!nuovi[p.id]){f.posts.push(p);nuovi[p.id]=true}});
+S=f;NET=true;FEED_MORE=avevoArchivio?altri:(f.posts.length>=FEED_PAGE);FEED_BUSY=false;if(me&&!f.ok){/* codice non più valido */}}).catch(function(){NET=false;FEED_MORE=false;FEED_BUSY=false}).then(function(){return rpc('toto_pr_pubblico',{}).then(function(r){if(window.CVB&&Array.isArray(r))CVB.PRS=r}).catch(function(){})})}
+
 function ev1(p,n){try{if(window.goatcounter&&goatcounter.count)goatcounter.count({path:p,title:n,event:true})}catch(e){}}
 function toast(t){var d=document.createElement('div');d.className='toast';d.textContent=t;document.body.appendChild(d);setTimeout(function(){d.remove()},3000)}
 function serve(){if(!me){toast('Entra con il codice della tua squadra per partecipare');return false}if(NET===false){toast('Non riesco a collegarmi ai cori in questo momento');return false}return true}
@@ -691,7 +695,7 @@ function render(){
    h+=compHTML(m)}
   else h+='<div class="ban2"><b>Stai guardando come ospite.</b><br>Per scrivere cori, rispondere e mettere applausi entra con il codice della tua squadra.<br><a class="btn" href="../../index.html">Entra</a></div>';
   var L=POSTS.filter(function(p){var k=acc(p.a).k;return filt==='tutti'||(filt==='seguiti'&&(isFol(p.a)||p.a===meH))||(filt==='squadre'&&k==='sq')||(filt==='notizie'&&(k==='org'||k==='pro'))});
-  h+=(filt==='seguiti'&&!L.length)?'<div class="vuoto">Non segui ancora nessuno.<br>Cerca in Esplora gli account da seguire.</div>':feed(L);
+  h+=(filt==='seguiti'&&!L.length)?'<div class="vuoto">Non segui ancora nessuno.<br>Cerca in Esplora gli account da seguire.</div>':feed(L.slice(0,FEED_SHOW))+(L.length>FEED_SHOW||FEED_MORE?'<div class="vuoto" id="piu-feed" role="status" style="padding:20px;color:var(--mu)">Scorri per altri cori…</div>':'');
  }else if(vista==='notifiche'){
   topR('Notifiche','','<button data-nf="tutte" class="'+(ntab==='tutte'?'on':'')+'">Tutte</button><button data-nf="men" class="'+(ntab==='men'?'on':'')+'">Menzioni</button>');
   var NL=NOTI.filter(function(o){return ntab==='tutte'||o.tp==='men'});
@@ -865,7 +869,7 @@ document.addEventListener('click',function(e){
  if(d.nf){ntab=d.nf;render();return}
  if(d.nk){nSegna(d.nk);vprof=d.nu;vista='u';edit=false;ptab='cori';open[d.nk]=true;scrollTo(0,0);render();var e2=document.querySelector('article.post[data-k="'+d.nk+'"]');if(e2)e2.scrollIntoView({block:'center'});return}
  if(d.pt){ptab=d.pt;render();return}
- if(d.f){filt=d.f;render();return}
+ if(d.f){filt=d.f;FEED_SHOW=20;scrollTo(0,0);render();return}
  if(d.emo!==undefined){sel.e=d.emo;document.querySelectorAll('.emo button').forEach(function(b){b.classList.toggle('on',b.dataset.emo===d.emo)});var av=document.querySelector('.av.xl');if(av){av.textContent=d.emo||sigla(me);av.className='av xl'+(d.emo?' e':'')}return}
  if(d.seg){if(!serve())return;rpc('curva_segui',{p_team:me,p_code:code,p_h:d.seg}).then(function(){return carica()}).then(function(){render()}).catch(function(x){toast(x.message)});return}
  var a=d.a;
@@ -928,13 +932,46 @@ function zoom(el){if(busy)return;busy=true;var r=el.getBoundingClientRect(),cs=g
  function kd(e){if(e.key==='Escape')chiudi()}
  ov.addEventListener('click',chiudi);document.addEventListener('keydown',kd)}
 document.addEventListener('click',function(e){var el=e.target.closest&&e.target.closest('.pf .av.xl,#ban');if(!el)return;if(el.closest('.edav'))return;e.stopPropagation();zoom(el)},true)})();
-var TF=['tutti','seguiti','squadre','notizie'],tx0=null,ty0=0;
+var TF=['tutti','seguiti','squadre','notizie'],tx0=null,ty0=0,FEED_SHOW=20,FEED_PAGE=150,FEED_BUSY=false,FEED_MORE=true;
 document.addEventListener('touchstart',function(e){if(vista!=='home'||!e.target.closest('#vista')){tx0=null;return}var t=e.touches[0];tx0=t.clientX;ty0=t.clientY},{passive:true});
 document.addEventListener('touchend',function(e){if(tx0===null)return;var t=e.changedTouches[0],dx=t.clientX-tx0,dy=t.clientY-ty0;tx0=null;
  if(Math.abs(dx)<60||Math.abs(dx)<Math.abs(dy)*1.5)return;
  var i=TF.indexOf(filt),n=i+(dx<0?1:-1);if(n<0||n>=TF.length)return;
- filt=TF[n];render();var v=document.getElementById('vista');v.classList.add(dx<0?'sl-l':'sl-r');setTimeout(function(){v.classList.remove('sl-l','sl-r')},320)},{passive:true});
+ filt=TF[n];FEED_SHOW=20;render();var v=document.getElementById('vista');v.classList.add(dx<0?'sl-l':'sl-r');setTimeout(function(){v.classList.remove('sl-l','sl-r')},320)},{passive:true});
 document.addEventListener('keydown',function(e){if(e.key==='Enter'&&e.target.matches&&e.target.matches('.rf input')){e.target.closest('.post').querySelector('[data-a=invia]').click()}});
+/* Caricamento incrementale: mostra 20 elementi; richiede altri post alla RPC solo dopo quelli gia' ricevuti. */
+function altriCori(){
+ if(vista!=='home'||FEED_BUSY)return;
+ var q=document.getElementById('piu-feed');if(!q)return;
+ if(FEED_SHOW<POSTS.length){
+   FEED_SHOW=Math.min(POSTS.length,FEED_SHOW+20);
+   renderFermo();
+   return;
+ }
+ if(!FEED_MORE||!S.posts.length){q.remove();return}
+ var oldest=S.posts.reduce(function(min,p){return !min||p.ts<min?p.ts:min},null);
+ if(!oldest){FEED_MORE=false;q.remove();return}
+ FEED_BUSY=true;q.textContent='Carico altri cori…';
+ rpc('curva_feed',{p_team:me,p_code:me?code:null,p_limit:FEED_PAGE,p_before:oldest})
+ .then(function(f){
+   if(!f||!Array.isArray(f.posts))throw new Error('Impossibile caricare altri cori');
+   var existing={};S.posts.forEach(function(p){existing[p.id]=true});
+   var added=0;f.posts.forEach(function(p){if(!existing[p.id]){S.posts.push(p);existing[p.id]=true;added++}});
+   FEED_MORE=f.posts.length===FEED_PAGE&&added>0;
+   FEED_SHOW+=20;
+   renderFermo();
+ }).catch(function(){q.textContent='Caricamento non riuscito. Scorri per riprovare'})
+ .then(function(){FEED_BUSY=false});
+}
+var feedScrollQueued=false;
+window.addEventListener('scroll',function(){
+ if(feedScrollQueued||vista!=='home')return;
+ var el=document.getElementById('piu-feed');if(!el)return;
+ if(el.getBoundingClientRect().top<window.innerHeight+240){
+  feedScrollQueued=true;
+  requestAnimationFrame(function(){feedScrollQueued=false;altriCori()});
+ }
+},{passive:true});
 /* se l'app ha in cache una versione vecchia della pagina, si ricarica da sola (una volta) */
 (function(){var me0=(document.querySelector('meta[name=cv-ver]')||{}).content;if(!me0||/[?&]nov/.test(location.search))return;
  fetch(location.pathname+'?_='+Date.now(),{cache:'no-store'}).then(function(r){return r.text()}).then(function(h){var m=h.match(/name="cv-ver" content="([^"]+)"/);if(m&&m[1]!==me0){var k='cv-reload-'+m[1];try{if(sessionStorage.getItem(k))return;sessionStorage.setItem(k,'1')}catch(e){}location.replace(location.pathname+'?v='+m[1]+location.hash)}}).catch(function(){})})();

@@ -126,6 +126,24 @@ svg text{fill:var(--mute);font-family:var(--fb)}
 .ob .src{width:34px;height:34px;border-radius:10px;display:grid;place-items:center;background:var(--gold);color:#141d3d;font-weight:900;font-size:11px;text-align:center;line-height:1}
 .pbar{height:7px;background:rgba(255,255,255,.12);border-radius:99px;overflow:hidden;margin-top:5px}
 .pbar i{display:block;height:100%;background:var(--ok);border-radius:99px}
+/* Carriera: titolo leggibile e barra sempre distinguibile anche al 100% */
+.ob{grid-template-columns:72px minmax(0,1fr) minmax(0,170px);column-gap:12px;row-gap:8px;align-items:start}
+.ob img{width:70px;max-width:70px;height:42px;object-fit:contain}
+.ob .grow{min-width:0;overflow-wrap:normal;word-break:normal}
+.ob .grow>b{display:block;line-height:1.35;font-size:clamp(14px,2vw,17px);hyphens:none}
+.ob>.tag{white-space:normal;overflow-wrap:break-word;text-align:center;justify-self:end;max-width:170px;line-height:1.35;padding:7px 9px;letter-spacing:.04em}
+.ob .pbar{width:100%;height:10px;background:rgba(255,255,255,.2);border:1px solid rgba(255,255,255,.25);border-radius:999px;overflow:hidden;box-sizing:border-box}
+.ob .pbar i{max-width:100%;height:100%;background:var(--ok);border-radius:999px}
+@media(max-width:700px){
+ .ob{grid-template-columns:72px minmax(0,1fr);align-items:start}
+ .ob>.tag{grid-column:2;grid-row:auto;justify-self:start;max-width:100%;font-size:10px}
+ .ob .grow>b{font-size:15px}
+}
+@media(max-width:370px){
+ .ob{grid-template-columns:56px minmax(0,1fr);gap:7px}
+ .ob img{width:54px;max-width:54px;height:34px}
+ .ob .grow>b{font-size:14px}
+}
 /* Conferenza */
 .q{margin-bottom:12px}.q p{font-weight:800;margin-bottom:6px}
 .opts{display:grid;grid-template-columns:repeat(3,1fr);gap:6px}
@@ -668,7 +686,7 @@ function aGiornata(n,t){if(!CL||gioc()<n)return null;var T={};function r(x){retu
 /* esito di un obiettivo: [percentuale, etichetta]; pos: obiettivo di posizione alla giornata dl (ok decide), altrimenti si accumula fino a fine stagione */
 function esito(t,pct,stato,dl,ok){var G=gioc();
   if(G<dl)return ok?[Math.min(99,pct),stato]:[pct,pct>=100?'Fatto':stato];
-  var x=ok?(aGiornata(dl,t)||row(t)):null,f=ok?ok(x):pct>=100;return [f?100:Math.min(99,pct),f?'Fatto':'Mancato']}
+  var x=ok?aGiornata(dl,t):null;if(ok&&!x)return [Math.min(99,pct),'In attesa della classifica alla '+dl+'ª'];var f=ok?ok(x):pct>=100;return [f?100:Math.min(99,pct),f?'Fatto':'Mancato']}
 function sponsorDi(t){var ob=OB[t]||{},er=ob.er||5,fz=ob.fz||70,lp=lastPos(t),r=row(t),mp=maxPts(t);
   var fa=fascia(t);
   if(fa==='Big'){var x=Math.max(60,Math.min(80,5*Math.round((58+(fz-60)*.45)/5)));return {nome:'Phönix Automobile',testo:'Supera '+x+' punti in una giornata',pct:Math.min(100,Math.round(mp/x*100)),stato:'Massimo '+f1(mp),dl:GTOT}}
