@@ -126,24 +126,22 @@ svg text{fill:var(--mute);font-family:var(--fb)}
 .ob .src{width:34px;height:34px;border-radius:10px;display:grid;place-items:center;background:var(--gold);color:#141d3d;font-weight:900;font-size:11px;text-align:center;line-height:1}
 .pbar{height:7px;background:rgba(255,255,255,.12);border-radius:99px;overflow:hidden;margin-top:5px}
 .pbar i{display:block;height:100%;background:var(--ok);border-radius:99px}
-/* Carriera: titolo leggibile e barra sempre distinguibile anche al 100% */
-.ob{grid-template-columns:72px minmax(0,1fr) minmax(0,170px);column-gap:12px;row-gap:8px;align-items:start}
+/* Carriera — layout obiettivi, sponsor compresi: progresso a larghezza piena */
+.ob{display:grid;grid-template-columns:72px minmax(0,1fr) minmax(0,155px);column-gap:12px;row-gap:7px;align-items:center;min-width:0}
 .ob img{width:70px;max-width:70px;height:42px;object-fit:contain}
 .ob .grow{min-width:0;overflow-wrap:normal;word-break:normal}
-.ob .grow>b{display:block;line-height:1.35;font-size:clamp(14px,2vw,17px);hyphens:none}
-.ob>.tag{white-space:normal;overflow-wrap:break-word;text-align:center;justify-self:end;max-width:170px;line-height:1.35;padding:7px 9px;letter-spacing:.04em}
-.ob .pbar{width:100%;height:10px;background:rgba(255,255,255,.2);border:1px solid rgba(255,255,255,.25);border-radius:999px;overflow:hidden;box-sizing:border-box}
-.ob .pbar i{max-width:100%;height:100%;background:var(--ok);border-radius:999px}
+.ob .grow>b{display:block;font-size:clamp(14px,1.75vw,17px);line-height:1.35;hyphens:none}
+.ob>.tag{white-space:normal;overflow-wrap:break-word;text-align:center;justify-self:end;max-width:155px;line-height:1.35;padding:7px 9px;letter-spacing:.04em}
+.ob>.pbar{grid-column:2/-1;grid-row:2;width:100%;height:11px;margin:0;border-radius:999px;background:rgba(255,255,255,.24);border:1px solid rgba(255,255,255,.22);overflow:hidden;box-sizing:border-box}
+.ob>.pbar i{display:block;height:100%;max-width:100%;border-radius:999px;background:var(--ok)}
 @media(max-width:700px){
- .ob{grid-template-columns:72px minmax(0,1fr);align-items:start}
- .ob>.tag{grid-column:2;grid-row:auto;justify-self:start;max-width:100%;font-size:10px}
- .ob .grow>b{font-size:15px}
+ .ob{grid-template-columns:62px minmax(0,1fr);column-gap:12px;row-gap:8px;align-items:center}
+ .ob img{width:60px;max-width:60px;height:40px}
+ .ob .grow>b{font-size:15px;line-height:1.4}
+ .ob>.tag{grid-column:1/-1;grid-row:auto;justify-self:start;max-width:100%;font-size:10px}
+ .ob>.pbar{grid-column:1/-1;grid-row:auto;width:100%}
 }
-@media(max-width:370px){
- .ob{grid-template-columns:56px minmax(0,1fr);gap:7px}
- .ob img{width:54px;max-width:54px;height:34px}
- .ob .grow>b{font-size:14px}
-}
+@media(max-width:370px){.ob{grid-template-columns:55px minmax(0,1fr);column-gap:10px}.ob img{width:53px;max-width:53px;height:35px}.ob .grow>b{font-size:14px}}
 /* Conferenza */
 .q{margin-bottom:12px}.q p{font-weight:800;margin-bottom:6px}
 .opts{display:grid;grid-template-columns:repeat(3,1fr);gap:6px}
@@ -713,7 +711,7 @@ function vCarL(){
   h+='<div class="card"><h3>Come cambia la fiducia con il calendario</h3><p class="sm mut" style="margin-bottom:8px">Essere ottavi alla 2ª giornata pesa poco; esserlo alla 26ª pesa tantissimo. Il peso di ogni risultato cresce man mano che la stagione avanza.</p>'
    +'<div class="row" style="gap:8px"><select id="fg" aria-label="Giornata">'+[2,6,10,18,26,34].map(function(g){return '<option value="'+g+'"'+(S.fdem.g===g?' selected':'')+'>Giornata '+g+'</option>'}).join('')+'</select><select id="fp" aria-label="Posizione">'+[1,2,3,4,5,6,7,8,9,10].map(function(x){return '<option value="'+x+'"'+(S.fdem.p===x?' selected':'')+'>'+x+'° posto</option>'}).join('')+'</select></div>'
    +'<p style="font-weight:700;margin-top:8px">Fiducia: <span class="num">'+fidA(t,S.fdem.p,S.fdem.g,0)+'</span> su 100 <span class="mut sm">(peso del calendario ×'+(Math.round(molt(S.fdem.g)*100)/100).toString().replace('.',',')+')</span></p></div>';
-  h+='<div class="card"><h3>Obiettivi della stagione</h3>'+o.map(function(x){return '<div class="ob">'+(x[0]?'<span class="src">Pres.</span>':'<img src="'+(SPIMG[x[1]]||D.img.sp2)+'" alt="'+x[1]+'">')+'<div class="grow"><b>'+x[2]+'</b><div class="mut sm">'+x[1]+'</div><div class="pbar"><i style="width:'+x[3]+'%"></i></div></div><span class="tag '+(x[4]==='Fatto'?'o':'')+'">'+x[4]+'</span></div>'}).join('')+'</div>';
+  h+='<div class="card"><h3>Obiettivi della stagione</h3>'+o.map(function(x){return '<div class="ob">'+(x[0]?'<span class="src">Pres.</span>':'<img src="'+(SPIMG[x[1]]||D.img.sp2)+'" alt="'+x[1]+'">')+'<div class="grow"><b>'+x[2]+'</b><div class="mut sm">'+x[1]+'</div></div><span class="tag '+(x[4]==='Fatto'?'o':'')+'">'+x[4]+'</span><div class="pbar" role="progressbar" aria-label="Progresso obiettivo" aria-valuemin="0" aria-valuemax="100" aria-valuenow="'+x[3]+'"><i style="width:'+x[3]+'%"></i></div></div>'}).join('')+'</div>';
   h+='<div class="card"><h3>Fiducia in lega</h3>'+D.teams.slice().sort(function(a,b){return fid(b)-fid(a)}).map(function(x){var v=fid(x);return '<div class="row" style="padding:6px 0">'+av(x,x===t?'me':'')+'<div class="grow"><b>'+esc(x)+'</b><div class="pbar"><i style="width:'+v+'%;background:'+(v>=60?'var(--ok)':v>=30?'var(--gold)':'var(--bad)')+'"></i></div></div><b class="num">'+v+'</b></div>'}).join('')+'</div>';
   return h+'<p class="note">Nessun obiettivo del tipo "metti tre giovani". Solo classifica, vittorie e punti, che l\'app calcola da sola.</p>';
 }
