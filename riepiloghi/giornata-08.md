@@ -64,9 +64,9 @@ Notizie pubbliche, senza indicare di chi e' ogni giocatore.
 |---|---|---|---|---|
 | Bellanova | Atalanta | Risentimento muscolare all’inguine | Prossimo turno | Salta |
 | Raspadori | Atalanta | Distrazione muscolare di basso grado al bicipite | Inizio novembre | Salta |
-| Holm | Bologna | Problema al tendine della coscia destra | Fine febbraio | Salta |
-| Piccoli | Bologna | Infortunio | Metà novembre | Salta |
 | Orsolini | Bologna | Lesione di primo grado al bicipite femorale | Prima metà di novembre | Salta |
+| Piccoli | Bologna | Infortunio | Metà novembre | Salta |
+| Holm | Bologna | Problema al tendine della coscia destra | Fine febbraio | Salta |
 | Rodriguez Je. | Como | Infortunio | Metà dicembre | In dubbio |
 | Diao | Como | Lesione muscolare al flessore della gamba | Metà novembre | Salta |
 | Chalobah T. | Como | Infortunio | Inizio novembre | Salta |
@@ -82,19 +82,19 @@ Notizie pubbliche, senza indicare di chi e' ogni giocatore.
 | Conceicao | Juventus | Lussazione alla spalla sinistra | Metà novembre | Salta |
 | Celik | Juventus | Lesione di basso grado del bicipite femorale | Metà novembre | Salta |
 | Marusic | Lazio | Lesione muscolare alla coscia | Fine ottobre | Salta |
-| Pinamonti | Lazio | Infortunio | Prossimo turno | Salta |
 | Gudmundsson A. | Lazio | Problema alla spalla destra dopo una caduta | Metà novembre | In dubbio |
 | Coulibaly L. | Lecce | Lesione muscolare al bicipite femorale della coscia | Inizio novembre | Salta |
-| Gaspar K. | Lecce | Squalificato | Rientra dalla 10ª giornata | Salta |
+| Gaspar K. | Lecce | Squalificato | Rientra dalla 11ª giornata | Salta |
 | Chukwueze | Milan | Problema all'anca sinistra | Da valutare | Salta |
 | Rabiot | Milan | Affaticamento muscolare al polpaccio rimediato nella rifinitura | Prossimo turno | Salta |
 | Saelemaekers | Milan | Problema alla caviglia destra e operata il | Da febbraio | Salta |
 | Buongiorno | Napoli | Operato nella seconda metà di luglio al | Fine dicembre | Salta |
+| Spinazzola | Napoli | Lesione di basso grado del bicipite femorale | Metà novembre | Salta |
 | Santos A. | Napoli | Lesione distrattiva di medio grado del bicipite | Inizio dicembre | Salta |
 | Neres | Napoli | Lesione di basso grado al muscolo semimembranoso | Prima metà di novembre | Salta |
-| Badiashile | Napoli | Risentimento alla gamba destra | Prossimo turno | Salta |
+| Badiashile | Napoli | Lesione distrattiva di medio grado del retto | Fine novembre | Salta |
 | Konè M. | Roma | Lesione di primo grado al bicipite femorale | Prima metà di novembre | Salta |
-| Svilar | Roma | Frattura a un dito del piede e | Metà novembre | Salta |
+| Svilar | Roma | Frattura a un dito del piede e | Inizio novembre | Salta |
 | Idzes | Sassuolo | Lesione di grado moderato al quadricipite della | Fine ottobre | Salta |
 | Fortini | Torino | Affaticamento muscolare all'adduttore | Da valutare | In dubbio |
 | Mandragora | Torino | Problema muscolare al flessore sinistro | Prossimo turno | Salta |
@@ -133,7 +133,7 @@ Punteggio: piu' e' alto, piu' conviene. Unisce valore e probabilita' di giocare.
 | Romano | Cagliari | Titolare | Bologna (C) | 83 |
 | Matic | Sassuolo | Titolare | Como (T) | 80 |
 | Pobega | Bologna | Titolare | Cagliari (T) | 77 |
-| Winks | Cagliari | Titolare, ballottaggio | Bologna (C) | 75 |
+| Winks | Cagliari | Fuori | Bologna (C) | 75 |
 
 ### Attaccanti
 
