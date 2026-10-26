@@ -2,7 +2,8 @@
  "giocate": [
   1,
   2,
-  3
+  3,
+  4
  ],
  "giornate": {
   "1": {
@@ -393,6 +394,161 @@
      "avversario_reale": "Napoli",
      "in_casa": true,
      "data_partita": "sab 17/10 15:00"
+    }
+   ]
+  },
+  "4": {
+   "sa": 8,
+   "scritta": "2026-10-26",
+   "episodi": [
+    {
+     "tipo": "gol",
+     "titolo": "Gol decisivo",
+     "verdetto": "Ha deciso la partita",
+     "testo": "Al replay è tutto pulito: il gol di Belghali decide Oranje VC–Real Madrink 2‑2. Senza, Oranje VC avrebbe perso, e sulla panchina di DJ Cst Brazil lo sanno bene.",
+     "giocatore": "Belghali",
+     "squadra": "Oranje VC",
+     "allenatori": [
+      "DJ Cst Brazil"
+     ],
+     "id": "7220",
+     "squadra_reale": "Torino",
+     "avversario_reale": "Monza",
+     "in_casa": true,
+     "data_partita": "ven 23/10 20:45"
+    },
+    {
+     "tipo": "gol",
+     "titolo": "Gol decisivo",
+     "verdetto": "Ha deciso la partita",
+     "testo": "Al replay è tutto pulito: il gol di Bernardeschi decide AFA SELECCION–Mariana Coneja 4‑5. Senza, Mariana Coneja avrebbe pareggiato, e sulla panchina di Mark Lenders lo sanno bene.",
+     "giocatore": "Bernardeschi",
+     "squadra": "Mariana Coneja",
+     "allenatori": [
+      "Mark Lenders"
+     ],
+     "id": "184",
+     "squadra_reale": "Bologna",
+     "avversario_reale": "Cagliari",
+     "in_casa": false,
+     "data_partita": "sab 24/10 15:00"
+    },
+    {
+     "tipo": "autogol",
+     "titolo": "Autogol",
+     "verdetto": "Regolare",
+     "testo": "La moviola non lascia scampo: l'ultimo tocco è di Diego Carlos. Autogol regolare, e sulla panchina di Leanzino e Mario cala il silenzio.",
+     "giocatore": "Diego Carlos",
+     "squadra": "The Blue brothers",
+     "allenatori": [
+      "Leanzino",
+      "Mario"
+     ],
+     "id": "4137",
+     "squadra_reale": "Parma",
+     "avversario_reale": "Lazio",
+     "in_casa": false,
+     "data_partita": "sab 24/10 20:45"
+    }
+   ],
+   "scartati": [],
+   "automatici": [
+    {
+     "tipo": "gol",
+     "titolo": "Gol decisivo",
+     "verdetto": "Ha deciso la partita",
+     "testo": "Al replay è tutto pulito: il gol di Belghali decide Oranje VC–Real Madrink 2‑2. Senza, Oranje VC avrebbe perso, e sulla panchina di DJ Cst Brazil lo sanno bene.",
+     "giocatore": "Belghali",
+     "squadra": "Oranje VC",
+     "allenatori": [
+      "DJ Cst Brazil"
+     ],
+     "id": "7220",
+     "squadra_reale": "Torino",
+     "avversario_reale": "Monza",
+     "in_casa": true,
+     "data_partita": "ven 23/10 20:45"
+    },
+    {
+     "tipo": "gol",
+     "titolo": "Gol decisivo",
+     "verdetto": "Ha deciso la partita",
+     "testo": "Al replay è tutto pulito: il gol di Bernardeschi decide AFA SELECCION–Mariana Coneja 4‑5. Senza, Mariana Coneja avrebbe pareggiato, e sulla panchina di Mark Lenders lo sanno bene.",
+     "giocatore": "Bernardeschi",
+     "squadra": "Mariana Coneja",
+     "allenatori": [
+      "Mark Lenders"
+     ],
+     "id": "184",
+     "squadra_reale": "Bologna",
+     "avversario_reale": "Cagliari",
+     "in_casa": false,
+     "data_partita": "sab 24/10 15:00"
+    },
+    {
+     "tipo": "gol",
+     "titolo": "Gol decisivo",
+     "verdetto": "Ha deciso la partita",
+     "testo": "Al replay è tutto pulito: il gol di McKennie decide AFA SELECCION–Mariana Coneja 4‑5. Senza, Mariana Coneja avrebbe pareggiato, e sulla panchina di Mark Lenders lo sanno bene.",
+     "giocatore": "McKennie",
+     "squadra": "Mariana Coneja",
+     "allenatori": [
+      "Mark Lenders"
+     ],
+     "id": "4973",
+     "squadra_reale": "Juventus",
+     "avversario_reale": "Lecce",
+     "in_casa": false,
+     "data_partita": "dom 25/10 18:00"
+    },
+    {
+     "tipo": "gol",
+     "titolo": "Gol decisivo",
+     "verdetto": "Ha deciso la partita",
+     "testo": "La moviola dice gol regolare, il tabellone dice AFA SELECCION–Mariana Coneja 4‑5. Il gol di Pulisic vale il risultato: senza, Mariana Coneja avrebbe pareggiato.",
+     "giocatore": "Pulisic",
+     "squadra": "Mariana Coneja",
+     "allenatori": [
+      "Mark Lenders"
+     ],
+     "id": "2423",
+     "squadra_reale": "Milan",
+     "avversario_reale": "Udinese",
+     "in_casa": false,
+     "data_partita": "dom 25/10 20:45"
+    },
+    {
+     "tipo": "assist",
+     "titolo": "Assist decisivo",
+     "verdetto": "Ha deciso la partita",
+     "testo": "Non segna, ma decide: il passaggio di Simeone cambia AFA SELECCION–Mariana Coneja 4‑5. Senza quell'assist Mariana Coneja avrebbe pareggiato.",
+     "giocatore": "Simeone",
+     "squadra": "Mariana Coneja",
+     "allenatori": [
+      "Mark Lenders"
+     ],
+     "id": "2061",
+     "squadra_reale": "Torino",
+     "avversario_reale": "Monza",
+     "in_casa": true,
+     "data_partita": "ven 23/10 20:45"
+    },
+    {
+     "tipo": "autogol",
+     "titolo": "Autogol",
+     "verdetto": "Regolare",
+     "testo": "La moviola non lascia scampo: l'ultimo tocco è di Diego Carlos. Autogol regolare, e sulla panchina di Leanzino e Mario cala il silenzio.",
+     "giocatore": "Diego Carlos",
+     "squadra": "The Blue brothers",
+     "allenatori": [
+      "Leanzino",
+      "Mario"
+     ],
+     "id": "4137",
+     "squadra_reale": "Parma",
+     "avversario_reale": "Lazio",
+     "in_casa": false,
+     "data_partita": "sab 24/10 20:45"
     }
    ]
   }

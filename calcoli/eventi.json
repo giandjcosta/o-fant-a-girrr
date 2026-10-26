@@ -22,28 +22,48 @@
   "testo": "Bentornato, DJ: i posti in alto sono occupati, e il mio è già scelto."
  },
  {
-  "tipo": "conferenza",
-  "k": "C3-Apo team",
+  "tipo": "derby",
+  "k": "S5",
+  "da": "The Blue brothers",
+  "a": "Oranje VC",
+  "nome": "Derby dell'Emma"
+ },
+ {
+  "tipo": "promessa",
+  "k": "C4-Apo team",
   "team": "Apo team",
-  "giornata": 3,
-  "libera": "Il nostro obbiettivo al momento é rialzarci dopo due stagioni da cancellare",
-  "risposte": [
-   "AFA SELECCION è un ottimo avversario: serve attenzione.",
-   "Grazie, continuiamo a lavorare a testa bassa."
-  ],
-  "promessa": ""
+  "giornata": 4,
+  "promessa": "Sarà sicuramente una bella partita, che vinca il migliore",
+  "esito": "s"
  },
  {
   "tipo": "conferenza",
-  "k": "C3-The Blue brothers",
-  "team": "The Blue brothers",
-  "giornata": 3,
+  "k": "C4-Apo team",
+  "team": "Apo team",
+  "giornata": 4,
+  "avversario": "stif dc",
+  "tono": 1,
+  "libera": "Il campionato é lungo e noi siamo pronti a metterci in gioco",
+  "risposte": [
+   "Il campionato é lungo e noi siamo pronti a metterci in gioco",
+   "Sarà sicuramente una bella partita, che vinca il migliore",
+   "Forza Apo team, anche perché le altre squadre fanno schifo"
+  ],
+  "promessa": "Sarà sicuramente una bella partita, che vinca il migliore"
+ },
+ {
+  "tipo": "conferenza",
+  "k": "C4-Oranje VC",
+  "team": "Oranje VC",
+  "giornata": 4,
+  "avversario": "Real Madrink",
+  "tono": 1,
   "libera": "",
   "risposte": [
-   "È presto: lavoriamo e vediamo.",
-   "Atletico ma non troppo è un ottimo avversario: serve attenzione.",
-   "Chiedo tempo: i risultati arriveranno."
+   "Chi parla di obiettivi guardi la classifica.",
+   "Real Madrink è un ottimo avversario: serve attenzione.",
+   "Grazie, continuiamo a lavorare a testa bassa."
   ],
-  "promessa": ""
+  "promessa": "Chi parla di obiettivi guardi la classifica."
  }
 ]

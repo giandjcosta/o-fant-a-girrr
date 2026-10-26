@@ -1,1 +1,16 @@
-[]
+[
+ {
+  "team": "Oranje VC",
+  "giornata": 4,
+  "promessa": "Chi parla di obiettivi guardi la classifica.",
+  "pesa": 2,
+  "esito": "p"
+ },
+ {
+  "team": "Apo team",
+  "giornata": 4,
+  "promessa": "Sarà sicuramente una bella partita, che vinca il migliore",
+  "pesa": 1,
+  "esito": "s"
+ }
+]

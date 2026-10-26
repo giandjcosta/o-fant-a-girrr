@@ -30,13 +30,50 @@
   "body": "INTERVISTA SPECIALE\nLeanzino & Mario lancia la sfida a DJ Cst Brazil: «Bentornato, DJ: i posti in alto sono occupati, e il mio è già scelto.» #GirrrSport #Derby"
  },
  {
-  "chiave": "conferenza:C3-Apo team:0",
+  "chiave": "derby:S5:0",
   "h": "girrr_sport",
-  "body": "CONFERENZA PRE PARTITA · Giornata 3\napo: «Il nostro obbiettivo al momento é rialzarci dopo due stagioni da cancellare» «AFA SELECCION è un ottimo avversario: serve attenzione.» «Grazie, continuiamo a lavorare a testa bassa.» #ConferenzaStampa"
+  "body": "NASCE UN DERBY\nLeanzino & Mario e DJ Cst Brazil hanno trovato l'accordo: da oggi è «Derby dell'Emma». #GirrrSport #Derby"
  },
  {
-  "chiave": "conferenza:C3-The Blue brothers:0",
+  "chiave": "derby:S5:1",
+  "h": "lega_ofantagirrr",
+  "body": "Novità dall'Albo d'oro: nasce «Derby dell'Emma», il Derby tra Leanzino & Mario e DJ Cst Brazil. Entra nella storia della Lega. #Derby #AlboDoro"
+ },
+ {
+  "chiave": "promessa:C4-Apo team:0",
+  "h": "giornale_girrr",
+  "body": "PROMESSA TRADITA\napo in conferenza stampa: «Sarà sicuramente una bella partita, che vinca il migliore». Il campo ha risposto altro, e la dirigenza ha preso nota. #ConferenzaStampa"
+ },
+ {
+  "chiave": "conferenza:C4-Apo team:0",
   "h": "girrr_sport",
-  "body": "CONFERENZA PRE PARTITA · Giornata 3\nLeanzino & Mario: «È presto: lavoriamo e vediamo.» «Atletico ma non troppo è un ottimo avversario: serve attenzione.» «Chiedo tempo: i risultati arriveranno.» #ConferenzaStampa"
+  "body": "CONFERENZA STAMPA · apo, alla vigilia di apo - stifson: «Il campionato é lungo e noi siamo pronti a metterci in gioco» Su stifson: «Sarà sicuramente una bella partita, che vinca il migliore» E alla dirigenza: «Forza Apo team, anche perché le altre squadre fanno schifo»"
+ },
+ {
+  "chiave": "conferenza:C4-Apo team:1",
+  "h": "ciro_trattativa",
+  "body": "Mi piace l'umiltà, ma in questa lega non basta.",
+  "re": "conferenza:C4-Apo team:0",
+  "re_h": "girrr_sport",
+  "re_body": "CONFERENZA STAMPA · apo, alla vigilia di apo - stifson: «Il campionato é lungo e noi siamo pronti a metterci in gioco» Su stifson: «Sarà sicuramente una bella partita, che vinca il migliore» E alla dirigenza: «Forza Apo team, anche perché le altre squadre fanno schifo»"
+ },
+ {
+  "chiave": "conferenza:C4-Oranje VC:0",
+  "h": "girrr_sport",
+  "body": "CONFERENZA STAMPA · DJ Cst Brazil, alla vigilia di DJ Cst Brazil - AndrewTT: «Chi parla di obiettivi guardi la classifica.» Su AndrewTT: «Real Madrink è un ottimo avversario: serve attenzione.» E alla dirigenza: «Grazie, continuiamo a lavorare a testa bassa.» #ConferenzaStampa"
+ },
+ {
+  "chiave": "conferenza:C4-Oranje VC:1",
+  "h": "ciro_trattativa",
+  "body": "Mi piace l'umiltà, ma in questa lega non basta.",
+  "re": "conferenza:C4-Oranje VC:0",
+  "re_h": "girrr_sport",
+  "re_body": "CONFERENZA STAMPA · DJ Cst Brazil, alla vigilia di DJ Cst Brazil - AndrewTT: «Chi parla di obiettivi guardi la classifica.» Su AndrewTT: «Real Madrink è un ottimo avversario: serve attenzione.» E alla dirigenza: «Grazie, continuiamo a lavorare a testa bassa.» #ConferenzaStampa"
+ },
+ {
+  "chiave": "moviola:G4:0",
+  "h": "girrr_sport",
+  "body": "MOVIOLA · Giornata 4\nGol decisivo. Al replay è tutto pulito: il gol di Belghali decide Oranje VC–Real Madrink 2‑2. Senza, Oranje VC avrebbe perso, e sulla panchina di DJ Cst Brazil lo sanno bene. Verdetto: Ha deciso la partita. #GirrrSport #Moviola",
+  "quando": "2026-10-20T12:40:00+00:00"
  }
 ]
