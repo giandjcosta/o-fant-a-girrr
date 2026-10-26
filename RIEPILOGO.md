@@ -1,60 +1,60 @@
-# Riepilogo giornata 7 di Serie A
+# Riepilogo giornata 8 di Serie A
 
 Lega O FANT A GIRRR. Dati aggiornati al 2026-10-26.
 
 ## Partite della giornata
 
-- Frosinone - Sassuolo (ven 16/10 20:45)
-- Venezia - Napoli (sab 17/10 15:00)
-- Bologna - Inter (sab 17/10 18:00)
-- Roma - Genoa (sab 17/10 20:45)
-- Udinese - Lecce (dom 18/10 12:30)
-- Fiorentina - Como (dom 18/10 15:00)
-- Milan - Atalanta (dom 18/10 18:00)
-- Juventus - Lazio (dom 18/10 20:45)
-- Monza - Cagliari (lun 19/10 18:30)
-- Parma - Torino (lun 19/10 20:45)
+- Torino - Monza (ven 23/10 20:45)
+- Cagliari - Bologna (sab 24/10 15:00)
+- Como - Sassuolo (sab 24/10 15:00)
+- Napoli - Roma (sab 24/10 18:00)
+- Lazio - Parma (sab 24/10 20:45)
+- Inter - Fiorentina (dom 25/10 12:30)
+- Atalanta - Frosinone (dom 25/10 15:00)
+- Genoa - Venezia (dom 25/10 15:00)
+- Lecce - Juventus (dom 25/10 18:00)
+- Udinese - Milan (dom 25/10 20:45)
 
-## Classic League: ultima giornata (3ª, G7 di Serie A)
+## Classic League: ultima giornata (4ª, G8 di Serie A)
 
-- Mariana Coneja 5 - 4 WOA (punteggi 86 - 81.5)
-- Apo team 0 - 2 AFA SELECCION (punteggi 64.5 - 75)
-- Atletico ma non troppo 0 - 2 The Blue brothers (punteggi 60.5 - 73.5)
-- Grodah 1 - 2 Oranje VC (punteggi 70 - 72.5)
-- Real Madrink 2 - 2 stif dc (punteggi 72 - 72)
+- The Blue brothers 0 - 4 Grodah (punteggi 57.5 - 83.5)
+- stif dc 4 - 1 Apo team (punteggi 82.5 - 67)
+- AFA SELECCION 4 - 5 Mariana Coneja (punteggi 82 - 86)
+- Oranje VC 2 - 2 Real Madrink (punteggi 72 - 75)
+- WOA 1 - 2 Atletico ma non troppo (punteggi 69.5 - 72.5)
 
 ### Premi della giornata
 
 - Miglior formazione: Mariana Coneja con 86 punti
-- Cucchiaio di legno: Atletico ma non troppo con 60.5 punti
-- Vittoria più larga: The Blue brothers su Atletico ma non troppo (73.5 - 60.5)
-- Vittoria più sofferta: Oranje VC su Grodah (72.5 - 70)
-- Il più fortunato: Oranje VC ha vinto con soli 72.5 punti
-- Il più sfortunato: WOA ha perso nonostante 81.5 punti
+- Cucchiaio di legno: The Blue brothers con 57.5 punti
+- Vittoria più larga: Grodah su The Blue brothers (83.5 - 57.5)
+- Vittoria più sofferta: Real Madrink su Oranje VC (75 - 72)
+- Il più fortunato: Atletico ma non troppo ha vinto con soli 72.5 punti
+- Il più sfortunato: AFA SELECCION ha perso nonostante 82 punti
 
-## Classic League: prossima giornata (4ª, G8 di Serie A)
+## Classic League: prossima giornata (5ª, G9 di Serie A)
 
-- The Blue brothers - Grodah
-- stif dc - Apo team
-- AFA SELECCION - Mariana Coneja
-- Oranje VC - Real Madrink
-- WOA - Atletico ma non troppo
+- Mariana Coneja - stif dc
+- Apo team - Real Madrink
+- The Blue brothers - Oranje VC
+- Atletico ma non troppo - AFA SELECCION
+- Grodah - WOA
 
-## Champions Cup: ultima giornata (1ª, G6 di Serie A)
+## Champions Cup: ultima giornata (2ª, G8 di Serie A)
 
-- Girone A: Mariana Coneja 0 - 0 The Blue brothers (punteggi 61.5 - 62.5)
-- Girone A: stif dc 2 - 2 Real Madrink (punteggi 75.5 - 74)
-- Girone B: Grodah 2 - 3 WOA (punteggi 74.5 - 78.5)
-- Girone B: Oranje VC 0 - 2 AFA SELECCION (punteggi 65.5 - 74.5)
+- Girone A: Real Madrink 2 - 5 Mariana Coneja (punteggi 75 - 86)
+- Girone A: Apo team 1 - 4 stif dc (punteggi 67 - 82.5)
+- Girone B: WOA 1 - 2 Atletico ma non troppo (punteggi 69.5 - 72.5)
+- Girone B: AFA SELECCION 4 - 4 Grodah (punteggi 82 - 83.5)
 
-## Champions Cup: prossima giornata (2ª, G8 di Serie A)
+## Champions Cup: prossima giornata (3ª, G10 di Serie A)
 
-- Girone A: Real Madrink - Mariana Coneja
-- Girone A: Apo team - stif dc
-- Girone B: WOA - Atletico ma non troppo
-- Girone B: AFA SELECCION - Grodah
-- Girone A: riposa The Blue brothers
-- Girone B: riposa Oranje VC
+- Girone A: Mariana Coneja - stif dc
+- Girone A: The Blue brothers - Apo team
+- Girone B: Oranje VC - Atletico ma non troppo
+- Girone B: AFA SELECCION - WOA
+- Girone A: riposa Real Madrink
+- Girone B: riposa Grodah
 
 ## Infortunati tra i giocatori delle rose
 
@@ -112,41 +112,41 @@ Punteggio: piu' e' alto, piu' conviene. Unisce valore e probabilita' di giocare.
 
 | Giocatore | Squadra | Stato | Avversario | Punteggio |
 |---|---|---|---|---|
-| Perri | Torino | Titolare | Parma (T) | 56 |
-| Tornqvist | Monza | Titolare | Cagliari (C) | 35 |
-| Thiam | Monza | Panchina | Cagliari (C) | 28 |
-| Daffara | Parma | Panchina | Torino (C) | 15 |
-| Happonen | Bologna | Panchina | Inter (C) | 15 |
+| Perri | Torino | Titolare | Monza (C) | 56 |
+| Tornqvist | Monza | Titolare | Torino (T) | 35 |
+| Thiam | Monza | Panchina | Torino (T) | 28 |
+| Daffara | Parma | Panchina | Lazio (T) | 15 |
+| Happonen | Bologna | Panchina | Cagliari (T) | 15 |
 
 ### Difensori
 
 | Giocatore | Squadra | Stato | Avversario | Punteggio |
 |---|---|---|---|---|
-| Hainaut | Venezia | Titolare | Napoli (C) | 87 |
-| Provstgaard | Lazio | Titolare | Juventus (T) | 79 |
-| Veiga D. | Lecce | Titolare | Udinese (T) | 77 |
-| Zè Pedro | Cagliari | Titolare | Monza (T) | 75 |
-| Abankwah | Udinese | Titolare | Lecce (C) | 74 |
+| Hainaut | Venezia | Titolare | Genoa (T) | 87 |
+| Provstgaard | Lazio | Titolare | Parma (C) | 79 |
+| Veiga D. | Lecce | Titolare | Juventus (C) | 77 |
+| Zè Pedro | Cagliari | Titolare | Bologna (C) | 75 |
+| Abankwah | Udinese | Titolare | Milan (C) | 74 |
 
 ### Centrocampisti
 
 | Giocatore | Squadra | Stato | Avversario | Punteggio |
 |---|---|---|---|---|
-| Schmid | Frosinone | Titolare | Sassuolo (C) | 94 |
-| Romano | Cagliari | Titolare | Monza (T) | 83 |
-| Matic | Sassuolo | Titolare | Frosinone (T) | 80 |
-| Pobega | Bologna | Titolare | Inter (C) | 77 |
-| Winks | Cagliari | Titolare | Monza (T) | 75 |
+| Schmid | Frosinone | Titolare | Atalanta (T) | 94 |
+| Romano | Cagliari | Titolare | Bologna (C) | 83 |
+| Matic | Sassuolo | Titolare | Como (T) | 80 |
+| Pobega | Bologna | Titolare | Cagliari (T) | 77 |
+| Winks | Cagliari | Titolare | Bologna (C) | 75 |
 
 ### Attaccanti
 
 | Giocatore | Squadra | Stato | Avversario | Punteggio |
 |---|---|---|---|---|
-| Robinson J. | Monza | Titolare | Cagliari (C) | 70 |
-| Ghedjemis | Frosinone | Titolare | Sassuolo (C) | 61 |
-| Lontani | Parma | Panchina | Torino (C) | 51 |
-| N'Dri | Lecce | Titolare | Udinese (T) | 46 |
-| Fatah | Lecce | Titolare | Udinese (T) | 37 |
+| Robinson J. | Monza | Titolare | Torino (T) | 70 |
+| Ghedjemis | Frosinone | Titolare | Atalanta (T) | 61 |
+| Lontani | Parma | Panchina | Lazio (T) | 51 |
+| N'Dri | Lecce | Titolare | Juventus (C) | 46 |
+| Fatah | Lecce | Titolare | Juventus (C) | 37 |
 
 ## Correzioni da controllare
 
