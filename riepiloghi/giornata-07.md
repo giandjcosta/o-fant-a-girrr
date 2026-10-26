@@ -1,6 +1,6 @@
 # Riepilogo giornata 7 di Serie A
 
-Lega O FANT A GIRRR. Dati aggiornati al 2026-10-25.
+Lega O FANT A GIRRR. Dati aggiornati al 2026-10-26.
 
 ## Partite della giornata
 
@@ -125,8 +125,8 @@ Punteggio: piu' e' alto, piu' conviene. Unisce valore e probabilita' di giocare.
 | Hainaut | Venezia | Titolare | Napoli (C) | 87 |
 | Provstgaard | Lazio | Titolare | Juventus (T) | 79 |
 | Veiga D. | Lecce | Titolare | Udinese (T) | 77 |
-| Abankwah | Udinese | Titolare | Lecce (C) | 75 |
 | Zè Pedro | Cagliari | Titolare | Monza (T) | 75 |
+| Abankwah | Udinese | Titolare | Lecce (C) | 74 |
 
 ### Centrocampisti
 
