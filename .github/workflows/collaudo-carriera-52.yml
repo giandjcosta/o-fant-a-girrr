@@ -1,0 +1,25 @@
+name: Collaudo Carriera 5.2
+on:
+  push:
+    branches: ['chatgpt/release52-carriera-rewards-milestones']
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - name: Test logica e sintassi JavaScript
+        run: node scripts/test-carriera-52.cjs
+      - name: Installa Chromium e WebKit
+        run: |
+          python3 -m pip install playwright
+          python3 -m playwright install --with-deps chromium webkit
+      - name: Avvia sito test
+        run: |
+          python3 -m http.server 8765 >/tmp/c52.log 2>&1 &
+          sleep 2
+      - name: Browser QA desktop e mobile
+        run: python3 scripts/test-carriera-52-browser.py
