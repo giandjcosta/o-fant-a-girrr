@@ -126,7 +126,7 @@ Punteggio: piu' e' alto, piu' conviene. Unisce valore e probabilita' di giocare.
 | Giocatore | Squadra | Stato | Avversario | Punteggio |
 |---|---|---|---|---|
 | Hainaut | Venezia | Titolare, ballottaggio | Inter (C) | 87 |
-| Provstgaard | Lazio | Riserva, ballottaggio | Sassuolo (T) | 79 |
+| Provstgaard | Lazio | Panchina | Sassuolo (T) | 79 |
 | Veiga D. | Lecce | Titolare | Frosinone (T) | 77 |
 | Zè Pedro | Cagliari | Titolare, ballottaggio | Roma (T) | 75 |
 | Abankwah | Udinese | Titolare | Parma (T) | 74 |
@@ -137,7 +137,7 @@ Punteggio: piu' e' alto, piu' conviene. Unisce valore e probabilita' di giocare.
 |---|---|---|---|---|
 | Schmid | Frosinone | Titolare | Lecce (C) | 94 |
 | Romano | Cagliari | Titolare | Roma (T) | 83 |
-| Matic | Sassuolo | Titolare | Lazio (C) | 80 |
+| Matic | Sassuolo | Panchina | Lazio (C) | 80 |
 | Pobega | Bologna | Titolare | Milan (T) | 77 |
 | Winks | Cagliari | Fuori | Roma (T) | 75 |
 
@@ -153,8 +153,10 @@ Punteggio: piu' e' alto, piu' conviene. Unisce valore e probabilita' di giocare.
 
 ## Correzioni da controllare
 
-- Portieri G9 in discordanza tra le fonti (Napoli Meret o Milinkovic-Savic, Sassuolo Turati o Muric, Inter Martinez o Provedel): controllare le formazioni ufficiali prima del fischio.
-- Pinamonti (Lazio) in dubbio per tracheite e febbre: verificare la convocazione per Sassuolo-Lazio.
+- Portieri G9 in discordanza tra le fonti (Napoli Meret o Milinkovic-Savic, Inter Martinez o Provedel): controllare le formazioni ufficiali prima del fischio.
 - Infortunati e squalificati letti solo da Fantacalcio.it perché Fantamaster non pubblica gli elenchi: confrontare con una seconda fonte.
 - Orari ufficiali G10 di Sassuolo-Fiorentina e Atalanta-Parma e di G9 Fiorentina-Atalanta non indicati nella pagina della Lega letta: confermati da Calcio e Finanza e Fantacalcio.it, da riverificare sul sito della Lega.
 - Statistiche degli svincolati (fas) non riverificate in questa esecuzione: restano quelle dell’ultimo aggiornamento automatico.
+- G9 Sassuolo-Lazio (2-6): presenze registrate dal tabellino di Virgilio; i cambi sono letti da una sola fonte, da riverificare con un secondo tabellino.
+- G9 Lazio: Gudmundsson A. (in dubbio per la spalla) non risulta nel tabellino di Sassuolo-Lazio, presenza in log da verificare e inserire.
+- Thorstvedt (Sassuolo) espulso in G9: la squalifica per G10 (Sassuolo-Fiorentina, 2/11) va confermata dal Giudice Sportivo.
