@@ -696,12 +696,19 @@ function ptsGiornate(t,soglia){var n=0;D.aw.forEach(function(a){a.rows.forEach(f
 /* Obiettivi con scadenza: prima della giornata indicata non sono mai "Fatto"; dopo si guarda la classifica di quella giornata (risultati da data.json del sito) */
 var CL=null,GTOT=34;
 try{fetch('https://giandjcosta.github.io/o-fant-a-girrr/data.json',{cache:'no-cache'}).then(function(r){return r.json()}).then(function(j){var L=(j.cal&&j.cal.lega)||[];if(L.length){CL=L;GTOT=L.length;if(cur==='carriera')render()}}).catch(function(){})}catch(e){}
+function ultimaGiornataVerificata(){
+ if(!CL)return 0;var done=0;
+ CL.slice().sort(function(a,b){return a.n-b.n}).some(function(g){
+  if(g.n!==done+1||!g.m||g.m.length!==5||!g.m.every(function(m){return m[4]&&m[4]!=='-'&&/^\\d+-\\d+$/.test(m[4])}))return true;
+  done++;return false
+ });return done
+}
 function gioc(){var g=0;D.tab.forEach(function(r){if((r.g||0)>g)g=r.g||0});return g}
-function aGiornata(n,t){if(!CL||gioc()<n)return null;var T={};function r(x){return T[x]||(T[x]={t:x,pt:0,fp:0,v:0})}
+function aGiornata(n,t){if(!CL||ultimaGiornataVerificata()<n)return null;var T={};function r(x){return T[x]||(T[x]={t:x,pt:0,fp:0,v:0})}
   CL.forEach(function(g){g.m.forEach(function(m){var A=r(m[0]),B=r(m[3]);if(g.n>n||m[4]==='-')return;var s=m[4].split('-').map(Number);A.pt+=s[0]>s[1]?3:s[0]===s[1]?1:0;B.pt+=s[1]>s[0]?3:s[0]===s[1]?1:0;A.fp+=m[1];B.fp+=m[2];if(s[0]>s[1])A.v++;if(s[1]>s[0])B.v++})});
   var C=Object.keys(T).map(function(k){return T[k]}).sort(function(a,b){return b.pt-a.pt||b.fp-a.fp});C.forEach(function(x,i){x.pos=i+1});return C.filter(function(x){return x.t===t})[0]||null}
 /* esito di un obiettivo: [percentuale, etichetta]; pos: obiettivo di posizione alla giornata dl (ok decide), altrimenti si accumula fino a fine stagione */
-function esito(t,pct,stato,dl,ok){var G=gioc();
+function esito(t,pct,stato,dl,ok){var G=Math.max(gioc(),ultimaGiornataVerificata());
   if(G<dl)return ok?[Math.min(99,pct),stato]:[pct,pct>=100?'Fatto':stato];
   var x=ok?aGiornata(dl,t):null;if(ok&&!x)return [Math.min(99,pct),'In attesa della classifica alla '+dl+'ª'];var f=ok?ok(x):pct>=100;return [f?100:Math.min(99,pct),f?'Fatto':'Mancato']}
 function sponsorDi(t){var ob=OB[t]||{},er=ob.er||5,fz=ob.fz||70,lp=lastPos(t),r=row(t),mp=maxPts(t);
@@ -718,7 +725,7 @@ function sponsorDi(t){var ob=OB[t]||{},er=ob.er||5,fz=ob.fz||70,lp=lastPos(t),r=
   return {nome:'Autofficina Rossi',testo:'Supera 70 punti in una giornata',pct:Math.min(100,Math.round(mp/70*100)),stato:'Massimo '+f1(mp),dl:GTOT}}
 function fiduciaColore(v){return v>=100?'#3d93d6':v>=81?'#36c9c5':v>=61?'#70df90':v>=41?'#ffd166':v>=21?'#ff9b4a':'#ff6174'}
 function defaultCarMilestone(t){
- var current=gioc(),round=2;
+ var current=Math.max(gioc(),ultimaGiornataVerificata()),round=2;
  var rounds=[2,8,10,18,26,34];
  // Non avanzare a una milestone senza classifica storica verificata.
  rounds.forEach(function(n){if(n<=current&&(n===2||(CL&&CL.slice(0,n).length===n&&CL.slice(0,n).every(function(x){return x.m&&x.m.length===5&&x.m.every(function(y){return y[4]&&y[4]!=='-'})}))))round=n});
