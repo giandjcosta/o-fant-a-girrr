@@ -1,19 +1,19 @@
-# Riepilogo giornata 8 di Serie A
+# Riepilogo giornata 9 di Serie A
 
 Lega O FANT A GIRRR. Dati aggiornati al 2026-10-27.
 
 ## Partite della giornata
 
-- Torino - Monza (ven 23/10 20:45)
-- Cagliari - Bologna (sab 24/10 15:00)
-- Como - Sassuolo (sab 24/10 15:00)
-- Napoli - Roma (sab 24/10 18:00)
-- Lazio - Parma (sab 24/10 20:45)
-- Inter - Fiorentina (dom 25/10 12:30)
-- Atalanta - Frosinone (dom 25/10 15:00)
-- Genoa - Venezia (dom 25/10 15:00)
-- Lecce - Juventus (dom 25/10 18:00)
-- Udinese - Milan (dom 25/10 20:45)
+- Sassuolo - Lazio (mar 27/10 18:30)
+- Roma - Cagliari (mar 27/10 20:45)
+- Torino - Como (mar 27/10 20:45)
+- Milan - Bologna (mer 28/10 18:30)
+- Parma - Udinese (mer 28/10 18:30)
+- Venezia - Inter (mer 28/10 18:30)
+- Genoa - Juventus (mer 28/10 20:45)
+- Monza - Napoli (mer 28/10 20:45)
+- Frosinone - Lecce (gio 29/10 18:30)
+- Fiorentina - Atalanta (gio 29/10 20:45)
 
 ## Classic League: ultima giornata (4ª, G8 di Serie A)
 
@@ -65,6 +65,7 @@ Notizie pubbliche, senza indicare di chi e' ogni giocatore.
 | Bellanova | Atalanta | Risentimento muscolare all’inguine | Prossimo turno | Salta |
 | Raspadori | Atalanta | Distrazione muscolare di basso grado al bicipite | Inizio novembre | Salta |
 | Kessiè | Atalanta | Distrazione di basso grado al polpaccio della | Prossimo turno | Salta |
+| Scalvini | Atalanta | Distrazione al flessore del polpaccio | Da valutare | In dubbio |
 | Orsolini | Bologna | Lesione di primo grado al bicipite femorale | Prima metà di novembre | Salta |
 | Piccoli | Bologna | Infortunio | Metà novembre | Salta |
 | Holm | Bologna | Problema al tendine della coscia destra | Fine febbraio | Salta |
@@ -77,19 +78,21 @@ Notizie pubbliche, senza indicare di chi e' ogni giocatore.
 | Pavard | Inter | Risentimento agli adduttori della coscia destra | Fine ottobre | Salta |
 | Martinez L. | Inter | Risentimento muscolare ai flessori della coscia sinistra | Metà novembre | Salta |
 | Jones C. | Inter | Risentimento miofasciale agli adduttori della coscia destra | Fine ottobre | Salta |
-| Ekhator | Juventus | Lesione di medio grado del muscolo semitendinoso | Metà novembre | Salta |
+| Conceicao | Juventus | Lussazione alla spalla sinistra | Metà novembre | Salta |
 | Gonzalez N. | Juventus | Lesione di basso grado del soleo destro | Metà novembre | Salta |
 | Grabara | Juventus | Lesione al crociato anteriore del ginocchio destro | Da aprile | Salta |
 | Yildiz | Juventus | Problema al piede | Inizio dicembre | Salta |
-| Conceicao | Juventus | Lussazione alla spalla sinistra | Metà novembre | Salta |
+| Ekhator | Juventus | Lesione di medio grado del muscolo semitendinoso | Metà novembre | Salta |
 | Celik | Juventus | Lesione di basso grado del bicipite femorale | Metà novembre | Salta |
 | Marusic | Lazio | Lesione muscolare alla coscia | Fine ottobre | Salta |
 | Gudmundsson A. | Lazio | Problema alla spalla destra dopo una caduta | Metà novembre | In dubbio |
+| Pinamonti | Lazio | Tracheite con febbre | Da valutare | In dubbio |
 | Coulibaly L. | Lecce | Lesione muscolare al bicipite femorale della coscia | Inizio novembre | Salta |
 | Gaspar K. | Lecce | Squalificato | Rientra dalla 11ª giornata | Salta |
-| Moreira | Milan | Affaticamento muscolare al flessore sinistro e out | Prossimo turno | Salta |
-| Chukwueze | Milan | Problema all'anca sinistra | Da valutare | Salta |
+| Tiago Gabriel | Lecce | Contusione al ginocchio | Da valutare | In dubbio |
 | Rabiot | Milan | Affaticamento muscolare al polpaccio rimediato nella rifinitura | Prossimo turno | Salta |
+| Chukwueze | Milan | Problema all'anca sinistra | Da valutare | Salta |
+| Moreira | Milan | Affaticamento muscolare al flessore sinistro e out | Prossimo turno | Salta |
 | Gila | Milan | Sovraccarico alla caviglia sinistra | Prossimo turno | In dubbio |
 | Saelemaekers | Milan | Problema alla caviglia destra e operata il | Da febbraio | Salta |
 | Buongiorno | Napoli | Operato nella seconda metà di luglio al | Fine dicembre | Salta |
@@ -113,42 +116,46 @@ Punteggio: piu' e' alto, piu' conviene. Unisce valore e probabilita' di giocare.
 
 | Giocatore | Squadra | Stato | Avversario | Punteggio |
 |---|---|---|---|---|
-| Perri | Torino | Titolare | Monza (C) | 56 |
-| Tornqvist | Monza | Titolare | Torino (T) | 35 |
-| Thiam | Monza | Panchina | Torino (T) | 28 |
-| Daffara | Parma | Panchina | Lazio (T) | 15 |
-| Happonen | Bologna | Panchina | Cagliari (T) | 15 |
+| Perri | Torino | Titolare | Como (C) | 56 |
+| Tornqvist | Monza | Titolare | Napoli (C) | 35 |
+| Thiam | Monza | Panchina | Napoli (C) | 28 |
+| Daffara | Parma | Panchina | Udinese (C) | 15 |
+| Happonen | Bologna | Panchina | Milan (T) | 15 |
 
 ### Difensori
 
 | Giocatore | Squadra | Stato | Avversario | Punteggio |
 |---|---|---|---|---|
-| Hainaut | Venezia | Titolare, ballottaggio | Genoa (T) | 87 |
-| Provstgaard | Lazio | Riserva, ballottaggio | Parma (C) | 79 |
-| Veiga D. | Lecce | Titolare | Juventus (C) | 77 |
-| Zè Pedro | Cagliari | Titolare, ballottaggio | Bologna (C) | 75 |
-| Abankwah | Udinese | Titolare | Milan (C) | 74 |
+| Hainaut | Venezia | Titolare, ballottaggio | Inter (C) | 87 |
+| Provstgaard | Lazio | Titolare, ballottaggio | Sassuolo (T) | 79 |
+| Veiga D. | Lecce | Titolare | Frosinone (T) | 77 |
+| Zè Pedro | Cagliari | Titolare, ballottaggio | Roma (T) | 75 |
+| Abankwah | Udinese | Titolare | Parma (T) | 74 |
 
 ### Centrocampisti
 
 | Giocatore | Squadra | Stato | Avversario | Punteggio |
 |---|---|---|---|---|
-| Schmid | Frosinone | Titolare | Atalanta (T) | 94 |
-| Romano | Cagliari | Titolare | Bologna (C) | 83 |
-| Matic | Sassuolo | Titolare | Como (T) | 80 |
-| Pobega | Bologna | Titolare | Cagliari (T) | 77 |
-| Winks | Cagliari | Fuori | Bologna (C) | 75 |
+| Schmid | Frosinone | Titolare | Lecce (C) | 94 |
+| Romano | Cagliari | Titolare | Roma (T) | 83 |
+| Matic | Sassuolo | Titolare | Lazio (C) | 80 |
+| Pobega | Bologna | Titolare | Milan (T) | 77 |
+| Winks | Cagliari | Fuori | Roma (T) | 75 |
 
 ### Attaccanti
 
 | Giocatore | Squadra | Stato | Avversario | Punteggio |
 |---|---|---|---|---|
-| Robinson J. | Monza | Titolare, ballottaggio | Torino (T) | 70 |
-| Ghedjemis | Frosinone | Titolare | Atalanta (T) | 61 |
-| Lontani | Parma | Titolare, ballottaggio | Lazio (T) | 51 |
-| N'Dri | Lecce | Titolare | Juventus (C) | 46 |
-| Fatah | Lecce | Titolare | Juventus (C) | 37 |
+| Robinson J. | Monza | Titolare, ballottaggio | Napoli (C) | 70 |
+| Ghedjemis | Frosinone | Titolare | Lecce (C) | 61 |
+| Lontani | Parma | Titolare, ballottaggio | Udinese (C) | 51 |
+| N'Dri | Lecce | Titolare | Frosinone (T) | 46 |
+| Fatah | Lecce | Titolare | Frosinone (T) | 37 |
 
 ## Correzioni da controllare
 
-Nessuna.
+- Portieri G9 in discordanza tra le fonti (Napoli Meret o Milinkovic-Savic, Sassuolo Turati o Muric, Inter Martinez o Provedel): controllare le formazioni ufficiali prima del fischio.
+- Pinamonti (Lazio) in dubbio per tracheite e febbre: verificare la convocazione per Sassuolo-Lazio.
+- Infortunati e squalificati letti solo da Fantacalcio.it perché Fantamaster non pubblica gli elenchi: confrontare con una seconda fonte.
+- Orari ufficiali G10 di Sassuolo-Fiorentina e Atalanta-Parma e di G9 Fiorentina-Atalanta non indicati nella pagina della Lega letta: confermati da Calcio e Finanza e Fantacalcio.it, da riverificare sul sito della Lega.
+- Statistiche degli svincolati (fas) non riverificate in questa esecuzione: restano quelle dell’ultimo aggiornamento automatico.
