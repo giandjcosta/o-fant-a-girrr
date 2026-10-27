@@ -72,7 +72,7 @@ Notizie pubbliche, senza indicare di chi e' ogni giocatore.
 | Diao | Como | Lesione muscolare al flessore della gamba | Metà novembre | Salta |
 | Chalobah T. | Como | Infortunio | Inizio novembre | Salta |
 | Kean | Como | Fastidio alla tibia e | Da valutare | Salta |
-| Atta | Fiorentina | Sovraccarico funzionale dell'addome | Prossimo turno | Salta |
+| Atta | Fiorentina | Sovraccarico funzionale dell'addome | Prossimo turno | In dubbio |
 | Stones | Inter | Risentimento ai flessori della coscia sinistra | Fine ottobre | In dubbio |
 | Pavard | Inter | Risentimento agli adduttori della coscia destra | Fine ottobre | Salta |
 | Martinez L. | Inter | Risentimento muscolare ai flessori della coscia sinistra | Metà novembre | Salta |
@@ -86,6 +86,7 @@ Notizie pubbliche, senza indicare di chi e' ogni giocatore.
 | Marusic | Lazio | Lesione muscolare alla coscia | Fine ottobre | Salta |
 | Gudmundsson A. | Lazio | Problema alla spalla destra dopo una caduta | Metà novembre | In dubbio |
 | Coulibaly L. | Lecce | Lesione muscolare al bicipite femorale della coscia | Inizio novembre | Salta |
+| Tiago Gabriel | Lecce | Contusione al ginocchio che mette a forte | Da valutare | In dubbio |
 | Gaspar K. | Lecce | Squalificato | Rientra dalla 11ª giornata | Salta |
 | Rabiot | Milan | Affaticamento muscolare al polpaccio rimediato nella rifinitura | Prossimo turno | Salta |
 | Chukwueze | Milan | Problema all'anca sinistra | Da valutare | Salta |
@@ -97,6 +98,7 @@ Notizie pubbliche, senza indicare di chi e' ogni giocatore.
 | Santos A. | Napoli | Lesione distrattiva di medio grado del bicipite | Inizio dicembre | Salta |
 | Neres | Napoli | Lesione di basso grado al muscolo semimembranoso | Prima metà di novembre | Salta |
 | Badiashile | Napoli | Lesione distrattiva di medio grado del retto | Fine novembre | Salta |
+| Dybala | Roma | Fastidio al polpaccio va attenuandosi | Fine ottobre | Salta |
 | Konè M. | Roma | Lesione di primo grado al bicipite femorale | Prima metà di novembre | Salta |
 | Svilar | Roma | Frattura a un dito del piede e | Inizio novembre | Salta |
 | Idzes | Sassuolo | Lesione di grado moderato al quadricipite della | Fine ottobre | Salta |
