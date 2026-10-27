@@ -199,6 +199,13 @@ nav button{flex:1 0 auto;white-space:nowrap;padding:10px 13px}
 /* nelle card "In evidenza" l'etichetta resta senza pillola e va a capo se non c'è posto (a 320 px usciva dallo schermo) */
 .fc .tg{padding:0;border-radius:0;background:none;flex-wrap:wrap;row-gap:2px}
 .dby{display:inline-block;margin-left:6px;padding:2px 7px;border-radius:99px;background:var(--hi);color:var(--bg);font:900 9px Inter;letter-spacing:.06em;text-transform:uppercase;vertical-align:middle}
+
+/* Carriera 5.2: premio sponsor riscattabile, non altera il saldo senza conferma */
+.prize-corner{margin:12px 0 14px;padding:12px 14px;border-radius:13px;background:linear-gradient(135deg,rgba(255,209,102,.13),rgba(61,147,214,.12));border:1px solid rgba(255,209,102,.48);display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px}
+.prize-corner strong{display:block;color:var(--hi);font-size:15px}
+.prize-corner small{display:block;color:var(--sub);margin-top:3px;line-height:1.4}
+.prize-corner .go{font-size:12px;padding:9px 13px;flex-shrink:0}
+.prize-corner.claimed{border-color:rgba(74,222,128,.32);background:rgba(74,222,128,.07)}
 </style>
 <link rel="manifest" href="../manifest.webmanifest">
 <meta name="theme-color" content="#1d2a52">
@@ -222,6 +229,7 @@ var LS={};try{LS=JSON.parse(localStorage.getItem('fg')||'{}')||{}}catch(e){}
 function save(){try{localStorage.setItem('fg',JSON.stringify(LS))}catch(e){}}
 var DEMO=/[?&]demo\b/.test(location.search);
 var teams=[],team=DEMO?'Oranje VC':(LS.team||''),code=DEMO?'demo':(LS.code||''),S=null,tab='partite',slip=[],err='',busy=false;
+var PREMI={premi:[],reputazione:0};
 var MORE={};
 function mlab(m){var t={'1':'1','X':'X','2':'2','O':'Over 4,5','U':'Under 4,5','O35':'Over 3,5','U35':'Under 3,5','O55':'Over 5,5','U55':'Under 5,5','GG':'Entrambe segnano','NG':'Non segnano entrambe'};if(t[m])return t[m];if(m.indexOf('T:')===0)return m.slice(2);if(m.indexOf('E:')===0)return 'Esatto '+m.slice(2).replace('-','–');return m}
 function esitoJS(m,a,b){var t=a+b;return m==='1'?a>b:m==='X'?a===b:m==='2'?a<b:m==='O'?t>=5:m==='U'?t<=4:m==='O35'?t>=4:m==='U35'?t<=3:m==='O55'?t>=6:m==='U55'?t<=5:m==='GG'?a>=1&&b>=1:m==='NG'?(a===0||b===0):m==='E:'+a+'-'+b}
@@ -251,6 +259,8 @@ function mockStato(){
 }
 function mockRpc(name,b){
   if(!M)mockInit();
+  if(name==='carriera_stato')return{premi:[{obiettivo:'sponsor_2026_27',sponsor:'Phönix Automobile',crediti:50,reputazione:1,stato:M.claimed?'claimed':'pending'}],reputazione:1};
+  if(name==='carriera_riscatta'){if(M.claimed)throw Error('Premio già riscattato');M.claimed=true;M.conto.crediti+=50;return{crediti:50,saldo:M.conto.crediti}};
   if(name==='toto_stato')return mockStato();
   if(name==='toto_pr_stato'){if(!M.pr)M.pr={n:1,P:[{id:1,creditore:'Oranje VC',debitore:'Grodah',importo:50,tasso:1.1,restituito:0,stato:'richiesta',attesa_di:'Oranje VC',creato:new Date().toISOString()}],V:[{tipo:'banco',importo:-8,nota:'40% della vincita trattenuto dal banco per il prestito',creato:new Date().toISOString()}]};return{prestiti:M.pr.P,movimenti:M.pr.V,debito_p:0}}
   if(name==='toto_pr_chiedi'){M.pr.P.push({id:++M.pr.n+1,creditore:b.p_a,debitore:'Oranje VC',importo:b.p_importo,tasso:b.p_tasso,restituito:0,stato:'richiesta',attesa_di:b.p_a,creato:new Date().toISOString()});return{id:1}}
@@ -284,7 +294,7 @@ function quando(iso){try{var t=new Intl.DateTimeFormat('it-IT',{weekday:'short',
 
 function carica(){
   busy=true;
-  return rpc('toto_stato',{p_team:team,p_code:code}).then(function(s){S=s;err='';busy=false;
+  return Promise.all([rpc('toto_stato',{p_team:team,p_code:code}),rpc('carriera_stato',{p_team:team,p_code:code}).catch(function(){return{premi:[],reputazione:0}})]).then(function(all){var s=all[0];PREMI=all[1]||{premi:[],reputazione:0};S=s;err='';busy=false;
     // tolgo dalla schedina le partite che nel frattempo si sono chiuse
     slip=slip.filter(function(x){var p=pm(x.p);return p&&!p.chiusa&&new Date(p.chiude)>new Date()});
     render()}).catch(function(e){busy=false;S=null;err=e.message;if(/Codice/.test(err)){LS.code='';code='';save()}render()});
@@ -315,10 +325,16 @@ function card(x,tag){
   var on=slip.some(function(y){return y.p===x.p.id&&y.m===x.m});
   return '<div class="fc"><div class="tg" style="display:flex;justify-content:space-between;gap:6px"><span>'+tag+'</span><span style="letter-spacing:.06em;color:var(--chiaro)">'+(x.p.comp==='coppa'?'COPPA':'CAMPIONATO')+'</span></div><div class="mm">'+esc(x.p.casa)+' – '+esc(x.p.trasf)+'</div><button class="q'+(on?' on':'')+'" data-p="'+x.p.id+'" data-m="'+x.m+'"><small>'+esc(x.n)+'</small><b>'+f2(x.q)+'</b></button></div>';
 }
+function premioWidget(){
+ var entries=(PREMI&&PREMI.premi)||[],p=entries.find(function(x){return x.stato==='pending'}),claimed=entries.find(function(x){return x.stato==='claimed'});
+ if(!p&&!claimed)return '';
+ if(p)return '<aside class="prize-corner" aria-label="Premio sponsor da riscuotere"><div><strong>🎁 Premio sponsor da riscuotere · +'+f0(p.crediti)+' FC</strong><small>'+esc(p.sponsor)+' · Reputazione permanente +'+f0(p.reputazione)+'</small></div><button class="go" id="riscatta-sponsor" data-obiettivo="'+esc(p.obiettivo)+'">Riscatta</button></aside>';
+ return '<aside class="prize-corner claimed"><div><strong>✓ Premio sponsor riscattato</strong><small>'+esc(claimed.sponsor)+' · +'+f0(claimed.crediti)+' FC · Reputazione +'+f0(claimed.reputazione)+'</small></div></aside>';
+}
 function head(){
   var c=S.conto;
   return (DEMO?'<div class="card" style="border:2px dashed var(--hi);font-size:13px"><b style="color:var(--hi)">PROVA</b> · Qui è tutto finto e si azzera quando ricarichi. Gioca una schedina, poi premi il pulsante per far finire le partite a caso.<br><button class="go" id="sim" style="margin-top:10px">Fai finire le partite</button></div>':'')+'<a class="back" href="index.html">‹ O GIRRR</a><div class="top"><a href="index.html" title="Torna a O Girrr" style="display:block;flex:none"><img src="../assets/logo-lega.png" alt="O Fant A Girrr" style="display:block"></a><div class="t"><div class="k">O FANT A GIRRR</div><h1><b class="TT"><em class="Tg">T</em><svg viewBox="0 0 900 400" aria-hidden="true"><path fill="currentColor" d="M185.8 85.2H181Q145.4 85.2 121.1 103Q96.9 120.8 85.6 166Q81.9 180.8 83.2 186.6Q84.6 192.4 84.4 193.2Q62.8 193.2 54.4 184.2Q46.1 175.2 51.3 154.4Q58.4 126 78.2 102.6Q98.1 79.2 132.3 64.8Q166.5 50.4 213.7 50.4Q240.1 50.4 269.3 55.2Q272.6 55.8 275.8 56.3C299.8 57.8 329.3 62.4 360.7 67.4C408.7 74.9 461.1 83.2 505 82C565 80 605 68 642 62C668 66 668 94 640 99C600 108 545 122 480 122C417.8 122 363.5 106.2 296 100.6V102Q285.1 101.7 274.5 100Q262.2 98 239.8 93.2L120.4 350H62.8Z"/></svg></b>oto<span>girrr</span></h1></div><div class="bal"><small>FANTACREDITI</small><b>'+f2(c.crediti)+'</b>'+(Number(c.debito)>0?'<small style="color:var(--hi)">DEBITO '+f2(c.debito)+'</small>':'')+'</div></div>'+
-  '<div class="who">Squadra: <b>'+esc(team)+'</b><button class="x" id="out">Esci</button></div>'+
+  '<div class="who">Squadra: <b>'+esc(team)+'</b><button class="x" id="out">Esci</button></div>'+premioWidget()+
   '<nav><div class="nvi">'+[['partite','Partite'],['vinc','Vincenti'],['mie','Le mie'],['class','Classifica'],['prob','Probabilità'],['sfide','Sfida 1 contro 1'],['prestiti','Prestiti'],['regole','Regole']].map(function(t){return '<button data-tab="'+t[0]+'" class="'+(tab===t[0]?'on':'')+'">'+t[1]+'</button>'}).join('')+'</div></nav>'+ticker();
 }
 function qbtn(p,m,lab){
@@ -446,6 +462,7 @@ function upWin(){
 document.addEventListener('click',function(e){
   var t=e.target,b;
   if(t.id==='enter'){team=document.getElementById('gt').value;code=document.getElementById('gc').value.trim().toUpperCase();LS.team=team;LS.code=code;save();err='';document.querySelector('.err').textContent='Controllo…';carica();return}
+  if(t.id==='riscatta-sponsor'){if(busy)return;busy=true;t.disabled=true;t.textContent='Riscatto…';rpc('carriera_riscatta',{p_team:team,p_code:code,p_obiettivo:t.dataset.obiettivo}).then(function(x){toast('Premio riscattato: +'+f0(x.crediti)+' Fantacrediti');ANIM=true;return carica()}).catch(function(e){busy=false;t.disabled=false;t.textContent='Riscatta';toast(e.message,1)});return}
   if(t.id==='sim'){rpc('demo_simula',{}).then(function(){slip=[];tab='mie';ANIM=true;toast('Partite finite, pagamenti fatti');return carica()});return}
   if(t.id==='out'){LS.code='';save();code='';S=null;slip=[];render();return}
   if(t.id==='pr_sug'){var sg=document.getElementById('pr_t');sg.value=pSug(Number(document.getElementById('pr_i').value));return}
