@@ -1,0 +1,31 @@
+name: Verifica premi Carriera 5.2
+
+on:
+  push:
+    branches: [gh-pages]
+    paths: [data.json]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  verifica:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Verifica risultati e crea premi da riscuotere
+        run: |
+          curl --fail --silent --show-error --retry 2 --max-time 90 \
+            -X POST \
+            -H 'Content-Type: application/json' \
+            'https://qmjqfgmvimsuxvghetgi.supabase.co/functions/v1/carriera-verifica-52' \
+            -o /tmp/carriera52.json
+          python3 - <<'PY'
+          import json
+          with open('/tmp/carriera52.json') as f:
+              v=json.load(f)
+          print('Carriera 5.2: giornate verificate',v.get('verified_through'),'premi idonei',v.get('eligible'),'nuovi',v.get('created'))
+          if not v.get('ok'):
+              raise SystemExit('Verifica premi fallita: '+str(v.get('error')))
+          PY
