@@ -1,6 +1,6 @@
 # Riepilogo giornata 8 di Serie A
 
-Lega O FANT A GIRRR. Dati aggiornati al 2026-10-26.
+Lega O FANT A GIRRR. Dati aggiornati al 2026-10-27.
 
 ## Partite della giornata
 
@@ -124,7 +124,7 @@ Punteggio: piu' e' alto, piu' conviene. Unisce valore e probabilita' di giocare.
 | Giocatore | Squadra | Stato | Avversario | Punteggio |
 |---|---|---|---|---|
 | Hainaut | Venezia | Titolare, ballottaggio | Genoa (T) | 87 |
-| Provstgaard | Lazio | Titolare, ballottaggio | Parma (C) | 79 |
+| Provstgaard | Lazio | Riserva, ballottaggio | Parma (C) | 79 |
 | Veiga D. | Lecce | Titolare | Juventus (C) | 77 |
 | Zè Pedro | Cagliari | Titolare, ballottaggio | Bologna (C) | 75 |
 | Abankwah | Udinese | Titolare | Milan (C) | 74 |
