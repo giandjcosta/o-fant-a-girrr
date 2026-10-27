@@ -65,7 +65,6 @@ Notizie pubbliche, senza indicare di chi e' ogni giocatore.
 | Bellanova | Atalanta | Risentimento muscolare all’inguine | Prossimo turno | Salta |
 | Raspadori | Atalanta | Distrazione muscolare di basso grado al bicipite | Inizio novembre | Salta |
 | Kessiè | Atalanta | Distrazione di basso grado al polpaccio della | Prossimo turno | Salta |
-| Scalvini | Atalanta | Distrazione al flessore del polpaccio | Da valutare | In dubbio |
 | Orsolini | Bologna | Lesione di primo grado al bicipite femorale | Prima metà di novembre | Salta |
 | Piccoli | Bologna | Infortunio | Metà novembre | Salta |
 | Holm | Bologna | Problema al tendine della coscia destra | Fine febbraio | Salta |
@@ -86,10 +85,8 @@ Notizie pubbliche, senza indicare di chi e' ogni giocatore.
 | Celik | Juventus | Lesione di basso grado del bicipite femorale | Metà novembre | Salta |
 | Marusic | Lazio | Lesione muscolare alla coscia | Fine ottobre | Salta |
 | Gudmundsson A. | Lazio | Problema alla spalla destra dopo una caduta | Metà novembre | In dubbio |
-| Pinamonti | Lazio | Tracheite con febbre | Da valutare | In dubbio |
 | Coulibaly L. | Lecce | Lesione muscolare al bicipite femorale della coscia | Inizio novembre | Salta |
 | Gaspar K. | Lecce | Squalificato | Rientra dalla 11ª giornata | Salta |
-| Tiago Gabriel | Lecce | Contusione al ginocchio | Da valutare | In dubbio |
 | Rabiot | Milan | Affaticamento muscolare al polpaccio rimediato nella rifinitura | Prossimo turno | Salta |
 | Chukwueze | Milan | Problema all'anca sinistra | Da valutare | Salta |
 | Moreira | Milan | Affaticamento muscolare al flessore sinistro e out | Prossimo turno | Salta |
@@ -127,7 +124,7 @@ Punteggio: piu' e' alto, piu' conviene. Unisce valore e probabilita' di giocare.
 | Giocatore | Squadra | Stato | Avversario | Punteggio |
 |---|---|---|---|---|
 | Hainaut | Venezia | Titolare, ballottaggio | Inter (C) | 87 |
-| Provstgaard | Lazio | Titolare, ballottaggio | Sassuolo (T) | 79 |
+| Provstgaard | Lazio | Riserva, ballottaggio | Sassuolo (T) | 79 |
 | Veiga D. | Lecce | Titolare | Frosinone (T) | 77 |
 | Zè Pedro | Cagliari | Titolare, ballottaggio | Roma (T) | 75 |
 | Abankwah | Udinese | Titolare | Parma (T) | 74 |
