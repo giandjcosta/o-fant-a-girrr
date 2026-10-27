@@ -741,7 +741,7 @@ function sponsorDi(t){var ob=OB[t]||{},er=ob.er||5,fz=ob.fz||70,lp=lastPos(t),r=
 function fiduciaColore(v){return v>=100?'#3d93d6':v>=81?'#36c9c5':v>=61?'#70df90':v>=41?'#ffd166':v>=21?'#ff9b4a':'#ff6174'}
 function defaultCarMilestone(t){
  var current=Math.max(gioc(),ultimaGiornataVerificata()),round=2;
- var rounds=[2,8,10,18,26,34];
+ var rounds=[2,6,8,10,18,26,34];
  // Non avanzare a una milestone senza classifica storica verificata.
  rounds.forEach(function(n){if(n<=current&&(n===2||(CL&&CL.slice(0,n).length===n&&CL.slice(0,n).every(function(x){return x.m&&x.m.length===5&&x.m.every(function(y){return y[4]&&y[4]!=='-'})}))))round=n});
  var historical=round>2?aGiornata(round,t):null;
