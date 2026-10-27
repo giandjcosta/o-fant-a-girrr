@@ -714,7 +714,7 @@ try{fetch('https://giandjcosta.github.io/o-fant-a-girrr/data.json',{cache:'no-ca
 function ultimaGiornataVerificata(){
  if(!CL)return 0;var done=0;
  CL.slice().sort(function(a,b){return a.n-b.n}).some(function(g){
-  if(g.n!==done+1||!g.m||g.m.length!==5||!g.m.every(function(m){return m[4]&&m[4]!=='-'&&m[4].split('-').length===2&&m[4].split('-').every(function(n){return n!==''&&Number.isInteger(+n)}).test(m[4])}))return true;
+  if(g.n!==done+1||!g.m||g.m.length!==5||!g.m.every(function(m){return m[4]&&m[4]!=='-'&&m[4].split('-').length===2&&m[4].split('-').every(function(n){return n!==''&&Number.isInteger(+n)})}))return true;
   done++;return false
  });return done
 }
