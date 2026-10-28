@@ -1,6 +1,6 @@
 # Riepilogo giornata 9 di Serie A
 
-Lega O FANT A GIRRR. Dati aggiornati al 2026-10-27.
+Lega O FANT A GIRRR. Dati aggiornati al 2026-10-28.
 
 ## Partite della giornata
 
@@ -127,19 +127,19 @@ Punteggio: piu' e' alto, piu' conviene. Unisce valore e probabilita' di giocare.
 |---|---|---|---|---|
 | Hainaut | Venezia | Titolare, ballottaggio | Inter (C) | 87 |
 | Veiga D. | Lecce | Titolare | Frosinone (T) | 77 |
-| Zè Pedro | Cagliari | Titolare | Roma (T) | 75 |
 | Abankwah | Udinese | Titolare | Parma (T) | 74 |
 | Oyono A. | Frosinone | Titolare | Lecce (C) | 74 |
+| Zè Pedro | Cagliari | Titolare | Roma (T) | 73 |
 
 ### Centrocampisti
 
 | Giocatore | Squadra | Stato | Avversario | Punteggio |
 |---|---|---|---|---|
 | Schmid | Frosinone | Titolare | Lecce (C) | 94 |
-| Romano | Cagliari | Titolare | Roma (T) | 83 |
+| Romano | Cagliari | Titolare | Roma (T) | 82 |
 | Pobega | Bologna | Titolare, ballottaggio | Milan (T) | 77 |
-| Winks | Cagliari | Fuori | Roma (T) | 75 |
 | Masini | Frosinone | Titolare | Lecce (C) | 73 |
+| Matic | Sassuolo | Panchina | Lazio (C) | 73 |
 
 ### Attaccanti
 
