@@ -62,32 +62,31 @@ Notizie pubbliche, senza indicare di chi e' ogni giocatore.
 
 | Giocatore | Squadra | Motivo | Rientro | Giornata |
 |---|---|---|---|---|
-| Bellanova | Atalanta | Distrazione di basso grado dell'adduttore lungo dell’arto | Metà novembre | Salta |
-| Raspadori | Atalanta | Distrazione muscolare di basso grado al bicipite | Inizio novembre | Salta |
-| Scamacca | Atalanta | Risentimento ai muscoli flessori della coscia destra | Inizio novembre | Salta |
 | Kessiè | Atalanta | Distrazione di basso grado al polpaccio della | Inizio novembre | Salta |
+| Scamacca | Atalanta | Risentimento ai muscoli flessori della coscia destra | Inizio novembre | Salta |
+| Raspadori | Atalanta | Distrazione muscolare di basso grado al bicipite | Inizio novembre | Salta |
+| Bellanova | Atalanta | Distrazione di basso grado dell'adduttore lungo dell’arto | Metà novembre | Salta |
 | Holm | Bologna | Problema al tendine della coscia destra | Fine febbraio | Salta |
-| Piccoli | Bologna | Infortunio | Metà novembre | Salta |
 | Orsolini | Bologna | Lesione di primo grado al bicipite femorale | Inizio novembre | Salta |
+| Piccoli | Bologna | Infortunio | Metà novembre | Salta |
 | Rodriguez Je. | Como | Infortunio | Metà dicembre | In dubbio |
 | Diao | Como | Lesione muscolare al flessore della gamba | Metà novembre | Salta |
 | Chalobah T. | Como | Infortunio | Inizio novembre | Salta |
 | Kean | Como | Fastidio alla tibia e | Da valutare | Salta |
 | Atta | Fiorentina | Sovraccarico funzionale dell'addome | Prossimo turno | In dubbio |
-| Stones | Inter | Risentimento ai flessori della coscia sinistra | Fine ottobre | Salta |
 | Pavard | Inter | Risentimento agli adduttori della coscia destra | Fine ottobre | Salta |
 | Martinez L. | Inter | Risentimento muscolare ai flessori della coscia sinistra | Metà novembre | Salta |
 | Jones C. | Inter | Risentimento miofasciale agli adduttori della coscia destra | Fine ottobre | Salta |
-| Yildiz | Juventus | Problema al piede | Inizio dicembre | Salta |
+| Stones | Inter | Risentimento ai flessori della coscia sinistra | Fine ottobre | Salta |
+| Ekhator | Juventus | Lesione di medio grado del muscolo semitendinoso | Metà novembre | Salta |
 | Gonzalez N. | Juventus | Lesione di basso grado del soleo destro | Metà novembre | Salta |
 | Grabara | Juventus | Lesione al crociato anteriore del ginocchio destro | Da aprile | Salta |
-| Ekhator | Juventus | Lesione di medio grado del muscolo semitendinoso | Metà novembre | Salta |
+| Yildiz | Juventus | Problema al piede | Inizio dicembre | Salta |
 | Conceicao | Juventus | Lussazione alla spalla sinistra | Metà novembre | Salta |
 | Celik | Juventus | Lesione di basso grado del bicipite femorale | Metà novembre | Salta |
 | Marusic | Lazio | Lesione muscolare alla coscia | Fine ottobre | Salta |
 | Gudmundsson A. | Lazio | Problema alla spalla destra dopo una caduta | Metà novembre | In dubbio |
 | Coulibaly L. | Lecce | Lesione muscolare al bicipite femorale della coscia | Inizio novembre | Salta |
-| Tiago Gabriel | Lecce | Contusione al ginocchio che mette a forte | Da valutare | In dubbio |
 | Gaspar K. | Lecce | Squalificato | Rientra dalla 11ª giornata | Salta |
 | Rabiot | Milan | Affaticamento muscolare al polpaccio rimediato nella rifinitura | Prossimo turno | Salta |
 | Moreira | Milan | Affaticamento muscolare al flessore sinistro e out | Prossimo turno | Salta |
@@ -118,17 +117,17 @@ Punteggio: piu' e' alto, piu' conviene. Unisce valore e probabilita' di giocare.
 | Perri | Torino | Titolare | Como (C) | 56 |
 | Tornqvist | Monza | Titolare | Napoli (C) | 35 |
 | Thiam | Monza | Panchina | Napoli (C) | 28 |
-| Daffara | Parma | Panchina | Udinese (C) | 15 |
+| Daffara | Parma | Titolare | Udinese (C) | 19 |
 | Happonen | Bologna | Panchina | Milan (T) | 15 |
 
 ### Difensori
 
 | Giocatore | Squadra | Stato | Avversario | Punteggio |
 |---|---|---|---|---|
-| Hainaut | Venezia | Titolare, ballottaggio | Inter (C) | 87 |
+| Hainaut | Venezia | Titolare | Inter (C) | 85 |
 | Veiga D. | Lecce | Titolare | Frosinone (T) | 77 |
-| Abankwah | Udinese | Titolare | Parma (T) | 74 |
 | Oyono A. | Frosinone | Titolare | Lecce (C) | 74 |
+| Abankwah | Udinese | Titolare | Parma (T) | 73 |
 | Zè Pedro | Cagliari | Titolare | Roma (T) | 73 |
 
 ### Centrocampisti
@@ -137,7 +136,7 @@ Punteggio: piu' e' alto, piu' conviene. Unisce valore e probabilita' di giocare.
 |---|---|---|---|---|
 | Schmid | Frosinone | Titolare | Lecce (C) | 94 |
 | Romano | Cagliari | Titolare | Roma (T) | 82 |
-| Pobega | Bologna | Titolare, ballottaggio | Milan (T) | 77 |
+| Pobega | Bologna | Titolare | Milan (T) | 76 |
 | Masini | Frosinone | Titolare | Lecce (C) | 73 |
 | Matic | Sassuolo | Panchina | Lazio (C) | 73 |
 
@@ -145,11 +144,11 @@ Punteggio: piu' e' alto, piu' conviene. Unisce valore e probabilita' di giocare.
 
 | Giocatore | Squadra | Stato | Avversario | Punteggio |
 |---|---|---|---|---|
-| Robinson J. | Monza | Titolare, ballottaggio | Napoli (C) | 70 |
+| Robinson J. | Monza | Titolare | Napoli (C) | 70 |
 | Ghedjemis | Frosinone | Titolare | Lecce (C) | 61 |
-| Lontani | Parma | Riserva, ballottaggio | Udinese (C) | 51 |
-| N'Dri | Lecce | Titolare | Frosinone (T) | 46 |
-| Fatah | Lecce | Titolare | Frosinone (T) | 37 |
+| N'Dri | Lecce | Titolare, ballottaggio | Frosinone (T) | 46 |
+| Lontani | Parma | Panchina | Udinese (C) | 41 |
+| Fatah | Lecce | Riserva, ballottaggio | Frosinone (T) | 37 |
 
 ## Correzioni da controllare
 
