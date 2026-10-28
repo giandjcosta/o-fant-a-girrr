@@ -66,9 +66,9 @@ Notizie pubbliche, senza indicare di chi e' ogni giocatore.
 | Raspadori | Atalanta | Distrazione muscolare di basso grado al bicipite | Inizio novembre | Salta |
 | Scamacca | Atalanta | Risentimento ai muscoli flessori della coscia destra | Inizio novembre | Salta |
 | Kessiè | Atalanta | Distrazione di basso grado al polpaccio della | Inizio novembre | Salta |
-| Orsolini | Bologna | Lesione di primo grado al bicipite femorale | Inizio novembre | Salta |
-| Piccoli | Bologna | Infortunio | Metà novembre | Salta |
 | Holm | Bologna | Problema al tendine della coscia destra | Fine febbraio | Salta |
+| Piccoli | Bologna | Infortunio | Metà novembre | Salta |
+| Orsolini | Bologna | Lesione di primo grado al bicipite femorale | Inizio novembre | Salta |
 | Rodriguez Je. | Como | Infortunio | Metà dicembre | In dubbio |
 | Diao | Como | Lesione muscolare al flessore della gamba | Metà novembre | Salta |
 | Chalobah T. | Como | Infortunio | Inizio novembre | Salta |
@@ -78,20 +78,20 @@ Notizie pubbliche, senza indicare di chi e' ogni giocatore.
 | Pavard | Inter | Risentimento agli adduttori della coscia destra | Fine ottobre | Salta |
 | Martinez L. | Inter | Risentimento muscolare ai flessori della coscia sinistra | Metà novembre | Salta |
 | Jones C. | Inter | Risentimento miofasciale agli adduttori della coscia destra | Fine ottobre | Salta |
-| Conceicao | Juventus | Lussazione alla spalla sinistra | Metà novembre | Salta |
+| Yildiz | Juventus | Problema al piede | Inizio dicembre | Salta |
 | Gonzalez N. | Juventus | Lesione di basso grado del soleo destro | Metà novembre | Salta |
 | Grabara | Juventus | Lesione al crociato anteriore del ginocchio destro | Da aprile | Salta |
-| Yildiz | Juventus | Problema al piede | Inizio dicembre | Salta |
 | Ekhator | Juventus | Lesione di medio grado del muscolo semitendinoso | Metà novembre | Salta |
+| Conceicao | Juventus | Lussazione alla spalla sinistra | Metà novembre | Salta |
 | Celik | Juventus | Lesione di basso grado del bicipite femorale | Metà novembre | Salta |
 | Marusic | Lazio | Lesione muscolare alla coscia | Fine ottobre | Salta |
 | Gudmundsson A. | Lazio | Problema alla spalla destra dopo una caduta | Metà novembre | In dubbio |
 | Coulibaly L. | Lecce | Lesione muscolare al bicipite femorale della coscia | Inizio novembre | Salta |
 | Tiago Gabriel | Lecce | Contusione al ginocchio che mette a forte | Da valutare | In dubbio |
 | Gaspar K. | Lecce | Squalificato | Rientra dalla 11ª giornata | Salta |
-| Chukwueze | Milan | Problema all'anca sinistra | Da valutare | Salta |
-| Moreira | Milan | Affaticamento muscolare al flessore sinistro e out | Prossimo turno | Salta |
 | Rabiot | Milan | Affaticamento muscolare al polpaccio rimediato nella rifinitura | Prossimo turno | Salta |
+| Moreira | Milan | Affaticamento muscolare al flessore sinistro e out | Prossimo turno | Salta |
+| Chukwueze | Milan | Problema all'anca sinistra | Da valutare | Salta |
 | Gila | Milan | Sovraccarico alla caviglia sinistra | Prossimo turno | In dubbio |
 | Saelemaekers | Milan | Problema alla caviglia destra e operata il | Da febbraio | Salta |
 | Buongiorno | Napoli | Operato nella seconda metà di luglio al | Fine dicembre | Salta |
