@@ -64,8 +64,8 @@ Notizie pubbliche, senza indicare di chi e' ogni giocatore.
 |---|---|---|---|---|
 | Bellanova | Atalanta | Distrazione di basso grado dell'adduttore lungo dell’arto | Metà novembre | Salta |
 | Raspadori | Atalanta | Distrazione muscolare di basso grado al bicipite | Inizio novembre | Salta |
-| Scamacca | Atalanta | Risentimento ai muscoli flessori della coscia destra | Metà novembre | Salta |
-| Kessiè | Atalanta | Distrazione di basso grado al polpaccio della | Prossimo turno | Salta |
+| Scamacca | Atalanta | Risentimento ai muscoli flessori della coscia destra | Inizio novembre | Salta |
+| Kessiè | Atalanta | Distrazione di basso grado al polpaccio della | Inizio novembre | Salta |
 | Orsolini | Bologna | Lesione di primo grado al bicipite femorale | Inizio novembre | Salta |
 | Piccoli | Bologna | Infortunio | Metà novembre | Salta |
 | Holm | Bologna | Problema al tendine della coscia destra | Fine febbraio | Salta |
