@@ -1,6 +1,6 @@
 # Riepilogo giornata 9 di Serie A
 
-Lega O FANT A GIRRR. Dati aggiornati al 2026-10-28.
+Lega O FANT A GIRRR. Dati aggiornati al 2026-10-29.
 
 ## Partite della giornata
 
@@ -115,8 +115,8 @@ Punteggio: piu' e' alto, piu' conviene. Unisce valore e probabilita' di giocare.
 | Giocatore | Squadra | Stato | Avversario | Punteggio |
 |---|---|---|---|---|
 | Perri | Torino | Titolare | Como (C) | 56 |
-| Tornqvist | Monza | Titolare | Napoli (C) | 35 |
-| Thiam | Monza | Panchina | Napoli (C) | 28 |
+| Tornqvist | Monza | Titolare | Napoli (C) | 42 |
+| Thiam | Monza | Panchina | Napoli (C) | 21 |
 | Daffara | Parma | Titolare | Udinese (C) | 19 |
 | Happonen | Bologna | Panchina | Milan (T) | 15 |
 
@@ -144,7 +144,7 @@ Punteggio: piu' e' alto, piu' conviene. Unisce valore e probabilita' di giocare.
 
 | Giocatore | Squadra | Stato | Avversario | Punteggio |
 |---|---|---|---|---|
-| Robinson J. | Monza | Titolare | Napoli (C) | 70 |
+| Robinson J. | Monza | Titolare | Napoli (C) | 75 |
 | Ghedjemis | Frosinone | Titolare | Lecce (C) | 61 |
 | N'Dri | Lecce | Titolare, ballottaggio | Frosinone (T) | 46 |
 | Lontani | Parma | Panchina | Udinese (C) | 41 |
