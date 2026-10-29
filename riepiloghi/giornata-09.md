@@ -98,8 +98,8 @@ Notizie pubbliche, senza indicare di chi e' ogni giocatore.
 | Santos A. | Napoli | Lesione distrattiva di medio grado del bicipite | Inizio dicembre | Salta |
 | Neres | Napoli | Lesione di basso grado al muscolo semimembranoso | Prima metà di novembre | Salta |
 | Badiashile | Napoli | Lesione distrattiva di medio grado del retto | Fine novembre | Salta |
-| Konè M. | Roma | Lesione di primo grado al bicipite femorale | Prima metà di novembre | Salta |
 | Dybala | Roma | Fastidio al polpaccio va attenuandosi | Fine ottobre | Salta |
+| Konè M. | Roma | Lesione di primo grado al bicipite femorale | Prima metà di novembre | Salta |
 | Svilar | Roma | Frattura a un dito del piede e | Inizio novembre | Salta |
 | Fortini | Torino | Affaticamento muscolare all'adduttore | Da valutare | In dubbio |
 | Mandragora | Torino | Problema muscolare al flessore sinistro | Prossimo turno | Salta |
@@ -125,7 +125,7 @@ Punteggio: piu' e' alto, piu' conviene. Unisce valore e probabilita' di giocare.
 | Giocatore | Squadra | Stato | Avversario | Punteggio |
 |---|---|---|---|---|
 | Hainaut | Venezia | Titolare | Inter (C) | 85 |
-| Veiga D. | Lecce | Titolare | Frosinone (T) | 77 |
+| Veiga D. | Lecce | Titolare | Frosinone (T) | 75 |
 | Oyono A. | Frosinone | Titolare | Lecce (C) | 74 |
 | Abankwah | Udinese | Titolare | Parma (T) | 73 |
 | Zè Pedro | Cagliari | Titolare | Roma (T) | 73 |
@@ -134,21 +134,21 @@ Punteggio: piu' e' alto, piu' conviene. Unisce valore e probabilita' di giocare.
 
 | Giocatore | Squadra | Stato | Avversario | Punteggio |
 |---|---|---|---|---|
-| Schmid | Frosinone | Titolare | Lecce (C) | 94 |
+| Schmid | Frosinone | Titolare | Lecce (C) | 95 |
 | Romano | Cagliari | Titolare | Roma (T) | 82 |
 | Pobega | Bologna | Titolare | Milan (T) | 76 |
-| Masini | Frosinone | Titolare | Lecce (C) | 73 |
 | Matic | Sassuolo | Panchina | Lazio (C) | 73 |
+| Perez K. | Venezia | Titolare | Inter (C) | 73 |
 
 ### Attaccanti
 
 | Giocatore | Squadra | Stato | Avversario | Punteggio |
 |---|---|---|---|---|
 | Robinson J. | Monza | Titolare | Napoli (C) | 75 |
-| Ghedjemis | Frosinone | Titolare | Lecce (C) | 61 |
-| N'Dri | Lecce | Titolare, ballottaggio | Frosinone (T) | 46 |
+| Ghedjemis | Frosinone | Titolare | Lecce (C) | 69 |
 | Lontani | Parma | Panchina | Udinese (C) | 41 |
-| Fatah | Lecce | Riserva, ballottaggio | Frosinone (T) | 37 |
+| N'Dri | Lecce | Panchina | Frosinone (T) | 37 |
+| Nzola | Cagliari | Titolare | Roma (T) | 32 |
 
 ## Correzioni da controllare
 
