@@ -87,7 +87,7 @@ td{padding:9px 6px;text-align:right;border-bottom:1px solid rgba(255,255,255,.15
 td.p{width:34px;text-align:center;font-weight:900;color:var(--hi)}
 td.n{text-align:left;text-transform:uppercase;font-weight:800;font-size:.92em}
 td.pt{font-weight:900;font-size:1.15em}
-td.fp{font-size:.82em;color:var(--sub);font-weight:600}
+th.w,td.w{display:none}@media (min-width:560px){th.w,td.w{display:table-cell}}td.dr{font-size:.9em;font-weight:800}.reg{margin-top:20px;padding-top:12px;border-top:1px solid rgba(255,255,255,.15)}.reg summary{cursor:pointer;font-size:12px;font-weight:900;letter-spacing:.16em;text-transform:uppercase;color:var(--hi)}.reg h4{margin:14px 0 2px;font-size:13px;font-weight:900;color:var(--hi)}.reg p{margin-top:6px;font-size:14px;line-height:1.55;font-weight:500}td.fp{font-size:.82em;color:var(--sub);font-weight:600}
 tr.me td{background:rgba(255,209,102,.2)}
 tr.me td.n,tr.me td.pt{color:var(--hi)}
 .t.mine>span{color:var(--hi);background:rgba(255,209,102,.18);border-radius:6px;padding:1px 7px;margin-inline:-7px}
@@ -134,7 +134,7 @@ body::before{content:'';position:fixed;inset:-120px;z-index:-1;pointer-events:no
   <div class="gs"><button class="ar" id="prev" aria-label="Giornata precedente">‹</button><div class="chips" id="chips"></div><button class="ar" id="next" aria-label="Giornata successiva">›</button></div>
   <div class="grid">
     <section><div class="swap" id="board"></div></section>
-    <aside class="panel"><div class="swap" id="tab"></div></aside>
+    <aside class="panel"><div class="swap" id="tab"></div><details class="reg"><summary>Regole</summary><h4>Punti e classifica</h4><p>Vittoria 3 punti, pareggio 1, sconfitta 0. In classifica contano prima i punti, poi i Fantapunti totali.</p><h4>I gol</h4><p>Il primo gol arriva a 66 punti, poi uno in più ogni 5 punti: 71 vale due gol, 76 tre e così via. Al punteggio si aggiunge il modificatore della difesa.</p><h4>Le colonne</h4><p>G giocate, V vittorie, N pareggi, P sconfitte, GF gol fatti, GS gol subiti, DR differenza reti, Pt punti. Sul telefono in verticale si vedono DR, Pt e Fantapunti; girando il telefono o da computer si vede tutto.</p><h4>Champions Cup</h4><p>Due gironi da cinque squadre: ogni giornata una squadra per girone riposa. Dieci giornate, otto partite a testa. Le prime quattro di ogni girone vanno ai quarti (11ª giornata), poi semifinali (12ª) e finale (13ª). I gol si contano come in campionato.</p><h4>Derby e sfide</h4><p>«Derby» sopra una partita vuol dire Derby ufficiale: votato dai più o nato da una sfida accettata in conferenza stampa. Nelle ultime dieci giornate compaiono anche «Sfida scudetto» (1ª contro 2ª), «Sfida podio» (3ª contro 4ª) e «Sfida salvezza» (le ultime due).</p></details></aside>
   </div>
   <div class="sp"><span>Gentilmente offerto da</span><div class="lg"><img src="../assets/loghi/sponsor-birra-contropiede.png" alt=""><img src="../assets/loghi/sponsor-pizzeria-fuorigioco.png" alt=""><img src="../assets/loghi/sponsor-bomber-gym-club.png" alt=""><img src="../assets/loghi/sponsor-amaro-del-mister.png" alt=""></div></div>
   <div class="foot" id="foot">O Girrr · I dati arrivano dallo Spogliatoio</div>
@@ -162,7 +162,7 @@ function nmax(){return mode==='coppa'?cal().length+KO.length:cal().length}
 function koOf(n){return KO.filter(function(x){return x.n===n})[0]}
 function cal(){return mode==='coppa'?D.cal.cup:D.cal.lega}
 function classifica(rounds,cup){
-  var sq={};function r(n){return sq[n]||(sq[n]={n:n,g:0,pt:0,fp:0,gf:0,gs:0,gir:''})}
+  var sq={};function r(n){return sq[n]||(sq[n]={n:n,g:0,pt:0,fp:0,gf:0,gs:0,v:0,nn:0,p:0,gir:''})}
   rounds.forEach(function(g){
     g.m.forEach(function(m){
       var gir='',casa,pc,pf,fuori,ris;
@@ -170,7 +170,7 @@ function classifica(rounds,cup){
       var a=r(casa),b=r(fuori);a.gir=b.gir=gir;
       if(ris==='-')return;
       var s=ris.split('-').map(Number);
-      [[a,s[0],s[1],pc],[b,s[1],s[0],pf]].forEach(function(x){x[0].g++;x[0].gf+=x[1];x[0].gs+=x[2];x[0].fp+=x[3];x[0].pt+=x[1]>x[2]?3:(x[1]===x[2]?1:0)});
+      [[a,s[0],s[1],pc],[b,s[1],s[0],pf]].forEach(function(x){x[0].g++;x[0].gf+=x[1];x[0].gs+=x[2];x[0].fp+=x[3];if(x[1]>x[2]){x[0].pt+=3;x[0].v++}else if(x[1]===x[2]){x[0].pt++;x[0].nn++}else x[0].p++});
     });
     (g.rest||[]).forEach(function(x){r(x[1]).gir=x[0]});
   });
@@ -178,8 +178,8 @@ function classifica(rounds,cup){
     return y.pt-x.pt||y.fp-x.fp||(y.gf-y.gs)-(x.gf-x.gs)||y.gf-x.gf||((ORD.indexOf(x.n)<0?99:ORD.indexOf(x.n))-(ORD.indexOf(y.n)<0?99:ORD.indexOf(y.n)))||(x.n<y.n?-1:1)});
 }
 function tabella(rows,fp,titolo,top){
-  var h='<h3>'+titolo+'</h3><table>'+(fp?'<tr><th></th><th>Squadra</th><th>G</th><th>Pt</th><th>Fantapunti</th></tr>':'<tr><th></th><th>Squadra</th><th>G</th><th>Pt</th></tr>');
-  rows.forEach(function(x,k){h+='<tr class="'+(k<top?'pod':'')+(x.n===ME?' me':'')+'" style="animation-delay:'+(k*35)+'ms"><td class="p">'+(k+1)+'</td><td class="n">'+esc(cap(x.n))+'</td><td>'+x.g+'</td><td class="pt">'+x.pt+'</td>'+(fp?'<td class="fp">'+pt(x.fp)+'</td>':'')+'</tr>'});
+  var h='<h3>'+titolo+'</h3><table>'+'<tr><th></th><th>Squadra</th><th class="w">G</th><th class="w">V</th><th class="w">N</th><th class="w">P</th><th class="w">GF</th><th class="w">GS</th><th>DR</th><th>Pt</th>'+(fp?'<th>Fantapunti</th>':'')+'</tr>';
+  rows.forEach(function(x,k){h+='<tr class="'+(k<top?'pod':'')+(x.n===ME?' me':'')+'" style="animation-delay:'+(k*35)+'ms"><td class="p">'+(k+1)+'</td><td class="n">'+esc(cap(x.n))+'</td><td class="w">'+x.g+'</td><td class="w">'+x.v+'</td><td class="w">'+x.nn+'</td><td class="w">'+x.p+'</td><td class="w">'+x.gf+'</td><td class="w">'+x.gs+'</td><td class="dr">'+(x.gf-x.gs>0?'+':x.gf-x.gs<0?'−':'')+Math.abs(x.gf-x.gs)+'</td><td class="pt">'+x.pt+'</td>'+(fp?'<td class="fp">'+pt(x.fp)+'</td>':'')+'</tr>'});
   return h+'</table>';
 }
 var ME='';try{ME=(JSON.parse(localStorage.getItem('fg')||'{}')||{}).team||''}catch(e){}
