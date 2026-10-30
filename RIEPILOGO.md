@@ -69,6 +69,7 @@ Notizie pubbliche, senza indicare di chi e' ogni giocatore.
 | Kessiè | Atalanta | Distrazione di basso grado al polpaccio della | Inizio novembre | Salta |
 | Piccoli | Bologna | Infortunio | Metà novembre | Salta |
 | Holm | Bologna | Problema al tendine della coscia destra | Fine febbraio | Salta |
+| Orsolini | Bologna | Condizioni da valutare | Da valutare | In dubbio |
 | Rodriguez Je. | Como | Infortunio | Metà dicembre | Salta |
 | Diao | Como | Lesione muscolare al flessore della gamba | Metà novembre | Salta |
 | Chalobah T. | Como | Infortunio | Inizio novembre | Salta |
@@ -155,9 +156,7 @@ Punteggio: piu' e' alto, piu' conviene. Unisce valore e probabilita' di giocare.
 
 ## Correzioni da controllare
 
-- Probabili G10: Fantacalcio.it e Fantamaster non coincidono in vari punti (Inter Provedel o Martinez Jo. in porta, Cagliari Winks o Deiola, Frosinone Cittadini o Monterisi, Lecce Kaba/Maleh e Fatah/Monteiro J., Genoa Traorè Hj./Amorim e Vitinha O., Sassuolo Odenthal/Idzes, Atalanta Rowe/Zalewski): controllare le formazioni ufficiali.
-- Portieri G10 in ballottaggio (Inter Provedel o Martinez Jo., Napoli Meret o Milinkovic-Savic, Como Butez o Sanchez Ro., Parma Daffara o Corvi): controllare prima del fischio.
-- Infortunati e squalificati G10 letti solo da Fantacalcio.it (Fantamaster non riporta l'elenco); per la Lazio la fonte è parziale. Nuovi in dubbio (Solet, Ranieri L., Ellertsson, Liberali, Rabiot) senza diagnosi precisa.
-- Thorstvedt (Sassuolo) e Gaspar K. (Lecce) squalificati per la G10 secondo Fantacalcio.it: confermare con il Giudice Sportivo.
+- Probabili G10 confrontate su tre fonti (Fantacalcio.it, Fantamaster, Sky Sport); restano incerti Frosinone Cittadini o Monterisi, Lecce Esteban o Stulic, Genoa Traorè Hj./Amorim/Wiafe e Vitinha O., Roma Mancini/Ghilardi e Molina N./Lulli, Milan Bartesaghi/Estupinan/Diawara: controllare le formazioni ufficiali.
+- Portieri G10 in ballottaggio (Inter Martinez Jo. favorito su Provedel, Napoli Meret o Milinkovic-Savic, Como Butez o Sanchez Ro., Parma Daffara o Corvi): controllare prima del fischio.
+- Orsolini (Bologna), Helgason e Mazzocchi (Venezia) indisponibili solo secondo Sky; Rovella e Marusic (Lazio) fuori per Fantacalcio.it ma in dubbio per Sky: verificare.
 - Statistiche degli svincolati (fas) non riverificate in questa esecuzione: restano quelle dell’ultimo aggiornamento automatico.
-- G11 e G12 (6-8/11 e 21-23/11) non riverificate in questa esecuzione; la G12 è presa da una sola fonte (Fantamaster): da riverificare sul sito della Lega.
