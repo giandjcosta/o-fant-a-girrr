@@ -1,19 +1,19 @@
-# Riepilogo giornata 9 di Serie A
+# Riepilogo giornata 10 di Serie A
 
 Lega O FANT A GIRRR. Dati aggiornati al 2026-10-30.
 
 ## Partite della giornata
 
-- Sassuolo - Lazio (mar 27/10 18:30)
-- Roma - Cagliari (mar 27/10 20:45)
-- Torino - Como (mar 27/10 20:45)
-- Milan - Bologna (mer 28/10 18:30)
-- Parma - Udinese (mer 28/10 18:30)
-- Venezia - Inter (mer 28/10 18:30)
-- Genoa - Juventus (mer 28/10 20:45)
-- Monza - Napoli (mer 28/10 20:45)
-- Frosinone - Lecce (gio 29/10 18:30)
-- Fiorentina - Atalanta (gio 29/10 20:45)
+- Bologna - Monza (sab 31/10 15:00)
+- Udinese - Roma (sab 31/10 18:00)
+- Milan - Inter (sab 31/10 20:45)
+- Como - Venezia (dom 1/11 12:30)
+- Frosinone - Torino (dom 1/11 15:00)
+- Lazio - Cagliari (dom 1/11 15:00)
+- Lecce - Genoa (dom 1/11 18:00)
+- Juventus - Napoli (dom 1/11 20:45)
+- Sassuolo - Fiorentina (lun 2/11 18:30)
+- Atalanta - Parma (lun 2/11 20:45)
 
 ## Classic League: ultima giornata (5ª, G9 di Serie A)
 
@@ -69,11 +69,12 @@ Notizie pubbliche, senza indicare di chi e' ogni giocatore.
 | Kessiè | Atalanta | Distrazione di basso grado al polpaccio della | Inizio novembre | Salta |
 | Piccoli | Bologna | Infortunio | Metà novembre | Salta |
 | Holm | Bologna | Problema al tendine della coscia destra | Fine febbraio | Salta |
-| Rodriguez Je. | Como | Infortunio | Metà dicembre | In dubbio |
+| Rodriguez Je. | Como | Infortunio | Metà dicembre | Salta |
 | Diao | Como | Lesione muscolare al flessore della gamba | Metà novembre | Salta |
 | Chalobah T. | Como | Infortunio | Inizio novembre | Salta |
 | Kean | Como | Fastidio alla tibia che lo affligge da | Inizio dicembre | Salta |
-| Atta | Fiorentina | Sovraccarico funzionale dell'addome | Prossimo turno | In dubbio |
+| Atta | Fiorentina | Sovraccarico funzionale dell'addome | Prima metà di novembre | Salta |
+| Ellertsson | Genoa | Distorsione alla caviglia | Da valutare | In dubbio |
 | Pavard | Inter | Risentimento agli adduttori della coscia destra | Inizio novembre | Salta |
 | Jones C. | Inter | Risentimento miofasciale agli adduttori della coscia destra | Inizio novembre | Salta |
 | Martinez L. | Inter | Risentimento muscolare ai flessori della coscia sinistra | Metà novembre | Salta |
@@ -84,13 +85,14 @@ Notizie pubbliche, senza indicare di chi e' ogni giocatore.
 | Grabara | Juventus | Lesione al crociato anteriore del ginocchio destro | Da aprile | Salta |
 | Gonzalez N. | Juventus | Lesione di basso grado del soleo destro | Metà novembre | Salta |
 | Celik | Juventus | Lesione di basso grado del bicipite femorale | Metà novembre | Salta |
-| Gudmundsson A. | Lazio | Problema alla spalla destra dopo una caduta | Metà novembre | In dubbio |
+| Gudmundsson A. | Lazio | Problema alla spalla destra dopo una caduta | Metà novembre | Salta |
 | Marusic | Lazio | Lesione muscolare alla coscia | Inizio novembre | Salta |
 | Coulibaly L. | Lecce | Lesione muscolare al bicipite femorale della coscia | Inizio novembre | Salta |
 | Geubbels | Lecce | Fastidio muscolare all'adduttore e andrà valutato | Prossimo turno | Salta |
 | Gaspar K. | Lecce | Squalificato | Rientra dalla 11ª giornata | Salta |
 | Saelemaekers | Milan | Problema alla caviglia destra e operata il | Da febbraio | Salta |
 | Chukwueze | Milan | Problema all'anca sinistra | Da valutare | Salta |
+| Rabiot | Milan | In recupero, in forte dubbio | Da valutare per l'Inter | In dubbio |
 | Neres | Napoli | Lesione di basso grado al muscolo semimembranoso | Prima metà di novembre | Salta |
 | Badiashile | Napoli | Lesione distrattiva di medio grado del retto | Fine novembre | Salta |
 | Spinazzola | Napoli | Lesione di basso grado del bicipite femorale | Metà novembre | Salta |
@@ -103,8 +105,9 @@ Notizie pubbliche, senza indicare di chi e' ogni giocatore.
 | Thorstvedt | Sassuolo | Squalificato | Rientra dalla 11ª giornata | Salta |
 | Fortini | Torino | Affaticamento muscolare all'adduttore | Da valutare | In dubbio |
 | Mandragora | Torino | Problema muscolare al flessore sinistro | Metà novembre | Salta |
-| Cacciamani | Torino | Lussazione alla spalla sinistra rimediata nel turno | Prossimo turno | Salta |
+| Cacciamani | Torino | Lussazione alla spalla sinistra rimediata nel turno | Da valutare | In dubbio |
 | Gueye | Udinese | Problema alla caviglia a fine settembre | Fine gennaio | Salta |
+| Solet | Udinese | Condizioni da valutare | Da valutare per la Roma | In dubbio |
 
 ## Migliori svincolati
 
@@ -114,47 +117,47 @@ Punteggio: piu' e' alto, piu' conviene. Unisce valore e probabilita' di giocare.
 
 | Giocatore | Squadra | Stato | Avversario | Punteggio |
 |---|---|---|---|---|
-| Perri | Torino | Titolare | Como (C) | 56 |
-| Tornqvist | Monza | Titolare | Napoli (C) | 42 |
-| Thiam | Monza | Panchina | Napoli (C) | 21 |
-| Daffara | Parma | Titolare | Udinese (C) | 19 |
-| Happonen | Bologna | Panchina | Milan (T) | 15 |
+| Perri | Torino | Titolare | Frosinone (T) | 56 |
+| Tornqvist | Monza | Titolare | Bologna (T) | 42 |
+| Thiam | Monza | Panchina | Bologna (T) | 21 |
+| Daffara | Parma | Titolare, ballottaggio | Atalanta (T) | 19 |
+| Happonen | Bologna | Panchina | Monza (C) | 15 |
 
 ### Difensori
 
 | Giocatore | Squadra | Stato | Avversario | Punteggio |
 |---|---|---|---|---|
-| Hainaut | Venezia | Titolare, ballottaggio | Inter (C) | 85 |
-| Veiga D. | Lecce | Titolare | Frosinone (T) | 75 |
-| Oyono A. | Frosinone | Titolare | Lecce (C) | 74 |
-| Abankwah | Udinese | Titolare | Parma (T) | 73 |
-| Zè Pedro | Cagliari | Titolare | Roma (T) | 73 |
+| Hainaut | Venezia | Titolare, ballottaggio | Como (T) | 85 |
+| Veiga D. | Lecce | Titolare | Genoa (C) | 75 |
+| Oyono A. | Frosinone | Titolare | Torino (C) | 74 |
+| Abankwah | Udinese | Titolare | Roma (C) | 73 |
+| Zè Pedro | Cagliari | Titolare, ballottaggio | Lazio (T) | 73 |
 
 ### Centrocampisti
 
 | Giocatore | Squadra | Stato | Avversario | Punteggio |
 |---|---|---|---|---|
-| Schmid | Frosinone | Titolare | Lecce (C) | 95 |
-| Romano | Cagliari | Titolare | Roma (T) | 82 |
-| Pobega | Bologna | Titolare | Milan (T) | 76 |
-| Matic | Sassuolo | Titolare | Lazio (C) | 73 |
-| Perez K. | Venezia | Titolare | Inter (C) | 73 |
+| Schmid | Frosinone | Titolare | Torino (C) | 95 |
+| Romano | Cagliari | Titolare | Lazio (T) | 82 |
+| Pobega | Bologna | Titolare | Monza (C) | 76 |
+| Matic | Sassuolo | Titolare, ballottaggio | Fiorentina (C) | 73 |
+| Perez K. | Venezia | Titolare, ballottaggio | Como (T) | 73 |
 
 ### Attaccanti
 
 | Giocatore | Squadra | Stato | Avversario | Punteggio |
 |---|---|---|---|---|
-| Robinson J. | Monza | Titolare, ballottaggio | Napoli (C) | 75 |
-| Ghedjemis | Frosinone | Titolare | Lecce (C) | 69 |
-| Lontani | Parma | Titolare, ballottaggio | Udinese (C) | 41 |
-| N'Dri | Lecce | Titolare, ballottaggio | Frosinone (T) | 37 |
-| Nzola | Cagliari | Riserva, ballottaggio | Roma (T) | 32 |
+| Robinson J. | Monza | Titolare, ballottaggio | Bologna (T) | 75 |
+| Ghedjemis | Frosinone | Titolare | Torino (C) | 69 |
+| Lontani | Parma | Riserva, ballottaggio | Atalanta (T) | 41 |
+| N'Dri | Lecce | Titolare, ballottaggio | Genoa (C) | 37 |
+| Nzola | Cagliari | Riserva, ballottaggio | Lazio (T) | 32 |
 
 ## Correzioni da controllare
 
-- Probabili G10 lette da Fantamaster e Fantacalcio.it, che in più punti non coincidono (Atalanta Elmas/Rowe/Gaetano, Milan 4-2-3-1 o 3-4-2-1, Genoa Vitinha/Colombo/Amorim, Torino Fitz-Jim/Gineitis): controllare le formazioni ufficiali.
-- Portieri G10 in discordanza o in ballottaggio (Inter Provedel o Martinez Jo., Napoli Meret o Milinkovic-Savic, Como Butez o Sanchez Ro., Parma Daffara o Corvi): controllare prima del fischio.
-- Infortunati e squalificati G10 letti solo da Fantacalcio.it; per Lazio e Cagliari la fonte è parziale. Motivi e date di rientro dei nuovi indisponibili da inserire (inj segnala "Da definire").
+- Probabili G10: Fantacalcio.it e Fantamaster non coincidono in vari punti (Inter Provedel o Martinez Jo. in porta, Cagliari Winks o Deiola, Frosinone Cittadini o Monterisi, Lecce Kaba/Maleh e Fatah/Monteiro J., Genoa Traorè Hj./Amorim e Vitinha O., Sassuolo Odenthal/Idzes, Atalanta Rowe/Zalewski): controllare le formazioni ufficiali.
+- Portieri G10 in ballottaggio (Inter Provedel o Martinez Jo., Napoli Meret o Milinkovic-Savic, Como Butez o Sanchez Ro., Parma Daffara o Corvi): controllare prima del fischio.
+- Infortunati e squalificati G10 letti solo da Fantacalcio.it (Fantamaster non riporta l'elenco); per la Lazio la fonte è parziale. Nuovi in dubbio (Solet, Ranieri L., Ellertsson, Liberali, Rabiot) senza diagnosi precisa.
 - Thorstvedt (Sassuolo) e Gaspar K. (Lecce) squalificati per la G10 secondo Fantacalcio.it: confermare con il Giudice Sportivo.
 - Statistiche degli svincolati (fas) non riverificate in questa esecuzione: restano quelle dell’ultimo aggiornamento automatico.
-- G12 (21-23/11) presa da una sola fonte (Fantamaster): da riverificare sul sito della Lega.
+- G11 e G12 (6-8/11 e 21-23/11) non riverificate in questa esecuzione; la G12 è presa da una sola fonte (Fantamaster): da riverificare sul sito della Lega.
