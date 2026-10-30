@@ -37,6 +37,7 @@ jobs:
         id: c
         env:
           SUBITO: ${{ github.event.inputs.subito }}
+          CHIAVE: ${{ secrets.GEMINI_API_KEY }}
         run: |
           python3 - <<'PY' >> "$GITHUB_OUTPUT"
           import datetime, json, os
@@ -47,7 +48,7 @@ jobs:
           r = max(ch, key=lambda r: r["n"]); n = r["n"]; sa = str(r.get("sa"))
           fatta = json.load(open("code/calcoli/giornate.json")).get(str(n), {}).get("fatta")
           ts = [x for x in (d.get("calcTs", {}).get(sa), d.get("votiTs", {}).get(sa)) if x]
-          ok = bool(fatta) and bool(ts)
+          ok = bool(fatta) and bool(ts) and bool(os.environ.get("CHIAVE"))   # senza GEMINI_API_KEY non fa nulla
           if ok and os.environ.get("SUBITO") != "1":
               t = max(datetime.datetime.fromisoformat(x.replace("Z", "+00:00")) for x in ts)
               ok = datetime.datetime.now(datetime.timezone.utc) >= t + datetime.timedelta(minutes=70)
