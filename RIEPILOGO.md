@@ -69,31 +69,26 @@ Notizie pubbliche, senza indicare di chi e' ogni giocatore.
 | Kessiè | Atalanta | Distrazione di basso grado al polpaccio della | Inizio novembre | Salta |
 | Piccoli | Bologna | Infortunio | Metà novembre | Salta |
 | Holm | Bologna | Problema al tendine della coscia destra | Fine febbraio | Salta |
-| Orsolini | Bologna | Condizioni da valutare | Da valutare | In dubbio |
-| Rodriguez Je. | Como | Infortunio | Metà dicembre | Salta |
+| Rodriguez Je. | Como | Infortunio | Metà dicembre | In dubbio |
 | Diao | Como | Lesione muscolare al flessore della gamba | Metà novembre | Salta |
 | Chalobah T. | Como | Infortunio | Inizio novembre | Salta |
 | Kean | Como | Fastidio alla tibia che lo affligge da | Inizio dicembre | Salta |
-| Atta | Fiorentina | Sovraccarico funzionale dell'addome | Prima metà di novembre | Salta |
-| Ellertsson | Genoa | Distorsione alla caviglia | Da valutare | In dubbio |
+| Atta | Fiorentina | Sovraccarico funzionale dell'addome | Prossimo turno | In dubbio |
 | Pavard | Inter | Risentimento agli adduttori della coscia destra | Inizio novembre | Salta |
 | Jones C. | Inter | Risentimento miofasciale agli adduttori della coscia destra | Inizio novembre | Salta |
 | Martinez L. | Inter | Risentimento muscolare ai flessori della coscia sinistra | Metà novembre | Salta |
 | Stones | Inter | Risentimento ai flessori della coscia sinistra | Inizio novembre | Salta |
 | Conceicao | Juventus | Lussazione alla spalla sinistra | Metà novembre | Salta |
-| Ekhator | Juventus | Lesione di medio grado del muscolo semitendinoso | Metà novembre | Salta |
 | Yildiz | Juventus | Problema al piede | Inizio dicembre | Salta |
 | Grabara | Juventus | Lesione al crociato anteriore del ginocchio destro | Da aprile | Salta |
 | Gonzalez N. | Juventus | Lesione di basso grado del soleo destro | Metà novembre | Salta |
 | Celik | Juventus | Lesione di basso grado del bicipite femorale | Metà novembre | Salta |
-| Gudmundsson A. | Lazio | Problema alla spalla destra dopo una caduta | Metà novembre | Salta |
-| Marusic | Lazio | Lesione muscolare alla coscia | Inizio novembre | Salta |
+| Gudmundsson A. | Lazio | Problema alla spalla destra dopo una caduta | Metà novembre | In dubbio |
 | Coulibaly L. | Lecce | Lesione muscolare al bicipite femorale della coscia | Inizio novembre | Salta |
-| Geubbels | Lecce | Fastidio muscolare all'adduttore e andrà valutato | Prossimo turno | Salta |
+| Geubbels | Lecce | Lesione muscolare di basso grado all'adduttore della | Metà novembre | Salta |
 | Gaspar K. | Lecce | Squalificato | Rientra dalla 11ª giornata | Salta |
 | Saelemaekers | Milan | Problema alla caviglia destra e operata il | Da febbraio | Salta |
 | Chukwueze | Milan | Problema all'anca sinistra | Da valutare | Salta |
-| Rabiot | Milan | In recupero, in forte dubbio | Da valutare per l'Inter | In dubbio |
 | Neres | Napoli | Lesione di basso grado al muscolo semimembranoso | Prima metà di novembre | Salta |
 | Badiashile | Napoli | Lesione distrattiva di medio grado del retto | Fine novembre | Salta |
 | Spinazzola | Napoli | Lesione di basso grado del bicipite femorale | Metà novembre | Salta |
@@ -102,13 +97,13 @@ Notizie pubbliche, senza indicare di chi e' ogni giocatore.
 | Buongiorno | Napoli | Operato nella seconda metà di luglio al | Fine dicembre | Salta |
 | Svilar | Roma | Frattura a un dito del piede e | Metà novembre | Salta |
 | Konè M. | Roma | Lesione di primo grado al bicipite femorale | Prima metà di novembre | Salta |
-| Dybala | Roma | Fastidio al polpaccio va attenuandosi | Inizio novembre | Salta |
+| Dybala | Roma | Fastidio al polpaccio | Inizio novembre | Salta |
 | Thorstvedt | Sassuolo | Squalificato | Rientra dalla 11ª giornata | Salta |
-| Fortini | Torino | Affaticamento muscolare all'adduttore | Da valutare | In dubbio |
+| Cacciamani | Torino | Lussazione alla spalla sinistra rimediata nel turno | Prossimo turno | Salta |
 | Mandragora | Torino | Problema muscolare al flessore sinistro | Metà novembre | Salta |
-| Cacciamani | Torino | Lussazione alla spalla sinistra rimediata nel turno | Da valutare | In dubbio |
+| Fortini | Torino | Affaticamento muscolare all'adduttore | Da valutare | In dubbio |
+| Solet | Udinese | Problema muscolare al pettineo sinistro | Prima metà di novembre | Salta |
 | Gueye | Udinese | Problema alla caviglia a fine settembre | Fine gennaio | Salta |
-| Solet | Udinese | Condizioni da valutare | Da valutare per la Roma | In dubbio |
 
 ## Migliori svincolati
 
@@ -132,7 +127,7 @@ Punteggio: piu' e' alto, piu' conviene. Unisce valore e probabilita' di giocare.
 | Veiga D. | Lecce | Titolare | Genoa (C) | 75 |
 | Oyono A. | Frosinone | Titolare | Torino (C) | 74 |
 | Abankwah | Udinese | Titolare | Roma (C) | 73 |
-| Zè Pedro | Cagliari | Titolare, ballottaggio | Lazio (T) | 73 |
+| Zè Pedro | Cagliari | Titolare | Lazio (T) | 73 |
 
 ### Centrocampisti
 
@@ -141,8 +136,8 @@ Punteggio: piu' e' alto, piu' conviene. Unisce valore e probabilita' di giocare.
 | Schmid | Frosinone | Titolare | Torino (C) | 95 |
 | Romano | Cagliari | Titolare | Lazio (T) | 82 |
 | Pobega | Bologna | Titolare | Monza (C) | 76 |
-| Matic | Sassuolo | Titolare, ballottaggio | Fiorentina (C) | 73 |
-| Perez K. | Venezia | Titolare, ballottaggio | Como (T) | 73 |
+| Matic | Sassuolo | Titolare | Fiorentina (C) | 73 |
+| Perez K. | Venezia | Titolare | Como (T) | 73 |
 
 ### Attaccanti
 
@@ -151,8 +146,8 @@ Punteggio: piu' e' alto, piu' conviene. Unisce valore e probabilita' di giocare.
 | Robinson J. | Monza | Titolare, ballottaggio | Bologna (T) | 75 |
 | Ghedjemis | Frosinone | Titolare | Torino (C) | 69 |
 | Lontani | Parma | Riserva, ballottaggio | Atalanta (T) | 41 |
-| N'Dri | Lecce | Titolare, ballottaggio | Genoa (C) | 37 |
-| Nzola | Cagliari | Riserva, ballottaggio | Lazio (T) | 32 |
+| N'Dri | Lecce | Riserva, ballottaggio | Genoa (C) | 37 |
+| Nzola | Cagliari | Titolare, ballottaggio | Lazio (T) | 32 |
 
 ## Correzioni da controllare
 
