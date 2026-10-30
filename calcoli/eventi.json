@@ -38,32 +38,17 @@
  },
  {
   "tipo": "conferenza",
-  "k": "C4-Apo team",
+  "k": "C5-Apo team",
   "team": "Apo team",
-  "giornata": 4,
-  "avversario": "stif dc",
-  "tono": 1,
-  "libera": "Il campionato é lungo e noi siamo pronti a metterci in gioco",
-  "risposte": [
-   "Il campionato é lungo e noi siamo pronti a metterci in gioco",
-   "Sarà sicuramente una bella partita, che vinca il migliore",
-   "Forza Apo team, anche perché le altre squadre fanno schifo"
-  ],
-  "promessa": "Sarà sicuramente una bella partita, che vinca il migliore"
- },
- {
-  "tipo": "conferenza",
-  "k": "C4-Oranje VC",
-  "team": "Oranje VC",
-  "giornata": 4,
+  "giornata": 5,
   "avversario": "Real Madrink",
   "tono": 1,
-  "libera": "",
+  "libera": "Questa settimana con doppia partita sarà determinante per la classifica",
   "risposte": [
-   "Chi parla di obiettivi guardi la classifica.",
-   "Real Madrink è un ottimo avversario: serve attenzione.",
-   "Grazie, continuiamo a lavorare a testa bassa."
+   "Questa settimana con doppia partita sarà determinante per la classifica",
+   "Abbiamo bisogno dei nostri attaccanti, ancora troppi pochi bonus da parte loro",
+   "Capisco i dubbi su di noi ma li faremo ricedere presto"
   ],
-  "promessa": "Chi parla di obiettivi guardi la classifica."
+  "promessa": ""
  }
 ]

@@ -3,7 +3,8 @@
   1,
   2,
   3,
-  4
+  4,
+  5
  ],
  "giornate": {
   "1": {
@@ -549,6 +550,223 @@
      "avversario_reale": "Lazio",
      "in_casa": false,
      "data_partita": "sab 24/10 20:45"
+    }
+   ]
+  },
+  "5": {
+   "sa": 9,
+   "scritta": "2026-10-30",
+   "episodi": [
+    {
+     "tipo": "gol",
+     "titolo": "Gol decisivo",
+     "verdetto": "Ha deciso la partita",
+     "testo": "Tutto gira intorno a Zaccagni: il gol decide Apo team–Real Madrink 2‑2. Nessun dubbio dalla moviola, e senza il gol Apo team avrebbe perso.",
+     "giocatore": "Zaccagni",
+     "squadra": "Apo team",
+     "allenatori": [
+      "apo"
+     ],
+     "id": "632",
+     "squadra_reale": "Lazio",
+     "avversario_reale": "Sassuolo",
+     "in_casa": false,
+     "data_partita": "mar 27/10 18:30"
+    },
+    {
+     "tipo": "gol",
+     "titolo": "Gol decisivo",
+     "verdetto": "Ha deciso la partita",
+     "testo": "Al replay è tutto pulito: il gol di Politano decide Apo team–Real Madrink 2‑2. Senza, Real Madrink avrebbe perso, e sulla panchina di AndrewTT lo sanno bene.",
+     "giocatore": "Politano",
+     "squadra": "Real Madrink",
+     "allenatori": [
+      "AndrewTT"
+     ],
+     "id": "536",
+     "squadra_reale": "Napoli",
+     "avversario_reale": "Monza",
+     "in_casa": false,
+     "data_partita": "mer 28/10 20:45"
+    },
+    {
+     "tipo": "sbagliato",
+     "titolo": "Rigore sbagliato",
+     "verdetto": "Ha deciso la partita",
+     "testo": "Zaccagni va sul dischetto e sbaglia: è l'episodio che decide Apo team–Real Madrink 2‑2. Con quel pallone in rete Apo team avrebbe vinto, e sulla panchina di apo resta solo il rimpianto.",
+     "giocatore": "Zaccagni",
+     "squadra": "Apo team",
+     "allenatori": [
+      "apo"
+     ],
+     "id": "632",
+     "squadra_reale": "Lazio",
+     "avversario_reale": "Sassuolo",
+     "in_casa": false,
+     "data_partita": "mar 27/10 18:30"
+    },
+    {
+     "tipo": "autogol",
+     "titolo": "Autogol",
+     "verdetto": "Ha deciso la partita",
+     "testo": "Il pallone carambola su Sutalo J. e finisce in rete: è il gol che decide Apo team–Real Madrink 2‑2. Per apo una beffa che pesa in classifica, perché senza quell'autogol Apo team avrebbe vinto.",
+     "giocatore": "Sutalo J.",
+     "squadra": "Apo team",
+     "allenatori": [
+      "apo"
+     ],
+     "id": "7580",
+     "squadra_reale": "Lazio",
+     "avversario_reale": "Sassuolo",
+     "in_casa": false,
+     "data_partita": "mar 27/10 18:30"
+    }
+   ],
+   "scartati": [],
+   "automatici": [
+    {
+     "tipo": "gol",
+     "titolo": "Gol decisivo",
+     "verdetto": "Ha deciso la partita",
+     "testo": "Tutto gira intorno a Zaccagni: il gol decide Apo team–Real Madrink 2‑2. Nessun dubbio dalla moviola, e senza il gol Apo team avrebbe perso.",
+     "giocatore": "Zaccagni",
+     "squadra": "Apo team",
+     "allenatori": [
+      "apo"
+     ],
+     "id": "632",
+     "squadra_reale": "Lazio",
+     "avversario_reale": "Sassuolo",
+     "in_casa": false,
+     "data_partita": "mar 27/10 18:30"
+    },
+    {
+     "tipo": "gol",
+     "titolo": "Gol decisivo",
+     "verdetto": "Ha deciso la partita",
+     "testo": "Al replay è tutto pulito: il gol di Politano decide Apo team–Real Madrink 2‑2. Senza, Real Madrink avrebbe perso, e sulla panchina di AndrewTT lo sanno bene.",
+     "giocatore": "Politano",
+     "squadra": "Real Madrink",
+     "allenatori": [
+      "AndrewTT"
+     ],
+     "id": "536",
+     "squadra_reale": "Napoli",
+     "avversario_reale": "Monza",
+     "in_casa": false,
+     "data_partita": "mer 28/10 20:45"
+    },
+    {
+     "tipo": "gol",
+     "titolo": "Gol decisivo",
+     "verdetto": "Ha deciso la partita",
+     "testo": "La moviola dice gol regolare, il tabellone dice Apo team–Real Madrink 2‑2. Il gol di Floriani Mussolini vale il risultato: senza, Real Madrink avrebbe perso.",
+     "giocatore": "Floriani Mussolini",
+     "squadra": "Real Madrink",
+     "allenatori": [
+      "AndrewTT"
+     ],
+     "id": "7131",
+     "squadra_reale": "Lazio",
+     "avversario_reale": "Sassuolo",
+     "in_casa": false,
+     "data_partita": "mar 27/10 18:30"
+    },
+    {
+     "tipo": "sbagliato",
+     "titolo": "Rigore sbagliato",
+     "verdetto": "Ha deciso la partita",
+     "testo": "Zaccagni va sul dischetto e sbaglia: è l'episodio che decide Apo team–Real Madrink 2‑2. Con quel pallone in rete Apo team avrebbe vinto, e sulla panchina di apo resta solo il rimpianto.",
+     "giocatore": "Zaccagni",
+     "squadra": "Apo team",
+     "allenatori": [
+      "apo"
+     ],
+     "id": "632",
+     "squadra_reale": "Lazio",
+     "avversario_reale": "Sassuolo",
+     "in_casa": false,
+     "data_partita": "mar 27/10 18:30"
+    },
+    {
+     "tipo": "autogol",
+     "titolo": "Autogol",
+     "verdetto": "Ha deciso la partita",
+     "testo": "Il pallone carambola su Sutalo J. e finisce in rete: è il gol che decide Apo team–Real Madrink 2‑2. Per apo una beffa che pesa in classifica, perché senza quell'autogol Apo team avrebbe vinto.",
+     "giocatore": "Sutalo J.",
+     "squadra": "Apo team",
+     "allenatori": [
+      "apo"
+     ],
+     "id": "7580",
+     "squadra_reale": "Lazio",
+     "avversario_reale": "Sassuolo",
+     "in_casa": false,
+     "data_partita": "mar 27/10 18:30"
+    },
+    {
+     "tipo": "parato",
+     "titolo": "Rigore parato",
+     "verdetto": "Regolare",
+     "testo": "Rigore contro Grodah, ma Okoye ci arriva. Nessun movimento in anticipo: la parata è buona e la panchina di RikyArma esulta.",
+     "giocatore": "Okoye",
+     "squadra": "Grodah",
+     "allenatori": [
+      "RikyArma"
+     ],
+     "id": "6462",
+     "squadra_reale": "Udinese",
+     "avversario_reale": "Parma",
+     "in_casa": false,
+     "data_partita": "mer 28/10 18:30"
+    },
+    {
+     "tipo": "sbagliato",
+     "titolo": "Rigore sbagliato",
+     "verdetto": "Regolare",
+     "testo": "Rigore concesso a Oranje VC, sul pallone va Bernabè. Tiro debole, l'occasione sfuma. Nessun dubbio sul fischio, tanti sull'esecuzione.",
+     "giocatore": "Bernabè",
+     "squadra": "Oranje VC",
+     "allenatori": [
+      "DJ Cst Brazil"
+     ],
+     "id": "6666",
+     "squadra_reale": "Parma",
+     "avversario_reale": "Udinese",
+     "in_casa": true,
+     "data_partita": "mer 28/10 18:30"
+    },
+    {
+     "tipo": "sbagliato",
+     "titolo": "Rigore sbagliato",
+     "verdetto": "Regolare",
+     "testo": "Il dischetto tradisce Frattesi. Il fallo era evidente, il rigore anche, il gol no: dalle parti di DJ Cst Brazil si mastica amaro.",
+     "giocatore": "Frattesi",
+     "squadra": "Oranje VC",
+     "allenatori": [
+      "DJ Cst Brazil"
+     ],
+     "id": "2848",
+     "squadra_reale": "Lazio",
+     "avversario_reale": "Sassuolo",
+     "in_casa": false,
+     "data_partita": "mar 27/10 18:30"
+    },
+    {
+     "tipo": "autogol",
+     "titolo": "Autogol",
+     "verdetto": "Regolare",
+     "testo": "Sfortuna per Bartesaghi: tocco decisivo nella sua porta. Nessun fallo prima, il gol è valido e WOA lo paga caro.",
+     "giocatore": "Bartesaghi",
+     "squadra": "WOA",
+     "allenatori": [
+      "ser"
+     ],
+     "id": "6496",
+     "squadra_reale": "Milan",
+     "avversario_reale": "Bologna",
+     "in_casa": true,
+     "data_partita": "mer 28/10 18:30"
     }
    ]
   }

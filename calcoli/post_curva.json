@@ -45,35 +45,22 @@
   "body": "PROMESSA TRADITA\napo in conferenza stampa: «Sarà sicuramente una bella partita, che vinca il migliore». Il campo ha risposto altro, e la dirigenza ha preso nota. #ConferenzaStampa"
  },
  {
-  "chiave": "conferenza:C4-Apo team:0",
+  "chiave": "conferenza:C5-Apo team:0",
   "h": "girrr_sport",
-  "body": "CONFERENZA STAMPA · apo, alla vigilia di apo - stifson: «Il campionato é lungo e noi siamo pronti a metterci in gioco» Su stifson: «Sarà sicuramente una bella partita, che vinca il migliore» E alla dirigenza: «Forza Apo team, anche perché le altre squadre fanno schifo»"
+  "body": "CONFERENZA STAMPA · apo, alla vigilia di apo - AndrewTT: «Questa settimana con doppia partita sarà determinante per la cl…» Su AndrewTT: «Abbiamo bisogno dei nostri attaccanti, ancora troppi pochi bonus…» E alla dirigenza: «Capisco i dubbi su di noi ma li faremo ricedere presto»"
  },
  {
-  "chiave": "conferenza:C4-Apo team:1",
+  "chiave": "conferenza:C5-Apo team:1",
   "h": "ciro_trattativa",
   "body": "Mi piace l'umiltà, ma in questa lega non basta.",
-  "re": "conferenza:C4-Apo team:0",
+  "re": "conferenza:C5-Apo team:0",
   "re_h": "girrr_sport",
-  "re_body": "CONFERENZA STAMPA · apo, alla vigilia di apo - stifson: «Il campionato é lungo e noi siamo pronti a metterci in gioco» Su stifson: «Sarà sicuramente una bella partita, che vinca il migliore» E alla dirigenza: «Forza Apo team, anche perché le altre squadre fanno schifo»"
+  "re_body": "CONFERENZA STAMPA · apo, alla vigilia di apo - AndrewTT: «Questa settimana con doppia partita sarà determinante per la cl…» Su AndrewTT: «Abbiamo bisogno dei nostri attaccanti, ancora troppi pochi bonus…» E alla dirigenza: «Capisco i dubbi su di noi ma li faremo ricedere presto»"
  },
  {
-  "chiave": "conferenza:C4-Oranje VC:0",
+  "chiave": "moviola:G5:0",
   "h": "girrr_sport",
-  "body": "CONFERENZA STAMPA · DJ Cst Brazil, alla vigilia di DJ Cst Brazil - AndrewTT: «Chi parla di obiettivi guardi la classifica.» Su AndrewTT: «Real Madrink è un ottimo avversario: serve attenzione.» E alla dirigenza: «Grazie, continuiamo a lavorare a testa bassa.» #ConferenzaStampa"
- },
- {
-  "chiave": "conferenza:C4-Oranje VC:1",
-  "h": "ciro_trattativa",
-  "body": "Mi piace l'umiltà, ma in questa lega non basta.",
-  "re": "conferenza:C4-Oranje VC:0",
-  "re_h": "girrr_sport",
-  "re_body": "CONFERENZA STAMPA · DJ Cst Brazil, alla vigilia di DJ Cst Brazil - AndrewTT: «Chi parla di obiettivi guardi la classifica.» Su AndrewTT: «Real Madrink è un ottimo avversario: serve attenzione.» E alla dirigenza: «Grazie, continuiamo a lavorare a testa bassa.» #ConferenzaStampa"
- },
- {
-  "chiave": "moviola:G4:0",
-  "h": "girrr_sport",
-  "body": "MOVIOLA · Giornata 4\nGol decisivo. Al replay è tutto pulito: il gol di Belghali decide Oranje VC–Real Madrink 2‑2. Senza, Oranje VC avrebbe perso, e sulla panchina di DJ Cst Brazil lo sanno bene. Verdetto: Ha deciso la partita. #GirrrSport #Moviola",
-  "quando": "2026-10-20T12:40:00+00:00"
+  "body": "MOVIOLA · Giornata 5\nGol decisivo. Tutto gira intorno a Zaccagni: il gol decide Apo team–Real Madrink 2‑2. Nessun dubbio dalla moviola, e senza il gol Apo team avrebbe perso. Verdetto: Ha deciso la partita. #GirrrSport #Moviola",
+  "quando": "2026-10-27T13:40:00+00:00"
  }
 ]
