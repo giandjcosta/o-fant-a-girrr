@@ -1,0 +1,91 @@
+name: Radio della giornata
+# Fa uscire da sola la puntata di Radio Girrr dopo ogni giornata: quando il Giornale è online (un'ora dopo i calcoli) più qualche minuto,
+# con i dati veri (classifica, Coppa, conferenze, Derby) e il post della Curva se c'è. Se Gemini non risponde per tutte le battute NON pubblica
+# e resta la puntata precedente (si riprova al giro dopo). Le sorgenti stanno nel registro (voci-src), lette da lì.
+# Serve il segreto GEMINI_API_KEY in questo repository. Si può lanciare anche a mano: "subito" salta l'attesa.
+on:
+  schedule:
+    - cron: "*/20 * * * *"
+  workflow_dispatch:
+    inputs:
+      subito:
+        description: "1 = non aspettare l'ora del Giornale"
+        required: false
+        default: "0"
+permissions:
+  contents: write
+concurrency:
+  group: radio-giornata
+env:
+  CURVA_URL: ${{ secrets.CURVA_URL }}
+  CURVA_KEY: ${{ secrets.CURVA_KEY }}
+  CURVA_TEAM: ${{ secrets.CURVA_TEAM }}
+  CURVA_CODE: ${{ secrets.CURVA_CODE }}
+jobs:
+  radio:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with: { ref: main, path: code }
+      - uses: actions/checkout@v4
+        with: { ref: gh-pages, path: site }
+      - uses: actions/checkout@v4
+        with: { repository: giandjcosta/o-girrr-registro, ref: main, path: reg }
+      - uses: actions/setup-python@v5
+        with: { python-version: "3.12" }
+      - name: È il momento della radio?
+        id: c
+        env:
+          SUBITO: ${{ github.event.inputs.subito }}
+          CHIAVE: ${{ secrets.GEMINI_API_KEY }}
+        run: |
+          python3 - <<'PY' >> "$GITHUB_OUTPUT"
+          import datetime, json, os
+          d = json.load(open("site/data.json"))
+          lega = d["cal"]["lega"]
+          ch = [r for r in lega if r["m"] and all(m[4] and m[4] != "-" for m in r["m"])]
+          if not ch: print("vai=false"); raise SystemExit
+          r = max(ch, key=lambda r: r["n"]); n = r["n"]; sa = str(r.get("sa"))
+          fatta = json.load(open("code/calcoli/giornate.json")).get(str(n), {}).get("fatta")
+          ts = [x for x in (d.get("calcTs", {}).get(sa), d.get("votiTs", {}).get(sa)) if x]
+          ok = bool(fatta) and bool(ts) and bool(os.environ.get("CHIAVE"))   # senza GEMINI_API_KEY non fa nulla
+          if ok and os.environ.get("SUBITO") != "1":
+              t = max(datetime.datetime.fromisoformat(x.replace("Z", "+00:00")) for x in ts)
+              ok = datetime.datetime.now(datetime.timezone.utc) >= t + datetime.timedelta(minutes=70)
+          print("vai=%s" % str(ok).lower())
+          PY
+      - name: Preparo i dati della puntata
+        id: p
+        if: steps.c.outputs.vai == 'true'
+        run: |
+          python3 code/calcoli/leggi_eventi.py code/calcoli/eventi.json
+          python3 reg/voci-src/prepara_dati.py site code/calcoli/eventi.json >> "$GITHUB_OUTPUT"
+      - name: Installo gli strumenti
+        if: steps.p.outputs.giornata != ''
+        run: |
+          sudo apt-get update -qq && sudo apt-get install -y -qq ffmpeg
+          pip install edge-tts numpy scipy google-genai google-auth requests
+      - name: Genero la puntata (solo voci Gemini)
+        id: gen
+        if: steps.p.outputs.giornata != ''
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          SOLO_GEMINI: "1"
+        run: |
+          set -o pipefail
+          cd reg
+          python voci-src/puntata.py en-US-AndrewMultilingualNeural "" 2>&1 | tee voci-src/puntata-log.txt
+          python voci-src/monta.py voci-src/_voci.mp3 lab/voci/puntata.mp3 2>&1 | tee -a voci-src/puntata-log.txt
+      - name: Pubblico sul sito
+        if: steps.gen.outcome == 'success'
+        run: |
+          N="${{ steps.p.outputs.giornata }}"
+          python3 reg/voci-src/pubblica_puntata.py site reg/lab/voci "$N"
+          python3 reg/voci-src/prepara_dati.py site code/calcoli/eventi.json --segna > /dev/null
+          cd site
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add girrr/voci
+          git commit -m "Radio Girrr, puntata della giornata $N"
+          git pull --rebase origin gh-pages
+          git push origin gh-pages
