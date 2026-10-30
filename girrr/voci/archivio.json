@@ -1,5 +1,162 @@
 [
  {
+  "titolo": "Radio Girrr · Giornata 5",
+  "tag": "Lega Giornata 5",
+  "file": "puntata-g05.mp3",
+  "testo": [
+   {
+    "chi": "Beppe Rovesciata",
+    "ruolo": "Conduttore",
+    "testo": "Buongiorno, buonasera e buonanotte a tutti, siete su Radio Girrr, la radio ufficiale della Lega O Fant A Girrr! Oggi siamo qui con Beppe Rovesciata"
+   },
+   {
+    "chi": "Luigi Fischietti",
+    "ruolo": "Commentatore",
+    "testo": "e Luigi Fischietti! Si parte!"
+   },
+   {
+    "chi": "Beppe Rovesciata",
+    "ruolo": "Conduttore",
+    "testo": "Giornata numero 5! Luigi, hai già guardato i punteggi?"
+   },
+   {
+    "chi": "Luigi Fischietti",
+    "ruolo": "Commentatore",
+    "testo": "Altro che guardati: li ho imparati a memoria!"
+   },
+   {
+    "chi": "Beppe Rovesciata",
+    "ruolo": "Conduttore",
+    "testo": "Il re della giornata è AFA SELECCION, con 92 punti."
+   },
+   {
+    "chi": "Luigi Fischietti",
+    "ruolo": "Commentatore",
+    "testo": "Bravi, eh. Però il vero esame è la prossima settimana."
+   },
+   {
+    "chi": "Beppe Rovesciata",
+    "ruolo": "Conduttore",
+    "testo": "E la sconfitta più pesante è quella di Atletico ma non troppo, battuta da AFA SELECCION con 31 punti di scarto! Una mazzata!"
+   },
+   {
+    "chi": "Luigi Fischietti",
+    "ruolo": "Commentatore",
+    "testo": "Altro che mazzata: una cassa di birra in testa!"
+   },
+   {
+    "chi": "Beppe Rovesciata",
+    "ruolo": "Conduttore",
+    "testo": "In classifica comanda AFA SELECCION con 10 punti! Seguono stif dc e Mariana Coneja."
+   },
+   {
+    "chi": "Beppe Rovesciata",
+    "ruolo": "Conduttore",
+    "testo": "In fondo c'è WOA. Può risalire e sperare di uscire dall'ultima posizione?"
+   },
+   {
+    "chi": "Luigi Fischietti",
+    "ruolo": "Commentatore",
+    "testo": "Una vittoria e si cambia musica!"
+   },
+   {
+    "chi": "Beppe Rovesciata",
+    "ruolo": "Conduttore",
+    "testo": "Diamo i numeri, in senso buono!"
+   },
+   {
+    "chi": "Beppe Rovesciata",
+    "ruolo": "Conduttore",
+    "testo": "Il miglior attacco è quello di AFA SELECCION: 17 gol fatti in 5 giornate!"
+   },
+   {
+    "chi": "Luigi Fischietti",
+    "ruolo": "Commentatore",
+    "testo": "Altro che catenaccio!"
+   },
+   {
+    "chi": "Beppe Rovesciata",
+    "ruolo": "Conduttore",
+    "testo": "La differenza reti migliore è di AFA SELECCION: più 9!"
+   },
+   {
+    "chi": "Luigi Fischietti",
+    "ruolo": "Commentatore",
+    "testo": "WOA non vince da 5 partite. Il nostro modello la dà ultima nel 5 per cento dei casi!"
+   },
+   {
+    "chi": "Beppe Rovesciata",
+    "ruolo": "Conduttore",
+    "testo": "Il presidente di stif dc è al settimo cielo!"
+   },
+   {
+    "chi": "Luigi Fischietti",
+    "ruolo": "Commentatore",
+    "testo": "Con questi punti ci credo. Contratto a vita!"
+   },
+   {
+    "chi": "Beppe Rovesciata",
+    "ruolo": "Conduttore",
+    "testo": "Ora ci colleghiamo con la nostra inviata sul campo! Giulia, a te!"
+   },
+   {
+    "chi": "Giulia Cronaca",
+    "ruolo": "Inviata speciale",
+    "testo": "Grazie Beppe! Qui è un bel caos! Prima notizia: stif dc sta superando le aspettative! Il presidente la voleva intorno al sesto posto, e invece oggi è seconda!"
+   },
+   {
+    "chi": "Giulia Cronaca",
+    "ruolo": "Inviata speciale",
+    "testo": "Dalla sala stampa, nelle conferenze di questa settimana: Apo team è stato molto umile. Vediamo se il campo ha dato ragione!"
+   },
+   {
+    "chi": "Luigi Fischietti",
+    "ruolo": "Commentatore",
+    "testo": "Apo team è stato umile, ma in campo ha dimostrato che la sua squadra può fare molto!"
+   },
+   {
+    "chi": "Giulia Cronaca",
+    "ruolo": "Inviata speciale",
+    "testo": "Per ora è tutto, restituisco la linea in studio!"
+   },
+   {
+    "chi": "Giulia Cronaca",
+    "ruolo": "Inviata speciale",
+    "testo": "Notizia dalla sala stampa: Oranje VC ha sfidato Apo team, e la sfida è stata accettata! Nasce The Continental, Derby ufficiale per sempre!"
+   },
+   {
+    "chi": "Giulia Cronaca",
+    "ruolo": "Inviata speciale",
+    "testo": "Notizia dalla sala stampa: The Blue brothers ha sfidato Oranje VC, e la sfida è stata accettata! Nasce Derby dell'Emma, Derby ufficiale per sempre!"
+   },
+   {
+    "chi": "Giulia Cronaca",
+    "ruolo": "Inviata speciale",
+    "testo": "E dalla Curva: Oranje VC scrive: la Lazio sbaglia i rigori con una facilità allarmante, e Apo team ne sa qualcosa. La risposta di Apo team: fa anche gli autogol per non farsi mancare niente!"
+   },
+   {
+    "chi": "Luigi Fischietti",
+    "ruolo": "Commentatore",
+    "testo": "Grazie Giulia! Questo è calcio!"
+   },
+   {
+    "chi": "Beppe Rovesciata",
+    "ruolo": "Conduttore",
+    "testo": "Alla prossima giornata c'è il Derby! The Continental: Oranje VC contro Apo team!"
+   },
+   {
+    "chi": "Beppe Rovesciata",
+    "ruolo": "Conduttore",
+    "testo": "Per Radio Girrr, la radio ufficiale della Lega, è tutto! Mettete la formazione, vi vogliamo bene!"
+   },
+   {
+    "chi": "Luigi Fischietti",
+    "ruolo": "Commentatore",
+    "testo": "Ci sentiamo mercoledì prossimo! Ciao a tutti!"
+   }
+  ]
+ },
+ {
   "titolo": "Radio Girrr · Giornata 4",
   "tag": "Lega Giornata 4",
   "file": "puntata-g04.mp3",
