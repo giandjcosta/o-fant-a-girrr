@@ -1,36 +1,36 @@
-# Riepilogo giornata 10 di Serie A
+# Riepilogo giornata 9 di Serie A
 
 Lega O FANT A GIRRR. Dati aggiornati al 2026-10-30.
 
 ## Partite della giornata
 
-- Bologna - Monza (sab 31/10 15:00)
-- Udinese - Roma (sab 31/10 18:00)
-- Milan - Inter (sab 31/10 20:45)
-- Como - Venezia (dom 1/11 12:30)
-- Frosinone - Torino (dom 1/11 15:00)
-- Lazio - Cagliari (dom 1/11 15:00)
-- Lecce - Genoa (dom 1/11 18:00)
-- Juventus - Napoli (dom 1/11 20:45)
-- Sassuolo - Fiorentina (lun 2/11 18:30)
-- Atalanta - Parma (lun 2/11 20:45)
+- Sassuolo - Lazio (mar 27/10 18:30)
+- Roma - Cagliari (mar 27/10 20:45)
+- Torino - Como (mar 27/10 20:45)
+- Milan - Bologna (mer 28/10 18:30)
+- Parma - Udinese (mer 28/10 18:30)
+- Venezia - Inter (mer 28/10 18:30)
+- Genoa - Juventus (mer 28/10 20:45)
+- Monza - Napoli (mer 28/10 20:45)
+- Frosinone - Lecce (gio 29/10 18:30)
+- Fiorentina - Atalanta (gio 29/10 20:45)
 
-## Classic League: ultima giornata (4ª, G8 di Serie A)
+## Classic League: ultima giornata (5ª, G9 di Serie A)
 
-- The Blue brothers 0 - 4 Grodah (punteggi 57.5 - 83.5)
-- stif dc 4 - 1 Apo team (punteggi 82.5 - 67)
-- AFA SELECCION 4 - 5 Mariana Coneja (punteggi 82 - 86)
-- Oranje VC 2 - 2 Real Madrink (punteggi 72 - 75)
-- WOA 1 - 2 Atletico ma non troppo (punteggi 69.5 - 72.5)
+- Mariana Coneja 1 - 4 stif dc (punteggi 66 - 83.5)
+- Apo team 2 - 2 Real Madrink (punteggi 74 - 73)
+- The Blue brothers 3 - 0 Oranje VC (punteggi 76 - 60)
+- Atletico ma non troppo 0 - 6 AFA SELECCION (punteggi 61 - 92)
+- Grodah 4 - 2 WOA (punteggi 81 - 75)
 
 ### Premi della giornata
 
-- Miglior formazione: Mariana Coneja con 86 punti
-- Cucchiaio di legno: The Blue brothers con 57.5 punti
-- Vittoria più larga: Grodah su The Blue brothers (83.5 - 57.5)
-- Vittoria più sofferta: Real Madrink su Oranje VC (75 - 72)
-- Il più fortunato: Atletico ma non troppo ha vinto con soli 72.5 punti
-- Il più sfortunato: AFA SELECCION ha perso nonostante 82 punti
+- Miglior formazione: AFA SELECCION con 92 punti
+- Cucchiaio di legno: Oranje VC con 60 punti
+- Vittoria più larga: AFA SELECCION su Atletico ma non troppo (92 - 61)
+- Vittoria più sofferta: Apo team su Real Madrink (74 - 73)
+- Il più fortunato: Apo team ha vinto con soli 74 punti
+- Il più sfortunato: WOA ha perso nonostante 75 punti
 
 ## Classic League: prossima giornata (6ª, G10 di Serie A)
 
@@ -114,41 +114,41 @@ Punteggio: piu' e' alto, piu' conviene. Unisce valore e probabilita' di giocare.
 
 | Giocatore | Squadra | Stato | Avversario | Punteggio |
 |---|---|---|---|---|
-| Perri | Torino | Titolare | Frosinone (T) | 56 |
-| Tornqvist | Monza | Titolare | Bologna (T) | 42 |
-| Thiam | Monza | Panchina | Bologna (T) | 21 |
-| Daffara | Parma | Titolare | Atalanta (T) | 19 |
-| Happonen | Bologna | Panchina | Monza (C) | 15 |
+| Perri | Torino | Titolare | Como (C) | 56 |
+| Tornqvist | Monza | Titolare | Napoli (C) | 42 |
+| Thiam | Monza | Panchina | Napoli (C) | 21 |
+| Daffara | Parma | Titolare | Udinese (C) | 19 |
+| Happonen | Bologna | Panchina | Milan (T) | 15 |
 
 ### Difensori
 
 | Giocatore | Squadra | Stato | Avversario | Punteggio |
 |---|---|---|---|---|
-| Hainaut | Venezia | Titolare, ballottaggio | Como (T) | 85 |
-| Veiga D. | Lecce | Titolare | Genoa (C) | 75 |
-| Oyono A. | Frosinone | Titolare | Torino (C) | 74 |
-| Abankwah | Udinese | Titolare | Roma (C) | 73 |
-| Zè Pedro | Cagliari | Titolare | Lazio (T) | 73 |
+| Hainaut | Venezia | Titolare, ballottaggio | Inter (C) | 85 |
+| Veiga D. | Lecce | Titolare | Frosinone (T) | 75 |
+| Oyono A. | Frosinone | Titolare | Lecce (C) | 74 |
+| Abankwah | Udinese | Titolare | Parma (T) | 73 |
+| Zè Pedro | Cagliari | Titolare | Roma (T) | 73 |
 
 ### Centrocampisti
 
 | Giocatore | Squadra | Stato | Avversario | Punteggio |
 |---|---|---|---|---|
-| Schmid | Frosinone | Titolare | Torino (C) | 95 |
-| Romano | Cagliari | Titolare | Lazio (T) | 82 |
-| Pobega | Bologna | Titolare | Monza (C) | 76 |
-| Matic | Sassuolo | Titolare | Fiorentina (C) | 73 |
-| Perez K. | Venezia | Titolare | Como (T) | 73 |
+| Schmid | Frosinone | Titolare | Lecce (C) | 95 |
+| Romano | Cagliari | Titolare | Roma (T) | 82 |
+| Pobega | Bologna | Titolare | Milan (T) | 76 |
+| Matic | Sassuolo | Titolare | Lazio (C) | 73 |
+| Perez K. | Venezia | Titolare | Inter (C) | 73 |
 
 ### Attaccanti
 
 | Giocatore | Squadra | Stato | Avversario | Punteggio |
 |---|---|---|---|---|
-| Robinson J. | Monza | Titolare, ballottaggio | Bologna (T) | 75 |
-| Ghedjemis | Frosinone | Titolare | Torino (C) | 69 |
-| Lontani | Parma | Titolare, ballottaggio | Atalanta (T) | 41 |
-| N'Dri | Lecce | Titolare, ballottaggio | Genoa (C) | 37 |
-| Nzola | Cagliari | Riserva, ballottaggio | Lazio (T) | 32 |
+| Robinson J. | Monza | Titolare, ballottaggio | Napoli (C) | 75 |
+| Ghedjemis | Frosinone | Titolare | Lecce (C) | 69 |
+| Lontani | Parma | Titolare, ballottaggio | Udinese (C) | 41 |
+| N'Dri | Lecce | Titolare, ballottaggio | Frosinone (T) | 37 |
+| Nzola | Cagliari | Riserva, ballottaggio | Roma (T) | 32 |
 
 ## Correzioni da controllare
 
