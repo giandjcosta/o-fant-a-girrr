@@ -1,6 +1,6 @@
 # Riepilogo giornata 9 di Serie A
 
-Lega O FANT A GIRRR. Dati aggiornati al 2026-10-29.
+Lega O FANT A GIRRR. Dati aggiornati al 2026-10-30.
 
 ## Partite della giornata
 
