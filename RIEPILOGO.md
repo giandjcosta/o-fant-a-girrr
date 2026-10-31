@@ -143,7 +143,7 @@ Punteggio: piu' e' alto, piu' conviene. Unisce valore e probabilita' di giocare.
 
 | Giocatore | Squadra | Stato | Avversario | Punteggio |
 |---|---|---|---|---|
-| Robinson J. | Monza | Titolare, ballottaggio | Bologna (T) | 75 |
+| Robinson J. | Monza | Riserva, ballottaggio | Bologna (T) | 75 |
 | Ghedjemis | Frosinone | Titolare | Torino (C) | 69 |
 | Lontani | Parma | Riserva, ballottaggio | Atalanta (T) | 41 |
 | N'Dri | Lecce | Riserva, ballottaggio | Genoa (C) | 37 |
