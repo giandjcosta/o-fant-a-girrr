@@ -327,7 +327,7 @@ function head(){
   var c=S.conto;
   return (DEMO?'<div class="card" style="border:2px dashed var(--hi);font-size:13px"><b style="color:var(--hi)">PROVA</b> · Qui è tutto finto e si azzera quando ricarichi. Gioca una schedina, poi premi il pulsante per far finire le partite a caso.<br><button class="go" id="sim" style="margin-top:10px">Fai finire le partite</button></div>':'')+'<a class="back" href="index.html">‹ O GIRRR</a><div class="top"><a href="index.html" title="Torna a O Girrr" style="display:block;flex:none"><img src="../../assets/logo-lega.png" alt="O Fant A Girrr" style="display:block"></a><div class="t"><div class="k">O FANT A GIRRR</div><h1><b class="TT"><em class="Tg">T</em><svg viewBox="0 0 900 400" aria-hidden="true"><path fill="currentColor" d="M185.8 85.2H181Q145.4 85.2 121.1 103Q96.9 120.8 85.6 166Q81.9 180.8 83.2 186.6Q84.6 192.4 84.4 193.2Q62.8 193.2 54.4 184.2Q46.1 175.2 51.3 154.4Q58.4 126 78.2 102.6Q98.1 79.2 132.3 64.8Q166.5 50.4 213.7 50.4Q240.1 50.4 269.3 55.2Q272.6 55.8 275.8 56.3C299.8 57.8 329.3 62.4 360.7 67.4C408.7 74.9 461.1 83.2 505 82C565 80 605 68 642 62C668 66 668 94 640 99C600 108 545 122 480 122C417.8 122 363.5 106.2 296 100.6V102Q285.1 101.7 274.5 100Q262.2 98 239.8 93.2L120.4 350H62.8Z"/></svg></b>oto<span>girrr</span></h1></div><div class="bal"><small>FANTACREDITI</small><b>'+f2(c.crediti)+'</b>'+(Number(c.debito)>0?'<small style="color:var(--hi)">DEBITO '+f2(c.debito)+'</small>':'')+'</div></div>'+
   '<div class="who">Squadra: <b>'+esc(team)+'</b><button class="x" id="out">Esci</button></div>'+
-  '<nav><div class="nvi">'+[['partite','Partite'],['vinc','Vincenti'],['mie','Le mie'],['class','Classifica'],['prob','Probabilità'],['sfide','Sfida 1 contro 1'],['prestiti','Prestiti'],['regole','Regole']].map(function(t){return '<button data-tab="'+t[0]+'" class="'+(tab===t[0]?'on':'')+'">'+t[1]+'</button>'}).join('')+'</div></nav>'+ticker();
+  '<nav><div class="nvi">'+[['partite','Partite'],['vinc','Vincenti'],['mie','Le mie'],['class','Classifica'],['prob','Probabilità'],['sfide','Sfida 1 contro 1'],['prestiti','Prestiti'],['movimenti','Movimenti'],['regole','Regole']].map(function(t){return '<button data-tab="'+t[0]+'" class="'+(tab===t[0]?'on':'')+'">'+t[1]+'</button>'}).join('')+'</div></nav>'+ticker();
 }
 function qbtn(p,m,lab){
   var on=slip.some(function(x){return x.p===p.id&&x.m===m});lab=lab||mlab(m);
@@ -398,6 +398,20 @@ function pSug(i){return i<=25?1.05:i<=50?1.10:i<=100?1.15:i<=150?1.20:1.30}
 function pPct(t){return Math.round(Number(t)*100)+'%'}
 function selOpts(a,f,sel){return a.map(function(x){return '<option value="'+x+'"'+(Number(x)===Number(sel)?' selected':'')+'>'+f(x)+'</option>'}).join('')}
 function loadPR(){PRL=true;return rpc('toto_pr_stato',{p_team:team,p_code:code}).then(function(r){PR=r;PRL=false;render()}).catch(function(e){PRL=false;PR={prestiti:[],movimenti:[],err:e.message};render()})}
+var NOMIMOV={banco:'Trattenuta del banco',cashback_derby:'Rimborso Derby',premio_sponsor:'Premio sponsor',prestito:'Prestito',restituzione:'Restituzione prestito',sussidio:'Prestito del banco'};
+function vMovimenti(){
+  if(!PR){if(!PRL)loadPR();return '<div class="card">Carico i movimenti…</div>'}
+  var m=[],en=0,us=0;
+  (PR.movimenti||[]).forEach(function(x){var t=String(x.tipo||'');m.push({n:String(x.nota||'').replace(/ · [a-z]+_[a-z0-9_]+$/,'')||NOMIMOV[t]||(t.charAt(0).toUpperCase()+t.slice(1)).replace(/_/g,' '),i:Number(x.importo)||0,d:x.creato})});
+  (S.schedine||[]).forEach(function(x){m.push({n:'Schedina n° '+x.id+' · Puntata',i:-Number(x.puntata),d:x.creata});if(x.stato==='vinta'&&Number(x.vincita)>0)m.push({n:'Schedina n° '+x.id+' · Vincita',i:Number(x.vincita),d:x.creata})});
+  m.forEach(function(x,k){x.k=k;if(x.i>=0)en+=x.i;else us-=x.i});
+  m.sort(function(a,b){return (new Date(b.d||0)-new Date(a.d||0))||(b.k-a.k)});
+  var h='<div class="card"><b>Movimenti</b><p style="font-size:12px;color:var(--sub);margin:6px 0">Tutte le entrate e le uscite della tua squadra, dalla più recente: schedine, vincite, prestiti, rimborsi, trattenute del banco e premi sponsor.</p>';
+  if(m.length)h+='<div class="mv"><span>Entrate</span><b class="p">+'+f2(en)+'</b></div><div class="mv"><span>Uscite</span><b class="m">−'+f2(us)+'</b></div>';
+  h+='</div><div class="card">'+(m.length?m.map(function(x){return '<div class="mv"><span>'+esc(x.n)+'<small style="display:block;color:var(--sub);font-size:11px">'+quando(x.d)+'</small></span><b class="'+(x.i>=0?'p':'m')+'">'+(x.i>=0?'+':'−')+f2(Math.abs(x.i))+'</b></div>'}).join(''):'<div class="vuoto">Ancora nessun movimento.</div>')+'</div>';
+  if(PR.err)h+='<p style="font-size:12px;color:var(--sub);margin:6px 2px">Prestiti e premi non si sono caricati: qui vedi solo le schedine.</p>';
+  return h;
+}
 function vPrestiti(){
   if(!PR)return '<div class="card">Carico i prestiti…</div>';
   if(PR.err)return '<div class="card">I prestiti non sono ancora attivi: '+esc(PR.err)+'</div>';
@@ -432,7 +446,7 @@ var LASTHS='',LASTSV='',QS=1,ANIM=true,LASTQ='',SLIPWAS=false,BALPREV=null;
 function render(){
   var a=document.getElementById('app');
   if(!S){a.innerHTML=gate();return}
-  var body=tab==='partite'?vPartite():tab==='vinc'?vVinc():tab==='mie'?vMie():tab==='class'?vClass():tab==='prestiti'?vPrestiti():tab==='prob'?vProbT():tab==='sfide'?vSfideT():vRegole();
+  var body=tab==='partite'?vPartite():tab==='vinc'?vVinc():tab==='mie'?vMie():tab==='class'?vClass():tab==='prestiti'?vPrestiti():tab==='movimenti'?vMovimenti():tab==='prob'?vProbT():tab==='sfide'?vSfideT():vRegole();
   navPre();var keep=document.getElementById('stake');
   var hs=head(),sv=vSlip(),isNew=!!sv&&!SLIPWAS;SLIPWAS=!!sv;
   var pn=a.querySelector('.pane'),hsK=hs.replace(/class="on"/g,'class=""');
@@ -463,7 +477,7 @@ document.addEventListener('click',function(e){
    rpc('toto_pr_rispondi',{p_team:team,p_code:code,p_id:Number(pp[0]),p_azione:pp[1],p_tasso:pp[1]==='controproponi'&&tx?Number(tx.value):null}).then(function(r){toast(pp[1]==='accetta'?'Prestito accettato':pp[1]==='rifiuta'?'Richiesta rifiutata':'Controproposta inviata');return Promise.all([loadPR(),carica()])}).catch(function(e){toast(e.message,1)});return}
   if(b=t.closest('[data-prr]')){var q=b.getAttribute('data-prr').split('|');
    rpc('toto_pr_restituisci',{p_team:team,p_code:code,p_id:Number(q[0]),p_importo:Number(q[1])}).then(function(r){toast('Restituiti '+f2(r.restituito));return Promise.all([loadPR(),carica()])}).catch(function(e){toast(e.message,1)});return}
-  if(b=t.closest('[data-tab]')){tab=b.getAttribute('data-tab');render();window.scrollTo(0,0);if(tab==='prestiti')loadPR();if(tab==='prob')probLoad();if(tab==='sfide')duLoad(false);return}
+  if(b=t.closest('[data-tab]')){tab=b.getAttribute('data-tab');render();window.scrollTo(0,0);if(tab==='prestiti'||tab==='movimenti')loadPR();if(tab==='prob')probLoad();if(tab==='sfide')duLoad(false);return}
   if(b=t.closest('.q')){
     var id=b.getAttribute('data-p'),m=b.getAttribute('data-m');
     var i=slip.findIndex(function(x){return x.p===id});
@@ -592,7 +606,7 @@ function navBounce(n){
 }
 
 var REGDERBY='<div class="card"><b>Quote Derby</b><p style="margin-top:6px;line-height:1.5">Le partite tra squadre che hanno un Derby ufficiale hanno la quota maggiorata del 15% su ogni esito. Se la tua schedina contiene un Derby la quota finale vale il 10% in più, e se la schedina perde ti torna il 20% della puntata. Valgono dalla giornata successiva alla nascita del Derby: le schedine già giocate non cambiano.</p></div>';
-var _qi=/[?&]t=(prob|sfide)/.exec(location.search);if(_qi){tab=_qi[1]}
+var _qi=/[?&]t=(prob|sfide|movimenti)/.exec(location.search);if(_qi){tab=_qi[1]}
 function fmtCd(ms){var s=Math.floor(ms/1000),d=Math.floor(s/86400),h=Math.floor(s%86400/3600),m=Math.floor(s%3600/60);return d>0?d+'g '+h+'h':h>0?h+'h '+m+'m':m+'m '+String(s%60).padStart(2,'0')+'s'}
 function tickCd(){document.querySelectorAll('.cd').forEach(function(e){var ms=new Date(e.getAttribute('data-t'))-Date.now();if(ms<=0){if(!e.dataset.done){e.dataset.done=1;e.textContent='0s';if(S&&!busy)carica()}return}e.textContent=fmtCd(ms);e.className='cd'+(ms<3600e3?' hot':ms<86400e3?' warn':'')})}
 setInterval(tickCd,1000);

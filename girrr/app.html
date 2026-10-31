@@ -420,7 +420,7 @@ function vOro(){
   if(S.oro==='regole'){var sz=function(tit,rr){return '<div class="card"><h3>'+tit+'</h3>'+rr.map(function(r){return '<p class="sm" style="margin-top:8px;line-height:1.55">'+r+'</p>'}).join('')+'</div>'};
     h+=sz('Titoli',['Vince il titolo chi chiude primo il campionato: 3 punti a vittoria, 1 a pareggio. La Champions Cup ha un suo albo.','Le stagioni prima del 2021 arrivano dai ricordi del gruppo: nei titoli di sempre sono segnate con l\'asterisco.'])
      +sz('Le ere',['La storia della Lega è divisa in ere: quella di oggi, dal cambio di lega del 2021, e quella di prima.'])
-     +sz('Derby e rivalità',['La rivalità tra due allenatori va da 0 a 100 e nasce dalla storia: stagioni giocate insieme, stagioni insieme tra le prime quattro, podi e anzianità.','Un Derby nasce dal voto degli amici (pesa il 60%) più la storia (40%): è Derby se arriva a 50. Senza voti decide la storia, sempre da 50.','Un Derby nato da una sfida accettata in conferenza stampa è ufficiale per sempre. Ogni squadra può lanciare al massimo due sfide all\'anno.'])
+     +sz('Derby e rivalità',['La rivalità tra due allenatori va da 0 a 100 e nasce dalla storia: stagioni giocate insieme, stagioni insieme tra le prime quattro, podi e anzianità.','Una partita è Derby se la votano gli amici, oppure se la rivalità che nasce dalla storia arriva a 80. Vale ovunque: pagine, Radio e quote del Totogirrr.','Un Derby nato da una sfida accettata in conferenza stampa è ufficiale per sempre. Ogni squadra può lanciare al massimo due sfide all\'anno.'])
      +sz('Albo di Latta',['L\'opposto dell\'oro: conta chi chiude ultimo, chi chiude nella metà bassa, il flop (il punteggio più basso di ogni giornata) e la mazzata (la sconfitta con più scarto della giornata). Si calcola da solo e si accumula anno dopo anno.'])}
   if(S.oro==='all')h+='<div class="card"><div class="sh-tag k g">Ha lasciato la Lega</div><h3>SuperBrok</h3><p class="sm mut">Gli Spaesati · 2025/26</p><p class="sm" style="margin-top:6px">Ha lasciato la lega, ma resta nell\'albo con quello che ha fatto.</p><p class="note" style="margin-top:6px">Cugino di Andrew: la dinastia continua.</p></div><p class="note">Così apparirebbe la scheda di SuperBrok, con la nota in piccolo.</p>';
   return h}
@@ -763,7 +763,7 @@ function giorCoppa(t){var R=CC||D.cup||[],x={v:0,pt:0},gg=0;R.forEach(function(r
   r.m.forEach(function(m){if(!m[5]||m[5]==='-'||(m[1]!==t&&m[4]!==t))return;var sc=m[5].split('-').map(Number),a=m[1]===t?sc[0]:sc[1],b=m[1]===t?sc[1]:sc[0];if(a>b){x.v++;x.pt+=3}else if(a===b)x.pt++})});
   x.fine=CC?gg>=CC.length:false;return x}
 function sponsorCoppa(t){var fa=fascia(t),x=giorCoppa(t);
-  var o=fa==='Big'?{nome:'Assicurazioni Leone d\'Oro',testo:'Vinci almeno 5 partite nel girone di Champions Cup',val:x.v,obj:5,u:'vittorie',crediti:100}
+  var o=fa==='Big'?{nome:'Assicurazioni Leone d\'Oro',testo:'Vinci almeno 4 partite nel girone di Champions Cup',val:x.v,obj:4,u:'vittorie',crediti:100}
    :fa==='Emergente'?{nome:'Torrefazione Moka d\'Oro',testo:'Fai almeno 10 punti nel girone di Champions Cup',val:x.pt,obj:10,u:'punti',crediti:75}
    :{nome:'Ferramenta Bortolo',testo:'Vinci almeno 2 partite nel girone di Champions Cup',val:x.v,obj:2,u:'vittorie',crediti:50};
   o.ok=o.val>=o.obj;o.pct=Math.min(100,Math.round(o.val/o.obj*100));o.stato=o.ok?'Fatto':x.fine?'Mancato':o.val+' su '+o.obj+' '+o.u;return o}
