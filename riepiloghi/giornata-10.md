@@ -74,24 +74,25 @@ Notizie pubbliche, senza indicare di chi e' ogni giocatore.
 | Chalobah T. | Como | Infortunio | Inizio novembre | Salta |
 | Kean | Como | Fastidio alla tibia che lo affligge da | Inizio dicembre | Salta |
 | Atta | Fiorentina | Sovraccarico funzionale dell'addome | Prossimo turno | In dubbio |
-| Pavard | Inter | Risentimento agli adduttori della coscia destra | Inizio novembre | Salta |
+| Stones | Inter | Risentimento ai flessori della coscia sinistra | Inizio novembre | Salta |
 | Jones C. | Inter | Risentimento miofasciale agli adduttori della coscia destra | Inizio novembre | Salta |
 | Martinez L. | Inter | Risentimento muscolare ai flessori della coscia sinistra | Metà novembre | Salta |
-| Stones | Inter | Risentimento ai flessori della coscia sinistra | Inizio novembre | Salta |
+| Pavard | Inter | Risentimento agli adduttori della coscia destra | Inizio novembre | Salta |
+| Provedel | Inter | Infortunio | Prossimo turno | Salta |
+| Celik | Juventus | Lesione di basso grado del bicipite femorale | Metà novembre | Salta |
 | Conceicao | Juventus | Lussazione alla spalla sinistra | Metà novembre | Salta |
 | Yildiz | Juventus | Problema al piede | Inizio dicembre | Salta |
 | Grabara | Juventus | Lesione al crociato anteriore del ginocchio destro | Da aprile | Salta |
 | Gonzalez N. | Juventus | Lesione di basso grado del soleo destro | Metà novembre | Salta |
-| Celik | Juventus | Lesione di basso grado del bicipite femorale | Metà novembre | Salta |
 | Gudmundsson A. | Lazio | Problema alla spalla destra dopo una caduta | Metà novembre | In dubbio |
 | Coulibaly L. | Lecce | Lesione muscolare al bicipite femorale della coscia | Inizio novembre | Salta |
 | Geubbels | Lecce | Lesione muscolare di basso grado all'adduttore della | Metà novembre | Salta |
 | Gaspar K. | Lecce | Squalificato | Rientra dalla 11ª giornata | Salta |
 | Saelemaekers | Milan | Problema alla caviglia destra e operata il | Da febbraio | Salta |
 | Chukwueze | Milan | Problema all'anca sinistra | Da valutare | Salta |
-| Neres | Napoli | Lesione di basso grado al muscolo semimembranoso | Prima metà di novembre | Salta |
 | Badiashile | Napoli | Lesione distrattiva di medio grado del retto | Fine novembre | Salta |
 | Spinazzola | Napoli | Lesione di basso grado del bicipite femorale | Metà novembre | Salta |
+| Neres | Napoli | Lesione di basso grado al muscolo semimembranoso | Prima metà di novembre | Salta |
 | Lobotka | Napoli | Lesione della sindesmosi tibio-peroneale senza instabilità | Metà dicembre | Salta |
 | Santos A. | Napoli | Lesione distrattiva di medio grado del bicipite | Inizio dicembre | Salta |
 | Buongiorno | Napoli | Operato nella seconda metà di luglio al | Fine dicembre | Salta |
@@ -116,7 +117,7 @@ Punteggio: piu' e' alto, piu' conviene. Unisce valore e probabilita' di giocare.
 | Perri | Torino | Titolare | Frosinone (T) | 56 |
 | Tornqvist | Monza | Titolare | Bologna (T) | 42 |
 | Thiam | Monza | Panchina | Bologna (T) | 21 |
-| Daffara | Parma | Titolare, ballottaggio | Atalanta (T) | 19 |
+| Daffara | Parma | Titolare | Atalanta (T) | 19 |
 | Happonen | Bologna | Panchina | Monza (C) | 15 |
 
 ### Difensori
@@ -126,8 +127,8 @@ Punteggio: piu' e' alto, piu' conviene. Unisce valore e probabilita' di giocare.
 | Hainaut | Venezia | Titolare, ballottaggio | Como (T) | 85 |
 | Veiga D. | Lecce | Titolare | Genoa (C) | 75 |
 | Oyono A. | Frosinone | Titolare | Torino (C) | 74 |
-| Abankwah | Udinese | Titolare | Roma (C) | 73 |
 | Zè Pedro | Cagliari | Titolare | Lazio (T) | 73 |
+| Provstgaard | Lazio | Titolare | Cagliari (C) | 72 |
 
 ### Centrocampisti
 
@@ -135,7 +136,7 @@ Punteggio: piu' e' alto, piu' conviene. Unisce valore e probabilita' di giocare.
 |---|---|---|---|---|
 | Schmid | Frosinone | Titolare | Torino (C) | 95 |
 | Romano | Cagliari | Titolare | Lazio (T) | 82 |
-| Pobega | Bologna | Titolare | Monza (C) | 76 |
+| Pobega | Bologna | Titolare | Monza (C) | 80 |
 | Matic | Sassuolo | Titolare | Fiorentina (C) | 73 |
 | Perez K. | Venezia | Titolare | Como (T) | 73 |
 
@@ -143,11 +144,11 @@ Punteggio: piu' e' alto, piu' conviene. Unisce valore e probabilita' di giocare.
 
 | Giocatore | Squadra | Stato | Avversario | Punteggio |
 |---|---|---|---|---|
-| Robinson J. | Monza | Riserva, ballottaggio | Bologna (T) | 75 |
 | Ghedjemis | Frosinone | Titolare | Torino (C) | 69 |
+| Robinson J. | Monza | Panchina | Bologna (T) | 66 |
 | Lontani | Parma | Riserva, ballottaggio | Atalanta (T) | 41 |
 | N'Dri | Lecce | Riserva, ballottaggio | Genoa (C) | 37 |
-| Nzola | Cagliari | Titolare, ballottaggio | Lazio (T) | 32 |
+| Nzola | Cagliari | Riserva, ballottaggio | Lazio (T) | 32 |
 
 ## Correzioni da controllare
 
