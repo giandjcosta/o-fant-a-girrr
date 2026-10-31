@@ -1,0 +1,54 @@
+name: Premi sponsor della giornata
+# Solo a mano (Actions → Premi sponsor della giornata → Run workflow).
+# Senza «vai» stampa i premi che registrerebbe, e non scrive nel database.
+# Con «vai» = true li registra con carriera_registra_server (chiave service_role, già nei segreti).
+# La logica dei premi è quella del Laboratorio (registro o-girrr-registro), con i dati veri di data.json.
+on:
+  workflow_dispatch:
+    inputs:
+      vai:
+        description: "Registra davvero i premi nel database (altrimenti solo prova)"
+        type: boolean
+        default: false
+permissions:
+  contents: read
+concurrency:
+  group: premi-giornata
+jobs:
+  premi:
+    runs-on: ubuntu-latest
+    env:
+      SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
+      REGISTRO_REF: claude/coppe-simboli-ere-descrizioni-4jn4ss
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: gh-pages
+          path: site
+      - uses: actions/checkout@v4
+        with:
+          repository: giandjcosta/o-girrr-registro
+          ref: ${{ env.REGISTRO_REF }}
+          path: registro
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+      - name: Installo Playwright (solo per leggere la logica del Laboratorio)
+        run: |
+          mkdir -p "$RUNNER_TEMP/pw" && cd "$RUNNER_TEMP/pw"
+          npm init -y >/dev/null
+          npm i playwright@1.49.1
+          npx playwright install --with-deps chromium
+          echo "NODE_PATH=$RUNNER_TEMP/pw/node_modules" >> "$GITHUB_ENV"
+      - name: Calcolo i premi della giornata con la logica del Laboratorio
+        run: node registro/calcoli/premi/premi_giornata.js site/data.json site/girrr/dati/lab-dati.json registro/lab/index.html "$RUNNER_TEMP/premi.json"
+      - name: Prova o registrazione
+        run: |
+          if [ "${{ inputs.vai }}" = "true" ]; then
+            python3 registro/calcoli/premi/registra_premi.py "$RUNNER_TEMP/premi.json" site/data.json --vai
+          else
+            python3 registro/calcoli/premi/registra_premi.py "$RUNNER_TEMP/premi.json" site/data.json
+          fi
