@@ -1,6 +1,6 @@
 # Riepilogo giornata 10 di Serie A
 
-Lega O FANT A GIRRR. Dati aggiornati al 2026-10-30.
+Lega O FANT A GIRRR. Dati aggiornati al 2026-10-31.
 
 ## Partite della giornata
 
@@ -99,9 +99,9 @@ Notizie pubbliche, senza indicare di chi e' ogni giocatore.
 | Konè M. | Roma | Lesione di primo grado al bicipite femorale | Prima metà di novembre | Salta |
 | Dybala | Roma | Fastidio al polpaccio | Inizio novembre | Salta |
 | Thorstvedt | Sassuolo | Squalificato | Rientra dalla 11ª giornata | Salta |
-| Cacciamani | Torino | Lussazione alla spalla sinistra rimediata nel turno | Prossimo turno | Salta |
-| Mandragora | Torino | Problema muscolare al flessore sinistro | Metà novembre | Salta |
 | Fortini | Torino | Affaticamento muscolare all'adduttore | Da valutare | In dubbio |
+| Mandragora | Torino | Problema muscolare al flessore sinistro | Metà novembre | Salta |
+| Cacciamani | Torino | Lussazione alla spalla sinistra rimediata nel turno | Prossimo turno | Salta |
 | Solet | Udinese | Problema muscolare al pettineo sinistro | Prima metà di novembre | Salta |
 | Gueye | Udinese | Problema alla caviglia a fine settembre | Fine gennaio | Salta |
 
