@@ -125,9 +125,9 @@ Punteggio: piu' e' alto, piu' conviene. Unisce valore e probabilita' di giocare.
 
 | Giocatore | Squadra | Stato | Avversario | Punteggio |
 |---|---|---|---|---|
-| Hainaut | Venezia | Titolare | Como (T) | 85 |
+| Hainaut | Venezia | Titolare | Como (T) | 84 |
 | Veiga D. | Lecce | Titolare | Genoa (C) | 75 |
-| Oyono A. | Frosinone | Titolare | Torino (C) | 74 |
+| Oyono A. | Frosinone | Panchina | Torino (C) | 74 |
 | Zè Pedro | Cagliari | Titolare | Lazio (T) | 73 |
 | Provstgaard | Lazio | Titolare | Cagliari (C) | 72 |
 
@@ -139,7 +139,7 @@ Punteggio: piu' e' alto, piu' conviene. Unisce valore e probabilita' di giocare.
 | Romano | Cagliari | Titolare | Lazio (T) | 82 |
 | Pobega | Bologna | Titolare | Monza (C) | 80 |
 | Matic | Sassuolo | Titolare | Fiorentina (C) | 73 |
-| Perez K. | Venezia | Panchina | Como (T) | 73 |
+| Fitz-Jim | Torino | Panchina | Frosinone (T) | 71 |
 
 ### Attaccanti
 
@@ -149,7 +149,7 @@ Punteggio: piu' e' alto, piu' conviene. Unisce valore e probabilita' di giocare.
 | Robinson J. | Monza | Panchina | Bologna (T) | 66 |
 | Lontani | Parma | Riserva, ballottaggio | Atalanta (T) | 41 |
 | N'Dri | Lecce | Riserva, ballottaggio | Genoa (C) | 37 |
-| Nzola | Cagliari | Riserva, ballottaggio | Lazio (T) | 32 |
+| Nzola | Cagliari | Titolare | Lazio (T) | 32 |
 
 ## Correzioni da controllare
 
