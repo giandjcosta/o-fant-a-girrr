@@ -1,6 +1,7 @@
 <!doctype html>
 <html lang="it">
 <head>
+
 <script src="ospite.js?v=1"></script>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
@@ -111,8 +112,6 @@ body::before{content:'';position:fixed;inset:-120px;z-index:-1;pointer-events:no
 <meta name="apple-mobile-web-app-title" content="O Girrr">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <script src="pub.js"></script>
-<script>window.goatcounter={path:function(){return location.pathname},no_onload:/[?&]demo/.test(location.search)}</script>
-<script data-goatcounter="https://djcosta18.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
 <script src="novita-dati.js?v=1792337985"></script>
 <script src="novita-badge.js?v=1792337985"></script>
 <script src="transizioni.js"></script>
@@ -120,14 +119,25 @@ body::before{content:'';position:fixed;inset:-120px;z-index:-1;pointer-events:no
 <style>@media(min-width:1500px){.wrap{max-width:1380px}.wrap .cards{grid-template-columns:repeat(3,1fr)!important}}</style>
 <style>.cards{grid-template-columns:repeat(3,1fr)!important}@media(max-width:820px){.cards{grid-template-columns:1fr 1fr!important}.c h2 .nt-nv{display:block;width:max-content;margin:6px 0 0}}@media(max-width:480px){.cards{grid-template-columns:1fr!important}.c h2 .nt-nv{display:inline-block;margin-left:8px}}</style>
 <style>.st0{grid-column:1/-1;display:flex;align-items:center;gap:12px;flex-wrap:wrap}.st0 span{margin:0!important}.st0 .gir{width:14px;height:14px;flex:none;border-radius:50%;border:2px solid var(--sub);border-top-color:var(--hi);animation:stgir .9s linear infinite}@keyframes stgir{to{transform:rotate(360deg)}}@media(prefers-reduced-motion:reduce){.st0 .gir{animation:none}}.st0 button{margin-left:auto;font:800 12px Inter,system-ui,sans-serif;letter-spacing:.08em;padding:8px 14px;border-radius:99px;border:0;background:var(--hi);color:#1d2a52;cursor:pointer}.agg{margin:-18px 0 26px;font-size:12px;font-weight:600;color:var(--sub);text-align:right}.agg:empty{display:none}</style>
-</head>
-<body>
+
+
+<script>window.goatcounter={path:function(){return location.pathname},no_onload:/[?&]demo/.test(location.search)}</script>
+<script data-goatcounter="https://djcosta18.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script><link rel="stylesheet" href="v55/ui.css?v=55r1"><script src="v55/home55.js?v=55r1" defer></script><script src="v55/destinazioni55.js?v=55r1" defer></script><script src="v55/ui.js?v=55r1" defer></script></head>
+<body data-v53="home" data-v53-skin="lega" data-v53-skinname="lega">
 <div class="wrap">
   <header class="hero">
     <a href="./" title="O Girrr" style="display:block;flex:none"><img src="../assets/loghi/logo-lega-o-fant-a-girrr.png" alt="O Fant A Girrr" style="display:block"></a>
     <div><div class="kick">O FANT A GIRRR · 2026/27</div><h1>O <span>Girrr</span></h1><div class="tag">La casa della nostra lega: tutto quello che serve, in un posto solo.</div></div>
   </header>
-  <div class="lg-leghe"><div class="t"><small>La nostra lega</small><b>Leghe Fantacalcio</b><p>Formazioni, classifica e mercato.</p></div><a class="go" id="lgo" href="https://leghe.fantacalcio.it/" target="_blank" rel="noopener">Apri la lega ›</a><div class="alt">Per la Serie A: <a href="https://www.legaseriea.it/" target="_blank" rel="noopener">Sito ufficiale della Serie A</a></div></div>
+  <div id="v53nav"></div>
+<section class="v53 v53-home" aria-label="Oggi al Girrr">
+ <div class="v53-homehead"><div><div class="v53-kicker">LA TUA LEGA, OGGI</div><h2 class="v53-h1">Oggi al Girrr</h2><p class="v53-desc">La tua squadra, il prossimo turno, ciò che conta. Tutto il resto rimane qui sotto.</p></div>
+ <div class="v53-team"><label for="v53team">La mia squadra</label><select class="v53-select" id="v53team"><option>Caricamento squadre…</option></select></div></div>
+ <div id="v53metrics" class="v53-metrics"><div class="v53-metric featured">Caricamento dei dati della Lega…</div></div>
+ <div class="v53-actionrow"><a href="tabellone.html">Risultati e classifica ›</a><a href="curva.html">Apri la Curva ›</a><a href="notifiche.html">Notifiche ›</a></div>
+ <div class="v53-live"><span id="v53news">Novità della squadra · Risultati e prossime partite.</span><button id="v53read" class="v53-pill" type="button">Segna lette</button></div>
+</section>
+<div class="lg-leghe"><div class="t"><small>La nostra lega</small><b>Leghe Fantacalcio</b><p>Formazioni, classifica e mercato.</p></div><a class="go" id="lgo" href="https://leghe.fantacalcio.it/" target="_blank" rel="noopener">Apri la lega ›</a><div class="alt">Per la Serie A: <a href="https://www.legaseriea.it/" target="_blank" rel="noopener">Sito ufficiale della Serie A</a></div></div>
   <script>(function(){try{var u=navigator.userAgent||'',a=document.getElementById('lgo');
   if(/Android/i.test(u))a.href='intent://leghe.fantacalcio.it/#Intent;scheme=https;package=it.quadronica.leghe;S.browser_fallback_url=https%3A%2F%2Fplay.google.com%2Fstore%2Fapps%2Fdetails%3Fid%3Dit.quadronica.leghe;end';
   else if(/iPhone|iPad|iPod/i.test(u)||(/Macintosh/.test(u)&&navigator.maxTouchPoints>1)){a.href='https://apps.apple.com/it/app/id977629806';a.removeAttribute('target')}
@@ -143,7 +153,8 @@ body::before{content:'';position:fixed;inset:-120px;z-index:-1;pointer-events:no
   <a class="c" href="albo.html"><div class="ic"><img src="albo-alloro.png?v=1792337985" alt="" style="height:72px;width:auto;margin-top:-6px"></div><h2>Albo d'oro<span class="nt-nv">NOVITÀ</span></h2><p>Storia della Lega, Era dei Titani, stagioni, Derby e record.</p><div class="go">ENTRA ›</div></a><a class="c" href="app.html#carriera"><div class="ic"><img src="carriera-microfoni.png?v=1792337985" alt="" style="height:72px;width:auto;margin-top:-6px"></div><h2>Carriera<span class="nt-nv">NOVITÀ</span></h2><p>Obiettivi, fiducia del presidente e conferenza stampa di ogni allenatore.</p><div class="go">ENTRA ›</div></a></section>
   <a class="cvw" id="cvw" href="curva.html"><div class="cvh"><span class="cvl"></span><div><b>Curva <i class="nd" id="cvd" hidden></i></b><span>Il social della lega</span></div></div><div class="cvp" id="cvp"></div><span class="cvg">ENTRA ›</span></a>
   
-  <section class="mini" style="margin-top:14px"><a class="mn" id="mst" href="statistiche.html"><div class="mi">📊</div><div><b>Statistiche</b><span>Solo per te: chi entra e dove</span></div></a></section>
+  <section class="mini" style="margin-top:14px"><a class="mn" href="notifiche.html"><div class="mi">🔔</div><div><b>Notifiche</b><span>Menu indipendente · Novità della Lega</span></div></a></section>
+<section class="mini" style="margin-top:14px"><a class="mn" id="mst" href="statistiche.html"><div class="mi">📊</div><div><b>Statistiche</b><span>Solo per te: chi entra e dove</span></div></a></section>
   <div class="sp"><span>Gentilmente offerto da</span><div class="lg"><img src="../assets/loghi/sponsor-birra-contropiede.png" alt=""><img src="../assets/loghi/sponsor-pizzeria-fuorigioco.png" alt=""><img src="../assets/loghi/sponsor-bomber-gym-club.png" alt=""><img src="../assets/loghi/sponsor-amaro-del-mister.png" alt=""></div></div>
   <div class="foot">O Girrr · Fantacalcio 2026/27</div>
 </div>
@@ -207,5 +218,6 @@ var e=document.querySelector('.sp .lg');if(e)e.innerHTML=a.slice(0,4).map(functi
 </script>
 <script src="curva-banca.js"></script>
 <script src="../assets/app.js"></script>
+
 </body>
 </html>

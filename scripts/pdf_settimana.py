@@ -30,7 +30,14 @@ def pt(x):
 
 
 def giocata(g):
-    return any(m[-1] != "-" for m in g["m"])
+    # Cronache 5.5: medesima giornata interamente chiusa di Curva e Radio.
+    from zone_classifica import _giornate, RIS
+    chiuse = _giornate(D)
+    if any(g is x for x in D['cal']['lega']):
+        return any(g is x for x in chiuse)
+    sa = chiuse[-1].get('sa') if chiuse else None
+    return bool(sa is not None and g.get('sa') is not None and g['sa'] <= sa
+                and g.get('m') and all(RIS.fullmatch(str(m[-1])) for m in g['m']))
 
 
 def premi(partite):

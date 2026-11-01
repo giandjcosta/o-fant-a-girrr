@@ -1,6 +1,7 @@
 <!doctype html>
 <html lang="it">
 <head>
+
 <script src="ospite.js?v=1"></script>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,viewport-fit=cover">
@@ -181,16 +182,22 @@ html,body{overscroll-behavior-y:none;touch-action:manipulation;-webkit-text-size
 <style>@media(hover:none){.post:hover,.nav button:hover,.ib:hover,.tabs button:hover,.acts button:hover{background:transparent!important}.acts .rsp:hover:not(.on),.acts .ril:hover:not(.on),.acts .app:hover:not(.on),.acts .del:hover{color:var(--mu)!important}.pn b:hover{text-decoration:none}}.post,.acts button,.tabs button{-webkit-tap-highlight-color:transparent}</style>
 <script src="novita-dati.js?v=1792337985"></script>
 <script src="transizioni.js"></script>
-</head>
-<body>
+
+
+<script>window.goatcounter={path:function(){return location.pathname},no_onload:/[?&]demo/.test(location.search)}</script>
+<script data-goatcounter="https://djcosta18.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script><link rel="stylesheet" href="v55/ui.css?v=55r1"><script src="v55/home55.js?v=55r1" defer></script><script src="v55/destinazioni55.js?v=55r1" defer></script><script src="v55/ui.js?v=55r1" defer></script></head>
+<body data-v53="curva" data-v53-skin="lega" data-v53-skinname="lega">
 <div class="shell">
   <nav class="nav" id="nav"></nav>
-  <main class="col"><header class="top" id="top"></header><div class="ptrb" id="ptrb"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 12a8 8 0 1 1-2.5-5.8"/><path d="M20 4v5h-5"/></svg></div><div id="vista"></div></main>
+  <main class="col"><header class="top" id="top"></header><div class="ptrb" id="ptrb"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 12a8 8 0 1 1-2.5-5.8"/><path d="M20 4v5h-5"/></svg></div><div id="v53nav"></div>
+<section class="v53 v53-panel" aria-label="Sondaggio della Curva" id="v53sondaggio">
+<div class="v53-sectionhead"><div><div class="v53-kicker">LA CURVA</div><h2>Il sondaggio della giornata</h2><div class="v53-sub">Vota la sfida della prossima giornata, leggi i personaggi e commenta.</div></div></div>
+<div id="v53poll"><div class="v53-empty">Carico le partite della prossima giornata…</div></div>
+</section>
+<div id="vista"></div></main>
   <aside class="dx" id="dx"></aside>
 </div>
 <script src="pub.js"></script>
-<script>window.goatcounter={path:function(){return location.pathname},no_onload:/[?&]demo/.test(location.search)}</script>
-<script data-goatcounter="https://djcosta18.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
 <script src="storia.js?v=1"></script>
 <script src="curva-banca.js?v=20261014g"></script>
 <script>
@@ -328,7 +335,7 @@ function costruisci(){
  var out=[];
  S.posts.forEach(function(p){var z={ap:0,ril:0,r:[]};try{z=CVB.reazioni('p'+p.id,p.ts,Date.now(),SQ,p.body)}catch(e){}var f=fattore(p.team);out.push({k:'p'+p.id,id:p.id,hi:p.hi,real:1,a:hnd(p.team),x:p.body,ts:p.ts,ap:Math.round(z.ap*f),ril:Math.round(z.ril*f),v:0,f:f,tm:p.team,id0:p.id,r:z.r.map(function(r){var q=CVB.h32(r.x+p.id)%100,co=CVB.MISTER[p.team];return q<30?{a:r.a,x:'@'+hnd(p.team)+' '+r.x,ts:r.ts}:q<45&&co?{a:r.a,x:co+', '+r.x,ts:r.ts}:q<55?{a:r.a,x:p.team+', '+r.x,ts:r.ts}:r})})});
  var gen=[];try{gen=CVB.genera(D,SQ,ST,Date.now())}catch(e){}
- try{var tm={};S.posts.forEach(function(p){(tm[p.team]=tm[p.team]||[]).push(p.ts)});CVB.ufficiale(D,SQ,ST,tm,Date.now()).forEach(function(u){var z=CVB.reazioni(u.k,u.ts,Date.now(),SQ,u.x),f=fattore(u.team);out.push({k:u.k,a:hnd(u.team),x:u.x,uf:1,ts:u.ts,ap:Math.round((z.ap+8)*f),ril:Math.round((z.ril+2)*f),v:0,f:f,tm:u.team,id0:CVB.h32(u.k)%1000,r:z.r})})}catch(e){}
+ try{var tm={};S.posts.forEach(function(p){(tm[p.team]=tm[p.team]||[]).push(p.ts)});/* la squadra è presente anche quando risponde o rilancia: il profilo ufficiale scrive solo dopo 14 giorni senza nessuna attività */S.replies.forEach(function(r){if(r.team&&r.ts)(tm[r.team]=tm[r.team]||[]).push(r.ts)});(S.rt||[]).forEach(function(r){if(r.team&&r.ts)(tm[r.team]=tm[r.team]||[]).push(r.ts)});CVB.ufficiale(D,SQ,ST,tm,Date.now()).forEach(function(u){var z=CVB.reazioni(u.k,u.ts,Date.now(),SQ,u.x),f=fattore(u.team);out.push({k:u.k,a:hnd(u.team),x:u.x,uf:1,ts:u.ts,ap:Math.round((z.ap+8)*f),ril:Math.round((z.ril+2)*f),v:0,f:f,tm:u.team,id0:CVB.h32(u.k)%1000,r:z.r})})}catch(e){}
 (S.adm||[]).forEach(function(u){if(RER.test(u.body||''))return;var k='a'+u.id,z={ap:0,ril:0,r:[]};try{z=CVB.reazioni(k,u.ts,Date.now(),SQ,u.body)}catch(e){}var tm=SQ[4],f=fattore(tm);out.push({k:k,id:k,hi:u.hi,a:u.h,x:u.body,uf:1,ts:u.ts,ap:Math.round((z.ap+8)*f),ril:Math.round((z.ril+2)*f),v:0,f:f,tm:tm,id0:u.id,r:z.r})});
 
  /* Girrr Sport rilancia alcuni cori delle squadre, con una premessa legata a risultato e classifica */
@@ -576,7 +583,7 @@ function puoCanc(h){return me&&(h===meH||me===ADMIN)}
 function reply(r,pk,i){var ra=acc(r.a),x=r.real&&puoCanc(r.a)?'<button class="rx" data-a="delr" data-rid="'+r.id+'" title="Elimina">'+I.del.replace('<svg','<svg width="14" height="14"')+'</button>':'';
  var rk=pk?(r.real?'r'+r.id:pk+'~'+i):'',B=pk?(CVB.h32(rk)%5):0,N=rk?B+(RC[rk+'|a']||0):0,M=rk&&MN[rk+'|a'];
  var az=rk?'<div class="ra"><button class="'+(M?'on':'')+'" data-a="rapp" data-rk="'+rk+'">'+I.app+(N||'')+'</button>'+(me?'<button data-a="rrsp" data-h="'+ra.h+'">Rispondi</button>':'')+'</div>':'';
- return '<div class="rp">'+AV(ra,'sm','data-u="'+ra.h+'"')+'<div class="pb"><div class="pn" style="font-size:14px"><b data-u="'+ra.h+'">'+esc(nm(ra))+'</b>'+badge(ra.v)+'<span class="h">@'+ra.h+'</span><span class="tm">· '+ago(r.ts)+'</span>'+x+'</div><div class="pt" style="font-size:14.5px;margin-bottom:0">'+testo(r.x)+'</div>'+az+'</div></div>'}
+ return '<div class="rp"'+(r.real?' data-risposta="'+esc(r.id)+'"':'')+'>'+AV(ra,'sm','data-u="'+ra.h+'"')+'<div class="pb"><div class="pn" style="font-size:14px"><b data-u="'+ra.h+'">'+esc(nm(ra))+'</b>'+badge(ra.v)+'<span class="h">@'+ra.h+'</span><span class="tm">· '+ago(r.ts)+'</span>'+x+'</div><div class="pt" style="font-size:14.5px;margin-bottom:0">'+testo(r.x)+'</div>'+az+'</div></div>'}
 function uffImg(t,n,fb){var nn=('0'+n).slice(-2),src='../riepiloghi/tabellone-'+t+'-'+nn+'.png';return '<div class="pimg bot"><img src="'+src+'" alt="Tabellone ufficiale" onerror="var d=this.parentNode;d.nextSibling.style.display=\'block\';d.style.display=\'none\'"></div><div style="display:none">'+fb()+'</div>'}
 function quoteHTML(q){var qa=acc(q.a);return '<div class="qt" data-u="'+qa.h+'"><div class="qh">'+AV(qa,'sm','')+'<b>'+esc(nm(qa))+'</b>'+badge(qa.v)+'<span class="h">@'+qa.h+'</span><span class="tm">· '+ago(q.ts)+'</span></div><div class="qx">'+testo(q.x)+'</div>'+(q.hi?'<div class="pimg" data-id="'+q.id+'" style="margin-top:8px">'+(IM[q.id]?'<img src="'+IM[q.id]+'" alt="">':'')+'</div>':'')+'</div>'}
 function postHTML(p){
@@ -751,9 +758,32 @@ function render(){
  var bhu=document.getElementById('bhue');if(bhu)bhu.oninput=function(){sel.bh=+bhu.value;var bn=document.getElementById('ban');if(bn&&sel.bi==null&&!(prof(acc(meH)).b&&sel.bi!==''))bn.style.cssText='background:linear-gradient(135deg,hsl('+sel.bh+' 60% 40%),hsl('+((sel.bh+40)%360)+' 55% 22%))'};
  ['a','b'].forEach(function(w){var fi2=document.getElementById('fp'+w);if(fi2)fi2.onchange=function(){var f=fi2.files&&fi2.files[0];if(!f)return;ritaglia(f,w==='a'?256:1000,w==='a'?256:300,w==='a'?55000:130000).then(function(d){if(w==='a'){sel.av=d;var av=document.querySelector('.av.xl');if(av){av.style.background='url('+d+') center/cover';av.textContent='';av.className='av xl'}}else{sel.bi=d;var bn=document.getElementById('ban');if(bn)bn.style.cssText='background:url('+d+') center/cover'}}).catch(function(e){toast(e.message)});fi2.value=''}});
  POSTS.forEach(function(p){SEEN[p.k]=1});
- caricaImg();osserva();
+ caricaImg();osserva();if(new URLSearchParams(location.search).has('notifica'))setTimeout(function(){document.dispatchEvent(new Event('og:curva-render'))},0);
  try{var mx=POSTS.length?POSTS[0].ts:0;localStorage.setItem('cv-ultimo',String(mx))}catch(e){}
 }
+/* Ponte di sola navigazione, incluso nella chiusura della Curva dalla build. */
+window.OGCurva55={
+ get:function(){return {ready:!!D&&NET!==null,posts:POSTS,replies:S.replies||[],more:FEED_MORE}},
+ open:function(pk,rid){
+  var p=POSTS.find(function(p){return p.k===pk});if(!p)return false;
+  if(rid&&!(p.r||[]).some(function(r){return r.real&&String(r.id)===String(rid)}))return false;
+  vprof=p.a;vista='u';edit=false;ptab='cori';open[pk]=true;render();
+  return !!document.querySelector(rid?'[data-risposta="'+rid+'"]':'article.post[data-k="'+pk+'"]');
+ },
+ older:function(){
+  if(!S.posts.length)return Promise.resolve(false);
+  var oldest=Math.min.apply(null,S.posts.map(function(p){return p.ts}));
+  return rpc('curva_feed',{p_team:me,p_code:me?code:null,p_limit:150,p_before:oldest}).then(function(f){
+   if(!f||!Array.isArray(f.posts))throw Error('Archivio non disponibile');
+   var seen={},added=0;S.posts.forEach(function(p){seen[p.id]=1});
+   f.posts.forEach(function(p){if(!seen[p.id]){S.posts.push(p);seen[p.id]=1;added++}});
+   var rr={};(S.replies||[]).forEach(function(r){rr[r.id]=1});
+   (f.replies||[]).forEach(function(r){if(!rr[r.id]){S.replies.push(r);rr[r.id]=1}});
+   FEED_MORE=f.posts.length===150&&added>0;render();return added>0;
+  });
+ }
+};
+
 var sel={e:undefined,h:null},aimg=null;
 function risultati(){
  var c=document.getElementById('ris');if(!c)return;var h='';
@@ -983,6 +1013,7 @@ function renderFermo(){var an=null,els=document.querySelectorAll('.post'),i,r;fo
 setInterval(function(){if(document.hidden||occupato()||rif)return;var f0=firma();carica().then(function(){if(!occupato()&&firma()!==f0)renderFermo()})},60000);
 })();
 </script>
+
 
 </body>
 </html>

@@ -1,6 +1,7 @@
 <!doctype html>
 <html lang="it">
-<head>
+<head><script>document.documentElement.classList.add("v55-attesa");setTimeout(function(){document.documentElement.classList.remove("v55-attesa")},3000)</script>
+
 <script src="ospite.js?v=1"></script>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
@@ -104,6 +105,76 @@ tr{animation:in .45s both}
 body::before{content:'';position:fixed;inset:-120px;z-index:-1;pointer-events:none;background:repeating-linear-gradient(115deg,rgba(255,255,255,.04) 0 36px,transparent 36px 72px);animation:strisce 9s linear infinite}
 @keyframes strisce{to{transform:translate3d(79.45px,0,0)}}
 @media (prefers-reduced-motion:reduce){body::before{animation:none}}
+
+/* ChatGPT: forma nelle ultime cinque partite */
+@media(max-width:559px){.panel table{table-layout:fixed;font-size:12px}.panel td,.panel th{padding:6px 2px}.panel td.p{width:23px}.panel td.n{overflow-wrap:anywhere;word-break:normal;font-size:11px}.panel td.dr{width:26px}.panel td.pt{width:23px;font-size:13px}.panel td.fp{width:47px;font-size:10px}.panel th{letter-spacing:0;font-size:9px}.panel th:nth-child(2){width:auto}}
+.formadots{display:inline-flex;gap:3px;vertical-align:middle;white-space:nowrap;margin-left:5px}.formadots i{display:inline-block;width:7px;height:7px;border-radius:50%;background:#8e99a8;flex:none}.formadots i.v{background:#55c98a}.formadots i.n{background:#9aa3af}.formadots i.p{background:#ef6474}.formadots i.empty{background:transparent;border:1px solid #8590a4}@media(max-width:559px){.formadots{gap:2px;margin-left:2px}.formadots i{width:5px;height:5px}}
+
+/* ChatGPT: zone classifica (solo Campionato) */
+.panel tr.z-scudetto td{background:rgba(255,209,102,.19)}.panel tr.z-podio td{background:rgba(81,176,229,.14)}.panel tr.z-salvezza td{background:rgba(239,100,116,.13)}.panel tr.z-scudetto td.p{box-shadow:inset 4px 0 0 #ffd166}.panel tr.z-podio td.p{box-shadow:inset 4px 0 0 #63bce9}.panel tr.z-salvezza td.p{box-shadow:inset 4px 0 0 #ef6474}.zoneleg{display:flex;flex-wrap:wrap;gap:7px 12px;margin:10px 0 15px;font-size:11px;font-weight:700;color:var(--sub)}.zoneleg span{display:inline-flex;align-items:center;gap:5px}.zoneleg i{display:inline-block;width:10px;height:10px;border-radius:3px}.zoneleg .sc{background:#ffd166}.zoneleg .po{background:#63bce9}.zoneleg .sa{background:#ef6474}
+
+/* ChatGPT: grafico posizioni */
+.clubgraph{background:none;border:0;padding:2px 0;color:inherit;font:inherit;text-transform:inherit;text-align:left;cursor:pointer;text-decoration:none;text-decoration-thickness:1px;text-decoration-color:rgba(255,255,255,.3);text-underline-offset:3px;overflow-wrap:anywhere}.clubgraph:hover,.clubgraph:focus-visible{color:var(--hi);text-decoration:underline;text-decoration-color:var(--hi)}.grafpos{padding:12px;margin:12px 0 18px;border:1px solid rgba(255,255,255,.2);border-radius:12px;background:rgba(255,255,255,.07)}.grafpos h4{font-size:14px;margin-bottom:5px}.grafpos svg{display:block;width:100%;max-width:520px;height:auto;margin:auto}.grafpos .hint{font-size:11px;color:var(--sub);line-height:1.4}
+
+/* ChatGPT: media, massimo e minimo solo quando c'è spazio */
+.panel td.med,.panel th.med{display:none}.panel td.med{font-weight:700;font-size:.75em}.panel th.med{font-size:9px;letter-spacing:.03em}@media(min-width:560px){.panel td.med,.panel th.med{display:table-cell}}@media(min-width:560px) and (max-width:900px){.panel table{font-size:12px}.panel th,.panel td{padding:6px 3px}.panel td.n{overflow-wrap:anywhere;font-size:11px}}
+
+/* ChatGPT: prossimo turno sotto la classifica */
+.turnoprossimo{margin:12px 0 18px;padding:12px;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.16);border-radius:12px}.turnoprossimo h4{font-weight:900;color:var(--hi);font-size:13px;margin-bottom:8px}.turnoprossimo .rpartita{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:4px 10px;border-top:1px solid rgba(255,255,255,.13);padding:8px 0;font-weight:700;font-size:12px;overflow-wrap:anywhere}.turnoprossimo .derbytag{border:1px solid var(--hi);border-radius:6px;color:var(--hi);font-size:10px;padding:2px 5px}.turnoprossimo p{color:var(--sub);font-size:12px}
+
+/* ChatGPT: variazione di posizione */
+.movpos{display:block;font-weight:900;font-size:10px;white-space:nowrap}.movpos.su{color:#61da9a}.movpos.giu{color:#ff8795}@media(max-width:559px){.movpos{font-size:8px}.panel td.p{width:26px}}
+
+/* ChatGPT: spazio sufficiente al Tabellone completo su desktop */
+@media(min-width:861px){.grid{grid-template-columns:minmax(0,1fr) minmax(0,1.35fr)}}
+@media(min-width:861px) and (max-width:1240px){.panel table{font-size:12px;table-layout:fixed}.panel td,.panel th{padding:6px 2px}.panel td.n{overflow-wrap:anywhere;font-size:11px}.panel th{letter-spacing:0}}
+/* Layout PC: tutta la classifica leggibile; su tablet le sezioni vanno in colonna */
+@media (min-width:861px) and (max-width:1149px){.grid{grid-template-columns:1fr}}
+@media (min-width:1150px){.grid{grid-template-columns:minmax(0,.8fr) minmax(0,1.6fr)}}
+/* Tabellone 31 ottobre: solo fascia laterale, posizioni leggibili da telefono e PC */
+.panel table{width:100%;border-collapse:separate;border-spacing:0;table-layout:auto}
+.panel th{font-size:clamp(12px,1.1vw,15px);letter-spacing:.06em;color:var(--sub);font-weight:800;padding:10px 5px;text-transform:none;white-space:nowrap}
+.panel td{font-variant-numeric:tabular-nums;color:#fbf6ec;font-weight:800}
+.panel td.dr,.panel td.pt{color:#fbf6ec!important;font-size:clamp(13px,1.25vw,18px);font-weight:800}
+.panel td.fp{color:var(--sub);font-size:clamp(12px,1.1vw,16px);font-weight:600}
+.panel tr.zona td:first-child{box-shadow:inset 5px 0 var(--zona)}
+.panel tr.zona td:not(:first-child){background:transparent!important}
+/* Podio: fascia azzurra trasparente su tutta la riga; ultimo posto: fascia rossa trasparente (richiesta di Gianluca, 1° novembre). */
+.panel tr.zona-1,.panel tr.zona-2,.panel tr.zona-3{--zona:#63bce9}
+.panel tr.zona.zona-1 td:nth-child(n),.panel tr.zona.zona-2 td:nth-child(n),.panel tr.zona.zona-3 td:nth-child(n){background:rgba(99,188,233,.17)!important;border-bottom-color:rgba(99,188,233,.28)}
+.panel tr.zona-last{--zona:#ef6476}
+.panel tr.zona.zona-last td:nth-child(n){background:rgba(239,100,118,.19)!important;border-bottom-color:rgba(239,100,118,.3)}.panel tr.zona-normal{--zona:transparent}
+.panel tr.zona td.p{background:transparent;padding:9px 6px 9px 12px;text-align:center;min-width:46px;white-space:nowrap}
+/* La squadra scelta mantiene la velatura e il nome oro del Tabellone originale. */
+
+.panel tr.zona.me td.n{color:var(--hi)}
+.panel .numpos{font-size:clamp(16px,1.5vw,20px);font-weight:900;line-height:1;color:#fbf6ec}
+.panel tr.zona-1 .numpos{color:#ffd166}.panel tr.zona-2 .numpos{color:#cbd5e1}
+.panel tr.zona-3 .numpos{color:#dca17a}.panel tr.zona-last .numpos{color:#ff7286}
+.panel .poswrap{display:flex;align-items:center;justify-content:center;gap:3px}
+.panel .varpos{font:900 10px/1 Inter,system-ui,sans-serif;white-space:nowrap}
+.panel .varpos.up{color:#73df9b}.panel .varpos.down{color:#ff7c90}.panel .varpos.flat{color:#b6bfd5}
+.panel .legenda-zona{display:flex;flex-wrap:wrap;gap:10px 16px;margin:14px 0 4px;font-size:clamp(11px,1.05vw,13px);font-weight:750}
+.panel .legenda-zona span{display:inline-flex;align-items:center;gap:5px}
+.panel .legenda-zona i{display:inline-block;width:10px;height:10px;border-radius:3px}
+.panel td.n{overflow-wrap:anywhere;line-height:1.2}
+@media(max-width:559px){
+.panel table{font-size:14px}
+.panel th{font-size:12px;padding:9px 3px;letter-spacing:.02em}
+.panel td{padding:10px 3px}
+.panel td.n{font-size:13px;max-width:110px}
+.panel td.p{min-width:46px}
+.panel .numpos{font-size:16px}
+.panel td.fp{font-size:13px!important}
+.panel td.dr{font-size:13px!important}
+.panel td.pt{font-size:16px!important}
+.panel .varpos{font-size:9px}
+}
+@media(min-width:1100px){.panel table{font-size:15px}.panel td{padding:11px 5px}.panel th{font-size:13px}}
+
+.panel table{table-layout:auto}.panel .movpos{display:inline;font-size:9px}.clubgraph{font:inherit;color:inherit;text-align:left;white-space:normal;overflow-wrap:anywhere}.forma{display:flex;gap:3px}.panel .med{display:none}@media(min-width:1100px){.panel .med{display:table-cell}}.grid{grid-template-columns:1fr!important}@media(min-width:1000px){#board{display:grid;grid-template-columns:1fr 1fr;gap:12px}#board>h3,#board>.kick{grid-column:1/-1}.panel td.n{font-size:15px;min-width:165px}}@media(max-width:559px){.panel td.n{font-size:13px;max-width:none}.panel .formadot{width:5px;height:5px}.panel th{font-size:12px}.panel td.p{min-width:46px}}
+@media(max-width:359px){.panel td.n{font-size:12px}}
+.giornata-nav [hidden]{display:none!important}.giornata-nav{display:flex;flex-wrap:wrap;gap:10px;margin:16px 0}.giornata-nav a{display:block;padding:12px;border:1px solid #7888a8;border-radius:10px;color:inherit;text-decoration:none;font-weight:800}.giornata-nav a[aria-current]{border-color:var(--acc)}.panel td.n{white-space:normal;overflow:visible;text-overflow:clip}.panel td.fp{white-space:nowrap}@media(min-width:1150px){.wrap{max-width:1420px}.grid{grid-template-columns:minmax(0,1fr) minmax(0,1.5fr)}.m{gap:10px;padding:14px}.m .t{font-size:16px;overflow-wrap:normal;word-break:normal}.m .sc b{width:44px;height:58px;font-size:40px}.panel th{font-size:14px}.panel td.n{font-size:15px}}@media(max-width:359px){.wrap{padding-left:9px;padding-right:9px}.panel{padding:10px}.panel th:last-child{white-space:normal;overflow-wrap:anywhere;max-width:65px}}
 </style>
 <link rel="manifest" href="../../manifest.webmanifest">
 <meta name="theme-color" content="#1d2a52">
@@ -113,8 +184,6 @@ body::before{content:'';position:fixed;inset:-120px;z-index:-1;pointer-events:no
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <link rel="apple-touch-icon" href="../../assets/apple-touch-icon.png">
 <script src="pub.js"></script>
-<script>window.goatcounter={path:function(){return location.pathname},no_onload:/[?&]demo/.test(location.search)}</script>
-<script data-goatcounter="https://djcosta18.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
 <style>img.shield[alt="O Fant A Girrr"]{cursor:pointer}</style><script>document.addEventListener("click",function(e){var i=e.target.closest&&e.target.closest('img.shield[alt="O Fant A Girrr"]');if(i&&!i.closest("a"))location.href="index.html"})</script>
 <script src="novita-dati.js?v=1792337985"></script>
 <script src="transizioni.js"></script>
@@ -127,9 +196,45 @@ body{}html::before{content:'';position:fixed;top:0;left:0;right:0;bottom:0;z-ind
 body::before{display:none!important}
 h1,h2,.nome,.sh-nome,.hh{font-family:Lobster,'Brush Script MT',cursive!important;font-weight:400!important;text-transform:none!important;letter-spacing:0!important}
 h1{font-size:clamp(30px,6vw,48px)!important}
-.cards{grid-template-columns:1fr 1fr!important;gap:10px!important}.c{min-height:0!important;padding:12px!important}.c .ic{height:64px!important;margin-bottom:8px!important}.c .ic img[src*="albo-alloro"],.c .ic img[src*="carriera-micro"]{height:62px!important;margin-top:0!important}.c .ic img{max-width:100%}.c h2{font-size:19px!important}.c p{display:none!important}.c .go{font-size:11px!important;margin-top:6px}.card,.c,.mn,.lg-leghe{background:linear-gradient(150deg,rgba(255,255,255,.12),rgba(255,255,255,.05))!important}</style>
-</head>
-<body data-mode="lega">
+.cards{grid-template-columns:1fr 1fr!important;gap:10px!important}.c{min-height:0!important;padding:12px!important}.c .ic{height:64px!important;margin-bottom:8px!important}.c .ic img[src*="albo-alloro"],.c .ic img[src*="carriera-micro"]{height:62px!important;margin-top:0!important}.c .ic img{max-width:100%}.c h2{font-size:19px!important}.c p{display:none!important}.c .go{font-size:11px!important;margin-top:6px}.card,.c,.mn,.lg-leghe{background:linear-gradient(150deg,rgba(255,255,255,.12),rgba(255,255,255,.05))!important}
+/* Claude, 1° novembre: posizione e frecce in colonna, pallini allineati e staccati dal nome, nomi lunghi su una riga */
+.panel .poswrap{display:grid!important;grid-template-columns:1.25em 1.7em;align-items:center;justify-content:start;column-gap:3px}
+.panel .poswrap .numpos{text-align:right}
+.panel .poswrap>:not(.numpos){justify-self:start;text-align:left}
+.panel td.n .nomecella{display:flex;align-items:center;gap:12px;min-width:0}
+.panel td.n .clubgraph{flex:1 1 auto;min-width:0;overflow-wrap:normal!important;word-break:normal;white-space:normal;line-height:1.15}
+.panel td.n .formadots{flex:none;margin-left:auto!important}
+@media(max-width:559px){.panel .poswrap{grid-template-columns:1.15em 1.45em;column-gap:2px}.panel td.p{padding-left:8px!important;padding-right:2px!important;min-width:0!important}.panel td.n .nomecella{gap:6px}.panel td.n .clubgraph{font-size:12px;letter-spacing:-.01em}.panel td.n .nomecella.lungo .clubgraph{font-size:11px;letter-spacing:-.02em}.panel td.n .formadots{gap:2px}.panel td.n .formadots i{width:5px;height:5px}.panel th.thfp{font-size:9.5px!important;letter-spacing:0!important;padding-left:2px!important;padding-right:4px!important}.panel td.fp{padding-right:4px!important}}
+
+/* Claude, 1° novembre: su PC la scritta «Serie A · Giornata» e i riposi occupano tutta la riga, così le partite partono allineate nelle due colonne */
+#board>.nota,#board>.rip{grid-column:1/-1}
+
+/* Claude, 1° novembre — Grafica Stadio: classifica a righe arrotondate (scelta di Gianluca; la Lega resta squadrata).
+   Ogni squadra è un riquadro con gli angoli tondi; un piccolo spazio stacca il podio dal resto e un altro stacca la retrocessione. */
+.panel table{border-collapse:separate!important;border-spacing:0 5px!important}
+.panel tr.zona td,.panel tr.zona td:nth-child(n){background:rgba(255,255,255,.07)!important;border-bottom:0!important;background-clip:padding-box!important}
+.panel tr.zona td:first-child{border-radius:12px 0 0 12px}
+.panel tr.zona td:last-child{border-radius:0 12px 12px 0}
+@media(max-width:1099px){.panel tr.zona td.fp{border-radius:0 12px 12px 0}}
+.panel tr.zona.zona-1 td:nth-child(n),.panel tr.zona.zona-2 td:nth-child(n),.panel tr.zona.zona-3 td:nth-child(n){background:rgba(99,188,233,.2)!important}
+.panel tr.zona.zona-last td:nth-child(n){background:rgba(239,100,118,.22)!important}
+
+.panel tr.zona td,.panel tr.zona td:nth-child(n),.panel tr.zona.zona-1 td:nth-child(n),.panel tr.zona.zona-2 td:nth-child(n),.panel tr.zona.zona-3 td:nth-child(n),.panel tr.zona.zona-last td:nth-child(n),.panel tr.zona.me td:nth-child(n){background-clip:padding-box!important}
+.panel tr.zona.zona-3 td{border-bottom:9px solid transparent!important}
+.panel tr.zona.zona-last td{border-top:9px solid transparent!important}
+.panel tr.zona td.p{padding-top:10px!important;padding-bottom:10px!important}
+.panel .numpos{font-size:clamp(18px,1.7vw,23px)!important}
+.panel td.pt{font-size:clamp(15px,1.4vw,20px)!important;font-weight:900!important}
+
+/* Claude, 1° novembre (richiesta di Gianluca): riquadro oro solo per il primo posto; l'ultimo resta rosso anche se è la tua squadra (che si riconosce dal nome in oro) */
+.panel tr.zona.zona-1{--zona:#ffd166}
+.panel tr.zona.zona-1 td:nth-child(n){background:rgba(255,209,102,.17)!important;border-bottom-color:rgba(255,209,102,.3)}
+.panel tr.zona.me td.n,.panel tr.zona.me td.n .clubgraph{color:#ffd166!important}
+
+</style>
+<script>window.goatcounter={path:function(){return location.pathname},no_onload:/[?&]demo/.test(location.search)}</script>
+<script data-goatcounter="https://djcosta18.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script><link rel="stylesheet" href="../../girrr/v55/ui.css?v=55r1"><script src="../../girrr/v55/destinazioni55.js?v=55r1" defer></script><script src="../../girrr/v55/ui.js?v=55r1" defer></script></head>
+<body data-mode="lega" data-v53="board" data-v53-skin="stadio">
 <div class="wrap">
   <a class="back" href="index.html">‹ O Girrr</a>
   <header class="top">
@@ -138,11 +243,15 @@ h1{font-size:clamp(30px,6vw,48px)!important}
     <div class="crossfade"><img class="tv" src="../../assets/loghi/logo-tv-girrr-sport-live.png" alt=""><img class="tv" src="../../assets/loghi/logo-tv-cup-girrr-live.png" alt=""><i class="rec r1"></i><i class="rec r2"></i></div>
   </header>
   <a class="sqb" href="squadre.html"><span>🛡️</span><b>Le squadre</b><i>Rosa, risultati e forma di ognuno ›</i></a>
-  <div class="sw" role="tablist"><i></i><button data-m="lega" role="tab">Campionato</button><button data-m="coppa" role="tab">Champions Cup</button></div>
+  <nav class="giornata-nav" aria-label="Giornata"><a aria-current="page" href="tabellone.html">Risultati e classifica</a><a id="campo-link" href="campo.html">Campo · Centro della giornata ›</a></nav><div class="sw" role="tablist"><i></i><button data-m="lega" role="tab">Campionato</button><button data-m="coppa" role="tab">Champions Cup</button></div>
   <div class="gs"><button class="ar" id="prev" aria-label="Giornata precedente">‹</button><div class="chips" id="chips"></div><button class="ar" id="next" aria-label="Giornata successiva">›</button></div>
   <div class="grid">
-    <section><div class="swap" id="board"></div></section>
-    <aside class="panel"><div class="swap" id="tab"></div><details class="reg"><summary>Regole</summary><h4>Punti e classifica</h4><p>Vittoria 3 punti, pareggio 1, sconfitta 0. In classifica contano prima i punti, poi i Fantapunti totali.</p><h4>I gol</h4><p>Il primo gol arriva a 66 punti, poi uno in più ogni 5 punti: 71 vale due gol, 76 tre e così via. Al punteggio si aggiunge il modificatore della difesa.</p><h4>Le colonne</h4><p>G giocate, V vittorie, N pareggi, P sconfitte, GF gol fatti, GS gol subiti, DR differenza reti, Pt punti. Sul telefono in verticale si vedono DR, Pt e Fantapunti; girando il telefono o da computer si vede tutto.</p><h4>Champions Cup</h4><p>Due gironi da cinque squadre: ogni giornata una squadra per girone riposa. Dieci giornate, otto partite a testa. Le prime quattro di ogni girone vanno ai quarti (11ª giornata), poi semifinali (12ª) e finale (13ª). I gol si contano come in campionato.</p><h4>Derby e sfide</h4><p>«Derby» sopra una partita vuol dire Derby ufficiale: votato dai più o nato da una sfida accettata in conferenza stampa. Nelle ultime dieci giornate compaiono anche «Sfida scudetto» (1ª contro 2ª), «Sfida podio» (3ª contro 4ª) e «Sfida salvezza» (le ultime due).</p></details></aside>
+    <section><div class="swap" id="board"></div><section class="v53 v53-extras v53-panel" id="v53board">
+ <div class="v53-sectionhead"><div><div class="v53-kicker">APPROFONDIMENTI</div><h2>Dentro la partita</h2><div class="v53-sub">Il Tabellone sopra resta identico, con le sue giornate e statistiche.</div></div></div>
+ <div id="v53boardtabs" class="v53-pills" role="tablist" aria-label="Approfondimenti del Tabellone"><button class="v53-pill" data-view="compare" aria-selected="true">Confronta le giornate</button><button class="v53-pill" data-view="center" aria-selected="false">Centro partita</button></div>
+ <div id="v53boardcontent" class="v53-board"><div class="v53-empty">Carico gli approfondimenti…</div></div>
+</section></section>
+    <aside class="panel"><div class="swap" id="tab"></div><details class="reg"><summary>Regole</summary><h4>Punti e classifica</h4><p>Vittoria 3 punti, pareggio 1, sconfitta 0. In classifica contano prima i punti, poi i Fantapunti totali.</p><h4>I gol</h4><p>Il primo gol arriva a 66 punti, poi uno in più ogni 5 punti: 71 vale due gol, 76 tre e così via. Al punteggio si aggiunge il modificatore della difesa.</p><h4>Le colonne</h4><p>G giocate, V vittorie, N pareggi, P sconfitte, GF gol fatti, GS gol subiti, DR differenza reti, Pt punti. Sul telefono in verticale si vedono DR, Pt e Fantapunti; girando il telefono o da computer si vede tutto.</p><h4>Champions Cup</h4><p>Due gironi da cinque squadre: ogni giornata una squadra per girone riposa. Dieci giornate, otto partite a testa. Le prime quattro di ogni girone vanno ai quarti (11ª giornata), poi semifinali (12ª) e finale (13ª). I gol si contano come in campionato.</p><h4>Derby e sfide</h4><p>«Derby» sopra una partita vuol dire Derby ufficiale: votato dai più o nato da una sfida accettata in conferenza stampa. Nelle ultime dieci giornate compaiono anche «Sfida scudetto» (1ª contro 2ª), «Sfida podio» (3ª contro 4ª) e «Sfida retrocessione» (le ultime due).</p></details></aside>
   </div>
   <div class="sp"><span>Gentilmente offerto da</span><div class="lg"><img src="../../assets/loghi/sponsor-birra-contropiede.png" alt=""><img src="../../assets/loghi/sponsor-pizzeria-fuorigioco.png" alt=""><img src="../../assets/loghi/sponsor-bomber-gym-club.png" alt=""><img src="../../assets/loghi/sponsor-amaro-del-mister.png" alt=""></div></div>
   <div class="foot" id="foot">O Girrr · I dati arrivano dallo Spogliatoio</div>
@@ -154,17 +263,17 @@ var D=null, mode='lega', sel={lega:1,coppa:1};
 function cap(s){s=String(s);return s.charAt(0).toUpperCase()+s.slice(1)}
 function esc(s){return String(s).replace(/[&<>"]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})}
 /* Derby ufficiali, con la stessa regola della pagina Derby: votato dai più o nato da una sfida accettata col nome; altrimenti rivalità da 80 in su, se i più non l'hanno bocciato */
-/* Sfide di classifica nelle ultime 10 giornate di campionato, con la classifica prima della giornata: 1ª-2ª scudetto, 3ª-4ª podio, ultime due salvezza */
+/* Sfide di classifica nelle ultime 10 giornate di campionato, con la classifica prima della giornata: 1ª-2ª scudetto, 3ª-4ª podio, ultime due in lotta per evitare l'ultimo posto */
 function sfidaCl(L,n,a,b){if(!L||!L.length||n<=L.length-10)return '';var T={};function r(x){return T[x]||(T[x]={n:x,pt:0,fp:0})}
   L.forEach(function(g){g.m.forEach(function(m){var A=r(m[0]),B=r(m[3]);if(g.n>=n||m[4]==='-')return;var s=m[4].split('-').map(Number);A.pt+=s[0]>s[1]?3:s[0]===s[1]?1:0;B.pt+=s[1]>s[0]?3:s[0]===s[1]?1:0;A.fp+=m[1];B.fp+=m[2]})});
   var C=Object.keys(T).map(function(k){return T[k]}).sort(function(x,y){return y.pt-x.pt||y.fp-x.fp}).map(function(x){return x.n}),N=C.length,p=[C.indexOf(a)+1,C.indexOf(b)+1].sort(function(x,y){return x-y});
-  if(!p[0])return '';if(p[0]===1&&p[1]===2)return 'Sfida scudetto';if(p[0]===3&&p[1]===4)return 'Sfida podio';if(p[0]===N-1&&p[1]===N)return 'Sfida salvezza';return ''}
+  if(!p[0])return '';if(p[0]===1&&p[1]===2)return 'Sfida scudetto';if(p[0]===3&&p[1]===4)return 'Sfida podio';if(p[0]===N-1&&p[1]===N)return 'Sfida retrocessione';return ''}
 var DBU='https://qmjqfgmvimsuxvghetgi.supabase.co',DBK='sb_publishable_qPhimkrF4iUvIad7JPoH8A_i-eOqG7n',DV={},DX={},DN={},RIVM={};
 function dk(a,b){return [a,b].map(function(x){return String(x).toLowerCase()}).sort().join('|')}
 ((window.NOV&&NOV.riv)||[]).forEach(function(o){RIVM[dk(o.a,o.b)]=o});
 function derby(a,b){var k=dk(a,b),o=RIVM[k];if(DX[k]||!(DV[k]||(o&&o.r>=80)))return null;return DN[k]||(o&&o.n)||''}
 function pt(x){return String(Math.round(x*100)/100).replace('.',',')}
-function played(g,cup){var i=cup?5:4;return g.m.some(function(m){return m[i]!=='-'})}
+function played(g,cup){var i=cup?5:4;return g.m.length>0&&g.m.every(function(m){return /^\d+-\d+$/.test(String(m[i]))})}
 var KO=[{n:11,lab:'Quarti',tit:'Quarti di finale',ic:'Q',k:4},{n:12,lab:'Semi',tit:'Semifinali',ic:'S',k:2},{n:13,lab:'Finale',tit:'Finale',ic:'F',k:1}];
 function nmax(){return mode==='coppa'?cal().length+KO.length:cal().length}
 function koOf(n){return KO.filter(function(x){return x.n===n})[0]}
@@ -185,14 +294,36 @@ function classifica(rounds,cup){
   return Object.keys(sq).map(function(k){return sq[k]}).sort(function(x,y){
     return y.pt-x.pt||y.fp-x.fp||(y.gf-y.gs)-(x.gf-x.gs)||y.gf-x.gf||((ORD.indexOf(x.n)<0?99:ORD.indexOf(x.n))-(ORD.indexOf(y.n)<0?99:ORD.indexOf(y.n)))||(x.n<y.n?-1:1)});
 }
+/* ChatGPT: forma calcolata solo dalle partite disputate, fino alla giornata selezionata */
+function formaUltime(t){var a=[],cup=mode==='coppa';cal().forEach(function(g){if(g.n>sel[mode])return;g.m.forEach(function(m){var casa=m[cup?1:0],fuori=m[cup?4:3],ris=m[cup?5:4];if(ris==='-'||(t!==casa&&t!==fuori))return;var q=ris.split('-').map(Number),gf=t===casa?q[0]:q[1],gs=t===casa?q[1]:q[0];a.push(gf>gs?'v':gf===gs?'n':'p')})});return a.slice(-5)}
+function formaPallini(t){var v=formaUltime(t),tit={v:'Vittoria',n:'Pareggio',p:'Sconfitta'};return '<span class="formadots" role="img" aria-label="Ultimi risultati: '+(v.length?v.map(function(x){return tit[x]}).join(', '):'nessuna partita')+'">'+v.map(function(x){return '<i class="'+x+'" aria-hidden="true"></i>'}).join('')+'</span>'}
+function classeZona(k,total,fp){return !fp?'':k===0?' z-scudetto':k<=2?' z-podio':k>=total-2?' z-salvezza':''}
+/* ChatGPT: classifica giornata per giornata, con asse 1° in alto */
+var plotTeam=null;try{plotTeam=(JSON.parse(localStorage.getItem('fg')||'{}')||{}).team||null}catch(e){}
+function posizioniSquadra(t){var cup=mode==='coppa',rounds=cal(),v=[];rounds.forEach(function(g){if(g.n>sel[mode]||!played(g,cup))return;var arr=classifica(rounds.filter(function(a){return a.n<=g.n&&played(a,cup)}),cup),z=arr.filter(function(x){return x.n===t})[0];if(!z)return;if(cup)arr=arr.filter(function(x){return x.gir===z.gir});var i=arr.findIndex(function(x){return x.n===t});if(i>=0)v.push({g:g.n,p:i+1,total:arr.length})});return v}
+function graficoSquadra(){if(!plotTeam)return '';var R=posizioniSquadra(plotTeam);if(!R.length)return '<div class="grafpos">Nessuna giornata conclusa per '+esc(plotTeam)+'.</div>';var tot=mode==='coppa'?5:10,W=460,H=174,left=30,right=12,top=18,bottom=25,iw=W-left-right,ih=H-top-bottom;
+function xx(i){return left+(R.length===1?iw/2:iw*i/(R.length-1))}function yy(p){return top+(p-1)*ih/(tot-1)}
+var pts=R.map(function(d,i){return xx(i)+','+yy(d.p)}).join(' '),lines='';[1,Math.ceil(tot/2),tot].forEach(function(p){lines+='<line x1="'+left+'" y1="'+yy(p)+'" x2="'+(W-right)+'" y2="'+yy(p)+'" stroke="rgba(255,255,255,.18)"/><text x="4" y="'+(yy(p)+4)+'" fill="#c6daf4" font-size="11">'+p+'°</text>'});
+var marks=R.map(function(d,i){return '<circle cx="'+xx(i)+'" cy="'+yy(d.p)+'" r="4" fill="#ffd166"/><text x="'+xx(i)+'" y="'+(yy(d.p)-9)+'" text-anchor="middle" font-size="11" fill="#fff">'+d.p+'°</text><text x="'+xx(i)+'" y="'+(H-4)+'" text-anchor="middle" font-size="10" fill="#c6daf4">'+d.g+'</text>'}).join('');return '<div class="grafpos"><h4>'+esc(plotTeam)+' · Posizione per giornata</h4><p class="hint">Il 1° posto è in alto. Giornate completate fino alla selezione attuale.</p><svg viewBox="0 0 '+W+' '+H+'" role="img" aria-label="Andamento: '+R.map(function(d){return 'giornata '+d.g+', '+d.p+'°'}).join('; ')+'">'+lines+'<polyline points="'+pts+'" fill="none" stroke="#ffd166" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>'+marks+'</svg></div>'}
+document.getElementById('tab').addEventListener('click',function(e){var z=e.target.closest('[data-plot]');if(!z)return;var v=decodeURIComponent(z.getAttribute('data-plot'));plotTeam=plotTeam===v?null:v;render()});
+/* ChatGPT: media e record dei punteggi di giornata, solo incontri giocati */
+function statistichePunti(t){var v=[],cup=mode==='coppa';cal().forEach(function(g){if(g.n>sel[mode])return;g.m.forEach(function(m){if(m[cup?5:4]==='-')return;if(m[cup?1:0]===t)v.push(+m[cup?2:1]);else if(m[cup?4:3]===t)v.push(+m[cup?3:2])})});var sum=v.reduce(function(a,x){return a+x},0);return {avg:v.length?pt(sum/v.length):'—',max:v.length?pt(Math.max.apply(null,v)):'—',min:v.length?pt(Math.min.apply(null,v)):'—'}}
+/* ChatGPT: prima giornata ancora da completare, niente risultati inventati */
+function prossimoTurno(){if(!D||!D.cal)return '';var cup=mode==='coppa',g=cal().filter(function(x){return x.m.some(function(m){return m[cup?5:4]==='-'})})[0];if(!g)return '<div class="turnoprossimo"><p>Tutte le giornate in calendario sono state disputate.</p></div>';var h='<div class="turnoprossimo"><h4>Prossima giornata · '+g.n+'ª (Serie A '+g.sa+')</h4>';g.m.forEach(function(m){var a=m[cup?1:0],z=m[cup?4:3],tag=derby(a,z);if(m[cup?5:4]!=='-')return;h+='<div class="rpartita"><span>'+esc(cap(a))+' – '+esc(cap(z))+'</span>'+(tag!==null?'<span class="derbytag">Derby'+(tag?' · '+esc(tag):'')+'</span>':'')+'</div>'});return h+'</div>'}
+/* ChatGPT: confronto con la classifica immediatamente precedente */
+function frecciaPos(t,rows,k,fp){var cup=!fp,rounds=cal().filter(function(g){return g.n<=sel[mode]&&played(g,cup)});if(rounds.length<2)return '';var p=classifica(rounds.slice(0,-1),cup),me=rows[k];if(cup)p=p.filter(function(x){return x.gir===me.gir});var old=p.findIndex(function(x){return x.n===t});if(old<0)return '';var dif=old-k;if(!dif)return '';return '<span class="movpos '+(dif>0?'su':'giu')+'" aria-label="'+(dif>0?'Salita di ':'Discesa di ')+Math.abs(dif)+' posizioni">'+(dif>0?'▲ ':'▼ ')+Math.abs(dif)+'</span>'}
 function tabella(rows,fp,titolo,top){
-  var h='<h3>'+titolo+'</h3><table>'+'<tr><th></th><th>Squadra</th><th class="w">G</th><th class="w">V</th><th class="w">N</th><th class="w">P</th><th class="w">GF</th><th class="w">GS</th><th>DR</th><th>Pt</th>'+(fp?'<th>Fantapunti</th>':'')+'</tr>';
-  rows.forEach(function(x,k){h+='<tr class="'+(k<top?'pod':'')+(x.n===ME?' me':'')+'" style="animation-delay:'+(k*35)+'ms"><td class="p">'+(k+1)+'</td><td class="n">'+esc(cap(x.n))+'</td><td class="w">'+x.g+'</td><td class="w">'+x.v+'</td><td class="w">'+x.nn+'</td><td class="w">'+x.p+'</td><td class="w">'+x.gf+'</td><td class="w">'+x.gs+'</td><td class="dr">'+(x.gf-x.gs>0?'+':x.gf-x.gs<0?'−':'')+Math.abs(x.gf-x.gs)+'</td><td class="pt">'+x.pt+'</td>'+(fp?'<td class="fp">'+pt(x.fp)+'</td>':'')+'</tr>'});
-  return h+'</table>';
+  var h='<h3>'+titolo+'</h3><table><thead><tr><th>Pos.</th><th>Squadra</th><th class="w">G</th><th class="w">V</th><th class="w">N</th><th class="w">P</th><th class="w">GF</th><th class="w">GS</th><th>DR</th><th>Pt</th>'+(fp?'<th class="thfp">Fantapunti</th>':'')+'<th class="med">Media</th><th class="med">Max</th><th class="med">Min</th></tr></thead><tbody>';
+  rows.forEach(function(x,k){var p=k+1,zona=fp?(p===1?'zona-1':p===2?'zona-2':p===3?'zona-3':p===rows.length?'zona-last':'zona-normal'):(p===rows.length&&rows.length>1?'zona-last':'zona-normal'),st=statistichePunti(x.n);
+  h+='<tr class="zona '+zona+(x.n===ME?' me':'')+'"><td class="p"><span class="poswrap"><strong class="numpos">'+p+'</strong>'+frecciaPos(x.n,rows,k,fp)+'</span></td><td class="n"><span class="nomecella'+(x.n.length>16?' lungo':'')+'"><button class="clubgraph" data-plot="'+encodeURIComponent(x.n)+'" type="button" aria-label="Apri il grafico di '+esc(x.n)+'">'+esc(cap(x.n))+'</button>'+formaPallini(x.n)+'</span></td><td class="w">'+x.g+'</td><td class="w">'+x.v+'</td><td class="w">'+x.nn+'</td><td class="w">'+x.p+'</td><td class="w">'+x.gf+'</td><td class="w">'+x.gs+'</td><td class="dr">'+(x.gf>x.gs?'+':'')+(x.gf-x.gs)+'</td><td class="pt">'+x.pt+'</td>'+(fp?'<td class="fp">'+pt(x.fp)+'</td>':'')+'<td class="med">'+st.avg+'</td><td class="med">'+st.max+'</td><td class="med">'+st.min+'</td></tr>'});
+  return h+'</tbody></table>'+(fp?'<div class="legenda-zona"><span><i style="background:rgba(255,209,102,.85)"></i>Primo posto</span><span><i style="background:rgba(99,188,233,.75)"></i>Podio</span><span><i style="background:rgba(239,100,118,.8)"></i>Retrocessione</span></div>':(titolo==='Girone B'?'<div class="legenda-zona"><span><i style="background:rgba(239,100,118,.8)"></i>Ultima del girone: eliminata</span></div>':''))+(fp||titolo==='Girone B'?graficoSquadra()+prossimoTurno():'');
 }
+
 var ME='';try{ME=(JSON.parse(localStorage.getItem('fg')||'{}')||{}).team||''}catch(e){}
-function lastPlayed(c,cup){var l=0;c.forEach(function(g){if(played(g,cup))l=g.n});return l}
+function lastPlayed(c,cup){var l=0;c.some(function(g){if(g.n!==l+1||!played(g,cup))return true;l=g.n;return false});return l}
 function render(){
+  document.querySelectorAll('.sw button').forEach(function(b){b.setAttribute('aria-selected',String(b.dataset.m===mode))});
+  var campoLink=document.getElementById('campo-link');if(campoLink){campoLink.href=mode==='coppa'?'campo.html?coppa=1&giornata='+Math.min(sel.coppa,D?D.cal.cup.length:10):'campo.html?giornata='+sel.lega;campoLink.hidden=false}
   var cup=mode==='coppa',c=cal(),n=sel[mode],g=c.filter(function(x){return x.n===n})[0],ko=cup?koOf(n):null;
   if(ko)return renderKo(c,ko);
   if(!g)return;
@@ -215,8 +346,9 @@ function render(){
   if(cup&&g.rest&&g.rest.length)b+='<div class="rip">Riposano: '+g.rest.map(function(x){return (x[1]===ME?'<b>'+esc(cap(x[1]))+'</b>':esc(cap(x[1])))+' (gir. '+esc(x[0])+')'}).join(' · ')+'</div>';
   var upto=c.filter(function(x){return x.n<=n&&played(x,cup)});
   var cl=classifica(upto.length?upto:[c[0]],cup),t;
+  var precedente=null;if(!cup&&upto.length>1){precedente={};classifica(upto.slice(0,-1),false).forEach(function(x,i){precedente[x.n]=i+1})}
   if(cup){t=tabella(cl.filter(function(x){return x.gir==='A'}),false,'Girone A',2)+tabella(cl.filter(function(x){return x.gir==='B'}),false,'Girone B',2)}
-  else t=tabella(cl,true,'Classifica dopo la '+(upto.length?upto[upto.length-1].n:0)+'ª',3);
+  else t=tabella(cl,true,'Classifica dopo la '+(upto.length?upto[upto.length-1].n:0)+'ª',3,precedente);
   var bd=document.getElementById('board'),tb=document.getElementById('tab');
   bd.classList.add('out');tb.classList.add('out');
   setTimeout(function(){bd.innerHTML=b;tb.innerHTML=t;bd.classList.remove('out');tb.classList.remove('out')},200);

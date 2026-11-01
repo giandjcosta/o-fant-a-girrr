@@ -443,6 +443,10 @@ def tab_cl(righe, completa=True):
 
 
 def costruisci(t, tema="classico"):
+    # Cronache 5.5: arricchisce una copia prima della normale impaginazione.
+    from giornale_classifica import integra
+    attese = json.loads(Path(__file__).with_name("aspettative.json").read_text(encoding="utf-8"))
+    t = integra(t, D, attese)
     t = maiuscole(t)
     cal = D["cal"]
     gioc = [x for x in cal["lega"] if giocata(x)]
