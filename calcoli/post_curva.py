@@ -27,10 +27,12 @@ from pathlib import Path
 from zoneinfo import ZoneInfo
 
 QUI = Path(__file__).resolve().parent
-EVENTI = Path(sys.argv[1]) if len(sys.argv) > 1 else QUI / "eventi.json"
-USCITA = Path(sys.argv[2]) if len(sys.argv) > 2 else QUI / "post_curva.json"
-MOVIOLA = Path(sys.argv[3]) if len(sys.argv) > 3 else QUI / "moviola.json"
-DATI = Path(sys.argv[4]) if len(sys.argv) > 4 else None
+CRONACHE = "--cronache-classifica" in sys.argv
+ARGS = [x for x in sys.argv[1:] if x != "--cronache-classifica"]
+EVENTI = Path(ARGS[0]) if len(ARGS) > 0 else QUI / "eventi.json"
+USCITA = Path(ARGS[1]) if len(ARGS) > 1 else QUI / "post_curva.json"
+MOVIOLA = Path(ARGS[2]) if len(ARGS) > 2 else QUI / "moviola.json"
+DATI = Path(ARGS[3]) if len(ARGS) > 3 else None
 SITO_DATI = "https://giandjcosta.github.io/o-fant-a-girrr/data.json"
 # Ordine dei post di Girrr Sport dopo la giornata: minuti dopo il post del Giornale nella Curva.
 # La Radio ha il suo posto ma oggi non ha ancora un post.
@@ -56,6 +58,12 @@ def m(t):
 
 def post(e):
     t = e["tipo"]
+    if t == "zona_classifica":
+        def breve(t, limite=280):
+            return t if len(t) <= limite else t[:limite-1].rsplit(' ', 1)[0] + '…'
+        return [(GS, breve(e["titolo"] + "\n" + e["testo"])),
+                (GIORNALE, breve("IL PUNTO DELLA CLASSIFICA\n" + e["testo"])),
+                (GIORNALE, breve(e["commento"], 220), 0)]
     if t == "sfida":
         fr = f": «{e['frase']}»" if e.get("frase") else "."
         out = [(GS, f"SFIDA LANCIATA\n{m(e['da'])} contro {m(e['a'])}{fr} Sta per nascere un nuovo Derby? #GirrrSport #Derby")]
@@ -173,6 +181,18 @@ def evento_moviola(mv, D):
 
 def main():
     eventi = json.loads(EVENTI.read_text(encoding="utf-8")) if EVENTI.exists() else []
+    # Queste storie vengono sempre ricalcolate dal calendario locale: un export
+    # vecchio o ripetuto non può sostituire la notizia della giornata chiusa.
+    eventi = [e for e in eventi if e.get('tipo') != 'zona_classifica']
+    if CRONACHE:
+        if not DATI or not DATI.is_file():
+            raise ValueError("Le cronache richiedono un data.json locale esplicito")
+        import zone_classifica
+        dati = json.loads(DATI.read_text(encoding="utf-8"))
+        attese = json.loads((QUI / "aspettative.json").read_text(encoding="utf-8"))
+        z = zone_classifica.evento(dati, attese)
+        if z:
+            eventi.append(dict(z, tema=z["tipo"], tipo="zona_classifica", k=z["chiave"]))
     mv = json.loads(MOVIOLA.read_text(encoding="utf-8")) if MOVIOLA.exists() else None
     if mv and (mv.get("giornate") or {}):
         eventi += evento_moviola(mv, leggi_dati())
@@ -183,6 +203,9 @@ def main():
             h, body = voce[0], voce[1]
             assert len(body) <= 280, (e["k"], len(body))
             d = dict(chiave=f"{e['tipo']}:{e['k']}:{i}", h=h, body=body)
+            if e["tipo"] == "zona_classifica":
+                d.update(cronaca=e["chiave"], giornata=e["giornata"],
+                         stagione=e["stagione"], tema=e.get("tema"), prova=e["prova"])
             if e.get("quando"):
                 d["quando"] = e["quando"]
             if len(voce) > 2:   # è un commento sotto un altro post dello stesso evento

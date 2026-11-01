@@ -80,6 +80,9 @@ jobs:
       - name: Dati per le pagine nuove
         if: steps.c.outputs.esegui == 'true'
         run: python3 code/calcoli/dati_lab.py site/data.json site/girrr/dati/probabilita.json site/girrr/dati/lab-dati.json site/scripts site/girrr/dati/borsino.json site/girrr/dati/fiducia.json
+      - name: Cronache della Home 5.5 (Oggi al Girrr)
+        if: steps.c.outputs.esegui == 'true' || github.event_name == 'push'
+        run: python3 code/calcoli/cronache_home.py site/data.json code/calcoli/aspettative.json site/girrr/dati/cronache.json
       - name: Moviola di Girrr Sport (episodi della giornata, scritti una volta sola, più le voci a mano)
         if: steps.c.outputs.esegui == 'true' || github.event_name == 'push'
         run: |
@@ -89,7 +92,7 @@ jobs:
       - name: Post della Curva (in coda o pubblicati, secondo il periodo)
         if: steps.c.outputs.esegui == 'true'
         run: |
-          python3 code/calcoli/post_curva.py code/calcoli/eventi.json code/calcoli/post_curva.json code/calcoli/moviola.json site/data.json
+          python3 code/calcoli/post_curva.py code/calcoli/eventi.json code/calcoli/post_curva.json code/calcoli/moviola.json site/data.json --cronache-classifica
           python3 code/calcoli/pubblica_curva.py --vai
       - name: Salvo i dati del sito
         if: steps.c.outputs.esegui == 'true' || github.event_name == 'push'
