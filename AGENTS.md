@@ -14,9 +14,15 @@ Lo stato aggiornato del progetto, cosa è online e cosa resta da fare sono in `S
 - Rilasci: prima `gh-pages`, poi controlla il sito vero (pagina aperta, console senza errori nuovi), solo dopo `main`. Tieni nota degli hash dei commit e di come tornare indietro (`git revert`).
 - Le pagine Lega e Stadio sono due copie con grafica diversa: una modifica di solito va fatta in entrambe, attenzione ai percorsi relativi (da `stadio/girrr/` i dati della Lega sono in `../../girrr/`).
 
-## Regole sui contenuti
-- Storie come un campionato vero (giocatori, gol, squadre, allenatori). Niente riferimenti a fantacalcio, crediti, fantapunti o fantamedia, salvo i punteggi.
+## Regole sui contenuti — tre livelli di scrittura (decisione di Gianluca, 1° novembre 2026)
+O Girrr si racconta come un campionato vero, ma i dati sono quelli ufficiali di Leghe Fantacalcio. Realismo nel racconto, precisione nei dati.
+1. **Sportivo** (Home, risultati, classifica, titoli, rivalità, presentazioni delle partite): squadre, allenatori, gol, vittorie, pareggi, sconfitte, punti in classifica, giornata, Campionato, Champions Cup, Derby.
+2. **Tecnico** (Tabellone di dettaglio, Regole, Statistiche, Campo, schede, Annuario, Totogirrr): Fantapunti, voti, bonus e malus, modificatore della difesa e fantacrediti dove sono il dato vero, sempre con l'unità chiara.
+3. **Editoriale** (Giornale, Radio, Curva, personaggi): raccontano come i media sportivi, con risultati e fatti veri. **Radio e Giornale non parlano di Fantapunti**, tranne: le vittorie decise da pochissimi fantapunti; il Cucchiaio di legno (il punteggio più basso della giornata); le statistiche del Giornale (miglior punteggio, record e simili).
+- Non confondere gol del risultato, Fantapunti, punti in classifica e fantacrediti. I pareggi restano pareggi.
+- Dove mancano dati storici scrivere «Dato non conservato»: niente statistiche ricostruite per ipotesi.
 - Niente disclaimer tipo "notizia inventata" o "dati finti".
+- Le frasi iniziano con la maiuscola, anche dopo un punto. Nelle legende usare etichette con iniziale maiuscola e separare chiaramente i significati.
 - "Derby" sempre con la D maiuscola. Titoli ed etichette con la maiuscola iniziale.
 - I post ufficiali (Girrr Sport, Lega, Giornale) non parlano mai di scommesse.
 
