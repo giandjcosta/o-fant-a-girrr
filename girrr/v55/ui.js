@@ -412,7 +412,7 @@ function partiteCampo(){var m=el('matches');if(!m)return;
  m.addEventListener('scroll',fine,{passive:true});if(window.MutationObserver)new MutationObserver(scelta).observe(m,{childList:true});scelta()}
 function pronto(sel){var h=document.documentElement;if(!h.classList.contains('v55-attesa'))return;var fatto=false;
  function via(){if(fatto)return;fatto=true;clearInterval(t);h.classList.add('v55-pronto');requestAnimationFrame(function(){requestAnimationFrame(function(){h.classList.remove('v55-attesa')})})}
- var t=setInterval(function(){if(document.querySelector(sel))setTimeout(via,80)},50);setTimeout(via,2500)}
+ var t=setInterval(function(){if(document.querySelector(sel))setTimeout(via,80)},50);setTimeout(via,1500)}
 /* Claude, 2 novembre: aggiornare tirando giù la pagina (Tabellone, Campo, Notifiche, Albo). Parte solo se la pagina è già in cima
    quando si appoggia il dito, e serve un tiro lungo (160 px): così non scatta per sbaglio risalendo. La Curva ha il suo, la Home il pulsante. */
 function tiraGiu(){if(!('ontouchstart' in window))return;var SOGLIA=160,y0=null,x0=0,d=0,ind=document.createElement('div');
