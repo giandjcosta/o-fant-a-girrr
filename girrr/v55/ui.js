@@ -49,7 +49,7 @@ function albo(q){return href('albo')+q+(SITO55?'#oro':'')}
 function nav(){
  var old=el('v53nav');if(old)old.remove();
  /* Home: la testata resta quella di sempre (logo grande e interruttore Lega/Stadio); le notifiche sono in «Oggi al Girrr» (Gianluca, 2 novembre) */
- if(mode==='home')return;
+ if(mode==='home'||mode==='curva')return; /* Home e Curva hanno la loro testata */
  var where=document.querySelector('.ohead,.hero,.mast,header.top,header');if(!where)return;
  var names={home:'Home',board:'Tabellone',campo:'Campo',albo:"Albo d’oro",curva:'Curva',notifications:'Notifiche'};
  var parent=mode==='campo'?'tabellone':'index',prev=null;
@@ -64,12 +64,11 @@ function nav(){
   var page=mode==='home'?'index':mode==='board'?'tabellone':mode==='notifications'?'notifiche':mode;
   function skinTarget(){var altra=skin==='lega'?'stadio':'lega',u=new URL(window.OG55?OG55.pagina(page,altra,root):page+'-'+altra+'.html',root);if(SITO55&&mode==='albo'){u.hash=location.hash;u.search=location.search;return u.href}u.search=location.search;if(mode==='campo'||u.searchParams.has('skin'))u.searchParams.set('skin',skin==='lega'?'stadio':'lega');if(/^#(lega|coppa)(-\d+)?$/.test(location.hash))u.hash=location.hash;return u.href;}
   utilities.innerHTML='<a class="v55-home-logo" href="'+href('index')+'" aria-label="Home O Girrr"><img src="https://giandjcosta.github.io/o-fant-a-girrr/assets/loghi/logo-lega-o-fant-a-girrr.png" alt="O Girrr"></a>'+
-   '<a class="v55-return" href="'+esc(target)+'" aria-label="Torna a '+esc(labels[label]||'Home')+'">‹ '+esc(labels[label]||'Home')+'</a>'+
-   (mode!=='notifications'?'<a class="v55-notifications-link" href="'+href('notifiche')+'" aria-label="Notifiche">Notifiche <b class="v55-notify-count" hidden></b></a>':'')+
-   '<a class="v55-skin-link" href="'+esc(skinTarget())+'">Grafica '+(skin==='lega'?'Stadio':'Lega')+'</a>';
-  var swap=utilities.querySelector('.v55-skin-link');['pointerenter','pointerdown','focus','click'].forEach(function(event){swap.addEventListener(event,function(){swap.href=skinTarget()})});
+   '<a class="v55-return" href="'+esc(target)+'" aria-label="Torna a '+esc(labels[label]||'Home')+'">‹ '+esc(labels[label]||'Home')+'</a>';
+  /* Gianluca, 2 novembre: in alto solo il logo per la Home e il link alla pagina precedente; la grafica si cambia nella Home */
+  var swap=null;if(swap){['pointerenter','pointerdown','focus','click'].forEach(function(event){swap.addEventListener(event,function(){swap.href=skinTarget()})});
   /* la scelta resta anche per le pagine del sito che la leggono (orr_gv: a = Lega, n = Stadio) */
-  swap.addEventListener('click',function(){try{localStorage.setItem('orr_gv',skin==='lega'?'n':'a')}catch(e){}});
+  swap.addEventListener('click',function(){try{localStorage.setItem('orr_gv',skin==='lega'?'n':'a')}catch(e){}});}
   var back=utilities.querySelector('.v55-return');if(prev)back.onclick=function(e){if(history.length>1){e.preventDefault();history.back()}};
  }
  update();where.insertAdjacentElement('beforebegin',utilities);document.body.classList.add('v55-has-header');
@@ -249,33 +248,71 @@ function botComments(p){
  }}catch(e){console.warn('Risposte CVB non disponibili nella prova',e.message)}
  return list;
 }
+/* Claude, 2 novembre: sondaggio della giornata come un post della Curva (Gianluca).
+   Sta sotto «Cosa succede in curva?» solo in «Per te». Si vota finché non comincia la giornata di Serie A collegata
+   (orari da data.json: sa per la giornata in arrivo, fx per quelle passate). Dopo il voto, o dopo l'inizio, la scheda
+   diventa un post con il conteggio. I commenti si aprono e si chiudono. */
+/* le date di Serie A non hanno l'anno: da agosto a dicembre è il primo anno della stagione, da gennaio a luglio il secondo */
+function oraSA(t){var m=/(\d{1,2})\/(\d{1,2})\s+(\d{1,2}):(\d{2})/.exec(String(t||''));if(!m)return null;var now=new Date(),inizio=now.getMonth()>=6?now.getFullYear():now.getFullYear()-1,mese=+m[2];
+ return new Date(mese>=7?inizio:inizio+1,mese-1,+m[1],+m[3],+m[4])}
+function inizioGiornata(g){var L=(D&&D.sa&&D.sa[String(g.sa)])||(D&&D.fx&&D.fx[String(g.sa)])||[],min=null;L.forEach(function(x){var d=oraSA(x[2]);if(d&&(!min||d<min))min=d});return min}
+function sondaggi(){var gs=games(false).filter(function(g){return g.m&&g.m.length}),now=new Date(),aperto=null,chiuso=null;
+ gs.forEach(function(g){var played=g.m.every(function(m){return matchPlayed(m,false)}),ini=inizioGiornata(g),partita=played||(ini&&ini<=now);
+  if(!partita&&!aperto)aperto=g;if(partita)chiuso=g});
+ var q=Number(new URLSearchParams(location.search).get('sondaggio'));if(q){var r=gs.find(function(g){return g.n===q});if(r){var ini=inizioGiornata(r),pt=r.m.every(function(m){return matchPlayed(m,false)})||(ini&&ini<=now);if(pt)chiuso=r;else aperto=r}}
+ return {aperto:aperto,chiuso:chiuso}}
+function quandoChiude(g){var d=inizioGiornata(g);if(!d)return 'Si chiude quando comincia la giornata';return 'Si chiude '+d.toLocaleDateString('it-IT',{weekday:'short',day:'numeric',month:'numeric'})+' alle '+d.toLocaleTimeString('it-IT',{hour:'2-digit',minute:'2-digit'})}
+var SEC55=null,POLL55=null;
+function posizionaSondaggio(){var sec=SEC55||el('v53sondaggio'),v=el('vista');if(!sec||!v)return;
+ var perTe=!!document.querySelector('button[data-f="tutti"].on')&&!!v.querySelector('article.post,.vuoto,.comp,.ban2');
+ sec.hidden=!perTe||sec.dataset.vuoto==='1';if(!perTe)return;
+ var dopo=v.querySelector(':scope>.comp')||v.querySelector(':scope>.ban2');
+ if(dopo){if(dopo.nextElementSibling!==sec)dopo.insertAdjacentElement('afterend',sec)}else if(v.firstElementChild!==sec)v.insertBefore(sec,v.firstElementChild)}
 function curva(){
-var host=el('v53poll'),p=optsPoll(),key='poll-'+p.day;
-if(!host)return;
-if(!p.opts.length){host.innerHTML=note('Il sondaggio apparirà quando sarà disponibile il calendario del prossimo turno.');return}
-/* Sul sito vero voti e commenti stanno nel database (una scelta per squadra e giornata, si può cambiare); nell'Anteprima restano su questo dispositivo. */
-var reale=SITO55,io=chi(),voted=get(key+'-vote',null),counts=get(key+'-counts',{}),comments=get(key+'-comments',[]),stato=null,msg='';
-function conta(i){if(!reale)return n(counts[i]);var v=(stato&&stato.voti||[]).find(function(x){return x.scelta===p.opts[i]});return v?n(v.n):0}
-function tot(){var t=0;p.opts.forEach(function(o,i){t+=conta(i)});return t}
-function disegna(){
- var puo=!reale||!!io,t=tot();
- var form='<div class="v53-sub">Giornata · '+p.day+'ª giornata</div><h3>Quale sfida seguirai con più attenzione?</h3><form id="v53vote">'+p.opts.map(function(o,i){var c=conta(i),pc=t?Math.round(c*100/t):0;return '<label class="v53-poll-option"><input type="radio" name="v53choice" value="'+i+'" '+(voted===i?'checked':'')+(puo?'':' disabled')+'><span>'+esc(o)+'</span><small>'+c+(c===1?' voto':' voti')+(t?' · '+pc+'%':'')+'</small></label>'}).join('')+(puo?'<button class="v53-btn" type="submit">'+(voted!==null?'Cambia voto':'Vota')+'</button>':'')+'</form>'
-  +(reale?(io?'<p class="v53-muted">Voti come '+esc(io.team)+'. Una scelta per squadra, si può cambiare fino alla giornata.</p>':'<p class="v53-muted">Entra con la tua squadra per votare e commentare.</p>'):'<p class="v53-muted">Preferenze e commenti si salvano soltanto su questo dispositivo: non sono voti pubblicati nella Curva.</p>')
-  +(msg?'<p class="v53-muted" role="status">'+esc(msg)+'</p>':'');
- var veri=reale?(stato&&stato.commenti||[]).map(function(c){return '<div class="v53-comment"><b>'+esc(c.team)+'</b><p>'+esc(c.testo)+'</p></div>'}).join(''):comments.map(function(c){return '<div class="v53-comment"><b>Il tuo commento · locale</b><p>'+esc(c)+'</p></div>'}).join('');
- host.innerHTML=form+'<div class="v53-chat" id="v53dialog">'+botComments(p).map(function(t){return '<div class="v53-comment"><b>'+esc(t[0])+' · bot</b><p>'+esc(t[1])+'</p></div>'}).join('')+'</div>'
-  +(puo?'<form id="v53comment" class="v53-field"><label for="v53message">Commenta il sondaggio</label><input class="v53-input" id="v53message" maxlength="280" required placeholder="'+(reale?'Il tuo commento':'Il tuo commento (solo locale)')+'"><button class="v53-btn" type="submit">Commenta</button></form>':'')+'<div id="v53usercomments">'+veri+'</div>';
- var fv=el('v53vote');if(fv)fv.onsubmit=function(e){e.preventDefault();var v=fv.querySelector('input:checked');if(!v)return;var i=n(v.value);
-  if(!reale){if(voted!==null)counts[voted]=Math.max(0,n(counts[voted])-1);counts[i]=n(counts[i])+1;voted=i;set(key+'-vote',i);set(key+'-counts',counts);disegna();return}
-  rpcN('sondaggio_vota',{p_team:io.team,p_code:io.code,p_giornata:p.day,p_scelta:p.opts[i]}).then(function(r){stato=r;voted=i;set(key+'-vote',i);msg='Voto registrato.';disegna()}).catch(function(x){msg='Voto non registrato: '+x.message;disegna()})};
- var fc=el('v53comment');if(fc)fc.onsubmit=function(e){e.preventDefault();var t=el('v53message').value.trim();if(!t)return;
-  if(!reale){comments.push(t.slice(0,280));set(key+'-comments',comments);disegna();return}
-  rpcN('sondaggio_commenta',{p_team:io.team,p_code:io.code,p_giornata:p.day,p_testo:t.slice(0,280)}).then(function(r){stato=r;msg='';disegna()}).catch(function(x){msg='Commento non pubblicato: '+x.message;disegna()})};
+SEC55=SEC55||el('v53sondaggio');POLL55=POLL55||el('v53poll');var host=POLL55;if(!host||!SEC55)return;
+var Sg=sondaggi(),reale=SITO55,io=chi(),stato={},msg='',aperti={};
+function opts(g){return g.m.map(function(m){return m[0]+' – '+m[3]})}
+function chiave(g){return 'poll-'+g.n}
+function kv(g){return chiave(g)+'-vote'+(io?'-'+io.team:'')}
+function mioVoto(g){return get(kv(g),null)}
+function conta(g,i){var o=opts(g)[i];if(!reale){var c=get(chiave(g)+'-counts',{});return n(c[i])}var v=((stato[g.n]||{}).voti||[]).find(function(x){return x.scelta===o});return v?n(v.n):0}
+function commenti(g){if(reale)return ((stato[g.n]||{}).commenti||[]).map(function(c){return [c.team,c.testo]});return get(chiave(g)+'-comments',[]).map(function(c){return ['Il tuo commento · locale',c]})}
+function testa(g,sotto){return '<div class="v55-pp-head"><img src="https://giandjcosta.github.io/o-fant-a-girrr/assets/loghi/logo-lega-o-fant-a-girrr.png" alt=""><div><b>O Girrr</b> <span>· Sondaggio della '+g.n+'ª giornata</span><small>'+esc(sotto)+'</small></div></div>'}
+function risultati(g,chiusa){var o=opts(g),tot=0,c=o.map(function(x,i){var k=conta(g,i);tot+=k;return k}),mio=mioVoto(g);
+ var h='<article class="v55-pollpost" data-g="'+g.n+'">'+testa(g,chiusa?'Concluso':quandoChiude(g))+'<p class="v55-pp-q">Quale sfida seguirai con più attenzione?</p><div class="poll">';
+ o.forEach(function(x,i){var pc=tot?Math.round(c[i]*100/tot):0;h+='<div class="po-r v55-por'+(mio===i?' me':'')+'"><i style="width:'+pc+'%"></i><span>'+esc(x)+(mio===i?' ✓':'')+'</span><span><b>'+pc+'%</b></span></div>'});
+ h+='<div class="pom">'+tot+(tot===1?' voto':' voti')+' · '+(chiusa?'Concluso':'Votazione aperta')+'</div></div>';
+ var cm=botComments({day:g.n,opts:o}).map(function(t){return [t[0]+' · bot',t[1]]}).concat(commenti(g)),ap=!!aperti[g.n];
+ h+='<button class="v55-pp-tog" type="button" data-pp="'+g.n+'" aria-expanded="'+ap+'">'+(ap?'Chiudi i commenti':'Commenti ('+cm.length+')')+'</button>';
+ if(ap){h+='<div class="v55-pp-cm">'+cm.map(function(t){return '<div class="v53-comment"><b>'+esc(t[0])+'</b><p>'+esc(t[1])+'</p></div>'}).join('')+
+  (!chiusa&&(!reale||io)?'<form class="v53-field v55-pp-form" data-g="'+g.n+'"><input class="v53-input" maxlength="280" required placeholder="'+(reale?'Il tuo commento':'Il tuo commento (solo locale)')+'" aria-label="Commenta il sondaggio"><button class="v53-btn" type="submit">Commenta</button></form>':'')+
+  '<button class="v55-pp-tog" type="button" data-pp="'+g.n+'" aria-expanded="true">Chiudi i commenti</button></div>'}
+ return h+'</article>'}
+function scheda(g){var o=opts(g),puo=!reale||!!io;
+ return '<article class="v55-pollpost" data-g="'+g.n+'">'+testa(g,quandoChiude(g))+'<p class="v55-pp-q">Quale sfida seguirai con più attenzione?</p><form id="v53vote">'+o.map(function(x,i){return '<label class="v53-poll-option"><input type="radio" name="v53choice" value="'+i+'"'+(puo?'':' disabled')+'><span>'+esc(x)+'</span></label>'}).join('')+(puo?'<button class="v53-btn" type="submit">Vota</button>':'<p class="v53-muted">Entra con la tua squadra per votare.</p>')+'</form>'+(msg?'<p class="v53-muted" role="status">'+esc(msg)+'</p>':'')+'</article>'}
+function disegna(){var h='',A=Sg.aperto,C=Sg.chiuso;
+ if(A)h+=(mioVoto(A)===null&&(!reale||io))?scheda(A):risultati(A,false);
+ if(C&&(!reale||n(((stato[C.n]||{}).voti||[]).reduce(function(t,x){return t+n(x.n)},0))>0))h+=risultati(C,true);
+ host.innerHTML=h||'';SEC55.dataset.vuoto=h?'':'1';posizionaSondaggio();
+ var fv=host.querySelector('#v53vote');if(fv)fv.onsubmit=function(e){e.preventDefault();var v=fv.querySelector('input:checked');if(!v)return;var i=n(v.value);
+  if(!reale){var c=get(chiave(A)+'-counts',{});c[i]=n(c[i])+1;set(chiave(A)+'-counts',c);set(kv(A),i);disegna();return}
+  rpcN('sondaggio_vota',{p_team:io.team,p_code:io.code,p_giornata:A.n,p_scelta:opts(A)[i]}).then(function(r){stato[A.n]=r;set(kv(A),i);msg='';disegna()}).catch(function(x){msg='Voto non registrato: '+x.message;disegna()})};
+ host.querySelectorAll('.v55-pp-form').forEach(function(f){f.onsubmit=function(e){e.preventDefault();var g=games(false).find(function(x){return x.n===n(f.dataset.g)}),t=f.querySelector('input').value.trim();if(!t||!g)return;
+  if(!reale){var L=get(chiave(g)+'-comments',[]);L.push(t.slice(0,280));set(chiave(g)+'-comments',L);disegna();return}
+  rpcN('sondaggio_commenta',{p_team:io.team,p_code:io.code,p_giornata:g.n,p_testo:t.slice(0,280)}).then(function(r){stato[g.n]=r;disegna()}).catch(function(x){msg='Commento non pubblicato: '+x.message;disegna()})}});
  if(window.OGDest55)window.OGDest55.poll();
 }
+host.addEventListener('click',function(e){var b=e.target.closest('[data-pp]');if(!b)return;var g=n(b.dataset.pp),post=b.closest('.v55-pollpost');aperti[g]=!aperti[g];disegna();
+ if(!aperti[g]){var np=host.querySelector('.v55-pollpost[data-g="'+g+'"]');if(np&&np.getBoundingClientRect().top<0)np.scrollIntoView({behavior:CALMO?'auto':'smooth',block:'start'})}});
 disegna();
-if(reale)rpcN('sondaggio_stato',{p_giornata:p.day}).then(function(r){stato=r;disegna()}).catch(function(){msg='Risultati del sondaggio non raggiungibili, riprova più tardi.';disegna()});
+if(window.MutationObserver){var vv=el('vista');if(vv)new MutationObserver(posizionaSondaggio).observe(vv,{childList:true})}
+if(reale)[Sg.aperto,Sg.chiuso].forEach(function(g){if(g)rpcN('sondaggio_stato',{p_giornata:g.n}).then(function(r){stato[g.n]=r;disegna()}).catch(function(){})});
 }
+/* Curva: le risposte aperte di un coro si chiudono anche dal fondo, senza risalire */
+function chiudiCommenti(){var v=el('vista');if(!v||!window.MutationObserver)return;
+ function metti(){v.querySelectorAll('.acts+.thr.open').forEach(function(t){if(t.querySelector(':scope>.v55-chiudi'))return;var b=document.createElement('button');b.type='button';b.className='lnk v55-chiudi';b.textContent='Chiudi i commenti';
+  b.addEventListener('click',function(){var post=t.closest('.post'),k=post&&post.dataset.k,r=post&&post.querySelector('[data-a="rsp"]');if(r)r.click();setTimeout(function(){var np=k&&v.querySelector('.post[data-k="'+k+'"]');if(np&&np.getBoundingClientRect().top<0)np.scrollIntoView({behavior:CALMO?'auto':'smooth',block:'start'})},30)});t.appendChild(b)})}
+ metti();new MutationObserver(metti).observe(v,{childList:true,subtree:true})}
 function notifications(){
 var to=el('v53notifications');if(!to)return;
 var g=latest(),nx=next(),items=[];
@@ -376,13 +413,24 @@ function partiteCampo(){var m=el('matches');if(!m)return;
 function pronto(sel){var h=document.documentElement;if(!h.classList.contains('v55-attesa'))return;var fatto=false;
  function via(){if(fatto)return;fatto=true;clearInterval(t);h.classList.add('v55-pronto');requestAnimationFrame(function(){requestAnimationFrame(function(){h.classList.remove('v55-attesa')})})}
  var t=setInterval(function(){if(document.querySelector(sel))setTimeout(via,80)},50);setTimeout(via,2500)}
+/* Claude, 2 novembre: aggiornare tirando giù la pagina (Tabellone, Campo, Notifiche, Albo). Parte solo se la pagina è già in cima
+   quando si appoggia il dito, e serve un tiro lungo (160 px): così non scatta per sbaglio risalendo. La Curva ha il suo, la Home il pulsante. */
+function tiraGiu(){if(!('ontouchstart' in window))return;var SOGLIA=160,y0=null,x0=0,d=0,ind=document.createElement('div');
+ ind.className='v55-ptr';ind.setAttribute('aria-hidden','true');ind.innerHTML='<i>↻</i><span>Tira per aggiornare</span>';document.body.appendChild(ind);
+ function torna(){ind.style.transition=CALMO?'none':'transform .3s ease,opacity .3s ease';ind.style.transform='translate(-50%,-70px)';ind.style.opacity='0';ind.classList.remove('pronto');d=0}
+ document.addEventListener('touchstart',function(e){if(e.touches.length!==1||window.scrollY>0||document.scrollingElement.scrollTop>0){y0=null;return}y0=e.touches[0].clientY;x0=e.touches[0].clientX;d=0;ind.style.transition='none'},{passive:true});
+ document.addEventListener('touchmove',function(e){if(y0===null)return;var dy=e.touches[0].clientY-y0,dx=Math.abs(e.touches[0].clientX-x0);if(dy<=0||dx>dy){if(d)torna();y0=dy<=0?y0:null;return}
+  d=dy;var v=Math.min(d*.45,95);ind.style.opacity=String(Math.min(1,d/80));ind.style.transform='translate(-50%,'+(v-70)+'px) rotate('+Math.round(d*1.6)+'deg)';
+  var ok=d>=SOGLIA;ind.classList.toggle('pronto',ok);ind.querySelector('span').textContent=ok?'Rilascia per aggiornare':'Tira per aggiornare'},{passive:true});
+ document.addEventListener('touchend',function(){if(y0===null)return;y0=null;if(d>=SOGLIA){ind.classList.add('gira');ind.querySelector('span').textContent='Aggiorno…';setTimeout(function(){location.reload()},250)}else torna()},{passive:true});
+ document.addEventListener('touchcancel',function(){y0=null;torna()},{passive:true})}
 function init(){
-tendine();passaggi();ospite();nav();redirect();if(mode==='campo')pronto('#board .card');if(mode==='campo')setTimeout(partiteCampo,0);if(mode==='board')pronto('#tab table');if(mode==='board')vista();
+tendine();passaggi();ospite();nav();redirect();if(/^(board|campo|notifications|albo)$/.test(mode))tiraGiu();if(mode==='campo')pronto('#board .card');if(mode==='campo')setTimeout(partiteCampo,0);if(mode==='board')pronto('#tab table');if(mode==='board')vista();
 if(mode==='albo')document.addEventListener('click',function(e){var b=e.target.closest('[data-oro]');if(!b)return;var u=new URL(location.href);u.searchParams.set('albo',b.dataset.oro);history.replaceState(null,'',u)});
 if(mode==='home')load(home);
 if(mode==='board')load(board);
 if(mode==='albo'&&el('v53annual'))load(annual);
-if(mode==='curva'){var poll=el('v53poll');if(poll&&!SITO55)poll.insertAdjacentHTML('beforebegin','<p class="v53 v53-muted">Anteprima locale: sondaggi, commenti e personaggi sono prove sul dispositivo. Nessun intervento viene pubblicato nella Curva.</p>');load(curva)}
+if(mode==='curva'){load(curva);chiudiCommenti()}
 if(mode==='notifications')load(notifications);
 }
 if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init);else init();
