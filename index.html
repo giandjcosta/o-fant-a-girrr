@@ -476,14 +476,16 @@ function coverOf(id){
 function base(id){var f=P(id).f||0;return Math.round(Math.min(45,Math.max(3,50-12*Math.log(1+f))))}
 function prob(id){
   var w=D.w,d=D.decay||0.85,log=logOf(id),k=1,s=0,keep=isKeep(id);
-  D.rounds.filter(function(r){return log[r]}).sort(function(a,b){return b-a}).slice(0,6).forEach(function(r){var c=w[log[r]]||0;if(keep&&c>0)c=0;s+=c*k;k*=d});
+  D.rounds.filter(function(r){return log[r]&&log[r]!=='I'}).sort(function(a,b){return b-a}).slice(0,6).forEach(function(r){var c=w[log[r]]||0;if(keep&&c>0)c=0;s+=c*k;k*=d});
   if(coverOf(id))return Math.min(base(id),20);
-  var n=nxt(id).s,bump={I:keep?0:10,P:6,R:3,D:3,B:0,T:-3}[n]||0;
+  var n=nxt(id).s,bump={I:keep?0:injBump(id),P:6,R:3,D:3,B:0,T:-3}[n]||0;
   return Math.round(Math.min(97,Math.max(3,base(id)+s+bump)));
 }
+function injBump(id){var e=injOf(id),st=nxt(id);if(/squalific/i.test((e&&e.w)||st.n||''))return 0;if(!e)return 10;var dd=/stagione/i.test((e.b||'')+' '+(e.w||''))?200:injDays(e);return dd<=14?0:dd>=60?30:Math.round((dd-14)/46*30)}
+function nI(id){var l=(D.log||{})[id]||{},k,c=0;for(k in l)if(l[k]==='I')c++;return c}
 function probAt(id,upto){
   var w=D.w,d=D.decay||0.85,log=logOf(id),k=1,s=0,keep=isKeep(id);
-  D.rounds.filter(function(r){return log[r]&&r<=upto}).sort(function(a,b){return b-a}).slice(0,6).forEach(function(r){var c=w[log[r]]||0;if(keep&&c>0)c=0;s+=c*k;k*=d});
+  D.rounds.filter(function(r){return log[r]&&log[r]!=='I'&&r<=upto}).sort(function(a,b){return b-a}).slice(0,6).forEach(function(r){var c=w[log[r]]||0;if(keep&&c>0)c=0;s+=c*k;k*=d});
   if(coverOf(id))return Math.min(base(id),20);
   return Math.round(Math.min(97,Math.max(3,base(id)+s)));
 }
@@ -692,7 +694,7 @@ function vSwap(){
   var list=roster().map(function(p){p.pr=prob(p.id);return p});
   if(filter!=='ALL')list=list.filter(function(p){return p.r===filter});
   list.sort(function(a,b){return b.pr-a.pr||b.c-a.c});
-  var h='<div class="note">La percentuale di scambio in vista del mercato di gennaio. Si parte dal valore del giocatore: la percentuale sale quando resta in panchina o è indisponibile e scende quando gioca titolare. Il giudizio (Tieni, Osserva, Da scambiare) lo calcola la pagina. Tocca un giocatore per vedere le sue giornate.</div>';
+  var h='<div class="note">La percentuale di scambio in vista del mercato di gennaio. Si parte dal valore del giocatore: la percentuale sale quando resta in panchina e scende quando gioca titolare. Le giornate saltate per infortunio o squalifica non contano; un infortunio lungo la fa salire. Il giudizio (Tieni, Osserva, Da scambiare) lo calcola la pagina. Tocca un giocatore per vedere le sue giornate.</div>';
   h+='<div class="seg">'+['ALL','P','D','C','A'].map(function(r){return '<button aria-pressed="'+(filter===r)+'" data-f="'+r+'">'+(r==='ALL'?'Tutti':ROLES[r].slice(0,3)+'.')+'</button>'}).join('')+'</div><div class="list">';
   list.forEach(function(p){
     var v=verdict(p.pr),isO=open===p.id;
@@ -723,7 +725,7 @@ var INJM=null,INJK='';
 function injOf(id){var k=D.updated+'|'+(D.inj||[]).length;if(INJK!==k){INJM={};(D.inj||[]).forEach(function(e){if(e.id!=null)INJM[e.id]=e});INJK=k}return INJM[id]||INJM[+id]}
 function injDays(e){if(e.w==='Squalificato')return 7;if(e.d)return (Date.parse(e.d)-Date.now())/864e5;var b=e.b||'',m=b.match(/dalla (\d+)/);if(m)return Math.max(7,(+m[1]-D.round)*7);return /Prossimo/i.test(b)?7:14}
 function mkVals(T,hz,rb,mf){
-  var out=T.pl.map(function(x){var id=String(x.id),p=P(id),q=(D.ps||{})[id]||{},n=q.pg||0,b=rb[p.r],pc=pct(id)/100,s=nxt(id).s,bn=bonusX(id),df=diffX(p),tg=(D.sf&&D.sf[p.t]?D.sf[p.t][0]:0);
+  var out=T.pl.map(function(x){var id=String(x.id),p=P(id),q=(D.ps||{})[id]||{},n=q.pg||0,b=rb[p.r],pc=pct(id)/100,s=nxt(id).s,bn=bonusX(id),df=diffX(p),tg=Math.max(0,(D.sf&&D.sf[p.t]?D.sf[p.t][0]:0)-nI(id));
     var yl=(D.ly||{})[id],wy=yl?yl[0]/(yl[0]+12):0,lf=yl?(yl[2]*yl[0]+b*6)/(yl[0]+6):b,pb=b+(lf-b)*wy*0.5,fb=q.fmv!=null?(q.fmv*n+pb*3)/(n+3):pb,eb=pc*(fb+bn*3/(n+3))*df;
     var pr0=b*(0.88+0.24*Math.min(1,0.5*(p.f||0)/mf[p.r]+0.5*(p.q||0)/mf.q[p.r])),prior=wy*lf+(1-wy)*pr0,fl=q.fmv!=null?(q.fmv*n+prior*8)/(n+8):prior,qr=Math.min(1,0.3+0.7*(p.q||0)/mf.q[p.r]),pp=yl?0.7*Math.min(1,yl[0]/34)+0.3*qr:qr,pcl=(n>=3&&tg>0)?0.6*pc+0.4*Math.min(1,n/tg):pc,ij=injOf(id);if(s==='I'){var dd=ij?injDays(ij):14,bs=q.pct!=null?q.pct/100:((n>=3&&tg>0)?Math.min(1,n/tg):0.5);pcl=bs*Math.max(0,Math.min(1,(200-Math.max(0,dd))/200))}var el=(0.7*pcl+0.3*pp)*(fl+bn*8/(n+8));
     return {id:id,r:p.r,f:p.f||0,m:mvEff(p,rb),q:hz==='b'?0.8*fb+0.2*fl:fl,e:hz==='b'?0.8*eb+0.2*el:el}});
@@ -953,7 +955,7 @@ function vSet(){
     ['Osserva','Dal 35% al 59%: è da tenere d\'occhio nelle prossime giornate.'],
     ['Da scambiare','Dal 60% in su: gioca poco oppure vale poco.'],
     ['Portiere di riserva','Il portiere di riserva dello stesso club di un altro tuo portiere non viene segnalato come da cambiare: non gioca, ma ti copre se il titolare salta una partita.'],
-    ['Come si calcola','Si parte dal valore del giocatore: più vale, più la percentuale è bassa. Poi sale di '+D.w.P+' punti per ogni partita non giocata e di '+D.w.I+' per ogni assenza per infortunio o squalifica, mentre scende di '+Math.abs(D.w.T)+' a ogni partita da titolare. Le giornate più recenti pesano di più.'],
+    ['Come si calcola','Si parte dal valore del giocatore: più vale, più la percentuale è bassa. Poi sale di '+D.w.P+' punti per ogni partita passata in panchina e scende di '+Math.abs(D.w.T)+' a ogni partita da titolare. Le giornate più recenti pesano di più. Le giornate saltate per infortunio o squalifica (I) non contano. Se oggi è infortunato sale secondo il rientro previsto: niente fino a 14 giorni, poi sempre di più, fino a 30 punti da 60 giorni in su o se la stagione è finita. La squalifica non la fa salire.'],
     ['Pagato','I crediti spesi all\'asta per quel giocatore.'],
     ['FVM','Fantavalore di mercato: quanto vale oggi il giocatore secondo Fantacalcio.'],
     ['Perché','La riga sotto le statistiche spiega da cosa nasce la percentuale: giornate giocate, chi gli contende il posto, tipo di infortunio e fantamedia.'],

@@ -3,18 +3,21 @@
 
   ps     statistiche di stagione dei giocatori (presenze, media voto, fantamedia, gol, assist)
   votes  voto, fantavoto e bonus giornata per giornata
-  log    presenze (titolare / subentrato / panchina) dei giocatori delle rose
+  log    presenze (titolare / subentrato / panchina / indisponibile) dei giocatori delle rose
+  ind    indisponibili (infortunati e squalificati) prima del calcio d'inizio di ogni giornata
   fas    stato recente degli svincolati
 
 Non tocca nient'altro. Non serve alcun accesso: le pagine sono pubbliche.
 Uso:  python3 scripts/aggiorna_dati.py [--da-cartella DIR]   (DIR = pagine gia' scaricate, per le prove)
 """
+import datetime as dt
 import json
 import re
 import sys
 import time
 import urllib.request
 from pathlib import Path
+from zoneinfo import ZoneInfo
 
 ROOT = Path(__file__).resolve().parent.parent
 UA = "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126 Safari/537.36"
@@ -119,13 +122,50 @@ def leggi_voti(html):
     return out
 
 
+def inizio_giornata(D, r):
+    """Prima partita della giornata r secondo il calendario in data.json (fx, poi sa), ora italiana."""
+    primo = None
+    for fonte in ("fx", "sa"):
+        for m in (D.get(fonte) or {}).get(str(r), []):
+            x = re.search(r"(\d\d)/(\d\d) (\d\d):(\d\d)", m[2] if len(m) > 2 else "")
+            if not x:
+                continue
+            mese = int(x[2])
+            anno = int(STAGIONE[:4]) if mese >= 7 else int(STAGIONE[:4]) + 1
+            d = dt.datetime(anno, mese, int(x[1]), int(x[3]), int(x[4]), tzinfo=ZoneInfo("Europe/Rome"))
+            primo = d if primo is None or d < primo else primo
+    return primo
+
+
+def aggiorna_indisponibili(D, adesso=None):
+    """Tiene in D["ind"] chi è fuori (st con s='I') per la prossima giornata, finché non comincia.
+
+    Dopo il calcio d'inizio la foto resta com'era: serve a scrivere «I» invece di «P»
+    nelle presenze di chi non ha giocato perché infortunato o squalificato."""
+    ind = D.get("ind")
+    if not isinstance(ind, dict):
+        storico = ROOT / "scripts" / "ind_storico.json"
+        ind = {}
+        if storico.exists():
+            for g, v in json.loads(storico.read_text(encoding="utf-8"))["giornate"].items():
+                ind[g] = sorted(v["I"], key=int)
+    r = D.get("nx") or D.get("round")
+    inizio = inizio_giornata(D, r) if r else None
+    adesso = adesso or dt.datetime.now(dt.timezone.utc)
+    if inizio and adesso < inizio:
+        ind[str(r)] = sorted((i for i, v in (D.get("st") or {}).items() if (v or {}).get("s") == "I"), key=int)
+    D["ind"] = ind
+    return ind
+
+
 def main():
     cartella = None
     if "--da-cartella" in sys.argv:
         cartella = sys.argv[sys.argv.index("--da-cartella") + 1]
     percorso = ROOT / "data.json"
     D = json.loads(percorso.read_text(encoding="utf-8"))
-    prima = json.dumps({k: D.get(k) for k in ("ps", "votes", "log", "fas", "votiTs")}, sort_keys=True)
+    prima = json.dumps({k: D.get(k) for k in ("ps", "votes", "log", "fas", "votiTs", "ind")}, sort_keys=True)
+    ind = aggiorna_indisponibili(D)
     P = D["P"]
     in_rosa = {str(p["id"]) for t in D["teams"] for p in t["pl"]}
     svinc = {str(i) for i in D["fa"]}
@@ -186,12 +226,13 @@ def main():
             if i not in P:
                 continue
             scheda = log.setdefault(i, {})
-            if str(g) in scheda:
+            fuori = i in ind.get(str(g), ())
+            if str(g) in scheda and not (scheda[str(g)] == "P" and fuori):
                 continue
             if i in pagina:
                 scheda[str(g)] = "S" if pagina[i]["sub"] else "T"
             elif P[i]["t"] in squadre:
-                scheda[str(g)] = "P"
+                scheda[str(g)] = "I" if fuori else "P"
 
     # ---- svincolati: stato recente e titolarita'
     ultime = sorted(voti_g)
@@ -212,7 +253,7 @@ def main():
         fvs = [voti_g[g][i]["f"] for g in gs if i in voti_g[g] and voti_g[g][i]["f"] is not None]
         fas[i] = {"tit": round(10 * tit / len(gs)) if gs else 0,
                   "fm": round(sum(fvs) / len(fvs), 2) if fvs else None, "h": st}
-    dopo = json.dumps({k: D.get(k) for k in ("ps", "votes", "log", "fas", "votiTs")}, sort_keys=True)
+    dopo = json.dumps({k: D.get(k) for k in ("ps", "votes", "log", "fas", "votiTs", "ind")}, sort_keys=True)
     if dopo == prima:
         print("niente di nuovo: data.json resta com'e'")
         return

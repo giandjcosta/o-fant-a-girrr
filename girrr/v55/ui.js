@@ -72,6 +72,8 @@ function nav(){
   var back=utilities.querySelector('.v55-return');if(prev)back.onclick=function(e){if(history.length>1){e.preventDefault();history.back()}};
  }
  update();where.insertAdjacentElement('beforebegin',utilities);document.body.classList.add('v55-has-header');
+ /* Gianluca, 2 novembre: nessun doppione. Con la barra in alto il vecchio «‹ O Girrr» della pagina (Tabellone, Albo, Carriera, Girrr Sport) non serve */
+ [].forEach.call(document.querySelectorAll('a.oback,a.back'),function(a){if(!a.closest('.v53')&&/^\s*‹/.test(a.textContent))a.style.display='none'});
  if(mode==='campo')new MutationObserver(update).observe(document.body,{attributes:true,attributeFilter:['data-skin']});
 }
 function redirect(){

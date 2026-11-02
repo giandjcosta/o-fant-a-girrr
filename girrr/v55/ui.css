@@ -343,3 +343,27 @@ body[data-v53-skin=stadio][data-v53=home] .st:hover{background:linear-gradient(1
 body[data-v53-skin=stadio][data-v53=home] .st small,body[data-v53-skin=stadio][data-v53=home] .lg-leghe small{color:#ffd166}
 /* Campo: nella scheda attiva il simbolo resta visibile (prende il colore della scritta, non l'oro/rosso dello sfondo) */
 body[data-v53=campo] .sidebar nav a.active span,body[data-v53=campo] .sidebar nav a.active svg{color:inherit!important;stroke:currentColor}
+/* Gianluca, 2 novembre: nella Lega i titoli di Albo, Carriera e Girrr Sport in Inter (Lobster non è caricato e Windows mostrava un corsivo tipo Comic Sans) */
+body[data-v53=albo][data-v53-skin=lega]{--fd:Inter,system-ui,-apple-system,sans-serif}
+body[data-v53=albo][data-v53-skin=lega] .ohead h1{letter-spacing:-.01em}
+/* Gianluca, 2 novembre: su PC si usa tutta la larghezza. Da 1100 px la colonna si allarga e i riquadri vanno su due colonne; titoli, schede e menu restano a tutta riga. Sul telefono non cambia nulla */
+@media(min-width:1100px){
+ body[data-v53=albo] .col{max-width:1180px}
+ body[data-v53=albo] .tabs{width:auto!important;margin-left:0!important}
+ body[data-v53=albo] #view{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));column-gap:16px;align-items:stretch;grid-auto-flow:row dense}
+ body[data-v53=albo] #view>.btn,body[data-v53=albo] #view>button{justify-self:start}
+ body[data-v53=albo] #view>*{grid-column:1/-1;min-width:0}
+ body[data-v53=albo] #view>.card{grid-column:auto;margin-bottom:12px}
+ body[data-v53=albo] #view:not(:has(>.card~.card))>.card{grid-column:1/-1}
+ body[data-v53=albo] #view>.card:has(>.garch,>.arch){display:grid;grid-template-columns:repeat(2,minmax(0,1fr));column-gap:24px;grid-column:1/-1}
+ body[data-v53=albo] #view>.card:has(>.garch,>.arch)>:not(.garch):not(.arch){grid-column:1/-1}
+}
+/* Gianluca, 2 novembre: «Chi seguire» della Curva più arioso, nome lontano dal pulsante Segui/Seguito e a capo equilibrato */
+body[data-v53=curva] .box .who{gap:12px;padding:12px 14px}
+body[data-v53=curva] .box .who .n{padding-right:4px}
+body[data-v53=curva] .box .who .n b{white-space:normal;overflow:visible;text-wrap:balance;line-height:1.25}
+body[data-v53=curva] .box .who .n small{margin-top:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+body[data-v53=curva] .box .who .btn{margin-left:2px;padding:7px 14px}
+/* Curva su PC grande: colonna centrale e colonna laterale più larghe, così «Chi seguire» ha spazio */
+@media(min-width:1200px){body[data-v53=curva] .shell{max-width:1240px;grid-template-columns:240px minmax(0,640px) 330px}}
+@media(min-width:1060px) and (max-width:1199px){body[data-v53=curva] .box .who{display:grid;grid-template-columns:auto minmax(0,1fr);row-gap:8px}body[data-v53=curva] .box .who .btn{grid-column:2;justify-self:start;margin-left:0}}
