@@ -60,11 +60,11 @@ function nav(){
   var target=prev?prev.href:href(parent),label=prev?((window.OG55&&OG55.nome(prev.pathname))||prev.pathname.split('/').pop().split('-')[0]):parent;if(label==='albo')label='albo';
   /* Campo: un solo «indietro», che torna al Tabellone sulla stessa giornata (anche in coppa) */
   var rt=mode==='campo'&&el('ritorno-tabellone');if(rt&&(!prev||/\/tabellone[-.]/.test(prev.pathname))){target=rt.href;label='tabellone'}
-  var labels={index:'Home',tabellone:'Tabellone',campo:'Campo',albo:"Albo d’oro",curva:'Curva',notifiche:'Notifiche'};
+  var labels={index:'O Girrr',tabellone:'Tabellone',campo:'Campo',albo:"Albo d’oro",curva:'Curva',notifiche:'Notifiche'};
   var page=mode==='home'?'index':mode==='board'?'tabellone':mode==='notifications'?'notifiche':mode;
   function skinTarget(){var altra=skin==='lega'?'stadio':'lega',u=new URL(window.OG55?OG55.pagina(page,altra,root):page+'-'+altra+'.html',root);if(SITO55&&mode==='albo'){u.hash=location.hash;u.search=location.search;return u.href}u.search=location.search;if(mode==='campo'||u.searchParams.has('skin'))u.searchParams.set('skin',skin==='lega'?'stadio':'lega');if(/^#(lega|coppa)(-\d+)?$/.test(location.hash))u.hash=location.hash;return u.href;}
   utilities.innerHTML='<a class="v55-home-logo" href="'+href('index')+'" aria-label="Home O Girrr"><img src="https://giandjcosta.github.io/o-fant-a-girrr/assets/loghi/logo-lega-o-fant-a-girrr.png" alt="O Girrr"></a>'+
-   '<a class="v55-return" href="'+esc(target)+'" aria-label="Torna a '+esc(labels[label]||'Home')+'">‹ '+esc(labels[label]||'Home')+'</a>';
+   '<a class="v55-return" href="'+esc(target)+'" aria-label="Torna a '+esc(labels[label]||'O Girrr')+'">‹ '+esc(labels[label]||'O Girrr')+'</a>';
   /* Gianluca, 2 novembre: in alto solo il logo per la Home e il link alla pagina precedente; la grafica si cambia nella Home */
   var swap=null;if(swap){['pointerenter','pointerdown','focus','click'].forEach(function(event){swap.addEventListener(event,function(){swap.href=skinTarget()})});
   /* la scelta resta anche per le pagine del sito che la leggono (orr_gv: a = Lega, n = Stadio) */
@@ -74,6 +74,10 @@ function nav(){
  update();where.insertAdjacentElement('beforebegin',utilities);document.body.classList.add('v55-has-header');
  /* Gianluca, 2 novembre: nessun doppione. Con la barra in alto il vecchio «‹ O Girrr» della pagina (Tabellone, Albo, Carriera, Girrr Sport) non serve */
  [].forEach.call(document.querySelectorAll('a.oback,a.back'),function(a){if(!a.closest('.v53')&&/^\s*‹/.test(a.textContent))a.style.display='none'});
+ /* Gianluca, 2 novembre: niente doppio logo. Se la pagina ha già il logo grande, quello piccolo della barra sparisce e il logo grande porta alla Home; la scritta gialla porta alla pagina precedente («O Girrr» se è la Home) */
+ function logoGrande(){var g=null;[].forEach.call(document.querySelectorAll('img'),function(i){if(g||i.closest('.v53'))return;var r=i.getBoundingClientRect();if(r.height>=56&&r.top<480&&r.width>0&&(/logo/i.test(i.getAttribute('src')||'')||!!i.closest('.ohead,header,.hero,.mast,aside'))&&getComputedStyle(i).visibility!=='hidden')g=i});return g}
+ function unLogo(){var g=logoGrande();utilities.classList.toggle('v55-senza-logo',!!g);if(!g)return;var la=g.closest('a');if(!la){la=document.createElement('a');g.parentNode.insertBefore(la,g);la.appendChild(g)}la.href=href('index');la.classList.add('v55-logo-home');la.setAttribute('aria-label','Home O Girrr')}
+ unLogo();var unT;window.addEventListener('resize',function(){clearTimeout(unT);unT=setTimeout(unLogo,150)});window.addEventListener('load',unLogo);
  if(mode==='campo')new MutationObserver(update).observe(document.body,{attributes:true,attributeFilter:['data-skin']});
 }
 function redirect(){

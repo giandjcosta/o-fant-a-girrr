@@ -350,11 +350,13 @@ body[data-v53=albo][data-v53-skin=lega] .ohead h1{letter-spacing:-.01em}
 @media(min-width:1100px){
  body[data-v53=albo] .col{max-width:1180px}
  body[data-v53=albo] .tabs{width:auto!important;margin-left:0!important}
- body[data-v53=albo] #view{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));column-gap:16px;align-items:stretch;grid-auto-flow:row dense}
+ body[data-v53=albo] #view{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));column-gap:16px;align-items:stretch;grid-auto-flow:row}
  body[data-v53=albo] #view>.btn,body[data-v53=albo] #view>button{justify-self:start}
  body[data-v53=albo] #view>*{grid-column:1/-1;min-width:0}
  body[data-v53=albo] #view>.card{grid-column:auto;margin-bottom:12px}
  body[data-v53=albo] #view:not(:has(>.card~.card))>.card{grid-column:1/-1}
+ /* Gianluca, 2 novembre (Moviola): l'ordine resta quello della pagina; un riquadro da solo fra elementi che non sono riquadri (introduzione, scelta della giornata) prende tutta la riga */
+ body[data-v53=albo] #view>:not(.card)+.card:has(+:not(.card)),body[data-v53=albo] #view>.card:first-child:has(+:not(.card)),body[data-v53=albo] #view>:not(.card)+.card:last-child{grid-column:1/-1}
  body[data-v53=albo] #view>.card:has(>.garch,>.arch){display:grid;grid-template-columns:repeat(2,minmax(0,1fr));column-gap:24px;grid-column:1/-1}
  body[data-v53=albo] #view>.card:has(>.garch,>.arch)>:not(.garch):not(.arch){grid-column:1/-1}
 }
@@ -367,3 +369,11 @@ body[data-v53=curva] .box .who .btn{margin-left:2px;padding:7px 14px}
 /* Curva su PC grande: colonna centrale e colonna laterale più larghe, così «Chi seguire» ha spazio */
 @media(min-width:1200px){body[data-v53=curva] .shell{max-width:1240px;grid-template-columns:240px minmax(0,640px) 330px}}
 @media(min-width:1060px) and (max-width:1199px){body[data-v53=curva] .box .who{display:grid;grid-template-columns:auto minmax(0,1fr);row-gap:8px}body[data-v53=curva] .box .who .btn{grid-column:2;justify-self:start;margin-left:0}}
+/* Gianluca, 2 novembre: in alto un solo logo (il grande porta alla Home) e la scritta gialla piccola come prima, che porta alla pagina precedente */
+.v55-header.v55-senza-logo .v55-home-logo{display:none}
+.v55-header .v55-return{color:#ffd166!important;font-weight:800!important;font-size:12px!important;letter-spacing:.16em;text-transform:uppercase;text-decoration:none}
+.v55-header.v55-senza-logo{border-bottom:0;margin-bottom:4px;padding-bottom:0}
+a.v55-logo-home{display:inline-flex;flex:none;border-radius:12px}
+a.v55-logo-home:focus-visible{outline:2px solid #ffd166;outline-offset:3px}
+.v55-header .v55-return{white-space:nowrap!important;max-width:none!important}
+@media(max-width:360px){.v55-header .v55-return{letter-spacing:.08em}}
