@@ -336,3 +336,8 @@ body[data-v53-skin=stadio] .v55-ptr.pronto{background:#ffd166;border-color:#ffd1
 body[data-v53-skin=stadio][data-v53=home] .v53-home{border-radius:12px;border-left-color:#ffd166}
 /* Totogirrr nel riquadro della Home: la scritta resta su una riga e si rimpicciolisce se il riquadro è stretto (prima andava a capo sopra il titolo) */
 [data-v53=home] a.c.bet .ic>span{white-space:nowrap;font-size:clamp(24px,8.4vw,40px)!important;max-width:100%}
+/* Claude, 2 novembre: Home Stadio, i riquadri con le informazioni (strisce della giornata, Leghe Fantacalcio, Oggi al Girrr) più tondi e più oro,
+   come le righe della classifica Stadio; i riquadri dei menu restano com'erano. La Lega resta dritta con la banda rossa. */
+body[data-v53-skin=stadio][data-v53=home] .st,body[data-v53-skin=stadio][data-v53=home] .lg-leghe,body[data-v53-skin=stadio][data-v53=home] .v53-home{border-radius:18px!important;border:1px solid rgba(255,209,102,.38)!important;border-left:6px solid #ffd166!important;background:linear-gradient(150deg,rgba(255,209,102,.16),rgba(255,255,255,.05) 55%)!important;box-shadow:0 6px 20px rgba(0,0,0,.18),inset 0 1px 0 rgba(255,232,170,.18)}
+body[data-v53-skin=stadio][data-v53=home] .st:hover{background:linear-gradient(150deg,rgba(255,209,102,.24),rgba(255,255,255,.07) 55%)!important}
+body[data-v53-skin=stadio][data-v53=home] .st small,body[data-v53-skin=stadio][data-v53=home] .lg-leghe small{color:#ffd166}
