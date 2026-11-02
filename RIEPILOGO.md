@@ -79,33 +79,34 @@ Notizie pubbliche, senza indicare di chi e' ogni giocatore.
 | Martinez L. | Inter | Risentimento muscolare ai flessori della coscia sinistra | Metà novembre | Salta |
 | Provedel | Inter | Infortunio | Prossimo turno | Salta |
 | Stones | Inter | Risentimento ai flessori della coscia sinistra | Inizio novembre | Salta |
+| Celik | Juventus | Lesione di basso grado del bicipite femorale | Metà novembre | Salta |
 | Conceicao | Juventus | Lussazione alla spalla sinistra | Metà novembre | Salta |
 | Yildiz | Juventus | Problema al piede | Inizio dicembre | Salta |
 | Grabara | Juventus | Lesione al crociato anteriore del ginocchio destro | Da aprile | Salta |
 | Gonzalez N. | Juventus | Lesione di basso grado del soleo destro | Metà novembre | Salta |
-| Celik | Juventus | Lesione di basso grado del bicipite femorale | Metà novembre | Salta |
-| Marusic | Lazio | Lesione muscolare alla coscia | Inizio novembre | Salta |
 | Gudmundsson A. | Lazio | Problema alla spalla destra dopo una caduta | Metà novembre | In dubbio |
+| Marusic | Lazio | Lesione muscolare alla coscia | Inizio novembre | Salta |
 | Coulibaly L. | Lecce | Lesione muscolare al bicipite femorale della coscia | Inizio novembre | Salta |
 | Geubbels | Lecce | Lesione muscolare di basso grado all'adduttore della | Metà novembre | Salta |
 | Gaspar K. | Lecce | Squalificato | Rientra dalla 11ª giornata | Salta |
-| Chukwueze | Milan | Problema all'anca sinistra | Da valutare | Salta |
 | Saelemaekers | Milan | Problema alla caviglia destra e operata il | Da febbraio | Salta |
+| Chukwueze | Milan | Problema all'anca sinistra | Da valutare | Salta |
 | Hojlund | Napoli | Sindrome influenzale | Da valutare | In dubbio |
+| Neres | Napoli | Lesione di basso grado al muscolo semimembranoso | Prima metà di novembre | Salta |
 | Badiashile | Napoli | Lesione distrattiva di medio grado del retto | Fine novembre | Salta |
 | Spinazzola | Napoli | Lesione di basso grado del bicipite femorale | Metà novembre | Salta |
-| Santos A. | Napoli | Lesione distrattiva di medio grado del bicipite | Inizio dicembre | Salta |
-| Milinkovic-Savic V. | Napoli | Affaticamento muscolare alla gamba | Prossimo turno | Salta |
-| Neres | Napoli | Lesione di basso grado al muscolo semimembranoso | Prima metà di novembre | Salta |
 | Lobotka | Napoli | Lesione della sindesmosi tibio-peroneale senza instabilità | Metà dicembre | Salta |
 | Buongiorno | Napoli | Operato nella seconda metà di luglio al | Fine dicembre | Salta |
+| Milinkovic-Savic V. | Napoli | Affaticamento muscolare alla gamba | Prossimo turno | Salta |
+| Santos A. | Napoli | Lesione distrattiva di medio grado del bicipite | Inizio dicembre | Salta |
+| Bernabè | Parma | Risentimento muscolare alla gamba sinistra che andrà | Prossimo turno | In dubbio |
 | Svilar | Roma | Frattura a un dito del piede e | Metà novembre | Salta |
 | Konè M. | Roma | Lesione di primo grado al bicipite femorale | Prima metà di novembre | Salta |
 | Dybala | Roma | Fastidio al polpaccio | Inizio novembre | Salta |
 | Thorstvedt | Sassuolo | Squalificato | Rientra dalla 11ª giornata | Salta |
-| Fortini | Torino | Affaticamento muscolare all'adduttore | Da valutare | In dubbio |
-| Mandragora | Torino | Problema muscolare al flessore sinistro | Metà novembre | Salta |
 | Cacciamani | Torino | Lussazione alla spalla sinistra rimediata nel turno | Prossimo turno | Salta |
+| Mandragora | Torino | Problema muscolare al flessore sinistro | Metà novembre | Salta |
+| Fortini | Torino | Affaticamento muscolare all'adduttore | Da valutare | In dubbio |
 | Solet | Udinese | Problema muscolare al pettineo sinistro | Prima metà di novembre | Salta |
 | Gueye | Udinese | Problema alla caviglia a fine settembre | Fine gennaio | Salta |
 
