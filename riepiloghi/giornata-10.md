@@ -121,8 +121,8 @@ Punteggio: piu' e' alto, piu' conviene. Unisce valore e probabilita' di giocare.
 | Perri | Torino | Titolare | Frosinone (T) | 56 |
 | Tornqvist | Monza | Titolare | Bologna (T) | 42 |
 | Thiam | Monza | Panchina | Bologna (T) | 21 |
+| Turati | Sassuolo | Titolare | Fiorentina (C) | 21 |
 | Daffara | Parma | Titolare | Atalanta (T) | 19 |
-| Happonen | Bologna | Panchina | Monza (C) | 15 |
 
 ### Difensori
 
@@ -141,7 +141,7 @@ Punteggio: piu' e' alto, piu' conviene. Unisce valore e probabilita' di giocare.
 | Schmid | Frosinone | Titolare | Torino (C) | 93 |
 | Romano | Cagliari | Titolare | Lazio (T) | 81 |
 | Pobega | Bologna | Titolare | Monza (C) | 80 |
-| Matic | Sassuolo | Titolare | Fiorentina (C) | 73 |
+| Matic | Sassuolo | Titolare | Fiorentina (C) | 74 |
 | Frendrup | Genoa | Titolare | Lecce (T) | 68 |
 
 ### Attaccanti
@@ -152,7 +152,7 @@ Punteggio: piu' e' alto, piu' conviene. Unisce valore e probabilita' di giocare.
 | Robinson J. | Monza | Panchina | Bologna (T) | 66 |
 | Nzola | Cagliari | Titolare | Lazio (T) | 48 |
 | N'Dri | Lecce | Titolare | Genoa (C) | 43 |
-| Lontani | Parma | Riserva, ballottaggio | Atalanta (T) | 41 |
+| Lontani | Parma | Titolare | Atalanta (T) | 41 |
 
 ## Correzioni da controllare
 
