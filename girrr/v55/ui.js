@@ -417,12 +417,12 @@ function pronto(sel){var h=document.documentElement;if(!h.classList.contains('v5
    quando si appoggia il dito, e serve un tiro lungo (160 px): così non scatta per sbaglio risalendo. La Curva ha il suo, la Home il pulsante. */
 function tiraGiu(){if(!('ontouchstart' in window))return;var SOGLIA=160,y0=null,x0=0,d=0,ind=document.createElement('div');
  ind.className='v55-ptr';ind.setAttribute('aria-hidden','true');ind.innerHTML='<i>↻</i><span>Tira per aggiornare</span>';document.body.appendChild(ind);
- function torna(){ind.style.transition=CALMO?'none':'transform .3s ease,opacity .3s ease';ind.style.transform='translate(-50%,-70px)';ind.style.opacity='0';ind.classList.remove('pronto');d=0}
+ function torna(){ind.style.transition=CALMO?'none':'transform .3s ease,opacity .3s ease';ind.style.transform='translate(-50%,-70px)';ind.querySelector('i').style.transform='';ind.style.opacity='0';ind.classList.remove('pronto');d=0}
  document.addEventListener('touchstart',function(e){if(e.touches.length!==1||window.scrollY>0||document.scrollingElement.scrollTop>0){y0=null;return}y0=e.touches[0].clientY;x0=e.touches[0].clientX;d=0;ind.style.transition='none'},{passive:true});
  document.addEventListener('touchmove',function(e){if(y0===null)return;var dy=e.touches[0].clientY-y0,dx=Math.abs(e.touches[0].clientX-x0);if(dy<=0||dx>dy){if(d)torna();y0=dy<=0?y0:null;return}
-  d=dy;var v=Math.min(d*.45,95);ind.style.opacity=String(Math.min(1,d/80));ind.style.transform='translate(-50%,'+(v-70)+'px) rotate('+Math.round(d*1.6)+'deg)';
+  d=dy;var v=Math.min(d*.45,95);ind.style.opacity=String(Math.min(1,d/80));ind.style.transform='translate(-50%,'+(v-70)+'px)';ind.querySelector('i').style.transform='rotate('+Math.round(d*1.6)+'deg)';
   var ok=d>=SOGLIA;ind.classList.toggle('pronto',ok);ind.querySelector('span').textContent=ok?'Rilascia per aggiornare':'Tira per aggiornare'},{passive:true});
- document.addEventListener('touchend',function(){if(y0===null)return;y0=null;if(d>=SOGLIA){ind.classList.add('gira');ind.querySelector('span').textContent='Aggiorno…';setTimeout(function(){location.reload()},250)}else torna()},{passive:true});
+ document.addEventListener('touchend',function(){if(y0===null)return;y0=null;if(d>=SOGLIA){ind.querySelector('i').style.transform='';ind.classList.add('gira');ind.querySelector('span').textContent='Aggiorno…';setTimeout(function(){location.reload()},250)}else torna()},{passive:true});
  document.addEventListener('touchcancel',function(){y0=null;torna()},{passive:true})}
 function init(){
 tendine();passaggi();ospite();nav();redirect();if(/^(board|campo|notifications|albo)$/.test(mode))tiraGiu();if(mode==='campo')pronto('#board .card');if(mode==='campo')setTimeout(partiteCampo,0);if(mode==='board')pronto('#tab table');if(mode==='board')vista();
