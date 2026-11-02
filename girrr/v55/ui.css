@@ -260,14 +260,14 @@ body[data-v53-skin=stadio] .v55-ko-col.attiva .v55-ko-m{padding-left:54px}
 body[data-v53-skin=lega],body[data-v53=campo][data-skin=lega]{--g-card:4px 14px 14px 4px;--g-box:10px;--g-tab:999px;--g-tabbox:999px;--g-band:8px;--g-acc:#d62839;--g-onacc:#fbf6ec}
 body[data-v53-skin=stadio],body[data-v53=campo][data-skin=stadio]{--g-card:12px;--g-box:12px;--g-tab:999px;--g-tabbox:999px;--g-band:8px;--g-acc:#ffd166;--g-onacc:#1d2a52}
 /* Riquadri principali: banda rossa a sinistra */
-body[data-v53-skin]:not([data-v53=curva]) :is(.v53-home,.v53-panel,.v53-notifcard,.v55-cronaca,.v55-record,#v53board,.turnoprossimo,.lg-leghe,a.st,a.c,a.mn,.cvw,.card,.v53-comment,.ban2,.qt){border-radius:var(--g-card)!important;border-left:var(--g-band) solid var(--g-acc)!important}
-body[data-v53-skin]:not([data-v53=curva]) .m{border-radius:var(--g-card)!important}
-body[data-v53-skin]:not([data-v53=curva]) .v53-notifcard a.v55-notiflink{border-radius:var(--g-card)}
+body[data-v53-skin]:not([data-v53=curva]):not([data-v53=home]) :is(.v53-home,.v53-panel,.v53-notifcard,.v55-cronaca,.v55-record,#v53board,.turnoprossimo,.lg-leghe,a.st,a.c,a.mn,.cvw,.card,.v53-comment,.ban2,.qt){border-radius:var(--g-card)!important;border-left:var(--g-band) solid var(--g-acc)!important}
+body[data-v53-skin]:not([data-v53=curva]):not([data-v53=home]) .m{border-radius:var(--g-card)!important}
+body[data-v53-skin]:not([data-v53=curva]):not([data-v53=home]) .v53-notifcard a.v55-notiflink{border-radius:var(--g-card)}
 /* Riquadri interni e campi: stessi angoli, senza banda */
-body[data-v53-skin]:not([data-v53=curva]) :is(.v53-box,.v55-striscia,.v55-st-m,.v53-poll-option,.v53-input,.v53-select,.gamebtn,.toolbar,.rac,.sqb,.sp,.box,.chart-grid>div,.tag){border-radius:var(--g-box)!important}
+body[data-v53-skin]:not([data-v53=curva]):not([data-v53=home]) :is(.v53-box,.v55-striscia,.v55-st-m,.v53-poll-option,.v53-input,.v53-select,.gamebtn,.toolbar,.rac,.sqb,.sp,.box,.chart-grid>div,.tag){border-radius:var(--g-box)!important}
 /* Schede, interruttori e pillole */
-body[data-v53-skin]:not([data-v53=curva]) :is(.v55-schede,.sw,.seg,.skin,.v53-filters){border-radius:var(--g-tabbox)!important}
-body[data-v53-skin]:not([data-v53=curva]) :is(.v55-schede>button,.v55-schede>a,.sw i,.seg button,.skin button,.chips button,.ar,.v53-pill,.v53-btn,.btn,.lnk,.go,.sidebar nav a,#prev,#next){border-radius:var(--g-tab)!important}
+body[data-v53-skin]:not([data-v53=curva]):not([data-v53=home]) :is(.v55-schede,.sw,.seg,.skin,.v53-filters){border-radius:var(--g-tabbox)!important}
+body[data-v53-skin]:not([data-v53=curva]):not([data-v53=home]) :is(.v55-schede>button,.v55-schede>a,.sw i,.seg button,.skin button,.chips button,.ar,.v53-pill,.v53-btn,.btn,.lnk,.go,.sidebar nav a,#prev,#next){border-radius:var(--g-tab)!important}
 /* Campo: il menu laterale attivo ha la banda rossa come i riquadri */
 body[data-v53=campo] .sidebar nav a.active,body[data-v53=campo] .sidebar nav a:hover{box-shadow:inset 4px 0 var(--g-acc)!important}
 body[data-v53=campo][data-skin=stadio] .sidebar nav a.active{box-shadow:none!important;background:#ffd166!important;color:#1d2a52!important}
@@ -332,3 +332,7 @@ body[data-v53-skin=stadio] .v55-ptr.pronto{background:#ffd166;border-color:#ffd1
 .v55-pp-form .v53-input{flex:1;min-width:0}
 .v55-chiudi{display:block;margin:6px 0 2px;min-height:40px;color:var(--blu,#3d93d6)}
 @media (prefers-reduced-motion: reduce){.v55-pp-cm{animation:none}.v55-ptr.gira i{animation:none}}
+/* Claude, 2 novembre: la Home resta com'era prima (riquadri, strisce e pulsanti originali di Lega e Stadio); le regole nuove valgono solo per «Oggi al Girrr» */
+body[data-v53-skin=stadio][data-v53=home] .v53-home{border-radius:12px;border-left-color:#ffd166}
+/* Totogirrr nel riquadro della Home: la scritta resta su una riga e si rimpicciolisce se il riquadro è stretto (prima andava a capo sopra il titolo) */
+[data-v53=home] a.c.bet .ic>span{white-space:nowrap;font-size:clamp(24px,8.4vw,40px)!important;max-width:100%}
