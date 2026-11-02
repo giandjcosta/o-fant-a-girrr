@@ -1,6 +1,6 @@
 # Riepilogo giornata 10 di Serie A
 
-Lega O FANT A GIRRR. Dati aggiornati al 2026-11-01.
+Lega O FANT A GIRRR. Dati aggiornati al 2026-11-02.
 
 ## Partite della giornata
 
