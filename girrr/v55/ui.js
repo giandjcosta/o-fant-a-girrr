@@ -48,6 +48,8 @@ var SITO55=!!(window.OG55&&OG55.sito);
 function albo(q){return href('albo')+q+(SITO55?'#oro':'')}
 function nav(){
  var old=el('v53nav');if(old)old.remove();
+ /* Home: la testata resta quella di sempre (logo grande e interruttore Lega/Stadio); le notifiche sono in «Oggi al Girrr» (Gianluca, 2 novembre) */
+ if(mode==='home')return;
  var where=document.querySelector('.ohead,.hero,.mast,header.top,header');if(!where)return;
  var names={home:'Home',board:'Tabellone',campo:'Campo',albo:"Albo d’oro",curva:'Curva',notifications:'Notifiche'};
  var parent=mode==='campo'?'tabellone':'index',prev=null;
