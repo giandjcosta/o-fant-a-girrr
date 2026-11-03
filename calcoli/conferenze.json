@@ -1,5 +1,12 @@
 [
  {
+  "team": "Apo team",
+  "giornata": 6,
+  "promessa": "Se non dovessimo vincere questa giornata probabilmente salterà qualche testa",
+  "pesa": 1,
+  "esito": "p"
+ },
+ {
   "team": "Oranje VC",
   "giornata": 4,
   "promessa": "Chi parla di obiettivi guardi la classifica.",

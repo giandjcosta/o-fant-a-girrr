@@ -4,7 +4,8 @@
   2,
   3,
   4,
-  5
+  5,
+  6
  ],
  "giornate": {
   "1": {
@@ -767,6 +768,175 @@
      "avversario_reale": "Bologna",
      "in_casa": true,
      "data_partita": "mer 28/10 18:30"
+    }
+   ]
+  },
+  "6": {
+   "sa": 10,
+   "scritta": "2026-11-03",
+   "episodi": [
+    {
+     "tipo": "gol",
+     "titolo": "Gol decisivo",
+     "verdetto": "Ha deciso la partita",
+     "testo": "Tutto gira intorno a Laurientè: la doppietta decide stif dc–Atletico ma non troppo 1‑3. Nessun dubbio dalla moviola, e senza la doppietta Atletico ma non troppo avrebbe pareggiato.",
+     "giocatore": "Laurientè",
+     "squadra": "Atletico ma non troppo",
+     "allenatori": [
+      "Riccardo"
+     ],
+     "id": "6060",
+     "squadra_reale": "Sassuolo",
+     "avversario_reale": "Fiorentina",
+     "in_casa": true,
+     "data_partita": "lun 2/11 18:30"
+    },
+    {
+     "tipo": "gol",
+     "titolo": "Gol decisivo",
+     "verdetto": "Ha deciso la partita",
+     "testo": "Tutto gira intorno a Moreira: il gol decide AFA SELECCION–Grodah 2‑3. Nessun dubbio dalla moviola, e senza il gol Grodah avrebbe pareggiato.",
+     "giocatore": "Moreira",
+     "squadra": "Grodah",
+     "allenatori": [
+      "RikyArma"
+     ],
+     "id": "6372",
+     "squadra_reale": "Milan",
+     "avversario_reale": "Inter",
+     "in_casa": true,
+     "data_partita": "sab 31/10 20:45"
+    },
+    {
+     "tipo": "parato",
+     "titolo": "Rigore parato",
+     "verdetto": "Ha deciso la partita",
+     "testo": "Piedi sulla linea, tuffo giusto, pallone fuori: al replay la parata di Skorupski è regolare ed è quella che decide AFA SELECCION–Grodah 2‑3. Per RikyArma vale quanto un gol.",
+     "giocatore": "Skorupski",
+     "squadra": "Grodah",
+     "allenatori": [
+      "RikyArma"
+     ],
+     "id": "133",
+     "squadra_reale": "Bologna",
+     "avversario_reale": "Monza",
+     "in_casa": true,
+     "data_partita": "sab 31/10 15:00"
+    },
+    {
+     "tipo": "autogol",
+     "titolo": "Autogol",
+     "verdetto": "Regolare",
+     "testo": "Cross teso in area, Zappacosta prova a spazzare e la mette nella propria porta. Rivista l'azione, la deviazione è sua.",
+     "giocatore": "Zappacosta",
+     "squadra": "Grodah",
+     "allenatori": [
+      "RikyArma"
+     ],
+     "id": "554",
+     "squadra_reale": "Atalanta",
+     "avversario_reale": "Parma",
+     "in_casa": true,
+     "data_partita": "lun 2/11 20:45"
+    }
+   ],
+   "scartati": [],
+   "automatici": [
+    {
+     "tipo": "gol",
+     "titolo": "Gol decisivo",
+     "verdetto": "Ha deciso la partita",
+     "testo": "Tutto gira intorno a Laurientè: la doppietta decide stif dc–Atletico ma non troppo 1‑3. Nessun dubbio dalla moviola, e senza la doppietta Atletico ma non troppo avrebbe pareggiato.",
+     "giocatore": "Laurientè",
+     "squadra": "Atletico ma non troppo",
+     "allenatori": [
+      "Riccardo"
+     ],
+     "id": "6060",
+     "squadra_reale": "Sassuolo",
+     "avversario_reale": "Fiorentina",
+     "in_casa": true,
+     "data_partita": "lun 2/11 18:30"
+    },
+    {
+     "tipo": "gol",
+     "titolo": "Gol decisivo",
+     "verdetto": "Ha deciso la partita",
+     "testo": "Tutto gira intorno a Moreira: il gol decide AFA SELECCION–Grodah 2‑3. Nessun dubbio dalla moviola, e senza il gol Grodah avrebbe pareggiato.",
+     "giocatore": "Moreira",
+     "squadra": "Grodah",
+     "allenatori": [
+      "RikyArma"
+     ],
+     "id": "6372",
+     "squadra_reale": "Milan",
+     "avversario_reale": "Inter",
+     "in_casa": true,
+     "data_partita": "sab 31/10 20:45"
+    },
+    {
+     "tipo": "gol",
+     "titolo": "Gol decisivo",
+     "verdetto": "Ha deciso la partita",
+     "testo": "Al replay è tutto pulito: il gol di Osmajic decide AFA SELECCION–Grodah 2‑3. Senza, Grodah avrebbe pareggiato, e sulla panchina di RikyArma lo sanno bene.",
+     "giocatore": "Osmajic",
+     "squadra": "Grodah",
+     "allenatori": [
+      "RikyArma"
+     ],
+     "id": "7600",
+     "squadra_reale": "Genoa",
+     "avversario_reale": "Lecce",
+     "in_casa": false,
+     "data_partita": "dom 1/11 18:00"
+    },
+    {
+     "tipo": "parato",
+     "titolo": "Rigore parato",
+     "verdetto": "Ha deciso la partita",
+     "testo": "Piedi sulla linea, tuffo giusto, pallone fuori: al replay la parata di Skorupski è regolare ed è quella che decide AFA SELECCION–Grodah 2‑3. Per RikyArma vale quanto un gol.",
+     "giocatore": "Skorupski",
+     "squadra": "Grodah",
+     "allenatori": [
+      "RikyArma"
+     ],
+     "id": "133",
+     "squadra_reale": "Bologna",
+     "avversario_reale": "Monza",
+     "in_casa": true,
+     "data_partita": "sab 31/10 15:00"
+    },
+    {
+     "tipo": "autogol",
+     "titolo": "Autogol",
+     "verdetto": "Regolare",
+     "testo": "Cross teso in area, Zappacosta prova a spazzare e la mette nella propria porta. Rivista l'azione, la deviazione è sua.",
+     "giocatore": "Zappacosta",
+     "squadra": "Grodah",
+     "allenatori": [
+      "RikyArma"
+     ],
+     "id": "554",
+     "squadra_reale": "Atalanta",
+     "avversario_reale": "Parma",
+     "in_casa": true,
+     "data_partita": "lun 2/11 20:45"
+    },
+    {
+     "tipo": "sbagliato",
+     "titolo": "Rigore sbagliato",
+     "verdetto": "Regolare",
+     "testo": "Il dischetto tradisce Cutrone. Il fallo era evidente, il rigore anche, il gol no: dalle parti di DJ Cst Brazil si mastica amaro.",
+     "giocatore": "Cutrone",
+     "squadra": "Oranje VC",
+     "allenatori": [
+      "DJ Cst Brazil"
+     ],
+     "id": "2155",
+     "squadra_reale": "Monza",
+     "avversario_reale": "Bologna",
+     "in_casa": false,
+     "data_partita": "sab 31/10 15:00"
     }
    ]
   }
