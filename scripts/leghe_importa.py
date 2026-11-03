@@ -62,8 +62,11 @@ def main():
             tot = round(tot + (s.get("md") or 0), 2)
             if abs(tot - s["fp"]) > 0.01:
                 errori.append(f"{nome}: somma fantavoti {tot} diversa dal totale Leghe {s['fp']}")
-            if len(tit) != 11:
+            if len(tit) > 11 or (len(tit) < 11 and abs(tot - s["fp"]) > 0.01):
                 errori.append(f"{nome}: {len(tit)} giocatori in formazione finale invece di 11")
+            elif len(tit) < 11:
+                # Su Leghe si gioca in meno di 11 se in panchina non c'è un cambio valido: il totale che torna lo conferma
+                print(f"avviso: {nome} ha giocato in {len(tit)} (totale Leghe {s['fp']} confermato)")
             F[str(sa)][nome] = {"tit": tit, "pan": pan}
         nuove.append([m["A"]["s"], m["A"]["fp"], m["B"]["fp"], m["B"]["s"], f'{int(m["A"]["g"])}-{int(m["B"]["g"])}'])
     coppie = {frozenset((r[0], r[3])) for r in gl["m"]}
