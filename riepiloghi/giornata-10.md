@@ -1,6 +1,6 @@
 # Riepilogo giornata 10 di Serie A
 
-Lega O FANT A GIRRR. Dati aggiornati al 2026-11-02.
+Lega O FANT A GIRRR. Dati aggiornati al 2026-11-03.
 
 ## Partite della giornata
 
@@ -120,9 +120,9 @@ Punteggio: piu' e' alto, piu' conviene. Unisce valore e probabilita' di giocare.
 |---|---|---|---|---|
 | Perri | Torino | Titolare | Frosinone (T) | 56 |
 | Tornqvist | Monza | Titolare | Bologna (T) | 42 |
+| Daffara | Parma | Titolare | Atalanta (T) | 29 |
 | Thiam | Monza | Panchina | Bologna (T) | 21 |
 | Turati | Sassuolo | Titolare | Fiorentina (C) | 21 |
-| Daffara | Parma | Titolare | Atalanta (T) | 19 |
 
 ### Difensori
 
@@ -130,9 +130,9 @@ Punteggio: piu' e' alto, piu' conviene. Unisce valore e probabilita' di giocare.
 |---|---|---|---|---|
 | Hainaut | Venezia | Titolare | Como (T) | 84 |
 | Veiga D. | Lecce | Titolare | Genoa (C) | 74 |
+| Troilo | Parma | Titolare | Atalanta (T) | 73 |
 | Zè Pedro | Cagliari | Titolare | Lazio (T) | 73 |
 | Provstgaard | Lazio | Titolare | Cagliari (C) | 72 |
-| Abankwah | Udinese | Titolare | Roma (C) | 71 |
 
 ### Centrocampisti
 
@@ -150,9 +150,9 @@ Punteggio: piu' e' alto, piu' conviene. Unisce valore e probabilita' di giocare.
 |---|---|---|---|---|
 | Ghedjemis | Frosinone | Titolare | Torino (C) | 74 |
 | Robinson J. | Monza | Panchina | Bologna (T) | 66 |
+| Lontani | Parma | Titolare | Atalanta (T) | 52 |
 | Nzola | Cagliari | Titolare | Lazio (T) | 48 |
 | N'Dri | Lecce | Titolare | Genoa (C) | 43 |
-| Lontani | Parma | Titolare | Atalanta (T) | 41 |
 
 ## Correzioni da controllare
 
