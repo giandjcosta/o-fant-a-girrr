@@ -1,5 +1,5 @@
 {
-  "firma": "[{\"n\":1,\"m\":[[\"Mariana Coneja\",80.5,71,\"Grodah\",\"3-2\"],[\"Apo team\",77,70.5,\"The Blue brothers\",\"3-1\"],[\"Atletico ma non troppo\",67.5,89,\"Oranje VC\",\"1-5\"],[\"stif dc\",68.5,76,\"AFA SELECCION\",\"1-3\"],[\"Real Madrink\",78,74.5,\"WOA\",\"3-2\"]]},{\"n\":2,\"m\":[[\"The Blue brothers\",62.5,61.5,\"Mariana Coneja\",\"0-0\"],[\"AFA SELECCION\",74.5,74,\"Real Madrink\",\"2-2\"],[\"Oranje VC\",65.5,75.5,\"stif dc\",\"0-2\"],[\"Grodah\",74.5,69.5,\"Atletico ma non troppo\",\"2-1\"],[\"WOA\",78.5,80,\"Apo team\",\"3-3\"]]},{\"n\":3,\"m\":[[\"Mariana Coneja\",86,81.5,\"WOA\",\"5-4\"],[\"Apo team\",64.5,75,\"AFA SELECCION\",\"0-2\"],[\"Atletico ma non troppo\",60.5,73.5,\"The Blue brothers\",\"0-2\"],[\"Grodah\",70,72.5,\"Oranje VC\",\"1-2\"],[\"Real Madrink\",72,72,\"stif dc\",\"2-2\"]]},{\"n\":4,\"m\":[[\"The Blue brothers\",57.5,83.5,\"Grodah\",\"0-4\"],[\"stif dc\",82.5,67,\"Apo team\",\"4-1\"],[\"AFA SELECCION\",82,86,\"Mariana Coneja\",\"4-5\"],[\"Oranje VC\",72,75,\"Real Madrink\",\"2-2\"],[\"WOA\",69.5,72.5,\"Atletico ma non troppo\",\"1-2\"]]},{\"n\":5,\"m\":[[\"Mariana Coneja\",66,83.5,\"stif dc\",\"1-4\"],[\"Apo team\",74,73,\"Real Madrink\",\"2-2\"],[\"The Blue brothers\",76,60,\"Oranje VC\",\"3-0\"],[\"Atletico ma non troppo\",61,92,\"AFA SELECCION\",\"0-6\"],[\"Grodah\",81,75,\"WOA\",\"4-2\"]]}]",
+  "firma": "[{\"n\":1,\"m\":[[\"Mariana Coneja\",80.5,71,\"Grodah\",\"3-2\"],[\"Apo team\",77,70.5,\"The Blue brothers\",\"3-1\"],[\"Atletico ma non troppo\",67.5,89,\"Oranje VC\",\"1-5\"],[\"stif dc\",68.5,76,\"AFA SELECCION\",\"1-3\"],[\"Real Madrink\",78,74.5,\"WOA\",\"3-2\"]]},{\"n\":2,\"m\":[[\"The Blue brothers\",62.5,61.5,\"Mariana Coneja\",\"0-0\"],[\"AFA SELECCION\",74.5,74,\"Real Madrink\",\"2-2\"],[\"Oranje VC\",65.5,75.5,\"stif dc\",\"0-2\"],[\"Grodah\",74.5,69.5,\"Atletico ma non troppo\",\"2-1\"],[\"WOA\",78.5,80,\"Apo team\",\"3-3\"]]},{\"n\":3,\"m\":[[\"Mariana Coneja\",86,81.5,\"WOA\",\"5-4\"],[\"Apo team\",64.5,75,\"AFA SELECCION\",\"0-2\"],[\"Atletico ma non troppo\",60.5,73.5,\"The Blue brothers\",\"0-2\"],[\"Grodah\",70,72.5,\"Oranje VC\",\"1-2\"],[\"Real Madrink\",72,72,\"stif dc\",\"2-2\"]]},{\"n\":4,\"m\":[[\"The Blue brothers\",57.5,83.5,\"Grodah\",\"0-4\"],[\"stif dc\",82.5,67,\"Apo team\",\"4-1\"],[\"AFA SELECCION\",82,86,\"Mariana Coneja\",\"4-5\"],[\"Oranje VC\",72,75,\"Real Madrink\",\"2-2\"],[\"WOA\",69.5,72.5,\"Atletico ma non troppo\",\"1-2\"]]},{\"n\":5,\"m\":[[\"Mariana Coneja\",66,83.5,\"stif dc\",\"1-4\"],[\"Apo team\",74,73,\"Real Madrink\",\"2-2\"],[\"The Blue brothers\",76,60,\"Oranje VC\",\"3-0\"],[\"Atletico ma non troppo\",61,92,\"AFA SELECCION\",\"0-6\"],[\"Grodah\",81,75,\"WOA\",\"4-2\"]]},{\"n\":6,\"m\":[[\"stif dc\",68,76.5,\"Atletico ma non troppo\",\"1-3\"],[\"AFA SELECCION\",72,76.5,\"Grodah\",\"2-3\"],[\"Oranje VC\",68,69,\"Apo team\",\"1-1\"],[\"WOA\",81,74.5,\"The Blue brothers\",\"4-2\"],[\"Real Madrink\",63.5,81.5,\"Mariana Coneja\",\"0-4\"]]}]",
   "eventi": [
     {
       "priorita": 72,
@@ -87,7 +87,39 @@
         "pdf"
       ],
       "commento": "Alla 5ª giornata: WOA è 10ª. Il prossimo turno dirà se questa svolta avrà seguito."
+    },
+    {
+      "priorita": 97,
+      "tipo": "rimonta",
+      "squadra": "Grodah",
+      "titolo": "GRANDE RIMONTA",
+      "testo": "Grodah risale dalla 8ª alla 2ª posizione in tre giornate: quattro o più posti recuperati. La rimonta prende forma.",
+      "durata": 3,
+      "posizione": 2,
+      "prova": {
+        "giornata": 6,
+        "posizione_precedente": 4,
+        "posizione": 2,
+        "attesa": 5,
+        "serie": 3,
+        "altre_squadre": [],
+        "giornata_inizio": 3,
+        "posizione_inizio": 8,
+        "variazione": 6
+      },
+      "stagione": "2026/27",
+      "chiave": "zona:2026/27:G6:rimonta:Grodah",
+      "giornata": 6,
+      "canale": "tutti",
+      "canali": [
+        "radio",
+        "girrr_sport",
+        "giornale",
+        "commenti",
+        "pdf"
+      ],
+      "commento": "Alla 6ª giornata: Grodah è 2ª. Il prossimo turno dirà se questa svolta avrà seguito."
     }
   ],
-  "aggiornato": "2026-11-01"
+  "aggiornato": "2026-11-03"
 }

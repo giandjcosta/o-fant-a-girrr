@@ -1,133 +1,133 @@
 {
- "aggiornato": "2026-10-30",
- "giornata": 5,
+ "aggiornato": "2026-11-03",
+ "giornata": 6,
  "simulazioni": 8000,
  "nota": "Percentuali dopo la giornata 1 e adesso. Le forze delle squadre sono quelle di oggi anche per le giornate passate.",
  "squadre": {
   "The Blue brothers": {
    "s": [
-    0.7,
-    0.7
+    0.9,
+    0.8
    ],
    "p": [
-    6.4,
-    7.2
+    7.3,
+    7.0
    ],
    "u": [
-    11.4,
-    6.5
+    13.3,
+    11.0
    ]
   },
   "Apo team": {
    "s": [
-    2.4,
-    1.0
+    2.9,
+    0.9
    ],
    "p": [
-    17.1,
-    9.3
+    16.4,
+    7.3
    ],
    "u": [
-    4.0,
-    5.2
+    5.7,
+    10.6
    ]
   },
   "Grodah": {
    "s": [
-    8.5,
-    12.1
+    12.5,
+    24.5
    ],
    "p": [
-    40.6,
-    51.8
+    47.5,
+    68.4
    ],
    "u": [
-    1.3,
-    0.3
+    1.1,
+    0.2
    ]
   },
   "WOA": {
    "s": [
-    5.8,
-    1.2
+    8.8,
+    3.6
    ],
    "p": [
-    30.3,
-    11.5
+    40.0,
+    21.4
    ],
    "u": [
-    2.2,
-    4.7
+    1.5,
+    3.7
    ]
   },
   "Real Madrink": {
    "s": [
-    5.3,
-    3.4
+    3.4,
+    1.3
    ],
    "p": [
-    30.8,
-    23.7
+    19.3,
+    10.8
    ],
    "u": [
-    1.4,
-    1.6
+    4.9,
+    7.6
    ]
   },
   "stif dc": {
    "s": [
-    4.5,
-    10.1
+    3.0,
+    4.9
    ],
    "p": [
-    27.5,
-    46.8
+    20.1,
+    27.5
    ],
    "u": [
-    2.2,
-    0.5
+    4.1,
+    2.0
    ]
   },
   "Mariana Coneja": {
    "s": [
-    9.3,
-    11.4
+    14.3,
+    22.9
    ],
    "p": [
-    42.2,
-    49.3
+    51.0,
+    67.6
    ],
    "u": [
-    1.0,
-    0.4
+    0.7,
+    0.2
    ]
   },
   "AFA SELECCION": {
    "s": [
-    61.4,
-    58.8
+    52.5,
+    40.1
    ],
    "p": [
-    88.6,
-    89.0
+    84.1,
+    81.5
    ],
    "u": [
     0.0,
-    0.0
+    0.1
    ]
   },
   "Oranje VC": {
    "s": [
-    2.0,
-    1.2
+    1.8,
+    1.0
    ],
    "p": [
-    16.1,
-    11.2
+    13.5,
+    8.0
    ],
    "u": [
-    3.9,
-    4.7
+    7.4,
+    8.5
    ]
   },
   "Atletico ma non troppo": {
@@ -136,12 +136,12 @@
     0.0
    ],
    "p": [
-    0.2,
-    0.1
+    0.6,
+    0.5
    ],
    "u": [
-    72.5,
-    76.0
+    61.1,
+    56.1
    ]
   }
  },
@@ -149,196 +149,235 @@
   {
    "giornata": 1,
    "s": {
-    "The Blue brothers": 0.7,
-    "Apo team": 2.4,
-    "Grodah": 8.5,
-    "WOA": 5.8,
-    "Real Madrink": 5.3,
-    "stif dc": 4.5,
-    "Mariana Coneja": 9.3,
-    "AFA SELECCION": 61.4,
-    "Oranje VC": 2.0,
+    "The Blue brothers": 0.9,
+    "Apo team": 2.9,
+    "Grodah": 12.5,
+    "WOA": 8.8,
+    "Real Madrink": 3.4,
+    "stif dc": 3.0,
+    "Mariana Coneja": 14.3,
+    "AFA SELECCION": 52.5,
+    "Oranje VC": 1.8,
     "Atletico ma non troppo": 0.0
    },
    "p": {
-    "The Blue brothers": 6.4,
-    "Apo team": 17.1,
-    "Grodah": 40.6,
-    "WOA": 30.3,
-    "Real Madrink": 30.8,
-    "stif dc": 27.5,
-    "Mariana Coneja": 42.2,
-    "AFA SELECCION": 88.6,
-    "Oranje VC": 16.1,
-    "Atletico ma non troppo": 0.2
+    "The Blue brothers": 7.3,
+    "Apo team": 16.4,
+    "Grodah": 47.5,
+    "WOA": 40.0,
+    "Real Madrink": 19.3,
+    "stif dc": 20.1,
+    "Mariana Coneja": 51.0,
+    "AFA SELECCION": 84.1,
+    "Oranje VC": 13.5,
+    "Atletico ma non troppo": 0.6
    },
    "u": {
-    "The Blue brothers": 11.4,
-    "Apo team": 4.0,
-    "Grodah": 1.3,
-    "WOA": 2.2,
-    "Real Madrink": 1.4,
-    "stif dc": 2.2,
-    "Mariana Coneja": 1.0,
+    "The Blue brothers": 13.3,
+    "Apo team": 5.7,
+    "Grodah": 1.1,
+    "WOA": 1.5,
+    "Real Madrink": 4.9,
+    "stif dc": 4.1,
+    "Mariana Coneja": 0.7,
     "AFA SELECCION": 0.0,
-    "Oranje VC": 3.9,
-    "Atletico ma non troppo": 72.5
+    "Oranje VC": 7.4,
+    "Atletico ma non troppo": 61.1
    }
   },
   {
    "giornata": 2,
    "s": {
-    "The Blue brothers": 0.5,
-    "Apo team": 2.7,
-    "Grodah": 10.9,
-    "WOA": 5.0,
-    "Real Madrink": 5.4,
-    "stif dc": 6.5,
-    "Mariana Coneja": 8.6,
-    "AFA SELECCION": 58.5,
-    "Oranje VC": 1.8,
+    "The Blue brothers": 1.0,
+    "Apo team": 2.4,
+    "Grodah": 15.7,
+    "WOA": 8.5,
+    "Real Madrink": 3.2,
+    "stif dc": 4.9,
+    "Mariana Coneja": 13.5,
+    "AFA SELECCION": 49.2,
+    "Oranje VC": 1.6,
     "Atletico ma non troppo": 0.0
    },
    "p": {
-    "The Blue brothers": 5.6,
-    "Apo team": 16.8,
-    "Grodah": 45.2,
-    "WOA": 28.2,
-    "Real Madrink": 31.2,
-    "stif dc": 33.4,
-    "Mariana Coneja": 39.2,
-    "AFA SELECCION": 87.6,
-    "Oranje VC": 12.6,
-    "Atletico ma non troppo": 0.1
+    "The Blue brothers": 7.1,
+    "Apo team": 15.0,
+    "Grodah": 52.8,
+    "WOA": 37.8,
+    "Real Madrink": 19.5,
+    "stif dc": 25.8,
+    "Mariana Coneja": 47.9,
+    "AFA SELECCION": 82.9,
+    "Oranje VC": 10.8,
+    "Atletico ma non troppo": 0.3
    },
    "u": {
-    "The Blue brothers": 11.1,
-    "Apo team": 3.4,
-    "Grodah": 0.6,
-    "WOA": 1.7,
-    "Real Madrink": 1.4,
-    "stif dc": 1.1,
-    "Mariana Coneja": 1.0,
-    "AFA SELECCION": 0.0,
-    "Oranje VC": 5.0,
-    "Atletico ma non troppo": 74.7
+    "The Blue brothers": 11.7,
+    "Apo team": 4.9,
+    "Grodah": 0.5,
+    "WOA": 1.5,
+    "Real Madrink": 4.7,
+    "stif dc": 2.7,
+    "Mariana Coneja": 0.8,
+    "AFA SELECCION": 0.1,
+    "Oranje VC": 8.0,
+    "Atletico ma non troppo": 65.0
    }
   },
   {
    "giornata": 3,
    "s": {
-    "The Blue brothers": 0.7,
-    "Apo team": 1.4,
-    "Grodah": 7.4,
-    "WOA": 3.5,
-    "Real Madrink": 4.5,
-    "stif dc": 5.4,
-    "Mariana Coneja": 11.2,
-    "AFA SELECCION": 63.9,
-    "Oranje VC": 2.1,
+    "The Blue brothers": 1.2,
+    "Apo team": 2.0,
+    "Grodah": 10.2,
+    "WOA": 5.8,
+    "Real Madrink": 2.6,
+    "stif dc": 4.3,
+    "Mariana Coneja": 16.9,
+    "AFA SELECCION": 55.0,
+    "Oranje VC": 1.9,
     "Atletico ma non troppo": 0.0
    },
    "p": {
-    "The Blue brothers": 7.5,
-    "Apo team": 14.2,
-    "Grodah": 38.5,
-    "WOA": 22.5,
-    "Real Madrink": 29.1,
-    "stif dc": 31.4,
-    "Mariana Coneja": 49.9,
-    "AFA SELECCION": 90.5,
-    "Oranje VC": 16.2,
-    "Atletico ma non troppo": 0.1
+    "The Blue brothers": 9.4,
+    "Apo team": 12.3,
+    "Grodah": 45.3,
+    "WOA": 30.8,
+    "Real Madrink": 18.3,
+    "stif dc": 24.4,
+    "Mariana Coneja": 57.8,
+    "AFA SELECCION": 86.7,
+    "Oranje VC": 14.5,
+    "Atletico ma non troppo": 0.3
    },
    "u": {
-    "The Blue brothers": 6.8,
-    "Apo team": 3.6,
-    "Grodah": 0.7,
-    "WOA": 2.1,
-    "Real Madrink": 1.2,
-    "stif dc": 1.1,
+    "The Blue brothers": 7.6,
+    "Apo team": 5.9,
+    "Grodah": 0.9,
+    "WOA": 2.3,
+    "Real Madrink": 4.0,
+    "stif dc": 2.7,
     "Mariana Coneja": 0.4,
-    "AFA SELECCION": 0.0,
-    "Oranje VC": 2.6,
-    "Atletico ma non troppo": 81.3
+    "AFA SELECCION": 0.1,
+    "Oranje VC": 4.6,
+    "Atletico ma non troppo": 71.4
    }
   },
   {
    "giornata": 4,
    "s": {
-    "The Blue brothers": 0.6,
+    "The Blue brothers": 0.7,
     "Apo team": 1.4,
-    "Grodah": 10.0,
-    "WOA": 2.4,
-    "Real Madrink": 4.2,
-    "stif dc": 7.8,
-    "Mariana Coneja": 16.9,
-    "AFA SELECCION": 54.6,
-    "Oranje VC": 2.1,
+    "Grodah": 14.9,
+    "WOA": 3.8,
+    "Real Madrink": 2.5,
+    "stif dc": 5.4,
+    "Mariana Coneja": 24.5,
+    "AFA SELECCION": 44.8,
+    "Oranje VC": 2.0,
     "Atletico ma non troppo": 0.0
    },
    "p": {
-    "The Blue brothers": 5.2,
-    "Apo team": 10.3,
-    "Grodah": 45.2,
-    "WOA": 16.7,
-    "Real Madrink": 26.3,
-    "stif dc": 36.7,
-    "Mariana Coneja": 58.0,
-    "AFA SELECCION": 87.0,
-    "Oranje VC": 14.7,
-    "Atletico ma non troppo": 0.1
+    "The Blue brothers": 6.4,
+    "Apo team": 9.9,
+    "Grodah": 52.3,
+    "WOA": 21.3,
+    "Real Madrink": 16.6,
+    "stif dc": 30.4,
+    "Mariana Coneja": 67.3,
+    "AFA SELECCION": 82.3,
+    "Oranje VC": 13.1,
+    "Atletico ma non troppo": 0.5
    },
    "u": {
-    "The Blue brothers": 10.8,
-    "Apo team": 5.5,
-    "Grodah": 0.6,
-    "WOA": 3.8,
-    "Real Madrink": 1.6,
-    "stif dc": 0.9,
-    "Mariana Coneja": 0.3,
-    "AFA SELECCION": 0.0,
-    "Oranje VC": 3.9,
-    "Atletico ma non troppo": 72.4
+    "The Blue brothers": 11.4,
+    "Apo team": 9.1,
+    "Grodah": 0.7,
+    "WOA": 3.5,
+    "Real Madrink": 4.3,
+    "stif dc": 2.1,
+    "Mariana Coneja": 0.4,
+    "AFA SELECCION": 0.1,
+    "Oranje VC": 6.3,
+    "Atletico ma non troppo": 62.1
    }
   },
   {
    "giornata": 5,
    "s": {
-    "The Blue brothers": 0.7,
-    "Apo team": 1.0,
-    "Grodah": 12.1,
-    "WOA": 1.2,
-    "Real Madrink": 3.4,
-    "stif dc": 10.1,
-    "Mariana Coneja": 11.4,
-    "AFA SELECCION": 58.8,
-    "Oranje VC": 1.2,
+    "The Blue brothers": 1.1,
+    "Apo team": 1.1,
+    "Grodah": 17.1,
+    "WOA": 2.3,
+    "Real Madrink": 1.8,
+    "stif dc": 8.0,
+    "Mariana Coneja": 17.5,
+    "AFA SELECCION": 49.6,
+    "Oranje VC": 1.4,
     "Atletico ma non troppo": 0.0
    },
    "p": {
-    "The Blue brothers": 7.2,
-    "Apo team": 9.3,
-    "Grodah": 51.8,
-    "WOA": 11.5,
-    "Real Madrink": 23.7,
-    "stif dc": 46.8,
-    "Mariana Coneja": 49.3,
-    "AFA SELECCION": 89.0,
-    "Oranje VC": 11.2,
-    "Atletico ma non troppo": 0.1
+    "The Blue brothers": 9.6,
+    "Apo team": 8.6,
+    "Grodah": 58.8,
+    "WOA": 16.5,
+    "Real Madrink": 14.7,
+    "stif dc": 36.9,
+    "Mariana Coneja": 59.4,
+    "AFA SELECCION": 85.9,
+    "Oranje VC": 9.5,
+    "Atletico ma non troppo": 0.3
    },
    "u": {
-    "The Blue brothers": 6.5,
-    "Apo team": 5.2,
+    "The Blue brothers": 7.8,
+    "Apo team": 9.0,
     "Grodah": 0.3,
-    "WOA": 4.7,
-    "Real Madrink": 1.6,
-    "stif dc": 0.5,
-    "Mariana Coneja": 0.4,
-    "AFA SELECCION": 0.0,
-    "Oranje VC": 4.7,
-    "Atletico ma non troppo": 76.0
+    "WOA": 3.9,
+    "Real Madrink": 4.8,
+    "stif dc": 1.1,
+    "Mariana Coneja": 0.3,
+    "AFA SELECCION": 0.1,
+    "Oranje VC": 7.3,
+    "Atletico ma non troppo": 65.4
+   }
+  },
+  {
+   "giornata": 6,
+   "s": {
+    "The Blue brothers": 0.8,
+    "Apo team": 0.9,
+    "Grodah": 24.5,
+    "WOA": 3.6,
+    "Real Madrink": 1.3,
+    "stif dc": 4.9,
+    "Mariana Coneja": 22.9,
+    "AFA SELECCION": 40.1,
+    "Oranje VC": 1.0,
+    "Atletico ma non troppo": 0.0
+   },
+   "p": {
+    "The Blue brothers": 7.0,
+    "Apo team": 7.3,
+    "Grodah": 68.4,
+    "WOA": 21.4,
+    "Real Madrink": 10.8,
+    "stif dc": 27.5,
+    "Mariana Coneja": 67.6,
+    "AFA SELECCION": 81.5,
+    "Oranje VC": 8.0,
+    "Atletico ma non troppo": 0.5
+   },
+   "u": {
+    "The Blue brothers": 11.0,
+    "Apo team": 10.6,
+    "Grodah": 0.2,
+    "WOA": 3.7,
+    "Real Madrink": 7.6,
+    "stif dc": 2.0,
+    "Mariana Coneja": 0.2,
+    "AFA SELECCION": 0.1,
+    "Oranje VC": 8.5,
+    "Atletico ma non troppo": 56.1
    }
   }
  ]

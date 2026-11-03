@@ -1,12 +1,12 @@
 {
- "aggiornato": "2026-10-30",
- "giornata": 5,
+ "aggiornato": "2026-11-03",
+ "giornata": 6,
  "squadre": {
   "The Blue brothers": {
    "posizione": 7,
-   "giornate": 5,
+   "giornate": 6,
    "punti": 7,
-   "fiducia": 39,
+   "fiducia": 38,
    "aspettativa": 2,
    "obiettivo": "Chiudere tra le prime due",
    "storico": [
@@ -34,6 +34,11 @@
      "giornata": 5,
      "posizione": 7,
      "fiducia": 39
+    },
+    {
+     "giornata": 6,
+     "posizione": 7,
+     "fiducia": 38
     }
    ],
    "promesse": [],
@@ -41,9 +46,9 @@
   },
   "Apo team": {
    "posizione": 8,
-   "giornate": 5,
-   "punti": 5,
-   "fiducia": 36,
+   "giornate": 6,
+   "punti": 6,
+   "fiducia": 34,
    "aspettativa": 3,
    "obiettivo": "Tornare sul podio dopo gli ultimi anni",
    "storico": [
@@ -71,9 +76,21 @@
      "giornata": 5,
      "posizione": 8,
      "fiducia": 36
+    },
+    {
+     "giornata": 6,
+     "posizione": 8,
+     "fiducia": 34
     }
    ],
    "promesse": [
+    {
+     "giornata": 6,
+     "promessa": "Se non dovessimo vincere questa giornata probabilmente salterà qualche testa",
+     "pesa": 1,
+     "esito": "s",
+     "commento": ""
+    },
     {
      "giornata": 4,
      "promessa": "Sarà sicuramente una bella partita, che vinca il migliore",
@@ -85,10 +102,10 @@
    "promesse_tradite": 1
   },
   "AFA SELECCION": {
-   "posizione": 1,
-   "giornate": 5,
+   "posizione": 3,
+   "giornate": 6,
    "punti": 10,
-   "fiducia": 57,
+   "fiducia": 51,
    "aspettativa": 3,
    "obiettivo": "Chiudere sul podio",
    "storico": [
@@ -116,16 +133,21 @@
      "giornata": 5,
      "posizione": 1,
      "fiducia": 57
+    },
+    {
+     "giornata": 6,
+     "posizione": 3,
+     "fiducia": 51
     }
    ],
    "promesse": [],
    "promesse_tradite": 0
   },
   "Oranje VC": {
-   "posizione": 6,
-   "giornate": 5,
-   "punti": 7,
-   "fiducia": 44,
+   "posizione": 5,
+   "giornate": 6,
+   "punti": 8,
+   "fiducia": 46,
    "aspettativa": 4,
    "obiettivo": "Chiudere tra le prime 4",
    "storico": [
@@ -153,6 +175,11 @@
      "giornata": 5,
      "posizione": 6,
      "fiducia": 44
+    },
+    {
+     "giornata": 6,
+     "posizione": 5,
+     "fiducia": 46
     }
    ],
    "promesse": [
@@ -167,10 +194,10 @@
    "promesse_tradite": 0
   },
   "Real Madrink": {
-   "posizione": 5,
-   "giornate": 5,
+   "posizione": 6,
+   "giornate": 6,
    "punti": 7,
-   "fiducia": 50,
+   "fiducia": 47,
    "aspettativa": 5,
    "obiettivo": "Entrare nella metà alta",
    "storico": [
@@ -198,16 +225,21 @@
      "giornata": 5,
      "posizione": 5,
      "fiducia": 50
+    },
+    {
+     "giornata": 6,
+     "posizione": 6,
+     "fiducia": 47
     }
    ],
    "promesse": [],
    "promesse_tradite": 0
   },
   "Grodah": {
-   "posizione": 4,
-   "giornate": 5,
-   "punti": 9,
-   "fiducia": 53,
+   "posizione": 2,
+   "giornate": 6,
+   "punti": 12,
+   "fiducia": 59,
    "aspettativa": 5,
    "obiettivo": "Entrare nella metà alta",
    "storico": [
@@ -235,6 +267,11 @@
      "giornata": 5,
      "posizione": 4,
      "fiducia": 53
+    },
+    {
+     "giornata": 6,
+     "posizione": 2,
+     "fiducia": 59
     }
    ],
    "promesse": [],
@@ -242,8 +279,8 @@
   },
   "WOA": {
    "posizione": 10,
-   "giornate": 5,
-   "punti": 1,
+   "giornate": 6,
+   "punti": 4,
    "fiducia": 28,
    "aspettativa": 2,
    "obiettivo": "Ripetersi: difendere il titolo",
@@ -272,16 +309,21 @@
      "giornata": 5,
      "posizione": 10,
      "fiducia": 28
+    },
+    {
+     "giornata": 6,
+     "posizione": 10,
+     "fiducia": 28
     }
    ],
    "promesse": [],
    "promesse_tradite": 0
   },
   "Mariana Coneja": {
-   "posizione": 3,
-   "giornate": 5,
-   "punti": 10,
-   "fiducia": 57,
+   "posizione": 1,
+   "giornate": 6,
+   "punti": 13,
+   "fiducia": 64,
    "aspettativa": 5,
    "obiettivo": "Puntare alla parte alta",
    "storico": [
@@ -309,16 +351,21 @@
      "giornata": 5,
      "posizione": 3,
      "fiducia": 57
+    },
+    {
+     "giornata": 6,
+     "posizione": 1,
+     "fiducia": 64
     }
    ],
    "promesse": [],
    "promesse_tradite": 0
   },
   "stif dc": {
-   "posizione": 2,
-   "giornate": 5,
+   "posizione": 4,
+   "giornate": 6,
    "punti": 10,
-   "fiducia": 59,
+   "fiducia": 53,
    "aspettativa": 5,
    "obiettivo": "Puntare alla parte alta",
    "storico": [
@@ -346,6 +393,11 @@
      "giornata": 5,
      "posizione": 2,
      "fiducia": 59
+    },
+    {
+     "giornata": 6,
+     "posizione": 4,
+     "fiducia": 53
     }
    ],
    "promesse": [],
@@ -353,9 +405,9 @@
   },
   "Atletico ma non troppo": {
    "posizione": 9,
-   "giornate": 5,
-   "punti": 3,
-   "fiducia": 41,
+   "giornate": 6,
+   "punti": 6,
+   "fiducia": 42,
    "aspettativa": 6,
    "obiettivo": "Salire gradualmente verso l'alto",
    "storico": [
@@ -383,6 +435,11 @@
      "giornata": 5,
      "posizione": 9,
      "fiducia": 41
+    },
+    {
+     "giornata": 6,
+     "posizione": 9,
+     "fiducia": 42
     }
    ],
    "promesse": [],

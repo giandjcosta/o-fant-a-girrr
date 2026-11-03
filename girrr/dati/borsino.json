@@ -1,5 +1,5 @@
 {
- "aggiornato": "2026-10-30",
+ "aggiornato": "2026-11-03",
  "giornate": [
   1,
   2,
@@ -9,13 +9,14 @@
   6,
   7,
   8,
-  9
+  9,
+  10
  ],
  "media_ruolo": {
-  "P": 4.69,
-  "D": 6.02,
-  "C": 6.41,
-  "A": 6.84
+  "P": 4.68,
+  "D": 6.01,
+  "C": 6.42,
+  "A": 6.83
  },
  "squadre": {
   "The Blue brothers": [
@@ -25,19 +26,20 @@
     "club": "Roma",
     "ruolo": "A",
     "pagato": 200,
-    "valore": 63.8,
-    "variazione": 27.8,
+    "valore": 72.0,
+    "variazione": 36.0,
     "serie": [
      36.0,
-     59.0,
+     59.1,
      72.0,
      68.4,
      72.0,
      68.4,
-     54.7,
-     54.7,
-     53.6,
-     63.8
+     54.8,
+     54.8,
+     53.7,
+     63.9,
+     72.0
     ],
     "consiglio": "Tieni: il valore è in crescita."
    },
@@ -56,7 +58,8 @@
      25.5,
      24.2,
      33.2,
-     31.5,
+     31.6,
+     36.0,
      36.0,
      36.0,
      36.0
@@ -69,19 +72,20 @@
     "club": "Torino",
     "ruolo": "A",
     "pagato": 18,
-    "valore": 28.4,
-    "variazione": 12.4,
+    "valore": 26.2,
+    "variazione": 10.2,
     "serie": [
      16.0,
      19.0,
      18.1,
-     21.5,
-     21.5,
-     21.5,
-     20.4,
-     24.3,
-     23.8,
-     28.4
+     21.6,
+     21.6,
+     21.6,
+     20.5,
+     24.4,
+     23.9,
+     28.5,
+     26.2
     ],
     "consiglio": "Tieni: il valore è in crescita."
    },
@@ -103,6 +107,7 @@
      9.5,
      11.8,
      11.8,
+     15.7,
      15.7
     ],
     "consiglio": "Tieni: il valore è in crescita."
@@ -113,19 +118,20 @@
     "club": "Udinese",
     "ruolo": "A",
     "pagato": 41,
-    "valore": 10.8,
-    "variazione": -5.2,
+    "valore": 9.7,
+    "variazione": -6.3,
     "serie": [
      16.0,
      16.0,
      15.7,
      16.3,
      16.5,
-     15.6,
+     15.7,
      14.9,
-     13.2,
+     13.3,
      11.8,
-     10.8
+     10.9,
+     9.7
     ],
     "consiglio": "Valuta di venderlo: il valore cala da qualche giornata."
    },
@@ -142,7 +148,8 @@
      10.1,
      8.6,
      8.4,
-     8.5,
+     8.4,
+     8.0,
      8.0,
      8.0,
      8.0,
@@ -152,90 +159,25 @@
     "consiglio": "Tieni: il valore è in crescita."
    },
    {
-    "id": 6989,
-    "nome": "Tiago Gabriel",
-    "club": "Lecce",
-    "ruolo": "D",
-    "pagato": 6,
-    "valore": 14.7,
-    "variazione": 2.7,
-    "serie": [
-     12.0,
-     14.9,
-     14.0,
-     13.1,
-     16.2,
-     16.2,
-     15.7,
-     16.7,
-     16.2,
-     14.7
-    ],
-    "consiglio": "Valuta di venderlo: il valore cala da qualche giornata."
-   },
-   {
     "id": 7547,
     "nome": "Kevin Carlos",
     "club": "Cagliari",
     "ruolo": "A",
     "pagato": 1,
-    "valore": 5.5,
-    "variazione": -2.5,
+    "valore": 5.6,
+    "variazione": -2.4,
     "serie": [
      8.0,
      8.0,
      7.1,
      7.1,
      7.1,
-     6.5,
-     6.5,
+     6.6,
+     6.6,
      6.0,
-     5.5,
-     5.5
-    ],
-    "consiglio": "Valuta di venderlo: il valore cala da qualche giornata."
-   },
-   {
-    "id": 2766,
-    "nome": "Zaniolo",
-    "club": "Udinese",
-    "ruolo": "C",
-    "pagato": 25,
-    "valore": 9.9,
-    "variazione": -2.1,
-    "serie": [
-     12.0,
-     12.1,
-     12.1,
-     12.1,
-     12.1,
-     11.0,
-     11.0,
-     11.0,
-     10.4,
-     9.9
-    ],
-    "consiglio": "Valuta di venderlo: il valore cala da qualche giornata."
-   },
-   {
-    "id": 4431,
-    "nome": "Carnesecchi",
-    "club": "Atalanta",
-    "ruolo": "P",
-    "pagato": 40,
-    "valore": 14.9,
-    "variazione": 1.9,
-    "serie": [
-     13.0,
-     14.4,
-     16.4,
-     16.7,
-     16.5,
-     16.3,
-     16.7,
-     18.5,
-     15.5,
-     14.9
+     5.6,
+     5.6,
+     5.6
     ],
     "consiglio": "Valuta di venderlo: il valore cala da qualche giornata."
    },
@@ -257,28 +199,7 @@
      5.3,
      4.8,
      4.1,
-     4.1
-    ],
-    "consiglio": "Valuta di venderlo: il valore cala da qualche giornata."
-   },
-   {
-    "id": 6294,
-    "nome": "Ndour",
-    "club": "Fiorentina",
-    "ruolo": "C",
-    "pagato": 3,
-    "valore": 4.1,
-    "variazione": -1.9,
-    "serie": [
-     6.0,
-     5.7,
-     5.0,
-     4.8,
-     4.8,
-     5.1,
-     4.8,
-     4.4,
-     4.3,
+     4.1,
      4.1
     ],
     "consiglio": "Valuta di venderlo: il valore cala da qualche giornata."
@@ -301,9 +222,79 @@
      3.1,
      2.2,
      2.2,
+     2.2,
      2.2
     ],
+    "consiglio": "Tieni: il valore è in crescita."
+   },
+   {
+    "id": 6989,
+    "nome": "Tiago Gabriel",
+    "club": "Lecce",
+    "ruolo": "D",
+    "pagato": 6,
+    "valore": 13.8,
+    "variazione": 1.8,
+    "serie": [
+     12.0,
+     14.9,
+     14.0,
+     13.1,
+     16.3,
+     16.3,
+     15.8,
+     16.7,
+     16.2,
+     14.7,
+     13.8
+    ],
     "consiglio": "Valuta di venderlo: il valore cala da qualche giornata."
+   },
+   {
+    "id": 6294,
+    "nome": "Ndour",
+    "club": "Fiorentina",
+    "ruolo": "C",
+    "pagato": 3,
+    "valore": 4.3,
+    "variazione": -1.7,
+    "serie": [
+     6.0,
+     5.7,
+     5.0,
+     4.7,
+     4.8,
+     5.1,
+     4.8,
+     4.4,
+     4.3,
+     4.0,
+     4.3
+    ],
+    "consiglio": "Valuta di venderlo: il valore cala da qualche giornata."
+   },
+   {
+    "id": 2120,
+    "nome": "Bastoni",
+    "club": "Inter",
+    "ruolo": "D",
+    "pagato": 32,
+    "valore": 11.3,
+    "variazione": 1.3,
+    "serie": [
+     10.0,
+     10.0,
+     10.3,
+     10.0,
+     10.3,
+     9.6,
+     9.6,
+     9.6,
+     9.6,
+     9.3,
+     11.3
+    ],
+    "consiglio": "Tieni: il valore è in crescita."
    },
    {
     "id": 7410,
@@ -323,6 +314,7 @@
      3.3,
      3.1,
      2.8,
+     2.8,
      2.8
     ],
     "consiglio": "Valuta di venderlo: il valore cala da qualche giornata."
@@ -333,21 +325,22 @@
     "club": "Juventus",
     "ruolo": "C",
     "pagato": 29,
-    "valore": 15.1,
-    "variazione": 1.1,
+    "valore": 15.0,
+    "variazione": 1.0,
     "serie": [
      14.0,
      14.9,
      15.0,
      15.1,
-     14.3,
+     14.2,
      16.9,
-     16.0,
-     15.1,
-     15.1,
-     15.1
+     15.9,
+     15.0,
+     15.0,
+     15.0,
+     15.0
     ],
-    "consiglio": "Valuta di venderlo: il valore cala da qualche giornata."
+    "consiglio": "Tieni: il valore è in crescita."
    },
    {
     "id": 6956,
@@ -367,31 +360,10 @@
      9.0,
      8.2,
      8.2,
+     8.2,
      8.2
     ],
-    "consiglio": "Valuta di venderlo: il valore cala da qualche giornata."
-   },
-   {
-    "id": 2120,
-    "nome": "Bastoni",
-    "club": "Inter",
-    "ruolo": "D",
-    "pagato": 32,
-    "valore": 9.3,
-    "variazione": -0.7,
-    "serie": [
-     10.0,
-     10.0,
-     10.3,
-     10.0,
-     10.3,
-     9.6,
-     9.6,
-     9.6,
-     9.6,
-     9.3
-    ],
-    "consiglio": "Valuta di venderlo: il valore cala da qualche giornata."
+    "consiglio": "Tieni: il valore è in crescita."
    },
    {
     "id": 4409,
@@ -403,17 +375,41 @@
     "variazione": 0.6,
     "serie": [
      12.0,
-     12.3,
+     12.4,
      13.1,
      12.7,
-     13.0,
+     13.1,
      13.4,
      13.4,
+     12.6,
      12.6,
      12.6,
      12.6
     ],
-    "consiglio": "Valuta di venderlo: il valore cala da qualche giornata."
+    "consiglio": "Tieni: il valore è in crescita."
+   },
+   {
+    "id": 2766,
+    "nome": "Zaniolo",
+    "club": "Udinese",
+    "ruolo": "C",
+    "pagato": 25,
+    "valore": 11.4,
+    "variazione": -0.6,
+    "serie": [
+     12.0,
+     12.1,
+     12.1,
+     12.1,
+     12.1,
+     11.0,
+     11.0,
+     11.0,
+     10.4,
+     9.8,
+     11.4
+    ],
+    "consiglio": "Tieni: il valore è in crescita."
    },
    {
     "id": 5888,
@@ -433,7 +429,31 @@
      5.5,
      5.4,
      5.4,
+     5.4,
      5.4
+    ],
+    "consiglio": "Tieni: il valore è in crescita."
+   },
+   {
+    "id": 5878,
+    "nome": "Colpani",
+    "club": "Monza",
+    "ruolo": "C",
+    "pagato": 1,
+    "valore": 8.5,
+    "variazione": -0.5,
+    "serie": [
+     9.0,
+     8.2,
+     9.8,
+     9.5,
+     9.0,
+     9.0,
+     9.0,
+     9.0,
+     9.0,
+     8.5,
+     8.5
     ],
     "consiglio": "Valuta di venderlo: il valore cala da qualche giornata."
    },
@@ -450,56 +470,13 @@
      10.1,
      9.8,
      9.6,
+     11.6,
      11.7,
      11.7,
      11.7,
      11.7,
-     11.7,
+     11.4,
      11.4
-    ],
-    "consiglio": "Valuta di venderlo: il valore cala da qualche giornata."
-   },
-   {
-    "id": 5878,
-    "nome": "Colpani",
-    "club": "Monza",
-    "ruolo": "C",
-    "pagato": 1,
-    "valore": 8.6,
-    "variazione": -0.4,
-    "serie": [
-     9.0,
-     8.2,
-     9.8,
-     9.5,
-     9.0,
-     9.0,
-     9.0,
-     9.1,
-     9.1,
-     8.6
-    ],
-    "consiglio": "Valuta di venderlo: il valore cala da qualche giornata."
-   },
-   {
-    "id": 6642,
-    "nome": "Coco",
-    "club": "Torino",
-    "ruolo": "D",
-    "pagato": 1,
-    "valore": 7.7,
-    "variazione": -0.3,
-    "serie": [
-     8.0,
-     7.8,
-     7.7,
-     7.7,
-     7.7,
-     7.7,
-     7.9,
-     8.2,
-     8.2,
-     7.7
     ],
     "consiglio": "Valuta di venderlo: il valore cala da qualche giornata."
    },
@@ -513,17 +490,18 @@
     "variazione": 0.3,
     "serie": [
      11.0,
-     12.1,
+     12.0,
      12.1,
      12.9,
      12.6,
-     12.3,
+     12.2,
      11.6,
+     11.3,
      11.3,
      11.3,
      11.3
     ],
-    "consiglio": "Valuta di venderlo: il valore cala da qualche giornata."
+    "consiglio": "Tieni: il valore è in crescita."
    },
    {
     "id": 7272,
@@ -543,9 +521,56 @@
      5.8,
      5.8,
      5.8,
+     5.8,
      5.8
     ],
     "consiglio": "Tieni: il valore è in crescita."
+   },
+   {
+    "id": 6642,
+    "nome": "Coco",
+    "club": "Torino",
+    "ruolo": "D",
+    "pagato": 1,
+    "valore": 7.9,
+    "variazione": -0.1,
+    "serie": [
+     8.0,
+     7.8,
+     7.7,
+     7.7,
+     7.7,
+     7.7,
+     8.0,
+     8.2,
+     8.2,
+     7.7,
+     7.9
+    ],
+    "consiglio": "Valuta di venderlo: il valore cala da qualche giornata."
+   },
+   {
+    "id": 4431,
+    "nome": "Carnesecchi",
+    "club": "Atalanta",
+    "ruolo": "P",
+    "pagato": 40,
+    "valore": 13.0,
+    "variazione": 0.0,
+    "serie": [
+     13.0,
+     14.4,
+     16.4,
+     16.8,
+     16.6,
+     16.4,
+     16.7,
+     18.6,
+     15.6,
+     14.9,
+     13.0
+    ],
+    "consiglio": "Valuta di venderlo: il valore cala da qualche giornata."
    },
    {
     "id": 4,
@@ -565,6 +590,7 @@
      1.0,
      1.0,
      1.0,
+     1.0,
      1.0
     ],
     "consiglio": "Tieni: il valore è in crescita."
@@ -572,26 +598,50 @@
   ],
   "Apo team": [
    {
+    "id": 7556,
+    "nome": "Mora",
+    "club": "Roma",
+    "ruolo": "C",
+    "pagato": 42,
+    "valore": 35.0,
+    "variazione": 14.0,
+    "serie": [
+     21.0,
+     21.1,
+     25.6,
+     25.0,
+     24.4,
+     24.4,
+     24.4,
+     23.7,
+     23.2,
+     28.8,
+     35.0
+    ],
+    "consiglio": "Tieni: il valore è in crescita."
+   },
+   {
     "id": 2517,
     "nome": "De Bruyne",
     "club": "Napoli",
     "ruolo": "C",
     "pagato": 41,
-    "valore": 34.4,
-    "variazione": 12.4,
+    "valore": 33.3,
+    "variazione": 11.3,
     "serie": [
      22.0,
      28.7,
-     28.9,
-     28.2,
-     28.3,
-     26.8,
-     38.2,
+     28.8,
      28.1,
      28.3,
-     34.4
+     26.7,
+     38.0,
+     28.0,
+     28.1,
+     34.1,
+     33.3
     ],
-    "consiglio": "Valuta di venderlo: il valore cala da qualche giornata."
+    "consiglio": "Tieni: il valore è in crescita."
    },
    {
     "id": 632,
@@ -599,41 +649,20 @@
     "club": "Lazio",
     "ruolo": "C",
     "pagato": 43,
-    "valore": 30.4,
-    "variazione": 9.4,
+    "valore": 29.4,
+    "variazione": 8.4,
     "serie": [
      21.0,
      20.5,
-     19.4,
+     19.3,
      20.6,
-     21.4,
-     26.0,
-     25.4,
-     26.3,
-     25.6,
-     30.4
-    ],
-    "consiglio": "Tieni: il valore è in crescita."
-   },
-   {
-    "id": 7556,
-    "nome": "Mora",
-    "club": "Roma",
-    "ruolo": "C",
-    "pagato": 42,
-    "valore": 29.0,
-    "variazione": 8.0,
-    "serie": [
-     21.0,
-     21.1,
-     25.7,
-     25.0,
-     24.4,
-     24.4,
-     24.4,
-     23.8,
-     23.3,
-     29.0
+     21.3,
+     25.9,
+     25.2,
+     26.1,
+     25.5,
+     30.2,
+     29.4
     ],
     "consiglio": "Tieni: il valore è in crescita."
    },
@@ -643,8 +672,8 @@
     "club": "Sassuolo",
     "ruolo": "A",
     "pagato": 17,
-    "valore": 23.1,
-    "variazione": 6.1,
+    "valore": 24.1,
+    "variazione": 7.1,
     "serie": [
      17.0,
      17.0,
@@ -653,11 +682,35 @@
      20.7,
      19.1,
      18.7,
-     19.4,
-     19.4,
-     23.1
+     19.5,
+     19.5,
+     23.2,
+     24.1
     ],
     "consiglio": "Tieni: il valore è in crescita."
+   },
+   {
+    "id": 6397,
+    "nome": "Ramos G.",
+    "club": "Milan",
+    "ruolo": "A",
+    "pagato": 120,
+    "valore": 13.5,
+    "variazione": -6.5,
+    "serie": [
+     20.0,
+     19.0,
+     22.6,
+     20.2,
+     18.6,
+     19.9,
+     18.3,
+     17.9,
+     16.0,
+     14.2,
+     13.5
+    ],
+    "consiglio": "Valuta di venderlo: il valore cala da qualche giornata."
    },
    {
     "id": 2788,
@@ -673,33 +726,12 @@
      23.5,
      23.5,
      22.1,
+     27.4,
      27.3,
-     27.3,
-     24.8,
-     25.5,
+     24.9,
+     25.6,
+     24.0,
      24.0
-    ],
-    "consiglio": "Valuta di venderlo: il valore cala da qualche giornata."
-   },
-   {
-    "id": 6397,
-    "nome": "Ramos G.",
-    "club": "Milan",
-    "ruolo": "A",
-    "pagato": 120,
-    "valore": 14.1,
-    "variazione": -5.9,
-    "serie": [
-     20.0,
-     19.0,
-     22.6,
-     20.1,
-     18.5,
-     19.8,
-     18.2,
-     17.8,
-     15.9,
-     14.1
     ],
     "consiglio": "Valuta di venderlo: il valore cala da qualche giornata."
    },
@@ -709,8 +741,8 @@
     "club": "Sassuolo",
     "ruolo": "A",
     "pagato": 31,
-    "valore": 14.4,
-    "variazione": -3.6,
+    "valore": 13.3,
+    "variazione": -4.7,
     "serie": [
      18.0,
      18.0,
@@ -718,32 +750,11 @@
      21.0,
      19.3,
      17.8,
-     15.8,
-     18.8,
-     16.7,
-     14.4
-    ],
-    "consiglio": "Valuta di venderlo: il valore cala da qualche giornata."
-   },
-   {
-    "id": 6217,
-    "nome": "Bisseck",
-    "club": "Inter",
-    "ruolo": "D",
-    "pagato": 23,
-    "valore": 17.9,
-    "variazione": 2.9,
-    "serie": [
-     15.0,
-     18.6,
-     19.1,
-     19.7,
-     19.7,
-     18.5,
-     18.5,
-     18.4,
-     18.4,
-     17.9
+     15.9,
+     18.9,
+     16.8,
+     14.5,
+     13.3
     ],
     "consiglio": "Valuta di venderlo: il valore cala da qualche giornata."
    },
@@ -753,19 +764,43 @@
     "club": "Venezia",
     "ruolo": "A",
     "pagato": 4,
-    "valore": 11.1,
-    "variazione": -2.9,
+    "valore": 10.3,
+    "variazione": -3.7,
     "serie": [
      14.0,
      12.9,
-     11.8,
+     11.9,
      10.9,
-     12.6,
-     11.2,
-     10.3,
-     12.3,
+     12.7,
      11.3,
-     11.1
+     10.4,
+     12.4,
+     11.4,
+     11.2,
+     10.3
+    ],
+    "consiglio": "Valuta di venderlo: il valore cala da qualche giornata."
+   },
+   {
+    "id": 5687,
+    "nome": "Vlasic",
+    "club": "Torino",
+    "ruolo": "C",
+    "pagato": 22,
+    "valore": 9.5,
+    "variazione": -2.5,
+    "serie": [
+     12.0,
+     11.0,
+     10.4,
+     9.8,
+     9.3,
+     8.7,
+     8.5,
+     8.6,
+     10.7,
+     10.1,
+     9.5
     ],
     "consiglio": "Tieni: il valore è in crescita."
    },
@@ -780,58 +815,15 @@
     "serie": [
      20.0,
      18.9,
-     18.5,
-     18.5,
-     18.5,
+     18.4,
+     18.4,
+     18.4,
      18.0,
      22.4,
      22.4,
      22.4,
+     22.4,
      22.4
-    ],
-    "consiglio": "Tieni: il valore è in crescita."
-   },
-   {
-    "id": 2170,
-    "nome": "Milinkovic-Savic V.",
-    "club": "Napoli",
-    "ruolo": "P",
-    "pagato": 4,
-    "valore": 10.0,
-    "variazione": 2.0,
-    "serie": [
-     8.0,
-     8.0,
-     8.0,
-     8.0,
-     8.6,
-     9.3,
-     9.3,
-     9.3,
-     9.3,
-     10.0
-    ],
-    "consiglio": "Tieni: il valore è in crescita."
-   },
-   {
-    "id": 5687,
-    "nome": "Vlasic",
-    "club": "Torino",
-    "ruolo": "C",
-    "pagato": 22,
-    "valore": 10.2,
-    "variazione": -1.8,
-    "serie": [
-     12.0,
-     11.0,
-     10.4,
-     9.8,
-     9.3,
-     8.8,
-     8.6,
-     8.6,
-     10.7,
-     10.2
     ],
     "consiglio": "Tieni: il valore è in crescita."
    },
@@ -841,21 +833,68 @@
     "club": "Frosinone",
     "ruolo": "P",
     "pagato": 4,
-    "valore": 12.3,
-    "variazione": 1.3,
+    "valore": 13.3,
+    "variazione": 2.3,
     "serie": [
      11.0,
      11.5,
-     12.4,
-     11.9,
+     12.5,
+     12.0,
      12.9,
-     16.2,
+     16.3,
      14.6,
      14.0,
-     11.7,
-     12.3
+     11.8,
+     12.4,
+     13.3
     ],
     "consiglio": "Valuta di venderlo: il valore cala da qualche giornata."
+   },
+   {
+    "id": 6217,
+    "nome": "Bisseck",
+    "club": "Inter",
+    "ruolo": "D",
+    "pagato": 23,
+    "valore": 17.3,
+    "variazione": 2.3,
+    "serie": [
+     15.0,
+     18.6,
+     19.1,
+     19.7,
+     19.7,
+     18.5,
+     18.5,
+     18.5,
+     18.5,
+     17.9,
+     17.3
+    ],
+    "consiglio": "Valuta di venderlo: il valore cala da qualche giornata."
+   },
+   {
+    "id": 2170,
+    "nome": "Milinkovic-Savic V.",
+    "club": "Napoli",
+    "ruolo": "P",
+    "pagato": 4,
+    "valore": 10.1,
+    "variazione": 2.1,
+    "serie": [
+     8.0,
+     8.0,
+     8.0,
+     8.0,
+     8.6,
+     9.3,
+     9.3,
+     9.3,
+     9.3,
+     10.1,
+     10.1
+    ],
+    "consiglio": "Tieni: il valore è in crescita."
    },
    {
     "id": 6020,
@@ -863,8 +902,8 @@
     "club": "Genoa",
     "ruolo": "C",
     "pagato": 1,
-    "valore": 7.7,
-    "variazione": -1.3,
+    "valore": 7.4,
+    "variazione": -1.6,
     "serie": [
      9.0,
      8.5,
@@ -873,31 +912,56 @@
      7.4,
      6.8,
      6.8,
-     6.3,
+     6.2,
      7.6,
-     7.7
+     7.6,
+     7.4
     ],
     "consiglio": "Tieni: il valore è in crescita."
    },
    {
-    "id": 7223,
-    "nome": "Vergara",
-    "club": "Napoli",
-    "ruolo": "C",
-    "pagato": 8,
-    "valore": 12.2,
-    "variazione": 1.2,
+    "id": 4317,
+    "nome": "N'Dicka",
+    "club": "Roma",
+    "ruolo": "D",
+    "pagato": 18,
+    "valore": 11.3,
+    "variazione": 1.3,
     "serie": [
-     11.0,
-     14.4,
-     14.4,
-     13.2,
-     12.8,
-     12.8,
-     12.8,
-     12.8,
-     12.5,
-     12.2
+     10.0,
+     10.0,
+     10.0,
+     9.7,
+     9.7,
+     9.4,
+     9.4,
+     9.4,
+     9.4,
+     9.4,
+     11.3
+    ],
+    "consiglio": "Tieni: il valore è in crescita."
+   },
+   {
+    "id": 7580,
+    "nome": "Sutalo J.",
+    "club": "Lazio",
+    "ruolo": "D",
+    "pagato": 1,
+    "valore": 5.9,
+    "variazione": -1.1,
+    "serie": [
+     7.0,
+     7.0,
+     7.0,
+     7.0,
+     6.8,
+     7.0,
+     7.0,
+     7.2,
+     7.2,
+     6.1,
+     5.9
     ],
     "consiglio": "Valuta di venderlo: il valore cala da qualche giornata."
    },
@@ -907,8 +971,8 @@
     "club": "Parma",
     "ruolo": "D",
     "pagato": 8,
-    "valore": 5.1,
-    "variazione": -0.9,
+    "valore": 5.3,
+    "variazione": -0.7,
     "serie": [
      6.0,
      6.0,
@@ -916,56 +980,13 @@
      5.8,
      5.8,
      5.6,
-     5.4,
+     5.5,
      5.1,
      5.0,
-     5.1
+     5.1,
+     5.3
     ],
-    "consiglio": "Valuta di venderlo: il valore cala da qualche giornata."
-   },
-   {
-    "id": 7580,
-    "nome": "Sutalo J.",
-    "club": "Lazio",
-    "ruolo": "D",
-    "pagato": 1,
-    "valore": 6.1,
-    "variazione": -0.9,
-    "serie": [
-     7.0,
-     7.0,
-     7.0,
-     7.0,
-     6.8,
-     7.0,
-     7.0,
-     7.2,
-     7.2,
-     6.1
-    ],
-    "consiglio": "Valuta di venderlo: il valore cala da qualche giornata."
-   },
-   {
-    "id": 4317,
-    "nome": "N'Dicka",
-    "club": "Roma",
-    "ruolo": "D",
-    "pagato": 18,
-    "valore": 9.3,
-    "variazione": -0.7,
-    "serie": [
-     10.0,
-     10.0,
-     10.0,
-     9.7,
-     9.7,
-     9.4,
-     9.4,
-     9.4,
-     9.4,
-     9.3
-    ],
-    "consiglio": "Valuta di venderlo: il valore cala da qualche giornata."
+    "consiglio": "Tieni: il valore è in crescita."
    },
    {
     "id": 4436,
@@ -982,10 +1003,34 @@
      10.8,
      10.2,
      9.9,
-     11.5,
+     11.4,
+     11.2,
      11.2,
      11.3,
      11.3
+    ],
+    "consiglio": "Tieni: il valore è in crescita."
+   },
+   {
+    "id": 7223,
+    "nome": "Vergara",
+    "club": "Napoli",
+    "ruolo": "C",
+    "pagato": 8,
+    "valore": 11.5,
+    "variazione": 0.5,
+    "serie": [
+     11.0,
+     14.4,
+     14.4,
+     13.1,
+     12.8,
+     12.8,
+     12.8,
+     12.8,
+     12.5,
+     12.2,
+     11.5
     ],
     "consiglio": "Valuta di venderlo: il valore cala da qualche giornata."
    },
@@ -1000,9 +1045,10 @@
     "serie": [
      12.0,
      14.3,
-     13.1,
-     13.1,
+     13.2,
+     13.2,
      12.5,
+     11.5,
      11.5,
      11.5,
      11.5,
@@ -1010,6 +1056,29 @@
      11.5
     ],
     "consiglio": "Tieni: il valore è in crescita."
+   },
+   {
+    "id": 6672,
+    "nome": "Idzes",
+    "club": "Sassuolo",
+    "ruolo": "D",
+    "pagato": 4,
+    "valore": 4.8,
+    "variazione": -0.2,
+    "serie": [
+     5.0,
+     5.0,
+     5.0,
+     4.8,
+     5.0,
+     5.0,
+     5.0,
+     5.0,
+     5.0,
+     5.0,
+     4.8
+    ],
+    "consiglio": "Valuta di venderlo: il valore cala da qualche giornata."
    },
    {
     "id": 6519,
@@ -1029,6 +1098,7 @@
      2.0,
      2.0,
      2.0,
+     1.8,
      1.8
     ],
     "consiglio": "Valuta di venderlo: il valore cala da qualche giornata."
@@ -1044,13 +1114,14 @@
     "serie": [
      10.0,
      10.8,
-     10.3,
+     10.4,
      9.9,
      9.9,
      9.9,
      10.7,
      10.9,
-     10.1,
+     10.2,
+     10.2,
      10.1
     ],
     "consiglio": "Valuta di venderlo: il valore cala da qualche giornata."
@@ -1068,6 +1139,7 @@
      4.0,
      4.0,
      4.0,
+     3.9,
      3.9,
      3.9,
      3.9,
@@ -1095,29 +1167,8 @@
      8.0,
      8.0,
      8.0,
+     8.0,
      8.0
-    ],
-    "consiglio": "Tieni: il valore è in crescita."
-   },
-   {
-    "id": 6672,
-    "nome": "Idzes",
-    "club": "Sassuolo",
-    "ruolo": "D",
-    "pagato": 4,
-    "valore": 5.0,
-    "variazione": 0.0,
-    "serie": [
-     5.0,
-     5.0,
-     5.0,
-     4.8,
-     5.0,
-     5.0,
-     5.0,
-     5.0,
-     5.0,
-     5.0
     ],
     "consiglio": "Tieni: il valore è in crescita."
    }
@@ -1129,21 +1180,22 @@
     "club": "Inter",
     "ruolo": "A",
     "pagato": 165,
-    "valore": 66.6,
-    "variazione": 32.6,
+    "valore": 59.4,
+    "variazione": 25.4,
     "serie": [
      34.0,
      34.0,
      31.3,
-     37.2,
-     47.6,
-     49.5,
-     58.9,
+     37.3,
+     47.7,
+     49.6,
+     59.1,
      68.0,
      68.0,
-     66.6
+     66.7,
+     59.4
     ],
-    "consiglio": "Tieni: il valore è in crescita."
+    "consiglio": "Valuta di venderlo: il valore cala da qualche giornata."
    },
    {
     "id": 6372,
@@ -1151,19 +1203,20 @@
     "club": "Milan",
     "ruolo": "C",
     "pagato": 21,
-    "valore": 28.6,
-    "variazione": 12.6,
+    "valore": 32.0,
+    "variazione": 16.0,
     "serie": [
      16.0,
      16.0,
      16.0,
-     14.7,
+     14.6,
      21.3,
      25.9,
-     26.1,
-     28.6,
-     28.6,
-     28.6
+     26.0,
+     28.5,
+     28.5,
+     28.5,
+     32.0
     ],
     "consiglio": "Tieni: il valore è in crescita."
    },
@@ -1173,8 +1226,8 @@
     "club": "Como",
     "ruolo": "D",
     "pagato": 16,
-    "valore": 27.6,
-    "variazione": 10.6,
+    "valore": 28.5,
+    "variazione": 11.5,
     "serie": [
      17.0,
      17.0,
@@ -1184,8 +1237,32 @@
      20.4,
      21.6,
      22.2,
-     22.8,
-     27.6
+     22.9,
+     27.7,
+     28.5
+    ],
+    "consiglio": "Tieni: il valore è in crescita."
+   },
+   {
+    "id": 7600,
+    "nome": "Osmajic",
+    "club": "Genoa",
+    "ruolo": "A",
+    "pagato": 2,
+    "valore": 20.7,
+    "variazione": 6.7,
+    "serie": [
+     14.0,
+     14.0,
+     12.9,
+     15.0,
+     13.3,
+     15.9,
+     20.3,
+     18.7,
+     17.8,
+     17.4,
+     20.7
     ],
     "consiglio": "Tieni: il valore è in crescita."
    },
@@ -1195,41 +1272,20 @@
     "club": "Lazio",
     "ruolo": "C",
     "pagato": 15,
-    "valore": 22.2,
-    "variazione": 6.2,
+    "valore": 22.1,
+    "variazione": 6.1,
     "serie": [
      16.0,
      15.6,
      15.2,
-     14.9,
+     14.8,
+     14.5,
      14.5,
      14.6,
-     14.7,
-     14.3,
-     17.4,
-     22.2
-    ],
-    "consiglio": "Tieni: il valore è in crescita."
-   },
-   {
-    "id": 4777,
-    "nome": "McTominay",
-    "club": "Napoli",
-    "ruolo": "C",
-    "pagato": 45,
-    "valore": 28.1,
-    "variazione": 5.1,
-    "serie": [
-     23.0,
-     22.4,
-     21.2,
-     21.2,
-     21.2,
-     21.2,
-     20.7,
-     19.6,
-     27.9,
-     28.1
+     14.2,
+     17.3,
+     22.0,
+     22.1
     ],
     "consiglio": "Tieni: il valore è in crescita."
    },
@@ -1239,8 +1295,8 @@
     "club": "Sassuolo",
     "ruolo": "A",
     "pagato": 2,
-    "valore": 8.0,
-    "variazione": -4.0,
+    "valore": 7.4,
+    "variazione": -4.6,
     "serie": [
      12.0,
      11.0,
@@ -1248,10 +1304,11 @@
      10.3,
      12.2,
      11.6,
-     11.0,
+     11.1,
      9.8,
-     8.7,
-     8.0
+     8.8,
+     8.1,
+     7.4
     ],
     "consiglio": "Valuta di venderlo: il valore cala da qualche giornata."
    },
@@ -1261,85 +1318,20 @@
     "club": "Venezia",
     "ruolo": "A",
     "pagato": 3,
-    "valore": 5.1,
-    "variazione": -3.9,
+    "valore": 4.7,
+    "variazione": -4.3,
     "serie": [
      9.0,
-     8.5,
+     8.6,
      8.4,
      10.0,
      9.2,
-     6.2,
+     6.3,
      5.9,
-     5.6,
+     5.7,
      5.5,
-     5.1
-    ],
-    "consiglio": "Valuta di venderlo: il valore cala da qualche giornata."
-   },
-   {
-    "id": 7600,
-    "nome": "Osmajic",
-    "club": "Genoa",
-    "ruolo": "A",
-    "pagato": 2,
-    "valore": 17.3,
-    "variazione": 3.3,
-    "serie": [
-     14.0,
-     14.0,
-     12.9,
-     14.9,
-     13.3,
-     15.8,
-     20.2,
-     18.6,
-     17.7,
-     17.3
-    ],
-    "consiglio": "Valuta di venderlo: il valore cala da qualche giornata."
-   },
-   {
-    "id": 7469,
-    "nome": "Bracaglia",
-    "club": "Frosinone",
-    "ruolo": "D",
-    "pagato": 7,
-    "valore": 12.9,
-    "variazione": 1.9,
-    "serie": [
-     11.0,
-     11.0,
-     14.3,
-     14.3,
-     13.8,
-     13.8,
-     13.8,
-     13.8,
-     12.9,
-     12.9
-    ],
-    "consiglio": "Valuta di venderlo: il valore cala da qualche giornata."
-   },
-   {
-    "id": 4465,
-    "nome": "Fagioli",
-    "club": "Fiorentina",
-    "ruolo": "C",
-    "pagato": 7,
-    "valore": 6.1,
-    "variazione": -1.9,
-    "serie": [
-     8.0,
-     7.3,
-     6.9,
-     6.6,
-     7.2,
-     7.0,
-     6.6,
-     6.5,
-     6.7,
-     6.1
+     5.1,
+     4.7
     ],
     "consiglio": "Valuta di venderlo: il valore cala da qualche giornata."
    },
@@ -1349,19 +1341,43 @@
     "club": "Udinese",
     "ruolo": "P",
     "pagato": 18,
-    "valore": 6.4,
-    "variazione": -1.6,
+    "valore": 4.6,
+    "variazione": -3.4,
     "serie": [
      8.0,
      8.4,
-     8.0,
+     8.1,
      7.7,
      6.5,
      6.6,
-     5.7,
+     5.8,
      5.3,
-     4.9,
-     6.4
+     5.0,
+     6.4,
+     4.6
+    ],
+    "consiglio": "Valuta di venderlo: il valore cala da qualche giornata."
+   },
+   {
+    "id": 4777,
+    "nome": "McTominay",
+    "club": "Napoli",
+    "ruolo": "C",
+    "pagato": 45,
+    "valore": 25.6,
+    "variazione": 2.6,
+    "serie": [
+     23.0,
+     22.4,
+     21.2,
+     21.2,
+     21.2,
+     21.2,
+     20.7,
+     19.5,
+     27.8,
+     27.9,
+     25.6
     ],
     "consiglio": "Tieni: il valore è in crescita."
    },
@@ -1371,19 +1387,112 @@
     "club": "Atalanta",
     "ruolo": "C",
     "pagato": 23,
-    "valore": 10.4,
-    "variazione": -1.6,
+    "valore": 9.5,
+    "variazione": -2.5,
     "serie": [
      12.0,
      11.7,
      11.1,
-     13.5,
+     13.4,
      12.7,
      12.0,
      11.7,
+     10.3,
+     11.3,
      10.4,
-     11.4,
-     10.4
+     9.5
+    ],
+    "consiglio": "Valuta di venderlo: il valore cala da qualche giornata."
+   },
+   {
+    "id": 7469,
+    "nome": "Bracaglia",
+    "club": "Frosinone",
+    "ruolo": "D",
+    "pagato": 7,
+    "valore": 13.4,
+    "variazione": 2.4,
+    "serie": [
+     11.0,
+     11.0,
+     14.3,
+     14.3,
+     13.8,
+     13.8,
+     13.8,
+     13.8,
+     13.0,
+     13.0,
+     13.4
+    ],
+    "consiglio": "Valuta di venderlo: il valore cala da qualche giornata."
+   },
+   {
+    "id": 4465,
+    "nome": "Fagioli",
+    "club": "Fiorentina",
+    "ruolo": "C",
+    "pagato": 7,
+    "valore": 5.7,
+    "variazione": -2.3,
+    "serie": [
+     8.0,
+     7.3,
+     6.9,
+     6.5,
+     7.2,
+     7.0,
+     6.6,
+     6.4,
+     6.6,
+     6.1,
+     5.7
+    ],
+    "consiglio": "Valuta di venderlo: il valore cala da qualche giornata."
+   },
+   {
+    "id": 554,
+    "nome": "Zappacosta",
+    "club": "Atalanta",
+    "ruolo": "D",
+    "pagato": 8,
+    "valore": 4.4,
+    "variazione": -1.6,
+    "serie": [
+     6.0,
+     6.2,
+     6.0,
+     5.8,
+     5.8,
+     5.8,
+     5.6,
+     5.5,
+     5.8,
+     5.6,
+     4.4
+    ],
+    "consiglio": "Valuta di venderlo: il valore cala da qualche giornata."
+   },
+   {
+    "id": 7060,
+    "nome": "Cacciamani",
+    "club": "Torino",
+    "ruolo": "C",
+    "pagato": 5,
+    "valore": 8.4,
+    "variazione": -1.6,
+    "serie": [
+     10.0,
+     9.4,
+     10.1,
+     10.1,
+     9.9,
+     9.6,
+     9.4,
+     9.1,
+     8.6,
+     8.4,
+     8.4
     ],
     "consiglio": "Valuta di venderlo: il valore cala da qualche giornata."
    },
@@ -1405,51 +1514,8 @@
      3.8,
      3.6,
      3.4,
+     3.4,
      3.4
-    ],
-    "consiglio": "Valuta di venderlo: il valore cala da qualche giornata."
-   },
-   {
-    "id": 5559,
-    "nome": "Da Cunha",
-    "club": "Como",
-    "ruolo": "C",
-    "pagato": 41,
-    "valore": 13.5,
-    "variazione": -1.5,
-    "serie": [
-     15.0,
-     14.6,
-     14.7,
-     14.8,
-     14.9,
-     14.1,
-     14.2,
-     13.8,
-     13.5,
-     13.5
-    ],
-    "consiglio": "Valuta di venderlo: il valore cala da qualche giornata."
-   },
-   {
-    "id": 7060,
-    "nome": "Cacciamani",
-    "club": "Torino",
-    "ruolo": "C",
-    "pagato": 5,
-    "valore": 8.5,
-    "variazione": -1.5,
-    "serie": [
-     10.0,
-     9.5,
-     10.1,
-     10.1,
-     9.9,
-     9.6,
-     9.4,
-     9.2,
-     8.7,
-     8.5
     ],
     "consiglio": "Valuta di venderlo: il valore cala da qualche giornata."
    },
@@ -1459,19 +1525,66 @@
     "club": "Como",
     "ruolo": "A",
     "pagato": 41,
-    "valore": 14.4,
-    "variazione": 1.4,
+    "valore": 14.5,
+    "variazione": 1.5,
     "serie": [
      13.0,
-     12.3,
-     12.8,
+     12.4,
+     12.9,
      18.0,
-     17.6,
+     17.7,
      15.7,
-     14.4,
-     14.4,
-     14.4,
-     14.4
+     14.5,
+     14.5,
+     14.5,
+     14.5,
+     14.5
+    ],
+    "consiglio": "Tieni: il valore è in crescita."
+   },
+   {
+    "id": 5559,
+    "nome": "Da Cunha",
+    "club": "Como",
+    "ruolo": "C",
+    "pagato": 41,
+    "valore": 16.3,
+    "variazione": 1.3,
+    "serie": [
+     15.0,
+     14.6,
+     14.7,
+     14.8,
+     14.8,
+     14.0,
+     14.1,
+     13.7,
+     13.4,
+     13.5,
+     16.3
+    ],
+    "consiglio": "Tieni: il valore è in crescita."
+   },
+   {
+    "id": 133,
+    "nome": "Skorupski",
+    "club": "Bologna",
+    "ruolo": "P",
+    "pagato": 7,
+    "valore": 9.0,
+    "variazione": 1.0,
+    "serie": [
+     8.0,
+     8.2,
+     7.8,
+     7.7,
+     7.7,
+     7.4,
+     7.4,
+     6.7,
+     7.2,
+     7.1,
+     9.0
     ],
     "consiglio": "Tieni: il valore è in crescita."
    },
@@ -1492,30 +1605,9 @@
      14.5,
      14.9,
      14.9,
-     14.4,
+     14.5,
+     14.0,
      14.0
-    ],
-    "consiglio": "Valuta di venderlo: il valore cala da qualche giornata."
-   },
-   {
-    "id": 133,
-    "nome": "Skorupski",
-    "club": "Bologna",
-    "ruolo": "P",
-    "pagato": 7,
-    "valore": 7.1,
-    "variazione": -0.9,
-    "serie": [
-     8.0,
-     8.2,
-     7.8,
-     7.7,
-     7.7,
-     7.4,
-     7.4,
-     6.7,
-     7.2,
-     7.1
     ],
     "consiglio": "Valuta di venderlo: il valore cala da qualche giornata."
    },
@@ -1537,31 +1629,10 @@
      8.7,
      8.7,
      8.7,
+     8.7,
      8.7
     ],
     "consiglio": "Tieni: il valore è in crescita."
-   },
-   {
-    "id": 7294,
-    "nome": "Valdepenas",
-    "club": "Fiorentina",
-    "ruolo": "D",
-    "pagato": 7,
-    "valore": 2.3,
-    "variazione": -0.7,
-    "serie": [
-     3.0,
-     3.0,
-     2.8,
-     2.6,
-     2.6,
-     2.6,
-     2.6,
-     2.5,
-     2.3,
-     2.3
-    ],
-    "consiglio": "Valuta di venderlo: il valore cala da qualche giornata."
    },
    {
     "id": 6831,
@@ -1581,7 +1652,31 @@
      3.3,
      3.3,
      3.3,
+     3.3,
      3.3
+    ],
+    "consiglio": "Tieni: il valore è in crescita."
+   },
+   {
+    "id": 7294,
+    "nome": "Valdepenas",
+    "club": "Fiorentina",
+    "ruolo": "D",
+    "pagato": 7,
+    "valore": 2.7,
+    "variazione": -0.3,
+    "serie": [
+     3.0,
+     3.0,
+     2.8,
+     2.6,
+     2.6,
+     2.6,
+     2.6,
+     2.5,
+     2.3,
+     2.3,
+     2.7
     ],
     "consiglio": "Tieni: il valore è in crescita."
    },
@@ -1591,65 +1686,22 @@
     "club": "Parma",
     "ruolo": "D",
     "pagato": 7,
-    "valore": 7.4,
-    "variazione": -0.6,
+    "valore": 7.7,
+    "variazione": -0.3,
     "serie": [
      8.0,
      8.0,
      8.0,
      8.2,
      8.2,
-     8.4,
+     8.5,
      7.9,
      7.7,
      7.5,
-     7.4
-    ],
-    "consiglio": "Valuta di venderlo: il valore cala da qualche giornata."
-   },
-   {
-    "id": 554,
-    "nome": "Zappacosta",
-    "club": "Atalanta",
-    "ruolo": "D",
-    "pagato": 8,
-    "valore": 5.6,
-    "variazione": -0.4,
-    "serie": [
-     6.0,
-     6.2,
-     6.0,
-     5.8,
-     5.8,
-     5.8,
-     5.6,
-     5.4,
-     5.8,
-     5.6
+     7.5,
+     7.7
     ],
     "consiglio": "Tieni: il valore è in crescita."
-   },
-   {
-    "id": 6495,
-    "nome": "Comuzzo",
-    "club": "Torino",
-    "ruolo": "D",
-    "pagato": 9,
-    "valore": 10.3,
-    "variazione": 0.3,
-    "serie": [
-     10.0,
-     10.0,
-     12.1,
-     12.1,
-     11.7,
-     11.7,
-     11.3,
-     11.3,
-     10.6,
-     10.3
-    ],
-    "consiglio": "Valuta di venderlo: il valore cala da qualche giornata."
    },
    {
     "id": 7172,
@@ -1669,9 +1721,33 @@
      2.0,
      2.0,
      2.0,
+     2.0,
      2.0
     ],
     "consiglio": "Tieni: il valore è in crescita."
+   },
+   {
+    "id": 6495,
+    "nome": "Comuzzo",
+    "club": "Torino",
+    "ruolo": "D",
+    "pagato": 9,
+    "valore": 10.0,
+    "variazione": 0.0,
+    "serie": [
+     10.0,
+     10.0,
+     12.1,
+     12.1,
+     11.7,
+     11.7,
+     11.3,
+     11.3,
+     10.7,
+     10.3,
+     10.0
+    ],
+    "consiglio": "Valuta di venderlo: il valore cala da qualche giornata."
    }
   ],
   "WOA": [
@@ -1688,9 +1764,10 @@
      33.9,
      33.1,
      30.3,
-     32.3,
-     39.3,
-     47.8,
+     32.2,
+     39.1,
+     47.6,
+     52.0,
      52.0,
      52.0,
      52.0
@@ -1703,21 +1780,22 @@
     "club": "Frosinone",
     "ruolo": "A",
     "pagato": 26,
-    "valore": 36.0,
-    "variazione": 18.0,
+    "valore": 34.2,
+    "variazione": 16.2,
     "serie": [
      18.0,
      16.6,
      23.2,
-     32.4,
-     30.8,
-     28.3,
-     26.1,
+     32.5,
+     30.9,
+     28.4,
+     26.2,
      36.0,
-     32.0,
-     36.0
+     32.1,
+     36.0,
+     34.2
     ],
-    "consiglio": "Tieni: il valore è in crescita."
+    "consiglio": "Valuta di venderlo: il valore cala da qualche giornata."
    },
    {
     "id": 6398,
@@ -1725,19 +1803,43 @@
     "club": "Lazio",
     "ruolo": "C",
     "pagato": 5,
-    "valore": 26.2,
-    "variazione": 10.2,
+    "valore": 32.0,
+    "variazione": 16.0,
     "serie": [
      16.0,
      15.6,
      15.2,
      13.9,
-     13.2,
-     13.2,
+     13.1,
+     13.1,
      16.0,
+     19.4,
      19.5,
-     19.6,
-     26.2
+     26.0,
+     32.0
+    ],
+    "consiglio": "Tieni: il valore è in crescita."
+   },
+   {
+    "id": 5734,
+    "nome": "Soulè",
+    "club": "Roma",
+    "ruolo": "A",
+    "pagato": 62,
+    "valore": 29.4,
+    "variazione": 10.4,
+    "serie": [
+     19.0,
+     18.1,
+     21.5,
+     27.5,
+     26.2,
+     25.7,
+     22.8,
+     22.4,
+     26.7,
+     25.3,
+     29.4
     ],
     "consiglio": "Tieni: il valore è in crescita."
    },
@@ -1747,41 +1849,43 @@
     "club": "Udinese",
     "ruolo": "C",
     "pagato": 21,
-    "valore": 23.1,
-    "variazione": 7.1,
+    "valore": 21.7,
+    "variazione": 5.7,
     "serie": [
      16.0,
-     17.1,
+     17.0,
      21.2,
-     20.1,
-     23.8,
-     23.2,
-     28.2,
-     25.0,
+     20.0,
      23.7,
-     23.1
+     23.1,
+     28.1,
+     24.9,
+     23.5,
+     22.9,
+     21.7
     ],
     "consiglio": "Valuta di venderlo: il valore cala da qualche giornata."
    },
    {
-    "id": 5734,
-    "nome": "Soulè",
-    "club": "Roma",
-    "ruolo": "A",
-    "pagato": 62,
-    "valore": 25.2,
-    "variazione": 6.2,
+    "id": 5833,
+    "nome": "Gila",
+    "club": "Milan",
+    "ruolo": "D",
+    "pagato": 21,
+    "valore": 19.4,
+    "variazione": 5.4,
     "serie": [
-     19.0,
-     18.0,
-     21.5,
-     27.5,
-     26.1,
-     25.6,
-     22.8,
-     22.3,
-     26.5,
-     25.2
+     14.0,
+     14.4,
+     14.8,
+     15.3,
+     14.3,
+     14.8,
+     15.2,
+     18.8,
+     18.8,
+     18.8,
+     19.4
     ],
     "consiglio": "Tieni: il valore è in crescita."
    },
@@ -1791,41 +1895,20 @@
     "club": "Napoli",
     "ruolo": "A",
     "pagato": 172,
-    "valore": 29.9,
-    "variazione": 4.9,
+    "valore": 30.1,
+    "variazione": 5.1,
     "serie": [
      25.0,
      23.0,
      27.4,
      32.6,
-     29.9,
-     27.5,
-     27.0,
-     26.4,
-     25.1,
-     29.9
-    ],
-    "consiglio": "Tieni: il valore è in crescita."
-   },
-   {
-    "id": 5833,
-    "nome": "Gila",
-    "club": "Milan",
-    "ruolo": "D",
-    "pagato": 21,
-    "valore": 18.8,
-    "variazione": 4.8,
-    "serie": [
-     14.0,
-     14.4,
-     14.8,
-     15.3,
-     14.3,
-     14.7,
-     15.2,
-     18.8,
-     18.8,
-     18.8
+     30.0,
+     27.6,
+     27.1,
+     26.6,
+     25.3,
+     30.1,
+     30.1
     ],
     "consiglio": "Tieni: il valore è in crescita."
    },
@@ -1835,19 +1918,43 @@
     "club": "Atalanta",
     "ruolo": "C",
     "pagato": 16,
-    "valore": 4.9,
-    "variazione": -2.1,
+    "valore": 4.4,
+    "variazione": -2.6,
     "serie": [
      7.0,
      6.6,
      6.6,
      6.6,
-     6.3,
+     6.2,
      5.9,
      5.8,
      5.3,
-     5.2,
-     4.9
+     5.1,
+     4.9,
+     4.4
+    ],
+    "consiglio": "Valuta di venderlo: il valore cala da qualche giornata."
+   },
+   {
+    "id": 2134,
+    "nome": "Falcone",
+    "club": "Lecce",
+    "ruolo": "P",
+    "pagato": 14,
+    "valore": 3.0,
+    "variazione": -2.0,
+    "serie": [
+     5.0,
+     5.7,
+     4.6,
+     4.7,
+     4.4,
+     3.9,
+     3.7,
+     3.9,
+     3.8,
+     3.2,
+     3.0
     ],
     "consiglio": "Valuta di venderlo: il valore cala da qualche giornata."
    },
@@ -1867,31 +1974,33 @@
      4.1,
      4.1,
      3.8,
-     3.3,
+     3.4,
+     3.0,
      3.0,
      3.0
     ],
     "consiglio": "Valuta di venderlo: il valore cala da qualche giornata."
    },
    {
-    "id": 2134,
-    "nome": "Falcone",
-    "club": "Lecce",
-    "ruolo": "P",
-    "pagato": 14,
-    "valore": 3.2,
+    "id": 2765,
+    "nome": "Odgaard",
+    "club": "Bologna",
+    "ruolo": "C",
+    "pagato": 1,
+    "valore": 4.2,
     "variazione": -1.8,
     "serie": [
-     5.0,
-     5.7,
-     4.6,
-     4.7,
-     4.4,
-     3.9,
-     3.6,
-     3.9,
-     3.8,
-     3.2
+     6.0,
+     5.5,
+     5.4,
+     5.1,
+     4.8,
+     4.5,
+     4.5,
+     4.5,
+     4.3,
+     4.5,
+     4.2
     ],
     "consiglio": "Valuta di venderlo: il valore cala da qualche giornata."
    },
@@ -1913,9 +2022,10 @@
      8.6,
      8.4,
      8.4,
+     8.4,
      8.4
     ],
-    "consiglio": "Valuta di venderlo: il valore cala da qualche giornata."
+    "consiglio": "Tieni: il valore è in crescita."
    },
    {
     "id": 6662,
@@ -1932,8 +2042,9 @@
      5.1,
      4.9,
      5.0,
-     4.3,
+     4.4,
      3.9,
+     3.6,
      3.6,
      3.6
     ],
@@ -1945,8 +2056,8 @@
     "club": "Genoa",
     "ruolo": "D",
     "pagato": 9,
-    "valore": 7.6,
-    "variazione": -1.4,
+    "valore": 7.8,
+    "variazione": -1.2,
     "serie": [
      9.0,
      9.3,
@@ -1957,53 +2068,10 @@
      7.6,
      7.2,
      7.4,
-     7.6
+     7.6,
+     7.8
     ],
     "consiglio": "Tieni: il valore è in crescita."
-   },
-   {
-    "id": 2765,
-    "nome": "Odgaard",
-    "club": "Bologna",
-    "ruolo": "C",
-    "pagato": 1,
-    "valore": 4.6,
-    "variazione": -1.4,
-    "serie": [
-     6.0,
-     5.5,
-     5.4,
-     5.1,
-     4.8,
-     4.5,
-     4.5,
-     4.5,
-     4.3,
-     4.6
-    ],
-    "consiglio": "Tieni: il valore è in crescita."
-   },
-   {
-    "id": 4360,
-    "nome": "Caprile",
-    "club": "Cagliari",
-    "ruolo": "P",
-    "pagato": 18,
-    "valore": 14.2,
-    "variazione": 1.2,
-    "serie": [
-     13.0,
-     14.0,
-     15.1,
-     16.3,
-     17.1,
-     19.5,
-     21.0,
-     17.0,
-     16.3,
-     14.2
-    ],
-    "consiglio": "Valuta di venderlo: il valore cala da qualche giornata."
    },
    {
     "id": 6215,
@@ -2011,8 +2079,8 @@
     "club": "Napoli",
     "ruolo": "A",
     "pagato": 2,
-    "valore": 1.9,
-    "variazione": -1.1,
+    "valore": 1.8,
+    "variazione": -1.2,
     "serie": [
      3.0,
      2.9,
@@ -2023,7 +2091,31 @@
      2.1,
      1.9,
      1.9,
-     1.9
+     1.9,
+     1.8
+    ],
+    "consiglio": "Valuta di venderlo: il valore cala da qualche giornata."
+   },
+   {
+    "id": 4360,
+    "nome": "Caprile",
+    "club": "Cagliari",
+    "ruolo": "P",
+    "pagato": 18,
+    "valore": 14.1,
+    "variazione": 1.1,
+    "serie": [
+     13.0,
+     14.0,
+     15.1,
+     16.4,
+     17.2,
+     19.6,
+     21.1,
+     17.1,
+     16.4,
+     14.3,
+     14.1
     ],
     "consiglio": "Valuta di venderlo: il valore cala da qualche giornata."
    },
@@ -2045,6 +2137,7 @@
      7.0,
      7.0,
      7.0,
+     7.0,
      7.0
     ],
     "consiglio": "Tieni: il valore è in crescita."
@@ -2055,8 +2148,8 @@
     "club": "Juventus",
     "ruolo": "D",
     "pagato": 15,
-    "valore": 5.2,
-    "variazione": -0.8,
+    "valore": 5.1,
+    "variazione": -0.9,
     "serie": [
      6.0,
      6.0,
@@ -2067,7 +2160,8 @@
      5.6,
      5.3,
      5.4,
-     5.2
+     5.3,
+     5.1
     ],
     "consiglio": "Valuta di venderlo: il valore cala da qualche giornata."
    },
@@ -2088,6 +2182,7 @@
      3.8,
      3.8,
      3.4,
+     3.2,
      3.2,
      3.2
     ],
@@ -2111,6 +2206,7 @@
      3.3,
      3.3,
      3.3,
+     3.2,
      3.2
     ],
     "consiglio": "Valuta di venderlo: il valore cala da qualche giornata."
@@ -2133,53 +2229,10 @@
      5.0,
      5.0,
      5.3,
+     4.3,
      4.3
     ],
     "consiglio": "Valuta di venderlo: il valore cala da qualche giornata."
-   },
-   {
-    "id": 6632,
-    "nome": "Gaspar K.",
-    "club": "Lecce",
-    "ruolo": "D",
-    "pagato": 1,
-    "valore": 3.4,
-    "variazione": -0.6,
-    "serie": [
-     4.0,
-     4.1,
-     3.6,
-     3.3,
-     3.3,
-     3.1,
-     3.1,
-     3.9,
-     3.4,
-     3.4
-    ],
-    "consiglio": "Tieni: il valore è in crescita."
-   },
-   {
-    "id": 2606,
-    "nome": "Modric",
-    "club": "Milan",
-    "ruolo": "C",
-    "pagato": 18,
-    "valore": 12.4,
-    "variazione": -0.6,
-    "serie": [
-     13.0,
-     12.7,
-     12.4,
-     12.1,
-     11.4,
-     11.5,
-     12.2,
-     12.3,
-     13.1,
-     12.4
-    ],
-    "consiglio": "Tieni: il valore è in crescita."
    },
    {
     "id": 5739,
@@ -2199,9 +2252,56 @@
      7.2,
      6.9,
      6.9,
+     6.5,
      6.5
     ],
     "consiglio": "Valuta di venderlo: il valore cala da qualche giornata."
+   },
+   {
+    "id": 6632,
+    "nome": "Gaspar K.",
+    "club": "Lecce",
+    "ruolo": "D",
+    "pagato": 1,
+    "valore": 3.5,
+    "variazione": -0.5,
+    "serie": [
+     4.0,
+     4.1,
+     3.6,
+     3.3,
+     3.3,
+     3.1,
+     3.1,
+     3.9,
+     3.5,
+     3.5,
+     3.5
+    ],
+    "consiglio": "Valuta di venderlo: il valore cala da qualche giornata."
+   },
+   {
+    "id": 2606,
+    "nome": "Modric",
+    "club": "Milan",
+    "ruolo": "C",
+    "pagato": 18,
+    "valore": 12.7,
+    "variazione": -0.3,
+    "serie": [
+     13.0,
+     12.7,
+     12.4,
+     12.0,
+     11.4,
+     11.4,
+     12.2,
+     12.2,
+     13.0,
+     12.3,
+     12.7
+    ],
+    "consiglio": "Tieni: il valore è in crescita."
    },
    {
     "id": 4892,
@@ -2209,19 +2309,20 @@
     "club": "Milan",
     "ruolo": "C",
     "pagato": 12,
-    "valore": 10.2,
-    "variazione": 0.2,
+    "valore": 10.1,
+    "variazione": 0.1,
     "serie": [
      10.0,
-     9.8,
+     9.7,
      10.7,
      10.1,
      10.1,
-     10.2,
-     10.2,
-     10.2,
-     10.2,
-     10.2
+     10.1,
+     10.1,
+     10.1,
+     10.1,
+     10.1,
+     10.1
     ],
     "consiglio": "Tieni: il valore è in crescita."
    }
@@ -2233,19 +2334,20 @@
     "club": "Inter",
     "ruolo": "C",
     "pagato": 86,
-    "valore": 47.5,
-    "variazione": 18.5,
+    "valore": 44.6,
+    "variazione": 15.6,
     "serie": [
      29.0,
      34.4,
-     41.8,
-     40.8,
-     40.8,
-     40.8,
-     49.6,
-     48.4,
+     41.7,
+     40.7,
+     40.7,
+     40.7,
+     49.4,
+     48.2,
+     47.0,
      47.2,
-     47.5
+     44.6
     ],
     "consiglio": "Valuta di venderlo: il valore cala da qualche giornata."
    },
@@ -2255,19 +2357,20 @@
     "club": "Lazio",
     "ruolo": "P",
     "pagato": 30,
-    "valore": 30.5,
-    "variazione": 14.5,
+    "valore": 31.2,
+    "variazione": 15.2,
     "serie": [
      16.0,
-     17.7,
-     19.1,
+     17.8,
+     19.2,
      20.1,
-     19.8,
+     19.9,
      26.8,
-     28.1,
-     30.3,
-     31.8,
-     30.5
+     28.2,
+     30.4,
+     31.9,
+     30.6,
+     31.2
     ],
     "consiglio": "Tieni: il valore è in crescita."
    },
@@ -2277,19 +2380,20 @@
     "club": "Napoli",
     "ruolo": "C",
     "pagato": 18,
-    "valore": 22.6,
-    "variazione": 6.6,
+    "valore": 21.2,
+    "variazione": 5.2,
     "serie": [
      16.0,
-     14.7,
-     13.9,
+     14.6,
+     13.8,
      16.4,
      15.5,
-     16.6,
-     16.6,
+     16.5,
+     16.5,
      16.1,
-     17.7,
-     22.6
+     17.6,
+     22.4,
+     21.2
     ],
     "consiglio": "Tieni: il valore è in crescita."
    },
@@ -2299,19 +2403,20 @@
     "club": "Monza",
     "ruolo": "D",
     "pagato": 6,
-    "valore": 19.2,
-    "variazione": 5.2,
+    "valore": 18.7,
+    "variazione": 4.7,
     "serie": [
      14.0,
      13.6,
      14.8,
-     15.6,
+     15.7,
      19.4,
      19.4,
-     19.9,
+     20.0,
      20.5,
      20.5,
-     19.2
+     19.3,
+     18.7
     ],
     "consiglio": "Valuta di venderlo: il valore cala da qualche giornata."
    },
@@ -2333,6 +2438,7 @@
      5.4,
      5.4,
      5.1,
+     5.1,
      5.1
     ],
     "consiglio": "Valuta di venderlo: il valore cala da qualche giornata."
@@ -2343,21 +2449,45 @@
     "club": "Como",
     "ruolo": "A",
     "pagato": 64,
-    "valore": 15.5,
-    "variazione": -2.5,
+    "valore": 15.6,
+    "variazione": -2.4,
     "serie": [
      18.0,
      17.1,
      17.1,
      17.8,
      16.4,
-     15.5,
-     15.5,
-     15.5,
-     15.5,
-     15.5
+     15.6,
+     15.6,
+     15.6,
+     15.6,
+     15.6,
+     15.6
     ],
     "consiglio": "Tieni: il valore è in crescita."
+   },
+   {
+    "id": 4870,
+    "nome": "Adopo",
+    "club": "Cagliari",
+    "ruolo": "C",
+    "pagato": 1,
+    "valore": 6.8,
+    "variazione": -2.2,
+    "serie": [
+     9.0,
+     9.6,
+     9.1,
+     9.1,
+     9.7,
+     9.7,
+     9.5,
+     8.1,
+     7.7,
+     7.2,
+     6.8
+    ],
+    "consiglio": "Valuta di venderlo: il valore cala da qualche giornata."
    },
    {
     "id": 6164,
@@ -2365,8 +2495,8 @@
     "club": "Genoa",
     "ruolo": "A",
     "pagato": 1,
-    "valore": 3.0,
-    "variazione": -2.0,
+    "valore": 2.8,
+    "variazione": -2.2,
     "serie": [
      5.0,
      4.6,
@@ -2377,7 +2507,8 @@
      3.3,
      3.0,
      3.0,
-     3.0
+     3.0,
+     2.8
     ],
     "consiglio": "Valuta di venderlo: il valore cala da qualche giornata."
    },
@@ -2387,41 +2518,20 @@
     "club": "Inter",
     "ruolo": "D",
     "pagato": 67,
-    "valore": 25.9,
-    "variazione": 1.9,
+    "valore": 26.0,
+    "variazione": 2.0,
     "serie": [
      24.0,
      24.0,
      24.7,
      26.9,
+     26.9,
+     26.1,
+     26.8,
+     26.8,
      26.8,
      26.0,
-     26.8,
-     26.7,
-     26.7,
-     25.9
-    ],
-    "consiglio": "Valuta di venderlo: il valore cala da qualche giornata."
-   },
-   {
-    "id": 4870,
-    "nome": "Adopo",
-    "club": "Cagliari",
-    "ruolo": "C",
-    "pagato": 1,
-    "valore": 7.3,
-    "variazione": -1.7,
-    "serie": [
-     9.0,
-     9.6,
-     9.1,
-     9.1,
-     9.7,
-     9.8,
-     9.5,
-     8.2,
-     7.7,
-     7.3
+     26.0
     ],
     "consiglio": "Valuta di venderlo: il valore cala da qualche giornata."
    },
@@ -2431,8 +2541,8 @@
     "club": "Juventus",
     "ruolo": "C",
     "pagato": 7,
-    "valore": 6.4,
-    "variazione": -1.6,
+    "valore": 6.0,
+    "variazione": -2.0,
     "serie": [
      8.0,
      7.6,
@@ -2441,9 +2551,10 @@
      6.0,
      5.8,
      5.7,
-     5.4,
+     5.3,
      7.0,
-     6.4
+     6.4,
+     6.0
     ],
     "consiglio": "Tieni: il valore è in crescita."
    },
@@ -2453,41 +2564,20 @@
     "club": "Inter",
     "ruolo": "A",
     "pagato": 25,
-    "valore": 14.5,
-    "variazione": 1.5,
+    "valore": 14.6,
+    "variazione": 1.6,
     "serie": [
      13.0,
-     12.3,
-     12.3,
-     12.3,
+     12.4,
+     12.4,
+     12.4,
      14.7,
      14.7,
      14.0,
      16.6,
      15.8,
-     14.5
-    ],
-    "consiglio": "Tieni: il valore è in crescita."
-   },
-   {
-    "id": 5514,
-    "nome": "Vasquez",
-    "club": "Genoa",
-    "ruolo": "D",
-    "pagato": 4,
-    "valore": 5.6,
-    "variazione": -1.4,
-    "serie": [
-     7.0,
-     6.8,
-     6.8,
-     6.4,
-     7.1,
-     7.1,
-     5.8,
-     5.5,
-     5.5,
-     5.6
+     14.6,
+     14.6
     ],
     "consiglio": "Valuta di venderlo: il valore cala da qualche giornata."
    },
@@ -2503,15 +2593,39 @@
      11.0,
      9.8,
      9.0,
-     10.4,
-     10.4,
-     10.4,
-     10.4,
+     10.5,
+     10.5,
+     10.5,
+     10.5,
+     9.6,
      9.6,
      9.6,
      9.6
     ],
-    "consiglio": "Valuta di venderlo: il valore cala da qualche giornata."
+    "consiglio": "Tieni: il valore è in crescita."
+   },
+   {
+    "id": 779,
+    "nome": "Cristante",
+    "club": "Roma",
+    "ruolo": "C",
+    "pagato": 1,
+    "valore": 11.3,
+    "variazione": 1.3,
+    "serie": [
+     10.0,
+     10.0,
+     10.1,
+     9.8,
+     9.6,
+     9.6,
+     9.6,
+     9.6,
+     9.1,
+     8.9,
+     11.3
+    ],
+    "consiglio": "Tieni: il valore è in crescita."
    },
    {
     "id": 6434,
@@ -2531,31 +2645,56 @@
      14.7,
      14.7,
      14.7,
+     14.7,
      14.7
     ],
     "consiglio": "Tieni: il valore è in crescita."
    },
    {
-    "id": 779,
-    "nome": "Cristante",
-    "club": "Roma",
-    "ruolo": "C",
-    "pagato": 1,
-    "valore": 8.9,
-    "variazione": -1.1,
+    "id": 5514,
+    "nome": "Vasquez",
+    "club": "Genoa",
+    "ruolo": "D",
+    "pagato": 4,
+    "valore": 5.8,
+    "variazione": -1.2,
     "serie": [
-     10.0,
-     10.1,
-     10.1,
-     9.9,
-     9.6,
-     9.7,
-     9.7,
-     9.7,
-     9.2,
-     8.9
+     7.0,
+     6.8,
+     6.8,
+     6.4,
+     7.1,
+     7.1,
+     5.8,
+     5.5,
+     5.5,
+     5.6,
+     5.8
     ],
-    "consiglio": "Valuta di venderlo: il valore cala da qualche giornata."
+    "consiglio": "Tieni: il valore è in crescita."
+   },
+   {
+    "id": 7131,
+    "nome": "Floriani Mussolini",
+    "club": "Lazio",
+    "ruolo": "D",
+    "pagato": 5,
+    "valore": 7.9,
+    "variazione": 0.9,
+    "serie": [
+     7.0,
+     6.8,
+     7.0,
+     6.8,
+     6.6,
+     6.4,
+     6.4,
+     6.5,
+     6.3,
+     7.9,
+     7.9
+    ],
+    "consiglio": "Tieni: il valore è in crescita."
    },
    {
     "id": 5823,
@@ -2570,34 +2709,13 @@
      10.7,
      10.1,
      9.9,
-     9.7,
+     9.6,
      9.1,
      9.1,
      9.1,
      9.1,
+     11.9,
      11.9
-    ],
-    "consiglio": "Tieni: il valore è in crescita."
-   },
-   {
-    "id": 7131,
-    "nome": "Floriani Mussolini",
-    "club": "Lazio",
-    "ruolo": "D",
-    "pagato": 5,
-    "valore": 7.8,
-    "variazione": 0.8,
-    "serie": [
-     7.0,
-     6.8,
-     7.0,
-     6.8,
-     6.6,
-     6.4,
-     6.3,
-     6.5,
-     6.3,
-     7.8
     ],
     "consiglio": "Tieni: il valore è in crescita."
    },
@@ -2619,6 +2737,7 @@
      3.5,
      3.4,
      3.4,
+     3.3,
      3.3
     ],
     "consiglio": "Valuta di venderlo: il valore cala da qualche giornata."
@@ -2638,6 +2757,7 @@
      11.0,
      10.4,
      9.5,
+     11.6,
      11.6,
      11.6,
      11.6,
@@ -2663,6 +2783,7 @@
      9.5,
      9.5,
      9.5,
+     9.5,
      9.5
     ],
     "consiglio": "Tieni: il valore è in crescita."
@@ -2685,9 +2806,33 @@
      6.9,
      6.5,
      6.5,
+     6.5,
      6.5
     ],
-    "consiglio": "Valuta di venderlo: il valore cala da qualche giornata."
+    "consiglio": "Tieni: il valore è in crescita."
+   },
+   {
+    "id": 5036,
+    "nome": "Caqueret",
+    "club": "Como",
+    "ruolo": "C",
+    "pagato": 1,
+    "valore": 10.7,
+    "variazione": -0.3,
+    "serie": [
+     11.0,
+     11.0,
+     10.7,
+     10.8,
+     10.2,
+     10.2,
+     9.9,
+     10.6,
+     11.3,
+     11.0,
+     10.7
+    ],
+    "consiglio": "Tieni: il valore è in crescita."
    },
    {
     "id": 4887,
@@ -2707,9 +2852,10 @@
      5.8,
      6.1,
      5.9,
+     5.9,
      5.9
     ],
-    "consiglio": "Tieni: il valore è in crescita."
+    "consiglio": "Valuta di venderlo: il valore cala da qualche giornata."
    },
    {
     "id": 7534,
@@ -2720,6 +2866,7 @@
     "valore": 1.0,
     "variazione": 0.0,
     "serie": [
+     1.0,
      1.0,
      1.0,
      1.0,
@@ -2751,75 +2898,56 @@
      1.0,
      1.0,
      1.0,
+     1.0,
      1.0
-    ],
-    "consiglio": "Tieni: il valore è in crescita."
-   },
-   {
-    "id": 5036,
-    "nome": "Caqueret",
-    "club": "Como",
-    "ruolo": "C",
-    "pagato": 1,
-    "valore": 11.0,
-    "variazione": 0.0,
-    "serie": [
-     11.0,
-     11.0,
-     10.7,
-     10.8,
-     10.2,
-     10.2,
-     10.0,
-     10.6,
-     11.3,
-     11.0
     ],
     "consiglio": "Tieni: il valore è in crescita."
    }
   ],
   "stif dc": [
    {
-    "id": 7017,
-    "nome": "Douvikas",
-    "club": "Como",
-    "ruolo": "A",
-    "pagato": 76,
-    "valore": 42.0,
-    "variazione": 16.0,
-    "serie": [
-     26.0,
-     30.2,
-     35.9,
-     33.0,
-     31.4,
-     29.8,
-     27.4,
-     32.6,
-     45.6,
-     42.0
-    ],
-    "consiglio": "Tieni: il valore è in crescita."
-   },
-   {
     "id": 6556,
     "nome": "Noslin",
     "club": "Lazio",
     "ruolo": "A",
     "pagato": 5,
-    "valore": 30.2,
-    "variazione": 14.2,
+    "valore": 31.5,
+    "variazione": 15.5,
     "serie": [
      16.0,
      16.0,
      16.0,
      15.2,
      18.1,
-     21.5,
+     21.6,
      25.0,
      23.0,
-     21.1,
-     30.2
+     21.2,
+     30.3,
+     31.5
+    ],
+    "consiglio": "Tieni: il valore è in crescita."
+   },
+   {
+    "id": 7017,
+    "nome": "Douvikas",
+    "club": "Como",
+    "ruolo": "A",
+    "pagato": 76,
+    "valore": 41.4,
+    "variazione": 15.4,
+    "serie": [
+     26.0,
+     30.2,
+     35.9,
+     33.1,
+     31.4,
+     29.9,
+     27.5,
+     32.7,
+     45.8,
+     42.2,
+     41.4
     ],
     "consiglio": "Tieni: il valore è in crescita."
    },
@@ -2841,29 +2969,8 @@
      22.7,
      25.4,
      26.1,
+     26.9,
      26.9
-    ],
-    "consiglio": "Tieni: il valore è in crescita."
-   },
-   {
-    "id": 152,
-    "nome": "Zielinski",
-    "club": "Inter",
-    "ruolo": "C",
-    "pagato": 16,
-    "valore": 25.8,
-    "variazione": 9.8,
-    "serie": [
-     16.0,
-     19.5,
-     19.6,
-     19.7,
-     21.6,
-     20.4,
-     20.4,
-     21.7,
-     26.4,
-     25.8
     ],
     "consiglio": "Tieni: il valore è in crescita."
    },
@@ -2873,8 +2980,8 @@
     "club": "Bologna",
     "ruolo": "D",
     "pagato": 9,
-    "valore": 21.6,
-    "variazione": 6.6,
+    "valore": 24.2,
+    "variazione": 9.2,
     "serie": [
      15.0,
      15.0,
@@ -2882,56 +2989,36 @@
      16.3,
      15.8,
      16.3,
-     16.7,
-     17.7,
-     19.3,
-     21.6
+     16.8,
+     17.8,
+     19.4,
+     21.7,
+     24.2
     ],
     "consiglio": "Tieni: il valore è in crescita."
    },
    {
-    "id": 7023,
-    "nome": "Pellegrino M.",
-    "club": "Fiorentina",
-    "ruolo": "A",
-    "pagato": 22,
-    "valore": 8.2,
-    "variazione": -4.8,
-    "serie": [
-     13.0,
-     11.2,
-     9.6,
-     11.1,
-     13.3,
-     12.2,
-     11.6,
-     10.3,
-     9.5,
-     8.2
-    ],
-    "consiglio": "Valuta di venderlo: il valore cala da qualche giornata."
-   },
-   {
-    "id": 2137,
-    "nome": "Scamacca",
-    "club": "Atalanta",
-    "ruolo": "A",
-    "pagato": 73,
-    "valore": 12.7,
-    "variazione": -3.3,
+    "id": 152,
+    "nome": "Zielinski",
+    "club": "Inter",
+    "ruolo": "C",
+    "pagato": 16,
+    "valore": 24.2,
+    "variazione": 8.2,
     "serie": [
      16.0,
-     15.2,
-     14.0,
-     13.3,
-     15.8,
-     14.5,
-     14.5,
-     13.8,
-     12.7,
-     12.7
+     19.4,
+     19.5,
+     19.6,
+     21.5,
+     20.3,
+     20.3,
+     21.6,
+     26.3,
+     25.6,
+     24.2
     ],
-    "consiglio": "Valuta di venderlo: il valore cala da qualche giornata."
+    "consiglio": "Tieni: il valore è in crescita."
    },
    {
     "id": 5995,
@@ -2939,21 +3026,91 @@
     "club": "Atalanta",
     "ruolo": "A",
     "pagato": 35,
-    "valore": 12.2,
-    "variazione": -2.8,
+    "valore": 11.3,
+    "variazione": -3.7,
     "serie": [
      15.0,
-     14.2,
+     14.3,
      13.1,
-     12.4,
+     12.5,
      11.1,
-     10.5,
+     10.6,
      10.0,
      8.9,
-     9.5,
-     12.2
+     9.6,
+     12.2,
+     11.3
     ],
     "consiglio": "Tieni: il valore è in crescita."
+   },
+   {
+    "id": 2137,
+    "nome": "Scamacca",
+    "club": "Atalanta",
+    "ruolo": "A",
+    "pagato": 73,
+    "valore": 12.8,
+    "variazione": -3.2,
+    "serie": [
+     16.0,
+     15.2,
+     14.0,
+     13.3,
+     15.8,
+     14.6,
+     14.6,
+     13.9,
+     12.8,
+     12.8,
+     12.8
+    ],
+    "consiglio": "Valuta di venderlo: il valore cala da qualche giornata."
+   },
+   {
+    "id": 7023,
+    "nome": "Pellegrino M.",
+    "club": "Fiorentina",
+    "ruolo": "A",
+    "pagato": 22,
+    "valore": 9.8,
+    "variazione": -3.2,
+    "serie": [
+     13.0,
+     11.2,
+     9.6,
+     11.2,
+     13.3,
+     12.2,
+     11.6,
+     10.4,
+     9.5,
+     8.2,
+     9.8
+    ],
+    "consiglio": "Valuta di venderlo: il valore cala da qualche giornata."
+   },
+   {
+    "id": 6680,
+    "nome": "Karlstrom",
+    "club": "Udinese",
+    "ruolo": "C",
+    "pagato": 8,
+    "valore": 7.1,
+    "variazione": -2.9,
+    "serie": [
+     10.0,
+     10.0,
+     10.1,
+     12.0,
+     10.9,
+     10.7,
+     10.1,
+     8.9,
+     8.4,
+     7.7,
+     7.1
+    ],
+    "consiglio": "Valuta di venderlo: il valore cala da qualche giornata."
    },
    {
     "id": 4807,
@@ -2968,34 +3125,13 @@
      13.0,
      13.4,
      16.6,
-     16.0,
+     16.1,
+     15.6,
+     15.6,
      15.6,
      15.5,
      15.5,
-     15.5,
      15.5
-    ],
-    "consiglio": "Tieni: il valore è in crescita."
-   },
-   {
-    "id": 6680,
-    "nome": "Karlstrom",
-    "club": "Udinese",
-    "ruolo": "C",
-    "pagato": 8,
-    "valore": 7.8,
-    "variazione": -2.2,
-    "serie": [
-     10.0,
-     10.1,
-     10.1,
-     12.0,
-     11.0,
-     10.7,
-     10.1,
-     9.0,
-     8.5,
-     7.8
     ],
     "consiglio": "Valuta di venderlo: il valore cala da qualche giornata."
    },
@@ -3005,21 +3141,22 @@
     "club": "Bologna",
     "ruolo": "A",
     "pagato": 7,
-    "valore": 6.9,
-    "variazione": -2.1,
+    "valore": 7.0,
+    "variazione": -2.0,
     "serie": [
      9.0,
-     8.5,
+     8.6,
      7.6,
      8.8,
      8.1,
      7.5,
      7.3,
-     6.9,
-     6.9,
-     6.9
+     7.0,
+     7.0,
+     7.0,
+     7.0
     ],
-    "consiglio": "Valuta di venderlo: il valore cala da qualche giornata."
+    "consiglio": "Tieni: il valore è in crescita."
    },
    {
     "id": 4994,
@@ -3027,8 +3164,8 @@
     "club": "Udinese",
     "ruolo": "D",
     "pagato": 14,
-    "valore": 4.8,
-    "variazione": -1.2,
+    "valore": 4.5,
+    "variazione": -1.5,
     "serie": [
      6.0,
      6.2,
@@ -3039,7 +3176,31 @@
      5.3,
      4.9,
      4.8,
-     4.8
+     4.8,
+     4.5
+    ],
+    "consiglio": "Valuta di venderlo: il valore cala da qualche giornata."
+   },
+   {
+    "id": 5116,
+    "nome": "Martinez Jo.",
+    "club": "Inter",
+    "ruolo": "P",
+    "pagato": 43,
+    "valore": 9.8,
+    "variazione": -1.2,
+    "serie": [
+     11.0,
+     11.2,
+     12.1,
+     12.0,
+     10.1,
+     9.9,
+     10.7,
+     10.9,
+     10.9,
+     10.9,
+     9.8
     ],
     "consiglio": "Valuta di venderlo: il valore cala da qualche giornata."
    },
@@ -3058,32 +3219,11 @@
      13.9,
      12.7,
      12.4,
-     12.1,
+     12.0,
      11.4,
      10.8,
+     10.8,
      10.8
-    ],
-    "consiglio": "Valuta di venderlo: il valore cala da qualche giornata."
-   },
-   {
-    "id": 7625,
-    "nome": "Goncalves P.",
-    "club": "Fiorentina",
-    "ruolo": "C",
-    "pagato": 11,
-    "valore": 7.8,
-    "variazione": -1.2,
-    "serie": [
-     9.0,
-     9.0,
-     9.0,
-     9.0,
-     9.0,
-     8.5,
-     8.5,
-     7.8,
-     7.8,
-     7.8
     ],
     "consiglio": "Valuta di venderlo: il valore cala da qualche giornata."
    },
@@ -3093,43 +3233,22 @@
     "club": "Torino",
     "ruolo": "C",
     "pagato": 9,
-    "valore": 15.1,
-    "variazione": 1.1,
+    "valore": 15.0,
+    "variazione": 1.0,
     "serie": [
      14.0,
      12.8,
      12.1,
      15.1,
-     15.2,
+     15.1,
      15.7,
      15.3,
+     14.9,
      15.0,
-     15.1,
-     15.1
+     15.0,
+     15.0
     ],
-    "consiglio": "Valuta di venderlo: il valore cala da qualche giornata."
-   },
-   {
-    "id": 5520,
-    "nome": "Cambiaso",
-    "club": "Juventus",
-    "ruolo": "D",
-    "pagato": 9,
-    "valore": 4.0,
-    "variazione": -1.0,
-    "serie": [
-     5.0,
-     4.8,
-     4.8,
-     4.8,
-     4.8,
-     4.8,
-     4.7,
-     4.7,
-     4.5,
-     4.0
-    ],
-    "consiglio": "Valuta di venderlo: il valore cala da qualche giornata."
+    "consiglio": "Tieni: il valore è in crescita."
    },
    {
     "id": 5172,
@@ -3149,29 +3268,54 @@
      8.1,
      8.1,
      8.1,
+     8.1,
      8.1
     ],
     "consiglio": "Tieni: il valore è in crescita."
    },
    {
-    "id": 7332,
-    "nome": "Bijlow",
-    "club": "Genoa",
-    "ruolo": "P",
-    "pagato": 1,
-    "valore": 8.3,
-    "variazione": -0.7,
+    "id": 5520,
+    "nome": "Cambiaso",
+    "club": "Juventus",
+    "ruolo": "D",
+    "pagato": 9,
+    "valore": 4.2,
+    "variazione": -0.8,
+    "serie": [
+     5.0,
+     4.8,
+     4.8,
+     4.8,
+     4.8,
+     4.8,
+     4.7,
+     4.7,
+     4.6,
+     4.0,
+     4.2
+    ],
+    "consiglio": "Valuta di venderlo: il valore cala da qualche giornata."
+   },
+   {
+    "id": 4220,
+    "nome": "Zambo Anguissa",
+    "club": "Napoli",
+    "ruolo": "C",
+    "pagato": 19,
+    "valore": 8.2,
+    "variazione": -0.8,
     "serie": [
      9.0,
-     8.6,
-     8.3,
-     6.7,
-     7.0,
-     6.7,
-     6.9,
-     6.6,
-     7.5,
-     8.3
+     8.5,
+     7.8,
+     7.4,
+     7.4,
+     7.4,
+     7.4,
+     7.4,
+     8.9,
+     8.7,
+     8.2
     ],
     "consiglio": "Tieni: il valore è in crescita."
    },
@@ -3193,7 +3337,31 @@
      4.0,
      4.0,
      4.0,
+     4.5,
      4.5
+    ],
+    "consiglio": "Tieni: il valore è in crescita."
+   },
+   {
+    "id": 7625,
+    "nome": "Goncalves P.",
+    "club": "Fiorentina",
+    "ruolo": "C",
+    "pagato": 11,
+    "valore": 8.5,
+    "variazione": -0.5,
+    "serie": [
+     9.0,
+     9.0,
+     9.0,
+     9.0,
+     9.0,
+     8.5,
+     8.5,
+     7.8,
+     7.8,
+     7.8,
+     8.5
     ],
     "consiglio": "Tieni: il valore è in crescita."
    },
@@ -3215,7 +3383,31 @@
      7.7,
      7.7,
      7.7,
+     7.7,
      7.7
+    ],
+    "consiglio": "Tieni: il valore è in crescita."
+   },
+   {
+    "id": 7332,
+    "nome": "Bijlow",
+    "club": "Genoa",
+    "ruolo": "P",
+    "pagato": 1,
+    "valore": 8.8,
+    "variazione": -0.2,
+    "serie": [
+     9.0,
+     8.6,
+     8.3,
+     6.7,
+     7.0,
+     6.8,
+     6.9,
+     6.6,
+     7.5,
+     8.3,
+     8.8
     ],
     "consiglio": "Tieni: il valore è in crescita."
    },
@@ -3225,41 +3417,20 @@
     "club": "Frosinone",
     "ruolo": "D",
     "pagato": 3,
-    "valore": 6.7,
-    "variazione": -0.3,
+    "valore": 7.1,
+    "variazione": 0.1,
     "serie": [
      7.0,
      6.6,
      7.0,
      7.0,
-     6.7,
+     6.8,
      6.9,
      6.9,
      6.7,
      6.7,
-     6.7
-    ],
-    "consiglio": "Valuta di venderlo: il valore cala da qualche giornata."
-   },
-   {
-    "id": 4220,
-    "nome": "Zambo Anguissa",
-    "club": "Napoli",
-    "ruolo": "C",
-    "pagato": 19,
-    "valore": 8.7,
-    "variazione": -0.3,
-    "serie": [
-     9.0,
-     8.5,
-     7.8,
-     7.4,
-     7.4,
-     7.4,
-     7.4,
-     7.4,
-     9.0,
-     8.7
+     6.7,
+     7.1
     ],
     "consiglio": "Tieni: il valore è in crescita."
    },
@@ -3269,41 +3440,20 @@
     "club": "Lazio",
     "ruolo": "C",
     "pagato": 24,
-    "valore": 11.2,
-    "variazione": 0.2,
+    "valore": 11.1,
+    "variazione": 0.1,
     "serie": [
      11.0,
      11.0,
      9.4,
      11.4,
-     11.2,
-     11.2,
-     11.2,
-     11.2,
-     11.2,
-     11.2
-    ],
-    "consiglio": "Tieni: il valore è in crescita."
-   },
-   {
-    "id": 5116,
-    "nome": "Martinez Jo.",
-    "club": "Inter",
-    "ruolo": "P",
-    "pagato": 43,
-    "valore": 10.9,
-    "variazione": -0.1,
-    "serie": [
-     11.0,
-     11.2,
-     12.1,
-     12.0,
-     10.0,
-     9.9,
-     10.7,
-     10.9,
-     10.9,
-     10.9
+     11.1,
+     11.1,
+     11.1,
+     11.1,
+     11.1,
+     11.1,
+     11.1
     ],
     "consiglio": "Tieni: il valore è in crescita."
    },
@@ -3325,6 +3475,7 @@
      5.0,
      5.0,
      5.0,
+     5.0,
      5.0
     ],
     "consiglio": "Tieni: il valore è in crescita."
@@ -3332,13 +3483,36 @@
   ],
   "Mariana Coneja": [
    {
+    "id": 2423,
+    "nome": "Pulisic",
+    "club": "Milan",
+    "ruolo": "C",
+    "pagato": 85,
+    "valore": 41.3,
+    "variazione": 16.3,
+    "serie": [
+     25.0,
+     25.0,
+     25.0,
+     25.0,
+     25.9,
+     32.2,
+     30.4,
+     30.6,
+     37.1,
+     34.0,
+     41.3
+    ],
+    "consiglio": "Tieni: il valore è in crescita."
+   },
+   {
     "id": 5877,
     "nome": "Carlos Augusto",
     "club": "Inter",
     "ruolo": "D",
     "pagato": 10,
-    "valore": 32.0,
-    "variazione": 16.0,
+    "valore": 28.1,
+    "variazione": 12.1,
     "serie": [
      16.0,
      16.0,
@@ -3347,53 +3521,10 @@
      22.1,
      22.8,
      23.4,
-     30.4,
-     31.3,
-     32.0
-    ],
-    "consiglio": "Tieni: il valore è in crescita."
-   },
-   {
-    "id": 2423,
-    "nome": "Pulisic",
-    "club": "Milan",
-    "ruolo": "C",
-    "pagato": 85,
-    "valore": 34.1,
-    "variazione": 9.1,
-    "serie": [
-     25.0,
-     25.0,
-     25.0,
-     25.0,
-     25.9,
-     32.3,
      30.5,
-     30.7,
-     37.3,
-     34.1
-    ],
-    "consiglio": "Tieni: il valore è in crescita."
-   },
-   {
-    "id": 6677,
-    "nome": "Adzic",
-    "club": "Sassuolo",
-    "ruolo": "C",
-    "pagato": 10,
-    "valore": 20.0,
-    "variazione": 8.0,
-    "serie": [
-     12.0,
-     11.3,
-     12.1,
-     14.7,
-     17.9,
-     21.7,
-     21.2,
-     21.2,
-     20.0,
-     20.0
+     31.4,
+     32.0,
+     28.1
     ],
     "consiglio": "Valuta di venderlo: il valore cala da qualche giornata."
    },
@@ -3410,12 +3541,36 @@
      20.8,
      25.9,
      30.7,
-     30.0,
-     28.3,
-     26.0,
-     26.0,
-     24.5,
+     29.9,
+     28.2,
+     25.8,
+     25.8,
+     24.4,
+     29.7,
      29.8
+    ],
+    "consiglio": "Tieni: il valore è in crescita."
+   },
+   {
+    "id": 184,
+    "nome": "Bernardeschi",
+    "club": "Bologna",
+    "ruolo": "C",
+    "pagato": 6,
+    "valore": 22.6,
+    "variazione": 7.6,
+    "serie": [
+     15.0,
+     15.1,
+     15.1,
+     14.8,
+     14.4,
+     17.5,
+     17.5,
+     16.5,
+     19.6,
+     19.1,
+     22.6
     ],
     "consiglio": "Tieni: il valore è in crescita."
    },
@@ -3425,43 +3580,45 @@
     "club": "Juventus",
     "ruolo": "A",
     "pagato": 92,
-    "valore": 12.3,
-    "variazione": -6.7,
+    "valore": 12.1,
+    "variazione": -6.9,
     "serie": [
      19.0,
      19.0,
      19.0,
-     18.0,
+     18.1,
      16.6,
      16.6,
      15.3,
-     14.0,
-     13.3,
-     12.3
+     14.1,
+     13.4,
+     12.3,
+     12.1
     ],
     "consiglio": "Valuta di venderlo: il valore cala da qualche giornata."
    },
    {
-    "id": 184,
-    "nome": "Bernardeschi",
-    "club": "Bologna",
+    "id": 6677,
+    "nome": "Adzic",
+    "club": "Sassuolo",
     "ruolo": "C",
-    "pagato": 6,
-    "valore": 19.2,
-    "variazione": 4.2,
+    "pagato": 10,
+    "valore": 18.2,
+    "variazione": 6.2,
     "serie": [
-     15.0,
-     15.1,
-     15.2,
-     14.8,
-     14.4,
-     17.6,
-     17.6,
-     16.6,
-     19.7,
-     19.2
+     12.0,
+     11.3,
+     12.1,
+     14.7,
+     17.8,
+     21.6,
+     21.1,
+     21.1,
+     19.9,
+     19.9,
+     18.2
     ],
-    "consiglio": "Tieni: il valore è in crescita."
+    "consiglio": "Valuta di venderlo: il valore cala da qualche giornata."
    },
    {
     "id": 2521,
@@ -3469,19 +3626,20 @@
     "club": "Fiorentina",
     "ruolo": "P",
     "pagato": 15,
-    "valore": 4.4,
-    "variazione": -3.6,
+    "valore": 4.0,
+    "variazione": -4.0,
     "serie": [
      8.0,
      6.5,
      5.4,
      5.2,
      5.0,
-     5.2,
+     5.3,
      4.9,
      4.2,
+     4.5,
      4.4,
-     4.4
+     4.0
     ],
     "consiglio": "Valuta di venderlo: il valore cala da qualche giornata."
    },
@@ -3491,19 +3649,20 @@
     "club": "Como",
     "ruolo": "P",
     "pagato": 33,
-    "valore": 15.6,
-    "variazione": 2.6,
+    "valore": 16.9,
+    "variazione": 3.9,
     "serie": [
      13.0,
-     13.2,
+     13.3,
      13.1,
-     13.3,
-     13.3,
+     13.4,
+     13.4,
      12.8,
      13.8,
      14.5,
-     15.6,
-     15.6
+     15.7,
+     15.7,
+     16.9
     ],
     "consiglio": "Tieni: il valore è in crescita."
    },
@@ -3513,8 +3672,8 @@
     "club": "Fiorentina",
     "ruolo": "A",
     "pagato": 1,
-    "valore": 3.6,
-    "variazione": -2.4,
+    "valore": 3.4,
+    "variazione": -2.6,
     "serie": [
      6.0,
      6.0,
@@ -3525,31 +3684,10 @@
      4.8,
      4.4,
      4.1,
-     3.6
+     3.6,
+     3.4
     ],
     "consiglio": "Valuta di venderlo: il valore cala da qualche giornata."
-   },
-   {
-    "id": 6572,
-    "nome": "Castro S.",
-    "club": "Roma",
-    "ruolo": "A",
-    "pagato": 47,
-    "valore": 12.2,
-    "variazione": -1.8,
-    "serie": [
-     14.0,
-     13.3,
-     12.6,
-     12.4,
-     11.4,
-     11.4,
-     11.4,
-     13.5,
-     13.3,
-     12.2
-    ],
-    "consiglio": "Tieni: il valore è in crescita."
    },
    {
     "id": 7374,
@@ -3557,41 +3695,66 @@
     "club": "Cagliari",
     "ruolo": "A",
     "pagato": 4,
-    "valore": 10.3,
-    "variazione": -1.7,
+    "valore": 9.5,
+    "variazione": -2.5,
     "serie": [
      12.0,
      11.0,
      10.5,
      10.3,
-     12.2,
+     12.3,
      12.0,
-     12.8,
+     12.9,
      11.8,
-     10.8,
-     10.3
+     10.9,
+     10.4,
+     9.5
     ],
     "consiglio": "Valuta di venderlo: il valore cala da qualche giornata."
    },
    {
-    "id": 4287,
-    "nome": "Lobotka",
-    "club": "Napoli",
+    "id": 6827,
+    "nome": "Njie",
+    "club": "Fiorentina",
     "ruolo": "C",
     "pagato": 2,
-    "valore": 14.5,
-    "variazione": 1.5,
+    "valore": 11.4,
+    "variazione": 2.4,
     "serie": [
-     13.0,
-     13.1,
-     12.8,
-     12.8,
-     16.0,
+     9.0,
+     9.0,
+     9.0,
+     8.8,
+     8.6,
+     8.4,
+     7.9,
+     7.2,
+     6.8,
+     8.9,
+     11.4
+    ],
+    "consiglio": "Tieni: il valore è in crescita."
+   },
+   {
+    "id": 2061,
+    "nome": "Simeone",
+    "club": "Torino",
+    "ruolo": "A",
+    "pagato": 20,
+    "valore": 15.2,
+    "variazione": -1.8,
+    "serie": [
+     17.0,
      15.6,
-     15.2,
-     14.8,
-     14.5,
-     14.5
+     14.4,
+     13.7,
+     12.6,
+     11.6,
+     11.0,
+     15.8,
+     16.9,
+     16.6,
+     15.2
     ],
     "consiglio": "Valuta di venderlo: il valore cala da qualche giornata."
    },
@@ -3601,8 +3764,8 @@
     "club": "Cagliari",
     "ruolo": "D",
     "pagato": 1,
-    "valore": 4.9,
-    "variazione": -1.1,
+    "valore": 4.3,
+    "variazione": -1.7,
     "serie": [
      6.0,
      6.0,
@@ -3613,7 +3776,123 @@
      5.8,
      5.1,
      4.8,
-     4.9
+     4.9,
+     4.3
+    ],
+    "consiglio": "Valuta di venderlo: il valore cala da qualche giornata."
+   },
+   {
+    "id": 7120,
+    "nome": "Lang",
+    "club": "Napoli",
+    "ruolo": "A",
+    "pagato": 1,
+    "valore": 8.5,
+    "variazione": -1.5,
+    "serie": [
+     10.0,
+     9.5,
+     8.7,
+     8.7,
+     8.3,
+     7.7,
+     9.1,
+     9.1,
+     8.7,
+     9.3,
+     8.5
+    ],
+    "consiglio": "Valuta di venderlo: il valore cala da qualche giornata."
+   },
+   {
+    "id": 4287,
+    "nome": "Lobotka",
+    "club": "Napoli",
+    "ruolo": "C",
+    "pagato": 2,
+    "valore": 14.4,
+    "variazione": 1.4,
+    "serie": [
+     13.0,
+     13.1,
+     12.7,
+     12.8,
+     15.9,
+     15.5,
+     15.1,
+     14.8,
+     14.4,
+     14.4,
+     14.4
+    ],
+    "consiglio": "Valuta di venderlo: il valore cala da qualche giornata."
+   },
+   {
+    "id": 6572,
+    "nome": "Castro S.",
+    "club": "Roma",
+    "ruolo": "A",
+    "pagato": 47,
+    "valore": 12.8,
+    "variazione": -1.2,
+    "serie": [
+     14.0,
+     13.3,
+     12.6,
+     12.4,
+     11.4,
+     11.4,
+     11.4,
+     13.6,
+     13.3,
+     12.3,
+     12.8
+    ],
+    "consiglio": "Valuta di venderlo: il valore cala da qualche giornata."
+   },
+   {
+    "id": 4973,
+    "nome": "McKennie",
+    "club": "Juventus",
+    "ruolo": "C",
+    "pagato": 20,
+    "valore": 11.9,
+    "variazione": -1.1,
+    "serie": [
+     13.0,
+     12.7,
+     12.7,
+     12.7,
+     12.7,
+     12.7,
+     11.7,
+     11.0,
+     13.4,
+     12.6,
+     11.9
+    ],
+    "consiglio": "Tieni: il valore è in crescita."
+   },
+   {
+    "id": 7219,
+    "nome": "Bernasconi",
+    "club": "Atalanta",
+    "ruolo": "D",
+    "pagato": 14,
+    "valore": 3.0,
+    "variazione": -1.0,
+    "serie": [
+     4.0,
+     3.9,
+     3.9,
+     3.9,
+     3.9,
+     3.8,
+     3.8,
+     3.5,
+     3.3,
+     3.2,
+     3.0
     ],
     "consiglio": "Valuta di venderlo: il valore cala da qualche giornata."
    },
@@ -3635,51 +3914,8 @@
      8.2,
      8.2,
      8.2,
+     8.8,
      8.8
-    ],
-    "consiglio": "Tieni: il valore è in crescita."
-   },
-   {
-    "id": 7219,
-    "nome": "Bernasconi",
-    "club": "Atalanta",
-    "ruolo": "D",
-    "pagato": 14,
-    "valore": 3.2,
-    "variazione": -0.8,
-    "serie": [
-     4.0,
-     3.9,
-     3.9,
-     3.9,
-     3.9,
-     3.8,
-     3.7,
-     3.5,
-     3.3,
-     3.2
-    ],
-    "consiglio": "Valuta di venderlo: il valore cala da qualche giornata."
-   },
-   {
-    "id": 7120,
-    "nome": "Lang",
-    "club": "Napoli",
-    "ruolo": "A",
-    "pagato": 1,
-    "valore": 9.2,
-    "variazione": -0.8,
-    "serie": [
-     10.0,
-     9.5,
-     8.7,
-     8.7,
-     8.3,
-     7.6,
-     9.1,
-     9.1,
-     8.6,
-     9.2
     ],
     "consiglio": "Tieni: il valore è in crescita."
    },
@@ -3701,6 +3937,7 @@
      10.2,
      9.9,
      10.2,
+     9.3,
      9.3
     ],
     "consiglio": "Valuta di venderlo: il valore cala da qualche giornata."
@@ -3711,8 +3948,8 @@
     "club": "Inter",
     "ruolo": "C",
     "pagato": 9,
-    "valore": 13.7,
-    "variazione": 0.7,
+    "valore": 12.4,
+    "variazione": -0.6,
     "serie": [
      13.0,
      13.1,
@@ -3722,30 +3959,32 @@
      12.1,
      14.7,
      13.9,
-     14.0,
-     13.7
+     13.9,
+     13.6,
+     12.4
     ],
     "consiglio": "Valuta di venderlo: il valore cala da qualche giornata."
    },
    {
-    "id": 2061,
-    "nome": "Simeone",
-    "club": "Torino",
-    "ruolo": "A",
+    "id": 5022,
+    "nome": "Pavlovic",
+    "club": "Milan",
+    "ruolo": "D",
     "pagato": 20,
-    "valore": 16.5,
-    "variazione": -0.5,
+    "valore": 11.5,
+    "variazione": 0.5,
     "serie": [
-     17.0,
-     15.6,
-     14.4,
-     13.7,
-     12.6,
-     11.6,
      11.0,
-     15.7,
-     16.8,
-     16.5
+     11.0,
+     11.0,
+     11.0,
+     10.3,
+     11.2,
+     10.9,
+     10.9,
+     11.2,
+     10.9,
+     11.5
     ],
     "consiglio": "Tieni: il valore è in crescita."
    },
@@ -3765,53 +4004,33 @@
      6.8,
      6.8,
      6.8,
-     6.5,
+     6.6,
+     6.7,
      6.7,
      6.7
-    ],
-    "consiglio": "Valuta di venderlo: il valore cala da qualche giornata."
-   },
-   {
-    "id": 4973,
-    "nome": "McKennie",
-    "club": "Juventus",
-    "ruolo": "C",
-    "pagato": 20,
-    "valore": 12.7,
-    "variazione": -0.3,
-    "serie": [
-     13.0,
-     12.7,
-     12.7,
-     12.7,
-     12.7,
-     12.8,
-     11.7,
-     11.0,
-     13.4,
-     12.7
     ],
     "consiglio": "Tieni: il valore è in crescita."
    },
    {
-    "id": 5022,
-    "nome": "Pavlovic",
-    "club": "Milan",
+    "id": 7329,
+    "nome": "Obrador",
+    "club": "Sassuolo",
     "ruolo": "D",
-    "pagato": 20,
-    "valore": 10.8,
-    "variazione": -0.2,
+    "pagato": 1,
+    "valore": 3.9,
+    "variazione": -0.1,
     "serie": [
-     11.0,
-     11.0,
-     11.0,
-     11.0,
-     10.3,
-     11.2,
-     10.9,
-     10.9,
-     11.2,
-     10.8
+     4.0,
+     4.0,
+     4.0,
+     4.0,
+     4.0,
+     4.0,
+     4.0,
+     4.0,
+     4.0,
+     4.0,
+     3.9
     ],
     "consiglio": "Valuta di venderlo: il valore cala da qualche giornata."
    },
@@ -3833,51 +4052,8 @@
      3.0,
      3.0,
      3.0,
+     3.0,
      3.0
-    ],
-    "consiglio": "Tieni: il valore è in crescita."
-   },
-   {
-    "id": 7329,
-    "nome": "Obrador",
-    "club": "Sassuolo",
-    "ruolo": "D",
-    "pagato": 1,
-    "valore": 4.0,
-    "variazione": 0.0,
-    "serie": [
-     4.0,
-     4.0,
-     4.0,
-     4.0,
-     4.0,
-     4.0,
-     4.0,
-     4.0,
-     4.0,
-     4.0
-    ],
-    "consiglio": "Tieni: il valore è in crescita."
-   },
-   {
-    "id": 6827,
-    "nome": "Njie",
-    "club": "Fiorentina",
-    "ruolo": "C",
-    "pagato": 2,
-    "valore": 9.0,
-    "variazione": 0.0,
-    "serie": [
-     9.0,
-     9.1,
-     9.1,
-     8.8,
-     8.6,
-     8.4,
-     7.9,
-     7.3,
-     6.9,
-     9.0
     ],
     "consiglio": "Tieni: il valore è in crescita."
    }
@@ -3889,41 +4065,20 @@
     "club": "Como",
     "ruolo": "C",
     "pagato": 81,
-    "valore": 56.8,
-    "variazione": 26.8,
+    "valore": 55.1,
+    "variazione": 25.1,
     "serie": [
      30.0,
-     28.4,
-     27.7,
-     33.6,
-     35.9,
-     35.0,
-     34.1,
-     43.5,
-     43.5,
-     56.8
-    ],
-    "consiglio": "Tieni: il valore è in crescita."
-   },
-   {
-    "id": 6435,
-    "nome": "Krstovic",
-    "club": "Atalanta",
-    "ruolo": "A",
-    "pagato": 41,
-    "valore": 44.2,
-    "variazione": 20.2,
-    "serie": [
-     24.0,
-     28.6,
-     25.4,
-     22.6,
-     20.8,
-     18.5,
+     28.3,
      27.6,
-     32.0,
-     48.0,
-     44.2
+     33.6,
+     35.7,
+     34.8,
+     34.0,
+     43.3,
+     43.3,
+     56.5,
+     55.1
     ],
     "consiglio": "Tieni: il valore è in crescita."
    },
@@ -3939,13 +4094,37 @@
      18.0,
      17.0,
      18.6,
+     18.7,
      18.8,
-     18.9,
-     22.9,
-     22.4,
-     29.2,
+     22.8,
+     22.3,
+     29.1,
+     36.0,
      36.0,
      36.0
+    ],
+    "consiglio": "Tieni: il valore è in crescita."
+   },
+   {
+    "id": 6435,
+    "nome": "Krstovic",
+    "club": "Atalanta",
+    "ruolo": "A",
+    "pagato": 41,
+    "valore": 39.3,
+    "variazione": 15.3,
+    "serie": [
+     24.0,
+     28.6,
+     25.4,
+     22.7,
+     20.9,
+     18.6,
+     27.7,
+     32.1,
+     48.0,
+     44.2,
+     39.3
     ],
     "consiglio": "Tieni: il valore è in crescita."
    },
@@ -3955,41 +4134,43 @@
     "club": "Cagliari",
     "ruolo": "A",
     "pagato": 16,
-    "valore": 24.7,
-    "variazione": 9.7,
+    "valore": 23.7,
+    "variazione": 8.7,
     "serie": [
      15.0,
-     14.2,
+     14.3,
      13.1,
      15.6,
      18.6,
      22.1,
-     26.3,
-     23.4,
-     20.8,
-     24.7
+     26.4,
+     23.5,
+     20.9,
+     24.9,
+     23.7
     ],
-    "consiglio": "Valuta di venderlo: il valore cala da qualche giornata."
+    "consiglio": "Tieni: il valore è in crescita."
    },
    {
-    "id": 6531,
-    "nome": "Jimenez A.",
+    "id": 7078,
+    "nome": "Mastantuono",
     "club": "Fiorentina",
-    "ruolo": "D",
-    "pagato": 13,
-    "valore": 22.5,
-    "variazione": 7.5,
+    "ruolo": "C",
+    "pagato": 50,
+    "valore": 24.7,
+    "variazione": 7.7,
     "serie": [
-     15.0,
-     14.5,
-     12.8,
-     12.8,
+     17.0,
+     16.1,
+     14.7,
      13.9,
-     17.2,
-     17.2,
-     16.7,
-     20.7,
-     22.5
+     23.1,
+     21.8,
+     21.3,
+     20.1,
+     20.2,
+     20.3,
+     24.7
     ],
     "consiglio": "Tieni: il valore è in crescita."
    },
@@ -4005,12 +4186,13 @@
      9.0,
      10.9,
      10.3,
-     12.3,
+     12.2,
      11.6,
      11.6,
      11.6,
      11.6,
      11.6,
+     16.5,
      16.5
     ],
     "consiglio": "Tieni: il valore è in crescita."
@@ -4021,19 +4203,43 @@
     "club": "Roma",
     "ruolo": "P",
     "pagato": 49,
-    "valore": 23.4,
-    "variazione": 6.4,
+    "valore": 23.5,
+    "variazione": 6.5,
     "serie": [
      17.0,
-     18.3,
-     20.3,
-     20.7,
+     18.4,
+     20.4,
+     20.8,
      23.0,
-     23.4,
-     23.4,
-     23.4,
-     23.4,
-     23.4
+     23.5,
+     23.5,
+     23.5,
+     23.5,
+     23.5,
+     23.5
+    ],
+    "consiglio": "Tieni: il valore è in crescita."
+   },
+   {
+    "id": 6531,
+    "nome": "Jimenez A.",
+    "club": "Fiorentina",
+    "ruolo": "D",
+    "pagato": 13,
+    "valore": 21.2,
+    "variazione": 6.2,
+    "serie": [
+     15.0,
+     14.5,
+     12.8,
+     12.8,
+     13.9,
+     17.3,
+     17.2,
+     16.7,
+     20.7,
+     22.6,
+     21.2
     ],
     "consiglio": "Tieni: il valore è in crescita."
    },
@@ -4043,8 +4249,8 @@
     "club": "Como",
     "ruolo": "D",
     "pagato": 3,
-    "valore": 20.0,
-    "variazione": 6.0,
+    "valore": 19.4,
+    "variazione": 5.4,
     "serie": [
      14.0,
      14.0,
@@ -4055,31 +4261,10 @@
      17.4,
      17.4,
      19.5,
-     20.0
+     20.1,
+     19.4
     ],
     "consiglio": "Tieni: il valore è in crescita."
-   },
-   {
-    "id": 7078,
-    "nome": "Mastantuono",
-    "club": "Fiorentina",
-    "ruolo": "C",
-    "pagato": 50,
-    "valore": 20.5,
-    "variazione": 3.5,
-    "serie": [
-     17.0,
-     16.1,
-     14.7,
-     13.9,
-     23.2,
-     21.9,
-     21.4,
-     20.2,
-     20.3,
-     20.5
-    ],
-    "consiglio": "Valuta di venderlo: il valore cala da qualche giornata."
    },
    {
     "id": 4998,
@@ -4087,8 +4272,8 @@
     "club": "Roma",
     "ruolo": "D",
     "pagato": 23,
-    "valore": 18.2,
-    "variazione": 3.2,
+    "valore": 18.3,
+    "variazione": 3.3,
     "serie": [
      15.0,
      15.0,
@@ -4098,8 +4283,9 @@
      16.3,
      16.3,
      16.3,
-     16.7,
-     18.2
+     16.8,
+     18.3,
+     18.3
     ],
     "consiglio": "Tieni: il valore è in crescita."
    },
@@ -4109,21 +4295,22 @@
     "club": "Fiorentina",
     "ruolo": "A",
     "pagato": 22,
-    "valore": 8.1,
-    "variazione": -2.9,
+    "valore": 7.8,
+    "variazione": -3.2,
     "serie": [
      11.0,
      11.0,
      11.0,
      10.1,
      9.6,
-     8.8,
-     8.1,
-     8.1,
-     8.1,
-     8.1
+     8.9,
+     8.2,
+     8.2,
+     8.2,
+     8.2,
+     7.8
     ],
-    "consiglio": "Tieni: il valore è in crescita."
+    "consiglio": "Valuta di venderlo: il valore cala da qualche giornata."
    },
    {
     "id": 7071,
@@ -4131,19 +4318,20 @@
     "club": "Inter",
     "ruolo": "A",
     "pagato": 91,
-    "valore": 22.3,
-    "variazione": 2.3,
+    "valore": 22.4,
+    "variazione": 2.4,
     "serie": [
      20.0,
      25.6,
      25.1,
-     23.8,
-     28.3,
-     28.3,
-     28.6,
-     25.5,
-     23.4,
-     22.3
+     23.9,
+     28.4,
+     28.4,
+     28.7,
+     25.6,
+     23.5,
+     22.4,
+     22.4
     ],
     "consiglio": "Valuta di venderlo: il valore cala da qualche giornata."
    },
@@ -4159,15 +4347,16 @@
      9.0,
      8.8,
      8.6,
-     8.4,
+     8.3,
      7.9,
-     7.5,
+     7.4,
      6.8,
      8.1,
      8.1,
+     6.9,
      6.9
     ],
-    "consiglio": "Tieni: il valore è in crescita."
+    "consiglio": "Valuta di venderlo: il valore cala da qualche giornata."
    },
    {
     "id": 5365,
@@ -4175,8 +4364,8 @@
     "club": "Fiorentina",
     "ruolo": "D",
     "pagato": 7,
-    "valore": 4.4,
-    "variazione": -1.6,
+    "valore": 4.0,
+    "variazione": -2.0,
     "serie": [
      6.0,
      5.3,
@@ -4187,7 +4376,8 @@
      4.6,
      4.3,
      4.4,
-     4.4
+     4.4,
+     4.0
     ],
     "consiglio": "Valuta di venderlo: il valore cala da qualche giornata."
    },
@@ -4197,8 +4387,8 @@
     "club": "Milan",
     "ruolo": "C",
     "pagato": 1,
-    "valore": 11.3,
-    "variazione": 1.3,
+    "valore": 11.2,
+    "variazione": 1.2,
     "serie": [
      10.0,
      10.0,
@@ -4207,9 +4397,33 @@
      10.0,
      10.0,
      10.0,
-     9.5,
+     9.4,
      11.2,
-     11.3
+     11.2,
+     11.2
+    ],
+    "consiglio": "Tieni: il valore è in crescita."
+   },
+   {
+    "id": 2038,
+    "nome": "Pinamonti",
+    "club": "Lazio",
+    "ruolo": "A",
+    "pagato": 23,
+    "valore": 14.1,
+    "variazione": 1.1,
+    "serie": [
+     13.0,
+     13.0,
+     13.0,
+     11.6,
+     10.7,
+     10.7,
+     12.7,
+     12.8,
+     12.8,
+     12.2,
+     14.1
     ],
     "consiglio": "Tieni: il valore è in crescita."
    },
@@ -4227,13 +4441,37 @@
      11.0,
      13.3,
      13.7,
-     13.2,
+     13.3,
      13.2,
      12.4,
      12.4,
+     12.1,
      12.0
     ],
     "consiglio": "Valuta di venderlo: il valore cala da qualche giornata."
+   },
+   {
+    "id": 4479,
+    "nome": "Elmas",
+    "club": "Atalanta",
+    "ruolo": "C",
+    "pagato": 1,
+    "valore": 7.1,
+    "variazione": -0.9,
+    "serie": [
+     8.0,
+     8.0,
+     7.6,
+     7.1,
+     7.1,
+     7.1,
+     6.7,
+     6.7,
+     8.2,
+     7.5,
+     7.1
+    ],
+    "consiglio": "Tieni: il valore è in crescita."
    },
    {
     "id": 610,
@@ -4241,8 +4479,8 @@
     "club": "Roma",
     "ruolo": "P",
     "pagato": 1,
-    "valore": 7.9,
-    "variazione": 0.9,
+    "valore": 7.6,
+    "variazione": 0.6,
     "serie": [
      7.0,
      7.0,
@@ -4253,31 +4491,33 @@
      7.8,
      8.4,
      7.8,
-     7.9
-    ],
-    "consiglio": "Tieni: il valore è in crescita."
-   },
-   {
-    "id": 2038,
-    "nome": "Pinamonti",
-    "club": "Lazio",
-    "ruolo": "A",
-    "pagato": 23,
-    "valore": 12.1,
-    "variazione": -0.9,
-    "serie": [
-     13.0,
-     13.0,
-     13.0,
-     11.6,
-     10.6,
-     10.6,
-     12.7,
-     12.8,
-     12.8,
-     12.1
+     7.9,
+     7.6
     ],
     "consiglio": "Valuta di venderlo: il valore cala da qualche giornata."
+   },
+   {
+    "id": 6727,
+    "nome": "Couto",
+    "club": "Como",
+    "ruolo": "D",
+    "pagato": 23,
+    "valore": 9.6,
+    "variazione": 0.6,
+    "serie": [
+     9.0,
+     8.5,
+     8.4,
+     9.5,
+     9.5,
+     8.9,
+     8.9,
+     8.9,
+     8.6,
+     9.4,
+     9.6
+    ],
+    "consiglio": "Tieni: il valore è in crescita."
    },
    {
     "id": 4664,
@@ -4297,73 +4537,8 @@
      4.6,
      4.4,
      4.5,
+     4.5,
      4.5
-    ],
-    "consiglio": "Valuta di venderlo: il valore cala da qualche giornata."
-   },
-   {
-    "id": 4479,
-    "nome": "Elmas",
-    "club": "Atalanta",
-    "ruolo": "C",
-    "pagato": 1,
-    "valore": 7.5,
-    "variazione": -0.5,
-    "serie": [
-     8.0,
-     8.0,
-     7.6,
-     7.2,
-     7.2,
-     7.2,
-     6.8,
-     6.8,
-     8.2,
-     7.5
-    ],
-    "consiglio": "Tieni: il valore è in crescita."
-   },
-   {
-    "id": 6727,
-    "nome": "Couto",
-    "club": "Como",
-    "ruolo": "D",
-    "pagato": 23,
-    "valore": 9.3,
-    "variazione": 0.3,
-    "serie": [
-     9.0,
-     8.5,
-     8.4,
-     9.4,
-     9.4,
-     8.9,
-     8.9,
-     8.9,
-     8.6,
-     9.3
-    ],
-    "consiglio": "Tieni: il valore è in crescita."
-   },
-   {
-    "id": 795,
-    "nome": "El Shaarawy",
-    "club": "Genoa",
-    "ruolo": "C",
-    "pagato": 1,
-    "valore": 7.9,
-    "variazione": -0.1,
-    "serie": [
-     8.0,
-     8.0,
-     8.0,
-     8.0,
-     7.8,
-     7.4,
-     7.6,
-     7.5,
-     7.9,
-     7.9
     ],
     "consiglio": "Tieni: il valore è in crescita."
    },
@@ -4373,8 +4548,8 @@
     "club": "Monza",
     "ruolo": "A",
     "pagato": 1,
-    "valore": 8.1,
-    "variazione": 0.1,
+    "valore": 7.5,
+    "variazione": -0.5,
     "serie": [
      8.0,
      8.0,
@@ -4385,9 +4560,33 @@
      8.5,
      8.5,
      8.5,
-     8.1
+     8.1,
+     7.5
     ],
     "consiglio": "Valuta di venderlo: il valore cala da qualche giornata."
+   },
+   {
+    "id": 795,
+    "nome": "El Shaarawy",
+    "club": "Genoa",
+    "ruolo": "C",
+    "pagato": 1,
+    "valore": 8.4,
+    "variazione": 0.4,
+    "serie": [
+     8.0,
+     8.0,
+     8.0,
+     8.0,
+     7.8,
+     7.4,
+     7.6,
+     7.4,
+     7.9,
+     7.9,
+     8.4
+    ],
+    "consiglio": "Tieni: il valore è in crescita."
    },
    {
     "id": 7048,
@@ -4398,6 +4597,7 @@
     "valore": 1.0,
     "variazione": 0.0,
     "serie": [
+     1.0,
      1.0,
      1.0,
      1.0,
@@ -4429,6 +4629,7 @@
      6.0,
      6.0,
      6.0,
+     6.0,
      6.0
     ],
     "consiglio": "Tieni: il valore è in crescita."
@@ -4441,19 +4642,20 @@
     "club": "Inter",
     "ruolo": "A",
     "pagato": 210,
-    "valore": 53.5,
-    "variazione": 19.5,
+    "valore": 53.6,
+    "variazione": 19.6,
     "serie": [
      34.0,
      30.3,
-     28.7,
+     28.8,
      39.4,
      39.4,
-     56.3,
-     53.5,
-     53.5,
-     53.5,
-     53.5
+     56.4,
+     53.6,
+     53.6,
+     53.6,
+     53.6,
+     53.6
     ],
     "consiglio": "Tieni: il valore è in crescita."
    },
@@ -4463,19 +4665,20 @@
     "club": "Frosinone",
     "ruolo": "A",
     "pagato": 31,
-    "valore": 27.0,
-    "variazione": 12.0,
+    "valore": 29.1,
+    "variazione": 14.1,
     "serie": [
      15.0,
-     14.2,
+     14.3,
      15.7,
-     18.6,
+     18.7,
      22.2,
-     25.7,
-     24.4,
-     24.7,
-     22.7,
-     27.0
+     25.8,
+     24.5,
+     24.8,
+     22.8,
+     27.2,
+     29.1
     ],
     "consiglio": "Tieni: il valore è in crescita."
    },
@@ -4485,19 +4688,20 @@
     "club": "Roma",
     "ruolo": "D",
     "pagato": 32,
-    "valore": 21.9,
-    "variazione": 4.9,
+    "valore": 23.9,
+    "variazione": 6.9,
     "serie": [
      17.0,
      17.5,
      19.6,
      20.7,
      20.7,
+     21.4,
      21.3,
      21.3,
-     21.3,
-     21.9,
-     21.9
+     22.0,
+     22.0,
+     23.9
     ],
     "consiglio": "Tieni: il valore è in crescita."
    },
@@ -4518,52 +4722,9 @@
      11.3,
      10.9,
      12.9,
+     16.0,
      15.9,
      15.9
-    ],
-    "consiglio": "Tieni: il valore è in crescita."
-   },
-   {
-    "id": 2848,
-    "nome": "Frattesi",
-    "club": "Lazio",
-    "ruolo": "C",
-    "pagato": 38,
-    "valore": 18.1,
-    "variazione": 4.1,
-    "serie": [
-     14.0,
-     17.4,
-     21.2,
-     25.8,
-     25.1,
-     24.5,
-     23.9,
-     23.3,
-     22.8,
-     18.1
-    ],
-    "consiglio": "Valuta di venderlo: il valore cala da qualche giornata."
-   },
-   {
-    "id": 5422,
-    "nome": "Zalewski",
-    "club": "Atalanta",
-    "ruolo": "C",
-    "pagato": 1,
-    "valore": 16.0,
-    "variazione": 4.0,
-    "serie": [
-     12.0,
-     11.7,
-     12.5,
-     11.8,
-     11.8,
-     11.8,
-     11.8,
-     12.6,
-     12.3,
-     16.0
     ],
     "consiglio": "Tieni: il valore è in crescita."
    },
@@ -4573,8 +4734,8 @@
     "club": "Roma",
     "ruolo": "C",
     "pagato": 16,
-    "valore": 16.7,
-    "variazione": 3.7,
+    "valore": 16.6,
+    "variazione": 3.6,
     "serie": [
      13.0,
      12.3,
@@ -4582,32 +4743,103 @@
      12.4,
      12.1,
      17.6,
-     16.7,
-     16.7,
-     16.7,
-     16.7
+     16.6,
+     16.6,
+     16.6,
+     16.6,
+     16.6
     ],
     "consiglio": "Tieni: il valore è in crescita."
    },
    {
-    "id": 1870,
-    "nome": "Barella",
-    "club": "Inter",
+    "id": 5422,
+    "nome": "Zalewski",
+    "club": "Atalanta",
     "ruolo": "C",
-    "pagato": 30,
-    "valore": 21.5,
-    "variazione": 2.5,
+    "pagato": 1,
+    "valore": 15.1,
+    "variazione": 3.1,
     "serie": [
-     19.0,
-     18.5,
-     20.3,
-     19.2,
-     23.9,
-     21.9,
-     21.9,
-     23.3,
-     22.8,
-     21.5
+     12.0,
+     11.7,
+     12.5,
+     11.8,
+     11.8,
+     11.8,
+     11.8,
+     12.5,
+     12.2,
+     15.9,
+     15.1
+    ],
+    "consiglio": "Tieni: il valore è in crescita."
+   },
+   {
+    "id": 2848,
+    "nome": "Frattesi",
+    "club": "Lazio",
+    "ruolo": "C",
+    "pagato": 38,
+    "valore": 17.0,
+    "variazione": 3.0,
+    "serie": [
+     14.0,
+     17.4,
+     21.2,
+     25.7,
+     25.1,
+     24.4,
+     23.8,
+     23.2,
+     22.6,
+     18.0,
+     17.0
+    ],
+    "consiglio": "Valuta di venderlo: il valore cala da qualche giornata."
+   },
+   {
+    "id": 4312,
+    "nome": "Maignan",
+    "club": "Milan",
+    "ruolo": "P",
+    "pagato": 39,
+    "valore": 15.8,
+    "variazione": 2.8,
+    "serie": [
+     13.0,
+     13.3,
+     14.3,
+     14.6,
+     14.4,
+     15.6,
+     16.3,
+     16.2,
+     17.5,
+     14.7,
+     15.8
+    ],
+    "consiglio": "Valuta di venderlo: il valore cala da qualche giornata."
+   },
+   {
+    "id": 2155,
+    "nome": "Cutrone",
+    "club": "Monza",
+    "ruolo": "A",
+    "pagato": 1,
+    "valore": 3.2,
+    "variazione": -2.8,
+    "serie": [
+     6.0,
+     5.7,
+     5.4,
+     5.4,
+     5.2,
+     4.7,
+     4.7,
+     4.7,
+     4.7,
+     4.7,
+     3.2
     ],
     "consiglio": "Valuta di venderlo: il valore cala da qualche giornata."
    },
@@ -4629,53 +4861,10 @@
      3.4,
      3.3,
      3.1,
+     2.3,
      2.3
     ],
     "consiglio": "Valuta di venderlo: il valore cala da qualche giornata."
-   },
-   {
-    "id": 4312,
-    "nome": "Maignan",
-    "club": "Milan",
-    "ruolo": "P",
-    "pagato": 39,
-    "valore": 14.6,
-    "variazione": 1.6,
-    "serie": [
-     13.0,
-     13.2,
-     14.3,
-     14.6,
-     14.4,
-     15.5,
-     16.3,
-     16.1,
-     17.4,
-     14.6
-    ],
-    "consiglio": "Valuta di venderlo: il valore cala da qualche giornata."
-   },
-   {
-    "id": 6248,
-    "nome": "Stankovic F.",
-    "club": "Venezia",
-    "ruolo": "P",
-    "pagato": 3,
-    "valore": 7.5,
-    "variazione": -1.5,
-    "serie": [
-     9.0,
-     8.4,
-     8.3,
-     7.4,
-     6.2,
-     6.0,
-     5.5,
-     7.6,
-     7.8,
-     7.5
-    ],
-    "consiglio": "Tieni: il valore è in crescita."
    },
    {
     "id": 5735,
@@ -4687,7 +4876,7 @@
     "variazione": 1.5,
     "serie": [
      9.0,
-     9.1,
+     9.0,
      10.7,
      10.8,
      10.8,
@@ -4695,51 +4884,31 @@
      10.8,
      10.8,
      10.5,
+     10.5,
      10.5
     ],
     "consiglio": "Valuta di venderlo: il valore cala da qualche giornata."
    },
    {
-    "id": 2832,
-    "nome": "Boga",
-    "club": "Juventus",
-    "ruolo": "A",
-    "pagato": 2,
-    "valore": 3.6,
-    "variazione": -1.4,
+    "id": 6248,
+    "nome": "Stankovic F.",
+    "club": "Venezia",
+    "ruolo": "P",
+    "pagato": 3,
+    "valore": 7.9,
+    "variazione": -1.1,
     "serie": [
-     5.0,
-     4.7,
-     4.5,
-     4.1,
-     4.1,
-     4.1,
-     4.1,
-     4.1,
-     3.9,
-     3.6
-    ],
-    "consiglio": "Valuta di venderlo: il valore cala da qualche giornata."
-   },
-   {
-    "id": 2155,
-    "nome": "Cutrone",
-    "club": "Monza",
-    "ruolo": "A",
-    "pagato": 1,
-    "valore": 4.7,
-    "variazione": -1.3,
-    "serie": [
+     9.0,
+     8.4,
+     8.3,
+     7.4,
+     6.2,
      6.0,
-     5.7,
-     5.4,
-     5.4,
-     5.1,
-     4.7,
-     4.7,
-     4.7,
-     4.7,
-     4.7
+     5.6,
+     7.7,
+     7.8,
+     7.5,
+     7.9
     ],
     "consiglio": "Tieni: il valore è in crescita."
    },
@@ -4749,21 +4918,22 @@
     "club": "Juventus",
     "ruolo": "C",
     "pagato": 31,
-    "valore": 9.8,
-    "variazione": -1.2,
+    "valore": 11.8,
+    "variazione": 0.8,
     "serie": [
      11.0,
      11.0,
      10.4,
      9.8,
      9.6,
+     9.6,
+     10.2,
+     10.0,
+     10.0,
      9.7,
-     10.3,
-     10.0,
-     10.0,
-     9.8
+     11.8
     ],
-    "consiglio": "Valuta di venderlo: il valore cala da qualche giornata."
+    "consiglio": "Tieni: il valore è in crescita."
    },
    {
     "id": 5010,
@@ -4771,8 +4941,8 @@
     "club": "Torino",
     "ruolo": "D",
     "pagato": 3,
-    "valore": 6.1,
-    "variazione": -0.9,
+    "valore": 6.3,
+    "variazione": -0.7,
     "serie": [
      7.0,
      7.0,
@@ -4781,11 +4951,35 @@
      7.0,
      6.8,
      6.8,
-     6.5,
-     6.5,
-     6.1
+     6.6,
+     6.6,
+     6.2,
+     6.3
     ],
     "consiglio": "Valuta di venderlo: il valore cala da qualche giornata."
+   },
+   {
+    "id": 2832,
+    "nome": "Boga",
+    "club": "Juventus",
+    "ruolo": "A",
+    "pagato": 2,
+    "valore": 4.3,
+    "variazione": -0.7,
+    "serie": [
+     5.0,
+     4.8,
+     4.5,
+     4.2,
+     4.2,
+     4.2,
+     4.2,
+     4.2,
+     4.0,
+     3.6,
+     4.3
+    ],
+    "consiglio": "Tieni: il valore è in crescita."
    },
    {
     "id": 7175,
@@ -4805,6 +4999,7 @@
      4.6,
      4.6,
      4.6,
+     5.6,
      5.6
     ],
     "consiglio": "Tieni: il valore è in crescita."
@@ -4827,73 +5022,31 @@
      4.0,
      3.9,
      3.6,
+     3.4,
      3.4
     ],
     "consiglio": "Valuta di venderlo: il valore cala da qualche giornata."
    },
    {
-    "id": 5882,
-    "nome": "Mota",
-    "club": "Monza",
-    "ruolo": "A",
-    "pagato": 1,
-    "valore": 9.5,
-    "variazione": -0.5,
+    "id": 1870,
+    "nome": "Barella",
+    "club": "Inter",
+    "ruolo": "C",
+    "pagato": 30,
+    "valore": 19.6,
+    "variazione": 0.6,
     "serie": [
-     10.0,
-     10.0,
-     10.0,
-     9.5,
-     9.5,
-     9.3,
-     10.0,
-     10.4,
-     9.5,
-     9.5
-    ],
-    "consiglio": "Valuta di venderlo: il valore cala da qualche giornata."
-   },
-   {
-    "id": 4433,
-    "nome": "Zortea",
-    "club": "Bologna",
-    "ruolo": "D",
-    "pagato": 3,
-    "valore": 8.4,
-    "variazione": 0.4,
-    "serie": [
-     8.0,
-     8.0,
-     8.0,
-     8.0,
-     8.0,
-     8.0,
-     8.0,
-     7.7,
-     7.7,
-     8.4
-    ],
-    "consiglio": "Tieni: il valore è in crescita."
-   },
-   {
-    "id": 5838,
-    "nome": "Birindelli",
-    "club": "Monza",
-    "ruolo": "D",
-    "pagato": 1,
-    "valore": 7.6,
-    "variazione": -0.4,
-    "serie": [
-     8.0,
-     7.8,
-     7.7,
-     7.7,
-     8.2,
-     8.7,
-     8.2,
-     8.1,
-     8.1,
-     7.6
+     19.0,
+     18.5,
+     20.3,
+     19.2,
+     23.9,
+     21.8,
+     21.8,
+     23.2,
+     22.7,
+     21.4,
+     19.6
     ],
     "consiglio": "Valuta di venderlo: il valore cala da qualche giornata."
    },
@@ -4903,11 +5056,11 @@
     "club": "Venezia",
     "ruolo": "C",
     "pagato": 5,
-    "valore": 5.6,
-    "variazione": -0.4,
+    "valore": 5.4,
+    "variazione": -0.6,
     "serie": [
      6.0,
-     5.9,
+     5.8,
      5.5,
      5.7,
      6.1,
@@ -4915,7 +5068,77 @@
      6.1,
      6.1,
      6.1,
-     5.6
+     5.6,
+     5.4
+    ],
+    "consiglio": "Valuta di venderlo: il valore cala da qualche giornata."
+   },
+   {
+    "id": 5882,
+    "nome": "Mota",
+    "club": "Monza",
+    "ruolo": "A",
+    "pagato": 1,
+    "valore": 9.4,
+    "variazione": -0.6,
+    "serie": [
+     10.0,
+     10.0,
+     10.0,
+     9.5,
+     9.5,
+     9.3,
+     10.0,
+     10.4,
+     9.6,
+     9.6,
+     9.4
+    ],
+    "consiglio": "Valuta di venderlo: il valore cala da qualche giornata."
+   },
+   {
+    "id": 4433,
+    "nome": "Zortea",
+    "club": "Bologna",
+    "ruolo": "D",
+    "pagato": 3,
+    "valore": 7.7,
+    "variazione": -0.3,
+    "serie": [
+     8.0,
+     8.0,
+     8.0,
+     8.0,
+     8.0,
+     8.0,
+     8.0,
+     7.7,
+     7.7,
+     8.4,
+     7.7
+    ],
+    "consiglio": "Tieni: il valore è in crescita."
+   },
+   {
+    "id": 5838,
+    "nome": "Birindelli",
+    "club": "Monza",
+    "ruolo": "D",
+    "pagato": 1,
+    "valore": 7.7,
+    "variazione": -0.3,
+    "serie": [
+     8.0,
+     7.8,
+     7.7,
+     7.7,
+     8.2,
+     8.7,
+     8.2,
+     8.2,
+     8.2,
+     7.7,
+     7.7
     ],
     "consiglio": "Valuta di venderlo: il valore cala da qualche giornata."
    },
@@ -4928,6 +5151,7 @@
     "valore": 1.0,
     "variazione": 0.0,
     "serie": [
+     1.0,
      1.0,
      1.0,
      1.0,
@@ -4959,6 +5183,7 @@
      3.0,
      3.0,
      3.0,
+     3.0,
      3.0
     ],
     "consiglio": "Tieni: il valore è in crescita."
@@ -4981,6 +5206,7 @@
      1.0,
      1.0,
      1.0,
+     1.0,
      1.0
     ],
     "consiglio": "Tieni: il valore è in crescita."
@@ -4993,19 +5219,20 @@
     "club": "Juventus",
     "ruolo": "A",
     "pagato": 135,
-    "valore": 10.9,
-    "variazione": -8.1,
+    "valore": 9.8,
+    "variazione": -9.2,
     "serie": [
      19.0,
      16.9,
      16.1,
      13.8,
-     13.1,
      13.2,
-     15.0,
      13.3,
-     12.2,
-     10.9
+     15.0,
+     13.4,
+     12.3,
+     11.0,
+     9.8
     ],
     "consiglio": "Valuta di venderlo: il valore cala da qualche giornata."
    },
@@ -5015,43 +5242,22 @@
     "club": "Roma",
     "ruolo": "A",
     "pagato": 86,
-    "valore": 21.6,
-    "variazione": 4.6,
+    "valore": 21.7,
+    "variazione": 4.7,
     "serie": [
      17.0,
-     21.2,
+     21.3,
      21.5,
      23.0,
      22.5,
-     22.7,
-     21.6,
-     21.6,
-     21.6,
-     21.6
+     22.8,
+     21.7,
+     21.7,
+     21.7,
+     21.7,
+     21.7
     ],
     "consiglio": "Tieni: il valore è in crescita."
-   },
-   {
-    "id": 6060,
-    "nome": "Laurientè",
-    "club": "Sassuolo",
-    "ruolo": "A",
-    "pagato": 35,
-    "valore": 8.7,
-    "variazione": -4.3,
-    "serie": [
-     13.0,
-     12.3,
-     11.7,
-     11.5,
-     12.0,
-     11.4,
-     11.1,
-     10.2,
-     9.4,
-     8.7
-    ],
-    "consiglio": "Valuta di venderlo: il valore cala da qualche giornata."
    },
    {
     "id": 5555,
@@ -5059,21 +5265,45 @@
     "club": "Udinese",
     "ruolo": "D",
     "pagato": 9,
-    "valore": 17.0,
-    "variazione": 4.0,
+    "valore": 17.5,
+    "variazione": 4.5,
     "serie": [
      13.0,
      16.1,
      20.0,
-     20.5,
+     20.6,
      19.3,
      18.7,
      18.7,
-     17.5,
-     17.5,
-     17.0
+     17.6,
+     17.6,
+     17.0,
+     17.5
     ],
     "consiglio": "Valuta di venderlo: il valore cala da qualche giornata."
+   },
+   {
+    "id": 4964,
+    "nome": "Vicario",
+    "club": "Juventus",
+    "ruolo": "P",
+    "pagato": 45,
+    "valore": 16.7,
+    "variazione": 3.7,
+    "serie": [
+     13.0,
+     14.0,
+     15.6,
+     15.9,
+     14.3,
+     15.8,
+     16.1,
+     14.5,
+     15.7,
+     15.0,
+     16.7
+    ],
+    "consiglio": "Tieni: il valore è in crescita."
    },
    {
     "id": 6229,
@@ -5090,34 +5320,13 @@
      5.6,
      5.2,
      5.4,
-     4.9,
+     5.0,
      4.6,
      4.2,
+     3.8,
      3.7
     ],
     "consiglio": "Valuta di venderlo: il valore cala da qualche giornata."
-   },
-   {
-    "id": 6274,
-    "nome": "Diouf",
-    "club": "Inter",
-    "ruolo": "C",
-    "pagato": 35,
-    "valore": 18.0,
-    "variazione": 3.0,
-    "serie": [
-     15.0,
-     17.3,
-     17.3,
-     16.9,
-     18.0,
-     18.1,
-     17.7,
-     17.8,
-     18.4,
-     18.0
-    ],
-    "consiglio": "Tieni: il valore è in crescita."
    },
    {
     "id": 5504,
@@ -5125,19 +5334,43 @@
     "club": "Lecce",
     "ruolo": "C",
     "pagato": 1,
-    "valore": 13.8,
-    "variazione": 2.8,
+    "valore": 13.7,
+    "variazione": 2.7,
     "serie": [
      11.0,
-     12.1,
+     12.0,
      11.0,
-     10.8,
+     10.7,
      15.3,
      14.5,
-     14.2,
-     13.8,
-     13.8,
-     13.8
+     14.1,
+     13.7,
+     13.7,
+     13.7,
+     13.7
+    ],
+    "consiglio": "Tieni: il valore è in crescita."
+   },
+   {
+    "id": 6151,
+    "nome": "Perrone",
+    "club": "Como",
+    "ruolo": "C",
+    "pagato": 16,
+    "valore": 7.7,
+    "variazione": -2.3,
+    "serie": [
+     10.0,
+     9.7,
+     9.5,
+     9.5,
+     9.6,
+     9.4,
+     8.8,
+     8.6,
+     8.7,
+     7.9,
+     7.7
     ],
     "consiglio": "Valuta di venderlo: il valore cala da qualche giornata."
    },
@@ -5159,73 +5392,31 @@
      8.5,
      8.5,
      9.5,
+     9.2,
      9.2
     ],
     "consiglio": "Tieni: il valore è in crescita."
    },
    {
-    "id": 4964,
-    "nome": "Vicario",
-    "club": "Juventus",
-    "ruolo": "P",
-    "pagato": 45,
-    "valore": 15.0,
-    "variazione": 2.0,
-    "serie": [
-     13.0,
-     14.0,
-     15.5,
-     15.8,
-     14.2,
-     15.8,
-     16.1,
-     14.5,
-     15.6,
-     15.0
-    ],
-    "consiglio": "Valuta di venderlo: il valore cala da qualche giornata."
-   },
-   {
-    "id": 6151,
-    "nome": "Perrone",
-    "club": "Como",
+    "id": 6274,
+    "nome": "Diouf",
+    "club": "Inter",
     "ruolo": "C",
-    "pagato": 16,
-    "valore": 8.0,
-    "variazione": -2.0,
+    "pagato": 35,
+    "valore": 16.9,
+    "variazione": 1.9,
     "serie": [
-     10.0,
-     9.8,
-     9.5,
-     9.6,
-     9.6,
-     9.4,
-     8.9,
-     8.7,
-     8.7,
-     8.0
-    ],
-    "consiglio": "Valuta di venderlo: il valore cala da qualche giornata."
-   },
-   {
-    "id": 5685,
-    "nome": "Koopmeiners",
-    "club": "Juventus",
-    "ruolo": "C",
-    "pagato": 10,
-    "valore": 11.7,
-    "variazione": 1.7,
-    "serie": [
-     10.0,
-     10.0,
-     12.2,
-     13.0,
-     12.3,
-     12.0,
-     12.0,
-     12.0,
-     12.0,
-     11.7
+     15.0,
+     17.3,
+     17.3,
+     16.9,
+     18.0,
+     18.1,
+     17.6,
+     17.7,
+     18.3,
+     17.9,
+     16.9
     ],
     "consiglio": "Valuta di venderlo: il valore cala da qualche giornata."
    },
@@ -5235,8 +5426,8 @@
     "club": "Lecce",
     "ruolo": "A",
     "pagato": 1,
-    "valore": 2.3,
-    "variazione": -1.7,
+    "valore": 2.1,
+    "variazione": -1.9,
     "serie": [
      4.0,
      3.7,
@@ -5247,31 +5438,10 @@
      2.6,
      2.6,
      2.6,
-     2.3
+     2.4,
+     2.1
     ],
     "consiglio": "Valuta di venderlo: il valore cala da qualche giornata."
-   },
-   {
-    "id": 2816,
-    "nome": "Di Lorenzo",
-    "club": "Napoli",
-    "ruolo": "D",
-    "pagato": 20,
-    "valore": 13.3,
-    "variazione": 1.3,
-    "serie": [
-     12.0,
-     12.3,
-     11.6,
-     12.3,
-     12.3,
-     12.3,
-     12.6,
-     12.2,
-     12.6,
-     13.3
-    ],
-    "consiglio": "Tieni: il valore è in crescita."
    },
    {
     "id": 5858,
@@ -5279,63 +5449,20 @@
     "club": "Bologna",
     "ruolo": "C",
     "pagato": 5,
-    "valore": 7.9,
-    "variazione": -1.1,
+    "valore": 7.6,
+    "variazione": -1.4,
     "serie": [
      9.0,
      8.8,
      8.6,
-     8.4,
+     8.3,
      8.4,
      8.2,
      8.2,
      7.8,
      7.8,
-     7.9
-    ],
-    "consiglio": "Valuta di venderlo: il valore cala da qualche giornata."
-   },
-   {
-    "id": 6206,
-    "nome": "Fabbian",
-    "club": "Parma",
-    "ruolo": "C",
-    "pagato": 1,
-    "valore": 3.1,
-    "variazione": -0.9,
-    "serie": [
-     4.0,
-     4.0,
-     4.0,
-     3.8,
-     3.8,
-     3.7,
-     3.4,
-     3.2,
-     3.3,
-     3.1
-    ],
-    "consiglio": "Valuta di venderlo: il valore cala da qualche giornata."
-   },
-   {
-    "id": 4179,
-    "nome": "Gonzalez N.",
-    "club": "Juventus",
-    "ruolo": "C",
-    "pagato": 18,
-    "valore": 12.8,
-    "variazione": 0.8,
-    "serie": [
-     12.0,
-     12.0,
-     14.9,
-     15.0,
-     15.1,
-     14.7,
-     13.9,
-     12.8,
-     12.8,
-     12.8
+     7.8,
+     7.6
     ],
     "consiglio": "Valuta di venderlo: il valore cala da qualche giornata."
    },
@@ -5345,19 +5472,89 @@
     "club": "Atalanta",
     "ruolo": "D",
     "pagato": 12,
-    "valore": 6.3,
-    "variazione": -0.7,
+    "valore": 6.0,
+    "variazione": -1.0,
     "serie": [
      7.0,
      7.0,
      7.0,
      7.2,
      7.0,
+     6.6,
      6.5,
      6.5,
      6.5,
-     6.5,
-     6.3
+     6.3,
+     6.0
+    ],
+    "consiglio": "Valuta di venderlo: il valore cala da qualche giornata."
+   },
+   {
+    "id": 5685,
+    "nome": "Koopmeiners",
+    "club": "Juventus",
+    "ruolo": "C",
+    "pagato": 10,
+    "valore": 11.0,
+    "variazione": 1.0,
+    "serie": [
+     10.0,
+     10.0,
+     12.1,
+     12.9,
+     12.2,
+     11.9,
+     11.9,
+     11.9,
+     12.0,
+     11.7,
+     11.0
+    ],
+    "consiglio": "Valuta di venderlo: il valore cala da qualche giornata."
+   },
+   {
+    "id": 2816,
+    "nome": "Di Lorenzo",
+    "club": "Napoli",
+    "ruolo": "D",
+    "pagato": 20,
+    "valore": 12.9,
+    "variazione": 0.9,
+    "serie": [
+     12.0,
+     12.4,
+     11.6,
+     12.3,
+     12.3,
+     12.3,
+     12.6,
+     12.2,
+     12.6,
+     13.4,
+     12.9
+    ],
+    "consiglio": "Tieni: il valore è in crescita."
+   },
+   {
+    "id": 6010,
+    "nome": "Fazzini",
+    "club": "Cagliari",
+    "ruolo": "C",
+    "pagato": 1,
+    "valore": 4.1,
+    "variazione": -0.9,
+    "serie": [
+     5.0,
+     4.6,
+     4.3,
+     4.7,
+     4.5,
+     4.5,
+     4.5,
+     4.5,
+     4.5,
+     4.5,
+     4.1
     ],
     "consiglio": "Valuta di venderlo: il valore cala da qualche giornata."
    },
@@ -5373,57 +5570,83 @@
      9.0,
      8.7,
      9.0,
-     10.0,
-     10.0,
+     10.1,
+     10.1,
      9.4,
      9.4,
      10.0,
      10.0,
+     9.7,
      9.7
     ],
-    "consiglio": "Tieni: il valore è in crescita."
+    "consiglio": "Valuta di venderlo: il valore cala da qualche giornata."
    },
    {
-    "id": 4159,
-    "nome": "Akanji",
-    "club": "Inter",
-    "ruolo": "D",
-    "pagato": 30,
-    "valore": 11.5,
-    "variazione": -0.5,
+    "id": 4179,
+    "nome": "Gonzalez N.",
+    "club": "Juventus",
+    "ruolo": "C",
+    "pagato": 18,
+    "valore": 12.7,
+    "variazione": 0.7,
     "serie": [
      12.0,
-     11.6,
-     10.9,
-     11.9,
-     11.5,
-     11.2,
-     11.2,
-     11.2,
-     11.5,
-     11.5
+     12.0,
+     14.9,
+     15.0,
+     15.1,
+     14.7,
+     13.9,
+     12.7,
+     12.7,
+     12.7,
+     12.7
     ],
     "consiglio": "Tieni: il valore è in crescita."
    },
    {
-    "id": 6010,
-    "nome": "Fazzini",
-    "club": "Cagliari",
-    "ruolo": "C",
-    "pagato": 1,
-    "valore": 4.5,
+    "id": 6060,
+    "nome": "Laurientè",
+    "club": "Sassuolo",
+    "ruolo": "A",
+    "pagato": 35,
+    "valore": 12.5,
     "variazione": -0.5,
     "serie": [
-     5.0,
-     4.6,
-     4.3,
-     4.7,
-     4.5,
-     4.5,
-     4.5,
-     4.5,
-     4.5,
-     4.5
+     13.0,
+     12.4,
+     11.7,
+     11.5,
+     12.0,
+     11.4,
+     11.2,
+     10.3,
+     9.5,
+     8.7,
+     12.5
+    ],
+    "consiglio": "Tieni: il valore è in crescita."
+   },
+   {
+    "id": 7467,
+    "nome": "Calvani",
+    "club": "Frosinone",
+    "ruolo": "D",
+    "pagato": 8,
+    "valore": 8.4,
+    "variazione": 0.4,
+    "serie": [
+     8.0,
+     8.0,
+     8.0,
+     8.2,
+     8.2,
+     8.7,
+     8.4,
+     8.4,
+     8.2,
+     8.2,
+     8.4
     ],
     "consiglio": "Tieni: il valore è in crescita."
    },
@@ -5445,31 +5668,33 @@
      6.4,
      7.1,
      7.1,
+     6.7,
      6.7
     ],
-    "consiglio": "Tieni: il valore è in crescita."
+    "consiglio": "Valuta di venderlo: il valore cala da qualche giornata."
    },
    {
-    "id": 7467,
-    "nome": "Calvani",
-    "club": "Frosinone",
+    "id": 4159,
+    "nome": "Akanji",
+    "club": "Inter",
     "ruolo": "D",
-    "pagato": 8,
-    "valore": 8.2,
+    "pagato": 30,
+    "valore": 12.2,
     "variazione": 0.2,
     "serie": [
-     8.0,
-     8.0,
-     8.0,
-     8.2,
-     8.2,
-     8.7,
-     8.4,
-     8.4,
-     8.2,
-     8.2
+     12.0,
+     11.6,
+     10.9,
+     11.9,
+     11.5,
+     11.2,
+     11.2,
+     11.2,
+     11.5,
+     11.5,
+     12.2
     ],
-    "consiglio": "Valuta di venderlo: il valore cala da qualche giornata."
+    "consiglio": "Tieni: il valore è in crescita."
    },
    {
     "id": 7554,
@@ -5477,21 +5702,45 @@
     "club": "Parma",
     "ruolo": "A",
     "pagato": 1,
-    "valore": 16.1,
-    "variazione": 0.1,
+    "valore": 16.2,
+    "variazione": 0.2,
     "serie": [
      16.0,
      16.0,
      15.7,
      14.4,
      17.2,
-     20.4,
-     19.4,
-     18.4,
-     17.5,
-     16.1
+     20.5,
+     19.5,
+     18.5,
+     17.6,
+     16.2,
+     16.2
     ],
     "consiglio": "Valuta di venderlo: il valore cala da qualche giornata."
+   },
+   {
+    "id": 6206,
+    "nome": "Fabbian",
+    "club": "Parma",
+    "ruolo": "C",
+    "pagato": 1,
+    "valore": 4.1,
+    "variazione": 0.1,
+    "serie": [
+     4.0,
+     4.0,
+     4.0,
+     3.8,
+     3.8,
+     3.7,
+     3.4,
+     3.2,
+     3.3,
+     3.1,
+     4.1
+    ],
+    "consiglio": "Tieni: il valore è in crescita."
    },
    {
     "id": 7603,
@@ -5502,6 +5751,7 @@
     "valore": 1.0,
     "variazione": 0.0,
     "serie": [
+     1.0,
      1.0,
      1.0,
      1.0,
@@ -5524,6 +5774,7 @@
     "valore": 1.0,
     "variazione": 0.0,
     "serie": [
+     1.0,
      1.0,
      1.0,
      1.0,
