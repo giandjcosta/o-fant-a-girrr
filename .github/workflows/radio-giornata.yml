@@ -12,6 +12,10 @@ on:
         description: "1 = non aspettare l'ora del Giornale"
         required: false
         default: "0"
+      rifai:
+        description: "1 = rifà la puntata dell'ultima giornata anche se è già uscita (la nuova sostituisce la vecchia)"
+        required: false
+        default: "0"
 permissions:
   contents: write
 concurrency:
@@ -59,7 +63,8 @@ jobs:
         if: steps.c.outputs.vai == 'true'
         run: |
           python3 code/calcoli/leggi_eventi.py code/calcoli/eventi.json
-          python3 reg/voci-src/prepara_dati.py site code/calcoli/eventi.json --cronache-classifica >> "$GITHUB_OUTPUT"
+          RIFAI=""; [ "${{ github.event.inputs.rifai }}" = "1" ] && RIFAI="--rifai"
+          python3 reg/voci-src/prepara_dati.py site code/calcoli/eventi.json --cronache-classifica $RIFAI >> "$GITHUB_OUTPUT"
       - name: Installo gli strumenti
         if: steps.p.outputs.giornata != ''
         run: |
