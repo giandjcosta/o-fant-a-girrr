@@ -242,8 +242,9 @@ function storico(){
   STORICO.forEach(function(e){
     var body='';
     if(e.fin){var f=e.fin;body='<table><tr><td>'+esc(f[0])+'<small>'+esc(alS(f[1]))+'</small></td><td><b>'+f[2]+' - '+f[6]+'</b></td><td>'+esc(f[4])+'<small>'+esc(alS(f[5]))+'</small></td></tr></table>'}
-    else{body='<table><tr><th>#</th><th style="text-align:left">Squadra</th><th>Punti</th></tr>'
-      +e.t.map(function(r,i){return '<tr><td>'+(i+1)+'°</td><td style="text-align:left;font-weight:700">'+esc(r[0])+'<small>'+esc(alS(r[1]))+'</small></td><td>'+(r[2]!=null?r[2]:'–')+'</td></tr>'}).join('')+'</table>'}
+    else{var np=e.t.every(function(r){return r[2]==null});   /* Gianluca, 2 novembre: punti non conservati scritti per esteso, non una colonna di trattini */
+      body='<table><tr><th>#</th><th style="text-align:left">Squadra</th>'+(np?'':'<th>Punti</th>')+'</tr>'
+      +e.t.map(function(r,i){return '<tr><td>'+(i+1)+'°</td><td style="text-align:left;font-weight:700">'+esc(r[0])+'<small>'+esc(alS(r[1]))+'</small></td>'+(np?'':'<td>'+(r[2]!=null?r[2]:'Dato non conservato')+'</td>')+'</tr>'}).join('')+'</table>'+(np?'<div class="nota">Punti finali: dato non conservato.</div>':'')}
     h+='<div class="card"><details><summary><span class="y">'+e.y+'</span><span><small>'+esc(e.c)+'</small><b>🏆 '+esc(e.v[0])+' · '+esc(alS(e.v[1]))+'</b></span><span class="fr">›</span></summary>'+body+(e.nota?'<div class="nota">'+e.nota+'</div>':'')+'</details></div>';
   });
   return h+'</div>';
@@ -401,7 +402,7 @@ function scheda(name,ex){
   h+='<div class="kp"><div><small>Titoli</small><b>'+T+'</b></div><div><small>Stagioni</small><b>'+R.length+'</b></div><div><small>Miglior piazzamento</small><b>'+(best?best+'°':'–')+'</b></div><div><small>Posizione media</small><b>'+(R.length?(Math.round(R.reduce(function(a,r){return a+r.p},0)/R.length*10)/10+'').replace('.',',')+'°':'–')+'</b></div></div>';
   h+='<p class="sh-st sh-sto">'+esc(txt)+'</p>';
   if(AMB[name])h+='<h5>Dove punta <span class="fm">(previsione dai dati)</span></h5><p class="sh-st" style="margin-top:4px">'+esc(AMB[name])+'</p>';
-  if(R.length)h+='<h5>Il percorso</h5><table><tr><th style="text-align:left">Stagione</th><th style="text-align:left">Squadra</th><th>Pos.</th><th>Punti</th></tr>'+R.map(function(r){return '<tr><td style="text-align:left">'+r.y+'<small>'+esc(r.c)+'</small></td><td style="text-align:left;font-weight:700">'+esc(r.t)+'</td><td>'+(r.v?'🏆 ':'')+r.p+'°</td><td>'+(r.pt!=null?r.pt:'–')+'</td></tr>'}).join('')+'</table>';
+  if(R.length)h+='<h5>Il percorso</h5><table><tr><th style="text-align:left">Stagione</th><th style="text-align:left">Squadra</th><th>Pos.</th><th>Punti</th></tr>'+R.map(function(r){return '<tr><td style="text-align:left">'+r.y+'<small>'+esc(r.c)+'</small></td><td style="text-align:left;font-weight:700">'+esc(r.t)+'</td><td>'+(r.v?'🏆 ':'')+r.p+'°</td><td>'+(r.pt!=null?r.pt:'<small style="display:block;font-weight:600;opacity:.8;line-height:1.2">Dato non conservato</small>')+'</td></tr>'}).join('')+'</table>';
   h+=rivalita(name);
   h+=scontri(name);
   return h;
