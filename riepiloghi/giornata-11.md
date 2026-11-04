@@ -1,6 +1,6 @@
 # Riepilogo giornata 11 di Serie A
 
-Lega O FANT A GIRRR. Dati aggiornati al 2026-11-03.
+Lega O FANT A GIRRR. Dati aggiornati al 2026-11-04.
 
 ## Partite della giornata
 
