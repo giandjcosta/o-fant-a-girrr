@@ -77,10 +77,11 @@ Notizie pubbliche, senza indicare di chi e' ogni giocatore.
 | Martinez L. | Inter | Risentimento muscolare ai flessori della coscia sinistra | Metà novembre | Salta |
 | Celik | Juventus | Lesione di basso grado del bicipite femorale | Metà novembre | Salta |
 | Conceicao | Juventus | Lussazione alla spalla sinistra | Metà novembre | Salta |
-| Yildiz | Juventus | Problema al piede | Inizio dicembre | Salta |
+| Yildiz | Juventus | Problema al piede | Prima metà di dicembre | Salta |
 | Grabara | Juventus | Lesione al crociato anteriore del ginocchio destro | Da aprile | Salta |
 | Gonzalez N. | Juventus | Lesione di basso grado del soleo destro | Metà novembre | Salta |
 | Gudmundsson A. | Lazio | Problema alla spalla destra dopo una caduta | Seconda metà di novembre | In dubbio |
+| Zaccagni | Lazio | Problema muscolare alla coscia sinistra | Prossimo turno | Salta |
 | Geubbels | Lecce | Lesione muscolare di basso grado all'adduttore della | Metà novembre | In dubbio |
 | Saelemaekers | Milan | Problema alla caviglia destra e operata il | Da febbraio | Salta |
 | Chukwueze | Milan | Rottura del tendine del muscolo tensore della | Da aprile | Salta |
@@ -144,7 +145,7 @@ Punteggio: piu' e' alto, piu' conviene. Unisce valore e probabilita' di giocare.
 | Robinson J. | Monza | Titolare, ballottaggio | Atalanta (C) | 66 |
 | Lontani | Parma | Titolare | Bologna (C) | 52 |
 | Nzola | Cagliari | In dubbio | Frosinone (C) | 48 |
-| N'Dri | Lecce | Titolare, ballottaggio | Torino (T) | 43 |
+| N'Dri | Lecce | Titolare | Torino (T) | 43 |
 
 ## Correzioni da controllare
 
