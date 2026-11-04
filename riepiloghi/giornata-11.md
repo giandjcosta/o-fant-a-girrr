@@ -62,12 +62,11 @@ Notizie pubbliche, senza indicare di chi e' ogni giocatore.
 
 | Giocatore | Squadra | Motivo | Rientro | Giornata |
 |---|---|---|---|---|
+| Kessiè | Atalanta | Distrazione di basso grado al polpaccio della | Inizio novembre | In dubbio |
+| Kristensen T. | Atalanta | Distrazione di basso grado ai muscoli flessori | Seconda metà di novembre | Salta |
 | Bellanova | Atalanta | Distrazione di basso grado dell'adduttore lungo dell’arto | Metà novembre | Salta |
 | Raspadori | Atalanta | Distrazione muscolare di basso grado al bicipite | Inizio novembre | In dubbio |
-| Kristensen T. | Atalanta | Distrazione di basso grado ai muscoli flessori | Seconda metà di novembre | Salta |
-| Kessiè | Atalanta | Distrazione di basso grado al polpaccio della | Inizio novembre | In dubbio |
 | Holm | Bologna | Problema al tendine della coscia destra | Fine febbraio | Salta |
-| Piccoli | Bologna | Infortunio | Metà novembre | Salta |
 | Obert | Cagliari | Squalificato | Rientra dalla 12ª giornata | Salta |
 | Rodriguez Je. | Como | Infortunio | Metà dicembre | In dubbio |
 | Diao | Como | Lesione muscolare al flessore della gamba | Metà novembre | Salta |
@@ -75,7 +74,6 @@ Notizie pubbliche, senza indicare di chi e' ogni giocatore.
 | Kean | Como | Fastidio alla tibia che lo affligge da | Inizio dicembre | Salta |
 | Atta | Fiorentina | Sovraccarico funzionale dell'addome | Metà novembre | In dubbio |
 | Raimondo | Frosinone | Lesione multilegamentosa contusivo-distorsiva della caviglia sinistra | Metà dicembre | Salta |
-| Stones | Inter | Risentimento ai flessori della coscia sinistra | Inizio novembre | In dubbio |
 | Martinez L. | Inter | Risentimento muscolare ai flessori della coscia sinistra | Metà novembre | Salta |
 | Celik | Juventus | Lesione di basso grado del bicipite femorale | Metà novembre | Salta |
 | Conceicao | Juventus | Lussazione alla spalla sinistra | Metà novembre | Salta |
@@ -86,12 +84,13 @@ Notizie pubbliche, senza indicare di chi e' ogni giocatore.
 | Geubbels | Lecce | Lesione muscolare di basso grado all'adduttore della | Metà novembre | In dubbio |
 | Saelemaekers | Milan | Problema alla caviglia destra e operata il | Da febbraio | Salta |
 | Chukwueze | Milan | Rottura del tendine del muscolo tensore della | Da aprile | Salta |
-| Buongiorno | Napoli | Operato nella seconda metà di luglio al | Fine dicembre | Salta |
-| Spinazzola | Napoli | Lesione di basso grado del bicipite femorale | Metà novembre | Salta |
-| Lobotka | Napoli | Lesione della sindesmosi tibio-peroneale senza instabilità | Metà dicembre | Salta |
-| Santos A. | Napoli | Lesione distrattiva di medio grado del bicipite | Inizio dicembre | Salta |
 | Neres | Napoli | Lesione di basso grado al muscolo semimembranoso | Metà novembre | Salta |
 | Badiashile | Napoli | Lesione distrattiva di medio grado del retto | Fine novembre | Salta |
+| Santos A. | Napoli | Lesione distrattiva di medio grado del bicipite | Inizio dicembre | Salta |
+| Lobotka | Napoli | Lesione della sindesmosi tibio-peroneale senza instabilità | Metà dicembre | Salta |
+| Di Lorenzo | Napoli | Risentimento all'adduttore | Seconda metà di novembre | Salta |
+| Buongiorno | Napoli | Operato nella seconda metà di luglio al | Fine dicembre | Salta |
+| Spinazzola | Napoli | Lesione di basso grado del bicipite femorale | Metà novembre | Salta |
 | Bernabè | Parma | Distrazione muscolare di basso grado al retto | Seconda metà di novembre | Salta |
 | Svilar | Roma | Frattura a un dito del piede e | Metà novembre | Salta |
 | Rensch | Roma | Problema fisico che andrà valutato | Prossimo turno | Salta |
