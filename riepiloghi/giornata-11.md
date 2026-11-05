@@ -100,7 +100,7 @@ Notizie pubbliche, senza indicare di chi e' ogni giocatore.
 | Volpato | Sassuolo | Problema muscolare alla gamba | Prossimo turno | Salta |
 | Cacciamani | Torino | Lussazione alla spalla sinistra rimediata nel turno | Prossimo turno | Salta |
 | Fortini | Torino | Affaticamento muscolare all'adduttore | Da valutare | In dubbio |
-| Mandragora | Torino | Problema muscolare al flessore sinistro | Metà novembre | Salta |
+| Mandragora | Torino | Problema muscolare al flessore sinistro | Metà novembre | In dubbio |
 | Gueye | Udinese | Problema alla caviglia a fine settembre | Fine gennaio | Salta |
 
 ## Migliori svincolati
