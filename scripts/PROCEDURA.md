@@ -17,3 +17,8 @@
 **Controllo impaginazione (automatico).** `pdf_giornale.py` misura ogni pagina: se il contenuto supera il piede lo compatta a gradini
 (titolo, campo, testi, spazi, poi scala minima 0,84) e stampa l'esito di ogni pagina. Se una pagina non ci sta nemmeno così il PDF non
 è valido: si accorciano i testi in `testi.json` e si rigenera. Prima di pubblicare si guardano le 4 pagine rasterizzate.
+
+**Controllo finale (sempre, prima di dire che la giornata è a posto).** `python3 -I scripts/controllo_giornata.py [N]` dalla radice di `gh-pages`:
+sola lettura, elenca nello stesso ordine ogni passo fatto o mancante (giornata calcolata e voti, file del Giornale e del tabellone, archivio,
+dati delle pagine, regole di `testi.json`, PDF di 4 pagine con piè «O Giornale del Girrr · O Fant A Girrr» e «Pag. X di 4»). Esce con 1 se c'è un ERRORE:
+in quel caso la giornata non è finita. Gli AVVISO (per esempio «Fantapunti» nei testi) vanno guardati a mano.
