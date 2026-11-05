@@ -463,7 +463,7 @@ def costruisci(t, tema="classico"):
                 f'<div class="bar"><span>O Giornale del Girrr</span><span>{esc(data)}</span><span>N° {n}</span></div>')
 
     def piede(p):
-        return f'<div class="foot"><span>O Giornale del Girrr · O Fant A Girrr · Lo Spogliatoio</span><span>Pag. {p} di 4</span></div>'
+        return f'<div class="foot"><span>O Giornale del Girrr · O Fant A Girrr</span><span>Pag. {p} di 4</span></div>'
 
     h = [f"<style>{CSS}{css_tema(tema)}</style>"]
     # ---------- prima pagina
