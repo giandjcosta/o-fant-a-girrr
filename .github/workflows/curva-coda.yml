@@ -1,0 +1,53 @@
+name: Curva, coda di approvazione
+# Si lancia a mano. Nei primi 14 giorni dopo il rilascio i post automatici della Curva non escono da soli:
+# aspettano qui il tuo ok. Scegli l'azione, e per approvare o scartare scrivi i numeri (1,3) oppure "tutti".
+on:
+  workflow_dispatch:
+    inputs:
+      azione:
+        description: "Che cosa fare"
+        type: choice
+        default: elenco
+        options: [elenco, approva, scarta]
+      numeri:
+        description: "Numeri dei post (esempio 1,3) oppure tutti"
+        required: false
+        default: ""
+permissions:
+  contents: write
+concurrency:
+  group: calcoli-giornata
+env:
+  CURVA_URL: ${{ secrets.CURVA_URL }}
+  CURVA_KEY: ${{ secrets.CURVA_KEY }}
+  CURVA_TEAM: ${{ secrets.CURVA_TEAM }}
+  CURVA_CODE: ${{ secrets.CURVA_CODE }}
+jobs:
+  coda:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Eseguo
+        env:
+          AZIONE: ${{ inputs.azione }}
+          NUMERI: ${{ inputs.numeri }}
+        run: |
+          if [ "$AZIONE" != "elenco" ] && [ -z "$NUMERI" ]; then echo "Scrivi i numeri dei post (1,3) oppure tutti."; exit 1; fi
+          case "$AZIONE" in
+            elenco) python3 calcoli/pubblica_curva.py --elenco ;;
+            approva) python3 calcoli/pubblica_curva.py --approva "$NUMERI" --vai ;;
+            scarta) python3 calcoli/pubblica_curva.py --scarta "$NUMERI" ;;
+          esac
+      - name: Salvo la coda
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add calcoli/coda_curva.json calcoli/pubblicati.json
+          git diff --cached --quiet || git commit -m "Curva: coda aggiornata"
+          git pull --rebase origin main
+          git push origin main

@@ -1,0 +1,54 @@
+[
+ {
+  "tipo": "sfida",
+  "k": "S4",
+  "da": "Oranje VC",
+  "a": "Apo team",
+  "f": 0
+ },
+ {
+  "tipo": "derby",
+  "k": "S4",
+  "da": "Oranje VC",
+  "a": "Apo team",
+  "nome": "The Continental"
+ },
+ {
+  "tipo": "sfida",
+  "k": "S5",
+  "da": "The Blue brothers",
+  "a": "Oranje VC",
+  "f": 1,
+  "testo": "Bentornato, DJ: i posti in alto sono occupati, e il mio è già scelto."
+ },
+ {
+  "tipo": "derby",
+  "k": "S5",
+  "da": "The Blue brothers",
+  "a": "Oranje VC",
+  "nome": "Derby dell'Emma"
+ },
+ {
+  "tipo": "promessa",
+  "k": "C4-Apo team",
+  "team": "Apo team",
+  "giornata": 4,
+  "promessa": "Sarà sicuramente una bella partita, che vinca il migliore",
+  "esito": "s"
+ },
+ {
+  "tipo": "conferenza",
+  "k": "C6-Apo team",
+  "team": "Apo team",
+  "giornata": 6,
+  "avversario": "Oranje VC",
+  "tono": 1,
+  "libera": "Se non dovessimo vincere questa giornata probabilmente salterà qualche testa",
+  "risposte": [
+   "Se non dovessimo vincere questa giornata probabilmente salterà qualche testa",
+   "Ce li scopiamo sti olandesi, zero paura, mora sarà in campo per il gol dell'ex",
+   "Leccatemi il sotto palla sudato"
+  ],
+  "promessa": "Se non dovessimo vincere questa giornata probabilmente salterà qualche testa"
+ }
+]

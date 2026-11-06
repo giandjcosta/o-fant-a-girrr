@@ -1,0 +1,129 @@
+[
+ {
+  "chiave": "sfida:S4:0",
+  "h": "girrr_sport",
+  "body": "SFIDA LANCIATA\nDJ Cst Brazil contro apo. Sta per nascere un nuovo Derby? #GirrrSport #Derby"
+ },
+ {
+  "chiave": "sfida:S4:1",
+  "h": "girrr_sport",
+  "body": "INTERVISTA SPECIALE\nDJ Cst Brazil lancia la sfida a apo: «apo c'è dal primo giorno e ha tre titoli: io sono andato e tornato, e il conto aperto lo chiudo io.» #GirrrSport #Derby"
+ },
+ {
+  "chiave": "derby:S4:0",
+  "h": "girrr_sport",
+  "body": "NASCE UN DERBY\nDJ Cst Brazil e apo hanno trovato l'accordo: da oggi è «The Continental». #GirrrSport #Derby"
+ },
+ {
+  "chiave": "derby:S4:1",
+  "h": "lega_ofantagirrr",
+  "body": "Novità dall'Albo d'oro: nasce «The Continental», il Derby tra DJ Cst Brazil e apo. Entra nella storia della Lega. #Derby #AlboDoro"
+ },
+ {
+  "chiave": "sfida:S5:0",
+  "h": "girrr_sport",
+  "body": "SFIDA LANCIATA\nLeanzino & Mario contro DJ Cst Brazil. Sta per nascere un nuovo Derby? #GirrrSport #Derby"
+ },
+ {
+  "chiave": "sfida:S5:1",
+  "h": "girrr_sport",
+  "body": "INTERVISTA SPECIALE\nLeanzino & Mario lancia la sfida a DJ Cst Brazil: «Bentornato, DJ: i posti in alto sono occupati, e il mio è già scelto.» #GirrrSport #Derby"
+ },
+ {
+  "chiave": "derby:S5:0",
+  "h": "girrr_sport",
+  "body": "NASCE UN DERBY\nLeanzino & Mario e DJ Cst Brazil hanno trovato l'accordo: da oggi è «Derby dell'Emma». #GirrrSport #Derby"
+ },
+ {
+  "chiave": "derby:S5:1",
+  "h": "lega_ofantagirrr",
+  "body": "Novità dall'Albo d'oro: nasce «Derby dell'Emma», il Derby tra Leanzino & Mario e DJ Cst Brazil. Entra nella storia della Lega. #Derby #AlboDoro"
+ },
+ {
+  "chiave": "promessa:C4-Apo team:0",
+  "h": "giornale_girrr",
+  "body": "PROMESSA TRADITA\napo in conferenza stampa: «Sarà sicuramente una bella partita, che vinca il migliore». Il campo ha risposto altro, e la dirigenza ha preso nota. #ConferenzaStampa"
+ },
+ {
+  "chiave": "conferenza:C6-Apo team:0",
+  "h": "girrr_sport",
+  "body": "CONFERENZA STAMPA · apo, alla vigilia di apo - DJ Cst Brazil: «Se non dovessimo vincere questa giornata probabilmente salterà qualc…» Su DJ Cst Brazil: «Ce li scopiamo sti olandesi, zero paura, mora sarà in campo per il gol…» E alla dirigenza: «Leccatemi il sotto palla sudato»"
+ },
+ {
+  "chiave": "conferenza:C6-Apo team:1",
+  "h": "ciro_trattativa",
+  "body": "Mi piace l'umiltà, ma in questa lega non basta.",
+  "re": "conferenza:C6-Apo team:0",
+  "re_h": "girrr_sport",
+  "re_body": "CONFERENZA STAMPA · apo, alla vigilia di apo - DJ Cst Brazil: «Se non dovessimo vincere questa giornata probabilmente salterà qualc…» Su DJ Cst Brazil: «Ce li scopiamo sti olandesi, zero paura, mora sarà in campo per il gol…» E alla dirigenza: «Leccatemi il sotto palla sudato»"
+ },
+ {
+  "chiave": "zona_classifica:zona:2026/27:G6:rimonta:Grodah:0",
+  "h": "girrr_sport",
+  "body": "GRANDE RIMONTA\nGrodah risale dalla 8ª alla 2ª posizione in tre giornate: quattro o più posti recuperati. La rimonta prende forma.",
+  "cronaca": "zona:2026/27:G6:rimonta:Grodah",
+  "giornata": 6,
+  "stagione": "2026/27",
+  "tema": "rimonta",
+  "prova": {
+   "giornata": 6,
+   "posizione_precedente": 4,
+   "posizione": 2,
+   "attesa": 5,
+   "serie": 3,
+   "altre_squadre": [],
+   "giornata_inizio": 3,
+   "posizione_inizio": 8,
+   "variazione": 6
+  }
+ },
+ {
+  "chiave": "zona_classifica:zona:2026/27:G6:rimonta:Grodah:1",
+  "h": "giornale_girrr",
+  "body": "IL PUNTO DELLA CLASSIFICA\nGrodah risale dalla 8ª alla 2ª posizione in tre giornate: quattro o più posti recuperati. La rimonta prende forma.",
+  "cronaca": "zona:2026/27:G6:rimonta:Grodah",
+  "giornata": 6,
+  "stagione": "2026/27",
+  "tema": "rimonta",
+  "prova": {
+   "giornata": 6,
+   "posizione_precedente": 4,
+   "posizione": 2,
+   "attesa": 5,
+   "serie": 3,
+   "altre_squadre": [],
+   "giornata_inizio": 3,
+   "posizione_inizio": 8,
+   "variazione": 6
+  }
+ },
+ {
+  "chiave": "zona_classifica:zona:2026/27:G6:rimonta:Grodah:2",
+  "h": "giornale_girrr",
+  "body": "Alla 6ª giornata: Grodah è 2ª. Il prossimo turno dirà se questa svolta avrà seguito.",
+  "cronaca": "zona:2026/27:G6:rimonta:Grodah",
+  "giornata": 6,
+  "stagione": "2026/27",
+  "tema": "rimonta",
+  "prova": {
+   "giornata": 6,
+   "posizione_precedente": 4,
+   "posizione": 2,
+   "attesa": 5,
+   "serie": 3,
+   "altre_squadre": [],
+   "giornata_inizio": 3,
+   "posizione_inizio": 8,
+   "variazione": 6
+  },
+  "re": "zona_classifica:zona:2026/27:G6:rimonta:Grodah:0",
+  "re_h": "girrr_sport",
+  "re_body": "GRANDE RIMONTA\nGrodah risale dalla 8ª alla 2ª posizione in tre giornate: quattro o più posti recuperati. La rimonta prende forma."
+ },
+ {
+  "chiave": "moviola:G6:0",
+  "h": "girrr_sport",
+  "body": "MOVIOLA · Giornata 6\nGol decisivo. Tutto gira intorno a Laurientè: la doppietta decide stif dc–Atletico ma non troppo 1‑3. Nessun dubbio dalla moviola, e senza la doppietta Atletico ma non troppo avrebbe pareggiato. Verdetto: Ha deciso la partita. #GirrrSport #Moviola",
+  "quando": "2026-11-03T13:40:00+00:00"
+ }
+]

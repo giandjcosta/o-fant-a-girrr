@@ -1,0 +1,3 @@
+# Aider legge sempre le regole del repository (solo lettura)
+read:
+  - AGENTS.md
