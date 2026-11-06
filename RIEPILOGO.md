@@ -81,7 +81,6 @@ Notizie pubbliche, senza indicare di chi e' ogni giocatore.
 | Conceicao | Juventus | Lussazione alla spalla sinistra | Metà novembre | Salta |
 | Zaccagni | Lazio | Lesione del quadricipite femorale sinistro | Fine novembre | Salta |
 | Gudmundsson A. | Lazio | Problema alla spalla destra dopo una caduta | Seconda metà di novembre | In dubbio |
-| Geubbels | Lecce | Lesione muscolare di basso grado all'adduttore della | Metà novembre | In dubbio |
 | Chukwueze | Milan | Rottura del tendine del muscolo tensore della | Da aprile | Salta |
 | Saelemaekers | Milan | Problema alla caviglia destra e operata il | Da febbraio | Salta |
 | Badiashile | Napoli | Lesione distrattiva di medio grado del retto | Fine novembre | Salta |
@@ -96,8 +95,8 @@ Notizie pubbliche, senza indicare di chi e' ogni giocatore.
 | Rensch | Roma | Lesione di primo grado dell'adduttore lungo di | Seconda metà di novembre | Salta |
 | Konè M. | Roma | Lesione di primo grado al bicipite femorale | Prima metà di novembre | In dubbio |
 | Dybala | Roma | Fastidio al polpaccio | Da valutare | In dubbio |
+| Berardi | Sassuolo | Problema fisico | Prossimo turno | Salta |
 | Volpato | Sassuolo | Problema muscolare alla gamba | Prossimo turno | Salta |
-| Cacciamani | Torino | Lussazione alla spalla sinistra rimediata nel turno | Prossimo turno | Salta |
 | Fortini | Torino | Affaticamento muscolare all'adduttore | Da valutare | In dubbio |
 | Mandragora | Torino | Problema muscolare al flessore sinistro | Metà novembre | In dubbio |
 | Gueye | Udinese | Problema alla caviglia a fine settembre | Fine gennaio | Salta |
