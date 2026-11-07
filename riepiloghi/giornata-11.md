@@ -69,6 +69,7 @@ Notizie pubbliche, senza indicare di chi e' ogni giocatore.
 | Obert | Cagliari | Squalificato | Rientra dalla 12ª giornata | Salta |
 | Rodriguez Je. | Como | Infortunio | Metà dicembre | In dubbio |
 | Diao | Como | Lesione muscolare al flessore della gamba | Metà novembre | Salta |
+| Chalobah T. | Como | Infortunio | Metà novembre | Salta |
 | Kean | Como | Fastidio alla tibia che lo affligge da | Inizio dicembre | Salta |
 | Atta | Fiorentina | Sovraccarico funzionale dell'addome | Metà novembre | In dubbio |
 | Raimondo | Frosinone | Lesione multilegamentosa contusivo-distorsiva della caviglia sinistra | Metà dicembre | Salta |
@@ -81,8 +82,10 @@ Notizie pubbliche, senza indicare di chi e' ogni giocatore.
 | Celik | Juventus | Lesione di basso grado del bicipite femorale | Metà novembre | Salta |
 | Zaccagni | Lazio | Lesione del quadricipite femorale sinistro | Fine novembre | Salta |
 | Gudmundsson A. | Lazio | Problema alla spalla destra dopo una caduta | Seconda metà di novembre | In dubbio |
+| Pavlovic | Milan | Problema alla spalla e non ha recuperato | Da valutare | In dubbio |
 | Chukwueze | Milan | Rottura del tendine del muscolo tensore della | Da aprile | Salta |
 | Saelemaekers | Milan | Problema alla caviglia destra e operata il | Da febbraio | Salta |
+| Birindelli | Monza | Problema fisico lamentato nella rifinitura | Prossimo turno | Salta |
 | Badiashile | Napoli | Lesione distrattiva di medio grado del retto | Fine novembre | Salta |
 | Neres | Napoli | Lesione di basso grado al muscolo semimembranoso | Metà novembre | Salta |
 | Santos A. | Napoli | Lesione distrattiva di medio grado del bicipite | Inizio dicembre | Salta |
@@ -91,7 +94,9 @@ Notizie pubbliche, senza indicare di chi e' ogni giocatore.
 | Buongiorno | Napoli | Operato nella seconda metà di luglio al | Fine dicembre | Salta |
 | Lobotka | Napoli | Lesione della sindesmosi tibio-peroneale senza instabilità | Metà dicembre | Salta |
 | Bernabè | Parma | Distrazione muscolare di basso grado al retto | Seconda metà di novembre | Salta |
+| Gollini | Roma | Fastidio alla schiena e out sabato contro | Prossimo turno | Salta |
 | Svilar | Roma | Frattura a un dito del piede e | Metà novembre | Salta |
+| Mancini | Roma | Risentimento muscolare alla gamba accusato nella rifinitura | Da valutare | In dubbio |
 | Rensch | Roma | Lesione di primo grado dell'adduttore lungo di | Seconda metà di novembre | Salta |
 | Dybala | Roma | Fastidio al polpaccio | Metà novembre | In dubbio |
 | Volpato | Sassuolo | Problema muscolare alla gamba | Prossimo turno | Salta |
@@ -109,7 +114,7 @@ Punteggio: piu' e' alto, piu' conviene. Unisce valore e probabilita' di giocare.
 |---|---|---|---|---|
 | Perri | Torino | Titolare | Lecce (C) | 56 |
 | Tornqvist | Monza | Titolare | Atalanta (C) | 42 |
-| Daffara | Parma | Titolare, ballottaggio | Bologna (C) | 29 |
+| Daffara | Parma | Titolare | Bologna (C) | 29 |
 | Thiam | Monza | Panchina | Atalanta (C) | 21 |
 | Turati | Sassuolo | Titolare | Roma (T) | 21 |
 
@@ -138,10 +143,10 @@ Punteggio: piu' e' alto, piu' conviene. Unisce valore e probabilita' di giocare.
 | Giocatore | Squadra | Stato | Avversario | Punteggio |
 |---|---|---|---|---|
 | Ghedjemis | Frosinone | Titolare | Cagliari (T) | 74 |
-| Robinson J. | Monza | Titolare, ballottaggio | Atalanta (C) | 66 |
-| Lontani | Parma | Titolare, ballottaggio | Bologna (C) | 52 |
+| Robinson J. | Monza | Riserva, ballottaggio | Atalanta (C) | 66 |
+| Lontani | Parma | Titolare | Bologna (C) | 52 |
 | Nzola | Cagliari | Fuori | Frosinone (C) | 48 |
-| N'Dri | Lecce | Titolare, ballottaggio | Torino (T) | 43 |
+| N'Dri | Lecce | Panchina | Torino (T) | 43 |
 
 ## Correzioni da controllare
 
