@@ -116,14 +116,14 @@ Punteggio: piu' e' alto, piu' conviene. Unisce valore e probabilita' di giocare.
 | Tornqvist | Monza | Titolare | Atalanta (C) | 42 |
 | Daffara | Parma | Titolare | Bologna (C) | 29 |
 | Thiam | Monza | Panchina | Atalanta (C) | 21 |
-| Turati | Sassuolo | Titolare | Roma (T) | 21 |
+| Turati | Sassuolo | Panchina | Roma (T) | 21 |
 
 ### Difensori
 
 | Giocatore | Squadra | Stato | Avversario | Punteggio |
 |---|---|---|---|---|
 | Hainaut | Venezia | Titolare | Udinese (C) | 85 |
-| Veiga D. | Lecce | Titolare | Torino (T) | 74 |
+| Veiga D. | Lecce | Titolare | Torino (T) | 75 |
 | Troilo | Parma | Titolare | Bologna (C) | 73 |
 | Zè Pedro | Cagliari | Titolare | Frosinone (C) | 73 |
 | Provstgaard | Lazio | Titolare | Napoli (T) | 72 |
@@ -132,9 +132,9 @@ Punteggio: piu' e' alto, piu' conviene. Unisce valore e probabilita' di giocare.
 
 | Giocatore | Squadra | Stato | Avversario | Punteggio |
 |---|---|---|---|---|
-| Schmid | Frosinone | Titolare | Cagliari (T) | 93 |
-| Romano | Cagliari | Titolare | Frosinone (C) | 81 |
-| Pobega | Bologna | Titolare | Parma (T) | 80 |
+| Schmid | Frosinone | Titolare | Cagliari (T) | 92 |
+| Romano | Cagliari | Titolare | Frosinone (C) | 80 |
+| Pobega | Bologna | Titolare | Parma (T) | 79 |
 | Matic | Sassuolo | Titolare | Roma (T) | 74 |
 | Perez K. | Venezia | Titolare | Udinese (C) | 72 |
 
@@ -142,11 +142,11 @@ Punteggio: piu' e' alto, piu' conviene. Unisce valore e probabilita' di giocare.
 
 | Giocatore | Squadra | Stato | Avversario | Punteggio |
 |---|---|---|---|---|
-| Ghedjemis | Frosinone | Titolare | Cagliari (T) | 74 |
+| Ghedjemis | Frosinone | Titolare | Cagliari (T) | 72 |
 | Robinson J. | Monza | Riserva, ballottaggio | Atalanta (C) | 66 |
 | Lontani | Parma | Titolare | Bologna (C) | 52 |
 | Nzola | Cagliari | Fuori | Frosinone (C) | 48 |
-| N'Dri | Lecce | Panchina | Torino (T) | 43 |
+| N'Dri | Lecce | Panchina | Torino (T) | 44 |
 
 ## Correzioni da controllare
 
