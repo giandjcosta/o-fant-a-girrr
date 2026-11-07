@@ -1,6 +1,6 @@
 # Riepilogo giornata 11 di Serie A
 
-Lega O FANT A GIRRR. Dati aggiornati al 2026-11-06.
+Lega O FANT A GIRRR. Dati aggiornati al 2026-11-07.
 
 ## Partite della giornata
 
@@ -117,7 +117,7 @@ Punteggio: piu' e' alto, piu' conviene. Unisce valore e probabilita' di giocare.
 
 | Giocatore | Squadra | Stato | Avversario | Punteggio |
 |---|---|---|---|---|
-| Hainaut | Venezia | Titolare | Udinese (C) | 84 |
+| Hainaut | Venezia | Titolare | Udinese (C) | 85 |
 | Veiga D. | Lecce | Titolare | Torino (T) | 74 |
 | Troilo | Parma | Titolare | Bologna (C) | 73 |
 | Zè Pedro | Cagliari | Titolare | Frosinone (C) | 73 |
@@ -131,7 +131,7 @@ Punteggio: piu' e' alto, piu' conviene. Unisce valore e probabilita' di giocare.
 | Romano | Cagliari | Titolare | Frosinone (C) | 81 |
 | Pobega | Bologna | Titolare | Parma (T) | 80 |
 | Matic | Sassuolo | Titolare | Roma (T) | 74 |
-| Frendrup | Genoa | Titolare | Milan (C) | 68 |
+| Perez K. | Venezia | Titolare | Udinese (C) | 72 |
 
 ### Attaccanti
 
