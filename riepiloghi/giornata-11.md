@@ -73,11 +73,12 @@ Notizie pubbliche, senza indicare di chi e' ogni giocatore.
 | Atta | Fiorentina | Sovraccarico funzionale dell'addome | Metà novembre | In dubbio |
 | Raimondo | Frosinone | Lesione multilegamentosa contusivo-distorsiva della caviglia sinistra | Metà dicembre | Salta |
 | Martinez L. | Inter | Risentimento muscolare ai flessori della coscia sinistra | Metà novembre | Salta |
-| Celik | Juventus | Lesione di basso grado del bicipite femorale | Metà novembre | Salta |
+| Cambiaso | Juventus | Infortunio | Prossimo turno | Salta |
 | Gonzalez N. | Juventus | Lesione di basso grado del soleo destro | Metà novembre | Salta |
 | Grabara | Juventus | Lesione al crociato anteriore del ginocchio destro | Da aprile | Salta |
 | Yildiz | Juventus | Problema al piede | Prima metà di dicembre | Salta |
 | Conceicao | Juventus | Lussazione alla spalla sinistra | Metà novembre | Salta |
+| Celik | Juventus | Lesione di basso grado del bicipite femorale | Metà novembre | Salta |
 | Zaccagni | Lazio | Lesione del quadricipite femorale sinistro | Fine novembre | Salta |
 | Gudmundsson A. | Lazio | Problema alla spalla destra dopo una caduta | Seconda metà di novembre | In dubbio |
 | Chukwueze | Milan | Rottura del tendine del muscolo tensore della | Da aprile | Salta |
@@ -92,7 +93,6 @@ Notizie pubbliche, senza indicare di chi e' ogni giocatore.
 | Bernabè | Parma | Distrazione muscolare di basso grado al retto | Seconda metà di novembre | Salta |
 | Svilar | Roma | Frattura a un dito del piede e | Metà novembre | Salta |
 | Rensch | Roma | Lesione di primo grado dell'adduttore lungo di | Seconda metà di novembre | Salta |
-| Konè M. | Roma | Lesione di primo grado al bicipite femorale | Prima metà di novembre | In dubbio |
 | Dybala | Roma | Fastidio al polpaccio | Metà novembre | In dubbio |
 | Volpato | Sassuolo | Problema muscolare alla gamba | Prossimo turno | Salta |
 | Berardi | Sassuolo | Problema fisico | Prossimo turno | Salta |
