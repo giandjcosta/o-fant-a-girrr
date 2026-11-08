@@ -126,7 +126,7 @@ Punteggio: piu' e' alto, piu' conviene. Unisce valore e probabilita' di giocare.
 | Veiga D. | Lecce | Titolare | Torino (T) | 75 |
 | Troilo | Parma | Titolare | Bologna (C) | 73 |
 | Zè Pedro | Cagliari | Titolare | Frosinone (C) | 73 |
-| Provstgaard | Lazio | Titolare | Napoli (T) | 72 |
+| Rodriguez Ju. | Cagliari | Titolare | Frosinone (C) | 72 |
 
 ### Centrocampisti
 
@@ -143,7 +143,7 @@ Punteggio: piu' e' alto, piu' conviene. Unisce valore e probabilita' di giocare.
 | Giocatore | Squadra | Stato | Avversario | Punteggio |
 |---|---|---|---|---|
 | Ghedjemis | Frosinone | Titolare | Cagliari (T) | 72 |
-| Robinson J. | Monza | Riserva, ballottaggio | Atalanta (C) | 66 |
+| Robinson J. | Monza | Titolare | Atalanta (C) | 66 |
 | Lontani | Parma | Titolare | Bologna (C) | 52 |
 | Nzola | Cagliari | Fuori | Frosinone (C) | 48 |
 | N'Dri | Lecce | Panchina | Torino (T) | 44 |
