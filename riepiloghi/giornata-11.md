@@ -143,7 +143,7 @@ Punteggio: piu' e' alto, piu' conviene. Unisce valore e probabilita' di giocare.
 | Giocatore | Squadra | Stato | Avversario | Punteggio |
 |---|---|---|---|---|
 | Ghedjemis | Frosinone | Titolare | Cagliari (T) | 72 |
-| Robinson J. | Monza | Titolare | Atalanta (C) | 66 |
+| Robinson J. | Monza | Titolare | Atalanta (C) | 65 |
 | Lontani | Parma | Titolare | Bologna (C) | 52 |
 | Nzola | Cagliari | Fuori | Frosinone (C) | 48 |
 | N'Dri | Lecce | Panchina | Torino (T) | 44 |
