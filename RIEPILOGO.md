@@ -1,6 +1,6 @@
 # Riepilogo giornata 11 di Serie A
 
-Lega O FANT A GIRRR. Dati aggiornati al 2026-11-07.
+Lega O FANT A GIRRR. Dati aggiornati al 2026-11-08.
 
 ## Partite della giornata
 
@@ -78,8 +78,8 @@ Notizie pubbliche, senza indicare di chi e' ogni giocatore.
 | Gonzalez N. | Juventus | Lesione di basso grado del soleo destro | Metà novembre | Salta |
 | Grabara | Juventus | Lesione al crociato anteriore del ginocchio destro | Da aprile | Salta |
 | Yildiz | Juventus | Problema al piede | Prima metà di dicembre | Salta |
-| Conceicao | Juventus | Lussazione alla spalla sinistra | Metà novembre | Salta |
 | Celik | Juventus | Lesione di basso grado del bicipite femorale | Metà novembre | Salta |
+| Conceicao | Juventus | Lussazione alla spalla sinistra | Metà novembre | Salta |
 | Zaccagni | Lazio | Lesione del quadricipite femorale sinistro | Fine novembre | Salta |
 | Gudmundsson A. | Lazio | Problema alla spalla destra dopo una caduta | Seconda metà di novembre | In dubbio |
 | Pavlovic | Milan | Problema alla spalla e non ha recuperato | Da valutare | In dubbio |
