@@ -1,19 +1,19 @@
-# Riepilogo giornata 11 di Serie A
+# Riepilogo giornata 12 di Serie A
 
 Lega O FANT A GIRRR. Dati aggiornati al 2026-11-09.
 
 ## Partite della giornata
 
-- Venezia - Udinese (ven 6/11 20:45)
-- Cagliari - Frosinone (sab 7/11 15:00)
-- Torino - Lecce (sab 7/11 15:00)
-- Parma - Bologna (sab 7/11 18:00)
-- Roma - Sassuolo (sab 7/11 20:45)
-- Napoli - Lazio (dom 8/11 12:30)
-- Genoa - Milan (dom 8/11 15:00)
-- Monza - Atalanta (dom 8/11 15:00)
-- Inter - Como (dom 8/11 18:00)
-- Fiorentina - Juventus (dom 8/11 20:45)
+- Como - Cagliari (sab 21/11 15:00)
+- Lazio - Lecce (sab 21/11 15:00)
+- Parma - Roma (sab 21/11 18:00)
+- Napoli - Torino (sab 21/11 20:45)
+- Juventus - Venezia (dom 22/11 12:30)
+- Bologna - Udinese (dom 22/11 15:00)
+- Sassuolo - Genoa (dom 22/11 15:00)
+- Milan - Frosinone (dom 22/11 18:00)
+- Atalanta - Inter (dom 22/11 20:45)
+- Monza - Fiorentina (lun 23/11 20:45)
 
 ## Classic League: ultima giornata (7ª, G11 di Serie A)
 
@@ -111,45 +111,45 @@ Punteggio: piu' e' alto, piu' conviene. Unisce valore e probabilita' di giocare.
 
 | Giocatore | Squadra | Stato | Avversario | Punteggio |
 |---|---|---|---|---|
-| Perri | Torino | Titolare | Lecce (C) | 56 |
-| Tornqvist | Monza | Titolare | Atalanta (C) | 42 |
-| Daffara | Parma | Titolare | Bologna (C) | 29 |
-| Thiam | Monza | Panchina | Atalanta (C) | 21 |
-| Turati | Sassuolo | Panchina | Roma (T) | 21 |
+| Perri | Torino | Titolare | Napoli (T) | 56 |
+| Tornqvist | Monza | Titolare | Fiorentina (C) | 42 |
+| Daffara | Parma | Titolare | Roma (C) | 29 |
+| Thiam | Monza | Panchina | Fiorentina (C) | 21 |
+| Turati | Sassuolo | Panchina | Genoa (C) | 21 |
 
 ### Difensori
 
 | Giocatore | Squadra | Stato | Avversario | Punteggio |
 |---|---|---|---|---|
-| Hainaut | Venezia | Titolare | Udinese (C) | 85 |
-| Veiga D. | Lecce | Titolare | Torino (T) | 75 |
-| Troilo | Parma | Titolare | Bologna (C) | 73 |
-| Zè Pedro | Cagliari | Titolare | Frosinone (C) | 73 |
-| Rodriguez Ju. | Cagliari | Titolare | Frosinone (C) | 72 |
+| Hainaut | Venezia | Titolare | Juventus (T) | 85 |
+| Veiga D. | Lecce | Titolare | Lazio (T) | 75 |
+| Troilo | Parma | Titolare | Roma (C) | 73 |
+| Zè Pedro | Cagliari | Titolare | Como (T) | 73 |
+| Rodriguez Ju. | Cagliari | Titolare | Como (T) | 72 |
 
 ### Centrocampisti
 
 | Giocatore | Squadra | Stato | Avversario | Punteggio |
 |---|---|---|---|---|
-| Schmid | Frosinone | Titolare | Cagliari (T) | 92 |
-| Romano | Cagliari | Titolare | Frosinone (C) | 80 |
-| Pobega | Bologna | Titolare | Parma (T) | 79 |
-| Matic | Sassuolo | Titolare | Roma (T) | 74 |
-| Perez K. | Venezia | Titolare | Udinese (C) | 72 |
+| Schmid | Frosinone | Titolare | Milan (T) | 92 |
+| Romano | Cagliari | Titolare | Como (T) | 80 |
+| Pobega | Bologna | Titolare | Udinese (C) | 79 |
+| Matic | Sassuolo | Titolare | Genoa (C) | 74 |
+| Perez K. | Venezia | Titolare | Juventus (T) | 72 |
 
 ### Attaccanti
 
 | Giocatore | Squadra | Stato | Avversario | Punteggio |
 |---|---|---|---|---|
-| Ghedjemis | Frosinone | Titolare | Cagliari (T) | 72 |
-| Robinson J. | Monza | Titolare | Atalanta (C) | 65 |
-| Lontani | Parma | Titolare | Bologna (C) | 52 |
-| Nzola | Cagliari | Fuori | Frosinone (C) | 48 |
-| N'Dri | Lecce | Panchina | Torino (T) | 44 |
+| Ghedjemis | Frosinone | Titolare | Milan (T) | 72 |
+| Robinson J. | Monza | Titolare | Fiorentina (C) | 65 |
+| Lontani | Parma | Titolare | Roma (C) | 52 |
+| Nzola | Cagliari | Fuori | Como (T) | 48 |
+| N'Dri | Lecce | Panchina | Lazio (T) | 44 |
 
 ## Correzioni da controllare
 
-- Probabili G11 lette da Fantacalcio.it e Fantamaster (Sky non le ha ancora pubblicate), in disaccordo su Napoli (Gilmour o Vergara), Cagliari (Kofler/Mina/Aurelio, Winks/Fazzini/Massolin), Torino (Fitz-Jim o Gineitis, Patterson o Aboukhlal), Roma (Pisilli o Mora, De Roon), Juventus (McKennie o Sarr P.), Como (Liberali o Milla), Genoa (Ehizibue o Wiafe): controllare le formazioni ufficiali.
-- Portieri G11 in dubbio o in ballottaggio (Roma Gollini con problema alla schiena, Napoli Milinkovic-Savic V. affaticato, Como Butez o Sanchez Ro.): controllare prima del fischio.
-- Infortunati G11 letti da Fantacalcio.it (Fantamaster non riporta l'elenco): Bernabè (Parma), Rensch (Roma) e Volpato (Sassuolo) sono nuovi fuori, da confermare. Venturino e Havel (Genoa), Ekhator (Juventus) e Bayo V. (Udinese) non sono più nell'elenco degli indisponibili: verificare che siano davvero recuperati.
+- G12 (21-23/11): probabili formazioni, infortunati e squalificati non ancora pubblicati (giornata a più di 5 giorni); st e inj sono ancora quelli della G11 e vanno ricostruiti appena escono.
+- Calendario G14 (4-7/12) non completo: trovate solo Bologna-Roma, Juventus-Udinese, Milan-Parma e Fiorentina-Cagliari, quindi la giornata non è in fx; da inserire dal sito della Lega.
+- Calendario G12 e G13 confermato da Fantamaster (25/09) e dalle pagine di Milan e Juventus, ma da riverificare sul sito della Lega per eventuali cambi di orario.
 - Statistiche degli svincolati (fas) non riverificate in questa esecuzione: restano quelle dell’ultimo aggiornamento automatico.
