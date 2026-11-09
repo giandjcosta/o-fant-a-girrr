@@ -2,6 +2,34 @@
   "nota": "Fonte unica della pagina Versioni (girrr/versioni.html e stadio/girrr/versioni.html). A ogni rilascio si aggiunge la versione in cima con rilascio/versioni/aggiungi.py. Numeri: correzione minore = terza cifra (5.6.1), aggiornamento medio = seconda cifra (5.7.0), aggiornamento grande = prima cifra (6.0). Dove manca la storia: «Dato non conservato». Le versioni 1.0-4.5 e il Mercato Scambi vengono dai messaggi recuperati da Claude chat (9 novembre 2026), date controllate con i commit del sito. Il campo «nota» e «altre_varianti» non si mostrano nella pagina.",
   "versioni": [
     {
+      "v": "5.6.1",
+      "data": "2026-11-09",
+      "tipo": "minore",
+      "titolo": "Notifiche più ordinate",
+      "messaggio": "🧹 **O Girrr 5.6.1 è online!** Piccole pulizie: nella pagina Notifiche quelle già lette si raccolgono in fondo in «Già lette», così non dovete più scorrere all'infinito. Nelle Versioni il passaggio tra Messaggio e Changelog adesso è morbido, e in fondo alla Home trovate sempre la versione che avete, sopra gli sponsor. Buona giornata a tutti! ⚽",
+      "novita": [
+        {
+          "area": "Notifiche",
+          "voci": [
+            "le notifiche già lette vanno in fondo nel gruppo «Già lette», chiuso; si apre con un tocco e le mostra compatte, su una riga",
+            "se sono tutte lette compare «Nessuna notifica nuova.»"
+          ]
+        },
+        {
+          "area": "Versioni",
+          "voci": [
+            "passaggio fluido tra Messaggio e Changelog, senza ridisegnare la pagina"
+          ]
+        },
+        {
+          "area": "Home",
+          "voci": [
+            "pillola con la versione (V5.6.1 ›) in fondo a destra, sopra gli sponsor; apre la pagina Versioni"
+          ]
+        }
+      ]
+    },
+    {
       "v": "5.6",
       "data": "2026-11-09",
       "tipo": "medio",
@@ -64,7 +92,7 @@
           "area": "Versioni",
           "voci": [
             "Nuova pagina Versioni: tutte le versioni di O Girrr, dalla 1.0, con il messaggio per il gruppo e l'elenco dei cambiamenti.",
-            "Avviso in Home per le prime 3 visite e pulsante «V5.5.1 ›» in fondo alla pagina Notifiche."
+            "Avviso in Home per le prime 3 visite e pulsante della versione in fondo alla Home, sopra gli sponsor."
           ]
         }
       ],

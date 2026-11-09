@@ -3,7 +3,7 @@
    si aggiorna da sola quando un rilascio aggiunge una versione.
    - In versioni.html (Lega e Stadio) disegna la pagina: interruttore «Messaggio / Changelog» e una scheda per versione.
    - Nella Home mostra «È uscita la 5.6 · Scopri le novità» per 3 visite o finché non lo tocchi.
-   - In fondo alla pagina Notifiche, a destra: una piccola pillola «V5.6 ›» cliccabile, sempre. */
+   - Nella Home, in fondo a destra sopra gli sponsor: una piccola pillola «V5.6 ›» cliccabile, sempre. */
 (function () {
   var io = document.currentScript, ROOT = new URL('./', io && io.src ? io.src : location.href).href;
   var stadio = /\/stadio\//.test(location.pathname);
@@ -49,14 +49,14 @@
       '.vv-t small{display:block;color:var(--sub,#bfe3ff);font-weight:700;font-size:12px;margin-top:3px}' +
       '.vv-f{flex:none;width:22px;height:22px;transition:transform .35s ease;opacity:.8}.vv-v.aperta .vv-f{transform:rotate(180deg)}' +
       '.vv-c{display:grid;grid-template-rows:0fr;transition:grid-template-rows .4s ease}.vv-v.aperta .vv-c{grid-template-rows:1fr}' +
-      '.vv-c>div{overflow:hidden}.vv-in{padding:0 16px 16px}' +
+      '.vv-c>div{overflow:hidden}.vv-in{padding:0 16px 16px;box-sizing:border-box;overflow:hidden;transition:opacity .2s ease,height .4s ease}' +
       '.vv-msg{white-space:pre-line;overflow-wrap:anywhere;font-size:15px;line-height:1.55;font-weight:500;background:rgba(0,0,0,.18);border-radius:14px;padding:12px 14px}' +
       '.vv-msg b{font-weight:900}' +
       '.vv-area{margin-top:12px}.vv-area:first-child{margin-top:0}.vv-area h4{margin:0 0 4px;font-size:11px;font-weight:900;letter-spacing:.16em;text-transform:uppercase;color:' + (stadio ? acc : 'var(--hi,#ffd166)') + '}' +
       '.vv-area h4{font-family:Inter,system-ui,sans-serif!important}.vv-area ul{margin:0;padding-left:18px}.vv-area li{font-size:14px;line-height:1.5;margin:3px 0}' +
       '.vv-leg{margin-top:18px;font-size:12.5px;line-height:1.55;color:var(--sub,#bfe3ff);font-weight:600}.vv-leg b{color:var(--chiaro,#fbf6ec)}' +
       '.vv-fade{transition:opacity .25s ease}.vv-fade.via{opacity:0}' +
-      '@media (prefers-reduced-motion: reduce){.vv-c,.vv-f,.vv-seg button,.vv-fade{transition:none!important}}';
+      '@media (prefers-reduced-motion: reduce){.vv-c,.vv-f,.vv-seg button,.vv-fade,.vv-in{transition:none!important}}';
     document.head.appendChild(s);
   }
 
@@ -92,12 +92,30 @@
         };
       });
     }
+    /* Messaggio ⇄ Changelog fluido (Gianluca): le testate restano ferme; nelle schede aperte il testo
+       sfuma, si cambia e la scheda si allunga o si accorcia piano fino alla nuova altezza */
+    function cambia() {
+      Array.prototype.forEach.call(box.querySelectorAll('.vv-seg button'), function (b) { b.setAttribute('aria-pressed', String(b.dataset.m === modo)); });
+      Array.prototype.forEach.call(lista.querySelectorAll('.vv-v'), function (sez) {
+        var x = V.filter(function (y) { return y.v === sez.dataset.v; })[0], el = sez.querySelector('.vv-in');
+        if (!x || !el) return;
+        if (ridotto || !sez.classList.contains('aperta')) { el.innerHTML = corpo(x); return; }
+        var h1 = el.offsetHeight;
+        el.style.height = h1 + 'px'; el.style.opacity = '0';
+        setTimeout(function () {
+          el.innerHTML = corpo(x);
+          el.style.height = 'auto'; var h2 = el.offsetHeight; el.style.height = h1 + 'px';
+          void el.offsetHeight;
+          el.style.height = h2 + 'px'; el.style.opacity = '1';
+          setTimeout(function () { el.style.height = ''; }, 420);
+        }, 200);
+      });
+    }
     Array.prototype.forEach.call(box.querySelectorAll('.vv-seg button'), function (b) {
       b.onclick = function () {
         if (b.dataset.m === modo) return;
         modo = b.dataset.m; try { localStorage.setItem('girrr_versioni_modo', modo); } catch (e) {}
-        lista.classList.add('via');
-        setTimeout(function () { disegna(); lista.classList.remove('via'); }, ridotto ? 0 : 250);
+        cambia();
       };
     });
     carica().then(function (j) {
@@ -110,6 +128,7 @@
   function avvisoHome() {
     carica().then(function (j) {
       var x = (j.versioni || [])[0]; if (!x) return;
+      inFondoHome(x);
       var vista = null; try { vista = localStorage.getItem('girrr_versione_vista'); } catch (e) {}
       if (vista === x.v) return;
       /* Si mostra al massimo 3 volte, o finché non lo tocchi */
@@ -134,25 +153,25 @@
     }).catch(function () {});
   }
 
-  /* Notifiche: un piccolo «V5.6» cliccabile in fondo in fondo a destra, si vede solo arrivando in fondo (Gianluca) */
-  function inFondoNotifiche() {
-    carica().then(function (j) {
-      var x = (j.versioni || [])[0]; if (!x || document.querySelector('.vv-fondo')) return;
-      var a = document.createElement('a'); a.className = 'vv-fondo'; a.href = 'versioni.html';
-      a.textContent = 'V' + x.v + ' ›'; a.setAttribute('aria-label', 'Versione ' + x.v + ': tutte le versioni');
-      /* Piccola ma riconoscibile come pulsante: pillola con il bordo e la freccia (Gianluca: «quasi non si nota») */
-      a.style.cssText = 'display:block;width:max-content;margin:18px 0 6px auto;padding:7px 13px;font:800 12px/1 Inter,system-ui,sans-serif;letter-spacing:.06em;color:inherit;opacity:.8;text-decoration:none;border:1px solid rgba(255,255,255,.35);border-radius:999px;background:rgba(255,255,255,.06);transition:opacity .25s,background-color .25s';
-      a.onmouseenter = function () { a.style.opacity = '1'; a.style.background = 'rgba(255,255,255,.14)'; };
-      a.onmouseleave = function () { a.style.opacity = '.8'; a.style.background = 'rgba(255,255,255,.06)'; };
-      var w = document.querySelector('.wrap') || document.body;
-      w.appendChild(a);
-    }).catch(function () {});
+  /* Pillola «V5.6 ›»: nella Home, in fondo a destra, subito sopra gli sponsor (Gianluca): si vede scorrendo in basso
+     che versione hai, e toccandola si apre la pagina Versioni */
+  function pillola(x) {
+    var a = document.createElement('a'); a.className = 'vv-fondo'; a.href = 'versioni.html';
+    a.textContent = 'V' + x.v + ' ›'; a.setAttribute('aria-label', 'Versione ' + x.v + ': tutte le versioni');
+    a.style.cssText = 'display:block;width:max-content;margin:18px 0 10px auto;padding:7px 13px;font:800 12px/1 Inter,system-ui,sans-serif;letter-spacing:.06em;color:inherit;opacity:.8;text-decoration:none;border:1px solid rgba(255,255,255,.35);border-radius:999px;background:rgba(255,255,255,.06);transition:opacity .25s,background-color .25s';
+    a.onmouseenter = function () { a.style.opacity = '1'; a.style.background = 'rgba(255,255,255,.14)'; };
+    a.onmouseleave = function () { a.style.opacity = '.8'; a.style.background = 'rgba(255,255,255,.06)'; };
+    return a;
+  }
+  function inFondoHome(x) {
+    if (document.querySelector('.vv-fondo')) return;
+    var sp = document.querySelector('.wrap > .sp') || document.querySelector('.sp') || document.querySelector('.foot');
+    if (sp && sp.parentNode) sp.parentNode.insertBefore(pillola(x), sp);
   }
   function avvia() {
     var box = document.getElementById('versioni');
     if (box) pagina(box);
     else if (/\/girrr\/(index\.html)?$/.test(location.pathname)) avvisoHome();
-    else if (/\/notifiche\.html$/.test(location.pathname)) inFondoNotifiche();
   }
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', avvia); else avvia();
 })();
