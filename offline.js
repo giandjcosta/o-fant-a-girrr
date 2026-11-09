@@ -1,4 +1,4 @@
-/* O Girrr · copia offline, lato pagina (Claude, 9 novembre 2026).
+/* O Girrr · Copia offline, lato pagina (Claude, 9 novembre 2026).
    Va nella radice del sito (/o-fant-a-girrr/offline.js), incluso da ogni pagina con <script src="…/offline.js" defer>.
    - Registra sw.js (che sta accanto a questo file).
    - Mostra un avviso in basso quando si sta guardando la copia salvata: «Offline · Copia di oggi alle 14:32».

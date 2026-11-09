@@ -1,4 +1,4 @@
-/* O Girrr · copia offline (Claude, 9 novembre 2026, richiesta di Gianluca dal treno).
+/* O Girrr · Copia offline (Claude, 9 novembre 2026, richiesta di Gianluca dal treno).
    Va nella radice del sito (/o-fant-a-girrr/sw.js) e lo registra offline.js.
 
    Cosa fa:
@@ -30,14 +30,14 @@ var PAGINE = [
   'index.html', 'riepilogo.html', 'apri.html',
   'girrr/index.html', 'girrr/app.html', 'girrr/campo.html', 'girrr/tabellone.html', 'girrr/curva.html',
   'girrr/notifiche.html', 'girrr/albo.html', 'girrr/derby.html', 'girrr/rivalita.html', 'girrr/giornale.html',
-  'girrr/squadre.html', 'girrr/statistiche.html', 'girrr/totogirrr.html',
+  'girrr/squadre.html', 'girrr/statistiche.html', 'girrr/totogirrr.html', 'girrr/versioni.html',
   'stadio/girrr/index.html', 'stadio/girrr/app.html', 'stadio/girrr/campo.html', 'stadio/girrr/tabellone.html',
   'stadio/girrr/curva.html', 'stadio/girrr/notifiche.html', 'stadio/girrr/albo.html', 'stadio/girrr/derby.html',
   'stadio/girrr/rivalita.html', 'stadio/girrr/giornale.html', 'stadio/girrr/squadre.html',
-  'stadio/girrr/statistiche.html', 'stadio/girrr/totogirrr.html'
+  'stadio/girrr/statistiche.html', 'stadio/girrr/totogirrr.html', 'stadio/girrr/versioni.html'
 ];
 var DATI = [
-  'data.json', 'formazioni.json', 'toto-quote.json', 'testi.json', 'manifest.webmanifest', 'riepiloghi/indice.json',
+  'data.json', 'formazioni.json', 'toto-quote.json', 'testi.json', 'manifest.webmanifest', 'versioni.json', 'riepiloghi/indice.json',
   'girrr/dati/borsino.json', 'girrr/dati/cronache.json', 'girrr/dati/fiducia.json', 'girrr/dati/lab-dati.json',
   'girrr/dati/moviola.json', 'girrr/dati/probabilita.json', 'girrr/v55/allenatori.json', 'girrr/v55/annuario.json',
   'girrr/voci/puntata.json', 'girrr/voci/archivio.json', 'girrr/voci/elenco.json', 'girrr/voci/elenco2.json'
@@ -344,4 +344,32 @@ self.addEventListener('fetch', function (event) {
     /* script, stili, PDF del Giornale e il resto */
     event.respondWith(primaLaRete(event, req, C_SITO, k, ATTESA_FILE, event.clientId));
   }
+});
+
+/* ---------- Notifiche push (Claude, 9 novembre 2026) ----------
+   Le manda la funzione «push-invia» di Supabase; qui si mostrano e, toccandole, si apre la pagina giusta
+   (apri.html sceglie Lega o Stadio come l'ultima volta). */
+self.addEventListener('push', function (event) {
+  var d = {};
+  try { d = event.data ? event.data.json() : {}; } catch (e) { d = { testo: event.data ? event.data.text() : '' }; }
+  event.waitUntil(self.registration.showNotification(d.titolo || 'O Girrr', {
+    body: d.testo || '',
+    icon: BASE + 'assets/icon-192.png',
+    tag: d.tag || undefined,
+    lang: 'it',
+    data: { url: d.url || 'apri.html?p=index' }
+  }));
+});
+self.addEventListener('notificationclick', function (event) {
+  event.notification.close();
+  var u = new URL((event.notification.data && event.notification.data.url) || 'apri.html?p=index', BASE).href;
+  event.waitUntil(self.clients.matchAll({ type: 'window', includeUncontrolled: true }).then(function (cl) {
+    for (var i = 0; i < cl.length; i++) {
+      var c = cl[i];
+      if (c.url.indexOf(AMBITO) === 0 && 'navigate' in c && u.indexOf(AMBITO) === 0) {
+        return c.focus().then(function (w) { return (w || c).navigate(u); }).catch(function () { return self.clients.openWindow(u); });
+      }
+    }
+    return self.clients.openWindow(u);
+  }));
 });

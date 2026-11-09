@@ -1,0 +1,477 @@
+{
+  "nota": "Fonte unica della pagina Versioni (girrr/versioni.html e stadio/girrr/versioni.html). A ogni rilascio si aggiunge la versione in cima con rilascio/versioni/aggiungi.py. Numeri: correzione minore = terza cifra (5.6.1), aggiornamento medio = seconda cifra (5.7.0), aggiornamento grande = prima cifra (6.0). Dove manca la storia: «Dato non conservato». Le versioni 1.0-4.5 e il Mercato Scambi vengono dai messaggi recuperati da Claude chat (9 novembre 2026), date controllate con i commit del sito. Il campo «nota» e «altre_varianti» non si mostrano nella pagina.",
+  "versioni": [
+    {
+      "v": "5.6",
+      "data": "2026-11-09",
+      "tipo": "medio",
+      "titolo": "Notifiche sul telefono e La mia stagione",
+      "messaggio": "📲 **O Girrr 5.6 è online!** Arrivano le notifiche sul telefono: risultati della vostra partita, nuovo Giornale, Curva, Derby e anche 3 ore e 1 ora prima della formazione (niente più scuse!). Scegliete voi quali ricevere. Nello Spogliatoio c'è la nuova scheda Cerca per sapere tutto di un giocatore, nella Carriera arriva «La mia stagione» e nel Tabellone il pulsante Condividi per mandare risultati e classifica nel gruppo. Aggiornate e fateci sapere! ⚽",
+      "novita": [
+        {
+          "area": "Notifiche sul telefono",
+          "voci": [
+            "Nella pagina Notifiche scegli quali avvisi ricevere: Formazione (3 ore e 1 ora prima), Risultati della tua partita, Giornale, Curva, Applausi, Derby, Totogirrr.",
+            "Interruttori come quelli del tuo telefono: iPhone su iPhone, Android su Android.",
+            "Di notte, dalle 23:00 alle 7:30, gli avvisi aspettano la mattina, tranne quelli della formazione.",
+            "Su iPhone arrivano aprendo O Girrr dall'icona sulla schermata Home (iOS 16.4 o successivo)."
+          ]
+        },
+        {
+          "area": "Spogliatoio",
+          "voci": [
+            "Nuova scheda «Cerca» dopo «Rosa»: chi ha in rosa un giocatore e quanto è stato pagato, stato per la prossima giornata, infortunio, stagione, ultimi voti e fantavoti, Borsino e Moviola."
+          ]
+        },
+        {
+          "area": "Carriera",
+          "voci": [
+            "Nuova scheda «Stagione»: posizione in classifica giornata per giornata, bilancio, striscia senza sconfitte, giornata migliore, il titolare più prezioso, il colpo di mercato e la Champions Cup."
+          ]
+        },
+        {
+          "area": "Condividi",
+          "voci": [
+            "Nel Tabellone: la tua partita, i risultati della giornata o la classifica come immagine pronta per il gruppo, nella grafica Lega o Stadio.",
+            "Nel Giornale: la copertina dell'ultimo numero."
+          ]
+        }
+      ]
+    },
+    {
+      "v": "5.5.1",
+      "data": "2026-11-09",
+      "tipo": "minore",
+      "titolo": "O Girrr anche senza rete",
+      "messaggio": "🚆 **O Girrr 5.5.1 è online!** Piccolo aggiornamento, grande comodità: in treno, in galleria o con una tacca sola l'app si apre lo stesso e vi mostra l'ultima copia salvata, aggiornata ogni mezz'ora. Su Android, tenendo premuta l'icona, arrivate dritti a Tabellone, Curva, Giornale e Totogirrr, nella grafica che avete scelto. E da oggi c'è questa pagina, con tutta la nostra storia versione per versione: dalla 1.0 dello Spogliatoio fino a qui. 📶",
+      "novita": [
+        {
+          "area": "Copia offline",
+          "voci": [
+            "L'app si apre anche senza rete e mostra l'ultima copia salvata sul telefono: pagine di Lega e Stadio, Spogliatoio, classifica, risultati, Giornale e quello che hai già aperto di Curva, Totogirrr e Derby.",
+            "Con la rete lenta la pagina aspetta il sito al massimo 4 secondi, poi apre la copia e si aggiorna da sola appena può.",
+            "La copia si rinfresca ogni 30 minuti con l'app aperta; su Android, con l'app nella schermata Home, anche ad app chiusa.",
+            "Avviso in basso «Offline · Copia delle …» e «Di nuovo online»: con la ✕ resta chiuso finché non chiudi l'app."
+          ]
+        },
+        {
+          "area": "Icona",
+          "voci": [
+            "Tenendo premuta l'icona (Android e PC): Tabellone, Curva, Giornale e Totogirrr, nella grafica scelta l'ultima volta."
+          ]
+        },
+        {
+          "area": "Versioni",
+          "voci": [
+            "Nuova pagina Versioni: tutte le versioni di O Girrr, dalla 1.0, con il messaggio per il gruppo e l'elenco dei cambiamenti.",
+            "Avviso in Home per le prime 3 visite e pulsante «V5.5.1 ›» in fondo alla pagina Notifiche."
+          ]
+        }
+      ],
+      "nota": "Online sul sito il 9 novembre 2026 (gh-pages e06cbe2). Numero 5.5.1 deciso da Gianluca: copia offline e scorciatoie sono i «due piccoli cambi» prima della 5.6."
+    },
+    {
+      "v": "5.5",
+      "data": "2026-11-01",
+      "tipo": "medio",
+      "titolo": "Oggi al Girrr",
+      "messaggio": "🔥 **O Girrr 5.5 è online!** La Home vi dice subito cosa è successo con «Oggi al Girrr», le notifiche hanno la loro pagina, il Tabellone va a schede con il Campo dentro la partita e la fase finale a tabellone, nell'Albo d'oro arriva l'Annuario e la Carriera si rifà il look. In Curva c'è il sondaggio della giornata e chi vuole sbirciare può entrare come ospite. Lega o Stadio: scegliete la vostra grafica e buon divertimento! ⚽",
+      "novita": [
+        {
+          "area": "Home e Notifiche",
+          "voci": [
+            "Oggi al Girrr: notifiche subito visibili, posizione e cammino in classifica, ultimi risultati e prossime sfide della tua squadra.",
+            "Pagina Notifiche con le novità divise per tipo e quelle personali (risposte e applausi in Curva, sfide Derby, prestiti e movimenti del Totogirrr); «Segna tutte come lette» vale su ogni dispositivo."
+          ]
+        },
+        {
+          "area": "Tabellone e Campo",
+          "voci": [
+            "Tabellone a schede: classifica con podio e ultimo posto in evidenza, risultati, Campo con le formazioni dentro il campo e l'andamento dei punti giornata per giornata.",
+            "Campo anche in Champions Cup e fase finale disegnata come un tabellone."
+          ]
+        },
+        {
+          "area": "Albo d'oro e Carriera",
+          "voci": [
+            "Annuario: le statistiche di ogni stagione.",
+            "Carriera nuova, con schede su una riga che scorre."
+          ]
+        },
+        {
+          "area": "Curva, Giornale e Spogliatoio",
+          "voci": [
+            "Sondaggio della giornata in Curva e nuovi personaggi.",
+            "Cronache nel Giornale.",
+            "Modalità ospite: si guarda tutto in sola lettura.",
+            "Grafiche Lega e Stadio uguali su tutte le pagine, Spogliatoio compreso."
+          ]
+        },
+        {
+          "area": "Ritocchi dopo l'uscita (2-3 novembre)",
+          "voci": [
+            "Prima apertura più veloce e «tira giù per aggiornare».",
+            "Home con la testata di prima e un solo logo in alto.",
+            "Infortuni e squalifiche contati in «Chi scambiare» e «Mercato Scambi».",
+            "Carriera con la reputazione da 0 a 100; Moviola in ordine.",
+            "Albo d'oro: i punti del 2022/23 scritti come «Dato non conservato»."
+          ]
+        }
+      ]
+    },
+    {
+      "v": "5.3",
+      "data": "2026-10-31",
+      "tipo": "medio",
+      "titolo": "Campionati e coppe",
+      "messaggio": "🏆 **O Girrr 5.3 è online!** Nell'Albo d'oro i titoli di sempre sono divisi tra campionati e Coppe Campioni, e ogni stagione dell'Era Contemporanea ha la sua storia: il ritorno del re, il bis del Wakanda, il titolo della discordia, la pazienza di ser, la Coppa di RikyArma. Nel Totogirrr arriva la scheda Movimenti. Andate a rileggervi la vostra storia! 📜",
+      "novita": [
+        {
+          "area": "Albo d'oro",
+          "voci": [
+            "Titoli di sempre divisi in campionati, Coppe Campioni e totale, per tutti gli allenatori.",
+            "Era Contemporanea con una storia per ogni stagione."
+          ]
+        },
+        {
+          "area": "Totogirrr",
+          "voci": [
+            "Nuova scheda Movimenti: entrate e uscite della squadra, dalla più recente, con i totali."
+          ]
+        },
+        {
+          "area": "Champions Cup e Derby",
+          "voci": [
+            "Sponsor dei Big in Champions Cup: 4 vittorie nel girone invece di 5.",
+            "Regole dei Derby: una partita è Derby se la votano gli amici, o se la rivalità arriva a 80."
+          ]
+        }
+      ]
+    },
+    {
+      "v": "5.2",
+      "data": "2026-10-30",
+      "tipo": "medio",
+      "titolo": "La Carriera parla di te",
+      "messaggio": "🚀 **O Girrr 5.2 è online!** Carriera in 5 schede, andamento della Fiducia e Storia delle posizioni, sponsor di Lega e Champions Cup, premi da riscuotere nel Totogirrr e classifica più completa (V, N, P, GF, GS, DR). Entrate con il vostro codice e date un'occhiata alla vostra squadra!",
+      "novita": [
+        {
+          "area": "Carriera",
+          "voci": [
+            "Divisa in Panoramica, Obiettivi, Fiducia, Storia e Regole; ogni allenatore vede la sua squadra entrando con il codice.",
+            "Fiducia giornata per giornata, linea del tempo degli obiettivi e grafico con tutte le posizioni dal 1° al 10°."
+          ]
+        },
+        {
+          "area": "Sponsor e premi",
+          "voci": [
+            "Sponsor di campionato e di Champions Cup: obiettivo raggiunto, premio da riscuotere nel Totogirrr.",
+            "Reputazione della stagione: +2 per ogni obiettivo del presidente, +1 per quello dello sponsor."
+          ]
+        },
+        {
+          "area": "Tabellone e Albo d'oro",
+          "voci": [
+            "Classifica con vittorie, pareggi, sconfitte, gol fatti, gol subiti e differenza reti.",
+            "Regole in fondo al Tabellone e all'Albo d'oro."
+          ]
+        }
+      ]
+    },
+    {
+      "v": "5.1",
+      "data": "2026-10-25",
+      "tipo": "medio",
+      "titolo": "La storia si scrive ancora",
+      "messaggio": "🏆 **O Girrr 5.1 è online!** Nuova Storia della Lega e delle ere nell'Albo d'oro, Derby riconosciuti da rivalità 80, Moviola e Curva più complete, migliorie per telefono e scadenze degli obiettivi Carriera corrette. Aprite il sito: la storia della nostra Lega è tutta da leggere!",
+      "novita": [
+        {
+          "area": "Albo d'oro",
+          "voci": [
+            "Nuova scheda La Storia: la nascita del nome, le stagioni e le rivalità raccontate come un campionato vero.",
+            "Le Ere con il punto mediano («L'Era dei Titani · La scintilla»); le stagioni senza vincitore stanno nel Grande Silenzio."
+          ]
+        },
+        {
+          "area": "Derby",
+          "voci": [
+            "Una sfida è Derby quando la rivalità vale 80 o più; etichetta Derby nel Tabellone e nel Totogirrr.",
+            "Il Derby dell'Emma ha nome e storia."
+          ]
+        },
+        {
+          "area": "Squadre, Carriera, Moviola e Curva",
+          "voci": [
+            "Card dell'allenatore nelle pagine delle squadre.",
+            "Obiettivi con scadenza valutati alla giornata indicata, mai «Fatto» prima.",
+            "Moviola di Girrr Sport nel sito e in Curva; i post di Lega, Giornale e Champions Cup non spariscono più."
+          ]
+        }
+      ]
+    },
+    {
+      "v": "5.0",
+      "data": "2026-10-18",
+      "tipo": "grande",
+      "titolo": "Pagine nuove, Derby e Sfide",
+      "messaggio": "🎉 **O Girrr 5.0 è online!** È la versione più grande di sempre: arrivano Girrr Sport, lo Spogliatoio nuovo, il Totogirrr e la Carriera, si sceglie la grafica (Lega o Stadio) e nascono i Derby e le Sfide tra allenatori, con la Conferenza stampa prima della partita. Lanciate la vostra prima sfida: chi ha paura? ⚔️",
+      "novita": [
+        {
+          "area": "Pagine nuove",
+          "voci": [
+            "Girrr Sport, Spogliatoio, Totogirrr e Carriera.",
+            "Interruttore tra la grafica Lega e la grafica Stadio, con passaggio fluido."
+          ]
+        },
+        {
+          "area": "Derby e Sfide",
+          "voci": [
+            "Derby ufficiali votati dagli allenatori o nati da una Sfida accettata, con il nome concordato.",
+            "Sfide tra allenatori: 72 ore per rispondere, nome del Derby proposto e confermato.",
+            "Sfida 1 contro 1 nel Totogirrr.",
+            "Conferenza stampa con promesse chiuse dopo la partita: mantenuta, pareggio o tradita."
+          ]
+        },
+        {
+          "area": "Albo d'oro e Radio",
+          "voci": [
+            "Ere apribili, Stagioni, Rivalità e Albo di Latta di sempre.",
+            "Aspettative del presidente e fiducia; prime puntate della Radio."
+          ]
+        }
+      ]
+    },
+    {
+      "v": "4.5",
+      "data": "2026-10-13",
+      "tipo": "medio",
+      "titolo": "Albo d'oro con le storie, prestiti in Totogirrr",
+      "messaggio": "Ragazzi, è uscita la **versione 4.5** di O Girrr! 🔥\n\nIl pezzo forte è il **nuovo Albo d'oro**: c'è una storia per ognuno di noi, con il vostro percorso in lega, la foto dell'allenatore e i nomi di una volta (Pep Mariola, Barny, StaCo Atto… i fantasmi tornano). Cercate la vostra e ditemi se vi riconoscete. 😏\n\n**In Curva**\n• arriva **TotoGirrr**, che dà le quote e dice cosa puntare\n• nuovo personaggio: **L'Americano Spaesato**, che pensava di cercare il football e si è ritrovato tra i cori\n• i personaggi hanno più battute e **Ciro Trattativa** fa thread lunghi con commenti (provate «Apri il thread»)\n• **Girrr Sport** rilancia i cori ufficiali delle squadre\n• le squadre si seguono tra loro, bio più leggibili e zoom su foto e banner\n\n**In Totogirrr**\n• **prestiti tra di voi**: scegli a chi, quanto e a che tasso, e il 25% delle tue vincite torna a chi ti ha prestato\n• **Movimenti**: vedi dove sono finiti i tuoi fantacrediti\n\n**In home**\n• il pulsante per la nostra lega su Leghe è in cima\n\nMi raccomando, non rovinatevi l'amicizia per 10 crediti. 😅 Divertitevi!",
+      "novita": [
+        {
+          "area": "Curva",
+          "voci": [
+            "Nuovo profilo TotoGirrr (V blu): quote della giornata, cosa puntare, la quota più difficile e le statistiche",
+            "Nuovo bot L'Americano Spaesato e più frasi diverse per ogni bot",
+            "Ciro Trattativa con thread lunghi e commenti, elogia le operazioni di mercato, ha il suo banner",
+            "Girrr Sport rilancia i cori ufficiali delle squadre",
+            "Le squadre si seguono a vicenda e seguono i profili ufficiali",
+            "Bio più leggibili e zoom di avatar e banner adatto a telefono, tablet e PC"
+          ]
+        },
+        {
+          "area": "Totogirrr",
+          "voci": [
+            "Nuova scheda Prestiti: chiedi fantacrediti a un'altra squadra, scegli importo e tasso; l'altro accetta, rifiuta o propone un altro tasso",
+            "Il 25% delle vincite va in automatico a chi ti ha prestato, finché non hai saldato",
+            "Movimenti: vedi dove sono finiti i tuoi fantacrediti, comprese le trattenute del banco"
+          ]
+        },
+        {
+          "area": "Albo d'oro",
+          "voci": [
+            "Storie degli allenatori riscritte, con foto per ognuno e i nomi di un tempo nelle stagioni passate",
+            "Mario con tutto il suo percorso: Barny con lo Stortenham, Pep Mariola con il Dynamo Loska"
+          ]
+        },
+        {
+          "area": "Home",
+          "voci": [
+            "Pulsante per la nostra lega su Leghe Fantacalcio in alto"
+          ]
+        }
+      ],
+      "nota": "Il tipo 'medio' è una mia classificazione (mezzo salto di numero, ma contiene prestiti e Albo: potresti volerla 'grande'). Esiste un secondo messaggio per la 4.5, con cosa fa ogni tab e come installare l'app su PC/Android/iPhone: ne ho solo un pezzo, quindi non lo riporto. Anche questo messaggio ha una variante quasi identica (cambia una riga su Ciro). Data dal commit della pagina «Novità 4.5» sul sito: 13 ottobre alle 22:52 (non il 15)."
+    },
+    {
+      "v": "4.0",
+      "data": "2026-10-10",
+      "tipo": "grande",
+      "titolo": "Ora è un'app, e nasce la Curva",
+      "messaggio": "📣 O GIRRR 4.0 è uscito! 📣\n\n📱 LA NOVITÀ PIÙ IMPORTANTE: ORA È UN'APP\nIl sito si può installare sul telefono, con la sua icona e a schermo intero, come una vera app.\n\n🍎 iPhone: apri il sito con Safari → tocca Condividi (il quadrato con la freccia) → Aggiungi alla schermata Home.\n🤖 Android: apri il sito con Chrome → tocca i tre puntini in alto → Installa app (o Aggiungi a schermata Home).\n\nFatto questo, l'icona di O Girrr è sul telefono e non serve più cercare il link.\n\n🗣️ E POI C'È LA CURVA, IL SOCIAL DELLA LEGA\n• Scrivi i tuoi cori (max 140 caratteri) anche con foto, rispondi, applaudi e rilancia\n• Ogni squadra ha il suo profilo con la spunta azzurra e migliaia di follower (nessuno sa da dove arrivino)\n• Lega e Giornale hanno la spunta oro e pubblicano risultati e uscite del settimanale\n• Ciro Trattativa, il giornalista di mercato più affidabile del bar, dà notizie in esclusiva. Anche quando non ci sono\n• Nonno Cesare, il Tifoso Arrabbiato, il VAR Parlante e gli altri commentano le giornate. Sì, anche la tua\n• Se qualcuno risponde a un tuo coro, lo vedi: c'è il numerino\n• Tiri verso il basso per aggiornare, scorri tra le tab e tocchi Home per tornare in cima\n\n⚡ ANCHE QUESTO È NUOVO\n• Il Giornale ora ha 4 pagine: pagelle, Coro della settimana e Bufala di mercato\n• In Home, quando una giornata è in corso, c'è il pallino verde che lampeggia\n• Le squadre si scorrono anche da PC, con le frecce\n\n👉 Entrate dal solito link personale e cercate Curva nella Home.\n\nRegole: nessuna. Tutto quello che si scrive qui è inventato e il proprietario dichiara di non saper nulla. 🫡",
+      "altre_varianti": [
+        "📣 O GIRRR 4.0 è uscito!\n\n📱 Ora è un'app:\n🍎 iPhone: Safari → Condividi → Aggiungi alla schermata Home\n🤖 Android: Chrome → tre puntini → Installa app\n\n🗣️ E c'è la CURVA, il social della lega: cori, risposte, applausi, foto, profili con spunta azzurra, Ciro Trattativa che dà notizie di mercato (quasi mai vere) e Nonno Cesare che commenta tutto.\n\nEntrate dal solito link personale e cercate Curva nella Home. Regole: nessuna. 🫡"
+      ],
+      "novita": [
+        {
+          "area": "App",
+          "voci": [
+            "Installabile come app su iPhone (Safari → Condividi → Aggiungi alla schermata Home) e Android (Chrome → Installa app)",
+            "Icona sul telefono e schermo intero",
+            "Si tira verso il basso per aggiornare e si scorre tra le tab"
+          ]
+        },
+        {
+          "area": "Curva",
+          "voci": [
+            "Social della lega: cori (max 140 caratteri) anche con foto, risposte, applausi, rilanci, follow",
+            "Profilo per ogni squadra con spunta azzurra e follower",
+            "Lega e Giornale con spunta oro",
+            "Personaggi automatici: Ciro Trattativa, Nonno Cesare, il Tifoso Arrabbiato, il VAR Parlante",
+            "Numerino quando qualcuno risponde a un tuo coro"
+          ]
+        },
+        {
+          "area": "Giornale",
+          "voci": [
+            "Passa a 4 pagine: pagelle, Coro della settimana e Bufala di mercato"
+          ]
+        },
+        {
+          "area": "Home",
+          "voci": [
+            "Pallino verde lampeggiante quando una giornata è in corso"
+          ]
+        },
+        {
+          "area": "Squadre",
+          "voci": [
+            "Le squadre si scorrono anche da PC con le frecce"
+          ]
+        }
+      ],
+      "nota": "Data stimata dai numeri di versione dei file (20261011r, 20261012a). Nello stesso periodo c'erano bio, foto e sfondo del profilo Curva (SQL «v2» sul database), ma non sono nel messaggio: non so se contarli nella 4.0. Dai commit: app installabile dal 10 ottobre all'01:24; Curva, Giornale a 4 pagine e pallino verde online il 10 ottobre. Annuncio non datato.",
+      "fino": "2026-10-12",
+      "circa": true
+    },
+    {
+      "v": "3.0",
+      "data": "2026-10-09",
+      "tipo": "grande",
+      "titolo": "Il sito ufficiale della lega",
+      "messaggio": "🏆 **O GIRRR · VERSIONE 3.0** 🏆\n*(ora con più funzioni di un telecomando e meno scuse del Real Madrink)*\n\nGente, ufficiale: **siamo una lega vera**. Sito ufficiale dell'O Fant A Girrr, aperto al pubblico. Pubblico che siamo noi 10, ma il pubblico è pubblico. Cosa c'è di nuovo:\n\n🎨 **Grafica ufficiale**: rosso e navy, e un nuovo logo a scudo. Sembriamo un club vero, anche se la rosa dice altro. Premete il logo e tornate alla Home.\n\n🏠 **La Home**: ora è la base di tutto. Da qui arrivate dappertutto senza perdervi, e senza dover chiedere \"ma dov'era il link?\" nel gruppo per la quarta volta.\n\n📰 **O Giornale del Girrr**: ogni settimana il PDF col meglio e il peggio. Ci sono risultati, classifiche, l'undici della settimana e i flop. Se siete nei flop sapete già chi incolpare: voi stessi.\n\n🏥 **Bollettino Medico**: gli infortunati, con una battuta nuova ogni settimana. Sotto c'è un'assicurazione contro gli infortuni, che ovviamente a Buongiorno non serve più.\n\n📺 **Tabellone**: risultati e classifiche come in tv, in stile Girrr Sport Live. Manca solo Caressa che urla.\n\n🎰 **Totogirrr**: scommettete con i fantacrediti, e si parte con 500. Quote su campionato e Champions Cup. C'è anche \"Chi esce ai gironi?\", per chi vuole puntare sulla sfortuna altrui.\n\n🤝 **Sponsor**: 12 marchi, tra cui una banca che fa prestiti a tassi assurdi. Sono tutti finti, ma anche meno finti di certe offerte dell'asta.\n\n⚽ **Leghe Fantacalcio**: dalla Home c'è il pulsante \"Apri la lega\". Un clic e siete lì, a farvi del male da soli.\n\nLa 3.0 è solo l'inizio. Poi vediamo cosa ci inventiamo 😎\n\n🔗 **Link generale** (vi chiede il codice della squadra):\nhttps://giandjcosta.github.io/o-fant-a-girrr/girrr/\n\n🔑 **Link personali** [omessi qui: contengono i codici delle 10 squadre]",
+      "novita": [
+        {
+          "area": "Home",
+          "voci": [
+            "Nuova Home come centro del sito, con l'ultimo numero del Giornale in evidenza",
+            "Pulsante «Apri la lega» verso Leghe Fantacalcio"
+          ]
+        },
+        {
+          "area": "Grafica",
+          "voci": [
+            "Grafica ufficiale rosso e navy",
+            "Nuovo logo a scudo; premendolo si torna alla Home"
+          ]
+        },
+        {
+          "area": "Giornale",
+          "voci": [
+            "PDF settimanale con archivio sempre consultabile",
+            "Risultati, classifiche, undici della settimana, top e flop delle rose, prossimo turno",
+            "Bollettino Medico con la battuta della settimana"
+          ]
+        },
+        {
+          "area": "Tabellone",
+          "voci": [
+            "Risultati e classifiche di campionato e Champions Cup, giornata per giornata, in stile Girrr Sport Live"
+          ]
+        },
+        {
+          "area": "Totogirrr",
+          "voci": [
+            "Scommesse con i fantacrediti, 500 di partenza",
+            "Quote su campionato e Champions Cup",
+            "Mercati lunghi «Chi vince la Coppa?» e «Chi esce ai gironi?»"
+          ]
+        },
+        {
+          "area": "Sponsor",
+          "voci": [
+            "12 marchi a rotazione (birra, banche, officine, agenzie viaggi)",
+            "Due sponsor a numero nel Giornale, assicurazione fissa sotto il Bollettino Medico"
+          ]
+        }
+      ],
+      "nota": "Uscita lo stesso giorno della 2.0 (data indicata da te). Qui il numero è scritto nel messaggio. Il messaggio è la versione 'più scherzosa' (quella finale dopo la tua richiesta); i dieci link personali con i codici sono omessi. Esisteva una prima versione più seria con le stesse voci."
+    },
+    {
+      "v": "2.0",
+      "data": "2026-10-09",
+      "tipo": "grande",
+      "titolo": "O Giornale del Girrr, numero 1",
+      "messaggio": "📰 RAGAAA, STOP ALLE ROTATIVE! 📰\nÈ uscito il primo numero de \"O GIORNALE DEL GIRRR\", il settimanale ufficiale (e rigorosamente non autorizzato) di O Fant A Girrr! ⚽\n\nDa oggi ogni mercoledì mattina vi arriva un PDF con:\n• i tabellini della giornata, con commento partita per partita\n• il palmarès: miglior formazione, cucchiaio di legno, il più fortunato e il più sfortunato 🍀🌧️\n• l'undici della settimana, scelto dai migliori fantavoti di Serie A tra le nostre rose 🔥\n• le classifiche di campionato e di Champions Cup\n• il prossimo turno e il bollettino medico, così nessuno scusa \"non lo sapevo\" 🩺\n\nNumero 1: \"L'edizione d'esordio\". Leggetelo con calma, rosicate in privato e rifatevi in campo 😎\n\nE ricordate che nello Spogliatoio trovate anche il Mercato Scambi per trattare! 🔁\n\nBuona lettura!! 👇",
+      "altre_varianti": [
+        "📰 Da oggi ogni mercoledì esce \"O Giornale del Girrr\": tabellini, palmarès, undici della settimana, classifiche e prossimo turno, tutto in un PDF.\n\nEcco il numero 1 👇\n\nBuona lettura e buon mercato! ⚽"
+      ],
+      "novita": [
+        {
+          "area": "Giornale",
+          "voci": [
+            "PDF settimanale in uscita il mercoledì mattina",
+            "Tabellini della giornata con commento partita per partita",
+            "Palmarès: miglior formazione, cucchiaio di legno, più fortunato e più sfortunato",
+            "Undici della settimana",
+            "Classifiche di campionato e di Champions Cup",
+            "Prossimo turno e Bollettino Medico",
+            "Nome della testata corretto in «O Giornale del Girrr»"
+          ]
+        }
+      ],
+      "nota": "Numero 2.0 e data 9 ottobre indicati da te (non sono scritti nel messaggio). Prima del cambio di nome la testata era «Il Giornale del Girrr»; qui è riportata la versione finale con «O»."
+    },
+    {
+      "v": "1.5",
+      "data": "2026-10-08",
+      "tipo": "medio",
+      "titolo": "Mercato Scambi",
+      "messaggio": "🚨 RAGA NOVITAAA 🚨\nÈ arrivato il MERCATO SCAMBI! 🔁⚽\n\nApritevi il vostro link del Spogliatoio e trovate la nuova scheda subito dopo \"Chi scambiare\".\n\n🔥 Cosa trovate:\n• I 3 scambi migliori del momento in tutta la lega\n• Proposte squadra per squadra: ognuno vede quelle per la propria rosa\n• \"Equilibrato\": scambi che convengono a tutti e due\n• \"Per te\": scambi che spingono dalla tua parte, con la lettura di quanto ci perde l'altro\n• Scambi 1 contro 1, 2 contro 2 e 3 contro 3, sempre con gli stessi ruoli da una parte e dall'altra, così la rosa resta valida\n• Pulsante Breve / Lungo termine: sullo stesso scambio vedete come cambia il giudizio guardando alle prossime 5 giornate oppure a tutta la stagione\n• \"Valuta uno scambio\": fate voi la trattativa e vi dice chi ci guadagna e di quanto 🧮\n\n🧠 Come ragiona:\nTitolarità, fantamedia, modulo migliore e panchina. Per il lungo termine conta anche la stagione scorsa (con un trattamento equo per chi arriva da altri campionati). Crediti e prezzo d'asta li ignora.\n\n✨ In più:\n• Scritte piccole più leggibili in tutti e 4 gli stili\n• Barra delle schede più pulita\n• Calendario sistemato\n\n⚠️ Sono consigli, ma la trattativa la fate voi: non venite a lamentarvi con me se Carnesecchi non vi porta la Champions 😅\n\nOra tutti a trattare!! 🤝🔥",
+      "altre_varianti": [
+        "🚨 RAGA NOVITAAA 🚨\nÈ arrivato il MERCATO SCAMBI! 🔁⚽\n\nNel vostro link del Spogliatoio c'è una nuova scheda dopo \"Chi scambiare\":\n• i 3 scambi migliori della lega\n• proposte per la vostra squadra (1v1, 2v2, 3v3 con gli stessi ruoli)\n• Breve / Lungo termine con un tocco\n• \"Valuta uno scambio\" per fare da soli i conti prima di bussare al vicino 🧮\n\nIn più: scritte più leggibili in tutti gli stili.\n\nSono consigli, l'ultima parola è vostra. Buone trattative! 🤝"
+      ],
+      "novita": [
+        {
+          "area": "Spogliatoio",
+          "voci": [
+            "Nuova scheda Mercato Scambi dopo «Chi scambiare»",
+            "I 3 scambi migliori della lega",
+            "Proposte squadra per squadra, con etichette «Equilibrato» e «Per te»",
+            "Scambi 1 contro 1, 2 contro 2 e 3 contro 3 con gli stessi ruoli",
+            "Pulsante Breve / Lungo termine (prossime 5 giornate oppure intera stagione)",
+            "«Valuta uno scambio»: calcolo fatto da te su una trattativa",
+            "Calcolo su titolarità, fantamedia, modulo migliore, panchina e stagione scorsa; prezzo d'asta ignorato",
+            "Scritte piccole più leggibili nei 4 stili, barra delle schede più pulita, calendario sistemato"
+          ]
+        }
+      ],
+      "nota": "Numero 1.5 deciso da Gianluca il 9 novembre 2026 (uscito dopo lo Spogliatoio, prima del Giornale). Data dai commit del sito: sera dell'8 ottobre (22:23-22:53 ora italiana). La scheda Statistiche era nata nello stesso giro ma Gianluca l'ha voluta solo per sé."
+    },
+    {
+      "v": "1.0",
+      "data": "2026-10-08",
+      "tipo": "grande",
+      "titolo": "Spogliatoio: primo lancio al gruppo",
+      "messaggio": "We raga, buonasera a tutti.\nMi son fatto un po prendere ed ho creato un piccolo sito per la lega.\n\nin pratica ognuno ci trovera la propria rosa con voti e statistiche, che giocatori probabilmente giocheranno la prossima partita e chi no, in aggiunta c'e qualche idea specifica per qualche scambio nella prossima asta di riparazione e gli svincolati piu interessanti\nSi aggiorna da solo due volte a settimana ed ha 3-4 stili grafici, plus ce una scheda info in fondo\n\nPer entrare e vedere la propria squadra ed i propri consigli personali serve un codice che per privacy non condivido qui, a meno che tutti non siano daccordo ad averlo qui\n\nNel caso vi piacesse ditemelo, mi farebbe piacere saperlo\nO se pensate ci siano migliorie da fare, sarebbe altrettanto gradito\n\n[anteprima link] Spogliatoio · O Fant A Girrr — Rosa, giornata, scambi, svincolati e infortunati della nostra lega di fantacalcio.\nhttps://giandjcosta.github.io/o-fant-a-girrr/",
+      "altre_varianti": [
+        "[Bozza di Claude, non inviata così] Raga, mi sono fatto prendere la mano e ho fatto un sitino per la nostra lega 😅\n\nSi chiama *Spogliatoio*:\nhttps://giandjcosta.github.io/o-fant-a-girrr/\n\nIn pratica ognuno ci trova la sua rosa con voti e statistiche, chi rischia di non giocare la prossima, qualche idea di scambio ruolo per ruolo, gli svincolati interessanti, gli infortunati e il calendario di Classic League e Champions Cup.\n\nSi aggiorna da solo due volte a settimana, quindi non dovete fare niente: aprite e guardate. In alto potete anche cambiare stile grafico, ce ne sono quattro, e nella scheda Info è spiegato tutto in due righe.\n\nPer entrare serve un codice per squadra. Se per voi va bene li metto tutti qui nel gruppo, tanto siamo tra amici. Ditemi 👇\n\nSe trovate errori o vi viene in mente qualcosa da aggiungere, scrivetemi!",
+        "[Bozza di Claude, non inviata così] Raga, ho fatto un sitino per la nostra lega, si chiama *Spogliatoio* ⚽\nhttps://giandjcosta.github.io/o-fant-a-girrr/\n\nDentro c'è la vostra rosa con le statistiche, chi rischia di non giocare, idee di scambio, svincolati, infortunati e il calendario di campionato e coppa. Si aggiorna da solo, voi dovete solo aprirlo.\n\nSi entra con un codice per squadra: se siete d'accordo li metto tutti qui nel gruppo. Va bene per tutti? 👇"
+      ],
+      "novita": [
+        {
+          "area": "Spogliatoio",
+          "voci": [
+            "Rosa di ogni squadra con voti e statistiche",
+            "Chi rischia di non giocare la prossima giornata",
+            "Idee di scambio ruolo per ruolo",
+            "Svincolati interessanti",
+            "Infortunati",
+            "Calendario di Classic League e Champions Cup",
+            "Aggiornamento automatico due volte a settimana",
+            "Quattro stili grafici selezionabili (FantaLab, Leghe, Serie A, Figurine)",
+            "Scheda Info con la spiegazione in due righe"
+          ]
+        },
+        {
+          "area": "Accesso",
+          "voci": [
+            "Codice per squadra; link personale con #CODICE in fondo per entrare senza digitare"
+          ]
+        }
+      ],
+      "nota": "Numero 1.0 attribuito da te dopo (non è scritto nel messaggio). Data certa dallo screenshot del gruppo: giovedì 8 ottobre, ore 00:30-00:31 (quindi lanciato nella notte tra il 7 e l'8). Il messaggio è quello che hai scritto tu con parole tue (refusi compresi, riportati come nello screenshot); le bozze di Claude sono tenute in 'altre_varianti'.",
+      "ora": "00:30"
+    }
+  ]
+}

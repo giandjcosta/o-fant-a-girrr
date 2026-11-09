@@ -244,6 +244,7 @@ svg text{fill:var(--mute);font-family:var(--fb)}
 </style>
 
 <link rel="stylesheet" href="v55/ui.css?v=55r9"><script src="v55/destinazioni55.js?v=55r8" defer></script><script src="v55/ui.js?v=55r9" defer></script><script src="../offline.js" defer></script>
+<script src="../stagione.js" defer></script>
 </head><body data-v53="albo" data-v53-skin="lega"><div class="col">
   <div class="top">
     <img id="lg" alt="">
@@ -959,7 +960,7 @@ function bolla52(t){var a=PREMI52?premi52(t):premiDBattesa().map(function(x){ret
 /* ---------- Carriera a tab: Panoramica (Claude), Obiettivi (ChatGPT), Fiducia (Claude), Storia (Grok) ----------
    Ogni tab è una funzione che riceve la squadra t e restituisce HTML. Piano e regole: proposte/carriera-tab-piano.md */
 S.ctab=S.ctab||'pan';S.ob=S.ob||{};S.st=S.st||{};
-function carTabs(){return '<div class="seg oro-scroll" role="group" aria-label="Sezioni della Carriera" style="margin-bottom:12px">'+[['pan','Panoramica'],['ob','Obiettivi'],['fid','Fiducia'],['st','Storia'],['reg','Regole']].map(function(x){return '<button data-ctab="'+x[0]+'" aria-pressed="'+(S.ctab===x[0])+'">'+x[1]+'</button>'}).join('')+'</div>'}
+function carTabs(){return '<div class="seg oro-scroll" role="group" aria-label="Sezioni della Carriera" style="margin-bottom:12px">'+[['pan','Panoramica'],['stag','Stagione'],['ob','Obiettivi'],['fid','Fiducia'],['st','Storia'],['reg','Regole']].map(function(x){return '<button data-ctab="'+x[0]+'" aria-pressed="'+(S.ctab===x[0])+'">'+x[1]+'</button>'}).join('')+'</div>'}
 document.addEventListener('click',function(e){var b=e.target.closest('[data-ctab]');if(!b)return;S.ctab=b.dataset.ctab;render()});
 /* Gianluca, 2 novembre: reputazione da 0 a 100. Partenza 50; posizione da +20 (primo) a −20 (ultimo); obiettivi del presidente ±10 fino a fine stagione; sponsor ±1 per sempre. Ognuno con i suoi obiettivi */
 function repCalcolo(t,o){var r=row(t),n=Math.max(2,D.teams.length),pp=Math.round(20-(r.pos-1)*40/(n-1)),pr=0,sp=0;o.forEach(function(x){var v=x[4]==='Fatto'?1:x[4]==='Mancato'?-1:0;if(x[0])pr+=10*v;else sp+=v});return {pos:r.pos,pp:pp,pr:pr,sp:sp,tot:Math.max(0,Math.min(100,50+pp+pr+sp))}}
@@ -1152,6 +1153,7 @@ function vCarL(){
   else if(S.ctab==='fid')h+=cAsp+cCal+vCarFiduciaGiornate(t)+cLega;
   else if(S.ctab==='st')h+=vCarStoria(t);
   else if(S.ctab==='reg')h+=vCarRegole(t);
+   else if(S.ctab==='stag')h+=(window.GirrrStagione?window.GirrrStagione(t):'');
   else h+=cGauge+vCarRiassunto(t,C)+cRep;
   return h+'<p class="note">Nessun obiettivo del tipo "metti tre giovani". Solo classifica, vittorie e punti, che l\'app calcola da sola.</p>';
 }
