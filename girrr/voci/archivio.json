@@ -1,5 +1,162 @@
 [
  {
+  "titolo": "Radio Girrr · Giornata 7",
+  "tag": "Lega Giornata 7",
+  "file": "puntata-g07.mp3",
+  "testo": [
+   {
+    "chi": "Beppe Rovesciata",
+    "ruolo": "Conduttore",
+    "testo": "Buongiorno, buonasera e buonanotte a tutti, siete su Radio Girrr, la radio ufficiale della Lega O Fant A Girrr! Io sono Beppe Rovesciata, e oggi con me c'è"
+   },
+   {
+    "chi": "Luigi Fischietti",
+    "ruolo": "Commentatore",
+    "testo": "Luigi Fischietti! Si parte!"
+   },
+   {
+    "chi": "Beppe Rovesciata",
+    "ruolo": "Conduttore",
+    "testo": "Giornata numero 7! Luigi, hai già guardato i punteggi?"
+   },
+   {
+    "chi": "Luigi Fischietti",
+    "ruolo": "Commentatore",
+    "testo": "Guardati e riguardati. Una giornata da ricordare."
+   },
+   {
+    "chi": "Beppe Rovesciata",
+    "ruolo": "Conduttore",
+    "testo": "Andiamo con i risultati!"
+   },
+   {
+    "chi": "Luigi Fischietti",
+    "ruolo": "Commentatore",
+    "testo": "Mariana Coneja ha vinto tre a due contro Apo team."
+   },
+   {
+    "chi": "Beppe Rovesciata",
+    "ruolo": "Conduttore",
+    "testo": "The Blue brothers e AFA SELECCION pareggiano uno a uno."
+   },
+   {
+    "chi": "Luigi Fischietti",
+    "ruolo": "Commentatore",
+    "testo": "Real Madrink ha vinto uno a zero contro Atletico ma non troppo."
+   },
+   {
+    "chi": "Beppe Rovesciata",
+    "ruolo": "Conduttore",
+    "testo": "stif dc ha vinto due a uno contro Grodah."
+   },
+   {
+    "chi": "Luigi Fischietti",
+    "ruolo": "Commentatore",
+    "testo": "Oranje VC ha vinto due a uno contro WOA."
+   },
+   {
+    "chi": "Beppe Rovesciata",
+    "ruolo": "Conduttore",
+    "testo": "AFA SELECCION scende dalla 3ª alla 4ª posizione e lascia il podio dopo una serie di almeno tre giornate."
+   },
+   {
+    "chi": "Luigi Fischietti",
+    "ruolo": "Commentatore",
+    "testo": "Qui non bastano le parole, ora servono i risultati!"
+   },
+   {
+    "chi": "Beppe Rovesciata",
+    "ruolo": "Conduttore",
+    "testo": "Diamo i numeri, in senso buono!"
+   },
+   {
+    "chi": "Beppe Rovesciata",
+    "ruolo": "Conduttore",
+    "testo": "Il miglior attacco è quello di Mariana Coneja: 21 gol fatti in 7 giornate!"
+   },
+   {
+    "chi": "Luigi Fischietti",
+    "ruolo": "Commentatore",
+    "testo": "Quando partono non li fermi più!"
+   },
+   {
+    "chi": "Luigi Fischietti",
+    "ruolo": "Commentatore",
+    "testo": "E poi c'è la difesa di WOA: 21 gol presi. Qualcuno chiuda la porta!"
+   },
+   {
+    "chi": "Beppe Rovesciata",
+    "ruolo": "Conduttore",
+    "testo": "Il presidente di WOA non è molto contento ultimamente!"
+   },
+   {
+    "chi": "Luigi Fischietti",
+    "ruolo": "Commentatore",
+    "testo": "Se continua così si parla di esonero. Sottovoce, eh."
+   },
+   {
+    "chi": "Luigi Fischietti",
+    "ruolo": "Commentatore",
+    "testo": "Riccardo è sparito per due stagioni ed è tornato con l'Atletico Ma Non Troppo!"
+   },
+   {
+    "chi": "Beppe Rovesciata",
+    "ruolo": "Conduttore",
+    "testo": "Ora ci colleghiamo con la nostra inviata sul campo! Giulia, a te!"
+   },
+   {
+    "chi": "Giulia Cronaca",
+    "ruolo": "Inviata speciale",
+    "testo": "Grazie Beppe! Qui è un bel caos! Prima notizia: Mariana Coneja sta superando le aspettative! Il presidente la voleva intorno al sesto posto, e invece oggi è prima!"
+   },
+   {
+    "chi": "Giulia Cronaca",
+    "ruolo": "Inviata speciale",
+    "testo": "Dalla sala stampa, nelle conferenze di questa settimana: Apo team è stato molto umile. Vediamo se il campo ha dato ragione!"
+   },
+   {
+    "chi": "Luigi Fischietti",
+    "ruolo": "Commentatore",
+    "testo": "Apo team è stato umile e il campo gli ha dato ragione: ha perso contro Mariana Coneja."
+   },
+   {
+    "chi": "Giulia Cronaca",
+    "ruolo": "Inviata speciale",
+    "testo": "Per ora è tutto, restituisco la linea in studio!"
+   },
+   {
+    "chi": "Luigi Fischietti",
+    "ruolo": "Commentatore",
+    "testo": "Grazie Giulia! Un'altra settimana di parole, vediamo i fatti."
+   },
+   {
+    "chi": "Beppe Rovesciata",
+    "ruolo": "Conduttore",
+    "testo": "Passiamo alla Champions Cup, la coppa della nostra lega! Si è chiusa la giornata 4!"
+   },
+   {
+    "chi": "Beppe Rovesciata",
+    "ruolo": "Conduttore",
+    "testo": "Nel girone A: Real Madrink e The Blue brothers pareggiano uno a uno; Mariana Coneja batte Apo team tre a due."
+   },
+   {
+    "chi": "Luigi Fischietti",
+    "ruolo": "Commentatore",
+    "testo": "Nell'altro girone, il girone B: Oranje VC batte WOA due a uno; Grodah batte Atletico ma non troppo uno a zero."
+   },
+   {
+    "chi": "Beppe Rovesciata",
+    "ruolo": "Conduttore",
+    "testo": "Per Radio Girrr, la radio ufficiale della Lega, è tutto! Mettete la formazione, vi vogliamo bene!"
+   },
+   {
+    "chi": "Luigi Fischietti",
+    "ruolo": "Commentatore",
+    "testo": "Ci sentiamo la prossima volta! Ciao a tutti!"
+   }
+  ]
+ },
+ {
   "titolo": "Radio Girrr · Giornata 6",
   "tag": "Lega Giornata 6",
   "file": "puntata-g06.mp3",
