@@ -1,6 +1,6 @@
 # Riepilogo giornata 11 di Serie A
 
-Lega O FANT A GIRRR. Dati aggiornati al 2026-11-08.
+Lega O FANT A GIRRR. Dati aggiornati al 2026-11-09.
 
 ## Partite della giornata
 
@@ -62,9 +62,9 @@ Notizie pubbliche, senza indicare di chi e' ogni giocatore.
 
 | Giocatore | Squadra | Motivo | Rientro | Giornata |
 |---|---|---|---|---|
-| Bellanova | Atalanta | Distrazione di basso grado dell'adduttore lungo dell’arto | Metà novembre | Salta |
-| Raspadori | Atalanta | Distrazione muscolare di basso grado al bicipite | Metà novembre | Salta |
 | Kristensen T. | Atalanta | Distrazione di basso grado ai muscoli flessori | Seconda metà di novembre | Salta |
+| Raspadori | Atalanta | Distrazione muscolare di basso grado al bicipite | Metà novembre | Salta |
+| Bellanova | Atalanta | Distrazione di basso grado dell'adduttore lungo dell’arto | Metà novembre | Salta |
 | Holm | Bologna | Problema al tendine della coscia destra | Fine febbraio | Salta |
 | Obert | Cagliari | Squalificato | Rientra dalla 12ª giornata | Salta |
 | Rodriguez Je. | Como | Infortunio | Metà dicembre | In dubbio |
@@ -74,17 +74,16 @@ Notizie pubbliche, senza indicare di chi e' ogni giocatore.
 | Atta | Fiorentina | Sovraccarico funzionale dell'addome | Metà novembre | In dubbio |
 | Raimondo | Frosinone | Lesione multilegamentosa contusivo-distorsiva della caviglia sinistra | Metà dicembre | Salta |
 | Martinez L. | Inter | Risentimento muscolare ai flessori della coscia sinistra | Metà novembre | Salta |
-| Celik | Juventus | Lesione di basso grado del bicipite femorale | Metà novembre | Salta |
-| Gonzalez N. | Juventus | Lesione di basso grado del soleo destro | Metà novembre | Salta |
-| Grabara | Juventus | Lesione al crociato anteriore del ginocchio destro | Da aprile | Salta |
-| Yildiz | Juventus | Problema al piede | Prima metà di dicembre | Salta |
 | Cambiaso | Juventus | Infortunio | Prossimo turno | Salta |
 | Conceicao | Juventus | Lussazione alla spalla sinistra | Metà novembre | Salta |
+| Yildiz | Juventus | Problema al piede | Prima metà di dicembre | Salta |
+| Grabara | Juventus | Lesione al crociato anteriore del ginocchio destro | Da aprile | Salta |
+| Gonzalez N. | Juventus | Lesione di basso grado del soleo destro | Metà novembre | Salta |
 | Zaccagni | Lazio | Lesione del quadricipite femorale sinistro | Fine novembre | Salta |
 | Gudmundsson A. | Lazio | Problema alla spalla destra dopo una caduta | Seconda metà di novembre | In dubbio |
-| Pavlovic | Milan | Problema alla spalla e non ha recuperato | Da valutare | In dubbio |
 | Chukwueze | Milan | Rottura del tendine del muscolo tensore della | Da aprile | Salta |
 | Saelemaekers | Milan | Problema alla caviglia destra e operata il | Da febbraio | Salta |
+| Pavlovic | Milan | Problema alla spalla e non ha recuperato | Da valutare | In dubbio |
 | Birindelli | Monza | Problema fisico lamentato nella rifinitura | Prossimo turno | Salta |
 | Badiashile | Napoli | Lesione distrattiva di medio grado del retto | Fine novembre | Salta |
 | Neres | Napoli | Lesione di basso grado al muscolo semimembranoso | Metà novembre | Salta |
