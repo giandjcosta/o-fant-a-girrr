@@ -19,6 +19,7 @@
  "moviola:G4:0",
  "moviola:G5:0",
  "moviola:G6:0",
+ "moviola:G7:0",
  "promessa:C4-Apo team:0",
  "sfida:S4:0",
  "sfida:S4:1",
@@ -26,5 +27,8 @@
  "sfida:S5:1",
  "zona_classifica:zona:2026/27:G6:rimonta:Grodah:0",
  "zona_classifica:zona:2026/27:G6:rimonta:Grodah:1",
- "zona_classifica:zona:2026/27:G6:rimonta:Grodah:2"
+ "zona_classifica:zona:2026/27:G6:rimonta:Grodah:2",
+ "zona_classifica:zona:2026/27:G7:uscita_podio:AFA SELECCION:0",
+ "zona_classifica:zona:2026/27:G7:uscita_podio:AFA SELECCION:1",
+ "zona_classifica:zona:2026/27:G7:uscita_podio:AFA SELECCION:2"
 ]

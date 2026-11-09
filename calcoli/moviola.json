@@ -5,7 +5,8 @@
   3,
   4,
   5,
-  6
+  6,
+  7
  ],
  "giornate": {
   "1": {
@@ -937,6 +938,143 @@
      "avversario_reale": "Bologna",
      "in_casa": false,
      "data_partita": "sab 31/10 15:00"
+    }
+   ]
+  },
+  "7": {
+   "sa": 11,
+   "scritta": "2026-11-09",
+   "episodi": [
+    {
+     "tipo": "gol",
+     "titolo": "Gol decisivo",
+     "verdetto": "Ha deciso la partita",
+     "testo": "La moviola dice gol regolare, il tabellone dice WOA–Oranje VC 1‑2. Il gol di Frattesi vale il risultato: senza, Oranje VC avrebbe pareggiato.",
+     "giocatore": "Frattesi",
+     "squadra": "Oranje VC",
+     "allenatori": [
+      "DJ Cst Brazil"
+     ],
+     "id": "2848",
+     "squadra_reale": "Lazio",
+     "avversario_reale": "Napoli",
+     "in_casa": false,
+     "data_partita": "dom 8/11 12:30"
+    },
+    {
+     "tipo": "gol",
+     "titolo": "Gol decisivo",
+     "verdetto": "Ha deciso la partita",
+     "testo": "Il gol di Njie decide Mariana Coneja–Apo team 3‑2. Rivista l'azione, nessun fallo e nessun fuorigioco: tutto regolare. Senza il gol Mariana Coneja avrebbe pareggiato.",
+     "giocatore": "Njie",
+     "squadra": "Mariana Coneja",
+     "allenatori": [
+      "Mark Lenders"
+     ],
+     "id": "6827",
+     "squadra_reale": "Fiorentina",
+     "avversario_reale": "Juventus",
+     "in_casa": true,
+     "data_partita": "dom 8/11 20:45"
+    },
+    {
+     "tipo": "autogol",
+     "titolo": "Autogol",
+     "verdetto": "Regolare",
+     "testo": "La moviola non lascia scampo: l'ultimo tocco è di Gaspar K.. Autogol regolare, e sulla panchina di ser cala il silenzio.",
+     "giocatore": "Gaspar K.",
+     "squadra": "WOA",
+     "allenatori": [
+      "ser"
+     ],
+     "id": "6632",
+     "squadra_reale": "Lecce",
+     "avversario_reale": "Torino",
+     "in_casa": false,
+     "data_partita": "sab 7/11 15:00"
+    }
+   ],
+   "scartati": [],
+   "automatici": [
+    {
+     "tipo": "gol",
+     "titolo": "Gol decisivo",
+     "verdetto": "Ha deciso la partita",
+     "testo": "La moviola dice gol regolare, il tabellone dice WOA–Oranje VC 1‑2. Il gol di Frattesi vale il risultato: senza, Oranje VC avrebbe pareggiato.",
+     "giocatore": "Frattesi",
+     "squadra": "Oranje VC",
+     "allenatori": [
+      "DJ Cst Brazil"
+     ],
+     "id": "2848",
+     "squadra_reale": "Lazio",
+     "avversario_reale": "Napoli",
+     "in_casa": false,
+     "data_partita": "dom 8/11 12:30"
+    },
+    {
+     "tipo": "gol",
+     "titolo": "Gol decisivo",
+     "verdetto": "Ha deciso la partita",
+     "testo": "Il gol di Njie decide Mariana Coneja–Apo team 3‑2. Rivista l'azione, nessun fallo e nessun fuorigioco: tutto regolare. Senza il gol Mariana Coneja avrebbe pareggiato.",
+     "giocatore": "Njie",
+     "squadra": "Mariana Coneja",
+     "allenatori": [
+      "Mark Lenders"
+     ],
+     "id": "6827",
+     "squadra_reale": "Fiorentina",
+     "avversario_reale": "Juventus",
+     "in_casa": true,
+     "data_partita": "dom 8/11 20:45"
+    },
+    {
+     "tipo": "gol",
+     "titolo": "Gol decisivo",
+     "verdetto": "Ha deciso la partita",
+     "testo": "Il gol di Pulisic decide Mariana Coneja–Apo team 3‑2. Rivista l'azione, nessun fallo e nessun fuorigioco: tutto regolare. Senza il gol Mariana Coneja avrebbe pareggiato.",
+     "giocatore": "Pulisic",
+     "squadra": "Mariana Coneja",
+     "allenatori": [
+      "Mark Lenders"
+     ],
+     "id": "2423",
+     "squadra_reale": "Milan",
+     "avversario_reale": "Genoa",
+     "in_casa": false,
+     "data_partita": "dom 8/11 15:00"
+    },
+    {
+     "tipo": "gol",
+     "titolo": "Gol decisivo",
+     "verdetto": "Ha deciso la partita",
+     "testo": "La moviola dice gol regolare, il tabellone dice Mariana Coneja–Apo team 3‑2. Il gol di Woltemade vale il risultato: senza, Mariana Coneja avrebbe pareggiato.",
+     "giocatore": "Woltemade",
+     "squadra": "Mariana Coneja",
+     "allenatori": [
+      "Mark Lenders"
+     ],
+     "id": "6752",
+     "squadra_reale": "Juventus",
+     "avversario_reale": "Fiorentina",
+     "in_casa": false,
+     "data_partita": "dom 8/11 20:45"
+    },
+    {
+     "tipo": "autogol",
+     "titolo": "Autogol",
+     "verdetto": "Regolare",
+     "testo": "La moviola non lascia scampo: l'ultimo tocco è di Gaspar K.. Autogol regolare, e sulla panchina di ser cala il silenzio.",
+     "giocatore": "Gaspar K.",
+     "squadra": "WOA",
+     "allenatori": [
+      "ser"
+     ],
+     "id": "6632",
+     "squadra_reale": "Lecce",
+     "avversario_reale": "Torino",
+     "in_casa": false,
+     "data_partita": "sab 7/11 15:00"
     }
    ]
   }

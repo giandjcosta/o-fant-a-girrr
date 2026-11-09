@@ -45,85 +45,76 @@
   "body": "PROMESSA TRADITA\napo in conferenza stampa: «Sarà sicuramente una bella partita, che vinca il migliore». Il campo ha risposto altro, e la dirigenza ha preso nota. #ConferenzaStampa"
  },
  {
-  "chiave": "conferenza:C6-Apo team:0",
+  "chiave": "conferenza:C7-Apo team:0",
   "h": "girrr_sport",
-  "body": "CONFERENZA STAMPA · apo, alla vigilia di apo - DJ Cst Brazil: «Se non dovessimo vincere questa giornata probabilmente salterà qualc…» Su DJ Cst Brazil: «Ce li scopiamo sti olandesi, zero paura, mora sarà in campo per il gol…» E alla dirigenza: «Leccatemi il sotto palla sudato»"
+  "body": "CONFERENZA STAMPA · apo, alla vigilia di apo - Mark Lenders: «Noi ci crediamo e non molliamo» Su Mark Lenders: «Sarà una partita difficile contro un avversario molto forte» E alla dirigenza: «Chi dubita di noi é gay» #ConferenzaStampa"
  },
  {
-  "chiave": "conferenza:C6-Apo team:1",
+  "chiave": "conferenza:C7-Apo team:1",
   "h": "ciro_trattativa",
   "body": "Mi piace l'umiltà, ma in questa lega non basta.",
-  "re": "conferenza:C6-Apo team:0",
+  "re": "conferenza:C7-Apo team:0",
   "re_h": "girrr_sport",
-  "re_body": "CONFERENZA STAMPA · apo, alla vigilia di apo - DJ Cst Brazil: «Se non dovessimo vincere questa giornata probabilmente salterà qualc…» Su DJ Cst Brazil: «Ce li scopiamo sti olandesi, zero paura, mora sarà in campo per il gol…» E alla dirigenza: «Leccatemi il sotto palla sudato»"
+  "re_body": "CONFERENZA STAMPA · apo, alla vigilia di apo - Mark Lenders: «Noi ci crediamo e non molliamo» Su Mark Lenders: «Sarà una partita difficile contro un avversario molto forte» E alla dirigenza: «Chi dubita di noi é gay» #ConferenzaStampa"
  },
  {
-  "chiave": "zona_classifica:zona:2026/27:G6:rimonta:Grodah:0",
+  "chiave": "zona_classifica:zona:2026/27:G7:uscita_podio:AFA SELECCION:0",
   "h": "girrr_sport",
-  "body": "GRANDE RIMONTA\nGrodah risale dalla 8ª alla 2ª posizione in tre giornate: quattro o più posti recuperati. La rimonta prende forma.",
-  "cronaca": "zona:2026/27:G6:rimonta:Grodah",
-  "giornata": 6,
+  "body": "IL PODIO SFUGGE\nAFA SELECCION scende dalla 3ª alla 4ª posizione e lascia il podio dopo una serie di almeno tre giornate.",
+  "cronaca": "zona:2026/27:G7:uscita_podio:AFA SELECCION",
+  "giornata": 7,
   "stagione": "2026/27",
-  "tema": "rimonta",
+  "tema": "uscita_podio",
   "prova": {
-   "giornata": 6,
-   "posizione_precedente": 4,
-   "posizione": 2,
-   "attesa": 5,
-   "serie": 3,
-   "altre_squadre": [],
-   "giornata_inizio": 3,
-   "posizione_inizio": 8,
-   "variazione": 6
+   "giornata": 7,
+   "posizione_precedente": 3,
+   "posizione": 4,
+   "attesa": 3,
+   "serie": 0,
+   "altre_squadre": []
   }
  },
  {
-  "chiave": "zona_classifica:zona:2026/27:G6:rimonta:Grodah:1",
+  "chiave": "zona_classifica:zona:2026/27:G7:uscita_podio:AFA SELECCION:1",
   "h": "giornale_girrr",
-  "body": "IL PUNTO DELLA CLASSIFICA\nGrodah risale dalla 8ª alla 2ª posizione in tre giornate: quattro o più posti recuperati. La rimonta prende forma.",
-  "cronaca": "zona:2026/27:G6:rimonta:Grodah",
-  "giornata": 6,
+  "body": "IL PUNTO DELLA CLASSIFICA\nAFA SELECCION scende dalla 3ª alla 4ª posizione e lascia il podio dopo una serie di almeno tre giornate.",
+  "cronaca": "zona:2026/27:G7:uscita_podio:AFA SELECCION",
+  "giornata": 7,
   "stagione": "2026/27",
-  "tema": "rimonta",
+  "tema": "uscita_podio",
   "prova": {
-   "giornata": 6,
-   "posizione_precedente": 4,
-   "posizione": 2,
-   "attesa": 5,
-   "serie": 3,
-   "altre_squadre": [],
-   "giornata_inizio": 3,
-   "posizione_inizio": 8,
-   "variazione": 6
+   "giornata": 7,
+   "posizione_precedente": 3,
+   "posizione": 4,
+   "attesa": 3,
+   "serie": 0,
+   "altre_squadre": []
   }
  },
  {
-  "chiave": "zona_classifica:zona:2026/27:G6:rimonta:Grodah:2",
+  "chiave": "zona_classifica:zona:2026/27:G7:uscita_podio:AFA SELECCION:2",
   "h": "giornale_girrr",
-  "body": "Alla 6ª giornata: Grodah è 2ª. Il prossimo turno dirà se questa svolta avrà seguito.",
-  "cronaca": "zona:2026/27:G6:rimonta:Grodah",
-  "giornata": 6,
+  "body": "Alla 7ª giornata: AFA SELECCION è 4ª. Il prossimo turno dirà se questa svolta avrà seguito.",
+  "cronaca": "zona:2026/27:G7:uscita_podio:AFA SELECCION",
+  "giornata": 7,
   "stagione": "2026/27",
-  "tema": "rimonta",
+  "tema": "uscita_podio",
   "prova": {
-   "giornata": 6,
-   "posizione_precedente": 4,
-   "posizione": 2,
-   "attesa": 5,
-   "serie": 3,
-   "altre_squadre": [],
-   "giornata_inizio": 3,
-   "posizione_inizio": 8,
-   "variazione": 6
+   "giornata": 7,
+   "posizione_precedente": 3,
+   "posizione": 4,
+   "attesa": 3,
+   "serie": 0,
+   "altre_squadre": []
   },
-  "re": "zona_classifica:zona:2026/27:G6:rimonta:Grodah:0",
+  "re": "zona_classifica:zona:2026/27:G7:uscita_podio:AFA SELECCION:0",
   "re_h": "girrr_sport",
-  "re_body": "GRANDE RIMONTA\nGrodah risale dalla 8ª alla 2ª posizione in tre giornate: quattro o più posti recuperati. La rimonta prende forma."
+  "re_body": "IL PODIO SFUGGE\nAFA SELECCION scende dalla 3ª alla 4ª posizione e lascia il podio dopo una serie di almeno tre giornate."
  },
  {
-  "chiave": "moviola:G6:0",
+  "chiave": "moviola:G7:0",
   "h": "girrr_sport",
-  "body": "MOVIOLA · Giornata 6\nGol decisivo. Tutto gira intorno a Laurientè: la doppietta decide stif dc–Atletico ma non troppo 1‑3. Nessun dubbio dalla moviola, e senza la doppietta Atletico ma non troppo avrebbe pareggiato. Verdetto: Ha deciso la partita. #GirrrSport #Moviola",
+  "body": "MOVIOLA · Giornata 7\nGol decisivo. La moviola dice gol regolare, il tabellone dice WOA–Oranje VC 1‑2. Il gol di Frattesi vale il risultato: senza, Oranje VC avrebbe pareggiato. Verdetto: Ha deciso la partita. #GirrrSport #Moviola",
   "quando": "2026-11-03T13:40:00+00:00"
  }
 ]
