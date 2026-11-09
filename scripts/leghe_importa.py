@@ -23,6 +23,13 @@ def main():
     if len(sys.argv) < 2:
         raise SystemExit(__doc__)
     L = json.loads(Path(sys.argv[1]).read_text(encoding="utf-8"))
+    # Nomi su Leghe diversi dalla chiave del sito (Claude, 9 novembre 2026): si riportano alla chiave interna
+    DA_LEGHE = {"The Blues Brothers": "The Blue brothers"}
+    for parte in ("lega", "coppa"):
+        for m in L.get(parte) or []:
+            for lato in ("A", "B"):
+                if isinstance(m.get(lato), dict) and m[lato].get("s") in DA_LEGHE:
+                    m[lato]["s"] = DA_LEGHE[m[lato]["s"]]
     D = json.loads((ROOT / "data.json").read_text(encoding="utf-8"))
     fp_ = ROOT / "formazioni.json"
     F = json.loads(fp_.read_text(encoding="utf-8")) if fp_.exists() else {}

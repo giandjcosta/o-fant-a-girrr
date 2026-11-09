@@ -16,8 +16,19 @@ ROOT = Path(__file__).resolve().parent.parent
 D = json.loads((ROOT / "data.json").read_text(encoding="utf-8"))
 
 
+# Nomi mostrati (Claude, 9 novembre 2026): la chiave resta «The Blue brothers», nei PDF e nelle immagini si legge il nome ufficiale.
+NOMI_MOSTRATI = {"Blue brothers": "Blues Brothers", "Blue Brothers": "Blues Brothers", "BLUE BROTHERS": "BLUES BROTHERS"}
+
+
+def nome_mostrato(x):
+    s = str(x)
+    for a, b in NOMI_MOSTRATI.items():
+        s = s.replace(a, b)
+    return s
+
+
 def esc(x):
-    return html.escape(str(x))
+    return html.escape(nome_mostrato(x))
 
 
 def cap(s):

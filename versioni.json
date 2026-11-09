@@ -2,6 +2,34 @@
   "nota": "Fonte unica della pagina Versioni (girrr/versioni.html e stadio/girrr/versioni.html). A ogni rilascio si aggiunge la versione in cima con rilascio/versioni/aggiungi.py. Numeri: correzione minore = terza cifra (5.6.1), aggiornamento medio = seconda cifra (5.7.0), aggiornamento grande = prima cifra (6.0). Dove manca la storia: «Dato non conservato». Le versioni 1.0-4.5 e il Mercato Scambi vengono dai messaggi recuperati da Claude chat (9 novembre 2026), date controllate con i commit del sito. Il campo «nota» e «altre_varianti» non si mostrano nella pagina.",
   "versioni": [
     {
+      "v": "5.6.2",
+      "data": "2026-11-09",
+      "tipo": "minore",
+      "titolo": "The Blues Brothers e Condividi dalla Curva",
+      "messaggio": "🎷 **O Girrr 5.6.2 è online!** La squadra di Leanzino e Mario ha il suo nome giusto: **The Blues Brothers**, ovunque sul sito, nelle immagini e nelle notifiche. E quando condividete un post della Curva con i risultati, su WhatsApp arriva anche il Tabellone della giornata, non solo il messaggio. Buona serata a tutti! ⚽",
+      "novita": [
+        {
+          "area": "Squadre",
+          "voci": [
+            "«The Blues Brothers» al posto di «The Blue​ brothers» in tutte le pagine di Lega e Stadio, nelle immagini da condividere, nei PDF del Giornale e nelle immagini del Tabellone che arrivano da adesso",
+            "codici di accesso invariati, non serve rientrare nello Spogliatoio; l'import da Leghe Fantacalcio riconosce il nome nuovo"
+          ]
+        },
+        {
+          "area": "Curva",
+          "voci": [
+            "Condividi manda anche l'immagine del post (Tabellone dei risultati di Campionato e Champions Cup, immagini dei personaggi)"
+          ]
+        },
+        {
+          "area": "Notifiche",
+          "voci": [
+            "anche i titoli e i testi delle notifiche sul telefono usano il nome nuovo"
+          ]
+        }
+      ]
+    },
+    {
       "v": "5.6.1",
       "data": "2026-11-09",
       "tipo": "minore",
