@@ -27,6 +27,7 @@ O Girrr si racconta come un campionato vero, ma i dati sono quelli ufficiali di 
 - Dove mancano dati storici scrivere «Dato non conservato»: niente statistiche ricostruite per ipotesi.
 - Niente disclaimer tipo "notizia inventata" o "dati finti".
 - Le frasi iniziano con la maiuscola, anche dopo un punto. Nelle legende usare etichette con iniziale maiuscola e separare chiaramente i significati.
+- **Dopo il punto mediano «·» la parola comincia sempre con la maiuscola** (decisione di Gianluca, ribadita il 9 novembre 2026): «Offline · Copia delle 15:46», «Roma · Attaccante», «Campionato · Risultati della 7ª giornata». Mai «· copia», «· pagato». Vale per testi, pulsanti, avvisi, notifiche, immagini e commenti nel codice. I numeri restano numeri («· 9 novembre»).
 - "Derby" sempre con la D maiuscola. Titoli ed etichette con la maiuscola iniziale.
 - I post ufficiali (Girrr Sport, Lega, Giornale) non parlano mai di scommesse.
 
