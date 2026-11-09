@@ -15,7 +15,7 @@ Lo stato aggiornato del progetto, cosa è online e cosa resta da fare sono in `S
 - Le pagine Lega e Stadio sono due copie con grafica diversa: una modifica di solito va fatta in entrambe, attenzione ai percorsi relativi (da `stadio/girrr/` i dati della Lega sono in `../../girrr/`).
 
 ## Numeri di versione (decisione di Gianluca, 9 novembre 2026)
-- Prima di rilasciare qualcosa sul sito vero chiedi a Gianluca che tipo di aggiornamento è: correzione minore → terza cifra (5.6.1, 5.6.2); aggiornamento medio → seconda cifra (5.7, cioè 5.7.0); aggiornamento grande → prima cifra (6.0, 7.0). Sul sito: 5.6 (9 novembre 2026).
+- Prima di rilasciare qualcosa sul sito vero chiedi a Gianluca che tipo di aggiornamento è: correzione minore → terza cifra (5.6.1, 5.6.2); aggiornamento medio → seconda cifra (5.7, cioè 5.7.0); aggiornamento grande → prima cifra (6.0, 7.0). Sul sito: 5.6.1 (9 novembre 2026).
 - A ogni rilascio la versione va aggiunta a `versioni.json` nella radice di `gh-pages` (messaggio per il gruppo e changelog), con `rilascio/versioni/aggiungi.py` del registro: la pagina Versioni e l'avviso in Home si aggiornano da soli.
 
 ## Regole sui contenuti — tre livelli di scrittura (decisione di Gianluca, 1° novembre 2026)
