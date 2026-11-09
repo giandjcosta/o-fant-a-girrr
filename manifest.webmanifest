@@ -13,5 +13,11 @@
     {"src": "assets/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any"},
     {"src": "assets/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any"},
     {"src": "assets/icon-maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable"}
+  ],
+  "shortcuts": [
+    {"name": "Tabellone", "short_name": "Tabellone", "description": "Classifica e risultati della giornata", "url": "apri.html?p=tabellone", "icons": [{"src": "assets/icon-192.png", "sizes": "192x192", "type": "image/png"}]},
+    {"name": "Curva", "short_name": "Curva", "description": "I cori e i post della lega", "url": "apri.html?p=curva", "icons": [{"src": "assets/icon-192.png", "sizes": "192x192", "type": "image/png"}]},
+    {"name": "Giornale", "short_name": "Giornale", "description": "L'ultimo numero del Giornale", "url": "apri.html?p=giornale", "icons": [{"src": "assets/icon-192.png", "sizes": "192x192", "type": "image/png"}]},
+    {"name": "Totogirrr", "short_name": "Totogirrr", "description": "I pronostici della giornata", "url": "apri.html?p=totogirrr", "icons": [{"src": "assets/icon-192.png", "sizes": "192x192", "type": "image/png"}]}
   ]
 }

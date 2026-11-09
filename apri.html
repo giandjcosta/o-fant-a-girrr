@@ -1,0 +1,11 @@
+<!doctype html>
+<html lang="it"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="robots" content="noindex">
+<title>O Girrr</title><style>html,body{margin:0;background:#1d2a52}</style>
+<!-- Scorciatoie dell'icona (Claude, 9 novembre 2026): apre la pagina nella grafica scelta l'ultima volta (orr_gv: a = Lega, n = Stadio) -->
+<script>(function(){
+var ok={index:1,tabellone:1,curva:1,giornale:1,totogirrr:1,campo:1,notifiche:1};
+var p=(/[?&]p=([a-z]+)/.exec(location.search)||[])[1];if(!ok[p])p='index';
+var g='a';try{g=localStorage.getItem('orr_gv')||'a'}catch(e){}
+location.replace((g==='n'?'stadio/girrr/':'girrr/')+p+'.html');
+})()</script>
+</head><body></body></html>
