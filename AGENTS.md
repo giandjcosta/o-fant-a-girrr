@@ -14,6 +14,10 @@ Lo stato aggiornato del progetto, cosa è online e cosa resta da fare sono in `S
 - Rilasci: prima `gh-pages`, poi controlla il sito vero (pagina aperta, console senza errori nuovi), solo dopo `main`. Tieni nota degli hash dei commit e di come tornare indietro (`git revert`).
 - Le pagine Lega e Stadio sono due copie con grafica diversa: una modifica di solito va fatta in entrambe, attenzione ai percorsi relativi (da `stadio/girrr/` i dati della Lega sono in `../../girrr/`).
 
+## Numeri di versione (decisione di Gianluca, 9 novembre 2026)
+- Prima di rilasciare qualcosa sul sito vero chiedi a Gianluca che tipo di aggiornamento è: correzione minore → terza cifra (5.6.1, 5.6.2); aggiornamento medio → seconda cifra (5.7, cioè 5.7.0); aggiornamento grande → prima cifra (6.0, 7.0). Versione attuale: 5.6.
+- A ogni rilascio la versione va aggiunta a `versioni.json` nella radice di `gh-pages` (messaggio per il gruppo e changelog), con `rilascio/versioni/aggiungi.py` del registro: la pagina Versioni e l'avviso in Home si aggiornano da soli.
+
 ## Regole sui contenuti — tre livelli di scrittura (decisione di Gianluca, 1° novembre 2026)
 O Girrr si racconta come un campionato vero, ma i dati sono quelli ufficiali di Leghe Fantacalcio. Realismo nel racconto, precisione nei dati.
 1. **Sportivo** (Home, risultati, classifica, titoli, rivalità, presentazioni delle partite): squadre, allenatori, gol, vittorie, pareggi, sconfitte, punti in classifica, giornata, Campionato, Champions Cup, Derby.
