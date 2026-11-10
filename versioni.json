@@ -12,7 +12,7 @@
           "area": "Squadre",
           "voci": [
             "«The Blues Brothers» al posto di «The Blue​ brothers» in tutte le pagine di Lega e Stadio, nelle immagini da condividere, nei PDF del Giornale e nelle immagini del Tabellone che arrivano da adesso",
-            "codici di accesso invariati, non serve rientrare nello Spogliatoio; l'import da Leghe Fantacalcio riconosce il nome nuovo"
+            "Codici di accesso invariati, non serve rientrare nello Spogliatoio; l'import da Leghe Fantacalcio riconosce il nome nuovo"
           ]
         },
         {
@@ -24,7 +24,7 @@
         {
           "area": "Notifiche",
           "voci": [
-            "anche i titoli e i testi delle notifiche sul telefono usano il nome nuovo"
+            "Anche i titoli e i testi delle notifiche sul telefono usano il nome nuovo"
           ]
         }
       ]
@@ -39,20 +39,20 @@
         {
           "area": "Notifiche",
           "voci": [
-            "le notifiche già lette vanno in fondo nel gruppo «Già lette», chiuso; si apre con un tocco e le mostra compatte, su una riga",
-            "se sono tutte lette compare «Nessuna notifica nuova.»"
+            "Le notifiche già lette vanno in fondo nel gruppo «Già lette», chiuso; si apre con un tocco e le mostra compatte, su una riga",
+            "Se sono tutte lette compare «Nessuna notifica nuova.»"
           ]
         },
         {
           "area": "Versioni",
           "voci": [
-            "passaggio fluido tra Messaggio e Changelog, senza ridisegnare la pagina"
+            "Passaggio fluido tra Messaggio e Changelog, senza ridisegnare la pagina"
           ]
         },
         {
           "area": "Home",
           "voci": [
-            "pillola con la versione (V5.6.1 ›) in fondo a destra, sopra gli sponsor; apre la pagina Versioni"
+            "Pillola con la versione (V5.6.1 ›) in fondo a destra, sopra gli sponsor; apre la pagina Versioni"
           ]
         }
       ]
