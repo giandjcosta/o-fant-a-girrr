@@ -6,7 +6,8 @@ Servono CURVA_URL e CURVA_KEY (chiave publishable). Non scrive nel database.
 Uso: python3 calcoli/leggi_eventi.py [uscita.json] [data.json del sito, per l'avversario delle conferenze]
 Sfide: ogni sfida produce l'evento 'sfida'; se poi è rifiutata/scaduta/accettata con nome concordato, anche 'rifiuto'/'scaduta'/'derby'.
 Il testo vero della frase scelta (frase_testo, da derby_stato) finisce nell'evento come "testo": serve all'Intervista speciale. Le sfide vecchie, senza testo, hanno solo il numero 0-2.
-Conferenze: ogni conferenza pubblicata dell'ultima giornata (conf_pubbliche) produce l'evento 'conferenza'.
+Conferenze: ogni conferenza pubblicata dell'ultima giornata (conf_pubbliche) produce l'evento 'conferenza';
+ogni risposta del dopo partita dell'ultima giornata (conf_dopo_pubbliche, se c'è nel database) l'evento 'dopo'.
 """
 import json, os, sys, urllib.request
 from pathlib import Path
@@ -71,6 +72,17 @@ def calendario_lega():
         return None
 
 
+def partita(cal, team, giornata):
+    """(casa, trasferta, risultato) della partita di campionato della squadra in quella giornata, nell'ordine del calendario;
+    risultato '' se non ancora giocata. None se non si trova."""
+    for g in cal or []:
+        if g.get("n") == giornata:
+            for m in g.get("m", []):
+                if team in (m[0], m[3]):
+                    return m[0], m[3], (m[4] if m[4] and m[4] != "-" else "")
+    return None
+
+
 def avversario(cal, team, giornata):
     for g in cal or []:
         if g.get("n") == giornata:
@@ -95,17 +107,63 @@ def eventi_conferenza(conf, cal=None):
         righe = [r for r in (c.get("risposte") or []) if r.get("t")]
         ris = [r["t"].strip() for r in righe]
         # stesso calcolo dell'app: tono 0 Sicuro, 1 Umile, 2 Provocatorio = media dei toni delle tre risposte, arrotondata per eccesso a .5
-        tono = min(2, int(sum(int(r.get("k", 1)) for r in righe) / 3 + 0.5)) if len(righe) == 3 else None
+        tono = tono_conferenza(c)
         out.append(dict(tipo="conferenza", k=f"C{c['giornata']}-{c['team']}", team=c["team"], giornata=c["giornata"],
                         avversario=avversario(cal, c["team"], c["giornata"]), tono=tono,
+                        partita=" - ".join((partita(cal, c["team"], c["giornata"]) or ("", ""))[:2]).strip(" -"),
                         libera=(c.get("libera") or "").strip(), risposte=ris, promessa=(c.get("promessa") or "").strip()))
     return out
 
 
+def rpc_facoltativa(nome):
+    """Come rpc(), ma se la funzione non c'è ancora nel database (o non risponde) restituisce [] e si va avanti."""
+    url, key = os.environ.get("CURVA_URL"), os.environ.get("CURVA_KEY")
+    r = urllib.request.Request(f"{url}/rest/v1/rpc/{nome}", b"{}",
+                               {"apikey": key, "Authorization": "Bearer " + key, "Content-Type": "application/json"})
+    try:
+        x = json.loads(urllib.request.urlopen(r, timeout=30).read())
+        return x if isinstance(x, list) else []
+    except Exception as e:
+        print(f"{nome} non disponibile ({e}): niente conferenze del dopo partita.")
+        return []
+
+
+def eventi_dopo(dopo, cal=None):
+    """Un evento 'dopo' (conferenza del dopo partita) per ogni risposta dell'ultima giornata, con avversario e risultato visto dalla squadra."""
+    if not dopo:
+        return []
+    ultima = max(c["giornata"] for c in dopo)
+    out = []
+    for c in sorted(dopo, key=lambda x: x["team"]):
+        t = ((c.get("risposta") or {}).get("t") or "").strip()
+        if c["giornata"] != ultima or not t:
+            continue
+        p = partita(cal, c["team"], c["giornata"])   # nell'ordine del calendario: «Oranje VC - Apo team 1-1»
+        out.append(dict(tipo="dopo", k=f"D{c['giornata']}-{c['team']}", team=c["team"], giornata=c["giornata"],
+                        avversario=avversario(cal, c["team"], c["giornata"]), partita=f"{p[0]} - {p[1]}" if p else "",
+                        risultato=p[2] if p else "", risposta=t))
+    return out
+
+
+def tono_conferenza(c):
+    """Tono della conferenza (0 Sicuro, 1 Umile, 2 Provocatorio), lo stesso calcolo dell'app; None se le risposte non sono tre."""
+    righe = [r for r in (c.get("risposte") or []) if r.get("t")]
+    return min(2, int(sum(int(r.get("k", 1)) for r in righe) / 3 + 0.5)) if len(righe) == 3 else None
+
+
+def con_tono(prom, conf):
+    """Aggiunge a ogni promessa il tono della sua conferenza (5.6.3/5.7: il tono conta per la fiducia, vedi fiducia.py)."""
+    toni = {(c["team"], c["giornata"]): tono_conferenza(c) for c in conf or []}
+    return [dict(p, tono=toni.get((p["team"], p["giornata"]))) for p in prom]
+
+
 if __name__ == "__main__":
     prom = rpc("conf_promesse", {})
-    ev = eventi(rpc("derby_stato", {}), prom) + (lambda c: eventi_conferenza(c, calendario_lega() if c else None))(rpc("conf_pubbliche", {}))
+    conf = rpc("conf_pubbliche", {})
+    dopo = rpc_facoltativa("conf_dopo_pubbliche")   # 5.7: c'è solo dopo rilascio/conferenze/dopo.sql
+    cal = calendario_lega() if (conf or dopo) else None
+    ev = eventi(rpc("derby_stato", {}), prom) + eventi_conferenza(conf, cal) + eventi_dopo(dopo, cal)
     USCITA.write_text(json.dumps(ev, ensure_ascii=False, indent=1), encoding="utf-8")
-    # le promesse grezze servono a fiducia.py (che ricalcola l'esito dai risultati veri)
-    (USCITA.parent / "conferenze.json").write_text(json.dumps(prom, ensure_ascii=False, indent=1), encoding="utf-8")
+    # le promesse grezze, con il tono della conferenza, servono a fiducia.py (che ricalcola l'esito dai risultati veri)
+    (USCITA.parent / "conferenze.json").write_text(json.dumps(con_tono(prom, conf), ensure_ascii=False, indent=1), encoding="utf-8")
     print("eventi.json scritto:", len(ev), "eventi;", "conferenze.json:", len(prom), "promesse")

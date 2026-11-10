@@ -10,6 +10,7 @@ Formato di eventi.json: lista di oggetti con "tipo" e "k" (chiave unica dell'eve
   {"tipo":"sfida",   "k":"S12", "da":"Oranje VC", "a":"Grodah", "frase":"Quest'anno Grodah dovrà guardarmi dal basso."}
      (opzionali: "f" = numero 0-2 della frase, "testo" = frase vera scelta nell'app: esce nell'Intervista speciale di qualsiasi coppia)
   {"tipo":"conferenza","k":"C3-Apo team", "team":"Apo team", "giornata":3, "libera":"...", "promessa":"", "risposte":["...","..."]}   (conferenza pre partita, su Girrr Sport; opzionali "avversario" e "tono" 0-2: se ci sono, esce anche il commento di Ciro Trattativa)
+  {"tipo":"dopo", "k":"D7-Apo team", "team":"Apo team", "giornata":7, "avversario":"WOA", "risultato":"2-1", "risposta":"..."}   (conferenza del dopo partita, su Girrr Sport)
   {"tipo":"rifiuto", "k":"S12", "da":"Oranje VC", "a":"Grodah"}                     (a ha rifiutato)
   {"tipo":"scaduta", "k":"S12", "da":"Oranje VC", "a":"Grodah"}                     (nessuna risposta in 3 giorni)
   {"tipo":"accettata","k":"S12", "da":"Oranje VC", "a":"Grodah"}                     (a ha accettato: il Derby nasce quando si accordano sul nome)
@@ -22,7 +23,7 @@ Moviola: un post su Girrr Sport per l'ultima giornata di moviola.json con l'epis
 Regole (decise da Gianluca): i post usano i nomi degli allenatori; i post ufficiali non parlano mai di scommesse; "Derby" sempre con la D maiuscola.
 Ogni post è al massimo di 280 caratteri.
 """
-import datetime, json, sys, urllib.request
+import datetime, json, re, sys, urllib.request
 from pathlib import Path
 from zoneinfo import ZoneInfo
 
@@ -56,6 +57,34 @@ def m(t):
     return NOMI.get(t, t)
 
 
+# Nomi delle squadre come si leggono sul sito (nomi.js): la chiave interna resta quella di prima
+MOSTRA = {"The Blue brothers": "The Blues Brothers"}
+
+
+def sq(t):
+    return MOSTRA.get(t, t)
+
+
+def chi(t):
+    """Chi parla in conferenza: allenatore e squadra, così si capisce sempre chi è chi («DJ Cst Brazil, allenatore di Oranje VC»)."""
+    if m(t) == t:
+        return sq(t)
+    a = m(t)[:1].upper() + m(t)[1:]   # la riga comincia sempre con la maiuscola («apo» -> «Apo»)
+    return f"{a}, {'allenatori' if '&' in a or ' e ' in a else 'allenatore'} di {sq(t)}"
+
+
+def cit(x):
+    """Una frase tra virgolette chiusa da un punto solo: «Vinciamo noi». oppure «Vinciamo noi.» (mai «… noi.».)"""
+    x = x.strip()
+    return f"«{x}»" if x[-1:] in ".!?…" else f"«{x}»."
+
+
+def tag(t):
+    """Menzione della squadra nella Curva, come hnd() di curva.html: «Oranje VC» -> «@oranje_vc».
+    La Curva la riconosce nel testo e la squadra trova il post nelle sue Notifiche (scheda Menzioni)."""
+    return "@" + re.sub(r"[^a-z0-9]+", "_", t.lower()).strip("_")
+
+
 def post(e):
     t = e["tipo"]
     if t == "zona_classifica":
@@ -87,25 +116,39 @@ def post(e):
                 return []
             testa = f"CONFERENZA STAMPA · Giornata {e['giornata']}\n{m(e['team'])}: "
             return [(GS, (testa + " ".join(f"«{r}»" for r in ris))[:280])]
-        me, opp = m(e["team"]), m(e["avversario"]) if e.get("avversario") else ""
-        vigilia = f"alla vigilia di {me} - {opp}" if opp else f"alla vigilia della giornata {e['giornata']}"
+        # 5.7 (Gianluca: «non specifichi chi è l'allenatore e chi la squadra»): in testa la partita con le squadre, nell'ordine
+        # del calendario; poi chi parla, con allenatore e squadra. Lo stesso testo è nell'anteprima dell'app (Come appare in Curva).
+        opp = sq(e["avversario"]) if e.get("avversario") else ""
+        part = " - ".join(sq(x) for x in e["partita"].split(" - ")) if e.get("partita") else (f"{sq(e['team'])} - {opp}" if opp else f"Giornata {e['giornata']}")
         su = f" Su {opp}:" if opp else " Sulla partita:"
 
         def monta(r, coda):
-            return f"CONFERENZA STAMPA · {me}, {vigilia}: «{r[0]}»{su} «{r[1]}» E alla dirigenza: «{r[2]}»{coda}"
-        coda = " #ConferenzaStampa"
-        testo = monta(ris, coda)
-        if len(testo) > 280:
-            testo = monta(ris, "")                      # prima si toglie l'hashtag
+            return f"CONFERENZA STAMPA · {part}\n{chi(e['team'])}: «{r[0]}»{su} «{r[1]}» Alla dirigenza: «{r[2]}»{coda}"
+        # 5.6.3/5.7: si taggano chi parla e l'avversario, così la conferenza arriva nelle Notifiche di tutti e due
+        # se non sta nei 280 caratteri va via prima l'hashtag, poi il tag dell'avversario; il tag di chi parla resta sempre
+        mio = " " + tag(e["team"])
+        tags = mio + (" " + tag(e["avversario"]) if e.get("avversario") else "")
+        for coda in (tags + " #ConferenzaStampa", tags, mio):
+            testo = monta(ris, coda)
+            if len(testo) <= 280:
+                break
         while len(testo) > 280:                         # poi si accorcia la risposta più lunga, un po' alla volta
             k = max(range(3), key=lambda i: len(ris[i]))
             ris[k] = ris[k].rstrip(" …")[:-4].rstrip() + "…"
-            testo = monta(ris, "")
+            testo = monta(ris, mio)
         out = [(GS, testo)]
         if e.get("tono") in (0, 1, 2):   # nell'app c'è anche il tono e la risposta di Ciro Trattativa
             _, parola = CIRO[e["tono"]]
             out.append((CIRO_H, parola, 0))   # il commento di Ciro, tale e quale all'app: esce sotto il post della conferenza (indice 0)
         return out
+    if t == "dopo":   # conferenza del dopo partita: una risposta sola, con il risultato vero
+        part = " - ".join(sq(x) for x in e["partita"].split(" - ")) if e.get("partita") else ""
+        testa = "DOPO LA PARTITA · " + (f"{part} {e.get('risultato', '')}".strip() if part else f"Giornata {e['giornata']}") + f"\n{chi(e['team'])}: "
+        r = e["risposta"]
+        for coda in (f" {tag(e['team'])} #ConferenzaStampa", f" {tag(e['team'])}"):
+            if len(testa + f"«{r}»" + coda) <= 280:
+                return [(GS, testa + f"«{r}»" + coda)]
+        return [(GS, testa + f"«{r[:280 - len(testa) - len(coda) - 3].rstrip()}…»" + coda)]
     if t == "rifiuto":
         return [(GS, f"RIFIUTO CLAMOROSO\n{m(e['a'])} non considera {m(e['da'])} nemmeno degno di un Derby. La rivalità, intanto, sale. #GirrrSport")]
     if t == "scaduta":
@@ -125,9 +168,9 @@ def post(e):
         return [(GS, testa + x[:280 - len(testa) - len(coda) - 1].rstrip() + "…" + coda)]
     if t == "promessa":
         if e["esito"] == "v":
-            return [(GIORNALE, f"PAROLA MANTENUTA\n{m(e['team'])} l'aveva detto in conferenza stampa: «{e['promessa']}». Poi è andato in campo e l'ha fatto. #ConferenzaStampa")]
+            return [(GIORNALE, f"PAROLA MANTENUTA\n{chi(e['team'])}, l'aveva detto in conferenza stampa: {cit(e['promessa'])} Poi la squadra è andata in campo e l'ha fatto. {tag(e['team'])} #ConferenzaStampa")]
         if e["esito"] == "s":   # come nel database: v mantenuta, p pareggio (nessun post), s tradita
-            return [(GIORNALE, f"PROMESSA TRADITA\n{m(e['team'])} in conferenza stampa: «{e['promessa']}». Il campo ha risposto altro, e la dirigenza ha preso nota. #ConferenzaStampa")]
+            return [(GIORNALE, f"PROMESSA TRADITA\n{chi(e['team'])}, in conferenza stampa: {cit(e['promessa'])} Il campo ha risposto altro, e la dirigenza ha preso nota. {tag(e['team'])} #ConferenzaStampa")]
     return []
 
 

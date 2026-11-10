@@ -13,6 +13,8 @@ Formula, uguale a quella del Laboratorio (funzione fidA):
 In più, rispetto al Laboratorio:
     - Coppa: ogni risultato di Champions Cup conta come mezza vittoria o mezza sconfitta (peso minore del campionato).
     - Promesse in conferenza stampa: mantenuta +1,5, pareggio -1, tradita -4, moltiplicati per la "pesa" della promessa (1-3) e per il peso della stagione.
+    - Tono della conferenza (5.6.3/5.7, solo se c'è una promessa): provocatorio e sconfitta -1,5, provocatorio e pareggio -0,5,
+      provocatorio e vittoria +0,5, umile e vittoria +0,5; per il peso della stagione. Sicuro: niente in più.
 Non scrive nulla nel database: legge file e produce un file.
 """
 import json, sys
@@ -105,8 +107,18 @@ def promesse(conf, partite):
             if n == c["giornata"] and c["team"] in (casa, tras):
                 a, b = (gc, gt) if c["team"] == casa else (gt, gc)
                 esito = "v" if a > b else "p" if a < b else "s"
-        out.setdefault(c["team"], []).append(dict(giornata=c["giornata"], promessa=c["promessa"], pesa=c["pesa"], esito=esito))
+        out.setdefault(c["team"], []).append(dict(giornata=c["giornata"], promessa=c["promessa"], pesa=c["pesa"], esito=esito, tono=c.get("tono")))
     return out
+
+
+# Tono e risultato (v vinta, p persa, s pari): quanto si aggiunge all'effetto della promessa. Le stesse cifre sono in conferenze.js (Le mie promesse).
+TONO_EFFETTO = {2: {"v": 0.5, "p": -1.5, "s": -0.5}, 1: {"v": 0.5}}
+
+
+def effetto_promessa(p):
+    """Punti di fiducia della promessa prima del peso della stagione: esito per la pesa, più il tono."""
+    base = (1.5 if p["esito"] == "v" else -4 if p["esito"] == "p" else -1) * p["pesa"]
+    return base + TONO_EFFETTO.get(p.get("tono"), {}).get(p["esito"], 0)
 
 
 def fiducia(t, g, cl, saldo_coppa, prom_t):
@@ -116,7 +128,7 @@ def fiducia(t, g, cl, saldo_coppa, prom_t):
     x = 50 + (asp - r["pos"]) * 7 * m + (r["v"] - r["p"]) * 3 * m + 0.5 * saldo_coppa.get(t, 0) * 3 * m
     for p in prom_t:
         if p["esito"] and p["giornata"] <= g:
-            x += (1.5 if p["esito"] == "v" else -4 if p["esito"] == "p" else -1) * p["pesa"] * m
+            x += effetto_promessa(p) * m
     return max(5, min(98, round(x)))
 
 
@@ -145,7 +157,7 @@ def main():
             posizione=cl[t]["pos"], giornate=cl[t]["g"], punti=cl[t]["pts"],
             fiducia=ultimo["fiducia"], aspettativa=ASP["squadre"][t]["attesa"],
             obiettivo=ASP["squadre"][t]["obiettivo"], storico=storico,
-            promesse=[dict(p, commento=(COMMENTI_TRADITA[p["giornata"] % len(COMMENTI_TRADITA)] if p["esito"] == "p" else COMMENTI_MANTENUTA[p["giornata"] % len(COMMENTI_MANTENUTA)] if p["esito"] == "v" else "")) for p in prom.get(t, [])],
+            promesse=[dict(p, effetto=round(effetto_promessa(p) * peso(p["giornata"]), 1) if p["esito"] else None, commento=(COMMENTI_TRADITA[p["giornata"] % len(COMMENTI_TRADITA)] if p["esito"] == "p" else COMMENTI_MANTENUTA[p["giornata"] % len(COMMENTI_MANTENUTA)] if p["esito"] == "v" else "")) for p in prom.get(t, [])],
             promesse_tradite=len(tradite),
         )
     USCITA.write_text(json.dumps(dict(aggiornato=d.get("updated"), giornata=ultima, squadre=squadre), ensure_ascii=False, indent=1), encoding="utf-8")
