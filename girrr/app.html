@@ -1,4 +1,4 @@
-<!doctype html><html lang="it"><head>
+<!doctype html><html lang="it"><head><script src="../tv.js"></script>
 <script src="../nomi.js"></script><meta charset="utf-8"><!-- 5.5: prima apertura veloce --><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><style>html{background-color:#1d2a52}</style><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex"><title>O Girrr</title>
 <meta name="claude:viewport-fit-sides" content="cover"><style>/* Menu a tendina leggibili su PC: elenco blu pieno, nomi chiari, carattere normale (1° novembre 2026) */select,select option,select optgroup{font-family:Inter,system-ui,sans-serif!important;font-style:normal!important}select option,select optgroup{background-color:#1d2a52!important;color:#fbf6ec!important}.fidg-svg{width:100%;height:auto;display:block;color:var(--ink);overflow:visible}.fidg-leg{display:flex;flex-wrap:wrap;gap:6px 14px;margin:8px 0 4px}.fidg-leg i{display:inline-block;width:10px;height:10px;border-radius:50%;margin-right:5px;vertical-align:-1px}.fidg-tab{margin-top:8px}.fidg-tab summary{cursor:pointer;font-weight:800;min-height:44px;display:flex;align-items:center}.fidg-tab table{width:100%;border-collapse:collapse;font-size:13px}.fidg-tab th{text-align:left;font-size:11px;color:var(--mute);font-weight:800;padding:6px 4px}.fidg-tab td{padding:8px 4px;border-top:1px solid var(--line);vertical-align:middle}.fidg-e{display:inline-grid;place-items:center;width:20px;height:20px;border-radius:50%;font-size:11px;font-weight:900;color:#1d2a52}.fidg-e.V{background:#70df90}.fidg-e.N{background:#c9d3e6}.fidg-e.P{background:#ff6174}.fidg-d{font-size:11px;font-weight:800;color:var(--mute)}.fidg-d.su{color:#70df90}.fidg-d.giu{color:#ff6174}@media(max-width:400px){.fidg-tab td .mut{display:block}}
 .nmin,.cfree{-webkit-appearance:none;appearance:none;width:100%;box-sizing:border-box;min-height:50px;padding:13px 18px;font:inherit;font-size:16px;font-weight:600;color:#fff;background:rgba(255,255,255,.14);-webkit-backdrop-filter:blur(18px) saturate(160%);backdrop-filter:blur(18px) saturate(160%);border:1px solid rgba(255,255,255,.32);border-radius:16px;box-shadow:inset 0 1px 0 rgba(255,255,255,.35),0 4px 14px rgba(0,0,0,.2);outline:none;transition:border-color .15s,background .15s}.nmin::placeholder,.cfree::placeholder{color:rgba(255,255,255,.6);font-weight:500}.nmin:focus,.cfree:focus{border-color:#ffd166;background:rgba(255,255,255,.2)}.nmin{flex:1 1 100%!important;min-width:0!important}.where,.note,.lead,.fb,.proto-only{display:none!important}.hm{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:12px}.hm button{display:flex;flex-direction:column;gap:4px;text-align:left;padding:14px;border-radius:16px;background:linear-gradient(160deg,#17214a,#2a1c52);border:1px solid var(--line);color:#fff;min-height:96px}.hm b{font-family:var(--fd);font-size:20px;font-weight:400}.hm small{color:var(--mute);font-size:12px;font-weight:600}.hm .big{grid-column:1/-1}.top{display:none!important}.col{max-width:900px;padding:22px 16px 36px}.oback{display:inline-block;font-weight:800;font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--gold);text-decoration:none;margin-bottom:10px}.ohead{display:flex;align-items:center;gap:16px;margin:4px 0 18px}.ohead img{height:86px;width:auto;filter:drop-shadow(0 6px 10px rgba(0,0,0,.4))}.okick{font-weight:800;font-size:12px;letter-spacing:.3em;color:var(--gold)}.ohead h1{font-family:var(--fd);font-weight:900;font-size:clamp(34px,7vw,58px);line-height:1;margin:6px 0 0;letter-spacing:-.01em}</style><style id="skin-attuale">
@@ -246,6 +246,7 @@ svg text{fill:var(--mute);font-family:var(--fb)}
 
 <link rel="stylesheet" href="v55/ui.css?v=55r9"><script src="v55/destinazioni55.js?v=55r8" defer></script><script src="v55/ui.js?v=55r9" defer></script><script src="../offline.js" defer></script>
 <script src="../stagione.js" defer></script>
+<script src="../conferenze.js" defer></script><!-- Claude, conferenze 10/11 -->
 </head><body data-v53="albo" data-v53-skin="lega"><div class="col">
   <div class="top">
     <img id="lg" alt="">
@@ -740,6 +741,7 @@ function vDerby(){
    +'<div class="mut sm" style="margin-top:8px">Rivalità: <b>'+rvWord(i.riv)+'</b></div>'+rvBar(i.riv)
    +(o.s?racconto(o):(S.dn[rvKey(o.a,o.b)]?storiaNuova(o):'<p class="sm mut" style="margin-top:8px">Nessuna storia scritta per questa sfida.</p>'))
    +(GUEST?'<p class="sm mut" style="margin-top:8px">Entra con il tuo codice squadra per dire se lo senti come Derby.</p>':'<button class="tag '+(S.mine[rvKey(o.a,o.b)]?'o':'')+'" data-lvote="'+esc(rvKey(o.a,o.b))+'" aria-pressed="'+(!!S.mine[rvKey(o.a,o.b)])+'" style="margin-top:8px">Lo sento come Derby</button>')+'</div></div>';
+  h+=(window.GirrrTesta?window.GirrrTesta(GUEST?'':ME,GUEST?'':nextOpp(ME)):'');
   h+='<p class="note">Le storie vengono dall\'Albo d\'oro e compariranno anche lì, una per ogni Derby. I voti sono quelli degli amici della lega.</p>';
   return h;
 }
@@ -961,7 +963,7 @@ function bolla52(t){var a=PREMI52?premi52(t):premiDBattesa().map(function(x){ret
 /* ---------- Carriera a tab: Panoramica (Claude), Obiettivi (ChatGPT), Fiducia (Claude), Storia (Grok) ----------
    Ogni tab è una funzione che riceve la squadra t e restituisce HTML. Piano e regole: proposte/carriera-tab-piano.md */
 S.ctab=S.ctab||'pan';S.ob=S.ob||{};S.st=S.st||{};
-function carTabs(){return '<div class="seg oro-scroll" role="group" aria-label="Sezioni della Carriera" style="margin-bottom:12px">'+[['pan','Panoramica'],['stag','Stagione'],['ob','Obiettivi'],['fid','Fiducia'],['st','Storia'],['reg','Regole']].map(function(x){return '<button data-ctab="'+x[0]+'" aria-pressed="'+(S.ctab===x[0])+'">'+x[1]+'</button>'}).join('')+'</div>'}
+function carTabs(){return '<div class="seg oro-scroll" role="group" aria-label="Sezioni della Carriera" style="margin-bottom:12px">'+[['pan','Panoramica'],['stag','Stagione'],['ob','Obiettivi'],['fid','Fiducia'],['prom','Promesse'],['st','Storia'],['reg','Regole']].map(function(x){return '<button data-ctab="'+x[0]+'" aria-pressed="'+(S.ctab===x[0])+'">'+x[1]+'</button>'}).join('')+'</div>'}
 document.addEventListener('click',function(e){var b=e.target.closest('[data-ctab]');if(!b)return;S.ctab=b.dataset.ctab;render()});
 /* Gianluca, 2 novembre: reputazione da 0 a 100. Partenza 50; posizione da +20 (primo) a −20 (ultimo); obiettivi del presidente ±10 fino a fine stagione; sponsor ±1 per sempre. Ognuno con i suoi obiettivi */
 function repCalcolo(t,o){var r=row(t),n=Math.max(2,D.teams.length),pp=Math.round(20-(r.pos-1)*40/(n-1)),pr=0,sp=0;o.forEach(function(x){var v=x[4]==='Fatto'?1:x[4]==='Mancato'?-1:0;if(x[0])pr+=10*v;else sp+=v});return {pos:r.pos,pp:pp,pr:pr,sp:sp,tot:Math.max(0,Math.min(100,50+pp+pr+sp))}}
@@ -1155,6 +1157,7 @@ function vCarL(){
   else if(S.ctab==='st')h+=vCarStoria(t);
   else if(S.ctab==='reg')h+=vCarRegole(t);
    else if(S.ctab==='stag')h+=(window.GirrrStagione?window.GirrrStagione(t):'');
+  else if(S.ctab==='prom')h+=(window.GirrrPromesse?window.GirrrPromesse(t):'');
   else h+=cGauge+vCarRiassunto(t,C)+cRep;
   return h+'<p class="note">Nessun obiettivo del tipo "metti tre giovani". Solo classifica, vittorie e punti, che l\'app calcola da sola.</p>';
 }
@@ -1177,17 +1180,25 @@ function confQs(t){var r=row(t),o=nextOpp(t),ro=row(o),f=fid(t),g=r.g||0,left=NG
 function freeClaim(tx){var s=(tx||'').toLowerCase();if(!s.trim())return null;var win=/vinc|batt|domin|travol|spazz|prime|primo|titolo|sopra/.test(s),pro=/umili|travol|spazz|casa|scuse/.test(s);return {t:tx.trim(),k:pro?2:win?0:1,w:win?1:0}}
 function confChosen(t){var Q=confQs(t);return Q.map(function(q,i){var a=S.cf.a[i];if(a==='free')return freeClaim(S.cf.free[i]);return a===undefined?null:q.a[a]})}
 function confDelta(ch,win){var d=0;ch.forEach(function(c){if(c&&c.w){var peso=c.k===2?2:1;d+=win?peso:-peso}});return Math.max(-3,Math.min(3,d))}
+/* Claude, conferenze 10/11: la conferenza della giornata, una volta nel database, non si cambia più */
+function cfChi(x){var a=mg(x);if(a===x)return x;a=a.charAt(0).toUpperCase()+a.slice(1);return a+', '+(/&| e /.test(a)?'allenatori':'allenatore')+' di '+x}
+function cfPartita(x){var r=(D.cal[0]&&D.cal[0].m)||[];for(var i=0;i<r.length;i++)if(r[i][0]===x||r[i][1]===x)return r[i][0]+' - '+r[i][1];return x}
+function confBloccata(){var G=D.cal[0]&&D.cal[0].n;return DBS.conf.some(function(c){return c.giornata===G&&Array.isArray(c.risposte)&&c.risposte.length})}
+/* le funzioni che servono a conferenze.js (questo script è chiuso: da fuori non si vedono) */
+window.GirrrApp={render:function(){render()},gsPost:gsPost,isDer:isDer,rvInfo:rvInfo,rvWord:rvWord,derName:derName,mg:mg,me:function(){return GUEST?null:ME},toast:lvToast};
 function vConfL(){
-  var t=ME,o=nextOpp(t),Q=confQs(t),cf=S.cf,ch=confChosen(t),done=ch.every(function(c){return c});
+  var t=ME,o=nextOpp(t),Q=confQs(t),cf=S.cf,ch=confChosen(t),done=ch.every(function(c){return c}),lk=confBloccata(),dis=lk?' disabled':'';
   var h=where('Nuovo menu','Conferenza','poi in Curva su Girrr Sport')+'<h2>Conferenza stampa</h2><p class="lead">Le domande cambiano con la tua situazione: classifica, obiettivo del presidente, avversario e fiducia della dirigenza. Quello che dici conta: se prometti e poi perdi, la dirigenza se lo ricorda.</p>';
   h+='<div class="card"><h3>Vigilia di '+esc(t)+' - '+esc(o)+'</h3>';
-  Q.forEach(function(q,i){h+='<div class="q"><p>'+esc(q.q)+'</p><div class="opts">'+q.a.map(function(a,j){return '<button data-cq="'+i+'" data-ca="'+j+'" aria-pressed="'+(cf.a[i]===j)+'">'+esc(a.t)+'</button>'}).join('')+(cf.a[i]==='free'?'<input class="cfree" data-cf="'+i+'" maxlength="'+CFMAX+'" value="'+esc(cf.free[i])+'" placeholder="Scrivi la tua risposta" autocomplete="off" enterkeyhint="done">':'<button data-cq="'+i+'" data-ca="free" aria-pressed="false">Rispondo a modo mio…</button>')+'</div>'
+  Q.forEach(function(q,i){h+='<div class="q"><p>'+esc(q.q)+'</p><div class="opts">'+q.a.map(function(a,j){return '<button data-cq="'+i+'" data-ca="'+j+'" aria-pressed="'+(cf.a[i]===j)+'"'+dis+'>'+esc(a.t)+'</button>'}).join('')+(cf.a[i]==='free'?'<input class="cfree" data-cf="'+i+'" maxlength="'+CFMAX+'" value="'+esc(cf.free[i])+'" placeholder="Scrivi la tua risposta" autocomplete="off" enterkeyhint="done"'+dis+'>':'<button data-cq="'+i+'" data-ca="free" aria-pressed="false"'+dis+'>Rispondo a modo mio…</button>')+'</div>'
     +(cf.a[i]==='free'?'<div class="mut sm" style="margin-top:4px">'+cf.free[i].length+' / '+CFMAX+' caratteri'+(ch[i]?' · Tono: '+TONI[ch[i].k]+(ch[i].w?' · Promessa':''):'')+'</div>':(ch[i]?'<div class="mut sm" style="margin-top:4px">Tono: '+TONI[ch[i].k]+(ch[i].w?' · È una promessa: se perdi, la dirigenza se la segna':'')+'</div>':''))+'</div>'});
-  h+='<button class="btn" id="cpub" '+(done?'':'disabled style="opacity:.45;cursor:not-allowed"')+'>Pubblica su Curva</button></div>';
+  h+=lk?'<button class="btn" id="cpub" disabled style="opacity:.6;cursor:default">Pubblicata · Non si cambia più</button><p class="sm mut" style="margin-top:8px">La conferenza è uscita in Curva: le parole dette restano quelle.</p></div>'
+    :'<button class="btn" id="cpub" '+(done?'':'disabled style="opacity:.45;cursor:not-allowed"')+'>Pubblica su Curva</button><p class="sm mut" style="margin-top:8px">Una volta pubblicata, la conferenza non si può più cambiare.</p></div>';
   if(cf.pub&&done){
     var tone=Math.min(2,Math.round(ch.reduce(function(a,c){return a+c.k},0)/3));
-    h+='<div class="card"><h3>Come appare in Curva</h3><div class="post"><div class="hd"><img src="'+D.img.gs+'" alt="Girrr Sport"><div><b>Girrr Sport</b><span class="mut sm">@girrrsport · Adesso</span></div></div><q><b>CONFERENZA STAMPA</b> · '+esc(t)+', alla vigilia di '+esc(t)+' - '+esc(o)+': «'+esc(ch[0].t)+'» Su '+esc(o)+': «'+esc(ch[1].t)+'» E alla dirigenza: «'+esc(ch[2].t)+'»</q><span class="tag g">Tono: '+TONI[tone]+'</span><div class="rep"><b>'+REP[tone][0]+'</b> risponde: '+esc(REP[tone][1])+'</div></div></div>';
+    h+='<div class="card"><h3>Come appare in Curva</h3><div class="post"><div class="hd"><img src="'+D.img.gs+'" alt="Girrr Sport"><div><b>Girrr Sport</b><span class="mut sm">@girrrsport · Adesso</span></div></div><q><b>CONFERENZA STAMPA</b> · '+esc(cfPartita(t))+'<br>'+esc(cfChi(t))+': «'+esc(ch[0].t)+'» Su '+esc(o)+': «'+esc(ch[1].t)+'» Alla dirigenza: «'+esc(ch[2].t)+'»</q><span class="tag g">Tono: '+TONI[tone]+'</span><div class="rep"><b>'+REP[tone][0]+'</b> risponde: '+esc(REP[tone][1])+'</div></div></div>';
     h+=lvDopo(t,ch,ch.filter(function(c){return c.w}).length)}
+  h+=(window.GirrrConfAvv?window.GirrrConfAvv(t,o,D.cal[0]&&D.cal[0].n):'');
   return h+'<p class="note">Le dichiarazioni e il loro esito entrano anche nella radio: "aveva promesso e ha perso" o "parola mantenuta" fanno parte del riassunto della conferenza. Le frasi si aggiornano ogni giornata con classifica, obiettivo e fiducia.</p>';
 }
 /* ---------- 9. RADIO ---------- */
@@ -1716,6 +1727,7 @@ function lvDopo(t,ch,pw){
   if(LV.mode==='prova'&&row&&!e)h+='<div class="lvprova" style="margin-top:10px;padding:12px;border:1px dashed rgba(255,209,102,.6);border-radius:14px"><b style="color:#ffd166">Strumenti di prova</b><div class="row" style="gap:6px;flex-wrap:wrap;margin-top:8px"><button class="btn o" data-lesito="v">Vinci</button><button class="btn o" data-lesito="p">Pareggi</button><button class="btn o" data-lesito="s">Perdi</button></div></div>';
   return h+'</div>'}
 function lvConfPubblica(){
+  if(confBloccata()){lvToast('La conferenza è già pubblicata');return}
   var ch=confChosen(ME);if(!ch.every(function(c){return c}))return;
   var G=D.cal[0].n,risp=[0,1,2].map(function(i){var a=S.cf.a[i];return {a:a==='free'?'free':a,t:ch[i].t,k:ch[i].k,w:ch[i].w}});
   var lib=null,prom=null,pesa=0;risp.forEach(function(r){if(r.a==='free'&&lib===null)lib=r.t.slice(0,80);if(r.w){if(prom===null)prom=r.t.slice(0,80);pesa=Math.max(pesa,r.k===2?2:1)}});

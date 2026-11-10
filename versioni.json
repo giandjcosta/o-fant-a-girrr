@@ -2,6 +2,62 @@
   "nota": "Fonte unica della pagina Versioni (girrr/versioni.html e stadio/girrr/versioni.html). A ogni rilascio si aggiunge la versione in cima con rilascio/versioni/aggiungi.py. Numeri: correzione minore = terza cifra (5.6.1), aggiornamento medio = seconda cifra (5.7.0), aggiornamento grande = prima cifra (6.0). Dove manca la storia: «Dato non conservato». Le versioni 1.0-4.5 e il Mercato Scambi vengono dai messaggi recuperati da Claude chat (9 novembre 2026), date controllate con i commit del sito. Il campo «nota» e «altre_varianti» non si mostrano nella pagina.",
   "versioni": [
     {
+      "v": "5.7",
+      "data": "2026-11-11",
+      "tipo": "medio",
+      "titolo": "Sala stampa, Promesse e Testa a testa",
+      "messaggio": "🎙️ **O Girrr 5.7 è online!** La sala stampa si allarga: dopo la vostra conferenza leggete cosa ha detto il prossimo avversario e tutte le altre squadre, e chi non parla finisce in «Silenzio stampa». Dopo ogni partita c'è anche la conferenza del dopo gara, una domanda sul risultato vero. Girrr Sport vi tagga nei suoi post e, se volete, vi arriva la notifica sul telefono. Nella Carriera c'è la scheda Promesse, nel Derby il Testa a testa tra due squadre a scelta, e sulle smart TV il sito si legge più grande. A metà campionato arriverà il Giro di boa. Buona giornata a tutti! ⚽",
+      "novita": [
+        {
+          "area": "Conferenza",
+          "voci": [
+            "Una volta pubblicata non si cambia più, e prima di pubblicare c'è l'avviso",
+            "«Cosa ha detto» il prossimo avversario, con «Rispondi in Curva» che apre la Curva con il suo tag già scritto",
+            "Sala stampa con le conferenze delle altre squadre, o «Silenzio stampa» per chi non ha parlato",
+            "Conferenza del dopo partita, una domanda sul risultato vero con la sua Sala stampa; esce su Girrr Sport e non si cambia più",
+            "I post di Girrr Sport indicano la partita, l'allenatore e la squadra, e taggano le squadre"
+          ]
+        },
+        {
+          "area": "Carriera",
+          "voci": [
+            "Nuova scheda Promesse, con esito e peso di ogni promessa sulla fiducia della dirigenza",
+            "Il tono della conferenza conta per la fiducia, solo quando c'è una promessa"
+          ]
+        },
+        {
+          "area": "Derby",
+          "voci": [
+            "Testa a testa tra due squadre a scelta, con scontri della stagione, classifica a confronto e storia del Derby"
+          ]
+        },
+        {
+          "area": "Notifiche",
+          "voci": [
+            "Nuovo interruttore Menzioni, per la notifica sul telefono quando qualcuno ti tagga in Curva"
+          ]
+        },
+        {
+          "area": "Curva",
+          "voci": [
+            "Cuori e rilanci già messi si vedono anche sul telefono e si colorano subito al tocco"
+          ]
+        },
+        {
+          "area": "TV",
+          "voci": [
+            "Sulle smart TV tutto il sito è più grande del 30%; telefoni, tablet e PC restano uguali"
+          ]
+        },
+        {
+          "area": "Tabellone",
+          "voci": [
+            "In Condividi, dalla 17ª giornata, «Il mio girone d'andata» (Giro di boa)"
+          ]
+        }
+      ]
+    },
+    {
       "v": "5.6.2",
       "data": "2026-11-09",
       "tipo": "minore",

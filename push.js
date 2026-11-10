@@ -19,6 +19,7 @@
     ['risultati', 'Risultati', 'Quando escono i risultati della tua partita', true],
     ['giornale', 'Giornale', 'Quando esce il nuovo numero', true],
     ['curva', 'Curva', 'Quando qualcuno risponde ai tuoi cori', true],
+    ['menzioni', 'Menzioni', 'Quando qualcuno ti tagga in Curva, anche Girrr Sport e il Giornale', true], /* 5.7: funziona dopo rilascio/menzioni/menzioni.sql */
     ['applausi', 'Applausi', 'Quando applaudono un tuo coro', false],
     ['derby', 'Derby', 'Sfide ricevute e risposte alle tue', true],
     ['totogirrr', 'Totogirrr', 'Prestiti da approvare e movimenti', true]

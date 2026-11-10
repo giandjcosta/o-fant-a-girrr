@@ -1,6 +1,6 @@
 <!doctype html>
 <html lang="it">
-<head>
+<head><script src="../tv.js"></script>
 <script src="../nomi.js"></script>
 
 <script src="ospite.js?v=1"></script>
@@ -108,6 +108,8 @@ svg{display:block}
 .acts button svg{width:18px;height:18px}@media (hover:hover) and (pointer:fine){
 .acts .rsp:hover,.acts .rsp.on{color:var(--blu)}}@media (hover:hover) and (pointer:fine){.acts .ril:hover,.acts .ril.on{color:var(--gr)}}@media (hover:hover) and (pointer:fine){.acts .app:hover,.acts .app.on{color:var(--pk)}}
 .acts .app.on svg{fill:var(--pk);animation:pop .35s ease}
+/* Claude, 5.6.3: già messo, colori su ogni schermo (prima solo con il mouse) */
+.acts .rsp.on{color:var(--blu)}.acts .ril.on{color:var(--gr)}.acts .app.on{color:var(--pk)}
 @keyframes pop{0%{transform:scale(.6)}60%{transform:scale(1.35)}100%{transform:scale(1)}}@media (hover:hover) and (pointer:fine){
 .acts .del:hover{color:#f4212e}}
 .thr{margin-top:6px;display:none}.thr.open{display:block}
@@ -280,6 +282,7 @@ function login(){if(window.OSPITE){me=null;code=null;return}try{var o=JSON.parse
  var k=(location.hash||'').replace('#','').trim().toUpperCase();if(k&&D&&D.lock){SQ.forEach(function(t){if(hshF(t+'|'+k)===D.lock[t]){me=t;code=k;try{var o=JSON.parse(localStorage.getItem('fg')||'{}')||{};o.team=t;o.code=k;localStorage.setItem('fg',JSON.stringify(o))}catch(e){}try{history.replaceState(null,'',location.pathname+location.search)}catch(e){}}})}
  var q=(location.search.match(/[?&]come=([^&]+)/)||[])[1];if(q&&location.hostname==='localhost'){q=decodeURIComponent(q);if(SQ.indexOf(q)>=0){me=q;code='TEST'}}
  meH=me?hnd(me):''}
+(function(){try{var s=new URLSearchParams(location.search).get('scrivi');if(s){window.__scrivi=s.slice(0,300);var r=location.search.replace(/([?&])scrivi=[^&]*&?/,'$1').replace(/[?&]$/,'');history.replaceState(null,'',location.pathname+r+location.hash)}}catch(e){}})();
 function calcola(d){
  var L=(d.cal&&d.cal.lega)||[],T={};
  function giocata(g){return g.m.some(function(m){return m[4]!=='-'})}
@@ -746,6 +749,8 @@ function render(){
  v.innerHTML=h;navR();dxR();
  if(vista==='esplora')risultati();
  var tx=document.getElementById('tx');if(tx){tx.addEventListener('input',conta);conta()}
+ /* Claude, conferenze 10/11: ?scrivi=… apre la Curva con il testo già scritto (Rispondi in Curva dalla conferenza) */
+ if(tx&&window.__scrivi){if(!tx.value){tx.value=window.__scrivi;conta()}tx.addEventListener('input',function(){window.__scrivi=tx.value||null});if(!window.__scrivi0){window.__scrivi0=1;try{tx.focus();tx.setSelectionRange(tx.value.length,tx.value.length)}catch(e){}}var g0=document.getElementById('go');if(g0)g0.addEventListener('click',function(){window.__scrivi=null})}
 
  if(vista==='adm'&&me===ADMIN&&S.v>=5){var at=document.getElementById('ad-t'),af=document.getElementById('ad-f');
   if(at){at.oninput=function(){document.getElementById('ad-c').textContent=280-at.value.length};if(window.__adt){at.value=window.__adt;at.oninput()}var sh=document.getElementById('ad-h'),sq=document.getElementById('ad-q');if(window.__adh)sh.value=window.__adh;if(window.__adq)sq.value=window.__adq}
@@ -876,7 +881,8 @@ function lancia(){
 }
 function reagisci(k,kind){if(!serve())return;
  var key=k+'|'+kind,on=!MN[key];
- rpc('curva_reagisci',{p_team:me,p_code:code,p_k:k,p_kind:kind}).then(function(){ev1('curva/reazione','Curva: applauso o rilancio');return carica()}).then(function(){render()}).catch(function(e){toast(e.message)})}
+ /* Claude, 5.6.3: si colora subito al tocco */try{document.querySelectorAll('article.post[data-k="'+(window.CSS&&CSS.escape?CSS.escape(k):k)+'"] .acts .'+(kind==='a'?'app':'ril')).forEach(function(b){b.classList.toggle('on',on)})}catch(e){}
+ rpc('curva_reagisci',{p_team:me,p_code:code,p_k:k,p_kind:kind}).then(function(){ev1('curva/reazione','Curva: applauso o rilancio');return carica()}).then(function(){render()}).catch(function(e){render();toast(e.message)})}
 /* eventi */
 var MNEL=null;
 function mnSug(el){var b=el.parentNode.querySelector('.mnl'),pos=el.selectionStart,m=el.value.slice(0,pos).match(/(^|\s)@(\w{0,20})$/);
