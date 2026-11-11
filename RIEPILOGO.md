@@ -87,7 +87,6 @@ Notizie pubbliche, senza indicare di chi e' ogni giocatore.
 | Buongiorno | Napoli | Operato nella seconda metà di luglio al | Fine dicembre | Salta |
 | Bernabè | Parma | Distrazione muscolare di basso grado al retto | Seconda metà di novembre | Salta |
 | Romero D. | Parma | Lussazione acromion-claveare della spalla destra | Da valutare | In dubbio |
-| Mancini | Roma | Risentimento muscolare alla gamba accusato nella rifinitura | Da valutare | In dubbio |
 | Rensch | Roma | Lesione di primo grado dell'adduttore lungo di | Seconda metà di novembre | Salta |
 | Berardi | Sassuolo | Problema fisico | Prossimo turno | Salta |
 | Volpato | Sassuolo | Problema muscolare alla gamba | Prossimo turno | Salta |
