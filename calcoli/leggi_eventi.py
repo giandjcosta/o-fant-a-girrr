@@ -145,6 +145,87 @@ def eventi_dopo(dopo, cal=None):
     return out
 
 
+# ---------- 5.8 · Redazione di Girrr Sport (redazione/ISTRUZIONI.md nel registro) ----------
+SITO_REDAZIONE = "https://giandjcosta.github.io/o-fant-a-girrr/girrr/dati/redazione.json"
+NON_RIPORTATA = "…"   # al posto di una frase giudicata non pubblicabile, nei post e nei file pubblici
+
+
+def redazione():
+    """Il file della redazione (sul sito, o quello indicato in REDAZIONE). None se non c'è: tutto funziona come prima."""
+    try:
+        if os.environ.get("REDAZIONE"):
+            r = json.loads(Path(os.environ["REDAZIONE"]).read_text(encoding="utf-8"))
+        else:
+            r = json.loads(urllib.request.urlopen(SITO_REDAZIONE, timeout=30).read())
+        return r if r.get("controllato") else None
+    except Exception as e:
+        print("Redazione non letta (si va avanti come prima):", e)
+        return None
+
+
+def redazione_attiva(red, ore=24):
+    """La redazione lavora se ha aggiornato il file nelle ultime 24 ore: solo allora le conferenze aspettano il suo giudizio."""
+    import datetime
+    try:
+        t = datetime.datetime.fromisoformat(red["aggiornato"])
+        return (datetime.datetime.now(datetime.timezone.utc) - t).total_seconds() < ore * 3600
+    except Exception:
+        return False
+
+
+def applica_redazione(conf, prom, dopo, red):
+    """Applica i giudizi della redazione alle risposte scritte a mano.
+    - tono e promessa decisi dalla redazione al posto di quelli della regola automatica dell'app (contano per la fiducia);
+    - una frase non pubblicabile non compare mai: «…» nei post, «Frase non riportata» nelle promesse;
+    - finché la redazione lavora, le conferenze con risposte scritte a mano non ancora giudicate aspettano (non escono in Curva).
+    Restituisce (conf, prom, dopo, chiavi in attesa)."""
+    if not red:
+        return conf, prom, dopo, set()
+    G, attiva, attesa = red.get("giudizi") or {}, redazione_attiva(red), set()
+    nuove, prom_da = [], {}
+    for c in conf:
+        c = json.loads(json.dumps(c))
+        libere = [i for i, r in enumerate(c.get("risposte") or []) if r.get("a") == "free"]
+        g = G.get(f"{c['team']}|{c['giornata']}")
+        if libere and not g and attiva:
+            attesa.add(f"C{c['giornata']}-{c['team']}")
+        if g:
+            for v in g.get("risposte", []):
+                i = v.get("i")
+                if i is not None and i < len(c["risposte"]):
+                    r = c["risposte"][i]
+                    r["k"], r["w"] = v.get("k", r.get("k")), v.get("w", r.get("w"))
+                    if not v.get("pubblicabile", True):
+                        r["nascosta"] = True
+            prima = next((r for r in c["risposte"] if r.get("w")), None)
+            c["promessa"] = (NON_RIPORTATA if prima.get("nascosta") else prima["t"]) if prima else ""
+            c["pesa"] = max([2 if r.get("k") == 2 else 1 for r in c["risposte"] if r.get("w")] or [0])
+            prom_da[(c["team"], c["giornata"])] = c
+            for r in c["risposte"]:
+                if r.pop("nascosta", False):
+                    r["t"] = NON_RIPORTATA
+        nuove.append(c)
+    prom2 = []
+    for p in prom:
+        c = prom_da.get((p["team"], p["giornata"]))
+        if c is not None:
+            if not c["promessa"]:
+                continue   # per la redazione non era una promessa
+            p = dict(p, promessa="Frase non riportata" if c["promessa"] == NON_RIPORTATA else c["promessa"], pesa=c["pesa"])
+        prom2.append(p)
+    dopo2 = []
+    for d in dopo or []:
+        r = d.get("risposta") or {}
+        g = G.get(f"{d['team']}|{d['giornata']}|dopo")
+        if r.get("a") == "free" and not g and attiva:
+            attesa.add(f"D{d['giornata']}-{d['team']}")
+            continue
+        if g and g.get("risposte") and not g["risposte"][0].get("pubblicabile", True):
+            continue   # frase non pubblicabile: niente post
+        dopo2.append(d)
+    return nuove, prom2, dopo2, attesa
+
+
 def tono_conferenza(c):
     """Tono della conferenza (0 Sicuro, 1 Umile, 2 Provocatorio), lo stesso calcolo dell'app; None se le risposte non sono tre."""
     righe = [r for r in (c.get("risposte") or []) if r.get("t")]
@@ -161,8 +242,12 @@ if __name__ == "__main__":
     prom = rpc("conf_promesse", {})
     conf = rpc("conf_pubbliche", {})
     dopo = rpc_facoltativa("conf_dopo_pubbliche")   # 5.7: c'è solo dopo rilascio/conferenze/dopo.sql
+    conf, prom, dopo, attesa = applica_redazione(conf, prom, dopo, redazione())   # 5.8: giudizi della redazione
     cal = calendario_lega() if (conf or dopo) else None
     ev = eventi(rpc("derby_stato", {}), prom) + eventi_conferenza(conf, cal) + eventi_dopo(dopo, cal)
+    if attesa:
+        print("Aspettano il giudizio della redazione:", ", ".join(sorted(attesa)))
+        ev = [e for e in ev if e.get("k") not in attesa]
     USCITA.write_text(json.dumps(ev, ensure_ascii=False, indent=1), encoding="utf-8")
     # le promesse grezze, con il tono della conferenza, servono a fiducia.py (che ricalcola l'esito dai risultati veri)
     (USCITA.parent / "conferenze.json").write_text(json.dumps(con_tono(prom, conf), ensure_ascii=False, indent=1), encoding="utf-8")
