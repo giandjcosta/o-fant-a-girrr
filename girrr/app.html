@@ -1168,7 +1168,10 @@ var TONI=['Sicuro','Umile','Provocatorio'];
 var REP=[['Ciro Trattativa','Parole da campione. Ora però servono i punti.'],['Ciro Trattativa','Mi piace l\'umiltà, ma in questa lega non basta.'],['Ciro Trattativa','Ha dichiarato guerra. Si prepari, perché non finisce qui.']];
 S.cf=S.cf||{a:[],free:['','',''],pub:false,esito:null};
 var CFMAX=80;
-function confQs(t){var r=row(t),o=nextOpp(t),ro=row(o),f=fid(t),g=r.g||0,left=NG-g,der=isDer(t,o),ob=OB[t],pr=ob.pres,ok=r.pos<=EXP[t],X=function(x){return x.replace(/\{O\}/g,o)};
+/* Claude, redazione 5.8: domande della redazione di Girrr Sport, se ci sono per questa squadra e giornata */
+function confSalvate(){var G=D.cal[0]&&D.cal[0].n,c=DBS.conf.filter(function(x){return x.giornata===G})[0];return c&&Array.isArray(c.risposte)?c.risposte:null}
+function confQs(t){var RQ=window.GirrrRedazioneQs&&window.GirrrRedazioneQs(t,D.cal[0]&&D.cal[0].n,confSalvate(),!confSalvate()&&S.cf.a.some(function(x){return x!==undefined&&x!==null}));if(RQ)return RQ;
+ var r=row(t),o=nextOpp(t),ro=row(o),f=fid(t),g=r.g||0,left=NG-g,der=isDer(t,o),ob=OB[t],pr=ob.pres,ok=r.pos<=EXP[t],X=function(x){return x.replace(/\{O\}/g,o)};
   var q1=ok?'Siete '+r.pos+'° e il presidente chiede: «'+pr+'». Come vedete l\'obiettivo?':'Siete '+r.pos+'° e il presidente chiede: «'+pr+'». Non siete in ritardo?';
   if(g/NG>.5)q1+=' Mancano '+left+' giornate.';
   var q2='Domani c\'è '+o+' ('+ro.pos+'°'+(der?', ed è un Derby':'')+'). Cosa vi aspettate?';
@@ -1189,7 +1192,7 @@ window.GirrrApp={render:function(){render()},gsPost:gsPost,isDer:isDer,rvInfo:rv
 function vConfL(){
   var t=ME,o=nextOpp(t),Q=confQs(t),cf=S.cf,ch=confChosen(t),done=ch.every(function(c){return c}),lk=confBloccata(),dis=lk?' disabled':'';
   var h=where('Nuovo menu','Conferenza','poi in Curva su Girrr Sport')+'<h2>Conferenza stampa</h2><p class="lead">Le domande cambiano con la tua situazione: classifica, obiettivo del presidente, avversario e fiducia della dirigenza. Quello che dici conta: se prometti e poi perdi, la dirigenza se lo ricorda.</p>';
-  h+='<div class="card"><h3>Vigilia di '+esc(t)+' - '+esc(o)+'</h3>';
+  h+='<div class="card"><h3>Vigilia di '+esc(t)+' - '+esc(o)+'</h3>'+(Q[0]&&Q[0].red?'<p class="sm mut" style="margin:2px 0 8px">Domande della redazione di Girrr Sport, scritte per la tua squadra.</p>':'');
   Q.forEach(function(q,i){h+='<div class="q"><p>'+esc(q.q)+'</p><div class="opts">'+q.a.map(function(a,j){return '<button data-cq="'+i+'" data-ca="'+j+'" aria-pressed="'+(cf.a[i]===j)+'"'+dis+'>'+esc(a.t)+'</button>'}).join('')+(cf.a[i]==='free'?'<input class="cfree" data-cf="'+i+'" maxlength="'+CFMAX+'" value="'+esc(cf.free[i])+'" placeholder="Scrivi la tua risposta" autocomplete="off" enterkeyhint="done"'+dis+'>':'<button data-cq="'+i+'" data-ca="free" aria-pressed="false"'+dis+'>Rispondo a modo mio…</button>')+'</div>'
     +(cf.a[i]==='free'?'<div class="mut sm" style="margin-top:4px">'+cf.free[i].length+' / '+CFMAX+' caratteri'+(ch[i]?' · Tono: '+TONI[ch[i].k]+(ch[i].w?' · Promessa':''):'')+'</div>':(ch[i]?'<div class="mut sm" style="margin-top:4px">Tono: '+TONI[ch[i].k]+(ch[i].w?' · È una promessa: se perdi, la dirigenza se la segna':'')+'</div>':''))+'</div>'});
   h+=lk?'<button class="btn" id="cpub" disabled style="opacity:.6;cursor:default">Pubblicata · Non si cambia più</button><p class="sm mut" style="margin-top:8px">La conferenza è uscita in Curva: le parole dette restano quelle.</p></div>'

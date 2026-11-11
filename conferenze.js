@@ -21,7 +21,7 @@
   try {
     var st = document.createElement('style');
     st.textContent = '.opts button[disabled]{cursor:default}.opts button[disabled][aria-pressed="false"]{opacity:.4}.cfree[disabled]{opacity:.8}'
-      + '.cf-tt-sel select{flex:1 1 140px;max-width:none}.cf-sum small{display:block;min-height:2.4em}.cf-avv a.btn{text-decoration:none}'
+      + '.cf-tt-sel select{flex:1 1 140px;max-width:none}.cf-sum small{display:block;min-height:2.4em}.cf-avv a.btn,.cf-giudizio a.btn{text-decoration:none}'
       + '.cf-ss{padding:9px 0;border-top:1px solid var(--line)}.cf-sala h3+p+.cf-ss,.cf-sala h3+.cf-ss{border-top:0}.cf-silenzio{font-style:italic;margin-top:4px}.cdfree{width:100%}'
       + '@media (max-width:400px){.cf-sum{grid-template-columns:repeat(2,minmax(0,1fr))!important;row-gap:12px}.cf-sum small{min-height:0}}';
     (document.head || document.documentElement).appendChild(st);
@@ -95,6 +95,43 @@
   }
 
   /* ---------- 4. Cosa ha detto l'avversario (pagina Conferenza) ---------- */
+  /* ---------- 5.8 · Redazione di Girrr Sport (redazione/ISTRUZIONI.md nel registro) ----------
+     girrr/dati/redazione.json, scritto dietro le quinte da Claude e controllato da redazione/controlla.py: domande della conferenza
+     su misura per ogni squadra e giudizi delle risposte scritte a mano. Se manca, la Conferenza usa le domande di sempre. */
+  var RED = null, redScelta = {};
+  fetch(ROOT + 'girrr/dati/redazione.json', { cache: 'no-cache' }).then(function (r) { return r.ok ? r.json() : null; })
+    .then(function (j) { if (j && j.controllato && j.domande) { RED = j; ridisegna(); } }).catch(function () {});
+  /* domande della redazione per la squadra e la giornata; null = domande di sempre. Se la conferenza è già nel database con
+     altre frasi, o se la persona aveva già scelto qualcosa prima che arrivassero, restano quelle di prima (niente cambi a metà). */
+  window.GirrrRedazioneQs = function (t, G, salvate, giaScelto) {
+    if (!RED || RED.giornata !== G || !RED.domande[t]) return null;
+    var k = t + '|' + G;
+    if (redScelta[k] === undefined) redScelta[k] = !giaScelto;
+    if (!redScelta[k]) return null;
+    var Q = RED.domande[t];
+    if (salvate && salvate.length) {
+      var tutte = salvate.every(function (s, i) { return s.a === 'free' || (Q[i] && Q[i].a.some(function (a) { return a.t === s.t; })); });
+      if (!tutte) return null;
+    }
+    return Q.map(function (q) { return { q: q.q, a: q.a.map(function (a) { return { t: a.t, k: a.k, w: a.w }; }), red: 1 }; });
+  };
+  /* il giornalista ha letto le risposte scritte a mano: giudizio, nota e domanda successiva */
+  function giudizio(t, G) {
+    if (!RED || !RED.giudizi) return '';
+    var h = '';
+    [G, G - 1].forEach(function (g) {
+      var x = RED.giudizi[t + '|' + g], y = RED.giudizi[t + '|' + g + '|dopo'];
+      [[x, 'Vigilia della ' + g + 'ª giornata'], [y, 'Dopo la ' + g + 'ª giornata']].forEach(function (z) {
+        var v = z[0]; if (!v) return;
+        h += '<div class="cf-ss"><div class="mut sm">' + z[1] + '</div>' + (v.risposte || []).map(function (r) {
+          return '<p class="sm" style="margin:6px 0 4px">' + E(r.nota) + '</p><div class="row" style="gap:6px;flex-wrap:wrap"><span class="tag">Tono: ' + TONI[r.k] + '</span>'
+            + (r.w ? '<span class="tag g">Promessa</span>' : '') + (r.pubblicabile ? '' : '<span class="tag" style="color:var(--bad);border-color:var(--bad)">Non riportata</span>') + '</div>';
+        }).join('') + (v.domanda_dopo ? '<p style="margin-top:8px;font-weight:700">«' + E(v.domanda_dopo) + '»</p><a class="btn o" href="curva.html?scrivi=' + encodeURIComponent('@girrr_sport ') + '" style="display:inline-block;margin-top:8px">Rispondi in Curva</a>' : '') + '</div>';
+      });
+    });
+    return h ? '<div class="card cf-giudizio"><h3>Il giornalista ha letto</h3><p class="sm mut" style="margin:4px 0 6px">La redazione di Girrr Sport sulle tue risposte scritte a mano.</p>' + h + '</div>' : '';
+  }
+
   window.GirrrConfAvv = function (t, o, G) {
     var tit = 'Cosa ha detto ' + o;
     if (!o || o === 'avversario') return '';
@@ -106,7 +143,7 @@
     if (!c) {
       h += '<p class="sm mut">' + E(o) + ' non ha ancora parlato in conferenza stampa. Quando lo farà, le sue parole compaiono qui.</p>'
         + '<a class="btn o" href="' + scrivi + '" style="display:inline-block;margin-top:10px">Scrivigli in Curva</a></div>';
-      return h + salaStampa(t, o, G) + window.GirrrConfDopo(t);
+      return giudizio(t, G) + h + salaStampa(t, o, G) + window.GirrrConfDopo(t);
     }
     var r = (c.risposte || []).map(function (x) { return x && x.t; }).filter(Boolean), k = tono(c);
     var testo = '<b>CONFERENZA STAMPA</b> · ' + E(D ? partitaDi(o, G) : o + ' - ' + t) + '<br>' + E(chiParla(o)) + ': '
@@ -116,7 +153,7 @@
       + (c.promessa ? '<span class="tag">Ha fatto una promessa</span>' : '<span class="tag">Nessuna promessa</span>') + '</div>';
     if (c.promessa) h += '<p class="sm" style="margin-top:8px">Se perde, la sua dirigenza se lo segna: «' + E(c.promessa) + '»</p>';
     h += '<a class="btn" href="' + scrivi + '" style="display:inline-block;margin-top:12px">Rispondi in Curva</a></div>';
-    return h + salaStampa(t, o, G) + window.GirrrConfDopo(t);
+    return giudizio(t, G) + h + salaStampa(t, o, G) + window.GirrrConfDopo(t);
   };
 
   /* ---------- Sala stampa: cosa hanno detto gli altri (o «Silenzio stampa») ---------- */

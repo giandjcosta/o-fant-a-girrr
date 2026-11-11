@@ -2,6 +2,42 @@
   "nota": "Fonte unica della pagina Versioni (girrr/versioni.html e stadio/girrr/versioni.html). A ogni rilascio si aggiunge la versione in cima con rilascio/versioni/aggiungi.py. Numeri: correzione minore = terza cifra (5.6.1), aggiornamento medio = seconda cifra (5.7.0), aggiornamento grande = prima cifra (6.0). Dove manca la storia: «Dato non conservato». Le versioni 1.0-4.5 e il Mercato Scambi vengono dai messaggi recuperati da Claude chat (9 novembre 2026), date controllate con i commit del sito. Il campo «nota» e «altre_varianti» non si mostrano nella pagina.",
   "versioni": [
     {
+      "v": "5.8",
+      "data": "2026-11-11",
+      "tipo": "medio",
+      "titolo": "Claude in redazione",
+      "messaggio": "📰 **O Girrr 5.8 è online!** Da questa giornata in conferenza stampa le domande ve le fa la redazione di Girrr Sport, scritte apposta per la vostra squadra: classifica, avversario, Derby, le promesse che avete fatto. E quando rispondete a modo vostro, il giornalista legge davvero: vi dice che tono avete usato, se è una promessa, e qualche volta vi incalza con un'altra domanda. Le frasi fuori dalle righe non escono in Curva. Buona giornata a tutti! ⚽",
+      "novita": [
+        {
+          "area": "Conferenza",
+          "voci": [
+            "Domande della redazione di Girrr Sport, diverse per ogni squadra e scritte sulla sua situazione vera (classifica, avversario, Derby, promesse, fiducia)",
+            "«Il giornalista ha letto», il giudizio sulle risposte scritte a mano con tono, promessa e domanda successiva",
+            "Le frasi offensive non vengono mai riportate, né sul sito né nei post di Girrr Sport",
+            "Se la conferenza è già pubblicata o il file della redazione non c'è, restano le domande di sempre"
+          ]
+        },
+        {
+          "area": "Carriera",
+          "voci": [
+            "Tono e promessa decisi dalla redazione contano per la fiducia al posto della regola automatica"
+          ]
+        },
+        {
+          "area": "Curva",
+          "voci": [
+            "Le conferenze con risposte scritte a mano escono dopo il giudizio della redazione (se la redazione è ferma da più di 24 ore, escono come prima)"
+          ]
+        },
+        {
+          "area": "Redazione",
+          "voci": [
+            "Lavora dietro le quinte al massimo due volte per giornata, dopo la partita e alla vigilia"
+          ]
+        }
+      ]
+    },
+    {
       "v": "5.7",
       "data": "2026-11-11",
       "tipo": "medio",

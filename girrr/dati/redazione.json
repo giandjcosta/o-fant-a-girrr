@@ -1,0 +1,656 @@
+{
+ "giornata": 8,
+ "aggiornato": "2026-11-10T23:56:28+00:00",
+ "autore": "Redazione di Girrr Sport",
+ "domande": {
+  "The Blue brothers": [
+   {
+    "q": "Il presidente vi voleva tra le prime due, e siete settimi con 8 punti. Leanzino, Mario: cosa non sta funzionando?",
+    "a": [
+     {
+      "t": "Siamo più forti di questa classifica: risaliamo in fretta.",
+      "k": 0,
+      "w": 1
+     },
+     {
+      "t": "Abbiamo sbagliato qualcosa, e lo stiamo correggendo.",
+      "k": 1,
+      "w": 0
+     },
+     {
+      "t": "La classifica la guardo a maggio, non a novembre.",
+      "k": 2,
+      "w": 1
+     }
+    ]
+   },
+   {
+    "q": "Domani a casa di stif dc, che è secondo con 13 punti. Vi ricordate il 3-0 all'Oranje? Serve quella squadra.",
+    "a": [
+     {
+      "t": "Quella squadra c'è ancora: domani si vede.",
+      "k": 0,
+      "w": 1
+     },
+     {
+      "t": "Stif dc è in forma: servirà la partita perfetta.",
+      "k": 1,
+      "w": 0
+     },
+     {
+      "t": "Secondo? Dopo domani vediamo dove sono.",
+      "k": 2,
+      "w": 1
+     }
+    ]
+   },
+   {
+    "q": "Alla 7ª il pareggio 1-1 con AFA SELECCION, la fiducia è al 37%. E in sala stampa non vi si vede da tre giornate: perché?",
+    "a": [
+     {
+      "t": "Parliamo poco perché lavoriamo tanto: i punti arriveranno.",
+      "k": 0,
+      "w": 1
+     },
+     {
+      "t": "Avete ragione, dobbiamo farci sentire di più.",
+      "k": 1,
+      "w": 0
+     },
+     {
+      "t": "Parliamo in campo: chi vuole sentirci venga a vederci.",
+      "k": 2,
+      "w": 0
+     }
+    ]
+   }
+  ],
+  "Apo team": [
+   {
+    "q": "Ottavi con 6 punti, una sola vittoria in sette giornate. Il presidente chiedeva il podio: come si torna su?",
+    "a": [
+     {
+      "t": "Si torna su vincendo, e si comincia domani.",
+      "k": 0,
+      "w": 1
+     },
+     {
+      "t": "Passo dopo passo: prima usciamo da qui sotto.",
+      "k": 1,
+      "w": 0
+     },
+     {
+      "t": "Il podio è ancora lì: chi ci dà per finiti sbaglia.",
+      "k": 2,
+      "w": 1
+     }
+    ]
+   },
+   {
+    "q": "Domani in casa contro l'Atletico ma non troppo, nono con i vostri stessi 6 punti. È uno scontro diretto: cosa vi aspettate?",
+    "a": [
+     {
+      "t": "Tre punti, senza discussioni: è la partita da vincere.",
+      "k": 0,
+      "w": 1
+     },
+     {
+      "t": "Partita delicata: loro hanno la nostra stessa fame.",
+      "k": 1,
+      "w": 0
+     },
+     {
+      "t": "In casa nostra l'Atletico non passa.",
+      "k": 2,
+      "w": 1
+     }
+    ]
+   },
+   {
+    "q": "Alla 4ª la promessa è finita male, alla 6ª in pareggio: la fiducia è al 32%. Promettete ancora qualcosa ai tifosi?",
+    "a": [
+     {
+      "t": "Prometto una vittoria, e questa volta la mantengo.",
+      "k": 0,
+      "w": 1
+     },
+     {
+      "t": "Basta promesse: ai tifosi devo soltanto i fatti.",
+      "k": 1,
+      "w": 0
+     },
+     {
+      "t": "Chi ci ha dato per morti si prepari a ricredersi.",
+      "k": 2,
+      "w": 1
+     }
+    ]
+   }
+  ],
+  "Grodah": [
+   {
+    "q": "Terzi con 12 punti, quando il presidente chiedeva la metà alta. Grodah è la sorpresa del campionato?",
+    "a": [
+     {
+      "t": "Nessuna sorpresa: questo è il nostro posto.",
+      "k": 0,
+      "w": 1
+     },
+     {
+      "t": "Siamo contenti, ma la stagione è ancora lunga.",
+      "k": 1,
+      "w": 0
+     },
+     {
+      "t": "Sorpresa per chi non ci conosceva.",
+      "k": 2,
+      "w": 1
+     }
+    ]
+   },
+   {
+    "q": "Si gioca in casa del Real Madrink, sesto a due punti da voi. Dopo l'1-2 con stif dc, che partita sarà?",
+    "a": [
+     {
+      "t": "Torniamo subito a vincere: il ko è già dimenticato.",
+      "k": 0,
+      "w": 1
+     },
+     {
+      "t": "Il Real Madrink è vicino in classifica: partita da prendere con le pinze.",
+      "k": 1,
+      "w": 0
+     },
+     {
+      "t": "Dopo domani il Real ci guarderà da più lontano.",
+      "k": 2,
+      "w": 1
+     }
+    ]
+   },
+   {
+    "q": "Fiducia al 56% e Champions Cup da difendere: la dirigenza vi chiede di più? Finora in sala stampa non avevate mai parlato.",
+    "a": [
+     {
+      "t": "Difendiamo tutto: campionato e Champions Cup.",
+      "k": 0,
+      "w": 1
+     },
+     {
+      "t": "Pensiamo una partita alla volta, Coppa compresa.",
+      "k": 1,
+      "w": 0
+     },
+     {
+      "t": "Abbiamo parlato poco perché parlano i risultati.",
+      "k": 2,
+      "w": 0
+     }
+    ]
+   }
+  ],
+  "WOA": [
+   {
+    "q": "Campioni in carica, il presidente chiedeva di ripetersi: e invece siete ultimi con 4 punti. Ser, cosa sta succedendo?",
+    "a": [
+     {
+      "t": "Il campione non sparisce: da domani si risale.",
+      "k": 0,
+      "w": 1
+     },
+     {
+      "t": "È un momento difficile, lo affrontiamo con umiltà.",
+      "k": 1,
+      "w": 0
+     },
+     {
+      "t": "Ultimi in classifica, ma con lo scudetto sul petto.",
+      "k": 2,
+      "w": 1
+     }
+    ]
+   },
+   {
+    "q": "Domani in casa di AFA SELECCION, quarta con 11 punti. Alla 6ª avete battuto 4-2 i Blues Brothers: si riparte da lì?",
+    "a": [
+     {
+      "t": "Sì, si riparte da lì: domani vinciamo noi.",
+      "k": 0,
+      "w": 1
+     },
+     {
+      "t": "AFA SELECCION è forte: serve la WOA migliore.",
+      "k": 1,
+      "w": 0
+     },
+     {
+      "t": "AFA SELECCION ha paura di noi, e fa bene.",
+      "k": 2,
+      "w": 1
+     }
+    ]
+   },
+   {
+    "q": "Fiducia della dirigenza al 25%, la più bassa della lega. Il suo posto è in discussione?",
+    "a": [
+     {
+      "t": "Il mio posto me lo riprendo con i risultati.",
+      "k": 0,
+      "w": 1
+     },
+     {
+      "t": "Rispetto le decisioni della società, lavoro e basta.",
+      "k": 1,
+      "w": 0
+     },
+     {
+      "t": "Chi vuole il mio posto venga a prenderselo.",
+      "k": 2,
+      "w": 0
+     }
+    ]
+   }
+  ],
+  "Real Madrink": [
+   {
+    "q": "Sesti con 10 punti e quattro pareggi, il presidente chiedeva la metà alta. Troppi pareggi?",
+    "a": [
+     {
+      "t": "Pareggi che diventeranno vittorie: la metà alta è vicina.",
+      "k": 0,
+      "w": 1
+     },
+     {
+      "t": "Qualche punto perso, ma la squadra è solida.",
+      "k": 1,
+      "w": 0
+     },
+     {
+      "t": "Meglio un pareggio che le sconfitte degli altri.",
+      "k": 2,
+      "w": 1
+     }
+    ]
+   },
+   {
+    "q": "Domani in casa contro Grodah, terzo a due punti. Dopo l'1-0 all'Atletico, è l'occasione per agganciarli?",
+    "a": [
+     {
+      "t": "Li agganciamo domani: in casa nostra si vince.",
+      "k": 0,
+      "w": 1
+     },
+     {
+      "t": "Grodah sta facendo bene: servirà pazienza.",
+      "k": 1,
+      "w": 0
+     },
+     {
+      "t": "Grodah è terzo per caso, domani lo dimostriamo.",
+      "k": 2,
+      "w": 1
+     }
+    ]
+   },
+   {
+    "q": "Alla 6ª lo 0-4 contro Mariana Coneja, la fiducia è al 48%. Cosa dite alla dirigenza?",
+    "a": [
+     {
+      "t": "Lo 0-4 è stato un incidente: non si ripeterà.",
+      "k": 0,
+      "w": 0
+     },
+     {
+      "t": "Abbiamo imparato tanto da quella sconfitta.",
+      "k": 1,
+      "w": 0
+     },
+     {
+      "t": "Alla dirigenza dico di guardare le ultime partite.",
+      "k": 2,
+      "w": 0
+     }
+    ]
+   }
+  ],
+  "stif dc": [
+   {
+    "q": "Secondi con 13 punti, quando il presidente chiedeva la parte alta. Stifson, dove può arrivare stif dc?",
+    "a": [
+     {
+      "t": "Fin dove vogliamo: lo scudetto non è un sogno.",
+      "k": 0,
+      "w": 1
+     },
+     {
+      "t": "Siamo felici, ma restiamo con i piedi per terra.",
+      "k": 1,
+      "w": 0
+     },
+     {
+      "t": "Chiedete a Mariana Coneja quanto siamo forti.",
+      "k": 2,
+      "w": 1
+     }
+    ]
+   },
+   {
+    "q": "Domani in casa contro i Blues Brothers, settimi ma attesi tra le prime due. Partita trappola?",
+    "a": [
+     {
+      "t": "Nessuna trappola: in casa vinciamo noi.",
+      "k": 0,
+      "w": 1
+     },
+     {
+      "t": "I Blues Brothers hanno una grande rosa: massima attenzione.",
+      "k": 1,
+      "w": 0
+     },
+     {
+      "t": "I Blues Brothers sono settimi: c'è un motivo.",
+      "k": 2,
+      "w": 1
+     }
+    ]
+   },
+   {
+    "q": "Fiducia al 60%, ma alla 6ª è arrivato l'1-3 con l'Atletico. Cosa vi ha insegnato quella partita?",
+    "a": [
+     {
+      "t": "Che non ci ricapiterà: da lì abbiamo ripreso a vincere.",
+      "k": 0,
+      "w": 1
+     },
+     {
+      "t": "Che nessuna partita è facile in questa lega.",
+      "k": 1,
+      "w": 0
+     },
+     {
+      "t": "Una giornata storta capita anche ai migliori.",
+      "k": 2,
+      "w": 0
+     }
+    ]
+   }
+  ],
+  "Mariana Coneja": [
+   {
+    "q": "Primi con 16 punti, e il presidente chiedeva la parte alta. Mark Lenders, adesso l'obiettivo cambia?",
+    "a": [
+     {
+      "t": "Adesso si punta allo scudetto, senza nasconderci.",
+      "k": 0,
+      "w": 1
+     },
+     {
+      "t": "L'obiettivo resta quello: restare nella parte alta.",
+      "k": 1,
+      "w": 0
+     },
+     {
+      "t": "Gli altri inseguono: noi pensiamo a noi.",
+      "k": 2,
+      "w": 1
+     }
+    ]
+   },
+   {
+    "q": "Domani in casa con l'Oranje VC, quinto con 11 punti, che alla vigilia vi ha chiamato «un ottimo avversario». Cosa rispondete?",
+    "a": [
+     {
+      "t": "Rispondiamo in campo: domani vinciamo noi.",
+      "k": 0,
+      "w": 1
+     },
+     {
+      "t": "Grazie: anche l'Oranje è un avversario serio.",
+      "k": 1,
+      "w": 0
+     },
+     {
+      "t": "Ottimo avversario? Domani vedranno quanto.",
+      "k": 2,
+      "w": 1
+     }
+    ]
+   },
+   {
+    "q": "Dopo l'1-4 con stif dc avete vinto 4-0 e 3-2. Fiducia al 66%, la più alta della lega: è il momento migliore della vostra storia?",
+    "a": [
+     {
+      "t": "È solo l'inizio: il meglio deve ancora venire.",
+      "k": 0,
+      "w": 1
+     },
+     {
+      "t": "È un bel momento, ce lo godiamo lavorando.",
+      "k": 1,
+      "w": 0
+     },
+     {
+      "t": "La nostra storia comincia adesso.",
+      "k": 2,
+      "w": 0
+     }
+    ]
+   }
+  ],
+  "AFA SELECCION": [
+   {
+    "q": "Quarti con 11 punti, il presidente chiedeva il podio: è a un passo. Maria, cosa manca?",
+    "a": [
+     {
+      "t": "Manca poco: il podio ce lo prendiamo presto.",
+      "k": 0,
+      "w": 1
+     },
+     {
+      "t": "Un po' di continuità: ci stiamo lavorando.",
+      "k": 1,
+      "w": 0
+     },
+     {
+      "t": "Al podio manca solo che gli altri se ne accorgano.",
+      "k": 2,
+      "w": 1
+     }
+    ]
+   },
+   {
+    "q": "Domani in casa contro la WOA, ultima ma campione in carica. Partita facile o pericolosa?",
+    "a": [
+     {
+      "t": "Partita da vincere, e la vinciamo.",
+      "k": 0,
+      "w": 1
+     },
+     {
+      "t": "Il campione resta pericoloso: guai a sottovalutarlo.",
+      "k": 1,
+      "w": 0
+     },
+     {
+      "t": "Il campione? Domani resta ultimo.",
+      "k": 2,
+      "w": 1
+     }
+    ]
+   },
+   {
+    "q": "Alla 5ª il 6-0 all'Atletico, poi un punto in due giornate. Fiducia al 49%: la dirigenza aspetta altri sei gol?",
+    "a": [
+     {
+      "t": "Aspetta i tre punti, e domani arrivano.",
+      "k": 0,
+      "w": 1
+     },
+     {
+      "t": "La dirigenza aspetta costanza, ed è giusto.",
+      "k": 1,
+      "w": 0
+     },
+     {
+      "t": "La dirigenza si goda lo spettacolo.",
+      "k": 2,
+      "w": 1
+     }
+    ]
+   }
+  ],
+  "Oranje VC": [
+   {
+    "q": "Quinti con 11 punti, il presidente chiedeva le prime quattro: siete a un punto. Cosa serve per entrarci?",
+    "a": [
+     {
+      "t": "Serve una vittoria, e la prendiamo domani.",
+      "k": 0,
+      "w": 1
+     },
+     {
+      "t": "Continuità: una partita alla volta.",
+      "k": 1,
+      "w": 0
+     },
+     {
+      "t": "Chi parla di obiettivi guardi la classifica.",
+      "k": 2,
+      "w": 1
+     }
+    ]
+   },
+   {
+    "q": "Domani in casa della capolista Mariana Coneja, 16 punti. Dopo il 2-1 alla WOA, che partita vi aspettate?",
+    "a": [
+     {
+      "t": "La capolista cade domani.",
+      "k": 0,
+      "w": 1
+     },
+     {
+      "t": "Mariana Coneja è prima con merito: serve attenzione.",
+      "k": 1,
+      "w": 0
+     },
+     {
+      "t": "Prima in classifica? Per ora.",
+      "k": 2,
+      "w": 1
+     }
+    ]
+   },
+   {
+    "q": "Fiducia al 47%. Alla 4ª la promessa è finita in pareggio: questa volta cosa promettete ai tifosi?",
+    "a": [
+     {
+      "t": "Prometto punti in casa della prima.",
+      "k": 0,
+      "w": 1
+     },
+     {
+      "t": "Prometto impegno, i risultati arriveranno.",
+      "k": 1,
+      "w": 0
+     },
+     {
+      "t": "Chi non crede in noi può restare a casa.",
+      "k": 2,
+      "w": 1
+     }
+    ]
+   }
+  ],
+  "Atletico ma non troppo": [
+   {
+    "q": "Noni con 6 punti, il presidente chiedeva di salire gradualmente. Riccardo, siete in ritardo?",
+    "a": [
+     {
+      "t": "Nessun ritardo: da domani si sale.",
+      "k": 0,
+      "w": 1
+     },
+     {
+      "t": "Stiamo costruendo: serve tempo.",
+      "k": 1,
+      "w": 0
+     },
+     {
+      "t": "Il ritardo lo recuperiamo in fretta.",
+      "k": 2,
+      "w": 1
+     }
+    ]
+   },
+   {
+    "q": "Domani in casa dell'Apo team, ottavo con i vostri stessi 6 punti. Scontro diretto: chi lo vince esce dal fondo?",
+    "a": [
+     {
+      "t": "Lo vinciamo noi, e usciamo dal fondo.",
+      "k": 0,
+      "w": 1
+     },
+     {
+      "t": "Partita delicatissima: conta non perderla.",
+      "k": 1,
+      "w": 0
+     },
+     {
+      "t": "L'Apo team è in crisi, e domani se ne accorge.",
+      "k": 2,
+      "w": 1
+     }
+    ]
+   },
+   {
+    "q": "Avete battuto 3-1 la seconda in classifica, ma perso 0-6 con AFA SELECCION. Fiducia al 40%: qual è il vero Atletico?",
+    "a": [
+     {
+      "t": "Quello che ha battuto stif dc, e lo rivedrete domani.",
+      "k": 0,
+      "w": 1
+     },
+     {
+      "t": "Siamo ancora alla ricerca del nostro equilibrio.",
+      "k": 1,
+      "w": 0
+     },
+     {
+      "t": "Quello che fa paura alle grandi.",
+      "k": 2,
+      "w": 0
+     }
+    ]
+   }
+  ]
+ },
+ "giudizi": {
+  "Apo team|7": {
+   "risposte": [
+    {
+     "i": 0,
+     "k": 1,
+     "w": 0,
+     "pubblicabile": true,
+     "nota": "Parole di chi non si arrende: tono umile, nessuna promessa."
+    },
+    {
+     "i": 1,
+     "k": 1,
+     "w": 0,
+     "pubblicabile": true,
+     "nota": "Rispetto per l'avversario: alla vigilia della 7ª Apo team ha scelto la prudenza."
+    },
+    {
+     "i": 2,
+     "k": 2,
+     "w": 0,
+     "pubblicabile": false,
+     "nota": "Una frase fuori dalle righe: la redazione non la riporta. In sala stampa il rispetto vale per tutti."
+    }
+   ],
+   "domanda_dopo": "Dopo il 2-3 con Mariana Coneja, a chi dubita di voi cosa rispondete, questa volta con i risultati?"
+  }
+ },
+ "controllato": true
+}
