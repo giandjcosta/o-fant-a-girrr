@@ -69,13 +69,12 @@ Notizie pubbliche, senza indicare di chi e' ogni giocatore.
 | Kean | Como | Fastidio alla tibia che lo affligge da | Inizio dicembre | Salta |
 | Raimondo | Frosinone | Lesione multilegamentosa contusivo-distorsiva della caviglia sinistra | Metà dicembre | Salta |
 | Bracaglia | Frosinone | Squalificato | Rientra dalla 13ª giornata | Salta |
-| Bonny | Inter | Risentimento muscolare ai flessori della coscia destra | Da valutare | Salta |
+| Bonny | Inter | Risentimento muscolare ai flessori della coscia destra | Inizio dicembre | Salta |
 | Thuram | Inter | Problema muscolare al bicipite femorale della coscia | Da valutare | In dubbio |
 | Kalulu | Juventus | Lesione ai muscoli ischiocrurali della gamba sinistra | Fine novembre | Salta |
 | Grabara | Juventus | Lesione al crociato anteriore del ginocchio destro | Da aprile | Salta |
 | Yildiz | Juventus | Problema al piede | Prima metà di dicembre | Salta |
 | Tavares N. | Lazio | Infortunio | Prossimo turno | Salta |
-| Zaccagni | Lazio | Lesione del quadricipite femorale sinistro | Da valutare | In dubbio |
 | Sutalo J. | Lazio | Infortunio | Prossimo turno | Salta |
 | Gudmundsson A. | Lazio | Problema alla spalla destra dopo una caduta | Seconda metà di novembre | Salta |
 | Chukwueze | Milan | Rottura del tendine del muscolo tensore della | Da aprile | Salta |
