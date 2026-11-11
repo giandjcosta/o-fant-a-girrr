@@ -2,6 +2,22 @@
   "nota": "Fonte unica della pagina Versioni (girrr/versioni.html e stadio/girrr/versioni.html). A ogni rilascio si aggiunge la versione in cima con rilascio/versioni/aggiungi.py. Numeri: correzione minore = terza cifra (5.6.1), aggiornamento medio = seconda cifra (5.7.0), aggiornamento grande = prima cifra (6.0). Dove manca la storia: «Dato non conservato». Le versioni 1.0-4.5 e il Mercato Scambi vengono dai messaggi recuperati da Claude chat (9 novembre 2026), date controllate con i commit del sito. Il campo «nota» e «altre_varianti» non si mostrano nella pagina.",
   "versioni": [
     {
+      "v": "5.8.1",
+      "data": "2026-11-12",
+      "tipo": "minore",
+      "titolo": "Curva più ordinata",
+      "messaggio": "🔧 **O Girrr 5.8.1 è online!** Piccola sistemata alla Curva: i Sondaggi chiusi ora stanno allineati agli altri sondaggi e non hanno più le righe a tutta larghezza sopra e sotto. Buona giornata a tutti! ⚽",
+      "novita": [
+        {
+          "area": "Curva",
+          "voci": [
+            "Sondaggi chiusi allineato ai sondaggi, con il margine laterale come il resto",
+            "Tolte le righe a tutta larghezza sopra e sotto Sondaggi chiusi"
+          ]
+        }
+      ]
+    },
+    {
       "v": "5.8",
       "data": "2026-11-11",
       "tipo": "medio",
