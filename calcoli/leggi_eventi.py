@@ -187,7 +187,7 @@ def applica_redazione(conf, prom, dopo, red):
         c = json.loads(json.dumps(c))
         libere = [i for i, r in enumerate(c.get("risposte") or []) if r.get("a") == "free"]
         g = G.get(f"{c['team']}|{c['giornata']}")
-        if libere and not g and attiva:
+        if libere and not g and attiva and c["giornata"] >= (red.get("giornata") or 0) - 1:   # solo le giornate su cui lavora la redazione
             attesa.add(f"C{c['giornata']}-{c['team']}")
         if g:
             for v in g.get("risposte", []):
@@ -217,7 +217,7 @@ def applica_redazione(conf, prom, dopo, red):
     for d in dopo or []:
         r = d.get("risposta") or {}
         g = G.get(f"{d['team']}|{d['giornata']}|dopo")
-        if r.get("a") == "free" and not g and attiva:
+        if r.get("a") == "free" and not g and attiva and d["giornata"] >= (red.get("giornata") or 0) - 1:
             attesa.add(f"D{d['giornata']}-{d['team']}")
             continue
         if g and g.get("risposte") and not g["risposte"][0].get("pubblicabile", True):
