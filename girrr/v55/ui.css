@@ -377,4 +377,4 @@ a.v55-logo-home{display:inline-flex;flex:none;border-radius:12px}
 a.v55-logo-home:focus-visible{outline:2px solid #ffd166;outline-offset:3px}
 .v55-header .v55-return{white-space:nowrap!important;max-width:none!important}
 @media(max-width:360px){.v55-header .v55-return{letter-spacing:.08em}}
-.v55-arch{margin-top:12px}.v55-arch>summary{display:flex;align-items:center;min-height:44px;cursor:pointer;color:var(--blu,#3d93d6);font:700 14px Inter,system-ui,sans-serif}.v55-arch-b{padding-top:4px}
+.v55-arch{margin:12px 14px}.v55-arch>summary{display:flex;align-items:center;min-height:44px;cursor:pointer;color:var(--blu,#3d93d6);font:700 14px Inter,system-ui,sans-serif}.v55-arch-b{padding-top:4px}.v55-arch .v55-pollpost{padding-left:0;padding-right:0}
