@@ -2,6 +2,34 @@
   "nota": "Fonte unica della pagina Versioni (girrr/versioni.html e stadio/girrr/versioni.html). A ogni rilascio si aggiunge la versione in cima con rilascio/versioni/aggiungi.py. Numeri: correzione minore = terza cifra (5.6.1), aggiornamento medio = seconda cifra (5.7.0), aggiornamento grande = prima cifra (6.0). Dove manca la storia: «Dato non conservato». Le versioni 1.0-4.5 e il Mercato Scambi vengono dai messaggi recuperati da Claude chat (9 novembre 2026), date controllate con i commit del sito. Il campo «nota» e «altre_varianti» non si mostrano nella pagina.",
   "versioni": [
     {
+      "v": "5.8.2",
+      "data": "2026-11-12",
+      "tipo": "minore",
+      "titolo": "Curva più vera, Live e Carriera",
+      "messaggio": "🔧 **O Girrr 5.8.2 è online!** Tre ritocchi: nei commenti dei sondaggi della Curva i personaggi parlano con il loro nome e basta, senza etichette. In Home il pallino Live di Girrr Sport ora lampeggia solo quando ci sono partite in corso. Nella Carriera il numero della fiducia gira come i cartellini di un tabellone e la scheda Panoramica è centrata. Buona giornata a tutti! ⚽",
+      "novita": [
+        {
+          "area": "Curva",
+          "voci": [
+            "Nei commenti dei sondaggi tolta l'etichetta «· bot» accanto ai personaggi"
+          ]
+        },
+        {
+          "area": "Home",
+          "voci": [
+            "Il pallino Live di Girrr Sport lampeggia solo durante le partite di Serie A (da 1 minuto prima del calcio d'inizio a 115 minuti dopo); fuori dalle partite resta acceso e fermo"
+          ]
+        },
+        {
+          "area": "Carriera",
+          "voci": [
+            "Il numero della fiducia a cartellini che si ribaltano, conteggio un po' più lento per leggerlo",
+            "La scheda attiva (Panoramica) centrata nella fila delle schede"
+          ]
+        }
+      ]
+    },
+    {
       "v": "5.8.1",
       "data": "2026-11-12",
       "tipo": "minore",

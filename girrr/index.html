@@ -61,7 +61,7 @@ a.st:hover{transform:translateY(-4px);background:rgba(255,255,255,.14);box-shado
 .c .ic{height:74px;margin-bottom:14px;display:flex;align-items:center}
 .recw{position:relative;display:block;height:100%;line-height:0}
 .rec{--bg:#d62839;--dot:#fbf6ec;position:absolute;left:8.0556%;top:31.8889%;width:5.9524%;aspect-ratio:1;transform:translate(-50%,-50%);border-radius:50%;background:var(--bg);pointer-events:none}
-.rec::after{content:'';position:absolute;left:3.5%;top:3.5%;width:93%;height:93%;border-radius:50%;background:var(--dot);animation:recp 2.6s ease-in-out infinite}
+.rec::after{content:'';position:absolute;left:3.5%;top:3.5%;width:93%;height:93%;border-radius:50%;background:var(--dot)}.rec.diretta::after{animation:recp 2.6s ease-in-out infinite}
 @keyframes recp{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.12;transform:scale(.86)}}
 @media (prefers-reduced-motion:reduce){.rec::after{animation:none}}
 .c .ic img{height:100%;filter:drop-shadow(0 6px 10px rgba(0,0,0,.4))}
@@ -123,7 +123,7 @@ body::before{content:'';position:fixed;inset:-120px;z-index:-1;pointer-events:no
 
 
 <script>window.goatcounter={path:function(){return location.pathname},no_onload:/[?&]demo/.test(location.search)}</script>
-<script data-goatcounter="https://djcosta18.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script><link rel="stylesheet" href="v55/ui.css?v=55r10"><script src="v55/home55.js?v=55r8" defer></script><script src="v55/destinazioni55.js?v=55r8" defer></script><script src="v55/ui.js?v=55r9" defer></script><script src="../offline.js" defer></script>
+<script data-goatcounter="https://djcosta18.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script><link rel="stylesheet" href="v55/ui.css?v=55r10"><script src="v55/home55.js?v=55r8" defer></script><script src="v55/destinazioni55.js?v=55r8" defer></script><script src="v55/ui.js?v=55r10" defer></script><script src="../offline.js" defer></script>
 <script src="../versioni.js" defer></script>
 </head>
 <body data-v53="home" data-v53-skin="lega" data-v53-skinname="lega">
@@ -222,5 +222,17 @@ var e=document.querySelector('.sp .lg');if(e)e.innerHTML=a.slice(0,4).map(functi
 <script src="curva-banca.js"></script>
 <script src="../assets/app.js"></script>
 
-</body>
+<script>
+/* Claude, 12 novembre 2026: il pallino «Live» di Girrr Sport lampeggia solo mentre c'è una partita di Serie A (rilascio/live/applica.py) */
+(function(){
+ var url=(location.pathname.indexOf('/stadio/')>=0?'../../':'../')+'data.json',ORE=[];
+ function roma(y,mo,d,h,mi){var g=Date.UTC(y,mo-1,d,h,mi)-36e5;for(var i=0;i<2;i++){var p={};new Intl.DateTimeFormat('en-GB',{timeZone:'Europe/Rome',year:'numeric',month:'2-digit',day:'2-digit',hour:'2-digit',minute:'2-digit',hourCycle:'h23'}).formatToParts(new Date(g)).forEach(function(x){p[x.type]=+x.value});
+  g+=Date.UTC(y,mo-1,d,h,mi)-Date.UTC(p.year,p.month-1,p.day,p.hour,p.minute)}return g}
+ function orari(D){var out=[],ora=new Date(),n=+D.nx||+D.round||0;[n-1,n,n+1].forEach(function(k){[(D.sa||{})[k],(D.fx||{})[k]].forEach(function(L){(L||[]).forEach(function(m){var x=/(\d{1,2})\/(\d{1,2})\s+(\d{1,2}):(\d{2})/.exec(m[2]||'');if(!x)return;
+   var mo=+x[2],y=ora.getFullYear();if(mo<ora.getMonth()+1-6)y++;else if(mo>ora.getMonth()+1+6)y--;out.push(roma(y,mo,+x[1],+x[3],+x[4]))})})});return out}
+ function guarda(){var t=Date.now(),su=/[?&]live\b/.test(location.search)||ORE.some(function(k){return t>=k-6e4&&t<=k+115*6e4});
+  [].forEach.call(document.querySelectorAll('.rec'),function(e){e.classList.toggle('diretta',su)})}
+ fetch(url,{cache:'no-store'}).then(function(r){return r.json()}).then(function(D){ORE=orari(D);guarda();setInterval(guarda,6e4)}).catch(function(){guarda()});
+})();
+</script></body>
 </html>

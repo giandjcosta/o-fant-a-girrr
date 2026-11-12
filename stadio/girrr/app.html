@@ -229,10 +229,29 @@ svg text{fill:var(--mute);font-family:var(--fb)}
 
 </style>
 
-<link rel="stylesheet" href="../../girrr/v55/ui.css?v=55r10"><script src="../../girrr/v55/destinazioni55.js?v=55r8" defer></script><script src="../../girrr/v55/ui.js?v=55r9" defer></script><script src="../../offline.js" defer></script>
+<link rel="stylesheet" href="../../girrr/v55/ui.css?v=55r10"><script src="../../girrr/v55/destinazioni55.js?v=55r8" defer></script><script src="../../girrr/v55/ui.js?v=55r10" defer></script><script src="../../offline.js" defer></script>
 <script src="../../stagione.js" defer></script>
 <script src="../../conferenze.js" defer></script><!-- Claude, conferenze 10/11 -->
-</head><body data-v53="albo" data-v53-skin="stadio"><div class="col">
+<style id="cartellini-fiducia">
+/* Claude, 12 novembre 2026: schede centrate e numero della fiducia a cartellini (rilascio/carriera/applica.py) */
+.oro-scroll{scroll-padding-inline:4px}
+.trust-visual{position:relative}
+.trust-visual .trust-number{opacity:0}
+.tab-fid{position:absolute;left:50%;top:64%;transform:translate(-50%,-50%);display:flex;gap:5px;font:900 clamp(30px,10vw,42px)/1 Inter,system-ui,sans-serif;pointer-events:none}
+.tab-fid .fl{position:relative;width:.78em;height:1.18em;perspective:300px;border-radius:7px;box-shadow:0 4px 12px rgba(0,0,0,.35)}
+.tab-fid .fl>span{position:absolute;left:0;right:0;height:50%;overflow:hidden;background:linear-gradient(180deg,#22305e,#18234a);color:#fbf6ec}
+.tab-fid .fl>span b{display:block;height:200%;line-height:1.18em;text-align:center;font-weight:900}
+.tab-fid .fl .su,.tab-fid .fl .a{top:0;border-radius:7px 7px 0 0;transform-origin:50% 100%}
+.tab-fid .fl .giu,.tab-fid .fl .b{bottom:0;border-radius:0 0 7px 7px;transform-origin:50% 0;background:linear-gradient(180deg,#141d3d,#1b2650)}
+.tab-fid .fl .giu b,.tab-fid .fl .b b{transform:translateY(-50%)}
+.tab-fid .fl::after{content:'';position:absolute;left:0;right:0;top:50%;height:1px;background:rgba(0,0,0,.55);z-index:3}
+.tab-fid .fl .a,.tab-fid .fl .b{visibility:hidden;z-index:2}
+.tab-fid .fl.gira .a{visibility:visible;animation:fl-a var(--fl,.16s) ease-in both}
+.tab-fid .fl.gira .b{visibility:visible;animation:fl-b var(--fl,.16s) ease-out var(--fl,.16s) both}
+@keyframes fl-a{from{transform:rotateX(0)}to{transform:rotateX(-90deg)}}
+@keyframes fl-b{from{transform:rotateX(90deg)}to{transform:rotateX(0)}}
+@media (prefers-reduced-motion:reduce){.tab-fid .fl.gira .a,.tab-fid .fl.gira .b{animation:none;visibility:hidden}}
+</style></head><body data-v53="albo" data-v53-skin="stadio"><div class="col">
   <div class="top">
     <img id="lg" alt="">
     <div>
@@ -843,6 +862,17 @@ function fiduciaColore(v){return v>=100?'#3d93d6':v>=81?'#36c9c5':v>=61?'#70df90
 function gauge(v){v=Math.max(0,Math.min(100,Math.round(Number(v)||0)));
   return '<div class="trust-visual" data-target="'+v+'"><svg class="gauge" viewBox="0 0 220 128" width="260" role="img" aria-label="Fiducia del presidente '+v+' su 100"><defs><linearGradient id="fiducia-scala" x1="0%" y1="0%" x2="100%" y2="0%"><stop offset="0%" stop-color="#ff6174"/><stop offset="25%" stop-color="#ff9b4a"/><stop offset="50%" stop-color="#ffd166"/><stop offset="70%" stop-color="#70df90"/><stop offset="88%" stop-color="#36c9c5"/><stop offset="100%" stop-color="#3d93d6"/></linearGradient></defs><path d="M28 100A82 82 0 0 1 192 100" fill="none" stroke="rgba(255,255,255,.22)" stroke-width="16" stroke-linecap="round"/><path class="trust-fill" d="M28 100A82 82 0 0 1 192 100" fill="none" stroke="url(#fiducia-scala)" stroke-width="16" stroke-linecap="round" pathLength="100" stroke-dasharray="'+v+' 100"/><text class="trust-number" x="110" y="96" text-anchor="middle" font-size="40" font-weight="900" style="fill:var(--ink)">'+v+'</text><text x="8" y="122" text-anchor="start" font-size="10">Esonero</text><text x="212" y="122" text-anchor="end" font-size="10">Fiducia piena</text></svg></div>'}
 var TRUSTANIM={team:null,value:null,token:0};
+/* Numero della fiducia a cartellini (Claude, 12 novembre 2026): ogni cifra è un cartellino che si ribalta a metà quando cambia */
+function fidTab(el,v){if(!el)return;var t=el.querySelector('.tab-fid');
+ if(!t){t=document.createElement('div');t.className='tab-fid';t.setAttribute('aria-hidden','true');el.appendChild(t)}
+ var s=String(Math.max(0,Math.min(100,Math.round(v)))),n=Math.max(2,s.length);s=('000'+s).slice(-n);
+ while(t.children.length<n){var f=document.createElement('span');f.className='fl';f.dataset.v='0';f.innerHTML='<span class="su"><b>0</b></span><span class="giu"><b>0</b></span><span class="a"><b>0</b></span><span class="b"><b>0</b></span>';t.appendChild(f)}
+ while(t.children.length>n)t.removeChild(t.firstChild);
+ [].forEach.call(t.children,function(f,i){var o=f.dataset.v,c=s.charAt(i);if(o===c)return;f.dataset.v=c;
+  var q=function(k){return f.querySelector('.'+k+' b')};q('su').textContent=c;q('a').textContent=o;q('b').textContent=c;
+  if(window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches){q('giu').textContent=c;return}
+  f.classList.remove('gira');void f.offsetWidth;f.classList.add('gira');
+  clearTimeout(f._t);f._t=setTimeout(function(){q('giu').textContent=f.dataset.v;f.classList.remove('gira')},340)})}
 function animaFiducia(t,v){
   var el=document.querySelector('#view .trust-visual');if(!el)return;
   var path=el.querySelector('.trust-fill'),number=el.querySelector('.trust-number'),reduce=window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -850,14 +880,14 @@ function animaFiducia(t,v){
   var G=TRUSTANIM.giro,giro=false,ora=Date.now(),ult=0;
   if(G&&G.team===t&&G.v===v)giro=true;   /* la pagina si è ridisegnata durante il giro: si continua da dove era */
   else if(!reduce){try{ult=+localStorage.getItem('orr_fid_anim')||0}catch(e){}
-    if(ora-ult>=300000){giro=true;G=TRUSTANIM.giro={team:t,v:v,start:null,duration:Math.max(700,Math.min(1500,v*18))};try{localStorage.setItem('orr_fid_anim',String(ora))}catch(e){}}}
+    if(ora-ult>=300000){giro=true;G=TRUSTANIM.giro={team:t,v:v,start:null,duration:Math.max(1100,Math.min(1900,v*30))};try{localStorage.setItem('orr_fid_anim',String(ora))}catch(e){}}}
   var previous=giro?0:TRUSTANIM.value==null?v:TRUSTANIM.value,shown=null;
   if(!giro)TRUSTANIM.giro=null;
   TRUSTANIM.team=t;var id=++TRUSTANIM.token,from=previous,start=performance.now(),duration=reduce?0:520;
   var card=el.querySelector('svg');card.setAttribute('aria-label','Fiducia del presidente '+v+' su 100');
   if(from!==v&&!reduce&&!giro){number.classList.remove('trust-flip');void number.getBoundingClientRect();number.classList.add('trust-flip')}
   function show(cur){TRUSTANIM.value=cur;path.setAttribute('stroke-dasharray',cur.toFixed(3)+' 100');var r=Math.round(cur);
-    if(r!==shown){shown=r;number.textContent=String(r);if(giro&&r!==v){number.classList.remove('trust-tick');void number.getBoundingClientRect();number.classList.add('trust-tick')}}}
+    if(r!==shown){shown=r;number.textContent=String(r);fidTab(el,r);if(giro&&r!==v){number.classList.remove('trust-tick');void number.getBoundingClientRect();number.classList.add('trust-tick')}}}
   function frame(now){
     if(id!==TRUSTANIM.token)return;
     if(giro){var nascosta=document.documentElement.classList.contains('v55-attesa')||document.hidden;   /* si parte quando la pagina si vede */
@@ -865,7 +895,7 @@ function animaFiducia(t,v){
       start=G.start;duration=G.duration}
     var x=duration?Math.min(1,(now-start)/duration):1, ease=1-Math.pow(1-x,3),cur=from+(v-from)*ease;
     show(cur);
-    if(x<1)requestAnimationFrame(frame);else{TRUSTANIM.value=v;TRUSTANIM.giro=null;number.textContent=String(v);path.setAttribute('stroke-dasharray',v+' 100')}
+    if(x<1)requestAnimationFrame(frame);else{TRUSTANIM.value=v;TRUSTANIM.giro=null;number.textContent=String(v);fidTab(el,v);path.setAttribute('stroke-dasharray',v+' 100')}
   }if(giro)show(G.start==null?0:TRUSTANIM.value||0);   /* niente lampo del numero finale quando la pagina si ridisegna */
   requestAnimationFrame(frame);
 }
