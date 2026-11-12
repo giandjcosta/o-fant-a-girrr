@@ -20,7 +20,6 @@ jobs:
   premi:
     runs-on: ubuntu-latest
     env:
-      SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
       REGISTRO_REF: main
     steps:
       - uses: actions/checkout@v4
@@ -35,6 +34,12 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
+      - name: Controllo chiave server prima del calcolo (nessuna scrittura)
+        if: github.event_name == 'schedule' || inputs.vai == true
+        env:
+          SUPABASE_SECRET_KEY: ${{ secrets.SUPABASE_SECRET_KEY }}
+          SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
+        run: python3 registro/calcoli/premi/registra_premi.py --controlla-chiave
       - uses: actions/setup-node@v4
         with:
           node-version: "20"
@@ -48,6 +53,9 @@ jobs:
       - name: Calcolo i premi della giornata con la logica del Laboratorio
         run: node registro/calcoli/premi/premi_giornata.js site/data.json site/girrr/dati/lab-dati.json registro/lab/index.html "$RUNNER_TEMP/premi.json"
       - name: Prova o registrazione
+        env:
+          SUPABASE_SECRET_KEY: ${{ secrets.SUPABASE_SECRET_KEY }}
+          SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
         run: |
           if [ "${{ github.event_name }}" = "schedule" ] || [ "${{ inputs.vai }}" = "true" ]; then
             python3 registro/calcoli/premi/registra_premi.py "$RUNNER_TEMP/premi.json" site/data.json --vai
