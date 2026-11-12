@@ -12,6 +12,10 @@ on:
         description: "Registra davvero i premi nel database (altrimenti solo prova)"
         type: boolean
         default: false
+      controlla_chiave:
+        description: "Controlla il tipo della chiave server senza registrare premi"
+        type: boolean
+        default: false
 permissions:
   contents: read
 concurrency:
@@ -35,7 +39,7 @@ jobs:
         with:
           python-version: "3.12"
       - name: Controllo chiave server prima del calcolo (nessuna scrittura)
-        if: github.event_name == 'schedule' || inputs.vai == true
+        if: github.event_name == 'schedule' || inputs.vai == true || inputs.controlla_chiave == true
         env:
           SUPABASE_SECRET_KEY: ${{ secrets.SUPABASE_SECRET_KEY }}
           SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
