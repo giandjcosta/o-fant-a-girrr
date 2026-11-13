@@ -73,9 +73,9 @@ Notizie pubbliche, senza indicare di chi e' ogni giocatore.
 | Grabara | Juventus | Lesione al crociato anteriore del ginocchio destro | Da aprile | Salta |
 | Yildiz | Juventus | Problema al piede | Prima metà di dicembre | Salta |
 | Kalulu | Juventus | Lesione ai muscoli ischiocrurali della gamba sinistra | Fine novembre | Salta |
-| Tavares N. | Lazio | Infortunio | Prossimo turno | Salta |
+| Tavares N. | Lazio | Infortunio | Metà dicembre | Salta |
 | Marusic | Lazio | Fastidio muscolare alla gamba | Da valutare | Salta |
-| Sutalo J. | Lazio | Infortunio | Prossimo turno | Salta |
+| Sutalo J. | Lazio | Lesione muscolare di secondo grado al flessore | Seconda metà di dicembre | Salta |
 | Chukwueze | Milan | Rottura del tendine del muscolo tensore della | Da aprile | Salta |
 | Saelemaekers | Milan | Problema alla caviglia destra e operata il | Da febbraio | Salta |
 | Birindelli | Monza | Problema fisico lamentato nella rifinitura | Prossimo turno | Salta |
