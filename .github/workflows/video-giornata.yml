@@ -1,0 +1,70 @@
+name: Video della giornata
+# Claude, 12 novembre 2026 (versione 6.0). Fa il video della giornata (36 s, verticale, con la musica scelta da Gianluca:
+# «B senza folla») e lo mette nella scheda Video di Girrr Sport, accanto alla Radio.
+# Parte appena finisce «Calcoli dopo la giornata» (insieme a Radio, Tabellone e Giornale, che usano gli stessi calcoli),
+# e ogni ora come riserva. Fa il video solo se l'ultima giornata è calcolata (calcoli/giornate.json) e il video non c'è ancora.
+# Le sorgenti stanno nel registro (rilascio/video), lette da lì. Video in girrr/video/ con la copertina e archivio.json.
+# Si può lanciare a mano: «giornata» per sceglierla, «rifai» = 1 per rifarla (il nuovo video sostituisce il vecchio).
+on:
+  workflow_run:
+    workflows: ["Calcoli dopo la giornata"]
+    types: [completed]
+  schedule:
+    - cron: "52 * * * *"
+  workflow_dispatch:
+    inputs:
+      giornata:
+        description: "Numero della giornata (vuoto = l'ultima calcolata)"
+        required: false
+        default: ""
+      rifai:
+        description: "1 = rifà il video anche se c'è già"
+        required: false
+        default: "0"
+permissions:
+  contents: write
+concurrency:
+  group: video-giornata
+jobs:
+  video:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+        with: { ref: main, path: code }
+      - uses: actions/checkout@v4
+        with: { ref: gh-pages, path: site }
+      - uses: actions/checkout@v4
+        with: { repository: giandjcosta/o-girrr-registro, ref: main, path: reg }
+      - uses: actions/setup-python@v5
+        with: { python-version: "3.12" }
+      - name: C'è un video da fare?
+        id: c
+        run: |
+          RIFAI=""; [ "${{ github.event.inputs.rifai }}" = "1" ] && RIFAI="--rifai"
+          python3 reg/rilascio/video/pubblica_video.py quale site code/calcoli/giornate.json --giornata "${{ github.event.inputs.giornata }}" $RIFAI >> "$GITHUB_OUTPUT"
+      - uses: actions/setup-node@v4
+        if: steps.c.outputs.giornata != ''
+        with: { node-version: "22" }
+      - name: Installo gli strumenti
+        if: steps.c.outputs.giornata != ''
+        run: |
+          sudo apt-get update -qq && sudo apt-get install -y -qq ffmpeg
+          pip install numpy
+          cd reg/rilascio/video/remotion
+          npm i --no-audit --no-fund remotion@4.0.300 @remotion/cli@4.0.300 @remotion/renderer@4.0.300 @remotion/bundler@4.0.300 react@18.3.1 react-dom@18.3.1
+      - name: Faccio il video
+        if: steps.c.outputs.giornata != ''
+        run: GIORNATA="${{ steps.c.outputs.giornata }}" bash reg/rilascio/video/fai_video.sh site "$RUNNER_TEMP/video.mp4"
+      - name: Pubblico sul sito
+        if: steps.c.outputs.giornata != ''
+        run: |
+          N="${{ steps.c.outputs.giornata }}"
+          python3 reg/rilascio/video/pubblica_video.py metti site "$RUNNER_TEMP/video.mp4" "$N"
+          cd site
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add girrr/video
+          git diff --cached --quiet || git commit -m "Video della giornata $N"
+          git pull --rebase origin gh-pages
+          git push origin gh-pages
