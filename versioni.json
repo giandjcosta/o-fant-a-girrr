@@ -2,6 +2,71 @@
   "nota": "Fonte unica della pagina Versioni (girrr/versioni.html e stadio/girrr/versioni.html). A ogni rilascio si aggiunge la versione in cima con rilascio/versioni/aggiungi.py. Numeri: correzione minore = terza cifra (5.6.1), aggiornamento medio = seconda cifra (5.7.0), aggiornamento grande = prima cifra (6.0). Dove manca la storia: «Dato non conservato». Le versioni 1.0-4.5 e il Mercato Scambi vengono dai messaggi recuperati da Claude chat (9 novembre 2026), date controllate con i commit del sito. Il campo «nota» e «altre_varianti» non si mostrano nella pagina.",
   "versioni": [
     {
+      "v": "6.0",
+      "data": "2026-11-13",
+      "tipo": "grande",
+      "titolo": "La Curva del tuo telefono e il video della giornata",
+      "messaggio": "🎬 **O Girrr 6.0 è online!** La Curva cambia faccia: su iPhone ha lo stile di iPhone, su Android quello di Android, e mentre leggete non salta più, perché i cori nuovi arrivano con la pillola «Nuovi cori». Dopo ogni giornata esce il video in mezzo minuto, nella scheda Video di Girrr Sport accanto alla Radio, con tutti quelli dalla 1ª giornata. Con «Condividi la giornata» mandate al gruppo video, Radio, Tabelloni e Giornale in un tocco. E poi la Squadra MVP dei tifosi, la classifica dei Derby e «La tua settimana», il racconto della vostra squadra. Buona giornata a tutti! ⚽",
+      "novita": [
+        {
+          "area": "Curva",
+          "voci": [
+            "Stile di iPhone (vetro e pillole) sugli iPhone e iPad, stile Android (Material 3) sui telefoni e tablet Android; PC e TV restano come prima",
+            "La pagina non si ricrea più a ogni aggiornamento: cambiano solo i cori nuovi o modificati",
+            "Pillola «Nuovi cori» con le facce di chi ha scritto; toccandola si torna su",
+            "Notifiche divise in Attività (applausi, rilanci, visualizzazioni) e Menzioni",
+            "Bozza del coro che resta se esci, link a ogni coro e Condividi con l'immagine e l'anteprima per WhatsApp",
+            "Impostazioni con Aspetto (Automatico, Chiaro, Scuro), suono dell'applauso e colori della lega o della tua squadra",
+            "15 nuovi personaggi, tra cui Radio Girrr e VAR del Girrr verificati"
+          ]
+        },
+        {
+          "area": "Girrr Sport",
+          "voci": [
+            "Scheda Video con il video della giornata (risultati, podio, classifica, Champions Cup, partite da non perdere) e l'archivio dalla 1ª giornata",
+            "Il video esce da solo dopo i calcoli della giornata",
+            "Squadra MVP dei tifosi: scelgono redazione e personaggi, gli allenatori possono votare, cambiare o ritirare il voto (uno per squadra)"
+          ]
+        },
+        {
+          "area": "Radio",
+          "voci": [
+            "Fischio d'inizio e triplice fischio veri in apertura e chiusura"
+          ]
+        },
+        {
+          "area": "Condividi",
+          "voci": [
+            "«Condividi la giornata» in Home e nel Giornale: video, puntata della Radio, Tabelloni ufficiali di Campionato e Champions Cup e copertina del Giornale, con la spunta per togliere quello che non serve"
+          ]
+        },
+        {
+          "area": "Derby",
+          "voci": [
+            "Classifica dei Derby della stagione (3 punti la vittoria, 1 il pareggio), con Campionato e Champions Cup separati"
+          ]
+        },
+        {
+          "area": "Home",
+          "voci": [
+            "«La tua settimana» in Oggi al Girrr, il racconto della giornata della tua squadra"
+          ]
+        },
+        {
+          "area": "Carriera",
+          "voci": [
+            "Archivio delle settimane della tua squadra"
+          ]
+        },
+        {
+          "area": "Albo d'oro",
+          "voci": [
+            "Archivio dei verdetti MVP nei Record della stagione"
+          ]
+        }
+      ]
+    },
+    {
       "v": "5.8.2",
       "data": "2026-11-12",
       "tipo": "minore",

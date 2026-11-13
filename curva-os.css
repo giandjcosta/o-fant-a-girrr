@@ -1,0 +1,275 @@
+/* Curva · Uno stile per iPhone e uno per Android (Claude, 12 novembre 2026). Prototipo del Lab, il sito vero non cambia.
+   html[data-os=ios]     → Liquid Glass: vetro sfocato, capsula che galleggia, movimenti morbidi a molla (SwiftUI).
+   html[data-os=android] → Material 3 Expressive: superfici piene, pillola colorata, onda al tocco, molle più rimbalzanti.
+   html[data-os=altro]   → nessuna regola: la Curva di sempre (PC e TV).
+   Vale per la Curva della Lega e dello Stadio. curva-os.js riconosce il telefono e segna i cambi di sezione e di scheda.
+   Questo file si genera da curva-os.src.css con: python3 rilascio/curva-os/costruisci.py (le molle vengono da molle.py). */
+
+/* =====================================================================
+   Molle (curve e durate), per tutti e due i sistemi
+   ===================================================================== */
+html[data-os]{
+  --ios-morbida:linear(0,0.022,0.074,0.144,0.224,0.305,0.384,0.461,0.53,0.593,0.651,0.701,0.744,0.783,0.816,0.845,0.869,0.89,0.908,0.923,0.935,0.946,0.955,0.963,0.969,0.974,0.979,0.982,0.985,0.988,0.99,0.992,0.993,0.994,0.995,0.996,0.997,0.997,0.998,0.998,1);
+  --ios-morbida-durata:706ms;  /* smorzamento 1.00, rigidità 157, supera l'arrivo del 0% */
+  --ios-scattante:linear(0,0.02,0.069,0.14,0.219,0.306,0.39,0.471,0.55,0.619,0.684,0.739,0.789,0.83,0.865,0.896,0.92,0.941,0.957,0.97,0.98,0.988,0.994,0.998,1.001,1.003,1.005,1.006,1.006,1.006,1.006,1.005,1.005,1.004,1.004,1.003,1.003,1.002,1.002,1.002,1);
+  --ios-scattante-durata:668ms;  /* smorzamento 0.85, rigidità 157, supera l'arrivo del 1% */
+  --ios-elastica:linear(0,0.019,0.068,0.14,0.223,0.316,0.408,0.499,0.587,0.666,0.74,0.802,0.858,0.904,0.942,0.973,0.997,1.015,1.028,1.037,1.043,1.045,1.045,1.044,1.041,1.038,1.033,1.029,1.025,1.021,1.017,1.014,1.011,1.008,1.006,1.004,1.002,1.001,1,0.999,1);
+  --ios-elastica-durata:648ms;  /* smorzamento 0.70, rigidità 157, supera l'arrivo del 5% */
+  --ios-veloce:linear(0,0.014,0.05,0.103,0.165,0.233,0.303,0.373,0.44,0.504,0.564,0.62,0.67,0.715,0.754,0.79,0.822,0.85,0.874,0.895,0.914,0.929,0.942,0.953,0.962,0.97,0.977,0.982,0.986,0.99,0.992,0.995,0.996,0.998,0.999,1,1,1.001,1.001,1.001,1);
+  --ios-veloce-durata:339ms;  /* smorzamento 0.90, rigidità 438, supera l'arrivo del 0% */
+  --m3-spaziale-veloce:linear(0,0.038,0.13,0.254,0.393,0.533,0.664,0.78,0.877,0.958,1.015,1.054,1.079,1.091,1.093,1.088,1.079,1.067,1.053,1.041,1.029,1.018,1.01,1.003,0.998,0.994,0.992,0.991,0.991,0.992,0.993,0.994,0.995,0.996,0.998,0.999,0.999,1,1,1.001,1);
+  --m3-spaziale-veloce-durata:403ms;  /* smorzamento 0.60, rigidità 800, supera l'arrivo del 9% */
+  --m3-spaziale:linear(0,0.022,0.075,0.149,0.234,0.325,0.415,0.502,0.583,0.656,0.722,0.781,0.83,0.871,0.905,0.933,0.955,0.973,0.986,0.996,1.004,1.009,1.012,1.014,1.014,1.014,1.014,1.013,1.012,1.01,1.009,1.008,1.006,1.005,1.004,1.003,1.003,1.002,1.002,1.001,1);
+  --m3-spaziale-durata:442ms;  /* smorzamento 0.80, rigidità 380, supera l'arrivo del 1% */
+  --m3-spaziale-lenta:linear(0,0.02,0.071,0.143,0.227,0.313,0.403,0.489,0.57,0.644,0.708,0.767,0.817,0.86,0.896,0.924,0.948,0.967,0.982,0.993,1.001,1.007,1.011,1.013,1.014,1.015,1.014,1.014,1.012,1.011,1.01,1.009,1.007,1.006,1.005,1.004,1.003,1.003,1.002,1.001,1);
+  --m3-spaziale-lenta-durata:596ms;  /* smorzamento 0.80, rigidità 200, supera l'arrivo del 1% */
+  --m3-effetti-veloce:linear(0,0.036,0.114,0.212,0.314,0.424,0.514,0.594,0.663,0.729,0.778,0.819,0.853,0.884,0.906,0.925,0.939,0.953,0.962,0.97,0.976,0.981,0.985,0.988,0.991,0.993,0.994,0.995,0.996,0.997,0.998,0.998,0.999,0.999,0.999,0.999,0.999,1,1,1,1);
+  --m3-effetti-veloce-durata:185ms;  /* smorzamento 1.00, rigidità 3800, supera l'arrivo del 0% */
+  --m3-effetti:linear(0,0.027,0.095,0.183,0.27,0.365,0.455,0.536,0.604,0.668,0.724,0.768,0.808,0.842,0.871,0.893,0.912,0.929,0.942,0.952,0.961,0.969,0.974,0.979,0.983,0.987,0.989,0.991,0.993,0.994,0.995,0.996,0.997,0.998,0.998,0.998,0.999,0.999,0.999,0.999,1);
+  --m3-effetti-durata:255ms;  /* smorzamento 1.00, rigidità 1600, supera l'arrivo del 0% */
+}
+/* Browser senza linear(): curve classiche che ci somigliano */
+@supports not (animation-timing-function:linear(0,1)){
+  html[data-os]{
+    --ios-morbida:cubic-bezier(.25,.8,.25,1);--ios-scattante:cubic-bezier(.2,.9,.25,1.05);--ios-elastica:cubic-bezier(.2,.9,.3,1.12);--ios-veloce:cubic-bezier(.2,.8,.3,1);
+    --m3-spaziale-veloce:cubic-bezier(.3,1.6,.5,1);--m3-spaziale:cubic-bezier(.3,1.2,.5,1);--m3-spaziale-lenta:cubic-bezier(.3,1.15,.5,1);
+    --m3-effetti-veloce:cubic-bezier(.2,0,0,1);--m3-effetti:cubic-bezier(.2,0,0,1);
+  }
+}
+html[data-os] .sl-l,html[data-os] .sl-r{animation:none}   /* lo scorrimento a dito tra le schede lo fanno le regole qui sotto */
+html[data-os] .post.old{animation:none!important}         /* i cori già visti non si rianimano (come prima) */
+html[data-os] .col{overflow-x:clip}   /* il contenuto che scivola di lato non deve allargare la pagina (il telefono la rimpicciolirebbe) */
+
+/* =====================================================================
+   iPhone · Liquid Glass
+   ===================================================================== */
+html[data-os=ios]{--os-sfoca:blur(18px) saturate(170%)}
+
+/* --- Schede in alto: capsula di vetro con la «goccia» che scivola da una scheda all'altra --- */
+html[data-os=ios] .tabs{margin:8px 10px;padding:4px;gap:4px;border-radius:999px!important;
+  border:1px solid color-mix(in srgb,var(--tx) 14%,transparent);
+  background:color-mix(in srgb,var(--bg) 55%,transparent)!important;
+  -webkit-backdrop-filter:var(--os-sfoca);backdrop-filter:var(--os-sfoca);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.35),0 4px 14px rgba(0,0,0,.10)}
+html[data-os=ios] .tabs button{border-radius:999px;padding:10px 4px!important;isolation:isolate;transition:color .3s ease}
+html[data-os=ios] .tabs button.on:after{display:none}
+html[data-os=ios] .tabs button.on::before{content:'';position:absolute;inset:0;z-index:-1;border-radius:999px;
+  background:color-mix(in srgb,var(--tx) 12%,transparent);
+  box-shadow:inset 0 0 0 .5px color-mix(in srgb,var(--tx) 14%,transparent),inset 0 0 6px rgba(255,255,255,.18),0 0 10px rgba(0,0,0,.10);   /* luce e ombra uguali su tutti i lati: la pillola resta al centro della capsula anche a occhio */
+  transition:transform var(--ios-veloce-durata) var(--ios-veloce),filter .3s ease}
+html[data-os=ios] .tabs button:active::before{transform:scale(1.08);filter:brightness(1.15)}   /* il vetro si gonfia e si illumina al tocco */
+html[data-os=ios][data-cambio-tabs] .tabs button.on::before{
+  animation:os-ios-scivola-tabs var(--ios-scattante-durata) var(--ios-scattante) both,os-ios-goccia .5s ease-out both}
+
+/* --- Contenuto: al cambio di scheda scivolano dalla parte giusta solo i cori (il riquadro della squadra e il campo per scrivere restano fermi) --- */
+html[data-os=ios][data-cambio-tabs] #vista>:is(article.post,.vuoto){animation:os-ios-laterale var(--ios-morbida-durata) var(--ios-morbida) both}
+html[data-os=ios][data-cambio-nav] #vista,html[data-os=ios][data-os-avvio] #vista{animation:os-ios-appare var(--ios-morbida-durata) var(--ios-morbida) both}
+
+/* --- Cori nuovi (dopo una ricarica o all'apertura): salgono e si mettono a fuoco --- */
+html[data-os=ios] .post{animation:os-ios-coro var(--ios-morbida-durata) var(--ios-morbida) both}
+
+/* --- Applauso: il cuore si gonfia con la molla elastica --- */
+html[data-os=ios] .acts .app.on svg{animation:os-ios-cuore var(--ios-elastica-durata) var(--ios-elastica) both}
+
+/* --- Pulsanti: su iPhone si «spengono» un attimo al tocco e tornano piano --- */
+html[data-os=ios] .acts button,html[data-os=ios] .btn{transition:color .2s,background .2s,opacity .35s ease}
+html[data-os=ios] .acts button:active,html[data-os=ios] .btn:active{opacity:.5;transition-duration:0s}
+
+/* --- Tirare per ricaricare: la rotellina a raggi di iOS --- */
+html[data-os=ios] .ptrb svg{display:none}
+html[data-os=ios] .ptrb::before{content:'';width:24px;height:24px;flex:none;
+  background:repeating-conic-gradient(from -5deg,var(--mu) 0 10deg,transparent 10deg 30deg);
+  -webkit-mask:radial-gradient(circle,transparent 36%,#000 38% 70%,transparent 72%),conic-gradient(rgba(0,0,0,.15),#000);
+  -webkit-mask-composite:source-in;
+  mask:radial-gradient(circle,transparent 36%,#000 38% 70%,transparent 72%),conic-gradient(rgba(0,0,0,.15),#000);
+  mask-composite:intersect}
+html[data-os=ios] .ptrb.sp::before{animation:os-ios-raggi .9s steps(12) infinite}
+
+/* --- Ingrandimento delle foto: stessa strada, curva di iOS --- */
+html[data-os=ios] .lb .lbx{transition-timing-function:var(--ios-scattante)!important}
+
+@media (max-width:759px){
+  /* --- Barra in basso: capsula di vetro che galleggia (disegnata dal ::before: la Curva tiene la barra attaccata al bordo con fixNav) --- */
+  html[data-os=ios] .nav{background:transparent!important;border-top:0!important;
+    padding:6px 18px calc(16px + env(safe-area-inset-bottom))!important;
+    transform-origin:50% 100%;transition:scale var(--ios-scattante-durata) var(--ios-scattante)}
+  html[data-os=ios] .nav::before{content:'';position:absolute;z-index:-1;pointer-events:none;
+    left:12px;right:12px;top:0;bottom:calc(10px + env(safe-area-inset-bottom));border-radius:999px;
+    border:1px solid color-mix(in srgb,var(--tx) 16%,transparent);
+    background:color-mix(in srgb,var(--bg) 58%,transparent);
+    -webkit-backdrop-filter:var(--os-sfoca);backdrop-filter:var(--os-sfoca);
+    box-shadow:inset 0 1px 0 rgba(255,255,255,.35),inset 0 -1px 0 rgba(0,0,0,.12),0 12px 32px rgba(0,0,0,.30)}
+  html[data-os=ios] .nav button,html[data-os=ios] .nav .sito{border-radius:999px;padding:9px 0!important;isolation:isolate}
+  html[data-os=ios] .nav button.on::before{content:'';position:absolute;inset:0;z-index:-1;border-radius:999px;
+    background:color-mix(in srgb,var(--tx) 12%,transparent);box-shadow:inset 0 0 0 .5px color-mix(in srgb,var(--tx) 14%,transparent),inset 0 0 6px rgba(255,255,255,.18);
+    transition:transform var(--ios-veloce-durata) var(--ios-veloce),filter .3s ease}
+  html[data-os=ios] .nav button:active::before{transform:scale(1.12);filter:brightness(1.2)}
+  html[data-os=ios] .nav button:not(.on):active{background:color-mix(in srgb,var(--tx) 7%,transparent)}
+  html[data-os=ios][data-cambio-nav] .nav button.on::before{
+    animation:os-ios-scivola-nav var(--ios-scattante-durata) var(--ios-scattante) both,os-ios-goccia .5s ease-out both}
+  /* Scorrendo in giù la capsula si fa piccola, risalendo torna grande (iOS 26) */
+  html[data-os=ios][data-giu] .nav{scale:.86}
+  /* All'apertura la capsula sale dal fondo */
+  html[data-os=ios][data-os-avvio] .nav{animation:os-ios-sali var(--ios-elastica-durata) var(--ios-elastica) both}
+  html[data-os=ios] .col{padding-bottom:110px!important}
+  /* Avviso: pillola di vetro scuro sopra la capsula */
+  html[data-os=ios] .toast{bottom:calc(92px + env(safe-area-inset-bottom))!important;border-radius:999px!important;
+    background:color-mix(in srgb,var(--tx) 82%,transparent)!important;
+    -webkit-backdrop-filter:var(--os-sfoca);backdrop-filter:var(--os-sfoca);
+    box-shadow:inset 0 1px 0 rgba(255,255,255,.25),0 10px 28px rgba(0,0,0,.28);
+    animation:os-ios-avviso var(--ios-elastica-durata) var(--ios-elastica) both!important}
+}
+
+@keyframes os-ios-scivola-tabs{from{translate:var(--os-tabs-dx,0) 0;scale:var(--os-tabs-s,1) 1}to{translate:0 0;scale:1 1}}
+@keyframes os-ios-scivola-nav{from{translate:var(--os-nav-dx,0) 0}to{translate:0 0}}
+@keyframes os-ios-goccia{0%{transform:none}35%{transform:scale(1.16,.88)}100%{transform:none}}   /* la goccia si allunga mentre corre */
+@keyframes os-ios-laterale{from{opacity:0;translate:calc(var(--os-dir,1) * 28px) 0}to{opacity:1;translate:0 0}}
+@keyframes os-ios-appare{from{opacity:0;filter:blur(6px);scale:.985}to{opacity:1;filter:none;scale:1}}
+@keyframes os-ios-coro{from{opacity:0;translate:0 10px;filter:blur(3px)}to{opacity:1;translate:0 0;filter:none}}
+@keyframes os-ios-cuore{from{scale:.55}to{scale:1}}
+@keyframes os-ios-raggi{to{rotate:360deg}}
+@keyframes os-ios-sali{from{translate:0 130%}to{translate:0 0}}
+@keyframes os-ios-avviso{from{opacity:0;transform:translate(-50%,16px) scale(.9)}to{opacity:1;transform:translate(-50%,0)}}
+
+/* --- Pillola «Nuovi cori»: goccia di vetro che scende sotto le schede --- */
+html[data-os=ios] .cv-nuovi{background:color-mix(in srgb,var(--bg) 62%,transparent);color:var(--tx);
+  border:1px solid color-mix(in srgb,var(--tx) 14%,transparent);-webkit-backdrop-filter:var(--os-sfoca);backdrop-filter:var(--os-sfoca);
+  box-shadow:inset 0 0 0 .5px color-mix(in srgb,var(--tx) 10%,transparent),inset 0 0 6px rgba(255,255,255,.2),0 8px 24px rgba(0,0,0,.16);
+  transition:opacity .3s ease,transform var(--ios-elastica-durata) var(--ios-elastica)}
+html[data-os=ios] .cv-nuovi:active{transform:translate(-50%,0) scale(1.06)}
+
+/* --- Impostazioni (pulsante della luna): foglio di vetro che sale dal basso, scelta come una capsula --- */
+html[data-os=ios] .cv-imp-p{background:var(--bg);   /* foglio pieno: dietro ci sono i cori, il vetro qui li farebbe leggere attraverso */
+  border:1px solid color-mix(in srgb,var(--tx) 12%,transparent);border-bottom:0;border-radius:28px 28px 0 0;
+  transition:transform var(--ios-scattante-durata) var(--ios-scattante)}
+html[data-os=ios] .cv-imp-seg{border-radius:999px;background:color-mix(in srgb,var(--tx) 7%,transparent)}
+html[data-os=ios] .cv-imp-seg button{border-radius:999px}
+html[data-os=ios] .cv-imp-seg button[aria-pressed=true]{background:color-mix(in srgb,var(--bg) 85%,var(--tx));color:var(--tx);
+  box-shadow:inset 0 0 0 .5px color-mix(in srgb,var(--tx) 14%,transparent),0 0 10px rgba(0,0,0,.10)}
+
+/* Senza vetro nel browser, o con «Riduci trasparenza»: fondi pieni */
+@supports not ((backdrop-filter:blur(1px)) or (-webkit-backdrop-filter:blur(1px))){
+  html[data-os=ios] .tabs,html[data-os=ios] .nav::before{background:var(--bg)!important}
+}
+@media (prefers-reduced-transparency:reduce){
+  html[data-os=ios] .tabs,html[data-os=ios] .nav::before,html[data-os=ios] .toast{background:var(--bg)!important;-webkit-backdrop-filter:none!important;backdrop-filter:none!important}
+  html[data-os=ios] .toast{background:var(--tx)!important}
+}
+
+/* =====================================================================
+   Android · Material 3 Expressive
+   ===================================================================== */
+html[data-os=android]{
+  --os-indicatore:color-mix(in srgb,var(--acc) 24%,var(--bg));   /* pillola tonale del colore della pagina */
+  --os-superficie:color-mix(in srgb,var(--bg) 92%,var(--tx));
+  --os-superficie-alta:color-mix(in srgb,var(--bg) 86%,var(--tx));
+  --os-strato:color-mix(in srgb,var(--tx) 10%,transparent);       /* lo «strato» che si accende al tocco */
+}
+
+/* --- Schede in alto: la lineetta corre dalla scheda di prima alla nuova, con il rimbalzo --- */
+html[data-os=android] .tabs button{transition:background-color var(--m3-effetti-durata) var(--m3-effetti)}
+html[data-os=android] .tabs button:active{background:var(--os-strato)!important}
+html[data-os=android] .tabs button.on:after{width:auto!important;left:20%;right:20%;transform:none;height:3px!important;border-radius:3px 3px 0 0!important}
+html[data-os=android][data-cambio-tabs] .tabs button.on:after{animation:os-and-scivola var(--m3-spaziale-veloce-durata) var(--m3-spaziale-veloce) both}
+
+/* --- Contenuto: «asse condiviso» tra le schede (scorre dalla parte giusta), «dissolvenza attraverso» tra le sezioni --- */
+html[data-os=android][data-cambio-tabs] #vista>:is(article.post,.vuoto){animation:os-and-asse var(--m3-spaziale-durata) var(--m3-spaziale) both,os-and-dissolvi var(--m3-effetti-durata) var(--m3-effetti) both}
+html[data-os=android][data-cambio-nav] #vista,html[data-os=android][data-os-avvio] #vista{animation:os-and-attraverso var(--m3-spaziale-durata) var(--m3-spaziale) both,os-and-dissolvi var(--m3-effetti-durata) var(--m3-effetti) both}
+
+/* --- Cori nuovi: salgono uno dopo l'altro, con il rimbalzo --- */
+html[data-os=android] .post{animation:os-and-coro var(--m3-spaziale-durata) var(--m3-spaziale) both,os-and-dissolvi var(--m3-effetti-durata) var(--m3-effetti) both}
+html[data-os=android] .post:nth-of-type(2){animation-delay:30ms}
+html[data-os=android] .post:nth-of-type(3){animation-delay:60ms}
+html[data-os=android] .post:nth-of-type(4){animation-delay:90ms}
+html[data-os=android] .post:nth-of-type(5){animation-delay:120ms}
+html[data-os=android] .post:nth-of-type(n+6){animation-delay:150ms}
+
+/* --- Applauso: il cuore rimbalza (molla spaziale veloce, supera l'arrivo del 9%) --- */
+html[data-os=android] .acts .app.on svg{animation:os-and-cuore var(--m3-spaziale-veloce-durata) var(--m3-spaziale-veloce) both}
+
+/* --- Onda dal punto toccato (la crea curva-os.js) --- */
+html[data-os=android] .os-onda{position:absolute;border-radius:50%;pointer-events:none;background:currentColor;
+  opacity:0;transform:scale(0);animation:os-and-onda .6s cubic-bezier(.2,0,0,1) forwards}
+
+/* --- Tirare per ricaricare: cerchio che scende con la freccia, poi la forma che cambia (indicatore di Material 3 Expressive) --- */
+html[data-os=android] .ptrb{position:relative}
+html[data-os=android] .ptrb svg{box-sizing:content-box;padding:8px;border-radius:50%;color:var(--acc);
+  background:var(--os-superficie-alta);box-shadow:0 2px 6px rgba(0,0,0,.22)}
+html[data-os=android] .ptrb.sp svg{animation:none!important;color:transparent}
+html[data-os=android] .ptrb.sp::after{content:'';position:absolute;left:50%;top:50%;width:18px;height:18px;margin:-9px 0 0 -9px;
+  background:var(--acc);animation:os-and-forma 1.4s cubic-bezier(.4,0,.2,1) infinite}
+
+/* --- Ingrandimento delle foto: curva di Material --- */
+html[data-os=android] .lb .lbx{transition-timing-function:var(--m3-spaziale)!important}
+
+@media (max-width:759px){
+  /* --- Barra in basso: barra di navigazione piena, etichette sempre visibili, pillola dietro l'icona attiva --- */
+  html[data-os=android] .nav{background:var(--os-superficie)!important;border-top:0!important;
+    padding:10px 4px calc(12px + env(safe-area-inset-bottom))!important}
+  html[data-os=android] .nav button,html[data-os=android] .nav .sito{flex-direction:column!important;align-items:center;gap:4px;padding:0!important;border-radius:16px}
+  html[data-os=android] .nav button .t,html[data-os=android] .nav .sito .t{display:block!important;font:600 12px Inter,system-ui,sans-serif;color:var(--mu);
+    transition:color var(--m3-effetti-durata) var(--m3-effetti)}
+  html[data-os=android] .nav button.on .t{color:var(--tx);font-weight:800}
+  html[data-os=android] .nav button svg,html[data-os=android] .nav .sito img{box-sizing:content-box;padding:4px 20px;border-radius:999px;
+    transition:background-color var(--m3-effetti-durata) var(--m3-effetti)}
+  html[data-os=android] .nav .sito img{padding:3px 20px}
+  html[data-os=android] .nav button.on svg{background:var(--os-indicatore)}
+  html[data-os=android] .nav button:active svg,html[data-os=android] .nav .sito:active img{background:var(--os-strato)}
+  html[data-os=android] .nav button.on:active svg{background:color-mix(in srgb,var(--acc) 34%,var(--bg))}
+  /* La pillola si allarga dal centro con il rimbalzo, l'icona fa un piccolo salto */
+  html[data-os=android][data-cambio-nav] .nav button.on svg{animation:os-and-pillola var(--m3-spaziale-veloce-durata) var(--m3-spaziale-veloce) both}
+  html[data-os=android] .nav .bd{top:-2px!important;left:calc(50% + 8px)!important}
+  /* All'apertura la barra sale dal fondo */
+  html[data-os=android][data-os-avvio] .nav{animation:os-and-sali var(--m3-spaziale-durata) var(--m3-spaziale) both}
+  html[data-os=android] .col{padding-bottom:110px!important}
+  /* Avviso: «snackbar» di Android, largo, allineato a sinistra, sopra la barra */
+  html[data-os=android] .toast{left:12px!important;right:12px;max-width:none!important;transform:none;
+    bottom:calc(96px + env(safe-area-inset-bottom))!important;text-align:left!important;border-radius:8px!important;
+    padding:14px 16px!important;font-weight:600!important;box-shadow:0 4px 12px rgba(0,0,0,.25);
+    animation:os-and-avviso var(--m3-spaziale-durata) var(--m3-spaziale) both!important}
+}
+
+/* --- Pillola «Nuovi cori»: pulsante tonale di Material, scende con il rimbalzo --- */
+html[data-os=android] .cv-nuovi{background:var(--os-indicatore);color:var(--tx);border-radius:16px;padding:10px 16px 10px 12px;
+  box-shadow:0 3px 8px rgba(0,0,0,.18),0 1px 3px rgba(0,0,0,.12);
+  transition:opacity var(--m3-effetti-durata) var(--m3-effetti),transform var(--m3-spaziale-veloce-durata) var(--m3-spaziale-veloce)}
+
+/* --- Impostazioni: foglio di Material che sale con il rimbalzo, pulsanti segmentati con la spunta --- */
+html[data-os=android] .cv-imp-p{background:var(--os-superficie);border-radius:28px 28px 0 0;
+  transition:transform var(--m3-spaziale-durata) var(--m3-spaziale)}
+html[data-os=android] .cv-imp-m{width:32px;height:4px;background:var(--mu);opacity:.5}
+html[data-os=android] .cv-imp-seg{background:transparent;border:0;padding:0;gap:0}
+html[data-os=android] .cv-imp-seg button{border:1px solid var(--mu);border-radius:0;margin-left:-1px}
+html[data-os=android] .cv-imp-seg button:first-child{border-radius:999px 0 0 999px;margin-left:0}
+html[data-os=android] .cv-imp-seg button:last-child{border-radius:0 999px 999px 0}
+html[data-os=android] .cv-imp-seg button[aria-pressed=true]{background:var(--os-indicatore);color:var(--tx)}
+html[data-os=android] .cv-imp-seg button[aria-pressed=true]::before{content:'✓\00a0'}
+
+@keyframes os-and-scivola{from{translate:var(--os-tabs-dx,0) 0;scale:var(--os-tabs-s,1) 1}to{translate:0 0;scale:1 1}}
+@keyframes os-and-asse{from{translate:calc(var(--os-dir,1) * 30px) 0}to{translate:0 0}}
+@keyframes os-and-attraverso{from{scale:.94}to{scale:1}}
+@keyframes os-and-dissolvi{from{opacity:0}to{opacity:1}}
+@keyframes os-and-coro{from{translate:0 18px}to{translate:0 0}}
+@keyframes os-and-cuore{from{scale:.4}to{scale:1}}
+@keyframes os-and-onda{0%{opacity:.22;transform:scale(0)}60%{opacity:.14}100%{opacity:0;transform:scale(1)}}
+@keyframes os-and-forma{   /* la forma gira e cambia: cerchio, petalo, quadrato tondo, foglia */
+  0%{border-radius:50%;rotate:0deg}
+  25%{border-radius:30% 70% 70% 30%/30% 30% 70% 70%;rotate:110deg}
+  50%{border-radius:28%;rotate:200deg;scale:.9}
+  75%{border-radius:50% 10% 50% 10%;rotate:290deg}
+  100%{border-radius:50%;rotate:360deg}}
+@keyframes os-and-pillola{from{scale:.3 1;opacity:.3}to{scale:1 1;opacity:1}}
+@keyframes os-and-sali{from{translate:0 100%}to{translate:0 0}}
+@keyframes os-and-avviso{from{opacity:0;translate:0 24px}to{opacity:1;translate:0 0}}
+
+/* =====================================================================
+   «Riduci movimento»: niente animazioni nuove, in tutti e due gli stili
+   ===================================================================== */
+@media (prefers-reduced-motion:reduce){
+  html[data-os] #vista,html[data-os] #vista>.vuoto,html[data-os] .post,html[data-os] .nav,html[data-os] .nav button svg,html[data-os] .nav button::before,
+  html[data-os] .tabs button::before,html[data-os] .tabs button.on:after,html[data-os] .acts .app.on svg,html[data-os] .toast{animation:none!important}
+  html[data-os] .cv-nuovi{transition:opacity .2s!important}
+  html[data-os] .ptrb.sp::before,html[data-os] .ptrb.sp::after{animation-duration:2s!important}
+  html[data-os] .nav,html[data-os] .tabs button::before,html[data-os] .nav button::before{transition:none!important}
+  html[data-os][data-giu] .nav{scale:1}
+}
