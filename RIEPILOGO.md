@@ -131,7 +131,7 @@ Punteggio: piu' e' alto, piu' conviene. Unisce valore e probabilita' di giocare.
 | Giocatore | Squadra | Stato | Avversario | Punteggio |
 |---|---|---|---|---|
 | Ghedjemis | Frosinone | Titolare | Milan (T) | 72 |
-| Robinson J. | Monza | Titolare | Fiorentina (C) | 65 |
+| Robinson J. | Monza | In dubbio | Fiorentina (C) | 65 |
 | Lontani | Parma | Titolare | Roma (C) | 52 |
 | Nzola | Cagliari | Fuori | Como (T) | 48 |
 | N'Dri | Lecce | Panchina | Lazio (T) | 44 |
