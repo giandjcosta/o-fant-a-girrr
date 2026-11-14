@@ -205,7 +205,89 @@ def calcola_periodo(d, giornate, da, a, fiducia, aspettative, derby, mvp, ora, n
                            'miglior_difesa': [t for t,v in out.items() if v['bilancio']['gol_subiti']==min((x['bilancio']['gol_subiti'] for x in out.values()),default=0)]}}
 
 
-def calcola(d, fiducia=None, aspettative=None, derby=None, mvp=None, ora=None):
+
+def firma_settimana(d, giornate, fino, stagione, ora):
+    """Stessa serializzazione dei fatti pubblicati di tifosi/model.js."""
+    sa=next(g['sa'] for g in giornate if g['n']==fino)
+    def turno(g, cup=False):
+        mm=[]
+        for m in g.get('m',[]):
+            r=m[:6 if cup else 5]
+            if not pubblicata(d,g,ora):r[-1]='-'
+            mm.append(r)
+        return {'n':g['n'],'sa':g['sa'],'m':mm}
+    facts={'stagione':stagione,'league':[turno(g) for g in giornate if g['n']<=fino],
+           'cup':[turno(g,True) for g in d.get('cal',{}).get('cup',[]) if g['sa']<=sa]}
+    def js(v):
+        if isinstance(v,float) and v.is_integer():return int(v)
+        if isinstance(v,list):return [js(x) for x in v]
+        if isinstance(v,dict):return {k:js(x) for k,x in v.items()}
+        return v
+    return hashlib.sha256(json.dumps(js(facts),ensure_ascii=False,separators=(',',':')).encode()).hexdigest()
+
+
+def aggiungi_voci(core,d,giornate,edizione,curva,ora):
+    """Solo racconti firmati e parole realmente conservate. Nessuna citazione inventata."""
+    stagione=core['stagione'];teams=list(core['periodi']['finora']['squadre'])
+    def estratto(t,maxlen=180):
+        t=re.sub(r'\s+',' ',str(t or '')).strip()
+        t=re.sub(r'\bderby\b','Derby',t,flags=re.I)
+        t=re.sub(r'·\s*([a-zà-ÿ])',lambda m:'· '+m[1].upper(),t)
+        if len(t)<=maxlen:return t
+        frasi=re.split(r'(?<=[.!?])\s+',t);out=''
+        for frase in frasi:
+            if len(out)+len(frase)+1>maxlen:break
+            out+=(' ' if out else '')+frase
+        return out or t[:maxlen].rsplit(' ',1)[0]+'…'
+    posts={str(p.get('id')):p for p in (curva or {}).get('posts',[])}
+    reactions={}
+    for r in (curva or {}).get('react',[]):
+        if r.get('kind')=='a':reactions[r.get('k')]=reactions.get(r.get('k'),0)+r.get('n',0)
+    candidati=[dict(p,chiave='p'+str(p.get('id'))) for p in posts.values()]
+    for p in (curva or {}).get('replies',[]):
+        parent=posts.get(str(p.get('k',''))[1:]) if str(p.get('k','')).startswith('p') else None
+        if parent:candidati.append(dict(p,chiave='r'+str(p.get('id')),contesto=parent.get('body',''),parent=parent.get('id')))
+    inizio=dt.datetime(int(stagione[:4]),8,1,tzinfo=dt.timezone.utc).timestamp()
+    for k,p in core['periodi'].items():
+        n=p['alla_giornata'];voce_set=(edizione or {}).get('giornate',{}).get(str(n),{})
+        valida=bool(n and (edizione or {}).get('stagione')==stagione and voce_set.get('firma')==firma_settimana(d,giornate,n,stagione,ora))
+        last=next((g for g in giornate if g['n']==n),{})
+        tempi=[timestamp(v) for v in (d.get('votiTs',{}).get(str(last.get('sa'))),d.get('calcTs',{}).get(str(last.get('sa')))) if timestamp(v) is not None]
+        # Per un bilancio storico non attribuiamo commenti successivi alla chiusura.
+        fine=ora if n==core['ultima_pubblicata'] else max(tempi)+3600 if tempi else None
+        if p['dalla_giornata']>1:
+            prev=next(g for g in giornate if g['n']==p['dalla_giornata']-1)
+            tt=[timestamp(v) for v in (d.get('votiTs',{}).get(str(prev['sa'])),d.get('calcTs',{}).get(str(prev['sa']))) if timestamp(v) is not None]
+            dal=max(tt)+3600 if tt else None
+        else:dal=inizio
+        citazioni=[]
+        for c in candidati:
+            ts=c.get('ts');ts=ts/1000 if numero(ts) else timestamp(c.get('created'))
+            body=c.get('body','')
+            if dal is None or fine is None or not numero(ts) or not dal<=ts<=fine:continue
+            if not re.search(r'paregg|vittori|sconfitt|partit|Derby|campionato|punti|classifica',body,re.I):continue
+            if not body or len(body)<45 or re.search(r'fantapunt|scommess|quota|puntat[ao]|\bDio\b',body,re.I):continue
+            citazioni.append(dict(c,data_utc=dt.datetime.fromtimestamp(ts,dt.timezone.utc).isoformat(),gradimento=reactions.get(c['chiave'],0)))
+        def cita(c):return {'fonte':'Curva','id':c['chiave'],'autore':c.get('team',MANCANTE),'testo':estratto(c['body']),
+                           'data':c['data_utc'],'post':c.get('parent',c.get('id'))}
+        for team,sq in p['squadre'].items():
+            aliases=[team.lower()]
+            if team=='Oranje VC':aliases+=['orange vc','oranje','orange']
+            if team=='The Blue brothers':aliases+=['blues brothers','blue brothers']
+            def pertinente(c):
+                contenuto=(c.get('body','')+' '+c.get('contesto','')).lower()
+                # La sola appartenenza dell'autore non rende un commento pertinente alla squadra.
+                return any(re.search(r'(?<!\w)'+re.escape(a)+r'(?!\w)',contenuto) for a in aliases)
+            scelte=sorted((c for c in citazioni if pertinente(c)),key=lambda c:(c['data_utc'],c['gradimento']),reverse=True)
+            week=voce_set.get('squadre',{}).get(team,{}) if valida else {}
+            red={'fonte':'Girrr Sport','autore':'Redazione','giornata':n,'titolo':week.get('titolo'),
+                 'testo':estratto((week.get('paragrafi') or [''])[0])} if week.get('paragrafi') else None
+            sq['voci']={'redazione':red,'curva':[cita(c) for c in scelte[:2]]}
+        p['voci']={'redazione':[sq['voci']['redazione']|{'squadra':t} for t,sq in p['squadre'].items() if sq['voci']['redazione']],
+                    'curva':[cita(c) for c in sorted((c for c in citazioni if not c.get('parent')),key=lambda c:(c['gradimento'],c['data_utc']),reverse=True)[:2]]}
+
+
+def calcola(d, fiducia=None, aspettative=None, derby=None, mvp=None, ora=None, edizione=None, curva=None):
     ora = dt.datetime.now(dt.timezone.utc).timestamp() if ora is None else ora
     gs = giornate_pubblicate(d, ora);n = gs[-1]['n'] if gs else 0
     args = (fiducia or {}, aspettative or {}, derby, mvp, ora)
@@ -217,6 +299,7 @@ def calcola(d, fiducia=None, aspettative=None, derby=None, mvp=None, ora=None):
             'regole': {'girone_andata': ANDATA, 'zona_retrocessione': 'Ultimo posto, come nel Tabellone',
                        'parita': 'Punti, Fantapunti totali, differenza reti, gol fatti, ordine del Tabellone',
                        'derby': 'Registro disponibile; ufficialità storica non ricostruita', 'digiuno': 'Distinti senza vittorie e senza gol'}}
+    aggiungi_voci(core,d,gs,edizione,curva,ora)
     core['fingerprint'] = hashlib.sha256(json.dumps(core, sort_keys=True, ensure_ascii=False, allow_nan=False).encode()).hexdigest()
     return core
 
@@ -227,28 +310,30 @@ def leggi(path, default=None):
 
 def lettura_rpc(url, key, nome, stagione):
     req = urllib.request.Request(url.rstrip('/')+'/rest/v1/rpc/'+nome,
-          json.dumps({'p_stagione': stagione}).encode(), {'apikey': key, 'Content-Type': 'application/json'})
+          json.dumps({'p_team':None,'p_code':None,'p_limit':150} if nome=='curva_feed' else {'p_stagione': stagione}).encode(), {'apikey': key, 'Content-Type': 'application/json'})
     with urllib.request.urlopen(req, timeout=30) as r:return json.load(r)
 
 
 def main():
     p=argparse.ArgumentParser(description=__doc__);p.add_argument('sito', type=Path);p.add_argument('--uscita', type=Path)
     p.add_argument('--aspettative', type=Path, default=Path(__file__).with_name('aspettative.json'))
-    p.add_argument('--derby', type=Path);p.add_argument('--mvp', type=Path);p.add_argument('--leggi-pubblico', action='store_true')
+    p.add_argument('--curva', type=Path);p.add_argument('--derby', type=Path);p.add_argument('--mvp', type=Path);p.add_argument('--leggi-pubblico', action='store_true')
     a=p.parse_args();dest=a.uscita or a.sito/'girrr/dati/giro-di-boa.json';exp=leggi(a.aspettative,{})
+    curva=leggi(a.curva) if a.curva else None
     derby=leggi(a.derby) if a.derby else None;mvp=leggi(a.mvp) if a.mvp else None
     if a.leggi_pubblico:
         config=leggi(a.sito/'girrr/v60/tifosi-config.json',{})
         url=config.get('url') or os.environ.get('CURVA_URL');key=config.get('publishableKey') or os.environ.get('CURVA_KEY')
-        for nome in ('mvp_derby','mvp_stato'):
+        for nome in ('mvp_derby','mvp_stato','curva_feed'):
             try:
                 if not url or not key:raise ValueError('Configurazione di lettura assente')
                 value=lettura_rpc(url,key,nome,exp.get('stagione','2026/27'))
                 if nome=='mvp_derby':derby=value
-                else:mvp=value
+                elif nome=='mvp_stato':mvp=value
+                else:curva=value
             except Exception:
                 print('Fonte non disponibile:',nome,'· Dato non conservato')
-    out=calcola(leggi(a.sito/'data.json'),leggi(a.sito/'girrr/dati/fiducia.json',{}),exp,derby,mvp)
+    out=calcola(leggi(a.sito/'data.json'),leggi(a.sito/'girrr/dati/fiducia.json',{}),exp,derby,mvp,edizione=leggi(a.sito/'girrr/dati/tifosi-settimane.json',{}),curva=curva)
     old=leggi(dest,{})
     if old.get('fingerprint')==out['fingerprint']:print('Giro di boa invariato');return
     dest.parent.mkdir(parents=True,exist_ok=True)
