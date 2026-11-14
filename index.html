@@ -525,7 +525,7 @@ function render(){
   document.getElementById('upd').textContent='Dati al '+new Date(D.updated).toLocaleDateString('it-IT',{day:'numeric',month:'long'})+' · Prossima: G'+D.round;
   if(LS.skin==='diretta')LS.skin='seriea';var SK=LS.skin||skinCk()||'girrr';document.documentElement.setAttribute('data-skin',SK);
   document.getElementById('skin').innerHTML=[['girrr','Stile O Girrr · Lega'],['stadio','Stile O Girrr · Stadio'],['viola','Stile FantaLab'],['azzurro','Stile Leghe'],['seriea','Stile Serie A'],['campo','Stile Figurine']].map(function(x){return '<button data-skin="'+x[0]+'" aria-pressed="'+(SK===x[0])+'">'+x[1]+'</button>'}).join('');
-  var ok=authed(),PUB={inj:1,fa:1,lega:1},OSP=false;try{OSP=sessionStorage.getItem('ospite')==='1'||/[?&]ospite\b/.test(location.search)}catch(e){}document.getElementById('tabs').hidden=false;
+  var ok=authed(),PUB={inj:1,fa:1,lega:1},OSP=false;try{OSP=sessionStorage.getItem('ospite')==='1'||/[?&]ospite\b/.test(location.search)}catch(e){}document.getElementById('tabs').hidden=false;document.getElementById('tabs').dataset.pubblico=ok?'0':'1';
   document.getElementById('who').innerHTML=ok?'<b class="name">'+esc(team)+'</b><button class="btn" id="out">Esci</button>':'';
   if(!ok){/* senza codice: Infortunati, Svincolati e Calendario sono pubblici (Gianluca, 13 novembre 2026) */if(!PUB[tab]&&!(tab==='entra'&&!OSP))tab=OSP?'inj':'entra';[].forEach.call(document.querySelectorAll('#tabs button'),function(b){b.hidden=!(PUB[b.dataset.t]||(b.dataset.t==='entra'&&!OSP));b.setAttribute('aria-selected',b.dataset.t===tab)});app.innerHTML=tab==='entra'?vGate():tab==='inj'?vInj():tab==='fa'?vFa():vLega();enter=false;return}if(tab==='entra')tab='rosa';
   if(tab==='stat'&&team!=='Oranje VC')tab='rosa';

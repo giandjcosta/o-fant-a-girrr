@@ -229,29 +229,28 @@ svg text{fill:var(--mute);font-family:var(--fb)}
 
 </style>
 
-<link rel="stylesheet" href="../../girrr/v55/ui.css?v=55r10"><script src="../../girrr/v55/destinazioni55.js?v=55r8" defer></script><script src="../../girrr/v55/ui.js?v=55r10" defer></script><script src="../../pillole.js?v=1" defer></script><script src="../../offline.js" defer></script>
+<link rel="stylesheet" href="../../girrr/v55/ui.css?v=55r10"><script src="../../girrr/v55/destinazioni55.js?v=55r8" defer></script><script src="../../girrr/v55/ui.js?v=55r10" defer></script><script src="../../condividi.js?v=61-periodi1" defer></script><script src="../../pillole.js?v=1" defer></script><script src="../../offline.js" defer></script>
 <script src="../../stagione.js" defer></script>
 <script src="../../conferenze.js" defer></script><!-- Claude, conferenze 10/11 -->
-<style id="cartellini-fiducia">
-/* Claude, 12 novembre 2026: schede centrate e numero della fiducia a cartellini (rilascio/carriera/applica.py) */
-.oro-scroll{scroll-padding-inline:4px}
-.trust-visual{position:relative}
+<style id="cartellini-fiducia">.oro-scroll{scroll-padding-inline:4px}
+.trust-visual{position:relative;width:100%;max-width:260px;margin-inline:auto;aspect-ratio:220/128;isolation:isolate}
+.trust-visual .gauge{display:block;width:100%;height:auto;margin:0 auto}
 .trust-visual .trust-number{opacity:0}
-.tab-fid{position:absolute;left:50%;top:64%;transform:translate(-50%,-50%);display:flex;gap:5px;font:900 clamp(30px,10vw,42px)/1 Inter,system-ui,sans-serif;pointer-events:none}
-.tab-fid .fl{position:relative;width:.78em;height:1.18em;perspective:300px;border-radius:7px;box-shadow:0 4px 12px rgba(0,0,0,.35)}
-.tab-fid .fl>span{position:absolute;left:0;right:0;height:50%;overflow:hidden;background:linear-gradient(180deg,#22305e,#18234a);color:#fbf6ec}
-.tab-fid .fl>span b{display:block;height:200%;line-height:1.18em;text-align:center;font-weight:900}
+.tab-fid{--fl-h:1.22em;position:absolute;left:50%;top:62.5%;transform:translate(-50%,-50%);display:flex;gap:5px;font:900 clamp(30px,10vw,42px)/1 Inter,system-ui,sans-serif;font-variant-numeric:tabular-nums;pointer-events:none}
+.tab-fid .fl{position:relative;width:.82em;height:var(--fl-h);perspective:500px;border-radius:7px;box-shadow:0 4px 12px #0006}
+.tab-fid .fl>span{position:absolute;left:0;right:0;height:50%;overflow:hidden;background:linear-gradient(#253867,#19284d);color:#fbf6ec;backface-visibility:hidden}
+.tab-fid .fl>span b{position:absolute;left:0;right:0;top:0;display:block;height:var(--fl-h);line-height:var(--fl-h);font:inherit;line-height:var(--fl-h);text-align:center;font-weight:900}
 .tab-fid .fl .su,.tab-fid .fl .a{top:0;border-radius:7px 7px 0 0;transform-origin:50% 100%}
-.tab-fid .fl .giu,.tab-fid .fl .b{bottom:0;border-radius:0 0 7px 7px;transform-origin:50% 0;background:linear-gradient(180deg,#141d3d,#1b2650)}
-.tab-fid .fl .giu b,.tab-fid .fl .b b{transform:translateY(-50%)}
-.tab-fid .fl::after{content:'';position:absolute;left:0;right:0;top:50%;height:1px;background:rgba(0,0,0,.55);z-index:3}
-.tab-fid .fl .a,.tab-fid .fl .b{visibility:hidden;z-index:2}
-.tab-fid .fl.gira .a{visibility:visible;animation:fl-a var(--fl,.16s) ease-in both}
-.tab-fid .fl.gira .b{visibility:visible;animation:fl-b var(--fl,.16s) ease-out var(--fl,.16s) both}
-@keyframes fl-a{from{transform:rotateX(0)}to{transform:rotateX(-90deg)}}
-@keyframes fl-b{from{transform:rotateX(90deg)}to{transform:rotateX(0)}}
-@media (prefers-reduced-motion:reduce){.tab-fid .fl.gira .a,.tab-fid .fl.gira .b{animation:none;visibility:hidden}}
-</style><link rel="stylesheet" href="../../girrr/v60/tifosi.css" data-girrr-tifosi><style>html{scrollbar-gutter:stable}</style></head><body data-v53="albo" data-v53-skin="stadio"><div class="col">
+.tab-fid .fl .giu,.tab-fid .fl .b{bottom:0;border-radius:0 0 7px 7px;transform-origin:50% 0;background:linear-gradient(#162344,#1d2c50)}
+.tab-fid .fl .giu b,.tab-fid .fl .b b{top:calc(var(--fl-h)*-.5);transform:none}
+.tab-fid .fl:after{content:'';position:absolute;top:50%;left:0;right:0;height:1px;background:#080d24;z-index:4;box-shadow:0 1px #ffffff15}
+.tab-fid .fl .a,.tab-fid .fl .b{visibility:hidden;z-index:3}
+.tab-fid .fl.gira .a{visibility:visible;animation:fid-su .18s ease-in both}
+.tab-fid .fl.gira .b{visibility:visible;animation:fid-giu .18s .18s ease-out both}
+@keyframes fid-su{from{transform:rotateX(0)}to{transform:rotateX(-90deg)}}
+@keyframes fid-giu{from{transform:rotateX(90deg)}to{transform:rotateX(0)}}
+@media(prefers-reduced-motion:reduce){.tab-fid .fl.gira .a,.tab-fid .fl.gira .b{animation:none;visibility:hidden}}
+</style><link rel="stylesheet" href="../../girrr/v60/tifosi.css" data-girrr-tifosi><style>html{scrollbar-gutter:stable}</style><script src="../../giro-di-boa.js?v=61-periodi1" defer></script></head><body data-v53="albo" data-v53-skin="stadio"><div class="col">
   <div class="top">
     <img id="lg" alt="">
     <div>
@@ -863,16 +862,37 @@ function gauge(v){v=Math.max(0,Math.min(100,Math.round(Number(v)||0)));
   return '<div class="trust-visual" data-target="'+v+'"><svg class="gauge" viewBox="0 0 220 128" width="260" role="img" aria-label="Fiducia del presidente '+v+' su 100"><defs><linearGradient id="fiducia-scala" x1="0%" y1="0%" x2="100%" y2="0%"><stop offset="0%" stop-color="#ff6174"/><stop offset="25%" stop-color="#ff9b4a"/><stop offset="50%" stop-color="#ffd166"/><stop offset="70%" stop-color="#70df90"/><stop offset="88%" stop-color="#36c9c5"/><stop offset="100%" stop-color="#3d93d6"/></linearGradient></defs><path d="M28 100A82 82 0 0 1 192 100" fill="none" stroke="rgba(255,255,255,.22)" stroke-width="16" stroke-linecap="round"/><path class="trust-fill" d="M28 100A82 82 0 0 1 192 100" fill="none" stroke="url(#fiducia-scala)" stroke-width="16" stroke-linecap="round" pathLength="100" stroke-dasharray="'+v+' 100"/><text class="trust-number" x="110" y="96" text-anchor="middle" font-size="40" font-weight="900" style="fill:var(--ink)">'+v+'</text><text x="8" y="122" text-anchor="start" font-size="10">Esonero</text><text x="212" y="122" text-anchor="end" font-size="10">Fiducia piena</text></svg></div>'}
 var TRUSTANIM={team:null,value:null,token:0};
 /* Numero della fiducia a cartellini (Claude, 12 novembre 2026): ogni cifra è un cartellino che si ribalta a metà quando cambia */
-function fidTab(el,v){if(!el)return;var t=el.querySelector('.tab-fid');
- if(!t){t=document.createElement('div');t.className='tab-fid';t.setAttribute('aria-hidden','true');el.appendChild(t)}
- var s=String(Math.max(0,Math.min(100,Math.round(v)))),n=Math.max(2,s.length);s=('000'+s).slice(-n);
- while(t.children.length<n){var f=document.createElement('span');f.className='fl';f.dataset.v='0';f.innerHTML='<span class="su"><b>0</b></span><span class="giu"><b>0</b></span><span class="a"><b>0</b></span><span class="b"><b>0</b></span>';t.appendChild(f)}
- while(t.children.length>n)t.removeChild(t.firstChild);
- [].forEach.call(t.children,function(f,i){var o=f.dataset.v,c=s.charAt(i);if(o===c)return;f.dataset.v=c;
-  var q=function(k){return f.querySelector('.'+k+' b')};q('su').textContent=c;q('a').textContent=o;q('b').textContent=c;
-  if(window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches){q('giu').textContent=c;return}
-  f.classList.remove('gira');void f.offsetWidth;f.classList.add('gira');
-  clearTimeout(f._t);f._t=setTimeout(function(){q('giu').textContent=f.dataset.v;f.classList.remove('gira')},340)})}
+/* Ogni ribalta finisce prima di accettare il valore successivo. Il testo resta
+   ancorato alle due metà: nessuna trasformazione percentuale sulla cifra. */
+function fidTab(el,v){
+ if(!el)return;
+ var t=el.querySelector('.tab-fid'),nuovo=!t;
+ if(nuovo){t=document.createElement('div');t.className='tab-fid';t.setAttribute('aria-hidden','true');el.appendChild(t)}
+ var s=String(Math.max(0,Math.min(100,Math.round(v)))),n=Math.max(2,s.length,String(el.dataset.target||'').length);
+ s=('000'+s).slice(-n);
+ while(t.children.length<n){var f=document.createElement('span');f.className='fl';f.dataset.v=s.charAt(t.children.length);f.innerHTML='<span class="su"><b></b></span><span class="giu"><b></b></span><span class="a"><b></b></span><span class="b"><b></b></span>';t.appendChild(f);[].forEach.call(f.querySelectorAll('b'),function(b){b.textContent=f.dataset.v})}
+ while(t.children.length>n){clearTimeout(t.firstChild._timer);t.removeChild(t.firstChild)}
+ [].forEach.call(t.children,function(f,i){
+  f._target=s.charAt(i);
+  function testo(k,val){f.querySelector('.'+k+' b').textContent=val}
+  function ferma(val){['su','giu','a','b'].forEach(function(k){testo(k,val)});f.dataset.v=val;f.classList.remove('gira');f._busy=false;clearTimeout(f._timer)}
+  function ribalta(){
+   if(!f.isConnected||f._busy||f.dataset.v===f._target)return;
+   var da=f.dataset.v,a=f._target,id=(f._id||0)+1;f._id=id;f._busy=true;
+   testo('su',a);testo('giu',da);testo('a',da);testo('b',a);
+   function fine(){if(f._id!==id||!f._busy)return;ferma(a);if(f.isConnected&&f._target!==a)requestAnimationFrame(ribalta)}
+   f.onanimationend=function(e){if(e.animationName==='fid-giu')fine()};
+   f.classList.remove('gira');void f.offsetWidth;f.classList.add('gira');f._timer=setTimeout(function controlla(){
+    if(!f.isConnected)return;
+    var anim=f.getAnimations?f.getAnimations({subtree:true}):[];
+    if(anim.some(function(a){return a.playState==='running'||a.playState==='pending'})){f._timer=setTimeout(controlla,180);return}
+    fine();
+   },650);
+  }
+  if(nuovo||window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches){f._id=(f._id||0)+1;ferma(f._target)}else ribalta();
+ });
+}
+
 function animaFiducia(t,v){
   var el=document.querySelector('#view .trust-visual');if(!el)return;
   var path=el.querySelector('.trust-fill'),number=el.querySelector('.trust-number'),reduce=window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -978,7 +998,7 @@ function bolla52(t){var a=PREMI52?premi52(t):premiDBattesa().map(function(x){ret
 /* ---------- Carriera a tab: Panoramica (Claude), Obiettivi (ChatGPT), Fiducia (Claude), Storia (Grok) ----------
    Ogni tab è una funzione che riceve la squadra t e restituisce HTML. Piano e regole: proposte/carriera-tab-piano.md */
 S.ctab=S.ctab||'pan';S.ob=S.ob||{};S.st=S.st||{};
-function carTabs(){return '<div class="seg oro-scroll" role="group" aria-label="Sezioni della Carriera" style="margin-bottom:12px">'+[['pan','Panoramica'],['stag','Stagione'],['ob','Obiettivi'],['fid','Fiducia'],['prom','Promesse'],['st','Storia'],['reg','Regole']].filter(function(x){return !GUEST||['pan','stag','ob','fid','prom','st','reg'].indexOf(x[0])>=0}).map(function(x){return '<button data-ctab="'+x[0]+'" aria-pressed="'+(S.ctab===x[0])+'">'+x[1]+'</button>'}).join('')+'</div>'}
+function carTabs(){return '<div class="seg oro-scroll" role="group" aria-label="Sezioni della Carriera" style="margin-bottom:12px">'+[['pan','Panoramica'],['stag','Stagione'],['boa','Giro di boa'],['ob','Obiettivi'],['fid','Fiducia'],['prom','Promesse'],['st','Storia'],['reg','Regole']].filter(function(x){return !GUEST||['pan','stag','boa','ob','fid','prom','st','reg'].indexOf(x[0])>=0}).map(function(x){return '<button data-ctab="'+x[0]+'" aria-pressed="'+(S.ctab===x[0])+'">'+x[1]+'</button>'}).join('')+'</div>'}
 document.addEventListener('click',function(e){var b=e.target.closest('[data-ctab]');if(!b)return;S.ctab=b.dataset.ctab;render()});document.addEventListener('change',function(e){if(e.target&&e.target.id==='cteam'){S.cteam=e.target.value;render()}});
 /* Gianluca, 2 novembre: reputazione da 0 a 100. Partenza 50; posizione da +20 (primo) a −20 (ultimo); obiettivi del presidente ±10 fino a fine stagione; sponsor ±1 per sempre. Ognuno con i suoi obiettivi */
 function repCalcolo(t,o){var r=row(t),n=Math.max(2,D.teams.length),pp=Math.round(20-(r.pos-1)*40/(n-1)),pr=0,sp=0;o.forEach(function(x){var v=x[4]==='Fatto'?1:x[4]==='Mancato'?-1:0;if(x[0])pr+=10*v;else sp+=v});return {pos:r.pos,pp:pp,pr:pr,sp:sp,tot:Math.max(0,Math.min(100,50+pp+pr+sp))}}
@@ -1046,8 +1066,8 @@ function vCarObiettivi(t,C){
     return '<div class="row" style="align-items:flex-start;gap:10px;flex-wrap:wrap;padding:9px 0;border-top:1px solid var(--line)"><img class="sp-logo" src="'+esc(SPIMG[premio.sponsor]||SPIMG._neutro)+'" alt="'+esc(premio.sponsor)+'"><div class="grow" style="min-width:0;flex:1 1 160px"><b style="display:block">'+esc(premio.sponsor)+'</b><span class="sm mut" style="display:block;margin-top:3px">'+dove+'</span><p class="sm mut" style="margin-top:4px;line-height:1.5">'+esc(premio.testo)+' · <b class="num">'+Number(premio.crediti)+'</b> crediti Totogirrr</p></div><span class="tag '+(riscosso?'o':'')+'">'+st+'</span></div>'};
   var sponsor='<div class="card" style="min-width:0"><h3>Premi sponsor</h3>'+premioRiga(C.premio,C.statoPremio,'Campionato')+premioRiga(C.premioCoppa,C.statoCoppa,'Champions Cup')+
     (daRisc&&!GUEST?'<a class="btn" href="'+esc(torna)+'" style="display:inline-block;margin-top:12px;text-decoration:none">Vai a Totogirrr ›</a>':'')+'</div>';
-  /* sul telefono la linea scorre da sola fino alla prossima scadenza */
-  setTimeout(function(){var sc=document.querySelector('#view .ob-timeline-scroll'),nx=sc&&sc.querySelector('[data-ob-next]');if(sc&&nx)sc.scrollLeft=Math.max(0,nx.offsetLeft-(sc.clientWidth-nx.offsetWidth)/2)},0);
+  /* La linea si apre dalla 1ª giornata; le altre tappe restano scorribili. */
+  setTimeout(function(){var sc=document.querySelector('#view .ob-timeline-scroll');if(sc)sc.scrollLeft=0},0);
   return linea+stag+cup+(GUEST?'':sponsor);
 }
 /* === FINE TAB OBIETTIVI === */
@@ -1139,7 +1159,7 @@ function vCarRegole(t){var sp=sponsorDi(t),spc=sponsorCoppa(t),fa=fascia(t);
    +sez('Cosa non conta',['Nessun obiettivo del tipo «metti tre giovani»: solo classifica, vittorie, punti e gol, che l\'app calcola da sola.'])}
 function vCarL(){
   premiDB();
-  if(GUEST&&!S.cteamOsp){S.cteamOsp=1;S.cteam=D.teams.slice().sort(function(a,b){return row(a).pos-row(b).pos})[0]}if(GUEST&&['pan','stag','ob','fid','prom','st','reg'].indexOf(S.ctab)<0)S.ctab='pan';var t=(CARSCELTA||GUEST)?S.cteam:ME,r=row(t),e=EXP[t]||5,f=fid(t),mp=maxPts(t);
+  if(GUEST&&!S.cteamOsp){S.cteamOsp=1;S.cteam=D.teams.slice().sort(function(a,b){return row(a).pos-row(b).pos})[0]}if(GUEST&&['pan','stag','boa','ob','fid','prom','st','reg'].indexOf(S.ctab)<0)S.ctab='pan';var t=(CARSCELTA||GUEST)?S.cteam:ME,r=row(t),e=EXP[t]||5,f=fid(t),mp=maxPts(t);
   var stat=f>=70?'Il presidente è entusiasta.':f>=45?'Il presidente è soddisfatto, per ora.':f>=25?'Il presidente comincia a perdere la pazienza.':'Il presidente sta cercando un sostituto.';
   var h=where('Spogliatoio','Carriera')+'<h2>Carriera da allenatore</h2><p class="lead">Poche cose, tutte misurabili. A inizio stagione il presidente dice dove ti aspetta, e un paio di obiettivi arrivano da lui e dallo sponsor. Se rendi meno del previsto la fiducia scende, e sotto una soglia arriva un esonero a titolo simbolico.</p>';
   h+=((CARSCELTA||GUEST)?'<select id="cteam" aria-label="Allenatore" style="margin-bottom:12px">'+D.teams.map(function(x){return '<option'+(x===t?' selected':'')+'>'+esc(x)+'</option>'}).join('')+'</select>':'<p style="font-weight:800;margin:0 0 12px">'+esc(t)+'</p>')+(GUEST?'':bolla52(t))+carTabs();
@@ -1172,6 +1192,7 @@ function vCarL(){
   else if(S.ctab==='st')h+=vCarStoria(t);
   else if(S.ctab==='reg')h+=vCarRegole(t);
    else if(S.ctab==='stag')h+=(window.GirrrStagione?window.GirrrStagione(t):'');
+  else if(S.ctab==='boa')h+=(window.GirrrGiroDiBoa?window.GirrrGiroDiBoa(t):'');
   else if(S.ctab==='prom')h+=(window.GirrrPromesse?window.GirrrPromesse(t):'');
   else h+=cGauge+vCarRiassunto(t,C)+(GUEST?cLega:cRep);
   return h+'<p class="note">Nessun obiettivo del tipo "metti tre giovani". Solo classifica, vittorie e punti, che l\'app calcola da sola.</p>';
@@ -1345,7 +1366,7 @@ function spRadio(){
   var g=D.aw.length+1;
   var h='<div class="card"><h3>Radio Girrr</h3><div class="rtit"><b>La prossima puntata esce dopo la giornata '+g+'</b><span class="rbadge">Lega Giornata '+g+'</span></div><p class="sm mut" style="margin:8px 0 4px">La radio ufficiale della Lega. Ogni settimana una nuova puntata: campionato, Coppa, Derby e, quando ci sono notizie, il mercato con Ciro Trattativa. Le puntate restano qui, da riascoltare quando vuoi.</p></div>';
   h+='<div class="card"><h3>Le puntate</h3>';
-  if(AR&&AR.length)h+=AR.map(function(x){return '<div style="margin:12px 0 0"><div class="rtit"><b>'+esc(x.titolo)+'</b><span class="rbadge">'+esc(x.tag)+'</span></div><audio controls preload="none" src="../../girrr/voci/'+esc(x.file)+'" style="width:100%;margin:8px 0"></audio>'+((x.testo&&x.testo.length)?'<details><summary style="cursor:pointer;font-weight:800;padding:4px 0">Leggi il testo</summary><div class="tr" style="margin-top:6px">'+x.testo.map(function(t){return '<p><small>'+esc(t.chi)+'</small>'+esc(t.testo)+'</p>'}).join('')+'</div></details>':'')+'</div>'}).join('');
+  if(AR&&AR.length)h+=AR.map(function(x){return '<div style="margin:12px 0 0"><div class="rtit"><b>'+esc(x.titolo)+'</b><span class="rbadge">'+esc(x.tag)+'</span></div><audio controls preload="none" src="../../girrr/voci/'+esc(x.file)+'" style="width:100%;margin:8px 0"></audio>'+'<button type="button" class="cd-btn cd-sf" data-cd-file="../../girrr/voci/'+esc(x.file)+'" data-cd-nome="radio-girrr-'+esc(String(x.file).replace(/^puntata-g?/,''))+'" data-cd-tit="Radio Girrr · '+esc(x.tag)+'">Condividi la puntata</button>'+((x.testo&&x.testo.length)?'<details><summary style="cursor:pointer;font-weight:800;padding:4px 0">Leggi il testo</summary><div class="tr" style="margin-top:6px">'+x.testo.map(function(t){return '<p><small>'+esc(t.chi)+'</small>'+esc(t.testo)+'</p>'}).join('')+'</div></details>':'')+'</div>'}).join('');
   else h+='<p class="sm mut">Nessuna puntata ancora: la prima arriva con la prossima giornata, e da lì restano tutte qui.</p>';
   return h+'</div>'}
 
@@ -1361,7 +1382,7 @@ function spVideo(){
   if(!VA.length)return '<div class="card">'+intro+'<b>Nessun video ancora</b><p class="sm mut">Il primo arriva con la prossima giornata, e da lì restano tutti qui.</p></div>';
   var x=VA.filter(function(v){return v.n===VSEL})[0]||VA[0];
   var h='<div class="card">'+intro+'<div class="rtit"><b>'+esc(x.titolo)+'</b><span class="rbadge">'+esc(x.tag)+'</span></div>'
-   +'<video id="vid-player" class="vid-v" controls playsinline preload="metadata"'+(x.img?' poster="'+VB+esc(x.img)+'"':'')+' src="'+VB+esc(x.file)+'"></video></div>';
+   +'<video id="vid-player" class="vid-v" controls playsinline preload="metadata"'+(x.img?' poster="'+VB+esc(x.img)+'"':'')+' src="'+VB+esc(x.file)+'"></video>'+'<button type="button" class="cd-btn cd-sf" data-cd-file="'+VB+esc(x.file)+'"'+(x.img?' data-cd-img="'+VB+esc(x.img)+'"':'')+' data-cd-nome="o-girrr-video-'+(x.n<10?'0':'')+x.n+'.mp4" data-cd-tit="Il video della '+x.n+'ª giornata">Condividi il video</button></div>';
   if(VA.length>1)h+='<div class="card"><h3>Tutti i video</h3><div class="vid-l">'+VA.map(function(v){return '<button type="button" class="vid-i" data-vid="'+v.n+'" aria-pressed="'+(v.n===x.n)+'">'+(v.img?'<img src="'+VB+esc(v.img)+'" alt="" loading="lazy">':'<i></i>')+'<span><b>'+esc(v.titolo)+'</b><small>'+esc(v.tag)+'</small></span></button>'}).join('')+'</div></div>';
   return h}
 document.addEventListener('click',function(e){var b=e.target.closest('[data-vid]');if(!b)return;VSEL=+b.dataset.vid;render();
@@ -1459,6 +1480,7 @@ function morphDom(o,n){
     if(a.nodeType!==b.nodeType||a.nodeName!==b.nodeName){o.replaceChild(b.cloneNode(true),a);continue}
     if(a.nodeType===3||a.nodeType===8){if(a.nodeValue!==b.nodeValue)a.nodeValue=b.nodeValue;continue}
     if(a.nodeType!==1)continue;
+    if(a.classList.contains('trust-visual')&&b.classList.contains('trust-visual')){a.dataset.target=b.dataset.target;continue;}
     if(a.tagName==='AUDIO'||a.tagName==='VIDEO'||a.tagName==='IFRAME'){if(a.outerHTML!==b.outerHTML)o.replaceChild(b.cloneNode(true),a);continue}
     var at=b.attributes,k;
     for(k=0;k<at.length;k++){if(a.getAttribute(at[k].name)!==at[k].value)a.setAttribute(at[k].name,at[k].value)}
