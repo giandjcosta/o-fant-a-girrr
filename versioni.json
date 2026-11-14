@@ -2,6 +2,57 @@
   "nota": "Fonte unica della pagina Versioni (girrr/versioni.html e stadio/girrr/versioni.html). A ogni rilascio si aggiunge la versione in cima con rilascio/versioni/aggiungi.py. Numeri: correzione minore = terza cifra (5.6.1), aggiornamento medio = seconda cifra (5.7.0), aggiornamento grande = prima cifra (6.0). Dove manca la storia: «Dato non conservato». Le versioni 1.0-4.5 e il Mercato Scambi vengono dai messaggi recuperati da Claude chat (9 novembre 2026), date controllate con i commit del sito. Il campo «nota» e «altre_varianti» non si mostrano nella pagina.",
   "versioni": [
     {
+      "v": "6.1",
+      "data": "2026-11-14",
+      "tipo": "medio",
+      "titolo": "La stagione da raccontare",
+      "messaggio": "⚽ **O Girrr 6.1 è online!** La stagione si racconta meglio: scegli la tua squadra o tutta la Lega, il periodo e Campionato, Champions Cup o entrambi. Risultati, gol, grafici e commenti seguono la tua scelta. Le tappe si aprono con le giornate: dall’inizio al giro di boa, fino al bilancio finale. Le foto sono pronte da condividere insieme. Nel Tabellone puoi mandare la giornata che stai guardando; Radio e video si condividono anche da soli. In Carriera il punteggio della fiducia torna al suo posto e gli Obiettivi partono dalla 1ª giornata. Buona stagione a tutti! ⚽",
+      "novita": [
+        {
+          "area": "Bilanci della stagione",
+          "voci": [
+            "Scelta di squadra o intera Lega, Campionato, Champions Cup o entrambe, con dati e commenti coerenti con il periodo selezionato.",
+            "Fino ad ora, Inizio campionato, tappe ogni cinque giornate, metà alla 17ª e fine alla 34ª; si sbloccano automaticamente soltanto con risultati completi e pubblicati.",
+            "Grafici, risultati colorati, gol fatti e subiti, primati con il numero dei gol e classifiche separate fra Campionato e gironi di Coppa.",
+            "Bilanci della redazione basati sui risultati e citazioni reali della Curva pertinenti; Dato non conservato quando manca una fonte."
+          ]
+        },
+        {
+          "area": "Carriera",
+          "voci": [
+            "Tabellone della fiducia con ribalte complete e cifre centrate, conservato durante gli aggiornamenti della pagina.",
+            "Obiettivi si apre dalla 1ª giornata senza scorrere automaticamente alla scadenza successiva."
+          ]
+        },
+        {
+          "area": "Condivisione",
+          "voci": [
+            "Due foto per una competizione e tre per entrambe, condivise insieme senza testo o collegamento aggiunto; scelta disponibile anche per l’ospite."
+          ]
+        },
+        {
+          "area": "Tabellone",
+          "voci": [
+            "Condividi il Tabellone ufficiale della giornata vista, in Campionato o Coppa; scegli la squadra per La partita e Le ultime 5.",
+            "Il bilancio aperto da Condividi mantiene la competizione che stai guardando."
+          ]
+        },
+        {
+          "area": "Girrr Sport",
+          "voci": [
+            "Condividi la puntata della Radio e il video scelto direttamente dalla loro pagina; pulsante della Radio centrato.",
+            "Segmento Giro di boa dopo la 17ª e la 19ª giornata alimentato dagli stessi dati del bilancio."
+          ]
+        },
+        {
+          "area": "Spogliatoio",
+          "voci": [
+            "Ricerca pubblica disponibile anche quando i dati arrivano dopo il caricamento della pagina."
+          ]
+        }
+      ]
+    },
+    {
       "v": "6.0.1",
       "data": "2026-11-14",
       "tipo": "minore",

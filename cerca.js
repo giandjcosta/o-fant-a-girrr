@@ -162,6 +162,8 @@
     stile();
     mia = document.createElement('button');
     mia.setAttribute('role', 'tab'); mia.dataset.t = 'cerca'; mia.setAttribute('aria-selected', 'false'); mia.textContent = 'Cerca';
+    // Il montaggio può arrivare dopo il render pubblico dello Spogliatoio.
+    mia.hidden = t.dataset.pubblico === '1';
     var dopo = t.querySelector('[data-t="rosa"]');
     t.insertBefore(mia, dopo ? dopo.nextSibling : t.firstChild);
     mia.addEventListener('click', function (e) { e.stopPropagation(); e.preventDefault(); apri(); });
