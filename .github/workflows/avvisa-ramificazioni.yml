@@ -1,0 +1,34 @@
+name: Claude - Avvisa le Ramificazioni del Registro
+# Claude, 14 novembre 2026 (Gianluca: «ad ogni PR o ramificazione o commit si aggiorni in automatico»).
+# A ogni push su un ramo, ramo nuovo o cancellato e Pull Request di questo repository chiede al Registro
+# (giandjcosta/o-girrr-registro) di rifare subito la pagina Ramificazioni (ramificazioni.yml, evento «ramificazioni»).
+# Non tocca il sito, non legge il codice delle PR. Serve il segreto REGISTRO_AVVISO: un token di GitHub con accesso
+# soltanto a o-girrr-registro e il permesso «Contents: Read and write». Senza il segreto il workflow non fa niente:
+# restano il controllo ogni 15 minuti e gli eventi del Registro.
+on:
+  push:
+    # gh-pages riceve i commit automatici della Curva ogni pochi minuti: la mappa la prende comunque ogni 15 minuti
+    branches-ignore: [gh-pages]
+  create:
+  delete:
+  pull_request_target:
+    types: [opened, reopened, closed, synchronize]
+permissions: {}
+concurrency:
+  group: avvisa-ramificazioni
+  cancel-in-progress: true
+jobs:
+  avvisa:
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    steps:
+      - name: Avvisa il Registro
+        env:
+          TOKEN: ${{ secrets.REGISTRO_AVVISO }}
+        run: |
+          if [ -z "$TOKEN" ]; then echo "::notice::Manca il segreto REGISTRO_AVVISO: le Ramificazioni si aggiornano al prossimo controllo dei 15 minuti."; exit 0; fi
+          curl -sS -f -X POST \
+            -H "Authorization: Bearer $TOKEN" -H "Accept: application/vnd.github+json" \
+            https://api.github.com/repos/giandjcosta/o-girrr-registro/dispatches \
+            -d '{"event_type":"ramificazioni","client_payload":{"da":"o-fant-a-girrr"}}'
+          echo "Registro avvisato."
