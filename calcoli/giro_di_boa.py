@@ -105,13 +105,13 @@ def coppa(d, squadra, da_sa, fino_sa, ora):
             if squadra in (m[1], m[4]):
                 tutte.append(dict(partita(g, m, squadra, True), gruppo=m[0]))
     periodo = [p for p in tutte if p['serie_a'] >= da_sa]
-    gironi = sorted({p['gruppo'] for p in tutte if re.fullmatch(r'[A-Z]', p['gruppo'])})
+    gironi = sorted({p['gruppo'] for p in tutte if p['giornata']<=10 and re.fullmatch(r'[A-Z]', p['gruppo'])})
     stato = 'Qualificazione ancora aperta' if tutte else MANCANTE
     posizione = None
     punti_girone = None
     if gironi:
         gruppo = gironi[-1]
-        calendario = [(g, m) for g in d.get('cal', {}).get('cup', []) for m in g.get('m', []) if m[0] == gruppo]
+        calendario = [(g, m) for g in d.get('cal', {}).get('cup', []) for m in g.get('m', []) if g['n']<=10 and m[0] == gruppo]
         teams = {t for _, m in calendario for t in (m[1], m[4])}
         tab = {t: {'t': t, 'pt': 0, 'fp': 0.0, 'gf': 0, 'gs': 0, 'g': 0, 'tot': sum(t in (m[1], m[4]) for _, m in calendario)} for t in teams}
         for g, m in calendario:
@@ -136,7 +136,9 @@ def coppa(d, squadra, da_sa, fino_sa, ora):
     eliminazione = [p for p in tutte if p['giornata'] >= 11]
     if eliminazione:
         last = eliminazione[-1]
-        stato = ('Vincitrice della Champions Cup' if last['giornata'] == 13 else 'Passaggio del turno') if last['esito'] == 'V' else 'Eliminata' if last['esito'] == 'P' else MANCANTE
+        vincenti={11:'Qualificata alle semifinali',12:'Qualificata in finale',13:'Vincitrice della Champions Cup'}
+        perdenti={11:'Eliminata ai quarti',12:'Eliminata in semifinale',13:'Finalista'}
+        stato = vincenti.get(last['giornata'],MANCANTE) if last['esito']=='V' else perdenti.get(last['giornata'],MANCANTE) if last['esito']=='P' else MANCANTE
     return {**bilancio(periodo), 'partite': periodo, 'gironi': gironi, 'posizione_girone': posizione,
             'punti_girone': punti_girone, 'qualificazione': stato}
 
