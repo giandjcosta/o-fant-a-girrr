@@ -17,6 +17,22 @@ function word(p){return p>=70?'Infuocata':p>=50?'Alta':p>=25?'Media':'Bassa'}
 function bar(p){return '<div class="pb"><i style="width:'+Math.max(4,p)+'%"></i></div>'}
 function rac(o){return o.s?'<div class="rac"><div class="rt">'+esc(o.n)+'</div><p>'+esc(o.s)+'</p></div>':''}
 var TAB=null;
+/* 6.0.1 · Tre schede: Derby della Lega, Le rivalità, Classifica dei Derby (Gianluca, 13 novembre 2026). Sono un secondo livello
+   sotto le pillole dell'Albo, quindi hanno un'altra forma: schede sottolineate, non pillole (Gianluca, stessa sera) */
+var SEZ=[['lega','Derby della Lega'],['rivalita','Le rivalità'],['classifica','Classifica dei Derby']],SZ=null,STA=/\/stadio\//.test(location.pathname),ALBO=/\/albo\.html$/.test(location.pathname);
+/* In Albo › Derby le tre schede stanno dentro il riquadro #der-root (novita.js): niente cambio di pagina */
+function ROOT(){return document.getElementById('der-root')||document.getElementById('al')}
+function pronto(f){if(!ALBO||document.getElementById('der-root'))return f();var mo=new MutationObserver(function(){if(document.getElementById('der-root')){mo.disconnect();f()}});mo.observe(document.body,{childList:true,subtree:true})}
+var stT=document.createElement('style');stT.textContent='.dtab{display:flex;gap:4px;overflow-x:auto;scrollbar-width:none;margin:2px 0 14px;border-bottom:1px solid rgba(255,255,255,.16)}.dtab::-webkit-scrollbar{display:none}.dtab button:first-child{margin-left:auto}.dtab button:last-child{margin-right:auto}.dtab button{flex:none;padding:10px 14px 9px;margin-bottom:-1px;border:0;border-bottom:3px solid transparent;border-radius:0;background:none;color:inherit;font:700 13px Inter,system-ui,sans-serif;letter-spacing:.02em;cursor:pointer;opacity:.62;transition:border-color .3s,opacity .3s,color .3s}.dtab button[aria-selected=true]{opacity:1;border-bottom-color:'+(STA?'#ffd166;color:#ffd166':'var(--acc,#d62839);color:#fff')+'}.dtab button:focus-visible{outline:2px solid var(--hi);outline-offset:2px}.dpan{animation:dIn .35s ease}@keyframes dIn{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}#der-cls:empty::before{content:"Carico la Classifica dei Derby…";display:block;padding:16px;color:var(--sub);font-weight:700}@media (prefers-reduced-motion:reduce){.dpan{animation:none}.dtab button{transition:none}}';document.head.appendChild(stT);
+function sezIniziale(){var q=new URLSearchParams(location.search).get('sez'),h=ALBO?(q||''):(location.hash||'').slice(1);if(h==='pt-derby')return 'classifica';if(SEZ.some(function(x){return x[0]===h}))return h;return window.PAGINA==='rivalita'?'rivalita':'lega'}
+function sezioni(HL,HR){if(!SZ)SZ=sezIniziale();var al=ROOT(),box=document.getElementById('pt-derby');
+  al.innerHTML='<div class="dtab" role="tablist" aria-label="Sezioni dei Derby">'+SEZ.map(function(x){return '<button type="button" role="tab" data-dsez="'+x[0]+'" aria-selected="'+(SZ===x[0])+'">'+x[1]+'</button>'}).join('')+'</div>'
+   +'<div class="dpan" role="tabpanel" data-dp="lega"'+(SZ==='lega'?'':' hidden')+'>'+HL+'</div><div class="dpan" role="tabpanel" data-dp="rivalita"'+(SZ==='rivalita'?'':' hidden')+'>'+HR+'</div><div class="dpan" role="tabpanel" data-dp="classifica" id="der-cls"'+(SZ==='classifica'?'':' hidden')+'></div>';
+  if(box)document.getElementById('der-cls').appendChild(box)}
+document.addEventListener('click',function(e){var b=e.target.closest&&e.target.closest('[data-dsez]');if(!b)return;SZ=b.getAttribute('data-dsez');
+  document.querySelectorAll('[data-dsez]').forEach(function(z){z.setAttribute('aria-selected',z===b)});document.querySelectorAll('[data-dp]').forEach(function(z){z.hidden=z.getAttribute('data-dp')!==SZ});
+  try{history.replaceState(null,'',ALBO?'?sez='+SZ+'#derby':'#'+SZ)}catch(_){}b.scrollIntoView({block:'nearest',inline:'center',behavior:matchMedia('(prefers-reduced-motion:reduce)').matches?'auto':'smooth'})});
+window.addEventListener('hashchange',function(){if(ALBO)return;var k=sezIniziale(),b=document.querySelector('[data-dsez="'+k+'"]');if(b&&k!==SZ)b.click()});
 function classifica(){var T={};D.cal.lega.forEach(function(g){g.m.forEach(function(m){if(m[4]==='-')return;var s=m[4].split('-').map(Number);[[m[0],m[1],s[0],s[1]],[m[3],m[2],s[1],s[0]]].forEach(function(x){var r=T[x[0]]=T[x[0]]||{t:x[0],pt:0,fp:0,g:0};r.g++;r.fp+=x[1];r.pt+=x[2]>x[3]?3:x[2]===x[3]?1:0})})});
   TAB=Object.keys(T).map(function(k){return T[k]}).sort(function(a,b){return b.pt-a.pt||b.fp-a.fp});TAB.forEach(function(r,i){r.pos=i+1})}
 function row(t){return TAB&&TAB.filter(function(x){return x.t.toLowerCase()===t.toLowerCase()})[0]}
@@ -25,8 +41,8 @@ function ctx(a,b){var A=row(a),B=row(b);if(!A||!B)return '';var ap=A.fp/Math.max
 function nome(o){return NOMI[key(o.a,o.b)]||o.n||('Derby '+o.a+' – '+o.b)}
 function prossima(){var L=D.cal.lega,i;for(i=0;i<L.length;i++){if(L[i].m.some(function(m){return m[4]==='-'}))return L[i]}return L[L.length-1]}
 function render(){
-  var RIV=window.PAGINA==='rivalita',r=prossima(),h='';
-  if(!RIV){
+  var r=prossima(),h='',HL;
+  {
     h+='<div class="card"><h3>Giornata '+r.n+'</h3><p class="nt" style="margin:0 0 6px">Un Derby nasce da due cose: quanto lo sentono gli amici della lega e quanto è vecchia e importante la rivalità (stagioni insieme, zone alte, podi, anzianità).</p>';
     var ders=r.m.filter(function(m){return info(m[0],m[3]).der});
     if(ders.length)h+=ders.map(function(m){var i=info(m[0],m[3]);return '<div class="dd"><div class="k">Derby della giornata</div><div style="font-weight:800;margin:4px 0">'+esc(nome(i.o))+'</div><div class="vs"><b>'+esc(m[0])+'</b><span>contro</span><b>'+esc(m[3])+'</b></div>'+bar(i.riv)+'<div class="nt" style="margin:0">Rivalità: <b>'+word(i.riv)+'</b> · '+i.o.h+' stagioni insieme, '+i.o.z+' nelle zone alte insieme</div>'+rac(i.o)+'</div>'}).join('');
@@ -34,7 +50,7 @@ function render(){
     h+='</div>';
     var DT=N.riv.filter(function(o){return o.n||info(o.a,o.b).der}).sort(function(x,y){return info(y.a,y.b).riv-info(x.a,x.b).riv});
     h+='<div class="card"><h3>I Derby della Lega</h3><p class="nt" style="margin:0 0 4px">Tocca un Derby per aprirlo: barra della rivalità, numeri e storia.</p>'+DT.map(function(o){var i=info(o.a,o.b);return tendina(esc(nome(o)),esc(o.a)+' contro '+esc(o.b)+' · '+word(i.riv),'<div class="vs"><b>'+esc(o.a)+'</b><span>contro</span><b>'+esc(o.b)+'</b></div>'+bar(i.riv)+'<div class="nt" style="margin:0">Rivalità: <b>'+word(i.riv)+'</b> · '+o.h+' stagioni insieme · '+o.z+' nelle zone alte insieme</div>'+(o.s?'<p style="font-weight:600;font-size:14px;line-height:1.6;margin-top:8px">'+esc(o.s)+'</p>':''))}).join('')+'</div>';
-  }else{
+  }HL=h;h='';{
     h+='<div class="card"><h3>Giornata '+r.n+'</h3><p class="nt" style="margin:0 0 6px">Le rivalità sono un gradino sotto il Derby: sfide con una storia lunga che gli amici non hanno votato come Derby.</p>';
     var fo=r.m.filter(function(m){var i=info(m[0],m[3]);return !i.der&&i.riv>=75});
     if(fo.length)h+=fo.map(function(m){var i=info(m[0],m[3]);return '<div class="dd f"><div class="k">Rivalità forte</div><div class="vs" style="margin-top:4px"><b>'+esc(m[0])+'</b><span>contro</span><b>'+esc(m[3])+'</b></div>'+bar(i.riv)+'<div class="nt" style="margin:0">'+esc(ctx(m[0],m[3]))+'</div>'+rac(i.o)+'</div>'}).join('');
@@ -44,8 +60,8 @@ function render(){
     h+='<div class="card"><h3>Le rivalità</h3><p class="nt" style="margin:0 0 4px">Quelle che non sono (ancora) un Derby. Contano per la radio e per la Curva, e si leggono sempre con la classifica e il rendimento di quest\'anno. Tocca una rivalità per aprirla.</p>'+F.map(function(o){var i=info(o.a,o.b);return tendina(esc(o.a)+' – '+esc(o.b),'Rivalità '+word(i.riv).toLowerCase(),bar(i.riv)+'<div class="nt" style="margin:4px 0 0">'+esc(ctx(o.a,o.b))+'</div>')}).join('')+'</div>';
     h+='<div class="card"><h3>Sfide decisive</h3><p class="nt" style="margin:0">Si accendono da gennaio, dalla 18ª giornata di Serie A (mercoledì 6 gennaio 2027). Quando due squadre si giocano il 1º e il 2º posto, oppure il 3º e il 4º, la sfida va in radio e in Curva. Nelle ultime giornate il tono diventa quello della volata. Si attiva da sola: guarda il calendario vero e la classifica del momento.</p></div>';
   }
-  document.getElementById('al').innerHTML=h;
+  sezioni(HL,h);
 }
-document.getElementById('lg').onclick=function(){location.href='index.html'};
-fetch('../../data.json',{cache:'no-store'}).then(function(r){return r.json()}).then(function(d){D=d;classifica();render();caricaDb().then(render);document.getElementById('foot').textContent='Dati aggiornati al '+(D.cal.date||'')}).catch(function(e){document.getElementById('al').innerHTML='<div class="err">Non riesco a leggere i dati.</div>'});
+if(!ALBO)document.getElementById('lg').onclick=function(){location.href='index.html'};
+fetch('../../data.json',{cache:'no-store'}).then(function(r){return r.json()}).then(function(d){D=d;classifica();pronto(render);caricaDb().then(function(){pronto(render)});if(!ALBO)document.getElementById('foot').textContent='Dati aggiornati al '+(D.cal.date||'')}).catch(function(e){ROOT().innerHTML='<div class="err">Non riesco a leggere i dati.</div>'});
 })();

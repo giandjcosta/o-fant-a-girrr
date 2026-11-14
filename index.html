@@ -424,6 +424,7 @@ h2.sec{font-size:1.35rem;margin-block:18px 8px}
 </header>
 <details class="skin-menu"><summary aria-label="Scegli la grafica">Grafica: <b>Stile O Girrr · Lega</b> <i aria-hidden="true">▾</i></summary><div class="skin" id="skin" role="group" aria-label="Stile grafico"></div></details>
 <nav role="tablist" id="tabs">
+<button role="tab" data-t="entra" aria-selected="false" hidden>Entra</button>
 <button role="tab" data-t="rosa" aria-selected="true">Rosa</button>
 <button role="tab" data-t="day" aria-selected="false">Giornata</button>
 <button role="tab" data-t="swap" aria-selected="false">Chi scambiare</button>
@@ -524,11 +525,11 @@ function render(){
   document.getElementById('upd').textContent='Dati al '+new Date(D.updated).toLocaleDateString('it-IT',{day:'numeric',month:'long'})+' · Prossima: G'+D.round;
   if(LS.skin==='diretta')LS.skin='seriea';var SK=LS.skin||skinCk()||'girrr';document.documentElement.setAttribute('data-skin',SK);
   document.getElementById('skin').innerHTML=[['girrr','Stile O Girrr · Lega'],['stadio','Stile O Girrr · Stadio'],['viola','Stile FantaLab'],['azzurro','Stile Leghe'],['seriea','Stile Serie A'],['campo','Stile Figurine']].map(function(x){return '<button data-skin="'+x[0]+'" aria-pressed="'+(SK===x[0])+'">'+x[1]+'</button>'}).join('');
-  var ok=authed();document.getElementById('tabs').hidden=!ok;
+  var ok=authed(),PUB={inj:1,fa:1,lega:1},OSP=false;try{OSP=sessionStorage.getItem('ospite')==='1'||/[?&]ospite\b/.test(location.search)}catch(e){}document.getElementById('tabs').hidden=false;
   document.getElementById('who').innerHTML=ok?'<b class="name">'+esc(team)+'</b><button class="btn" id="out">Esci</button>':'';
-  if(!ok){app.innerHTML=vGate();return}
+  if(!ok){/* senza codice: Infortunati, Svincolati e Calendario sono pubblici (Gianluca, 13 novembre 2026) */if(!PUB[tab]&&!(tab==='entra'&&!OSP))tab=OSP?'inj':'entra';[].forEach.call(document.querySelectorAll('#tabs button'),function(b){b.hidden=!(PUB[b.dataset.t]||(b.dataset.t==='entra'&&!OSP));b.setAttribute('aria-selected',b.dataset.t===tab)});app.innerHTML=tab==='entra'?vGate():tab==='inj'?vInj():tab==='fa'?vFa():vLega();enter=false;return}if(tab==='entra')tab='rosa';
   if(tab==='stat'&&team!=='Oranje VC')tab='rosa';
-  [].forEach.call(document.querySelectorAll('#tabs button'),function(b){b.setAttribute('aria-selected',b.dataset.t===tab);if(b.dataset.t==='stat')b.hidden=team!=='Oranje VC'});
+  [].forEach.call(document.querySelectorAll('#tabs button'),function(b){b.setAttribute('aria-selected',b.dataset.t===tab);b.hidden=b.dataset.t==='entra'||(b.dataset.t==='stat'&&team!=='Oranje VC')});
   uid=0;
   app.classList.toggle('enter',enter);
   app.innerHTML=tab==='rosa'?vRosa():tab==='day'?vDay():tab==='swap'?vSwap():tab==='mkt'?vMkt():tab==='fa'?vFa():tab==='pitch'?vPitch():tab==='inj'?vInj():tab==='bor'?vBor():tab==='lega'?vLega():tab==='stat'?vStat():vSet();
@@ -585,7 +586,7 @@ function vDay(){
 var calComp='lega',calIdx=null;
 function vLega(){
   var K=D.cal;if(!K)return '<div class="empty">Calendario della lega non ancora caricato.</div>';
-  var me=team,CN={lega:'Classic League',cup:'Champions Cup'};
+  var me=authed()?team:'',CN={lega:'Classic League',cup:'Champions Cup'};
   function nm(x){return x===me?'<span class="me">'+esc(x)+'</span>':esc(x)}
   function norm(c,r){return r.m.map(function(m){return c==='cup'?{g:m[0],a:m[1],pa:m[2],pb:m[3],b:m[4],res:m[5]}:{g:'',a:m[0],pa:m[1],pb:m[2],b:m[3],res:m[4]}})}
   function played(x){return x.res&&x.res!=='-'}
@@ -630,12 +631,12 @@ function vBor(){
   return h+'<div class="meta" style="margin-top:8px">Aggiornato al '+new Date(BOR.aggiornato).toLocaleDateString('it-IT',{day:'numeric',month:'long'})+'.</div>';
 }
 function vInj(){
-  var own={},mine={};D.teams.forEach(function(t){t.pl.forEach(function(x){own[x.id]=1;if(t.name===team)mine[x.id]=1})});
+  var own={},mine={};var io=authed();D.teams.forEach(function(t){t.pl.forEach(function(x){own[x.id]=1;if(io&&t.name===team)mine[x.id]=1})});
   var inj=(D.inj||[]).filter(function(e){return e.id&&own[e.id]}).sort(function(a,b){return a.t.localeCompare(b.t)});
   function rows(l){return l.length?l.map(function(e){return '<div class="gr"><div style="min-width:0"><span class="nm">'+esc(P(e.id).n)+'</span> <span class="meta">'+esc(e.t)+'</span><div class="meta">'+esc(e.w)+' · Rientro: '+esc(e.b)+(e.d&&Math.ceil((Date.parse(e.d)-Date.now())/864e5)>0?' (tra circa '+Math.ceil((Date.parse(e.d)-Date.now())/864e5)+' giorni)':'')+'</div></div><span class="stb '+(e.k==='sì'?'s-I':'s-D')+'">'+(e.k==='sì'?'Salta G'+D.round:'In dubbio')+'</span></div>'}).join(''):'<div class="meta">Nessuno.</div>'}
   var a=inj.filter(function(e){return mine[e.id]}),b=inj.filter(function(e){return !mine[e.id]});
-  var h='<div class="note">Infortunati e acciaccati in vista della '+D.round+'ª giornata. Sono notizie pubbliche e qui non viene indicato a quale squadra della lega appartiene ogni giocatore.</div><h2 class="sec">I tuoi</h2><div class="card">'+rows(a)+'</div>';
-  if(D.teams.length>1)h+='<h2 class="sec">Altri giocatori nelle rose della lega</h2><div class="card">'+rows(b)+'</div>';
+  var h='<div class="note">Infortunati e acciaccati in vista della '+D.round+'ª giornata. Sono notizie pubbliche e qui non viene indicato a quale squadra della lega appartiene ogni giocatore.</div>'+(io?'<h2 class="sec">I tuoi</h2><div class="card">'+rows(a)+'</div>':'');
+  if(D.teams.length>1)h+='<h2 class="sec">'+(io?'Altri giocatori nelle rose della lega':'Giocatori nelle rose della lega')+'</h2><div class="card">'+rows(b)+'</div>';
   return h;
 }
 function hsh(s){var h=2166136261,i;for(i=0;i<s.length;i++){h^=s.charCodeAt(i);h=Math.imul(h,16777619)}return (h>>>0).toString(36)}

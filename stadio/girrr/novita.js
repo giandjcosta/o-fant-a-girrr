@@ -33,7 +33,7 @@ window.NOVITA=function(D){var N=window.NOV;if(!N)return {};
   function tn(n,c){return '<span style="white-space:nowrap'+(n?'':';opacity:.4')+'">'+c+' '+n+'</span>'}
   h+='<div class="card"><h3>Titoli di sempre</h3><table class="nt-t"><tr><th>Allenatore</th><th class="num">Campionati</th><th class="num">Coppe</th><th class="num">Totale</th></tr>'+Object.keys(tt).sort(function(a,b){return (tt[b]-tt[a])||((tt[b]-(tc[b]||0))-(tt[a]-(tc[a]||0)))}).map(function(u){return '<tr><td>'+esc(u)+'</td><td class="num">'+tn(tt[u]-(tc[u]||0),'🏆')+(N.pre.some(function(x){return x[2]===u})?'*':'')+'</td><td class="num">'+tn(tc[u]||0,'🎖️')+'</td><td class="num">'+tt[u]+'</td></tr>'}).join('')+'</table><p class="nt">🏆 Campionati vinti (Serie A, Costa Cup, Gioberti Cup), 🎖️ Coppe Campioni. Il totale le somma. * Include i campionati dell\'Era dei Titani, che arrivano dai ricordi e non da dati conservati.</p></div>';
   P.titoli=h;h='';
-  h+='<a class="card" href="derby.html" style="display:block;text-decoration:none;color:inherit"><h3>I Derby della Lega<span class="nt-nv">NOVITÀ</span></h3><div style="font-weight:700;font-size:14px">I Derby con il loro nome, la storia e il Derby della giornata →</div></a><a class="card" href="rivalita.html" style="display:block;text-decoration:none;color:inherit"><h3>Le rivalità<span class="nt-nv">NOVITÀ</span></h3><div style="font-weight:700;font-size:14px">Le rivalità forti e le sfide decisive →</div></a>';
+  h+='<div id="der-root"><div class="vuoto">Carico i Derby…</div></div>';
   P.derby=h;return P}
 
 

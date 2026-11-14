@@ -2,6 +2,75 @@
   "nota": "Fonte unica della pagina Versioni (girrr/versioni.html e stadio/girrr/versioni.html). A ogni rilascio si aggiunge la versione in cima con rilascio/versioni/aggiungi.py. Numeri: correzione minore = terza cifra (5.6.1), aggiornamento medio = seconda cifra (5.7.0), aggiornamento grande = prima cifra (6.0). Dove manca la storia: «Dato non conservato». Le versioni 1.0-4.5 e il Mercato Scambi vengono dai messaggi recuperati da Claude chat (9 novembre 2026), date controllate con i commit del sito. Il campo «nota» e «altre_varianti» non si mostrano nella pagina.",
   "versioni": [
     {
+      "v": "6.0.1",
+      "data": "2026-11-14",
+      "tipo": "minore",
+      "titolo": "Derby in tre schede, condivisioni più belle e il sito aperto agli ospiti",
+      "messaggio": "⚽ **O Girrr 6.0.1 è online!** Qualche ritocco dopo la 6.0. I Derby ora stanno tutti nell'Albo d'oro, in tre schede: i Derby della Lega, le rivalità e la classifica dei Derby. «Condividi la giornata» manda foto e video con l'anteprima su WhatsApp, poi la Radio e il Giornale intero, nitido, in PDF. Le schede scorrono morbide in tutta l'app e Totogirrr non salta più quando cambi menu. E chi entra da ospite ora vede molto di più: la Carriera di ogni squadra, la fiducia di tutti i presidenti, lo Spogliatoio con infortunati, svincolati e calendario. Buona settimana di nazionali! 🏆",
+      "novita": [
+        {
+          "area": "Albo d'oro",
+          "voci": [
+            "Derby in tre schede nella stessa pagina: Derby della Lega, Le rivalità e Classifica dei Derby"
+          ]
+        },
+        {
+          "area": "Condividi",
+          "voci": [
+            "«Condividi la giornata» in due invii, prima foto e video (con l'anteprima su WhatsApp), poi Radio e Giornale; testo con Campionato, Champions Cup e giornate, senza collegamento"
+          ]
+        },
+        {
+          "area": "Giornale",
+          "voci": [
+            "Si condivide il numero intero in PDF, nitido, anche da «Condividi l'ultimo numero»"
+          ]
+        },
+        {
+          "area": "App",
+          "voci": [
+            "Schede a pillola fluide in tutte le pagine (il colore scivola da una scheda all'altra) e la fila non torna più all'inizio"
+          ]
+        },
+        {
+          "area": "Girrr Sport",
+          "voci": [
+            "«Squadra della settimana» sempre nel menu, senza salti"
+          ]
+        },
+        {
+          "area": "Totogirrr",
+          "voci": [
+            "Cambio di menu senza salti in cima e senza la pagina che sparisce"
+          ]
+        },
+        {
+          "area": "Carriera",
+          "voci": [
+            "«La mia settimana» prima di «Regole»; Linea del tempo degli obiettivi dalla 1ª giornata, «L'inizio»; logo dello sponsor nei Premi sponsor; riquadro della fiducia fermo al caricamento"
+          ]
+        },
+        {
+          "area": "Home",
+          "voci": [
+            "Nella grafica Lega i riquadri grandi uno sotto l'altro, come le partite del Tabellone"
+          ]
+        },
+        {
+          "area": "Ospite",
+          "voci": [
+            "Etichetta «Guest Mode» solo nella Home; Carriera di ogni squadra con tutte le schede e la fiducia di tutti, Borsino; senza richieste e premi degli sponsor"
+          ]
+        },
+        {
+          "area": "Spogliatoio",
+          "voci": [
+            "Infortunati, Svincolati e Calendario visibili anche senza codice"
+          ]
+        }
+      ]
+    },
+    {
       "v": "6.0",
       "data": "2026-11-13",
       "tipo": "grande",

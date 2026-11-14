@@ -309,10 +309,11 @@
     var link = new URL('apri.html?p=' + (pagina === 'giornale' ? 'giornale' : 'tabellone'), ROOT).href;
     f.box.innerHTML = '<h3>' + E(titolo) + '</h3><p>' + E(r.testo) + '</p><div class="cd-ant"><img alt="Anteprima dell\'immagine da condividere" src="' + r.url + '"></div>' +
       '<div class="cd-az">' + (puo ? '<button type="button" class="pr" data-a="sh">Condividi</button>' : '') +
-      '<a class="' + (puo ? 'se' : 'pr') + '" download="' + E(r.nome) + '" href="' + r.url + '">Scarica</a><button type="button" class="se" data-a="x">Chiudi</button></div><div class="cd-err" role="status"></div>';
+      '<a class="' + (puo ? 'se' : 'pr') + '" download="' + E(r.nome) + '" href="' + (r.scarica || r.url) + '">Scarica</a><button type="button" class="se" data-a="x">Chiudi</button></div><div class="cd-err" role="status"></div>';
     var sh = f.box.querySelector('[data-a=sh]');
     if (sh) sh.onclick = function () {
-      navigator.share({ files: [file], title: 'O Girrr', text: r.testo + '\n' + link }).catch(function (e) {
+      /* con un'immagine il testo resta fuori: insieme, WhatsApp la manderebbe come file e non come foto (6.0.1) */
+      navigator.share(/^image\//.test(file.type) ? { files: [file], title: 'O Girrr' } : { files: [file], title: 'O Girrr', text: r.testo + '\n' + link }).catch(function (e) {
         if (e && e.name !== 'AbortError') f.box.querySelector('.cd-err').textContent = 'Condivisione non riuscita: usa «Scarica».';
       });
     };
@@ -347,9 +348,9 @@
     json('riepiloghi/indice.json').then(function (ind) {
       var x = (ind || []).filter(function (z) { return !z.pub || Date.parse(z.pub) <= Date.now(); }).sort(function (a, b) { return b.n - a.n; })[0];
       if (!x || !x.copertina) throw new Error('Nessun numero da condividere');
-      return fetch(ROOT + x.copertina).then(function (r) { if (!r.ok) throw new Error('Copertina non raggiungibile'); return r.blob(); }).then(function (b) {
-        var u = URL.createObjectURL(b);
-        anteprima(f, { blob: b, url: u, nome: 'o-giornale-del-girrr-' + x.n + '.png', testo: 'O Giornale del Girrr n° ' + x.n + ': ' + (x.titolone || '') }, 'O Giornale del Girrr n° ' + x.n);
+      /* 6.0.1: il numero intero in PDF (nitido, tutte le pagine), la copertina come anteprima */
+      return fetch(ROOT + (x.pdf || x.copertina)).then(function (r) { if (!r.ok) throw new Error('Giornale non raggiungibile'); return r.blob(); }).then(function (b) {
+        anteprima(f, { blob: b, url: ROOT + x.copertina, scarica: URL.createObjectURL(b), nome: 'o-giornale-del-girrr-' + x.n + (x.pdf ? '.pdf' : '.png'), testo: 'O Giornale del Girrr n° ' + x.n + ': ' + (x.titolone || '') }, 'O Giornale del Girrr n° ' + x.n);
       });
     }).catch(function (e) { f.box.innerHTML = '<h3>Condividi il Giornale</h3><div class="cd-err">' + E(e.message) + '</div>'; });
   }
@@ -395,9 +396,11 @@
     if (C) pz.push(ufficiale('coppa', C, 'Tabellone della Champions Cup'));
     /* 4. Giornale */
     pz.push(json('riepiloghi/indice.json').then(function (ind) {
-      var x = (ind || []).filter(function (z) { return z.n === n && (!z.pub || Date.parse(z.pub) <= Date.now()) && z.copertina; })[0]; if (!x) return null;
-      return blob(ROOT + x.copertina).then(function (b) {
-        return { k: 'giornale', tit: 'O Giornale del Girrr', sotto: 'N° ' + x.n + ': ' + (x.titolone || ''), ant: URL.createObjectURL(b), nome: 'o-giornale-del-girrr-' + x.n + '.png', blob: b, tipo: 'image/png' };
+      var x = (ind || []).filter(function (z) { return z.n === n && (!z.pub || Date.parse(z.pub) <= Date.now()) && z.copertina && z.pdf; })[0]; if (!x) return null;
+      /* 6.0.1: il numero intero in PDF (tutte le pagine, nitide); la copertina resta solo come anteprima (Gianluca, 13 novembre 2026) */
+      if (!x.pdf) return null;
+      return blob(ROOT + x.pdf).then(function (b) {
+        return { k: 'giornale', tit: 'O Giornale del Girrr', sotto: 'N° ' + x.n + ' · Il numero intero in PDF: ' + (x.titolone || ''), ant: ROOT + x.copertina, nome: 'o-giornale-del-girrr-' + x.n + '.pdf', blob: b, tipo: 'application/pdf' };
       });
     }).catch(function () { return null; }));
     return Promise.all(pz).then(function (P) {
@@ -419,25 +422,47 @@
           var a = x.ant ? '<img alt="" src="' + E(x.ant) + '"' + (x.k === 'video' ? ' class="v"' : '') + '>' : '<span class="ic">' + (ICONA[x.k] || '') + '</span>';
           if (x.k === 'video' && x.ant) a = '<span class="vv">' + a + '<i>' + ICONA.video + '</i></span>';
           return '<label class="cd-pz"><input type="checkbox" checked data-i="' + i + '"><span class="an' + (x.largo ? ' lar' : '') + '">' + a + '</span><span class="tx"><b>' + E(x.tit) + '</b><small>' + E(x.sotto) + '</small></span><span class="cd-sp" aria-hidden="true"></span></label>';
-        }).join('') + '</div><div class="cd-err" role="status"></div><div class="cd-az fis"><button type="button" class="pr" data-a="sh">Condividi</button><button type="button" class="se" data-a="dl">Scarica</button><button type="button" class="se" data-a="x">Chiudi</button></div>';
-      var err = f.box.querySelector('.cd-err'), sh = f.box.querySelector('[data-a=sh]');
-      var testo = 'O Fant A Girrr · ' + comp + '\n' + new URL(stadio ? 'stadio/girrr/' : 'girrr/', ROOT).href;
+        }).join('') + '</div><div class="cd-err" role="status"></div><div class="cd-az fis"><button type="button" class="pr" data-a="sh">Condividi</button><button type="button" class="pr" data-a="sh2" hidden>Radio e Giornale</button><button type="button" class="se" data-a="dl">Scarica</button><button type="button" class="se" data-a="x">Chiudi</button></div>';
+      var err = f.box.querySelector('.cd-err'), sh = f.box.querySelector('[data-a=sh]'), sh2 = f.box.querySelector('[data-a=sh2]');
+      var testo = 'O Fant A Girrr · ' + comp;   /* senza il collegamento alla pagina: bastano lega, coppa e giornate (Gianluca, 13 novembre 2026) */
       function scelti() { return Array.prototype.filter.call(f.box.querySelectorAll('.cd-pk input'), function (c) { return c.checked; }).map(function (c) { return P.pezzi[+c.dataset.i]; }); }
       function file(x) { try { return new File([x.blob], x.nome, { type: x.tipo }); } catch (e) { return null; } }
+      /* 6.0.1: WhatsApp mostra foto e video con l'anteprima solo se arrivano da soli, senza audio, PDF o testo: se li mescoli
+         diventano tutti «file» staccati. Quindi due gruppi: foto e video insieme (un album), poi Radio e Giornale (Gianluca, 13 novembre 2026). */
+      function media(x) { return /^(image|video)\//.test(x.tipo); }
+      function gruppi() {
+        var S = scelti(), M = S.filter(media), A = S.filter(function (x) { return !media(x); });
+        return [M, A].filter(function (g) { return g.length; }).map(function (g) { return g.map(file).filter(Boolean); });
+      }
+      function nomeGruppo(F) {
+        if (!F.length) return 'Condividi';
+        var m = /^(image|video)\//.test(F[0].type), v = F.some(function (x) { return /^video\//.test(x.type); }), im = F.some(function (x) { return /^image\//.test(x.type); });
+        if (m) return (v && im ? 'Foto e video' : v ? 'Video' : F.length > 1 ? 'Foto' : 'Foto') + ' (' + F.length + ')';
+        var ra = F.some(function (x) { return /^audio\//.test(x.type); }), gi = F.some(function (x) { return /pdf$/.test(x.type); });
+        return ra && gi ? 'Radio e Giornale' : ra ? 'Radio' : 'Giornale';
+      }
       function aggiorna() {
-        var S = scelti(), F = S.map(file).filter(Boolean), puo = F.length && navigator.canShare && navigator.canShare({ files: F });
-        sh.textContent = S.length ? 'Condividi (' + S.length + ')' : 'Condividi'; sh.disabled = !S.length;
-        sh.hidden = !puo; f.box.querySelector('[data-a=dl]').className = puo ? 'se' : 'pr'; err.textContent = '';
-        return F;
+        var G = gruppi(), puo = G.length && navigator.canShare && G.every(function (F) { return navigator.canShare({ files: F }); });
+        sh.textContent = G.length > 1 ? nomeGruppo(G[0]) : G.length ? 'Condividi (' + G[0].length + ')' : 'Condividi'; sh.disabled = !G.length;
+        sh.hidden = !puo; sh2.hidden = !puo || G.length < 2; if (G.length > 1) sh2.textContent = nomeGruppo(G[1]);
+        sh.className = 'pr'; sh2.className = 'se'; f.box.querySelector('[data-a=dl]').className = puo ? 'se' : 'pr'; err.textContent = G.length > 1 && puo ? 'Due invii, perché WhatsApp mostri foto e video con l\'anteprima: prima «' + nomeGruppo(G[0]).replace(/ \(\d+\)$/, '') + '», poi «' + nomeGruppo(G[1]) + '».' : '';
+        return G;
+      }
+      function invia(F, ultimo) {
+        /* il testo con il collegamento solo con l'ultimo invio, e mai insieme a foto e video (li trasformerebbe in file) */
+        var dati = { files: F, title: 'O Girrr' }; if (ultimo && !/^(image|video)\//.test(F[0].type)) dati.text = testo;
+        return navigator.share(dati);
       }
       Array.prototype.forEach.call(f.box.querySelectorAll('.cd-pk input'), function (c) { c.onchange = aggiorna; });
       aggiorna();
+      function fallito(e) { if (e && e.name !== 'AbortError') err.textContent = 'Condivisione non riuscita: usa «Scarica».'; }
       sh.onclick = function () {   /* tutto è già pronto: la condivisione parte subito dal tocco (serve a iPhone) */
-        var F = aggiorna(); if (!F.length) return;
-        navigator.share({ files: F, title: 'O Girrr', text: testo }).catch(function (e) {
-          if (e && e.name !== 'AbortError') err.textContent = 'Condivisione non riuscita: usa «Scarica».';
-        });
+        var G = aggiorna(); if (!G.length) return;
+        invia(G[0], G.length === 1).then(function () {
+          if (G.length > 1) { sh.className = 'se'; sh2.className = 'pr'; err.textContent = 'Fatto. Ora tocca «' + sh2.textContent + '».'; try { sh2.focus({ preventScroll: true }); } catch (e) {} }
+        }).catch(fallito);
       };
+      sh2.onclick = function () { var G = gruppi(); if (G.length > 1) invia(G[1], true).then(function () { err.textContent = 'Fatto.'; }).catch(fallito); };
       f.box.querySelector('[data-a=dl]').onclick = function () {
         var S = scelti(); if (!S.length) return;
         S.forEach(function (x, i) { setTimeout(function () {
