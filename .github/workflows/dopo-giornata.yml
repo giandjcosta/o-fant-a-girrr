@@ -33,7 +33,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
         with:
-          ref: main
+          ref: ${{ github.event_name == 'workflow_dispatch' && github.event.inputs.solo_giro_di_boa == 'true' && github.ref_name || 'main' }}
           path: code
       - uses: actions/checkout@v4
         with:
@@ -88,7 +88,7 @@ jobs:
         if: steps.c.outputs.esegui == 'true'
         run: python3 code/calcoli/dati_lab.py site/data.json site/girrr/dati/probabilita.json site/girrr/dati/lab-dati.json site/scripts site/girrr/dati/borsino.json site/girrr/dati/fiducia.json
       - name: Giro di boa per pagina, album e Radio
-        if: steps.c.outputs.esegui == 'true' || github.event.inputs.solo_giro_di_boa == 'true'
+        if: github.event_name != 'push'
         run: python3 code/calcoli/giro_di_boa.py site --leggi-pubblico
       - name: Cronache della Home 5.5 (Oggi al Girrr)
         if: steps.c.outputs.esegui == 'true' || github.event_name == 'push'
@@ -105,7 +105,6 @@ jobs:
           python3 code/calcoli/post_curva.py code/calcoli/eventi.json code/calcoli/post_curva.json code/calcoli/moviola.json site/data.json --cronache-classifica
           python3 code/calcoli/pubblica_curva.py --vai
       - name: Salvo i dati del sito
-        if: steps.c.outputs.esegui == 'true' || github.event_name == 'push' || github.event.inputs.solo_giro_di_boa == 'true'
         run: |
           cd site
           git config user.name "github-actions[bot]"
