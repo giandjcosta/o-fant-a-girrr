@@ -1,0 +1,17 @@
+name: Prova cartellini (diagnosi, solo log)
+# Claude, 15 novembre 2026: gira solo sul ramo di prova, non scrive niente su main o gh-pages.
+on:
+  push:
+    branches: [claude/fervent-thompson-rwlwrh]
+    paths: ['prove/cartellini_diagnosi.py', '.github/workflows/prova-cartellini.yml']
+permissions:
+  contents: read
+jobs:
+  diagnosi:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: python3 prove/cartellini_diagnosi.py 11
