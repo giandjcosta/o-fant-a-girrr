@@ -71,7 +71,7 @@ Notizie pubbliche, senza indicare di chi e' ogni giocatore.
 | Bracaglia | Frosinone | Squalificato | Rientra dalla 13ª giornata | Salta |
 | Bonny | Inter | Risentimento muscolare ai flessori della coscia destra | Inizio dicembre | Salta |
 | Grabara | Juventus | Lesione al crociato anteriore del ginocchio destro | Da aprile | Salta |
-| Yildiz | Juventus | Problema al piede | Prima metà di dicembre | Salta |
+| Yildiz | Juventus | Problema al piede | Fine dicembre | Salta |
 | Kalulu | Juventus | Lesione ai muscoli ischiocrurali della gamba sinistra | Fine novembre | Salta |
 | Tavares N. | Lazio | Infortunio | Metà dicembre | Salta |
 | Marusic | Lazio | Fastidio muscolare alla gamba | Da valutare | Salta |
