@@ -3,7 +3,7 @@ name: Prova cartellini (diagnosi, solo log)
 on:
   push:
     branches: [claude/fervent-thompson-rwlwrh]
-    paths: ['prove/cartellini_diagnosi.py', '.github/workflows/prova-cartellini.yml']
+    paths: ['prove/cartellini_diagnosi.py', 'prove/cartellini/**', '.github/workflows/prova-cartellini.yml']
 permissions:
   contents: read
 jobs:
@@ -14,4 +14,4 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
-      - run: python3 prove/cartellini_diagnosi.py 11
+      - run: python3 prove/cartellini/prova.py
