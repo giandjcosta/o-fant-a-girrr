@@ -423,7 +423,7 @@ def migliori(n=4):
         x = voti.get(i, {}).get(g)
         pl = D["P"].get(i)
         if x and x.get("f") is not None and pl:
-            righe.append((x["f"], pl["n"], pl["t"], pl["r"], x.get("v"), [b for b in x.get("b", []) if b not in ("subentrato", "senza voto")]))
+            righe.append((x["f"], pl["n"], pl["t"], pl["r"], x.get("v"), [b for b in x.get("b", []) if b not in ("subentrato", "senza voto", "ammonizione", "espulsione")]))
     righe.sort(key=lambda r: (-r[0], r[1]))
     return int(g), righe[:n], list(reversed(righe[-3:])) if len(righe) > 8 else []
 
