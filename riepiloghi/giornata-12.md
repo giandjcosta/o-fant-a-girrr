@@ -1,6 +1,6 @@
 # Riepilogo giornata 12 di Serie A
 
-Lega O FANT A GIRRR. Dati aggiornati al 2026-11-14.
+Lega O FANT A GIRRR. Dati aggiornati al 2026-11-15.
 
 ## Partite della giornata
 
