@@ -75,6 +75,9 @@ def plurale(n, uno, molti):
     return f"{n} {uno if n == 1 else molti}"
 
 
+CARTELLINI = ("ammonizione", "espulsione")
+
+
 def bonus_da(titolo, n):
     t = titolo.strip().lower()
     if t == "gol segnati":
@@ -103,9 +106,12 @@ def leggi_voti(html):
         m = re.search(r'player-link[^>]*href="[^"]*/(\d+)"', riga)
         if not m:
             continue
-        pill = re.search(r'<span class="player-grade[^"]*" data-value="([^"]*)"></span>\s*'
+        pill = re.search(r'<span class="player-grade([^"]*)" data-value="([^"]*)"></span>\s*'
                          r'<span class="player-fanta-grade[^"]*" data-value="([^"]*)"', riga)
-        v, f = (num(pill.group(1)), num(pill.group(2))) if pill else (None, None)
+        v, f = (num(pill.group(2)), num(pill.group(3))) if pill else (None, None)
+        # Cartellini (Claude, 15 novembre 2026): il voto della Redazione (prima pillola) ha la classe
+        # yellow-card per l'ammonito e red-card per l'espulso.
+        cartellino = ("espulsione" if "red-card" in pill.group(1) else "ammonizione" if "yellow-card" in pill.group(1) else None) if pill else None
         if v == 55:  # 55 e' il segnaposto di "senza voto"
             v, f = None, None
         sub = "in.webp" in riga
@@ -114,6 +120,8 @@ def leggi_voti(html):
             n = int(num(val) or 0)
             if n > 0:
                 b.append(bonus_da(tit, n))
+        if cartellino:
+            b.append(cartellino)
         if sub:
             b.append("subentrato")
         if v is None:
@@ -208,6 +216,12 @@ def main():
                 scheda = votes.setdefault(i, {})
                 if str(g) not in scheda:
                     scheda[str(g)] = {"v": x["v"], "f": x["f"], "b": x["b"]}
+                else:
+                    # Giornate già salvate prima della lettura dei cartellini: si aggiunge solo il cartellino, il resto non cambia.
+                    vecchio = scheda[str(g)].setdefault("b", [])
+                    for c in CARTELLINI:
+                        if c in x["b"] and c not in vecchio:
+                            vecchio.append(c)
 
     # ---- quando sono usciti tutti i voti di una giornata di Serie A (le uscite del sito partono 1 ora dopo)
     vts = D.setdefault("votiTs", {})
