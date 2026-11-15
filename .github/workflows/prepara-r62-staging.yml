@@ -1,0 +1,99 @@
+name: ChatGPT - Prepara anteprima 6.2 senza pubblicare
+on:
+  workflow_dispatch:
+    inputs:
+      registry_sha:
+        description: 'SHA già certificato dal collaudo 6.2 del Registro'
+        required: true
+        type: string
+permissions:
+  contents: write
+jobs:
+  staging:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - name: Solo codice del sito ufficiale (nessun deploy)
+        uses: actions/checkout@v4
+        with:
+          ref: gh-pages
+          path: site
+          persist-credentials: true
+      - name: Solo backend ufficiale
+        uses: actions/checkout@v4
+        with:
+          ref: main
+          path: backend
+          persist-credentials: true
+      - name: Registro certificato
+        uses: actions/checkout@v4
+        with:
+          repository: giandjcosta/o-girrr-registro
+          ref: ${{ inputs.registry_sha }}
+          path: registro
+          persist-credentials: false
+      - name: Verifica SHA sorgente, ancora 6.1 sul sito
+        env:
+          SHA: ${{ inputs.registry_sha }}
+        run: |
+          python3 - <<'PY'
+          import json,os,subprocess
+          from pathlib import Path
+          root=Path('registro')
+          sha=subprocess.check_output(['git','rev-parse','HEAD'],cwd=root,text=True).strip()
+          if sha!=os.environ['SHA']:raise ValueError('SHA Registro diverso da quello richiesto')
+          ver=json.loads(Path('site/versioni.json').read_text())['versioni'][0]['v']
+          if ver!='6.1':raise ValueError('Versione ufficiale diversa da 6.1: '+ver)
+          print('Sorgente verificata',sha,'versione ufficiale',ver)
+          PY
+      - name: Prepara 6.2 in copie totalmente separate
+        run: |
+          python3 registro/rilascio/r62/applica.py site --out "$RUNNER_TEMP/site-62"
+          python3 registro/rilascio/r62/backend.py backend "$RUNNER_TEMP/backend-62"
+      - name: Changelog ufficiale 6.2 nella copia
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          import subprocess
+          txt=Path('registro/rilascio/r62/ANNUNCIO-BOZZA.md').read_text()
+          titolo=txt.split('**Titolo:** ',1)[1].splitlines()[0]
+          messaggio=txt.split('## Messaggio unico',1)[1].split('## Changelog unico',1)[0].strip()
+          righe=txt.split('## Changelog unico',1)[1].splitlines()
+          voci=[]
+          for r in righe:
+              if not r.startswith('- **') or ':** ' not in r:continue
+              area,testo=r[4:].split(':** ',1)
+              voci+=['--voce',area+': '+testo]
+          if len(voci)<20:raise ValueError('Changelog 6.2 incompleto')
+          cmd=['python3','registro/rilascio/versioni/aggiungi.py','--tipo','medio','--v','6.2',
+               '--titolo',titolo,'--messaggio',messaggio,'--file',
+               str(Path(__import__('os').environ['RUNNER_TEMP'])/'site-62/versioni.json')]+voci
+          subprocess.run(cmd,check=True)
+          PY
+      - name: Prepara branch separato gh-pages senza pubblicare
+        run: |
+          cd site
+          git switch -c chatgpt/staging-62-frontend
+          rsync -a --delete --exclude='.git' "$RUNNER_TEMP/site-62/" ./
+          git config user.name "ChatGPT"
+          git config user.email "noreply@openai.com"
+          git add -A
+          if git diff --cached --quiet; then echo "Nessuna modifica frontend"; exit 1; fi
+          git commit -m "ChatGPT: prepara frontend 6.2 certificato, non pubblicare"
+          git push origin HEAD:refs/heads/chatgpt/staging-62-frontend
+      - name: Prepara branch separato main backend senza attivarlo
+        run: |
+          cd backend
+          git switch -c chatgpt/staging-62-backend
+          rsync -a --delete --exclude='.git' "$RUNNER_TEMP/backend-62/" ./
+          git config user.name "ChatGPT"
+          git config user.email "noreply@openai.com"
+          git add -A
+          if git diff --cached --quiet; then echo "Nessuna modifica backend"; exit 1; fi
+          git commit -m "ChatGPT: prepara backend 6.2 certificato, non attivare"
+          git push origin HEAD:refs/heads/chatgpt/staging-62-backend
+      - name: Rapporto
+        run: |
+          echo "Solo i rami staging sono stati aggiornati; nessuna scrittura su main, gh-pages o Supabase."
+          echo "Frontend: chatgpt/staging-62-frontend"
+          echo "Backend: chatgpt/staging-62-backend"
