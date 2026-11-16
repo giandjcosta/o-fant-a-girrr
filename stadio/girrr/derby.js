@@ -65,3 +65,17 @@ function render(){
 if(!ALBO)document.getElementById('lg').onclick=function(){location.href='index.html'};
 fetch('../../data.json',{cache:'no-store'}).then(function(r){return r.json()}).then(function(d){D=d;classifica();pronto(render);caricaDb().then(function(){pronto(render)});if(!ALBO)document.getElementById('foot').textContent='Dati aggiornati al '+(D.cal.date||'')}).catch(function(e){ROOT().innerHTML='<div class="err">Non riesco a leggere i dati.</div>'});
 })();
+
+
+/* 6.2.1: Derby */
+(function(){if(window.__dline)return;window.__dline=1;
+var STA=/\/stadio\//.test(location.pathname),R=function(){try{return matchMedia('(prefers-reduced-motion: reduce)').matches}catch(e){return false}};
+var st=document.createElement('style');st.textContent='.dtab{position:relative}.dtab>.dline{position:absolute;left:0;bottom:0;height:3px;border-radius:3px;background:'+(STA?'#ffd166':'var(--acc,#d62839)')+';pointer-events:none;transition:transform .38s cubic-bezier(.22,.61,.36,1),width .38s cubic-bezier(.22,.61,.36,1)}.dtab button[aria-selected=true]{border-bottom-color:transparent!important}';document.head.appendChild(st);
+function linea(t,anim){var a=t.querySelector('[aria-selected=true]');if(!a)return;var l=t.querySelector('.dline');if(!l){l=document.createElement('i');l.className='dline';l.setAttribute('aria-hidden','true');t.appendChild(l);anim=false}
+ if(!anim||R())l.style.transition='none';l.style.width=a.offsetWidth+'px';l.style.transform='translateX('+a.offsetLeft+'px)';if(!anim||R()){void l.offsetWidth;l.style.transition=''}}
+var attesa=false;function tutte(){if(attesa)return;attesa=true;requestAnimationFrame(function(){attesa=false;[].forEach.call(document.querySelectorAll('.dtab'),function(t){linea(t,false)})})}
+document.addEventListener('click',function(e){var b=e.target.closest&&e.target.closest('[data-dsez]');if(!b)return;var t=b.closest('.dtab'),top=t?t.getBoundingClientRect().top:0;
+ requestAnimationFrame(function(){if(!t)return;linea(t,true);var d=t.getBoundingClientRect().top-top;if(Math.abs(d)>1)window.scrollBy(0,d);
+  var p=document.querySelector('[data-dp="'+b.getAttribute('data-dsez')+'"]');if(p&&!R())try{p.animate([{opacity:0,transform:'translateY(6px)'},{opacity:1,transform:'none'}],{duration:280,easing:'cubic-bezier(.22,.61,.36,1)'})}catch(x){}})});
+if(window.MutationObserver)new MutationObserver(tutte).observe(document.documentElement,{childList:true,subtree:true});window.addEventListener('resize',tutte);window.addEventListener('load',tutte);tutte();
+})();

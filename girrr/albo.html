@@ -217,7 +217,7 @@ function recs(){
   h+=row('⚽','Più gol in una partita',esc(cap(gol.m.c))+' '+gol.m.gc+' - '+gol.m.gf+' '+esc(cap(gol.m.f)),dove(gol.m),gol.val);
   if(sf)h+=row('😭','La più sfortunata',sf.t,'ha perso con '+pt(sf.val)+' punti contro '+esc(cap(sf.o))+' · '+dove(sf.m),pt(sf.val));
   if(fo)h+=row('🍀','La più fortunata',fo.t,'ha vinto con soli '+pt(fo.val)+' punti su '+esc(cap(fo.o))+' · '+dove(fo.m),pt(fo.val));
-  if(se.best.n>=2)h+=row('🔥','Serie di vittorie più lunga',se.best.t,'tra campionato e coppa',se.best.n,true);
+  if(se.best.n>=2)h+=row('🔥','Serie di vittorie più lunga',se.best.t,'tra campionato e coppa',se.best.n);
   return '<div class="card"><h3>I record della lega</h3>'+h+'</div>';
 }
 /* Storico: nomi degli allenatori come su Leghe; alias confermati da Gianluca */

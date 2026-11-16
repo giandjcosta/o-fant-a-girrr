@@ -83,7 +83,10 @@ function latDraw(){var b=document.getElementById('latbox');if(!b)return;
   if(!LD){b.innerHTML='<div class="card"><p class="lnt" style="margin:0">Carico l\'Albo di Latta…</p></div>';return}
   var h='<div class="card" style="padding:18px 18px 14px"><h3 style="margin:0 0 8px">L\'Albo di Latta</h3><p style="margin:0;opacity:.85;line-height:1.45">L\'opposto dell\'oro: chi chiude in fondo, chi fa flop, chi prende le mazzate. Si calcola da solo ad ogni giornata e si accumula anno dopo anno.</p></div>';
   h+='<div class="lseg" role="group" aria-label="Periodo"><button data-lp="anno" aria-pressed="'+(LS.p==='anno')+'">Questa stagione</button><button data-lp="sempre" aria-pressed="'+(LS.p==='sempre')+'">Di sempre</button></div>';
-  b.innerHTML=h+(LS.p==='sempre'?latSempre():latAnno())}
+  var corpo=LS.p==='sempre'?latSempre():latAnno(),lb=b.querySelector('.lbody');
+  if(lb&&b.querySelector('.lseg [data-lp]')){[].forEach.call(b.querySelectorAll('.lseg [data-lp]'),function(x){x.setAttribute('aria-pressed',String(x.getAttribute('data-lp')===LS.p))});lb.innerHTML=corpo;
+   if(!(window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches))try{lb.animate([{opacity:.3,transform:'translateY(4px)'},{opacity:1,transform:'none'}],{duration:260,easing:'cubic-bezier(.22,.61,.36,1)'})}catch(e){}return}
+  b.innerHTML=h+'<div class="lbody">'+corpo+'</div>'}
 function latInit(){var b=document.getElementById('latbox');if(!b||b._l)return;b._l=1;latDraw();
   b.addEventListener('click',function(e){var x=e.target.closest&&e.target.closest('[data-lp],[data-lr]');if(!x)return;if(x.hasAttribute('data-lp'))LS.p=x.getAttribute('data-lp');else LS.r=+x.getAttribute('data-lr');latDraw()});
   (function prova(i){if(i>=LAB.length){b.innerHTML='<div class="card"><p class="lnt" style="margin:0">L\'Albo di Latta non si carica adesso: riprova tra un attimo.</p></div>';return}

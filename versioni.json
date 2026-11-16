@@ -2,6 +2,49 @@
   "nota": "Fonte unica della pagina Versioni (girrr/versioni.html e stadio/girrr/versioni.html). A ogni rilascio si aggiunge la versione in cima con rilascio/versioni/aggiungi.py. Numeri: correzione minore = terza cifra (5.6.1), aggiornamento medio = seconda cifra (5.7.0), aggiornamento grande = prima cifra (6.0). Dove manca la storia: «Dato non conservato». Le versioni 1.0-4.5 e il Mercato Scambi vengono dai messaggi recuperati da Claude chat (9 novembre 2026), date controllate con i commit del sito. Il campo «nota» e «altre_varianti» non si mostrano nella pagina.",
   "versioni": [
     {
+      "v": "6.2.1",
+      "data": "2026-11-16",
+      "tipo": "minore",
+      "titolo": "Correzioni e personaggi in Curva",
+      "messaggio": "🔧 **O Girrr 6.2.1 è online!** Nella Home ogni collegamento ti porta alla giornata giusta del Tabellone. Nell’MVP dei tifosi ora votano undici personaggi della Curva, uno alla volta durante la settimana, fino alla chiusura. «Cambia il mio voto» è una pillola ben visibile e nelle Sfide vedi quante ne hai già lanciate. Albo d’oro e Derby si sfogliano senza scatti. Buona giornata a tutti! ⚽",
+      "novita": [
+        {
+          "area": "Home",
+          "voci": [
+            "I cerchi del «Cammino in classifica» aprono il Tabellone sulla Classifica dopo quella giornata, anche su Firefox e sui Safari meno recenti.",
+            "Ultimo risultato, Le ultime cinque, Prossima sfida e Le prossime tre aprono il Tabellone sui Risultati della giornata."
+          ]
+        },
+        {
+          "area": "Girrr Sport",
+          "voci": [
+            "Nei Sondaggi, dopo il voto, i risultati hanno le barre e le percentuali ben separate dal nome della sfida.",
+            "I sondaggi non compaiono più per errore nelle altre schede, come la Moviola.",
+            "«Cambia il mio voto» è una pillola ben visibile, rossa nella grafica Lega e oro nella grafica Stadio, nei sondaggi e nell’MVP dei tifosi.",
+            "Nelle Sfide un contatore mostra quante delle due sfide della stagione hai già lanciato."
+          ]
+        },
+        {
+          "area": "Curva",
+          "voci": [
+            "Nell’MVP dei tifosi votano undici personaggi della Curva, ognuno con il suo criterio, dalla votazione della 8ª giornata.",
+            "I voti dei personaggi arrivano uno alla volta durante la settimana e la classifica provvisoria si aggiorna fino alla chiusura.",
+            "In «Giurie e criteri» si legge quanti personaggi hanno già votato, e la scheda resta aperta durante gli aggiornamenti."
+          ]
+        },
+        {
+          "area": "Albo d’oro",
+          "voci": [
+            "Nel menu il colore passa da una voce all’altra senza far scorrere le pillole; sul telefono la voce scelta resta in vista.",
+            "Nell’Albo di Latta, cambiando periodo o giornata, cambia solo il contenuto, in dissolvenza.",
+            "Nei Derby la linea sotto la sezione scorre da una voce all’altra e la pagina non salta in alto.",
+            "Nella Classifica dei Derby, Campionato e Champions Cup sono due pulsanti separati, senza effetto interruttore.",
+            "Nei Record la serie di vittorie più lunga non è più evidenziata in oro."
+          ]
+        }
+      ]
+    },
+    {
       "v": "6.2",
       "data": "2026-11-16",
       "tipo": "medio",
