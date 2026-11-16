@@ -122,7 +122,7 @@ function home(){
  var version=++generation,day=latest(),nm=day&&day.n,cls=nm?ranks(nm):[],sets=completeRounds(false).map(function(g){return {n:g.n,table:ranks(g.n)}});
  var box=el('v53metrics');box.classList.add('v55-unified');
  box.innerHTML=t?window.OGHome55.render({team:t,table:cls,sets:sets,rounds:completeRounds(false),cupRounds:completeRounds(true),cupLink:href('tabellone')+'#coppa',coachLink:albo('?albo=all'),calendar:games(false).sort(function(a,b){return a.n-b.n}),archivio:HIST55,
-  dayLink:function(n){return href('tabellone')+'#lega-'+n},boardLink:href('tabellone'),careerLink:function(team){return SITO55?href('app')+'#carriera':new URL('../'+(skin==='lega'?'attuale.html':'index.html'),root).href+'?come='+encodeURIComponent(team)+'#carriera'}}):note('Entra con la tua squadra per vedere il tuo riepilogo personale.');
+  dayLink:function(n,sez){return href('tabellone')+'?sezione='+(sez||'risultati')+'#lega-'+n},boardLink:href('tabellone'),careerLink:function(team){return SITO55?href('app')+'#carriera':new URL('../'+(skin==='lega'?'attuale.html':'index.html'),root).href+'?come='+encodeURIComponent(team)+'#carriera'}}):note('Entra con la tua squadra per vedere il tuo riepilogo personale.');
  var ownrow=cls.find(function(r){return r.team===t});compact.textContent=t?t+(ownrow?' · '+(cls.indexOf(ownrow)+1)+'ª · '+ownrow.pt+' punti':''):'Il riepilogo della tua squadra';
  var z=notizia(),items=[],me=chi(),personal=[],busy=!!(chi()&&chi().team===t);
  if(z)items.push({key:z.chiave,title:z.titolo,detail:z.testo,link:href('tabellone')+'?sezione=classifica&cronaca='+encodeURIComponent(z.chiave)+'#lega-'+nm});
@@ -419,7 +419,7 @@ function tendine(){if(CALMO||!Element.prototype.animate)return;
 function passaggi(){if(CALMO||'startViewTransition' in document)return;
  document.documentElement.classList.add('v55-entra');
  document.addEventListener('click',function(e){var l=e.target.closest&&e.target.closest('a[href]');if(!l||e.defaultPrevented||e.button!==0||e.metaKey||e.ctrlKey||e.shiftKey||l.target==='_blank')return;
-  var u;try{u=new URL(l.href,location.href)}catch(x){return}if(u.origin!==location.origin||(u.pathname===location.pathname&&u.hash))return;
+  var u;try{u=new URL(l.getAttribute('href'),location.href)}catch(x){return}if(u.origin!==location.origin||(u.pathname===location.pathname&&u.hash))return;
   e.preventDefault();document.documentElement.classList.add('v55-esce');setTimeout(function(){location.href=u.href},170)});
  window.addEventListener('pageshow',function(){document.documentElement.classList.remove('v55-esce')})}
 /* Claude, 1° novembre: Tabellone e Campo entrano tutti insieme, in dissolvenza, solo quando sono pronti (niente pezzi che compaiono uno alla volta). */

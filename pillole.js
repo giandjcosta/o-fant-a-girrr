@@ -12,6 +12,7 @@
 (function () {
   if (window.__pillole) return; window.__pillole = 1;
   var FILE = '.seg,.at,.dtab,nav .nvi,.chips,.ptabs,#tabs,.pt-competition';
+  var FERME = '.at,.dtab,.pt-competition';
   var ridotto = function () { try { return matchMedia('(prefers-reduced-motion: reduce)').matches; } catch (e) { return false; } };
   var EASE = 'cubic-bezier(.22,.61,.36,1)';
   function attiva(c) {
@@ -62,6 +63,7 @@
       contenuto(c2).forEach(function (el) {
         try { el.animate([{ opacity: 0.25, transform: 'translateY(6px)' }, { opacity: 1, transform: 'none' }], { duration: 260, easing: EASE }); } catch (e) {}
       });
+      if (c2.matches && c2.matches(FERME)) return;
       /* il colore scivola dalla pillola di prima a quella nuova */
       if (!bg || bg === 'rgba(0, 0, 0, 0)' || bg === 'transparent') return;
       var vecchia = c2.children[ai];
