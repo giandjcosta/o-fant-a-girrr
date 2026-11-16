@@ -215,7 +215,7 @@ body::before{content:'';position:fixed;inset:-120px;z-index:-1;pointer-events:no
 <script>window.goatcounter={path:function(){return location.pathname},no_onload:/[?&]demo/.test(location.search)}</script>
 <script data-goatcounter="https://djcosta18.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script><link rel="stylesheet" href="v55/ui.css?v=55r10"><script src="v55/destinazioni55.js?v=55r8" defer></script><script src="v55/ui.js?v=55r10" defer></script><script src="../offline.js" defer></script>
 <script src="../condividi.js?v=61-periodi1" defer></script>
-</head>
+<style>/* 6.2: la tua partita con un leggero velo oro */#board>.m.tua{position:relative;background-image:linear-gradient(90deg,rgba(255,209,102,.17),rgba(255,209,102,.05))!important}#board>.m.tua::before{content:'La tua partita';position:absolute;top:6px;left:18px;font:900 9px/1 Inter,system-ui,sans-serif;letter-spacing:.12em;text-transform:uppercase;color:#ffd166}</style></head>
 <body data-mode="lega" data-v53="board" data-v53-skin="lega">
 <div class="wrap">
   <a class="back" href="index.html">‹ O Girrr</a>
@@ -323,7 +323,7 @@ function render(){
       if(s[0]>s[1])wf='';if(s[1]>s[0])wc='';
       sc='<b>'+s[0]+'</b><i></i><b>'+s[1]+'</b>';fc='<small>'+pt(pc)+'</small>';ff='<small>'+pt(pf)+'</small>'}
     var dn=derby(casa,fuori),scl=cup?'':sfidaCl(D.cal.lega,n,casa,fuori),tg=[];if(dn!==null)tg.push('<b>DERBY</b>'+(dn?' · '+esc(dn):''));if(scl)tg.push('<b>'+scl.toUpperCase()+'</b>');
-    b+='<div class="m'+(cup?' cp':'')+(tg.length?' dby':'')+'" style="animation-delay:'+(k*70)+'ms">'+(tg.length?'<div class="dn">'+tg.join(' · ')+'</div>':'')+(cup?'<div class="g">'+esc(gir)+'</div>':'')+'<div class="t h '+wc+(casa===ME?' mine':'')+'"><span>'+esc(cap(casa))+'</span>'+fc+'</div><div class="sc">'+sc+'</div><div class="t '+wf+(fuori===ME?' mine':'')+'"><span>'+esc(cap(fuori))+'</span>'+ff+'</div></div>';
+    b+='<div class="m'+(cup?' cp':'')+(tg.length?' dby':'')+(ME&&(casa===ME||fuori===ME)?' tua':'')+'" style="animation-delay:'+(k*70)+'ms">'+(tg.length?'<div class="dn">'+tg.join(' · ')+'</div>':'')+(cup?'<div class="g">'+esc(gir)+'</div>':'')+'<div class="t h '+wc+(casa===ME?' mine':'')+'"><span>'+esc(cap(casa))+'</span>'+fc+'</div><div class="sc">'+sc+'</div><div class="t '+wf+(fuori===ME?' mine':'')+'"><span>'+esc(cap(fuori))+'</span>'+ff+'</div></div>';
   });
   if(cup&&g.rest&&g.rest.length)b+='<div class="rip">Riposano: '+g.rest.map(function(x){return (x[1]===ME?'<b>'+esc(cap(x[1]))+'</b>':esc(cap(x[1])))+' (gir. '+esc(x[0])+')'}).join(' · ')+'</div>';
   var upto=c.filter(function(x){return x.n<=n&&played(x,cup)});

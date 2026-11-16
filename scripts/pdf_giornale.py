@@ -443,6 +443,12 @@ def tab_cl(righe, completa=True):
 
 
 def costruisci(t, tema="classico"):
+    # 6.2: candidati MVP dei tifosi della giornata appena finita (solo se la votazione è aperta)
+    from mvp_giornale62 import integra as integra_mvp
+    dossier = ROOT / 'girrr/dati/mvp-editoriale.json'
+    if dossier.exists():
+        ultima = max((x['n'] for x in D['cal']['lega'] if giocata(x)), default=0)
+        t = integra_mvp(t, json.loads(dossier.read_text(encoding='utf-8')), ultima, D=D)
     # Cronache 5.5: arricchisce una copia prima della normale impaginazione.
     from giornale_classifica import integra
     attese = json.loads(Path(__file__).with_name("aspettative.json").read_text(encoding="utf-8"))
@@ -535,6 +541,20 @@ def costruisci(t, tema="classico"):
             for fv, nome, club, r, v, b in flop:
                 h.append(f'<div class="tp"><b>{esc(nome)}</b> <i>{esc(club)} · {RUOLO.get(r, "")}</i><br>Fantavoto {pt(fv)}</div>')
         h.append("</div></div></div>")
+    mvp = t.get('mvp_editoriale')
+    if mvp and (mvp.get('candidati') or mvp.get('verdetto')):   # 6.2: rubrica MVP dei tifosi, stessi stili della pagina
+        h.append('<div class="tab" data-rubrica-mvp><style>[data-rubrica-mvp] .txt:first-letter{color:var(--ink)}</style><h2>MVP <b>dei tifosi</b></h2>')   # capolettera nero: separa dai titoletti rossi (Gianluca)
+        v = mvp.get('verdetto')
+        if v:   # la vincitrice della giornata precedente, con il capolettera rosso
+            h.append('<div class="gr">La vincitrice della ' + str(v['giornata']) + 'ª giornata</div>')
+            h.append('<p class="txt">' + esc(v['testo']) + '</p>')
+        if mvp.get('candidati'):
+            h.append('<div class="gr"' + (' style="clear:both;margin-top:3mm;padding-top:2.2mm;border-top:.3mm solid var(--rule)"' if v else '') + '>Le candidate della ' + str(mvp['giornata']) + 'ª giornata</div>')
+            h.append('<div style="clear:both;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:4mm">')
+            for c in mvp['candidati']:
+                h.append('<div style="font-size:9.6pt;line-height:1.42"><b>' + esc(cap(c['squadra'])) + '</b><br>' + esc(c['testo']) + '</div>')
+            h.append('</div>')
+        h.append('</div>')
     h.append(piede(2) + "</section>")
 
     # ---------- pagina 3: pagelle, coro della settimana, bufala di mercato

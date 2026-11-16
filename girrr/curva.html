@@ -189,7 +189,7 @@ html,body{overscroll-behavior-y:none;touch-action:manipulation;-webkit-text-size
 
 <script>window.goatcounter={path:function(){return location.pathname},no_onload:/[?&]demo/.test(location.search)}</script>
 <script data-goatcounter="https://djcosta18.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script><link rel="stylesheet" href="v55/ui.css?v=55r10"><script src="v55/home55.js?v=55r8" defer></script><script src="v55/destinazioni55.js?v=55r8" defer></script><script src="v55/ui.js?v=55r10" defer></script><script src="../offline.js" defer></script>
-<script src="../curva-os.js"></script><link rel="stylesheet" href="../curva-os.css"><link rel="stylesheet" href="v60/tifosi.css" data-girrr-tifosi></head>
+<script src="../curva-os.js?v=611-1"></script><link rel="stylesheet" href="../curva-os.css?v=611-1"><link rel="stylesheet" href="v60/tifosi.css" data-girrr-tifosi><script src="../sondaggi62.js?v=62-nativa1"></script></head>
 <body data-v53="curva" data-v53-skin="lega" data-v53-skinname="lega">
 <div class="shell">
   <nav class="nav" id="nav"></nav>
@@ -895,9 +895,11 @@ var MEMEPLUS={
   for(var y=0;y<9;y++)for(var x=0;x<18;x++){c.fillStyle=(x+y)%2?cols[0]:cols[1];if(y>=3&&y<=5)c.fillStyle=cols[0];c.fillRect(x*50+2,y*50+2,46,46)}
   T(PK(['CURVA GIRRR','SEMPRE CON VOI','NOI CI SIAMO','CANTA LA CURVA'],3),W/2,222,'900 64px '+F,cols[1],'center',W-60);   /* nessuna squadra a caso: il testo del coro può parlare di un'altra */T('Coreografia dal divano · 3 cuscini, 1 coperta',W/2,H-20,'700 20px '+F,'#ddd','center')}
 };
-function render(){cvNascondi();cvColori();
+/* ChatGPT · 6.1.1: la navigazione riusa il modello; dati e reazioni lo ricostruiscono. */
+var cvModelloTs=0;
+function render(soloVista){cvNascondi();cvColori();
  var v=document.getElementById('vista'),h='';
- TR=tendenze();POSTS=costruisci();NOTI=me?notifiche():[];
+ if(!soloVista||!cvModelloTs||Date.now()-cvModelloTs>=60000){TR=tendenze();POSTS=costruisci();NOTI=me?notifiche():[];cvModelloTs=Date.now()}
  if(vista!=='notifiche')NV0=0;
  if(vista==='profilo'){if(!me){vista='home'}else{vista='u';vprof=meH}}
  if(vista==='home'){
@@ -907,7 +909,9 @@ function render(){cvNascondi();cvColori();
    h+=compHTML(m)}
   else h+='<div class="ban2"><b>Stai guardando come ospite.</b><br>Per scrivere cori, rispondere e mettere applausi entra con il codice della tua squadra.<br><a class="btn" href="../index.html">Entra</a></div>';
   var L=POSTS.filter(function(p){var k=acc(p.a).k;return filt==='tutti'||(filt==='seguiti'&&(isFol(p.a)||p.a===meH))||(filt==='squadre'&&k==='sq')||(filt==='notizie'&&(k==='org'||k==='pro'))});
+  h+='<div class="cv-flusso">';
   h+=(filt==='seguiti'&&!L.length)?'<div class="vuoto">Non segui ancora nessuno.<br>Cerca in Esplora gli account da seguire.</div>':feed(L.slice(0,FEED_SHOW))+(L.length>FEED_SHOW||FEED_MORE?'<div class="vuoto" id="piu-feed" role="status" style="padding:20px;color:var(--mu)">Scorri per altri cori…</div>':'');
+  h+='</div>';
  }else if(vista==='notifiche'){
   topR('Notifiche','','<button data-nf="tutte" class="'+(ntab==='tutte'?'on':'')+'">Attività</button><button data-nf="men" class="'+(ntab==='men'?'on':'')+'">Menzioni</button>');
   var NL=NOTI.filter(function(o){return ntab==='tutte'?o.tp!=='men':o.tp==='men'});
@@ -947,7 +951,7 @@ function render(){cvNascondi();cvColori();
   if(mio&&edit)h+='<div class="edav"><b>Scegli la tua icona</b><div class="emo">'+EMO.map(function(e){return '<button data-emo="'+e+'" class="'+(pf.e===e?'on':'')+'">'+e+'</button>'}).join('')+'<button data-emo="" class="'+(!pf.e?'on':'')+'" style="font-size:12px;font-weight:800">Sigla</button></div>'+(S.v>=3?'<b>Bio</b><textarea id="bioe" rows="2" maxlength="100" placeholder="Scrivi la bio della squadra (max 100 caratteri). Resta sotto la riga con posizione e punti." style="width:100%;margin:6px 0 12px;padding:10px;border-radius:12px;border:1px solid var(--ln);background:var(--bg2);color:var(--tx);font:500 15px Inter;resize:none">'+esc(pf.bio||'')+'</textarea>':'')+'<b>Colore dell\'avatar</b><input type="range" id="hue" min="0" max="359" value="'+hh+'">'+(S.v>=2?'<div class="edi"><button class="btn out" data-a="pfoto">Foto profilo</button><button class="btn out" data-a="pfoto0">Togli foto</button></div><b>Colore dello sfondo</b><input type="range" id="bhue" min="0" max="359" value="'+bh2+'"><div class="edi"><button class="btn out" data-a="bfoto">Immagine di sfondo</button><button class="btn out" data-a="bfoto0">Togli immagine</button></div><input type="file" id="fpa" accept="image/*" hidden><input type="file" id="fpb" accept="image/*" hidden>':'')+(S.v>=3?'':'<div style="margin-top:10px;font-size:12px;color:var(--mu)">Bio, foto e sfondo non sono ancora attivi: il feed del database risponde con la versione '+(S.v||1)+' invece della 3. Controlla l\'SQL v2 su Supabase.</div>')+'<button class="btn" data-a="salvaav" style="margin-top:10px">Salva</button></div>';
   if(mio&&!edit&&me)h+=compHTML(nomeMio());
   h+='<div class="tabs ptabs"><button data-pt="cori" class="'+(ptab==='cori'?'on':'')+'">Cori</button><button data-pt="risp" class="'+(ptab==='risp'?'on':'')+'">Risposte</button></div>';
-  h+=ptab==='risp'?rispHTML(rispostePosts(a)):feed(profiloPosts(a));
+  h+='<div class="cv-flusso">'+(ptab==='risp'?rispHTML(rispostePosts(a)):feed(profiloPosts(a)))+'</div>';
  }
  morfaIn(v,h);navR();dxR();
  if(vista==='esplora')risultati();
@@ -970,6 +974,7 @@ function render(){cvNascondi();cvColori();
  POSTS.forEach(function(p){SEEN[p.k]=1});
  caricaImg();osserva();if(new URLSearchParams(location.search).has('notifica'))setTimeout(function(){document.dispatchEvent(new Event('og:curva-render'))},0);
  try{var mx=POSTS.length?POSTS[0].ts:0;localStorage.setItem('cv-ultimo',String(mx))}catch(e){}
+ document.dispatchEvent(new Event('og:curva-disegnata'));
 }
 /* Ponte di sola navigazione, incluso nella chiusura della Curva dalla build. */
 window.OGCurva55={
@@ -1068,14 +1073,8 @@ function riallinea(){[0,150,500,1200,2500].forEach(function(t){setTimeout(fixNav
 function conta(){var tx=document.getElementById('tx'),c=document.getElementById('cnt'),go=document.getElementById('go');if(!tx)return;var r=MAX-tx.value.length;c.textContent=r;c.className='cnt'+(r<0?' over':r<20?' near':'');go.disabled=!tx.value.trim()||r<0;tx.style.height='auto';tx.style.height=tx.scrollHeight+'px'}
 
 function pollForm(){return '<input class="poi" maxlength="40" placeholder="Risposta 1"><input class="poi" maxlength="40" placeholder="Risposta 2"><button class="lnk" data-a="pollx" style="color:var(--blu);margin:2px 0 0">+ Aggiungi una risposta</button><div class="pom">Il sondaggio dura 24 ore. Ogni squadra vota una sola volta.</div>'}
-function pollHTML(p){var po=p.real&&PM[p.id0];if(!po)return '';var age=Date.now()-p.ts,chiuso=age>864e5,mio=me&&S.pv?S.pv[p.id0]:undefined,n=po.o.length,w=[],sw=0;
- for(var i=0;i<n;i++){var x=1+CVB.h32(p.k+'o'+i)%100/40;w.push(x);sw+=x}
- var B=Math.round((p.v||0)*0.012*(1-Math.exp(-age/36e5/3))),tot=0,c=[];for(var j=0;j<n;j++){c.push((po.n&&po.n[j]||0)+Math.round(B*w[j]/sw));tot+=c[j]}
- var h='<div class="poll">';
- if(me&&!chiuso&&mio===undefined){po.o.forEach(function(o,i){h+='<button class="po-o" data-a="vota" data-o="'+i+'">'+esc(o)+'</button>'})}
- else{var mx=Math.max.apply(null,c);po.o.forEach(function(o,i){var pc=tot?Math.round(c[i]*100/tot):0;h+='<div class="po-r'+(mio===i?' me':'')+'"><i style="width:'+pc+'%"></i><span>'+esc(o)+(mio===i?' ✓':'')+'</span><span><b>'+pc+'%</b></span></div>'})}
- var rest=864e5-age,ore=Math.ceil(rest/36e5);
- return h+'<div class="pom">'+fmt(tot)+(tot===1?' voto':' voti')+' · '+(chiuso?'Concluso':'Ancora '+(ore>1?ore+' ore':'meno di un\'ora'))+'</div></div>'}
+function pollHTML(p){if(!p.real||!PM[p.id0])return '';return '<div data-v62-nativepost="'+p.id0+'">'+(window.GirrrSondaggi62?GirrrSondaggi62.htmlPost(p.id0):'Caricamento dello stato personale…')+'</div>'}
+
 function lancia(){
  if(!serve())return;var tx=document.getElementById('tx'),v=maiusc(tx.value.trim());if(!v||v.length>MAX)return;
  var go=document.getElementById('go');go.disabled=true;
@@ -1103,13 +1102,13 @@ document.addEventListener('click',function(e){
  if(d.q!==undefined){e.stopPropagation();qs=d.q;vista='esplora';scrollTo(0,0);render();return}
  if(d.v==='seg'){vseg=d.w||meH}
  if(d.v){if(d.v==='scrivi'){if(!me){toast('Entra con il codice della tua squadra per partecipare');return}vista='home';filt='tutti';render();var t=document.getElementById('tx');if(t)t.focus();return}if(d.v==='home'&&vista==='home'){if(window.scrollY>4)window.scrollTo({top:0,behavior:'smooth'});else rinfresca();return}
- if((d.v==='profilo'||d.v==='notifiche')&&!me){toast('Entra con il codice della tua squadra');return}if(d.v==='notifiche'){ntab='tutte'}vista=d.v;ptab='cori';scrollTo(0,0);if(d.v==='esplora')qs='';render();return}
+ if((d.v==='profilo'||d.v==='notifiche')&&!me){toast('Entra con il codice della tua squadra');return}if(d.v==='notifiche'){ntab='tutte'}vista=d.v;ptab='cori';scrollTo(0,0);if(d.v==='esplora')qs='';render(true);return}
  if(d.u){vprof=d.u;vista='u';edit=false;ptab='cori';scrollTo(0,0);render();return}
  if(d.mn){var el3=MNEL;if(el3){var vv=el3.value,ps=el3.selectionStart,bf=vv.slice(0,ps).replace(/@\w{0,20}$/,'@'+d.mn+' ');el3.value=bf+vv.slice(ps);el3.focus();try{el3.setSelectionRange(bf.length,bf.length)}catch(e){}el3.dispatchEvent(new Event('input',{bubbles:true}));var bx=el3.parentNode.querySelector('.mnl');if(bx)bx.remove()}return}
- if(d.nf){ntab=d.nf;render();return}
+ if(d.nf){ntab=d.nf;render(true);return}
  if(d.nk){nSegna(d.nk);vprof=d.nu;vista='u';edit=false;ptab='cori';open[d.nk]=true;scrollTo(0,0);render();var e2=document.querySelector('article.post[data-k="'+d.nk+'"]');if(e2)e2.scrollIntoView({block:'center'});return}
- if(d.pt){ptab=d.pt;render();return}
- if(d.f){filt=d.f;FEED_SHOW=20;scrollTo(0,0);render();return}
+ if(d.pt){ptab=d.pt;render(true);return}
+ if(d.f){filt=d.f;FEED_SHOW=20;scrollTo(0,0);render(true);return}
  if(d.emo!==undefined){sel.e=d.emo;document.querySelectorAll('.emo button').forEach(function(b){b.classList.toggle('on',b.dataset.emo===d.emo)});var av=document.querySelector('.av.xl');if(av){av.textContent=d.emo||sigla(me);av.className='av xl'+(d.emo?' e':'')}return}
  if(d.seg){if(!serve())return;rpc('curva_segui',{p_team:me,p_code:code,p_h:d.seg}).then(function(){return carica()}).then(function(){render()}).catch(function(x){toast(x.message)});return}
  var a=d.a;
@@ -1177,7 +1176,7 @@ document.addEventListener('touchstart',function(e){if(vista!=='home'||!e.target.
 document.addEventListener('touchend',function(e){if(tx0===null)return;var t=e.changedTouches[0],dx=t.clientX-tx0,dy=t.clientY-ty0;tx0=null;
  if(Math.abs(dx)<60||Math.abs(dx)<Math.abs(dy)*1.5)return;
  var i=TF.indexOf(filt),n=i+(dx<0?1:-1);if(n<0||n>=TF.length)return;
- filt=TF[n];FEED_SHOW=20;render();var v=document.getElementById('vista');v.classList.add(dx<0?'sl-l':'sl-r');setTimeout(function(){v.classList.remove('sl-l','sl-r')},320)},{passive:true});
+ filt=TF[n];FEED_SHOW=20;render(true);var v=document.getElementById('vista');v.classList.add(dx<0?'sl-l':'sl-r');setTimeout(function(){v.classList.remove('sl-l','sl-r')},320)},{passive:true});
 document.addEventListener('keydown',function(e){if(e.key==='Enter'&&e.target.matches&&e.target.matches('.rf input')){e.target.closest('.post').querySelector('[data-a=invia]').click()}});
 /* Caricamento incrementale: mostra 20 elementi; richiede altri post alla RPC solo dopo quelli gia' ricevuti. */
 function altriCori(){

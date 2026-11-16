@@ -2,6 +2,84 @@
   "nota": "Fonte unica della pagina Versioni (girrr/versioni.html e stadio/girrr/versioni.html). A ogni rilascio si aggiunge la versione in cima con rilascio/versioni/aggiungi.py. Numeri: correzione minore = terza cifra (5.6.1), aggiornamento medio = seconda cifra (5.7.0), aggiornamento grande = prima cifra (6.0). Dove manca la storia: «Dato non conservato». Le versioni 1.0-4.5 e il Mercato Scambi vengono dai messaggi recuperati da Claude chat (9 novembre 2026), date controllate con i commit del sito. Il campo «nota» e «altre_varianti» non si mostrano nella pagina.",
   "versioni": [
     {
+      "v": "6.2",
+      "data": "2026-11-16",
+      "tipo": "medio",
+      "titolo": "Il Campo della Champions Cup",
+      "messaggio": "⚽ **O Girrr 6.2 è online!** Nel Campo ora trovi anche le partite della Champions Cup: un tocco sull’interruttore e passi da una competizione all’altra, e quando entri con il tuo codice si apre subito la tua partita. Con le nuove frecce passi da una partita all’altra o salti di giornata. Voti una volta sola, nella Curva o in Girrr Sport, e ritrovi il tuo voto in tutte e due: se ci ripensi, puoi cambiarlo finché la votazione è aperta. Quando si chiude l’MVP dei tifosi, Girrr Sport annuncia il verdetto nella Curva, e Giornale e Radio raccontano la vincitrice e le nuove candidate. Buona giornata a tutti! ⚽",
+      "novita": [
+        {
+          "area": "Campo",
+          "voci": [
+            "Interruttore Campionato / Champions Cup con passaggio morbido; ogni competizione ricorda la giornata e la partita che stavi guardando.",
+            "Frecce ‹ › per cambiare partita e « » per cambiare giornata; le partite si possono anche scorrere e toccare, con cambi in dissolvenza.",
+            "Con il codice della squadra si apre subito la tua partita, anche in Champions Cup.",
+            "Il migliore in campo ha il cerchio oro e la stella; accanto ai giocatori i simboli di gol, rigori, assist, porta inviolata, gol subiti e autogol, con la legenda.",
+            "I cartellini gialli e rossi compaiono accanto ai giocatori quando presenti nei dati, con i rispettivi simboli nella legenda.",
+            "I simboli dei portieri sono di lato al cerchio; i gol subiti hanno un pallone con una piccola X e il numero.",
+            "Nella grafica Lega i cerchi di casa sono rossi in Campionato e azzurri in Champions Cup; nella grafica Stadio restano azzurri, oro soltanto il migliore."
+          ]
+        },
+        {
+          "area": "Tabellone",
+          "voci": [
+            "Con il codice della squadra la tua partita ha un leggero velo oro e la scritta «La tua partita».",
+            "Nella grafica Stadio interruttore, giornate, bande e podio sono oro anche in Champions Cup.",
+            "In «Dentro la partita» si legge «= Stessa posizione» e «1 posizione» al singolare."
+          ]
+        },
+        {
+          "area": "Carriera",
+          "voci": [
+            "Il grafico della posizione mostra giornata e piazzamento per ciascun punto, con testi più leggibili e «Peggiore» su una riga dal PC."
+          ]
+        },
+        {
+          "area": "Curva",
+          "voci": [
+            "Le schede cambiano più rapidamente e la bozza resta conservata durante la navigazione.",
+            "Il voto è condiviso tra Curva e Girrr Sport e conta una volta sola: ritrovi «Hai già votato» da tutte e due le parti e con «Cambia il mio voto» puoi cambiarlo finché la votazione è aperta.",
+            "Per le future aperture, sfide fino al calcio d’inizio, post per 24 ore e MVP per 48 ore al massimo, entro il turno successivo."
+          ]
+        },
+        {
+          "area": "Girrr Sport",
+          "voci": [
+            "Puoi votare sondaggi e MVP dei tifosi anche in Girrr Sport e ritrovare la stessa scelta nella Curva.",
+            "Nei Precedenti delle conferenze scegli squadra e giornata, leggendo le dichiarazioni originali oppure «Dato non conservato».",
+            "Per le future aperture, la vigilia termina al calcio d’inizio e il dopo partita resta disponibile per 48 ore dalla pubblicazione dei risultati.",
+            "Alla chiusura dell’MVP dei tifosi il profilo ufficiale di Girrr Sport pubblica il verdetto nella Curva, taggando la squadra scelta."
+          ]
+        },
+        {
+          "area": "Albo d’oro",
+          "voci": [
+            "In Record trovi l’archivio degli MVP dei tifosi, la corsa all’MVP del campionato e la partita più seguita.",
+            "Nella Storia i Padri Fondatori compaiono solo con il nome, tutti in fila."
+          ]
+        },
+        {
+          "area": "Giornale",
+          "voci": [
+            "La rubrica «MVP dei tifosi» racconta la vincitrice della giornata precedente, con Campionato e Champions Cup insieme, e presenta le tre candidate della giornata appena conclusa; il Coro della Curva resta separato."
+          ]
+        },
+        {
+          "area": "Radio",
+          "voci": [
+            "Dalla prossima puntata ordinaria, prima dei saluti, due battute brevi: la squadra MVP della scorsa giornata e le candidate per cui si vota in Curva e in Girrr Sport."
+          ]
+        },
+        {
+          "area": "App",
+          "voci": [
+            "I Bilanci riportano «Campionato & Champions Cup»; le animazioni rispettano Riduci movimento.",
+            "Gli ultimi due sondaggi conclusi si rivedono sia nella Curva sia in Girrr Sport."
+          ]
+        }
+      ]
+    },
+    {
       "v": "6.1",
       "data": "2026-11-14",
       "tipo": "medio",

@@ -28,6 +28,17 @@ html[data-os]{
   --m3-effetti:linear(0,0.027,0.095,0.183,0.27,0.365,0.455,0.536,0.604,0.668,0.724,0.768,0.808,0.842,0.871,0.893,0.912,0.929,0.942,0.952,0.961,0.969,0.974,0.979,0.983,0.987,0.989,0.991,0.993,0.994,0.995,0.996,0.997,0.998,0.998,0.998,0.999,0.999,0.999,0.999,1);
   --m3-effetti-durata:255ms;  /* smorzamento 1.00, rigidità 1600, supera l'arrivo del 0% */
 }
+/* ChatGPT · 6.1.1: un solo contenitore, solo opacità e trasformazione, anche su PC/TV.
+   Le card non ripartono una a una; la bozza rimane ferma fuori da .cv-flusso. */
+html[data-curva-fluida] #vista,
+html[data-curva-fluida] #vista .cv-flusso,
+html[data-curva-fluida] #vista .fx-in,
+html[data-curva-fluida] #vista .post,
+html[data-curva-fluida] #vista .vuoto{animation:none!important}
+html[data-curva-fluida][data-cambio-tabs] .tabs button.on::before,
+html[data-curva-fluida][data-cambio-tabs] .tabs button.on::after,
+html[data-curva-fluida][data-cambio-nav] #nav button.on::before,
+html[data-curva-fluida][data-cambio-nav] #nav button.on svg{animation-duration:180ms!important;animation-timing-function:cubic-bezier(.2,.8,.2,1)!important}
 /* Browser senza linear(): curve classiche che ci somigliano */
 @supports not (animation-timing-function:linear(0,1)){
   html[data-os]{

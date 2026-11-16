@@ -84,7 +84,7 @@
     return `<svg class="gb-grafico" viewBox="0 0 700 205" role="img" aria-label="Posizione dalla ${a[0].giornata}ª alla ${a.at(-1).giornata}ª giornata. ${a.map(v=>v.giornata+'ª: '+v.posizione+'ª').join('; ')}"><line x1="36" x2="664" y1="24" y2="24" stroke="#ffffff25"/><line x1="36" x2="664" y1="163.5" y2="163.5" stroke="#ffffff25"/><text x="2" y="29" fill="#bfe3ff" font-size="15">1ª</text><text x="0" y="169" fill="#bfe3ff" font-size="15">10ª</text><path d="${a.map((v,i)=>(i?'L':'M')+x(i)+' '+y(v.posizione)).join(' ')}" fill="none" stroke="#bfe3ff" stroke-width="3"/>${a.map((v,i)=>`<circle cx="${x(i)}" cy="${y(v.posizione)}" r="${a.length>17?4:7}" style="fill:${COLORI[s.partite.find(m=>m.giornata===v.giornata)?.esito]||'#ffd166'}"><title>${v.giornata}ª giornata · ${v.posizione}ª posizione</title></circle>`).join('')}<text x="36" y="197" fill="#bfe3ff" font-size="15">${a[0].giornata}ª giornata</text><text x="664" y="197" text-anchor="end" fill="#bfe3ff" font-size="15">${a.at(-1).giornata}ª giornata</text></svg>`;
   }
   function voceHTML(v,curva=false) {
-    return v?`<blockquote class="gb-voce ${curva?'gb-curva':''}"><small>${curva?'Dalla Curva'+(v.competizioni?.length?' · '+v.competizioni.map(c=>COMP[c]).join(' + '):''):'Girrr Sport · Redazione'}</small>${v.titolo?'<h4>'+E(v.titolo)+'</h4>':''}<p>${v.tipo==='bilancio'?E(v.testo):'«'+E(v.testo)+'»'}</p><cite>${E(nome(v.autore))}${v.giornata?' · '+v.giornata+'ª giornata':v.data?' · '+new Date(v.data).toLocaleDateString('it-IT',{day:'numeric',month:'long',timeZone:'Europe/Rome'}):''}</cite></blockquote>`:`<p class="gb-assente">${ND}</p>`;
+    return v?`<blockquote class="gb-voce ${curva?'gb-curva':''}"><small>${curva?'Dalla Curva'+(v.competizioni?.length?' · '+v.competizioni.map(c=>COMP[c]).join(' & '):''):'Girrr Sport · Redazione'}</small>${v.titolo?'<h4>'+E(v.titolo)+'</h4>':''}<p>${v.tipo==='bilancio'?E(v.testo):'«'+E(v.testo)+'»'}</p><cite>${E(nome(v.autore))}${v.giornata?' · '+v.giornata+'ª giornata':v.data?' · '+new Date(v.data).toLocaleDateString('it-IT',{day:'numeric',month:'long',timeZone:'Europe/Rome'}):''}</cite></blockquote>`:`<p class="gb-assente">${ND}</p>`;
   }
   function curvaHTML(v,comp='campionato') {
     const cit=v?.curva||[],coperti=new Set(cit.flatMap(c=>c.competizioni||[]));
@@ -116,7 +116,7 @@
     const seconda=`<div class="gb-voci">${voceHTML(red)}${curvaHTML(v)}</div><div class="gb-primati">${primato(p,'attacco')}${primato(p,'difesa')}</div>`;
     return `<h3>Il campionato</h3>${tavole(prima,seconda)}<div class="gb-tutte"><h4>Il dossier di ogni squadra</h4>${p.classifica.map(r=>`<details><summary>${E(nome(r.squadra))} · ${r.posizione}ª · ${r.punti} punti</summary>${dettagli(p.squadre[r.squadra])}</details>`).join('')}</div>`;
   }
-  const COMP={campionato:'Campionato',coppa:'Champions Cup',entrambe:'Campionato + Champions Cup'};
+  const COMP={campionato:'Campionato',coppa:'Champions Cup',entrambe:'Campionato & Champions Cup'};
   function vista(p,comp='campionato') {
     if(comp==='campionato')return p;
     const v=p.competizioni?.[comp];if(!v)throw Error('Il bilancio di questa competizione non è disponibile');return v;
@@ -153,7 +153,7 @@
     const l = document.createElement('link'); l.id='gb-stile';l.rel='stylesheet';l.href=new URL('giro-di-boa.css?v=61-periodi1',ROOT);document.head.append(l);
   }
   function opzioni(j) {return Object.entries(j.periodi).map(([k,p])=>`<option value="${k}">${E(p.etichetta||k)}</option>`).join('');}
-  function opzioniComp(){return Object.entries(COMP).map(([k,n])=>`<option value="${k}">${n}</option>`).join('');}
+  function opzioniComp(){return Object.entries(COMP).map(([k,n])=>`<option value="${k}">${E(n)}</option>`).join('');}
   async function monta(host, team, root = ROOT) {
     stile();host.classList.add('gb');host.classList.toggle('gb-stadio', /\/stadio\//.test(location.pathname));host.innerHTML='<p role="status">Preparo il bilancio…</p>';
     try {
@@ -202,7 +202,7 @@
       }
       function legend(y){[['V','Vittoria'],['N','Pareggio'],['P','Sconfitta']].forEach(([es,n],i)=>{dot(es,80+i*310,y+16,16);txt(n,110+i*310,y,23,mute);});}
       function quote(v,y,curva=false){
-        const h=curva?315:355;box(60,y,960,h);txt(curva?'DALLA CURVA · '+(v?.competizioni||[comp]).map(c=>COMP[c]).join(' + '):'GIRRR SPORT · REDAZIONE',90,y+25,23,curva?coloreCurva:editoriale,800);let at=y+70;
+        const h=curva?315:355;box(60,y,960,h);txt(curva?'DALLA CURVA · '+(v?.competizioni||[comp]).map(c=>COMP[c]).join(' & '):'GIRRR SPORT · REDAZIONE',90,y+25,23,curva?coloreCurva:editoriale,800);let at=y+70;
         if(!v){txt(ND,90,at,31,mute);return;}
         if(v.titolo&&v.tipo!=='bilancio')at=wrap(v.titolo,90,at,900,28,ink,3)+10;
         const testo=v.tipo==='bilancio'?v.testo:'«'+v.testo+'»';let size=31;
@@ -258,7 +258,7 @@
         const v=ambito==='lega'?p.voci||{}:s.voci||{},red=ambito==='lega'?(v.redazione||[]).find(v=>v.squadra===c.capolista)||(v.redazione||[])[0]:v.redazione;
         quote(red,320);
         const cc=v.curva||[],coperti=new Set(cc.flatMap(c=>c.competizioni||[]));
-        if(comp==='entrambe'&&cc.length>1){box(60,710,960,315);txt('DALLA CURVA',90,735,23,coloreCurva,800);cc.slice(0,2).forEach((z,i)=>{let breve=z.testo;if(breve.length>110)breve=breve.slice(0,107).replace(/\s+\S*$/,'')+'…';wrap('«'+breve+'»',90,780+i*110,900,24,ink,3);txt(z.competizioni.map(c=>COMP[c]).join(' + ')+' · '+nome(z.autore)+' · '+new Date(z.data).toLocaleDateString('it-IT',{day:'numeric',month:'short',timeZone:'Europe/Rome'}),90,855+i*110,19,mute,600,900);});}
+        if(comp==='entrambe'&&cc.length>1){box(60,710,960,315);txt('DALLA CURVA',90,735,23,coloreCurva,800);cc.slice(0,2).forEach((z,i)=>{let breve=z.testo;if(breve.length>110)breve=breve.slice(0,107).replace(/\s+\S*$/,'')+'…';wrap('«'+breve+'»',90,780+i*110,900,24,ink,3);txt(z.competizioni.map(c=>COMP[c]).join(' & ')+' · '+nome(z.autore)+' · '+new Date(z.data).toLocaleDateString('it-IT',{day:'numeric',month:'short',timeZone:'Europe/Rome'}),90,855+i*110,19,mute,600,900);});}
         else{quote(cc[0],710,true);if(comp==='entrambe'&&cc.length)for(const co of ['campionato','coppa'])if(!coperti.has(co))txt('Curva · '+COMP[co]+': '+ND,90,1042,19,mute,600,900);}
 
         if(ambito==='lega'){primatiFoto();

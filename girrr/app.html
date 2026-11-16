@@ -245,7 +245,7 @@ svg text{fill:var(--mute);font-family:var(--fb)}
 </style>
 
 <link rel="stylesheet" href="v55/ui.css?v=55r10"><script src="v55/destinazioni55.js?v=55r8" defer></script><script src="v55/ui.js?v=55r10" defer></script><script src="../condividi.js?v=61-periodi1" defer></script><script src="../pillole.js?v=1" defer></script><script src="../offline.js" defer></script>
-<script src="../stagione.js" defer></script>
+<script src="../stagione.js?v=611-1" defer></script>
 <script src="../conferenze.js" defer></script><!-- Claude, conferenze 10/11 -->
 <style id="cartellini-fiducia">.oro-scroll{scroll-padding-inline:4px}
 .trust-visual{position:relative;width:100%;max-width:260px;margin-inline:auto;aspect-ratio:220/128;isolation:isolate}
@@ -265,7 +265,7 @@ svg text{fill:var(--mute);font-family:var(--fb)}
 @keyframes fid-su{from{transform:rotateX(0)}to{transform:rotateX(-90deg)}}
 @keyframes fid-giu{from{transform:rotateX(90deg)}to{transform:rotateX(0)}}
 @media(prefers-reduced-motion:reduce){.tab-fid .fl.gira .a,.tab-fid .fl.gira .b{animation:none;visibility:hidden}}
-</style><link rel="stylesheet" href="v60/tifosi.css" data-girrr-tifosi><style>html{scrollbar-gutter:stable}</style><script src="../giro-di-boa.js?v=61-periodi1" defer></script></head><body data-v53="albo" data-v53-skin="lega"><div class="col">
+</style><link rel="stylesheet" href="v60/tifosi.css" data-girrr-tifosi><style>html{scrollbar-gutter:stable}</style><script src="../giro-di-boa.js?v=611-1" defer></script><script src="../sondaggi62.js?v=62-nativa1"></script></head><body data-v53="albo" data-v53-skin="lega"><div class="col">
   <div class="top">
     <img id="lg" alt="">
     <div>
@@ -1241,9 +1241,11 @@ function confBloccata(){var G=D.cal[0]&&D.cal[0].n;return DBS.conf.some(function
 /* le funzioni che servono a conferenze.js (questo script è chiuso: da fuori non si vedono) */
 window.GirrrApp={render:function(){render()},gsPost:gsPost,isDer:isDer,rvInfo:rvInfo,rvWord:rvWord,derName:derName,mg:mg,me:function(){return GUEST?null:ME},toast:lvToast};
 function vConfL(){
-  var t=ME,o=nextOpp(t),Q=confQs(t),cf=S.cf,ch=confChosen(t),done=ch.every(function(c){return c}),lk=confBloccata(),dis=lk?' disabled':'';
+  var cfW62=window.GirrrFinestre62?GirrrFinestre62('vigilia',D.cal[0]&&D.cal[0].n):{aperta:false,testo:'Caricamento della scadenza…'};
+  var t=ME,o=nextOpp(t),Q=confQs(t),cf=S.cf,ch=confChosen(t),done=cfW62.aperta&&ch.every(function(c){return c}),lk=confBloccata(),dis=(lk||!cfW62.aperta)?' disabled':'';
   var h=where('Nuovo menu','Conferenza','poi in Curva su Girrr Sport')+'<h2>Conferenza stampa</h2><p class="lead">Le domande cambiano con la tua situazione: classifica, obiettivo del presidente, avversario e fiducia della dirigenza. Quello che dici conta: se prometti e poi perdi, la dirigenza se lo ricorda.</p>';
   h+='<div class="card"><h3>Vigilia di '+esc(t)+' - '+esc(o)+'</h3>'+(Q[0]&&Q[0].red?'<p class="sm mut" style="margin:2px 0 8px">Domande della redazione di Girrr Sport, scritte per la tua squadra.</p>':'');
+  h+='<p class="sm mut">'+esc(cfW62.testo)+'</p>';
   Q.forEach(function(q,i){h+='<div class="q"><p>'+esc(q.q)+'</p><div class="opts">'+q.a.map(function(a,j){return '<button data-cq="'+i+'" data-ca="'+j+'" aria-pressed="'+(cf.a[i]===j)+'"'+dis+'>'+esc(a.t)+'</button>'}).join('')+(cf.a[i]==='free'?'<input class="cfree" data-cf="'+i+'" maxlength="'+CFMAX+'" value="'+esc(cf.free[i])+'" placeholder="Scrivi la tua risposta" autocomplete="off" enterkeyhint="done"'+dis+'>':'<button data-cq="'+i+'" data-ca="free" aria-pressed="false"'+dis+'>Rispondo a modo mio…</button>')+'</div>'
     +(cf.a[i]==='free'?'<div class="mut sm" style="margin-top:4px">'+cf.free[i].length+' / '+CFMAX+' caratteri'+(ch[i]?' · Tono: '+TONI[ch[i].k]+(ch[i].w?' · Promessa':''):'')+'</div>':(ch[i]?'<div class="mut sm" style="margin-top:4px">Tono: '+TONI[ch[i].k]+(ch[i].w?' · È una promessa: se perdi, la dirigenza se la segna':'')+'</div>':''))+'</div>'});
   h+=lk?'<button class="btn" id="cpub" disabled style="opacity:.6;cursor:default">Pubblicata · Non si cambia più</button><p class="sm mut" style="margin-top:8px">La conferenza è uscita in Curva: le parole dette restano quelle.</p></div>'
@@ -1429,12 +1431,13 @@ function spMoviola(){
      '<p class="mvx">'+esc(e.testo)+'</p>'+(/^https:\/\//i.test(e.video||'')?'<a class="mvbtn" href="'+esc(e.video)+'" target="_blank" rel="noopener">Guarda il momento</a>':'')+'<div class="mvv '+vc+'"><small>Verdetto</small><b>'+esc(e.verdetto)+'</b></div></div>'}).join('')}
 document.addEventListener('change',function(e){if(e.target.id==='mvg'){S.mvg=+e.target.value;render()}});
 
-function spConf(){var x=vConf();return x.replace(/^<div class="where">.*?<\/div>/,'')}
+function spConf(){var x=vConf();x+='<div data-v62-precedenti></div>';return x.replace(/^<div class="where">.*?<\/div>/,'')}
 function vSport(){
-  var sp=S.sp,tabs=[['giornale','Giornale'],['conf','Conferenze stampa'],['radio','Radio'],['video','Video'],['sfide','Sfide'],['moviola','Moviola']];
+  if(new URLSearchParams(location.search).get('sezione')==='sondaggi'){S.sp='sondaggi';var su=new URL(location.href);su.searchParams.delete('sezione');history.replaceState(null,'',su)}
+  var sp=S.sp,tabs=[['giornale','Giornale'],['conf','Conferenze stampa'],['sondaggi','Sondaggi'],['radio','Radio'],['video','Video'],['sfide','Sfide'],['moviola','Moviola']];
   var h=where('Home','Girrr Sport')+gsHead('Girrr Sport');
   var MVP=!!(window.GirrrSportMvp&&window.GirrrSportMvp());h+='<div class="seg" role="group" aria-label="Sezioni di Girrr Sport">'+tabs.map(function(t){return '<button data-sp="'+t[0]+'" aria-pressed="'+(sp===t[0]&&!MVP)+'">'+t[1]+'</button>'+(t[0]==='giornale'?'<button type="button" data-pt-sport="mvp" aria-pressed="'+MVP+'">Squadra della settimana</button>':'')}).join('')+'</div>';
-  h+=sp==='giornale'?spGiornale():sp==='conf'?spConf():sp==='radio'?spRadio():sp==='video'?spVideo():sp==='sfide'?vSfideDerby():sp==='moviola'?spMoviola():'';
+  h+=sp==='giornale'?spGiornale():sp==='conf'?spConf():sp==='sondaggi'?'<div class="v53" data-v62-sondaggi="sport">'+(window.GirrrSondaggi62?GirrrSondaggi62.html('sport'):'Caricamento…')+'</div>':sp==='radio'?spRadio():sp==='video'?spVideo():sp==='sfide'?vSfideDerby():sp==='moviola'?spMoviola():'';
   return h}
 
 
@@ -1495,6 +1498,7 @@ function morphDom(o,n){
     if(a.nodeType!==b.nodeType||a.nodeName!==b.nodeName){o.replaceChild(b.cloneNode(true),a);continue}
     if(a.nodeType===3||a.nodeType===8){if(a.nodeValue!==b.nodeValue)a.nodeValue=b.nodeValue;continue}
     if(a.nodeType!==1)continue;
+    /* host62 */ if((a.hasAttribute('data-v62-precedenti')&&b.hasAttribute('data-v62-precedenti'))||(a.hasAttribute('data-v62-sondaggi')&&b.hasAttribute('data-v62-sondaggi')))continue;
     if(a.classList.contains('trust-visual')&&b.classList.contains('trust-visual')){a.dataset.target=b.dataset.target;continue;}
     if(a.tagName==='AUDIO'||a.tagName==='VIDEO'||a.tagName==='IFRAME'){if(a.outerHTML!==b.outerHTML)o.replaceChild(b.cloneNode(true),a);continue}
     var at=b.attributes,k;
@@ -1839,4 +1843,4 @@ window.addEventListener('hashchange',function(){var x=(location.hash||'').slice(
 render();
 })();
 </script>
-<script src="v60/model.js"></script><script src="v60/tifosi.js"></script></body></html>
+<script src="v60/model.js"></script><script src="v60/tifosi.js"></script><script>(function(){let pending=false;function monta(){document.querySelectorAll('[data-v62-sondaggi]').forEach(h=>window.GirrrSondaggi62?.mount(h,h.dataset.v62Sondaggi));document.querySelectorAll('[data-v62-precedenti]').forEach(h=>{if(!h.dataset.avviato){h.dataset.avviato='1';window.GirrrSondaggi62?.precedenti(h)}})}new MutationObserver(()=>{if(!pending){pending=true;requestAnimationFrame(()=>{pending=false;monta()})}}).observe(document.getElementById('view'),{childList:true,subtree:true});monta()})();</script></body></html>

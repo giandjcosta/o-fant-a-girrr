@@ -155,14 +155,57 @@ body[data-skin=stadio] .mast::after{content:'';position:absolute;left:0;right:0;
 
 @media(max-width:1099px){.legend-columns{grid-template-columns:1fr}.legend-columns>section+section{border-top:1px solid var(--line);padding-top:14px}.campo-legend b{font-size:12px}}
 
+/* 6.2 · Campo con Campionato e Champions Cup */
+/* Regola di Gianluca (15 novembre 2026): la Lega tiene i colori (Campionato rosso, Coppa azzurra), lo Stadio tiene tutto oro anche in Coppa */
+body[data-v53=campo][data-comp=coppa][data-skin=lega]{--g-acc:#3d93d6;--g-onacc:#fff;--accent:#3d93d6;--onaccent:#fff}
+body[data-v53=campo][data-comp=coppa][data-skin=stadio]{--accent:#ffd166;--onaccent:#142449}
+.comp-sw{position:relative;display:grid;grid-template-columns:1fr 1fr;align-self:center;width:min(100%,400px);padding:4px;border-radius:999px;background:rgba(20,29,61,.72);box-shadow:inset 0 0 0 1px var(--line)}
+.comp-sw[hidden]{display:none}
+.comp-sw i{position:absolute;top:4px;bottom:4px;left:4px;width:calc(50% - 4px);border-radius:999px;background:#d62839;box-shadow:0 4px 14px rgba(0,0,0,.28);transition:transform .55s cubic-bezier(.65,0,.25,1),background-color .55s ease;will-change:transform}
+.comp-sw[data-on=coppa] i{transform:translateX(100%)}
+body[data-skin=lega] .comp-sw[data-on=coppa] i{background:#3d93d6}
+body[data-skin=stadio] .comp-sw i{background:#ffd166}
+body[data-skin=stadio] .comp-sw button[aria-selected=true]{color:#1d2a52;transition:opacity .35s ease,color .3s ease .15s}
+.comp-sw button{position:relative;z-index:1;border:0;background:none;color:#fbf6ec;font:800 13px/1.2 Inter,system-ui,sans-serif;letter-spacing:.06em;text-transform:uppercase;padding:10px 8px;min-height:44px;border-radius:999px;white-space:nowrap;transition:opacity .35s ease}
+.comp-sw button[aria-selected=false]{opacity:.7}.comp-sw button[aria-selected=false]:hover{opacity:1}
+/* Il colore sfuma solo dove serve. Bande delle schede: la banda di prima resta sopra come velo e svanisce (solo opacità, lavoro della scheda grafica) */
+body[data-v53=campo] #board>.card{position:relative}
+html.cc-pronto body[data-v53=campo] #board>.card::after{content:'';position:absolute;top:-1px;right:-1px;bottom:-1px;left:calc(-1*var(--g-band,8px));border:1px solid transparent;border-left:var(--g-band,8px) solid var(--cc-prima,transparent);border-radius:var(--g-card,14px);pointer-events:none;opacity:0;transition:opacity .65s cubic-bezier(.4,0,.2,1)}
+html.cc-pronto body[data-v53=campo] #board.cc-da>.card::after{opacity:1;transition:none}
+html.cc-pronto body[data-v53=campo] .sidebar nav a{transition:box-shadow .6s cubic-bezier(.4,0,.2,1),background-color .6s cubic-bezier(.4,0,.2,1),color .6s cubic-bezier(.4,0,.2,1)}
+html.cc-pronto body[data-v53=campo] .gamebtn{transition:background-color .6s cubic-bezier(.4,0,.2,1),color .6s cubic-bezier(.4,0,.2,1)}
+#board,#matches,#roundtitle{transition:opacity .34s cubic-bezier(.22,.61,.36,1),transform .34s cubic-bezier(.22,.61,.36,1)}
+#board.cc-via,#matches.cc-via,#roundtitle.cc-via{opacity:0;transform:translateY(8px);transition-duration:.16s;transition-timing-function:ease-in;pointer-events:none}
+/* Cerchio dei giocatori di casa sul campo, solo nella Lega: rosso in Campionato, azzurro in Coppa. Nello Stadio resta com'era (l'oro è del migliore in campo). Ospite sempre bianco */
+body[data-v53=campo][data-skin=lega]{--casa:#ff5a6a}
+body[data-v53=campo][data-skin=lega][data-comp=coppa]{--casa:#63bce9}
+/* Portiere ospite, in fondo al campo: i simboli sopra il cerchio, così il bordo non li taglia */
+.pitch .pl.basso i{top:auto;bottom:100%;margin:0 0 2px}
+/* Cerchio oro: il migliore in campo, quello con la stella (al massimo uno per squadra, come nei dati di Fantacalcio) */
+.pitch .pl.top b,.pitch .pl.away.top b{border-color:#ffd166;box-shadow:0 0 0 2px rgba(255,209,102,.35),0 2px 6px rgba(0,0,0,.35)}
+/* Frecce: ‹ › cambiano partita, « » cambiano giornata. Le partite si scorrono e si toccano come prima */
+.partite-nav{display:flex;align-items:center;gap:6px;flex:1;min-width:0}
+.partite-nav>.matches{flex:1;min-width:0}
+.pfr{flex:none;width:42px;height:42px;border-radius:var(--g-tab,12px);border:1px solid var(--line);background:#30476c;color:#fff;font-size:20px;font-weight:900;line-height:1;transition:opacity .25s ease,background-color .25s ease}
+.pfr:disabled{opacity:.25;cursor:default}
+.pfr:not(:disabled):hover,.round button:not(:disabled):hover{background:#3b5683}
+#prev,#next{font-size:19px;letter-spacing:-.04em}
+/* Dopo la prima apertura le schede non rifanno l'entrata: il cambio è la sola dissolvenza, senza scatti */
+html.cc-pronto body[data-v53=campo] #board>.card{animation:none}
+@media(min-width:901px){.partite-nav{margin-left:4px;padding-left:12px;border-left:1px solid var(--line)}}
+@media(max-width:900px){.partite-nav{flex-basis:100%;order:3}.partite-nav>.matches{width:auto;flex-basis:auto;order:0}}
+@media(max-width:700px){.comp-sw{width:100%}}
+@media(max-width:360px){.comp-sw button{font-size:11.5px;letter-spacing:.03em;padding:10px 4px}}
+@media(prefers-reduced-motion:reduce){.comp-sw i,.comp-sw button,.pfr,#board,#matches,#roundtitle,html.cc-pronto body[data-v53=campo] #board>.card::after,html.cc-pronto body[data-v53=campo] .sidebar nav a,html.cc-pronto body[data-v53=campo] .gamebtn{transition:none!important}}
 </style><link rel="icon" type="image/png" href="../../assets/favicon-64.png"><script>window.goatcounter={path:function(){return location.pathname},no_onload:/[?&]demo/.test(location.search)}</script>
 <script data-goatcounter="https://djcosta18.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script><link rel="stylesheet" href="../../girrr/v55/ui.css?v=55r10"><script src="../../girrr/v55/destinazioni55.js?v=55r8" defer></script><script src="../../girrr/v55/ui.js?v=55r10" defer></script><script src="../../offline.js" defer></script>
-</head>
+<style id="portieri62">.pitch .pl.portiere i{left:calc(50% + 19px);top:0;bottom:auto;transform:none;margin:0;display:flex;align-items:center;flex-wrap:wrap;gap:2px;width:max-content;max-width:70px;white-space:normal}.gs-icon{display:inline-block!important;position:relative!important;background:none!important;padding:0!important;margin:0!important;overflow:visible!important;font:inherit!important;line-height:1!important;color:inherit!important}.gs-icon sup{position:absolute;right:-2px;bottom:-1px;font:bold 8px/1 Arial;color:#fff;background:#b9172c;border-radius:50%;width:8px;height:8px;text-align:center}.gs-num{display:inline!important;background:none!important;padding:0!important;margin:0 2px 0 1px!important;font:inherit!important;color:inherit!important}</style></head>
 <body data-skin="stadio" data-v53="campo" data-v53-skin="stadio">
-<div class="cockpit"><aside class="sidebar"><a class="brand" href="index.html" data-home><img src="https://giandjcosta.github.io/o-fant-a-girrr/assets/loghi/logo-lega-o-fant-a-girrr.png" alt="O Fant A Girrr"></a><nav aria-label="Centro della giornata"><a href="#confronto" class="active"><span aria-hidden="true"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3h7v7H3z M14 3h7v7h-7z M3 14h7v7H3z M14 14h7v7h-7z"/></svg></span>Confronto</a><a href="#rendimento"><span aria-hidden="true"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a9 9 0 1 0 0 18a9 9 0 1 0 0-18 M12 8a4 4 0 1 0 0 8a4 4 0 1 0 0-8"/></svg></span>Rendimento</a><a href="#andamento"><span aria-hidden="true"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 19l6-6 4 3 8-12 M15 4h6v6"/></svg></span>Andamento</a><a href="#recenti"><span aria-hidden="true"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M8 6h13 M8 12h13 M8 18h13 M3 6h1 M3 12h1 M3 18h1"/></svg></span>Risultati recenti</a><a href="index.html" data-home><span aria-hidden="true"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11l9-8 9 8 M5 10v11h5v-7h4v7h5V10"/></svg></span>Home</a></nav><div class="side-foot">CAMPIONATO<small>Stagione 2026/27</small></div></aside><main class="frame">
+<div class="cockpit"><aside class="sidebar"><a class="brand" href="index.html" data-home><img src="https://giandjcosta.github.io/o-fant-a-girrr/assets/loghi/logo-lega-o-fant-a-girrr.png" alt="O Fant A Girrr"></a><nav aria-label="Centro della giornata"><a href="#confronto" class="active"><span aria-hidden="true"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3h7v7H3z M14 3h7v7h-7z M3 14h7v7H3z M14 14h7v7h-7z"/></svg></span>Confronto</a><a href="#rendimento"><span aria-hidden="true"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a9 9 0 1 0 0 18a9 9 0 1 0 0-18 M12 8a4 4 0 1 0 0 8a4 4 0 1 0 0-8"/></svg></span>Rendimento</a><a href="#andamento"><span aria-hidden="true"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 19l6-6 4 3 8-12 M15 4h6v6"/></svg></span>Andamento</a><a href="#recenti"><span aria-hidden="true"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M8 6h13 M8 12h13 M8 18h13 M3 6h1 M3 12h1 M3 18h1"/></svg></span>Risultati recenti</a><a href="index.html" data-home><span aria-hidden="true"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11l9-8 9 8 M5 10v11h5v-7h4v7h5V10"/></svg></span>Home</a></nav><div class="side-foot"><span id="comp-foot">CAMPIONATO</span><small>Stagione 2026/27</small></div></aside><main class="frame">
  <div class="mast"><div><a id="ritorno-tabellone" href="tabellone.html">‹ Tabellone</a><div class="campo-title"><img class="campo-logo" src="https://giandjcosta.github.io/o-fant-a-girrr/assets/loghi/logo-lega-o-fant-a-girrr.png" alt="O Fant A Girrr"><div><div class="kicker" style="margin-top:14px">Campo · Centro della giornata</div><h1>Dentro la giornata</h1><p class="sub">Partite, risultati, rendimento e andamento della Lega, aggiornati dal calendario.</p></div></div></div>
+ <div class="comp-sw" id="comp-sw" role="tablist" aria-label="Competizione"><i aria-hidden="true"></i><button role="tab" data-comp-choice="lega" aria-selected="true">Campionato</button><button role="tab" data-comp-choice="coppa" aria-selected="false">Champions Cup</button></div>
  <div class="skin" role="group" aria-label="Grafica"><button data-skin-choice="lega" aria-pressed="false">Grafica Lega</button><button data-skin-choice="stadio" aria-pressed="true">Grafica Stadio</button></div></div>
- <div class="toolbar"><div class="round"><button id="prev" aria-label="Giornata precedente">‹</button><span class="roundname" id="roundtitle">Giornata</span><button id="next" aria-label="Giornata successiva">›</button></div><nav id="matches" class="matches" aria-label="Partite della giornata"></nav></div>
+ <div class="toolbar"><div class="round"><button id="prev" aria-label="Giornata precedente" title="Giornata precedente">«</button><span class="roundname" id="roundtitle">Giornata</span><button id="next" aria-label="Giornata successiva" title="Giornata successiva">»</button></div><div class="partite-nav"><button id="pprev" class="pfr" aria-label="Partita precedente" title="Partita precedente">‹</button><nav id="matches" class="matches" aria-label="Partite della giornata"></nav><button id="pnext" class="pfr" aria-label="Partita successiva" title="Partita successiva">›</button></div></div>
  <div class="board" id="board"><div class="loading">Caricamento del calendario…</div></div>
  </main></div>
 <script>
@@ -171,6 +214,44 @@ body[data-skin=stadio] .mast::after{content:'';position:absolute;left:0;right:0;
 var D=null,F=null,round=0,game=0,MIA=(function(){try{if(/[?&]ospite\b/.test(location.search))sessionStorage.setItem('ospite','1');if(sessionStorage.getItem('ospite')==='1')return '';return (JSON.parse(localStorage.getItem('fg')||'{}')||{}).team||''}catch(e){return ''}})(),TEL=window.matchMedia("(max-width:700px)");
 /* Claude, 1° novembre: ?coppa=1 apre le partite della Champions Cup (formazioni della giornata di Serie A corrispondente, posizione nel girone) */
 var COPPA=new URLSearchParams(location.search).get('coppa')==='1',GIR={};
+var CAL={},STATO={},CAMBIO=0,FERMO=window.matchMedia('(prefers-reduced-motion: reduce)');document.body.dataset.comp=COPPA?'coppa':'lega';(document.getElementById('comp-sw')||{dataset:{}}).dataset.on=COPPA?'coppa':'lega';
+/* 6.2: Campionato e Champions Cup nella stessa pagina. D.cal.lega è il calendario mostrato; CAL tiene i due, STATO giornata e partita di ognuno. */
+function primo(){var i=D.cal.lega.findIndex(function(g){return !played(g)});return i<0?D.cal.lega.length-1:Math.max(0,i-1)}
+function colori(){document.body.dataset.comp=COPPA?'coppa':'lega'}
+function intestazione(){var c=COPPA?'coppa':'lega',sw=document.getElementById('comp-sw');if(sw)sw.dataset.on=c;
+ document.querySelectorAll('[data-comp-choice]').forEach(function(b){var si=b.dataset.compChoice===c;b.setAttribute('aria-selected',String(si));b.tabIndex=si?0:-1});
+ document.querySelectorAll('.campo-logo').forEach(function(i){i.src=COPPA?'https://giandjcosta.github.io/o-fant-a-girrr/assets/loghi/logo-cup-champions-cup.png':'https://giandjcosta.github.io/o-fant-a-girrr/assets/loghi/logo-lega-o-fant-a-girrr.png';i.alt=COPPA?'Champions Cup':'O Fant A Girrr'});
+ var kk=document.querySelector('.campo-title .kicker');if(kk)kk.textContent=COPPA?'Campo · Champions Cup':'Campo · Centro della giornata';
+ var sub=document.querySelector('.campo-title .sub');if(sub)sub.textContent='Partite, risultati, rendimento e andamento '+(COPPA?'della Champions Cup':'della Lega')+', aggiornati dal calendario.';
+ var pie=document.getElementById('comp-foot');if(pie)pie.textContent=COPPA?'CHAMPIONS CUP':'CAMPIONATO'}
+function setComp(c){
+ if(!D||!CAL.coppa||!CAL.coppa.length||(c==='coppa')===COPPA)return;
+ STATO[COPPA?'coppa':'lega']={round:round,game:game};
+ COPPA=c==='coppa';D.cal.lega=CAL[c];
+ var s=STATO[c];if(s){round=s.round;game=s.game}else{round=primo();game=partitaMia(round)}
+ intestazione();
+ var t=++CAMBIO,piani=['board','matches','roundtitle'].map(function(id){return document.getElementById(id)});
+ function fine(){render();if(typeof aggiornaRitorni==='function')aggiornaRitorni()}
+ if(FERMO.matches){colori();fine();return}
+ piani.forEach(function(p){p.classList.add('cc-via')});
+ setTimeout(function(){if(t!==CAMBIO)return;
+  /* Le nuove schede nascono col colore di prima; poi il colore cambia una volta sola e le bande sfumano mentre la pagina rientra */
+  var bd=document.getElementById('board'),bs=document.body.style;bs.setProperty('--cc-prima',getComputedStyle(document.body).getPropertyValue('--g-acc').trim()||'transparent');
+  fine();bd.classList.add('cc-da');colori();var c=bd.querySelector('.card');if(c)getComputedStyle(c,'::after').opacity;
+  bd.classList.remove('cc-da');piani.forEach(function(p){p.classList.remove('cc-via')})},170);
+}
+/* Cambio di partita o di giornata: lo stato cambia subito (clic ripetuti si sommano), il disegno dopo una dissolvenza breve */
+function vai(fila){var t=++CAMBIO,piani=[document.getElementById('board')];if(fila)piani.push(document.getElementById('matches'),document.getElementById('roundtitle'));
+ if(FERMO.matches||!document.documentElement.classList.contains('cc-pronto')){render();return}
+ piani.forEach(function(p){p.classList.add('cc-via')});
+ setTimeout(function(){if(t!==CAMBIO)return;render();colori();['board','matches','roundtitle'].forEach(function(id){document.getElementById(id).classList.remove('cc-via')})},150)}
+function partita(i){var g=D&&D.cal.lega[round];if(!g||i<0||i>=g.m.length||i===game)return;game=i;
+ document.querySelectorAll('#matches [data-match]').forEach(function(x){x.setAttribute('aria-pressed',String(Number(x.dataset.match)===i))});
+ var pp=document.getElementById('pprev'),pn=document.getElementById('pnext');if(pp)pp.disabled=i<=0;if(pn)pn.disabled=i>=g.m.length-1;vai(false)}
+(function(){var a=document.getElementById('pprev'),b=document.getElementById('pnext');if(a)a.addEventListener('click',function(){partita(game-1)});if(b)b.addEventListener('click',function(){partita(game+1)})})();
+(function(){var sw=document.getElementById('comp-sw');if(!sw)return;
+ sw.addEventListener('click',function(e){var b=e.target.closest('[data-comp-choice]');if(b)setComp(b.dataset.compChoice)});
+ sw.addEventListener('keydown',function(e){if(!/^(ArrowLeft|ArrowRight|Home|End)$/.test(e.key))return;e.preventDefault();var c=e.key==='ArrowLeft'||e.key==='Home'?'lega':'coppa';setComp(c);var b=sw.querySelector('[data-comp-choice="'+c+'"]');if(b)b.focus()})})();
 var ORD=["The Blue brothers","Apo team","Mariana Coneja","stif dc","Real Madrink","Atletico ma non troppo","Oranje VC","AFA SELECCION","Grodah","WOA"];
 function esc(s){return String(s==null?'':s).replace(/[&<>"']/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;','\'':'&#39;'}[c]})}
 function nm(s){return s&&s===MIA?'<span class="mia-nome">'+esc(s)+'</span>':esc(s)}
@@ -216,9 +297,11 @@ function campoSvg(H,a,b){
 function undici(t,sa){
  var fm=F&&F[sa]&&F[sa][t];if(!fm||!fm.tit||!fm.tit.length||fm.tit.length>11)return null;
  function voto(id){var x=D.votes&&D.votes[id]&&D.votes[id][sa];return x||null}
- function gioc(id,dentro){var p=D.P[id]||{},x=voto(id),b=(x&&x.b)||[],gol=0,ass=0,top=false;
-  b.forEach(function(s){var n;if((n=/^(\d+) (gol|rigore segnato|rigori segnati)$/.exec(s)))gol+=+n[1];else if((n=/^(\d+) assist$/.exec(s)))ass+=+n[1];else if(s==='migliore in campo')top=true});
-  return {n:p.n||'—',r:p.r||'C',v:x&&x.v!=null?x.v:null,gol:gol,ass:ass,top:top,dentro:dentro||null}}
+ function gioc(id,dentro){var p=D.P[id]||{},x=voto(id),b=(x&&x.b)||[],k={gol:0,rig:0,ass:0,ag:0,rs:0,rp:0,gs:0,am:0,es:0},top=false;
+  b.forEach(function(s){var n=/^(\d+) (.+)$/.exec(s),q=n?+n[1]:0,w=n?n[2]:s;
+   if(w==='gol')k.gol+=q;else if(/^rigor[ei] segnat[oi]$/.test(w))k.rig+=q;else if(w==='assist')k.ass+=q;else if(w==='autogol')k.ag+=q;else if(/^rigor[ei] sbagliat[oi]$/.test(w))k.rs+=q;else if(/^rigor[ei] parat[oi]$/.test(w))k.rp+=q;else if(/^gol subit[oi]$/.test(w))k.gs+=q;else if(s==='ammonizione')k.am=1;else if(s==='espulsione')k.es=1;else if(s==='migliore in campo')top=true});
+  var r=p.r||'C',v=x&&x.v!=null?x.v:null;
+  return {n:p.n||'—',r:r,v:v,gol:k.gol,rig:k.rig,ass:k.ass,ag:k.ag,rs:k.rs,rp:k.rp,gs:k.gs,am:k.am,es:k.es,pi:r==='P'&&v!=null&&!k.gs,top:top,dentro:dentro||null}}
  var usati={},out=fm.tit.map(function(id){var g=gioc(id);if(g.v!=null)return g;
   // senza voto: entra il primo della panchina dello stesso ruolo con un voto
   var r=(D.P[id]||{}).r;for(var i=0;i<(fm.pan||[]).length;i++){var q=fm.pan[i];if(!usati[q]&&(D.P[q]||{}).r===r&&voto(q)&&voto(q).v!=null){usati[q]=1;var s=gioc(q,g.n);return s}}
@@ -226,9 +309,10 @@ function undici(t,sa){
  return out}
 function chip(g,lato,x,y,w){
  var cl=g.v==null?'sv':g.v>=6.5?'ok':g.v<6?'ko':'',v=g.v==null?'s.v.':String(g.v).replace('.',',');
- var ic=(g.gol?Array(g.gol+1).join('⚽'):'')+(g.ass?(g.ass>1?g.ass+'×':'')+'👟':'')+(g.dentro?'↑':'');
- var tit=g.n+(g.dentro?' (Entrato al posto di '+g.dentro+')':'')+' · Voto '+v+(g.gol?' · Gol: '+g.gol:'')+(g.ass?' · Assist: '+g.ass:'')+(g.top?' · ★ Migliore in campo':'');
- return '<div class="pl '+lato+(g.top?' top':'')+'" role="button" tabindex="0" data-det="'+esc(tit)+'" style="left:'+x.toFixed(2)+'%;top:'+y.toFixed(2)+'%;width:'+w.toFixed(1)+'%" title="'+esc(tit)+'" aria-label="'+esc(tit)+'"><b class="'+cl+'">'+esc(v)+'</b><span>'+esc(g.n)+'</span>'+(ic?'<i>'+ic+'</i>':'')+'</div>'}
+ function rip(n,s){return n?(n>2?n+'×'+s:Array(n+1).join(s)):''}
+ var ic=rip(g.gol,'⚽')+rip(g.rig,'🎯')+rip(g.ass,'👟')+rip(g.rp,'🧤')+(g.pi?'🛡️':'')+(g.gs?'<span class="gs-icon" aria-hidden="true">⚽<sup>×</sup></span><span class="gs-num">'+g.gs+'</span>':'')+rip(g.rs,'❌')+rip(g.ag,'🔴')+(g.es?'🟥':g.am?'🟨':'')+(g.dentro?'↑':'');
+ var tit=g.n+(g.dentro?' (Entrato al posto di '+g.dentro+')':'')+' · Voto '+v+(g.gol?' · Gol: '+g.gol:'')+(g.rig?' · Rigori segnati: '+g.rig:'')+(g.ass?' · Assist: '+g.ass:'')+(g.rp?' · Rigori parati: '+g.rp:'')+(g.pi?' · Porta inviolata':'')+(g.gs?' · Gol subiti: '+g.gs:'')+(g.rs?' · Rigori sbagliati: '+g.rs:'')+(g.ag?' · Autogol: '+g.ag:'')+(g.es?' · Espulso':g.am?' · Ammonito':'')+(g.top?' · ★ Migliore in campo':'');
+ return '<div class="pl '+lato+(g.top?' top':'')+(g.r==='P'?' portiere':'')+'" role="button" tabindex="0" data-det="'+esc(tit)+'" style="left:'+x.toFixed(2)+'%;top:'+y.toFixed(2)+'%;width:'+w.toFixed(1)+'%" title="'+esc(tit)+'" aria-label="'+esc(tit)+'"><b class="'+cl+'">'+esc(v)+'</b><span>'+esc(g.n)+'</span>'+(ic?'<i>'+ic+'</i>':'')+'</div>'}
 function schiera(xi,lato,H){
  var file={P:[],D:[],C:[],A:[]};xi.forEach(function(g){(file[g.r]||file.C).push(g)});
  // la casa difende la porta in alto, l'ospite quella in basso
@@ -246,7 +330,7 @@ function pitch(a,b,g){
 function render(){
  if(!D)return;var rounds=D.cal.lega||[],g=rounds[round];if(!g)return;
  document.getElementById('roundtitle').textContent=(COPPA?'Coppa · ':'')+'Giornata '+g.n;
- document.getElementById('prev').disabled=round===0;document.getElementById('next').disabled=round===rounds.length-1;
+ document.getElementById('prev').disabled=round===0;document.getElementById('next').disabled=round===rounds.length-1;var pp=document.getElementById('pprev'),pn=document.getElementById('pnext');if(pp)pp.disabled=game<=0;if(pn)pn.disabled=game>=g.m.length-1;
  var list=document.getElementById('matches');
  list.innerHTML=g.m.map(function(m,i){var io=MIA&&(m[0]===MIA||m[3]===MIA);return '<button class="gamebtn'+(io?' mia':'')+'" data-match="'+i+'" aria-pressed="'+(i===game)+'">'+(io?'<span class="tua">La tua partita</span>':'')+nm(m[0])+' – '+nm(m[3])+'<small>'+(m[4]==='-'?'Da giocare':m[4])+'</small></button>'}).join('');
  var m=g.m[game];if(!m)return;var active=played(g),a=m[0],b=m[3],r=m[4]==='-'?'— : —':m[4].replace('-', ' : '),tb=ranks(g.n),ha=tb[a],hb=tb[b];
@@ -254,7 +338,7 @@ function render(){
  var h='<section class="card match-panel" id="confronto"><div class="match-head"><span class="club">'+nm(a)+'</span><span class="score">'+esc(r)+'</span><span class="club">'+nm(b)+'</span></div>'+
  '<div class="phase">'+(COPPA?'Champions Cup · Girone '+esc(m[5])+' · ':'')+'Giornata '+g.n+' · Serie A '+g.sa+' · '+score+'</div>'+
  pitch(a,b,g)+
- '<div class="pitch-footer"><span>CASA · '+nm(a)+'</span><span>'+score.toUpperCase()+'</span><span>OSPITE · '+nm(b)+'</span></div>'+(undici(a,String(g.sa))?'<details class="campo-legend"><summary>Legenda</summary><div class="legend-columns"><section><h4>Voto in pagella</h4><p>Il numero nel cerchio è il voto del giocatore.</p><ul><li><span class="voto-sample ok" aria-hidden="true">6,5</span><span><b>Da 6,5 in su</b><small>Cerchio verde.</small></span></li><li><span class="voto-sample" aria-hidden="true">6</span><span><b>Da 6 a meno di 6,5</b><small>Cerchio neutro.</small></span></li><li><span class="voto-sample ko" aria-hidden="true">5,5</span><span><b>Sotto il 6</b><small>Cerchio rosso.</small></span></li><li><span class="voto-sample sv" aria-hidden="true">S.V.</span><span><b>Senza voto</b><small>Voto non disponibile.</small></span></li></ul></section><section><h4>Squadra</h4><p>Il colore del bordo distingue le due squadre.</p><ul><li><i class="leg-casa" aria-hidden="true"></i><span><b>Squadra di casa</b><small>Bordo azzurro.</small></span></li><li><i class="leg-osp" aria-hidden="true"></i><span><b>Squadra ospite</b><small>Bordo bianco.</small></span></li></ul></section><section><h4>Simboli del giocatore</h4><ul><li><span class="legend-symbol leg-star" aria-hidden="true">★</span><span>Migliore in campo.</span></li><li><span class="legend-symbol" aria-hidden="true">⚽</span><span>Gol segnato.</span></li><li><span class="legend-symbol" aria-hidden="true">👟</span><span>Assist.</span></li><li><span class="legend-symbol" aria-hidden="true">↑</span><span>Entrato dalla panchina.</span></li></ul></section></div><p class="legend-help">Seleziona un giocatore per leggere nome completo, voto e dettagli.</p></details><p class="panchina" id="xi-det" aria-live="polite"></p>':(active?'<p class="panchina">Per questa giornata le formazioni non sono state salvate.</p>':'<p class="panchina">Le formazioni compaiono quando la giornata è stata giocata.</p>'))+'</section>';
+ '<div class="pitch-footer"><span>CASA · '+nm(a)+'</span><span>'+score.toUpperCase()+'</span><span>OSPITE · '+nm(b)+'</span></div>'+(undici(a,String(g.sa))?'<details class="campo-legend"><summary>Legenda</summary><div class="legend-columns"><section><h4>Voto in pagella</h4><p>Il numero nel cerchio è il voto del giocatore.</p><ul><li><span class="voto-sample ok" aria-hidden="true">6,5</span><span><b>Da 6,5 in su</b><small>Cerchio verde.</small></span></li><li><span class="voto-sample" aria-hidden="true">6</span><span><b>Da 6 a meno di 6,5</b><small>Cerchio neutro.</small></span></li><li><span class="voto-sample ko" aria-hidden="true">5,5</span><span><b>Sotto il 6</b><small>Cerchio rosso.</small></span></li><li><span class="voto-sample sv" aria-hidden="true">S.V.</span><span><b>Senza voto</b><small>Voto non disponibile.</small></span></li></ul></section><section><h4>Squadra</h4><p>Il colore del bordo distingue le due squadre.</p><ul><li><i class="leg-casa" aria-hidden="true"></i><span><b>Squadra di casa</b><small>'+(COPPA||document.body.dataset.skin!=='lega'?'Bordo azzurro.':'Bordo rosso.')+'</small></span></li><li><i class="leg-osp" aria-hidden="true"></i><span><b>Squadra ospite</b><small>Bordo bianco.</small></span></li></ul></section><section><h4>Simboli del giocatore</h4><ul><li><span class="legend-symbol leg-star" aria-hidden="true">★</span><span>Migliore in campo: cerchio oro e stella.</span></li><li><span class="legend-symbol" aria-hidden="true">⚽</span><span>Gol segnato.</span></li><li><span class="legend-symbol" aria-hidden="true">🎯</span><span>Rigore segnato.</span></li><li><span class="legend-symbol" aria-hidden="true">👟</span><span>Assist.</span></li><li><span class="legend-symbol" aria-hidden="true">🧤</span><span>Rigore parato.</span></li><li><span class="legend-symbol" aria-hidden="true">🛡️</span><span>Porta inviolata: portiere senza gol subiti.</span></li><li><span class="legend-symbol"><span class="gs-icon" aria-hidden="true">⚽<sup>×</sup></span></span><span>Gol subiti dal portiere (il numero accanto).</span></li><li><span class="legend-symbol" aria-hidden="true">❌</span><span>Rigore sbagliato.</span></li><li><span class="legend-symbol" aria-hidden="true">🔴</span><span>Autogol.</span></li><li><span class="legend-symbol" aria-hidden="true">🟨</span><span>Ammonito.</span></li><li><span class="legend-symbol" aria-hidden="true">🟥</span><span>Espulso.</span></li><li><span class="legend-symbol" aria-hidden="true">↑</span><span>Entrato dalla panchina.</span></li></ul></section></div><p class="legend-help">Seleziona un giocatore per leggere nome completo, voto e dettagli.</p></details><p class="panchina" id="xi-det" aria-live="polite"></p>':(active?'<p class="panchina">Per questa giornata le formazioni non sono state salvate.</p>':'<p class="panchina">Le formazioni compaiono quando la giornata è stata giocata.</p>'))+'</section>';
  function ring(t,label){var g=t?t.v+t.n+t.p:0,pct=g?Math.round(t.v/g*100):0;return '<div class="gauge"><div class="dial" style="--val:'+pct+'"><strong>'+(g?pct+'%':'—')+'</strong></div><div><b>'+nm(label)+'</b><small>Vittorie / Gare concluse</small><span>'+(g?t.v+' su '+g:'In attesa')+'</span></div></div>'}
  h+='<aside class="card numbers" id="rendimento"><div class="kicker">Rendimento stagionale</div><h2>I numeri del confronto</h2><p class="sub">'+(COPPA?'Champions Cup · ':'')+'Dopo '+complete().filter(function(x){return x.n<=g.n}).length+' giornate complete</p>'+
  '<div class="duel-head"><b>'+nm(a)+'</b><span>CONFRONTO</span><b>'+nm(b)+'</b></div>'+
@@ -263,7 +347,7 @@ function render(){
  h+='<section class="card instruments"><div class="section-head"><div><div class="kicker">Continuità</div><h2>Come arrivano alla sfida</h2></div><span class="tag">ULTIME 5</span></div><div class="gauge-grid">'+ring(ha,a)+ring(hb,b)+'</div><div class="comparison"><div>'+nm(a)+form(ha)+'</div><div class="k">FORMA</div><div>'+nm(b)+form(hb)+'</div></div></section>';
  h+='<section class="card trends" id="andamento"><div class="section-head"><div><div class="kicker">Il cammino</div><h2>Andamento dei punti</h2></div><span class="tag">Scala 0–'+maxPts+' punti</span></div><div class="chart-grid"><div><b>'+nm(a)+'</b><div class="spark">'+chart(ha,maxPts)+'</div></div><div><b>'+nm(b)+'</b><div class="spark">'+chart(hb,maxPts)+'</div></div></div><p class="info">Punti in classifica dopo ogni giornata (3 la vittoria, 1 il pareggio) · Stessa scala per le due squadre.</p></section>';
  h+='<section class="card recent" id="recenti"><details><summary>Risultati recenti · Apri l’archivio del confronto</summary><div class="recent-grid">'+[a,b].map(function(t){var partite=complete().filter(function(x){return x.n<=g.n}).flatMap(function(x){return x.m.filter(function(m){return m[0]===t||m[3]===t}).map(function(m){return {n:x.n,m:m}})}).slice(-5).reverse();return '<div><h3>'+nm(t)+'</h3>'+partite.map(function(x){return '<div class="recent-row"><small>G'+x.n+'</small><span>'+nm(x.m[0])+' – '+nm(x.m[3])+'</span><b>'+esc(x.m[4])+'</b></div>'}).join('')+'</div>'}).join('')+'</div></details></section>';
- document.getElementById('board').innerHTML=h;var u=new URL(location.href);u.searchParams.set('giornata',g.n);u.searchParams.set('partita',game);u.searchParams.set('skin',document.body.dataset.skin);history.replaceState(null,'',u);
+ document.getElementById('board').innerHTML=h;var u=new URL(location.href);u.searchParams.set('giornata',g.n);u.searchParams.set('partita',game);u.searchParams.set('skin',document.body.dataset.skin);if(COPPA)u.searchParams.set('coppa','1');else u.searchParams.delete('coppa');history.replaceState(null,'',u);
 }
 document.addEventListener('keydown',function(e){
  var pl=e.target.closest('.pl[data-det]');
@@ -272,15 +356,15 @@ document.addEventListener('keydown',function(e){
 document.addEventListener('click',function(e){
  var nav=e.target.closest('.sidebar nav a[href^="#"]');if(nav){document.querySelectorAll('.sidebar nav a').forEach(function(x){x.classList.toggle('active',x===nav)})}
  var pl=e.target.closest('[data-det]');if(pl){var dd=document.getElementById('xi-det');if(dd)dd.textContent=pl.dataset.det;return}
- var a=e.target.closest('[data-match]');if(a){game=Number(a.dataset.match);render()}
+ var a=e.target.closest('[data-match]');if(a){partita(Number(a.dataset.match))}
  var s=e.target.closest('[data-skin-choice]');if(s){document.body.dataset.skin=s.dataset.skinChoice;document.querySelectorAll('[data-skin-choice]').forEach(function(x){x.setAttribute('aria-pressed',String(x===s))});var u=new URL(location.href);u.searchParams.set('skin',s.dataset.skinChoice);u.pathname=u.pathname.replace(/campo-(lega|stadio)\.html$/,'campo-'+s.dataset.skinChoice+'.html');history.replaceState(null,'',u);if(window.parent!==window)window.parent.postMessage({orrGrafica:s.dataset.skinChoice==='stadio'?'n':'a'},location.origin)}
 });
 (TEL.addEventListener?TEL.addEventListener('change',function(){render()}):TEL.addListener(function(){render()}));
 function partitaMia(r){var g=D.cal.lega[r];if(!MIA||!g)return 0;var i=g.m.findIndex(function(m){return m[0]===MIA||m[3]===MIA});return i<0?0:i}
-document.getElementById('prev').addEventListener('click',function(){if(round>0){round--;game=partitaMia(round);render()}});
-document.getElementById('next').addEventListener('click',function(){if(round<D.cal.lega.length-1){round++;game=partitaMia(round);render()}});
+document.getElementById('prev').addEventListener('click',function(){if(round>0){round--;game=partitaMia(round);vai(true)}});
+document.getElementById('next').addEventListener('click',function(){if(round<D.cal.lega.length-1){round++;game=partitaMia(round);vai(true)}});
 var q=new URLSearchParams(location.search);
 document.querySelectorAll('[data-skin-choice]').forEach(function(x){x.setAttribute('aria-pressed',String(x.dataset.skinChoice===document.body.dataset.skin))});
-Promise.all([fetch('https://giandjcosta.github.io/o-fant-a-girrr/data.json',{cache:'no-store'}).then(function(r){if(!r.ok)throw Error(r.status);return r.json()}),fetch('https://giandjcosta.github.io/o-fant-a-girrr/formazioni.json',{cache:'no-store'}).then(function(r){return r.ok?r.json():null}).catch(function(){return null})]).then(function(x){var d=x[0];F=x[1];D=d;if(COPPA){D.cal.lega=(D.cal.cup||[]).map(function(g){g.m.forEach(function(m){GIR[m[1]]=GIR[m[4]]=m[0]});(g.rest||[]).forEach(function(z){GIR[z[1]]=z[0]});return {n:g.n,sa:g.sa,m:g.m.map(function(m){return [m[1],m[2],m[3],m[4],m[5],m[0]]})}});document.body.dataset.comp='coppa';document.querySelectorAll('.campo-logo').forEach(function(i){i.src='https://giandjcosta.github.io/o-fant-a-girrr/assets/loghi/logo-cup-champions-cup.png';i.alt='Champions Cup'});var kk=document.querySelector('.campo-title .kicker');if(kk)kk.textContent='Campo · Champions Cup'}var playedIdx=D.cal.lega.findIndex(function(g){return !played(g)});round=playedIdx<0?D.cal.lega.length-1:Math.max(0,playedIdx-1);var richiesto=D.cal.lega.findIndex(function(x){return x.n===Number(q.get('giornata'))});if(richiesto>=0)round=richiesto;game=q.has('partita')?Math.max(0,Math.min(D.cal.lega[round].m.length-1,Number(q.get('partita'))||0)):partitaMia(round);render()}).catch(function(){document.getElementById('board').innerHTML='<div class="card">Non è possibile caricare il calendario. Riprova ad aprire la pagina.</div>'});
+Promise.all([fetch('https://giandjcosta.github.io/o-fant-a-girrr/data.json',{cache:'no-store'}).then(function(r){if(!r.ok)throw Error(r.status);return r.json()}),fetch('https://giandjcosta.github.io/o-fant-a-girrr/formazioni.json',{cache:'no-store'}).then(function(r){return r.ok?r.json():null}).catch(function(){return null})]).then(function(x){var d=x[0];F=x[1];D=d;CAL.lega=D.cal.lega;CAL.coppa=(D.cal.cup||[]).filter(function(g){return g&&g.m&&g.m.length}).map(function(g){g.m.forEach(function(m){GIR[m[1]]=GIR[m[4]]=m[0]});(g.rest||[]).forEach(function(z){GIR[z[1]]=z[0]});return {n:g.n,sa:g.sa,m:g.m.map(function(m){return [m[1],m[2],m[3],m[4],m[5],m[0]]})}});if(!CAL.coppa.length){COPPA=false;var sw=document.getElementById('comp-sw');if(sw)sw.hidden=true}D.cal.lega=COPPA?CAL.coppa:CAL.lega;intestazione();colori();round=primo();var richiesto=D.cal.lega.findIndex(function(x){return x.n===Number(q.get('giornata'))});if(richiesto>=0)round=richiesto;game=q.has('partita')?Math.max(0,Math.min(D.cal.lega[round].m.length-1,Number(q.get('partita'))||0)):partitaMia(round);render();requestAnimationFrame(function(){requestAnimationFrame(function(){document.documentElement.classList.add('cc-pronto')})})}).catch(function(){document.getElementById('board').innerHTML='<div class="card">Non è possibile caricare il calendario. Riprova ad aprire la pagina.</div>'});
 })();
 </script><script>function aggiornaRitorni(){var q=new URLSearchParams(location.search);document.getElementById('ritorno-tabellone').href='tabellone.html#'+(q.get('coppa')==='1'?'coppa-':'lega-')+(q.get('giornata')||1);document.querySelectorAll('[data-home]').forEach(function(a){a.href='index.html'})}aggiornaRitorni();document.addEventListener('click',function(){setTimeout(aggiornaRitorni,0)})</script></body></html>

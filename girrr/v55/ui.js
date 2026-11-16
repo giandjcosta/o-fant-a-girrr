@@ -157,7 +157,7 @@ function compare(){
  if(rounds.length<2){holder.innerHTML=note('Servono due giornate complete per confrontare i movimenti in classifica.');return}
  holder.innerHTML='<div class="v53-field"><label for="v53from">Dalla</label><select class="v53-select" id="v53from">'+opts+'</select><label for="v53to">Alla</label><select class="v53-select" id="v53to">'+opts+'</select></div><div id="v53delta" class="v53-row"></div><p class="v53-muted">Movimenti della classifica tra le due giornate selezionate.</p>';
  var a=el('v53from'),b=el('v53to');a.value=String(rounds[Math.max(0,rounds.length-3)].n);b.value=String(rounds[rounds.length-1].n);
- function update(){var x=ranks(n(a.value)),y=ranks(n(b.value));el('v53delta').innerHTML=y.map(function(t,i){var p=x.findIndex(function(v){return v.team===t.team})+1,d=p-(i+1);return '<div class="v53-box"><small>'+(i+1)+'º posto · '+esc(t.team)+'</small><strong>'+(d>0?'↑ '+d+' posizioni':d<0?'↓ '+(-d)+' posizioni':'= stessa posizione')+'</strong><small>'+t.pt+' punti · '+dec(t.fp)+' Fantapunti · DR '+(t.gf-t.gs)+'</small></div>'}).join('')}
+ function update(){var x=ranks(n(a.value)),y=ranks(n(b.value));el('v53delta').innerHTML=y.map(function(t,i){var p=x.findIndex(function(v){return v.team===t.team})+1,d=p-(i+1);return '<div class="v53-box"><small>'+(i+1)+'º posto · '+esc(t.team)+'</small><strong>'+(d>0?'↑ '+d+(d===1?' posizione':' posizioni'):d<0?'↓ '+(-d)+(d===-1?' posizione':' posizioni'):'= Stessa posizione')+'</strong><small>'+t.pt+' punti · '+dec(t.fp)+' Fantapunti · DR '+(t.gf-t.gs)+'</small></div>'}).join('')}
  a.onchange=update;b.onchange=update;update();
 }
 function matchCenter(){
@@ -275,6 +275,7 @@ function posizionaSondaggio(){var sec=SEC55||el('v53sondaggio'),v=el('vista');if
  if(dopo){if(dopo.nextElementSibling!==sec)dopo.insertAdjacentElement('afterend',sec)}else if(v.firstElementChild!==sec)v.insertBefore(sec,v.firstElementChild)}
 function curva(){
 SEC55=SEC55||el('v53sondaggio');POLL55=POLL55||el('v53poll');var host=POLL55;if(!host||!SEC55)return;
+if(window.GirrrSondaggi62){window.GirrrSondaggi62.mount(host);SEC55.dataset.vuoto='';posizionaSondaggio();var vv=el('vista');if(vv)new MutationObserver(posizionaSondaggio).observe(vv,{childList:true});return}
 var Sg=sondaggi(),reale=SITO55,io=chi(),stato={},msg='',aperti={};
 function opts(g){return g.m.map(function(m){return m[0]+' – '+m[3]})}
 function chiave(g){return 'poll-'+g.n}

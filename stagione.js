@@ -110,21 +110,41 @@
       '@media (min-width:1000px){.ms-scorri{grid-template-columns:repeat(3,minmax(0,1fr))}}' +
       '.ms-c{min-width:0;display:flex;flex-direction:column;padding:14px 16px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.14);' +
       (stadio ? 'border-left:6px solid ' + ACC + ';border-radius:12px' : 'border-left:8px solid ' + ACC + ';border-radius:4px 14px 14px 4px') + '}' +
+      '@media(min-width:600px){.ms-classifica{grid-column:1/-1;display:grid;grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr);column-gap:24px;align-items:start}.ms-classifica>.ms-graf{grid-column:2;grid-row:1/6;margin-top:0}.ms-classifica>.ms-graf svg{max-height:216px}.ms-classifica>.ms-txt{margin-top:0;align-self:end}.ms-classifica>.ms-big{font-size:64px}}' +
+      '@media(min-width:1280px){.ms-posizioni>span:last-child{white-space:nowrap}}' +
       '.ms-k{font-size:11px;font-weight:900;letter-spacing:.16em;text-transform:uppercase;color:' + (stadio ? ACC : '#ffd166') + '}' +
       '.ms-big{font-weight:900;font-size:clamp(32px,9vw,44px);line-height:1.05;margin:10px 0 4px;color:#fbf6ec;overflow-wrap:anywhere' + (stadio ? ';font-family:Lobster,cursive;font-weight:400' : '') + '}' +
-      '.ms-sub{font-weight:800;font-size:14px;color:#fbf6ec}.ms-txt{margin-top:auto;padding-top:10px;font-size:13px;line-height:1.45;color:var(--mute,#bfe3ff)}.ms-nota{font-size:11.5px;opacity:.75;margin-top:6px}' +
+      '.ms-sub{font-weight:800;font-size:15px;color:#fbf6ec}.ms-txt{margin-top:auto;padding-top:12px;font-size:15px;font-weight:600;line-height:1.5;color:#fbf6ec}.ms-nota{font-size:14px;color:#fbf6ec;margin-top:8px}' +
       '.ms-forma{display:flex;flex-wrap:wrap;gap:4px;margin-top:10px}.ms-forma i{font-style:normal;width:22px;height:22px;border-radius:50%;display:grid;place-items:center;font-size:11px;font-weight:900;color:#fff;background:#6b7393}' +
       '.ms-forma i.V{background:#2fbf71}.ms-forma i.P{background:#e5484d}' +
-      '.ms-graf{margin-top:10px}.ms-dot{display:flex;gap:6px;justify-content:center;margin-top:2px}.ms-dot i{width:6px;height:6px;border-radius:50%;background:rgba(255,255,255,.3)}';
+      '.ms-graf{margin:16px 0 0;min-width:0}.ms-graf svg{display:block;width:100%;height:auto;overflow:visible}.ms-graf text{font:600 14px system-ui,sans-serif;fill:#fbf6ec}.ms-graf .ms-val{font-weight:900;fill:#fff}.ms-graf circle[data-ms-i]{cursor:pointer}.ms-graf circle[data-attivo]{fill:#ffd166;stroke:#172748;stroke-width:2}' +
+      '.ms-graf figcaption{font-size:14px;color:#fbf6ec;margin:0 0 12px}.ms-scelta{display:flex;flex-wrap:wrap;align-items:center;gap:8px;font-size:14px;font-weight:800}.ms-scelta select{font:inherit;color:#fbf6ec;background:#1d2a52;border:1px solid #8ea1bc;border-radius:9px;min-height:44px;max-width:100%;padding:8px}.ms-scelta select:focus-visible{outline:3px solid #89d9ff;outline-offset:2px}.ms-lettura{display:block;margin-top:10px;font-size:16px;color:#fff;font-weight:800}';
     document.head.appendChild(s);
   }
   function grafico(pos) {
-    var w = 260, h = 70, n = pos.length, x = function (i) { return n < 2 ? w / 2 : 8 + i * (w - 16) / (n - 1); }, y = function (p) { return 8 + (p - 1) * (h - 16) / 9; };
+    var w = 280, h = 216, n = pos.length, totale = Math.max(2, (D.teams || []).length), ultimo = pos[n - 1];
+    var x = function (i) { return n < 2 ? 158 : 38 + i * 226 / (n - 1); }, y = function (p) { return 28 + (p - 1) * 142 / (totale - 1); };
     var pts = pos.map(function (q, i) { return x(i).toFixed(1) + ',' + y(q.p).toFixed(1); }).join(' ');
-    return '<svg class="ms-graf" viewBox="0 0 ' + w + ' ' + h + '" width="100%" height="' + h + '" aria-label="Posizione giornata per giornata"><line x1="0" x2="' + w + '" y1="' + y(1) + '" y2="' + y(1) + '" stroke="rgba(255,255,255,.15)"/><line x1="0" x2="' + w + '" y1="' + y(10) + '" y2="' + y(10) + '" stroke="rgba(255,255,255,.15)"/>' +
-      '<polyline points="' + pts + '" fill="none" stroke="' + ACC + '" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>' +
-      pos.map(function (q, i) { return '<circle cx="' + x(i).toFixed(1) + '" cy="' + y(q.p).toFixed(1) + '" r="3.5" fill="#fbf6ec"/>'; }).join('') + '</svg>';
+    var righe = [1, Math.round(totale / 2), totale].filter(function (p, i, a) { return a.indexOf(p) === i; });
+    return '<figure class="ms-graf"><figcaption>Posizione dopo ogni giornata · La 1ª è in alto</figcaption><svg viewBox="0 0 ' + w + ' ' + h + '" aria-hidden="true"><text x="0" y="12">Posizione</text>' +
+      righe.map(function (p) { return '<text x="0" y="' + (y(p) + 4) + '">' + p + 'ª</text><line x1="32" x2="274" y1="' + y(p) + '" y2="' + y(p) + '" stroke="rgba(255,255,255,.19)"/>'; }).join('') +
+      '<polyline points="' + pts + '" fill="none" stroke="#89d9ff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>' +
+      pos.map(function (q, i) { return '<circle data-ms-i="' + i + '"' + (i === n - 1 ? ' data-attivo=""' : '') + ' cx="' + x(i).toFixed(1) + '" cy="' + y(q.p).toFixed(1) + '" r="' + (i === n - 1 ? 6 : 4) + '" fill="#fbf6ec"/><text class="ms-val" x="' + x(i).toFixed(1) + '" y="' + (y(q.p) + (q.p === 1 ? 21 : -12)).toFixed(1) + '" text-anchor="middle"' + (n > 8 ? ' visibility="' + (i === n - 1 ? 'visible' : 'hidden') + '"' : '') + ' data-ms-val="' + i + '">' + q.p + 'ª</text>'; }).join('') +
+      pos.map(function (q, i) { return (i === 0 || i === n - 1 || n <= 8 || i % Math.ceil(n / 5) === 0) ? '<text x="' + x(i).toFixed(1) + '" y="190" text-anchor="middle">' + q.n + '</text>' : ''; }).join('') +
+      '<text x="154" y="212" text-anchor="middle">Giornata</text></svg><label class="ms-scelta">Giornata<select class="ms-giornata">' +
+      pos.map(function (q, i) { return '<option value="' + i + '"' + (i === n - 1 ? ' selected' : '') + '>' + q.n + 'ª giornata · ' + q.p + 'ª posizione</option>'; }).join('') +
+      '</select></label><output class="ms-lettura" aria-live="polite">Dopo la ' + ultimo.n + 'ª giornata: ' + ultimo.p + 'ª posizione</output></figure>';
   }
+
+  function seleziona(g, indice) {
+    var s = g.querySelector('select'), o = s.options[indice]; if (!o) return;
+    s.value = indice;
+    g.querySelectorAll('[data-ms-i]').forEach(function (p, i) { p.toggleAttribute('data-attivo', i === +indice); p.setAttribute('r', i === +indice ? '6' : '4'); });
+    if (s.options.length > 8) g.querySelectorAll('[data-ms-val]').forEach(function (p, i) { p.setAttribute('visibility', i === +indice ? 'visible' : 'hidden'); });
+    g.querySelector('output').textContent = 'Dopo la ' + o.textContent.split(' · ')[0] + ': ' + o.textContent.split(' · ')[1];
+  }
+  document.addEventListener('change', function (e) { if (e.target.matches('.ms-giornata')) seleziona(e.target.closest('.ms-graf'), e.target.value); });
+  document.addEventListener('click', function (e) { var p = e.target.closest('[data-ms-i]'); if (p) seleziona(p.closest('.ms-graf'), p.getAttribute('data-ms-i')); });
 
   window.GirrrStagione = function (t) {
     stile();
@@ -133,9 +153,9 @@
     var S = schede(t);
     if (!S.length) return '<p class="ms-intro">La stagione comincia con la prima giornata giocata.</p>';
     return '<p class="ms-intro">La stagione di ' + E(t) + ' finora.</p><div class="ms-scorri">' + S.map(function (s) {
-      return '<section class="ms-c"><div class="ms-k">' + E(s.k) + '</div><div class="ms-big">' + E(s.big) + '</div><div class="ms-sub">' + E(s.sub) + '</div>' +
+      return '<section class="ms-c' + (s.graf ? ' ms-classifica' : '') + '"><div class="ms-k">' + E(s.k) + '</div><div class="ms-big">' + E(s.big) + '</div><div class="ms-sub">' + E(s.sub) + '</div>' +
         (s.graf ? grafico(s.graf) : '') + (s.forma ? '<div class="ms-forma">' + s.forma.map(function (f) { return '<i class="' + f + '">' + f + '</i>'; }).join('') + '</div>' : '') +
-        (s.txt ? '<div class="ms-txt">' + E(s.txt) + (s.nota ? '<div class="ms-nota">' + E(s.nota) + '</div>' : '') + '</div>' : '') + '</section>';
+        (s.txt ? '<div class="ms-txt' + (s.graf ? ' ms-posizioni' : '') + '">' + (s.graf ? '<span>' + E(s.txt).replace('. Peggiore:', '.</span> <span>Peggiore:') + '</span>' : E(s.txt)) + (s.nota ? '<div class="ms-nota">' + E(s.nota) + '</div>' : '') + '</div>' : '') + '</section>';
     }).join('') + '</div>';
   };
   carica();

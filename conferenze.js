@@ -211,6 +211,7 @@
     if (!D) return '';
     caricaDopo();
     var g = ultimaGiocata(t); if (!g) return '';
+    var cfD62=window.GirrrFinestre62?GirrrFinestre62('dopo',g.n):{aperta:false,testo:'Caricamento della scadenza…'};
     if (ds.g !== g.n) ds = { g: g.n, a: null, free: '' };
     var Q = domandeDopo(t, g), mia = (DOPO || []).filter(function (x) { return x.team === t && x.giornata === g.n; })[0];
     var h = '<div class="card cf-dopo"><h3>Dopo la partita · Giornata ' + g.n + '</h3><p class="sm mut" style="margin:4px 0 10px">Una domanda sola, sul risultato vero. La risposta esce in Curva su Girrr Sport e non si cambia più.</p>'
@@ -228,7 +229,8 @@
     var scelta = mia ? mia.risposta : ds.a === 'free' ? (ds.free.trim() ? { a: 'free', t: ds.free.trim(), k: 1 } : null) : ds.a != null ? { a: ds.a, t: Q.a[ds.a].t, k: Q.a[ds.a].k } : null;
     if (scelta) h += '<div class="mut sm" style="margin-top:4px">Tono: ' + TONI[scelta.k != null ? scelta.k : 1] + '</div>';
     h += mia ? '<button class="btn" disabled style="opacity:.6;cursor:default;margin-top:12px">Pubblicata · Non si cambia più</button>'
-      : '<button class="btn" id="cdpub" style="margin-top:12px"' + (scelta && !dsInvio ? '' : ' disabled') + '>Pubblica su Curva</button>';
+      : '<button class="btn" id="cdpub" style="margin-top:12px"' + (scelta && !dsInvio && cfD62.aperta ? '' : ' disabled') + '>Pubblica su Curva</button>';
+    h+='<p class="sm mut">'+E(cfD62.testo)+'</p>';
     if (dopoAttivo === false) h += '<p class="sm mut" style="margin-top:8px">Prova: il database non ha ancora la conferenza del dopo partita, quindi qui non si salva niente.</p>';
     if (scelta) {
       var mm = g.m.filter(function (z) { return z[0] === t || z[3] === t; })[0];
