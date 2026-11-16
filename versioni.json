@@ -2,6 +2,67 @@
   "nota": "Fonte unica della pagina Versioni (girrr/versioni.html e stadio/girrr/versioni.html). A ogni rilascio si aggiunge la versione in cima con rilascio/versioni/aggiungi.py. Numeri: correzione minore = terza cifra (5.6.1), aggiornamento medio = seconda cifra (5.7.0), aggiornamento grande = prima cifra (6.0). Dove manca la storia: «Dato non conservato». Le versioni 1.0-4.5 e il Mercato Scambi vengono dai messaggi recuperati da Claude chat (9 novembre 2026), date controllate con i commit del sito. Il campo «nota» e «altre_varianti» non si mostrano nella pagina.",
   "versioni": [
     {
+      "v": "6.2.3",
+      "data": "2026-11-16",
+      "tipo": "minore",
+      "titolo": "Il Totogirrr su ogni schermo",
+      "messaggio": "🔧 **O Girrr 6.2.3 è online!** Il Totogirrr si adatta al tuo schermo: su tablet, PC e TV le partite stanno affiancate potendo vedere tutta la giornata in un colpo d’occhio, con uno sfondo nuovo un po’ più grigio. Sul telefono le sezioni in alto rispondono subito al tocco, la sezione che scegli si vede sempre per intero e scorrendo lasciano spazio alle partite. In fondo alla Home ora trovi «Esci», per cambiare squadra quando vuoi. Quando condividi un video o un’immagine, l’anteprima sta tutta nella finestra e i pulsanti sono in ordine. Il passaggio tra Lega e Stadio è più morbido, e nello Spogliatoio le due grafiche hanno finalmente il loro sfondo, con il rosso e l’azzurro nella Lega. Buona giornata a tutti! ⚽",
+      "novita": [
+        {
+          "area": "Totogirrr",
+          "voci": [
+            "Su tablet, PC, monitor grandi e TV la pagina è più larga e le partite e le schedine stanno affiancate su due, tre o quattro colonne; sul telefono resta in verticale.",
+            "La sezione toccata nella fila in alto si sposta quanto basta per vedersi per intero.",
+            "Le sezioni in alto rispondono al tocco con un passaggio di colore breve, sono più trasparenti e scorrendo verso il basso vanno via con la pagina.",
+            "Sui telefoni piccoli il titolo «Totogirrr» sta su una riga sola.",
+            "Lo sfondo è un po’ più grigio, nella grafica Lega e nella grafica Stadio; l’oro resta.",
+            "«Esci» non c’è più accanto al nome della squadra; si esce dalla Home."
+          ]
+        },
+        {
+          "area": "Home",
+          "voci": [
+            "In fondo a sinistra, di fronte alla pillola della versione, c’è «Esci da» e il nome della tua squadra (o «Esci» per l’ospite): si esce con due tocchi."
+          ]
+        },
+        {
+          "area": "Carriera",
+          "voci": [
+            "Nel Giro di boa non c’è più la targhetta con il numero di versione sopra il titolo."
+          ]
+        },
+        {
+          "area": "Condividi",
+          "voci": [
+            "In tutte le finestre il testo dei pulsanti «Condividi», «Scarica» e «Chiudi» sta al centro.",
+            "L’anteprima del video, della Radio o dell’immagine sta tutta nella finestra, senza scorrere, anche sui telefoni piccoli."
+          ]
+        },
+        {
+          "area": "App",
+          "voci": [
+            "«‹ O Girrr» non si illumina più quando lo tocchi per tornare indietro, in tutte le pagine dell’app.",
+            "Passando da Lega a Stadio (e viceversa) la Home entra con una dissolvenza già completa, senza parti che compaiono dopo o che si spostano."
+          ]
+        },
+        {
+          "area": "Spogliatoio",
+          "voci": [
+            "Lo sfondo della grafica Lega è blu con le strisce e quello della grafica Stadio ha i riflessi rosso e azzurro, come nelle altre pagine.",
+            "Cambiando stile dal menu «Grafica» la pagina passa con una dissolvenza invece di cambiare di colpo.",
+            "Nella grafica Lega i colori sono rosso e azzurro: le schede e i pulsanti scelti si alternano tra i due colori, la Champions Cup è azzurra; nella grafica Stadio resta l’oro; i numeri sono bianchi.",
+            "Negli Svincolati ruolo e ordinamento si scelgono da due menu a tendina affiancati, «Ruolo» e «Ordina per», al posto delle file di pulsanti."
+          ]
+        },
+        {
+          "area": "Curva",
+          "voci": [
+            "Toccando la «C» in alto a sinistra non si torna più alla Home; per tornare c’è «O Girrr» nella barra in basso."
+          ]
+        }
+      ]
+    },
+    {
       "v": "6.2.2",
       "data": "2026-11-16",
       "tipo": "minore",

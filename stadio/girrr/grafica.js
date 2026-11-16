@@ -37,3 +37,20 @@ setTimeout(function(){location.href=dest},VT?340:330)};
 }
 if(document.body)go();else document.addEventListener('DOMContentLoaded',go);
 })();
+/* 6.2.3 · arrivo dall'interruttore Lega/Stadio senza scatti (Gianluca): sotto il titolo la pagina entra con una dissolvenza
+   quando ha finito di disegnarsi (avviso della versione, Notifiche, «Oggi al Girrr»), invece di comparire a pezzi. */
+(function () { try {
+  document.addEventListener('click', function (e) { if (e.target.closest && e.target.closest('#gsw button[aria-pressed=false]')) try { sessionStorage.setItem('gsw_arrivo', '1'); } catch (x) {} }, true);
+  var arrivo = false; try { arrivo = sessionStorage.getItem('gsw_arrivo') === '1'; sessionStorage.removeItem('gsw_arrivo'); } catch (x) {}
+  if (!arrivo || (window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches)) return;
+  var h = document.documentElement, s = document.createElement('style');
+  s.textContent = 'html.gsw-attesa .wrap>:not(.hero),html.gsw-attesa .hero h1{opacity:0}html.gsw-pronta .wrap>:not(.hero),html.gsw-pronta .hero h1{transition:opacity .38s ease}';
+  (document.head || h).appendChild(s); h.classList.add('gsw-attesa');
+  var t0 = Date.now(), ultimo = Date.now(), fatto = false;
+  var mostra = function () { if (fatto) return; fatto = true; h.classList.add('gsw-pronta'); requestAnimationFrame(function () { h.classList.remove('gsw-attesa'); setTimeout(function () { h.classList.remove('gsw-pronta'); }, 450); }); };
+  var guarda = function () {
+    if (window.MutationObserver && document.body) new MutationObserver(function () { ultimo = Date.now(); }).observe(document.body, { childList: true, subtree: true });
+    (function controlla() { var ora = Date.now(), font = !document.fonts || document.fonts.status === 'loaded'; if ((ora - ultimo > 200 && font) || ora - t0 > 1200) mostra(); else setTimeout(controlla, 60); })();   /* anche il carattere del titolo (Lobster nello Stadio) */
+  };
+  if (document.body) guarda(); else document.addEventListener('DOMContentLoaded', guarda);
+} catch (e) {} })();

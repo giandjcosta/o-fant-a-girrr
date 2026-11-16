@@ -202,7 +202,7 @@
   function moduloBoa() {
     if (window.GirrrBoa) return Promise.resolve(window.GirrrBoa);
     return new Promise(function (ok, ko) {
-      var s = document.createElement('script'); s.src = ROOT + 'giro-di-boa.js?v=621';
+      var s = document.createElement('script'); s.src = ROOT + 'giro-di-boa.js?v=623';
       s.onload = function () { ok(window.GirrrBoa); }; s.onerror = function () { ko(new Error('Bilancio non disponibile. Riprova più tardi.')); }; document.head.appendChild(s);
     });
   }
@@ -243,6 +243,7 @@
       '.cd-sq{display:flex;align-items:center;gap:10px;margin:14px 0 8px;font-weight:800;font-size:13px;color:#bfe3ff}.cd-sq select{flex:1;min-width:0;font:inherit;font-weight:800;color:#fbf6ec;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.2);border-radius:12px;padding:10px 12px}.cd-sq option{color:#141d3d}' +
       '.cd-ic{display:grid;place-items:center;height:120px;color:' + ACC + '}.cd-ic svg{width:56px;height:56px}' +
       '.cd-sf{margin:8px 0 0}' +
+      '.cd-az a,.cd-az button{display:inline-flex;align-items:center;justify-content:center;text-align:center;grid-template-columns:none;border-top-width:0}' +   /* 6.2.3: testo centrato, niente righe .pr dell'app */
       '.cd-btn.cd-sf[data-cd-nome^="radio-"]{display:flex;justify-content:center;width:fit-content;max-width:100%;min-height:44px;margin:8px auto 0;text-align:center;white-space:normal;line-height:1.35}' +
       '.cd-sc button[hidden]{display:none}' +
       '.cd-velo .cd-box h3{color:#fbf6ec}' +
@@ -269,6 +270,21 @@
     requestAnimationFrame(function () { requestAnimationFrame(function () { v.classList.add('su'); }); });
     return { box: v.querySelector('.cd-box'), chiudi: chiudi };
   }
+  /* 6.2.3 (Gianluca): l'anteprima sta tutta nella finestra, senza scorrere: l'immagine prende l'altezza che resta
+     dopo titolo, testo e pulsanti (un video verticale era più alto dello schermo). Si riadatta se lo schermo cambia. */
+  function stringi(box) {
+    var img = box.querySelector('.cd-ant img'); if (!img) return;
+    img.style.width = 'auto'; img.style.maxWidth = 'min(100%, 360px)';
+    var fai = function () {
+      if (!img.isConnected) { removeEventListener('resize', fai); return; }
+      img.style.maxHeight = '';
+      var mx = parseFloat(getComputedStyle(box).maxHeight) || innerHeight, alto = Math.min(mx, innerHeight * 0.92);
+      var resto = box.scrollHeight - img.getBoundingClientRect().height;
+      img.style.maxHeight = Math.max(140, Math.floor(alto - resto - 2)) + 'px';
+    };
+    if (img.complete && img.naturalWidth) fai(); else img.addEventListener('load', fai);
+    addEventListener('resize', fai);
+  }
   function anteprima(f, r, titolo) {
     var file = null; try { file = new File([r.blob], r.nome, { type: r.blob.type || 'image/png' }); } catch (e) {}
     var puo = file && navigator.canShare && navigator.canShare({ files: [file] });
@@ -276,6 +292,7 @@
     f.box.innerHTML = '<h3>' + E(titolo) + '</h3><p>' + E(r.testo) + '</p><div class="cd-ant"><img alt="Anteprima dell\'immagine da condividere" src="' + r.url + '"></div>' +
       '<div class="cd-az">' + (puo ? '<button type="button" class="pr" data-a="sh">Condividi</button>' : '') +
       '<a class="' + (puo ? 'se' : 'pr') + '" download="' + E(r.nome) + '" href="' + (r.scarica || r.url) + '">Scarica</a><button type="button" class="se" data-a="x">Chiudi</button></div><div class="cd-err" role="status"></div>';
+    stringi(f.box);   /* 6.2.3 */
     var sh = f.box.querySelector('[data-a=sh]');
     if (sh) sh.onclick = function () {
       /* con un'immagine il testo resta fuori: insieme, WhatsApp la manderebbe come file e non come foto (6.0.1) */
@@ -348,6 +365,7 @@
       var ant = img ? '<div class="cd-ant"><img alt="" src="' + E(new URL(img, location.href).href) + '"></div>' : '<div class="cd-ant cd-ic">' + (ICONA[/^audio/.test(tipo) ? 'radio' : 'video'] || '') + '</div>';
       f.box.innerHTML = '<h3>' + E(tit) + '</h3>' + ant + '<div class="cd-az">' + (puo ? '<button type="button" class="pr" data-a="sh">Condividi</button>' : '') +
         '<a class="' + (puo ? 'se' : 'pr') + '" download="' + E(nome) + '" href="' + su + '">Scarica</a><button type="button" class="se" data-a="x">Chiudi</button></div><div class="cd-err" role="status"></div>';
+      stringi(f.box);   /* 6.2.3 */
       var sh = f.box.querySelector('[data-a=sh]');
       if (sh) sh.onclick = function () {   /* solo il file, senza testo né collegamento: WhatsApp lo mostra con l'anteprima */
         navigator.share({ files: [file], title: 'O Girrr' }).catch(function (e) { if (e && e.name !== 'AbortError') f.box.querySelector('.cd-err').textContent = 'Condivisione non riuscita: usa «Scarica».'; });

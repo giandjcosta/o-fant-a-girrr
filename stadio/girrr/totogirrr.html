@@ -1,6 +1,6 @@
 <!doctype html>
 <html lang="it">
-<head><script src="../../tv.js?v=622"></script>
+<head><script src="../../tv.js?v=623"></script>
 <script src="../../nomi.js"></script>
 <script src="ospite.js?v=1"></script>
 <meta charset="utf-8">
@@ -218,7 +218,40 @@ body::before{display:none!important}
 h1,h2,.nome,.sh-nome,.hh{font-family:Lobster,'Brush Script MT',cursive!important;font-weight:400!important;text-transform:none!important;letter-spacing:0!important}
 h1{font-size:clamp(30px,6vw,48px)!important}
 .cards{grid-template-columns:1fr 1fr!important;gap:10px!important}.c{min-height:0!important;padding:12px!important}.c .ic{height:64px!important;margin-bottom:8px!important}.c .ic img[src*="albo-alloro"],.c .ic img[src*="carriera-micro"]{height:62px!important;margin-top:0!important}.c .ic img{max-width:100%}.c h2{font-size:19px!important}.c p{display:none!important}.c .go{font-size:11px!important;margin-top:6px}.card,.c,.mn,.lg-leghe{background:linear-gradient(150deg,rgba(255,255,255,.12),rgba(255,255,255,.05))!important}</style>
-<style>/* Menu a tendina leggibili su PC: elenco blu pieno, nomi chiari, carattere normale (1° novembre 2026) */select,select option,select optgroup{font-family:Inter,system-ui,sans-serif!important;font-style:normal!important}select option,select optgroup{background-color:#1d2a52!important;color:#fbf6ec!important}</style><script src="../../pillole.js?v=622" defer></script><script src="../../offline.js" defer></script>
+<style>/* Menu a tendina leggibili su PC: elenco blu pieno, nomi chiari, carattere normale (1° novembre 2026) */select,select option,select optgroup{font-family:Inter,system-ui,sans-serif!important;font-style:normal!important}select option,select optgroup{background-color:#1d2a52!important;color:#fbf6ec!important}</style><script src="../../pillole.js?v=623" defer></script><script src="../../offline.js" defer></script>
+<style data-toto623>/* 6.2.3 · Totogirrr (Claude, 16 novembre 2026, richieste di Gianluca dopo la 6.2.2) */
+/* Sfondo un po' più grigio, in Lega e Stadio (Gianluca): un velo sopra il blu, sotto le strisce; l'oro resta */
+html::after{content:'';position:fixed;inset:0;z-index:-2;pointer-events:none;background:rgba(88,94,110,.30)}
+/* Schede in alto: scorrono via con la pagina, più trasparenti, tocco breve (niente rimpicciolimento) */
+nav{position:relative;top:auto;background:none;padding:4px 0}
+nav button{background:rgba(255,255,255,.07);box-shadow:inset 0 0 0 1px rgba(255,255,255,.13);transition:background-color .18s ease,color .18s ease,opacity .12s ease}
+nav button:active{transform:none;opacity:.78}
+nav button.on{box-shadow:none}
+@media (prefers-reduced-motion:reduce){nav button{transition:none}}
+/* Telefoni piccoli (iPhone SE 320): il titolo «Totogirrr» resta su una riga (prima andava a capo dopo la T) */
+@media (max-width:360px){.top{gap:8px}.top img{height:38px}.top h1{font-size:29px;white-space:nowrap}.bal{padding:5px 9px}.bal b{font-size:18px}}
+/* Tablet, PC, monitor grandi e TV: pagina più larga, partite e schedine affiancate. Sul telefono non cambia niente. */
+@media (min-width:700px){
+  .wrap{max-width:1060px;padding-left:24px;padding-right:24px}
+  .slip .in{max-width:1012px}
+  .pane{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));column-gap:14px;align-items:start}
+  .pane>*{grid-column:1/-1;min-width:0}
+  .pane>.card.m,.pane>.card.bet{grid-column:auto}
+}
+@media (min-width:1240px){
+  .wrap{max-width:1320px;padding-left:32px;padding-right:32px}
+  .slip .in{max-width:1256px}
+  .pane{grid-template-columns:repeat(3,minmax(0,1fr));column-gap:16px}
+}
+@media (min-width:1760px){
+  .wrap{max-width:1680px}
+  .slip .in{max-width:1616px}
+  .pane{grid-template-columns:repeat(4,minmax(0,1fr))}
+}
+@media (min-width:2200px){
+  .wrap,.slip .in{zoom:1.25}
+}
+</style>
 </head>
 <body>
 <div class="wrap" id="app"></div>
@@ -328,7 +361,7 @@ function card(x,tag){
 function head(){
   var c=S.conto;
   return (DEMO?'<div class="card" style="border:2px dashed var(--hi);font-size:13px"><b style="color:var(--hi)">PROVA</b> · Qui è tutto finto e si azzera quando ricarichi. Gioca una schedina, poi premi il pulsante per far finire le partite a caso.<br><button class="go" id="sim" style="margin-top:10px">Fai finire le partite</button></div>':'')+'<a class="back" href="index.html">‹ O GIRRR</a><div class="top"><a href="index.html" title="Torna a O Girrr" style="display:block;flex:none"><img src="../../assets/logo-lega.png" alt="O Fant A Girrr" style="display:block"></a><div class="t"><div class="k">O FANT A GIRRR</div><h1><b class="TT"><em class="Tg">T</em><svg viewBox="0 0 900 400" aria-hidden="true"><path fill="currentColor" d="M185.8 85.2H181Q145.4 85.2 121.1 103Q96.9 120.8 85.6 166Q81.9 180.8 83.2 186.6Q84.6 192.4 84.4 193.2Q62.8 193.2 54.4 184.2Q46.1 175.2 51.3 154.4Q58.4 126 78.2 102.6Q98.1 79.2 132.3 64.8Q166.5 50.4 213.7 50.4Q240.1 50.4 269.3 55.2Q272.6 55.8 275.8 56.3C299.8 57.8 329.3 62.4 360.7 67.4C408.7 74.9 461.1 83.2 505 82C565 80 605 68 642 62C668 66 668 94 640 99C600 108 545 122 480 122C417.8 122 363.5 106.2 296 100.6V102Q285.1 101.7 274.5 100Q262.2 98 239.8 93.2L120.4 350H62.8Z"/></svg></b>oto<span>girrr</span></h1></div><div class="bal"><small>FANTACREDITI</small><b>'+f2(c.crediti)+'</b>'+(Number(c.debito)>0?'<small style="color:var(--hi)">DEBITO '+f2(c.debito)+'</small>':'')+'</div></div>'+
-  '<div class="who">Squadra: <b>'+esc(team)+'</b><button class="x" id="out">Esci</button></div>'+
+  '<div class="who">Squadra: <b>'+esc(team)+'</b></div>'+
   '<nav><div class="nvi">'+[['partite','Partite'],['vinc','Vincenti'],['mie','Le mie'],['class','Classifica'],['prob','Probabilità'],['sfide','Sfida 1 contro 1'],['prestiti','Prestiti'],['movimenti','Movimenti'],['regole','Regole']].map(function(t){return '<button data-tab="'+t[0]+'" class="'+(tab===t[0]?'on':'')+'">'+t[1]+'</button>'}).join('')+'</div></nav>'+ticker();
 }
 function qbtn(p,m,lab){
@@ -576,10 +609,7 @@ setInterval(function(){if(tab==='sfide'&&!document.hidden)duLoad(true)},45000);
 var MINT=0;function cambioTab(ph){var pn=document.querySelector('.pane'),nv=document.querySelector('nav');if(pn&&ph){pn.style.minHeight=Math.min(ph,innerHeight)+'px';clearTimeout(MINT);MINT=setTimeout(function(){var p2=document.querySelector('.pane');if(p2)p2.style.minHeight=''},1500)}if(pn){var nh=nv?nv.offsetHeight:0,y=pn.getBoundingClientRect().top+scrollY-nh-12;if(scrollY>y+1){var rid=false;try{rid=matchMedia('(prefers-reduced-motion: reduce)').matches}catch(e){}window.scrollTo({top:Math.max(0,y),behavior:rid?'auto':'smooth'})}}}
 function navPre(){var n=document.querySelector('nav');if(n)NAVX=n.scrollLeft}
 function navPost(){var n=document.querySelector('nav');if(!n)return;n.scrollLeft=NAVX;
-  var b=n.querySelector('button.on');
-  if(b){var sl=n.scrollLeft,cw=n.clientWidth,l=b.offsetLeft,r=l+b.offsetWidth,m=10,to=null;
-    if(l-m<sl)to=Math.max(0,l-m);else if(r+m>sl+cw)to=Math.min(n.scrollWidth-cw,r+m-cw);
-    if(to!==null&&Math.abs(to-sl)>1)n.scrollTo({left:to,behavior:'smooth'})}
+  /* 6.2.3: la scheda toccata la porta in vista solo pillole.js (prima due codici muovevano la stessa fila) */
   navBounce(n)}
 function navBounce(n){
   var inn=n.firstChild;if(!inn||!inn.classList||!inn.classList.contains('nvi'))return;

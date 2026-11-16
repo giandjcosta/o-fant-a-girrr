@@ -1,6 +1,6 @@
 <!doctype html>
 <html lang="it">
-<head><script src="tv.js?v=622"></script>
+<head><script src="tv.js?v=623"></script>
 <script src="nomi.js"></script>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
@@ -415,6 +415,29 @@ h2.sec{font-size:1.35rem;margin-block:18px 8px}
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <script src="offline.js" defer></script>
 <script src="cerca.js?v=61-periodi1" defer></script>
+<style data-spogliatoio623>/* 6.2.3 (Gianluca): sfondi diversi per Lega e Stadio, come nelle pagine del sito; cambio di stile con dissolvenza */
+:root[data-skin="girrr"]{--body:repeating-linear-gradient(115deg,rgba(255,255,255,.04) 0 36px,transparent 36px 72px),radial-gradient(1200px 700px at 80% -10%,#2c3f7c 0,#1d2a52 55%,#141d3d 100%)}
+:root[data-skin="stadio"]{--body:radial-gradient(900px 520px at 85% -8%,rgba(214,40,57,.26),transparent 62%),radial-gradient(1000px 640px at -10% 18%,rgba(61,147,214,.26),transparent 60%),linear-gradient(180deg,#2c3f7c,#1d2a52 45%,#141d3d)}
+::view-transition-old(root),::view-transition-new(root){animation-duration:.35s;animation-timing-function:ease}
+/* Grafica Lega: rosso e azzurro al posto di rosso e oro (Gianluca). Lo Stadio resta oro. Le schede e i pulsanti si alternano:
+   la scheda scelta è rossa o azzurra secondo la posizione; Svincolati: ruolo rosso, ordine azzurro; Calendario: Classic League
+   rossa, Champions Cup azzurra (come nel sito); tra due pulsanti vicini il secondo è azzurro. I colori dello stato («In dubbio»…) restano. */
+:root[data-skin="girrr"]{--hl:#8fd0ff;--hl-ink:#0d1f3c;--hl-bg:rgba(61,147,214,.18);--hl-name:#8fd0ff;--num:#fbf6ec}
+:root[data-skin="girrr"] header .sub{color:#8fd0ff}
+:root[data-skin="girrr"] .kpi b,:root[data-skin="girrr"] .rank{color:#fbf6ec}   /* numeri neutri nella Lega: Giornata (erano gialli) e posizione negli Svincolati (era arancione) */
+:root[data-skin="girrr"] header::after{background:linear-gradient(90deg,#d62839 0 60%,#3d93d6 60% 100%)}
+:root[data-skin="girrr"] nav button[data-alt="az"][aria-selected=true],:root[data-skin="girrr"] .seg button[data-sort][aria-pressed=true],:root[data-skin="girrr"] .seg button[data-comp="cup"][aria-pressed=true]{background:#3d93d6;border-color:#3d93d6;color:#fff;box-shadow:none}
+:root[data-skin="girrr"] .btn:not(.o):not(.ghost)+.btn:not(.o):not(.ghost):nth-of-type(even){background:#3d93d6;border-color:#3d93d6;color:#fff}
+:root[data-skin="girrr"] nav button,:root[data-skin="girrr"] .seg button{transition:background-color .25s ease,border-color .25s ease,color .25s ease}
+/* Svincolati: due menu affiancati, anche su iPhone SE; Lega: ruolo rosso, ordine azzurro; Stadio: oro */
+.fa-filtri{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:0 0 14px}
+.fa-filtri label{display:flex;flex-direction:column;gap:5px;min-width:0;font:700 .78rem var(--fb);color:var(--mute)}
+.fa-filtri select{width:100%;min-width:0;margin:0}
+:root[data-skin="girrr"] #fa-ruolo{border-color:#d62839}:root[data-skin="girrr"] #fa-ordine{border-color:#3d93d6}
+:root[data-skin="stadio"] .fa-filtri select{border-color:#ffd166}
+</style>
+<script>/* 6.2.3: alternanza rosso / azzurro delle schede visibili (da ospite alcune sono nascoste) */(function(){function alt(){var t=document.getElementById('tabs');if(!t)return;var i=0;[].forEach.call(t.querySelectorAll('button'),function(b){var v=b.hidden?null:(i++%2?'az':'ro');if(b.getAttribute('data-alt')!==v){if(v)b.setAttribute('data-alt',v);else b.removeAttribute('data-alt')}})}
+document.addEventListener('DOMContentLoaded',function(){alt();var t=document.getElementById('tabs');if(t&&window.MutationObserver)new MutationObserver(alt).observe(t,{subtree:true,childList:true,attributes:true,attributeFilter:['hidden']})})})()</script>
 </head>
 <body>
 <div class="wrap">
@@ -856,10 +879,12 @@ function vMkt(){
   if(!ready)setTimeout(function(){if(tab!=='mkt'||mkV!=='c')return;mkCompute();var e=document.getElementById('mkres');if(e)e.innerHTML=mkHtml(mkView(mkH))},40);
   return h;
 }
-function vFa(){
+var _faMenu=0;function vFa(){
+  if(!_faMenu){_faMenu=1;document.addEventListener('change',function(e){var x=e.target;if(x.id==='fa-ruolo'){role=x.value;render()}else if(x.id==='fa-ordine'){sortBy=x.value;render()}})}   /* 6.2.3: menu degli Svincolati */
   var h='<div class="note">Gli svincolati della lega. Il punteggio tiene conto del valore del giocatore e del suo stato per la prossima giornata; quando sono disponibili titolarità e fantamedia reali, compare la dicitura «Dati reali».</div>';
-  h+='<div class="seg">'+['P','D','C','A'].map(function(r){return '<button aria-pressed="'+(role===r)+'" data-role="'+r+'">'+{P:'Portieri',D:'Difensori',C:'Centrocampisti',A:'Attaccanti'}[r]+'</button>'}).join('')+'<span style="flex:1"></span>'+
-  [['score','Punteggio'],['tit','Giocherà di più'],['fm','Vota meglio']].map(function(x){return '<button aria-pressed="'+(sortBy===x[0])+'" data-sort="'+x[0]+'">'+x[1]+'</button>'}).join('')+'</div>';
+  /* 6.2.3 (Gianluca): ruolo e ordinamento in due menu a tendina affiancati, al posto delle file di pulsanti */
+  h+='<div class="fa-filtri"><label>Ruolo<select class="pick" id="fa-ruolo">'+['P','D','C','A'].map(function(r){return '<option value="'+r+'"'+(role===r?' selected':'')+'>'+{P:'Portieri',D:'Difensori',C:'Centrocampisti',A:'Attaccanti'}[r]+'</option>'}).join('')+'</select></label>'+
+  '<label>Ordina per<select class="pick" id="fa-ordine">'+[['score','Punteggio'],['tit','Giocherà di più'],['fm','Vota meglio']].map(function(x){return '<option value="'+x[0]+'"'+(sortBy===x[0]?' selected':'')+'>'+x[1]+'</option>'}).join('')+'</select></label></div>';
   var ord={T:0,B:1,R:2,D:3,P:4,I:5};
   var l=D.fa.map(String).filter(function(i){return P(i).r===role}).map(function(i){var p=P(i),s=faStat(i);return {id:i,n:p.n,t:p.t,p:p.p,q:p.q,f:p.f,sc:score(i),tit:s.tit,fm:s.fm,h:s.h}});
   if(!l.length)return h+'<div class="empty">Nessuno svincolato per questo ruolo.</div>';
@@ -1014,7 +1039,7 @@ function vSet(){
     ['Fonti','Quotazioni, statistiche e tabellini da Fantacalcio, rose e calendari da Leghe Fantacalcio, probabili formazioni e infortunati da Fantamaster e TuttoFantacalcio, calendario di Serie A da Sky Sport. La difficoltà degli avversari è una stima.']]);
   return h;
 }
-document.getElementById('skin').addEventListener('click',function(e){var b=e.target.closest('button');if(b){LS.skin=b.dataset.skin;save();try{document.cookie='gskin='+LS.skin+'; max-age=31536000; path=/; SameSite=Lax'}catch(e){}render()}});
+document.getElementById('skin').addEventListener('click',function(e){var b=e.target.closest('button');if(b){LS.skin=b.dataset.skin;save();try{document.cookie='gskin='+LS.skin+'; max-age=31536000; path=/; SameSite=Lax'}catch(e){}/* 6.2.3: cambio di stile con dissolvenza */var _rid=false;try{_rid=matchMedia('(prefers-reduced-motion: reduce)').matches}catch(e){}if(!_rid&&document.startViewTransition){document.startViewTransition(function(){render()})}else if(!_rid&&document.body.animate){var _a=document.body.animate([{opacity:1},{opacity:0}],{duration:140,easing:'ease-in'});_a.onfinish=function(){render();document.body.animate([{opacity:0},{opacity:1}],{duration:240,easing:'ease-out'})}}else render()}});
 document.getElementById('tabs').addEventListener('click',function(e){var b=e.target.closest('button');if(b){tab=b.dataset.t;enter=true;render();track()}});
 document.getElementById('who').addEventListener('click',function(e){if(e.target.id==='out'){LS.code='';save();gateErr=false;render()}});
 app.addEventListener('click',function(e){
