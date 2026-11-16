@@ -64,7 +64,7 @@ jobs:
         run: |
           python3 code/calcoli/leggi_eventi.py code/calcoli/eventi.json
           RIFAI=""; [ "${{ github.event.inputs.rifai }}" = "1" ] && RIFAI="--rifai"
-          python3 reg/voci-src/prepara_dati.py site code/calcoli/eventi.json --cronache-classifica $RIFAI >> "$GITHUB_OUTPUT"
+          python3 reg/voci-src/prepara_dati.py site code/calcoli/eventi.json --cronache-classifica --mvp-tifosi $RIFAI >> "$GITHUB_OUTPUT"
       - name: Installo gli strumenti
         if: steps.p.outputs.giornata != ''
         run: |
@@ -86,7 +86,7 @@ jobs:
         run: |
           N="${{ steps.p.outputs.giornata }}"
           python3 reg/voci-src/pubblica_puntata.py site reg/lab/voci "$N"
-          python3 reg/voci-src/prepara_dati.py site code/calcoli/eventi.json --cronache-classifica --segna > /dev/null
+          python3 reg/voci-src/prepara_dati.py site code/calcoli/eventi.json --cronache-classifica --mvp-tifosi --segna > /dev/null
           cd site
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"

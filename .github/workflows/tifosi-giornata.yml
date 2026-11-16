@@ -4,7 +4,7 @@ on:
     - cron: '4,19,34,49 * * * *'
   workflow_dispatch:
 permissions:
-  contents: read
+  contents: write
 concurrency:
   group: mvp-tifosi
   cancel-in-progress: false
@@ -22,7 +22,7 @@ jobs:
         with:
           ref: gh-pages
           path: site
-          persist-credentials: false
+          persist-credentials: true
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
@@ -34,3 +34,21 @@ jobs:
           SUPABASE_SECRET_KEY: ${{ secrets.SUPABASE_SECRET_KEY }}
           SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
         run: python3 code/calcoli/tifosi/sincronizza.py site --vai
+
+      - name: Catalogo e dossier 6.2 nel giro ordinario, senza audio
+        env:
+          SUPABASE_SECRET_KEY: ${{ secrets.SUPABASE_SECRET_KEY }}
+          SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
+        run: |
+          python3 code/calcoli/catalogo62.py site --vai
+          cd site
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          if [ -f girrr/dati/mvp-editoriale.json ]; then
+            git add girrr/dati/mvp-editoriale.json
+            if ! git diff --cached --quiet; then
+              git commit -m "Aggiorna il dossier MVP per i canali ordinari"
+              git pull --rebase origin gh-pages
+              git push origin gh-pages
+            fi
+          fi

@@ -145,6 +145,36 @@ def eventi_dopo(dopo, cal=None):
     return out
 
 
+# ---------- 6.2 · Verdetto MVP dei tifosi (Claude, 15 novembre 2026, richiesta di Gianluca) ----------
+def mvp_facoltativo(stagione):
+    """mvp_stato della stagione (lettura pubblica). Se non risponde: nessun verdetto, gli altri eventi escono lo stesso."""
+    url, key = os.environ.get("CURVA_URL"), os.environ.get("CURVA_KEY")
+    try:
+        r = urllib.request.Request(f"{url}/rest/v1/rpc/mvp_stato", json.dumps({"p_stagione": stagione}).encode(),
+                                   {"apikey": key, "Authorization": "Bearer " + key, "Content-Type": "application/json"})
+        x = json.loads(urllib.request.urlopen(r, timeout=30).read())
+        return x if isinstance(x, dict) else None
+    except Exception as e:
+        print(f"mvp_stato non disponibile ({e}): niente post del verdetto MVP.")
+        return None
+
+
+def eventi_mvp(stato, cal=None):
+    """Un evento 'mvp' per il verdetto definitivo più recente (archivio di mvp_stato): il post di Girrr Sport esce una volta
+    sola alla chiusura (la chiave evita doppioni). Solo l'ultimo verdetto: niente post retroattivi per le giornate vecchie."""
+    chiusi = [a for a in (stato or {}).get("archivio") or [] if a.get("chiusa") and a.get("classifica")]
+    if not chiusi:
+        return []
+    a = max(chiusi, key=lambda x: x.get("giornata", 0))
+    v = a["classifica"][0]
+    if not v.get("team"):
+        return []
+    motivo = next((r.get("motivo") for r in a.get("redazione") or [] if r.get("scelta") == v["team"] and r.get("motivo")), "")
+    p = partita(cal, v["team"], a["giornata"])
+    return [dict(tipo="mvp", k=f"M{a.get('stagione', '')}-{a['giornata']}", team=v["team"], giornata=a["giornata"],
+                 motivo=motivo.strip(), partita=f"{p[0]} - {p[1]}" if p else "", risultato=p[2] if p else "")]
+
+
 # ---------- 5.8 · Redazione di Girrr Sport (redazione/ISTRUZIONI.md nel registro) ----------
 SITO_REDAZIONE = "https://giandjcosta.github.io/o-fant-a-girrr/girrr/dati/redazione.json"
 NON_RIPORTATA = "…"   # al posto di una frase giudicata non pubblicabile, nei post e nei file pubblici
@@ -243,8 +273,9 @@ if __name__ == "__main__":
     conf = rpc("conf_pubbliche", {})
     dopo = rpc_facoltativa("conf_dopo_pubbliche")   # 5.7: c'è solo dopo rilascio/conferenze/dopo.sql
     conf, prom, dopo, attesa = applica_redazione(conf, prom, dopo, redazione())   # 5.8: giudizi della redazione
-    cal = calendario_lega() if (conf or dopo) else None
-    ev = eventi(rpc("derby_stato", {}), prom) + eventi_conferenza(conf, cal) + eventi_dopo(dopo, cal)
+    mvp = mvp_facoltativo(os.environ.get("STAGIONE", "2026/27"))   # 6.2: verdetto MVP dei tifosi
+    cal = calendario_lega() if (conf or dopo or mvp) else None
+    ev = eventi(rpc("derby_stato", {}), prom) + eventi_conferenza(conf, cal) + eventi_dopo(dopo, cal) + eventi_mvp(mvp, cal)
     if attesa:
         print("Aspettano il giudizio della redazione:", ", ".join(sorted(attesa)))
         ev = [e for e in ev if e.get("k") not in attesa]

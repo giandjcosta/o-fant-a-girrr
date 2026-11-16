@@ -15,6 +15,7 @@ Formato di eventi.json: lista di oggetti con "tipo" e "k" (chiave unica dell'eve
   {"tipo":"scaduta", "k":"S12", "da":"Oranje VC", "a":"Grodah"}                     (nessuna risposta in 3 giorni)
   {"tipo":"accettata","k":"S12", "da":"Oranje VC", "a":"Grodah"}                     (a ha accettato: il Derby nasce quando si accordano sul nome)
   {"tipo":"derby",   "k":"S12", "da":"Oranje VC", "a":"Grodah", "nome":"Il Derby della Rivincita"}
+  {"tipo":"mvp", "k":"M2026/27-7", "team":"stif dc", "giornata":7, "motivo":"...", "partita":"Grodah - stif dc", "risultato":"1-2"}   (6.2: verdetto MVP dei tifosi, post di Girrr Sport con la squadra taggata)
   {"tipo":"promessa","k":"C7-Apo", "team":"Apo team", "giornata":3, "promessa":"Vinciamo noi", "esito":"v"|"s"}   (v mantenuta, s tradita, p pareggio: come nel database)
 Moviola: un post su Girrr Sport per l'ultima giornata di moviola.json con l'episodio principale (il primo di "episodi"),
   con titolo, testo e verdetto uguali alla tab; nella Curva rimanda alla tab Moviola ("Apri la Moviola"). Giornata senza episodi
@@ -141,6 +142,18 @@ def post(e):
             _, parola = CIRO[e["tono"]]
             out.append((CIRO_H, parola, 0))   # il commento di Ciro, tale e quale all'app: esce sotto il post della conferenza (indice 0)
         return out
+    if t == "mvp":   # 6.2: verdetto MVP dei tifosi alla chiusura del voto; la squadra taggata riceve la menzione, nessun'altra notifica
+        nome = sq(e["team"])
+        nome = nome[:1].upper() + nome[1:]   # la riga comincia sempre con la maiuscola («stif dc» -> «Stif dc»)
+        body = f"🏆 MVP DEI TIFOSI · {e['giornata']}ª giornata\n{nome} {tag(e['team'])} è l'MVP dei tifosi della {e['giornata']}ª giornata."
+        coda = " #GirrrSport #MVP"
+        mot = (e.get("motivo") or "").strip()
+        if not mot and e.get("partita") and e.get("risultato"):
+            mot = f"{' - '.join(sq(x) for x in e['partita'].split(' - '))} {e['risultato']}."
+        spazio = 280 - len(body) - len(coda) - 1
+        if mot and spazio > 20:
+            body += " " + (mot if len(mot) <= spazio else mot[:spazio - 1].rsplit(" ", 1)[0] + "…")
+        return [(GS, body + coda)]
     if t == "dopo":   # conferenza del dopo partita: una risposta sola, con il risultato vero
         part = " - ".join(sq(x) for x in e["partita"].split(" - ")) if e.get("partita") else ""
         testa = "DOPO LA PARTITA · " + (f"{part} {e.get('risultato', '')}".strip() if part else f"Giornata {e['giornata']}") + f"\n{chi(e['team'])}: "
