@@ -33,6 +33,17 @@
     var to = Math.max(0, Math.min(c.scrollWidth - c.clientWidth, c.scrollLeft + (r.left - e.left) - (e.width - r.width) / 2));
     if (Math.abs(to - c.scrollLeft) > 1) c.scrollTo({ left: to, behavior: ridotto() ? 'auto' : 'smooth' });
   }
+  /* 6.2.3 (Gianluca): nel Totogirrr la fila che scorre è il <nav>, non .nvi (largo quanto le schede, non scorre mai). La scheda
+     toccata si sposta quanto basta per vedersi tutta, con un margine, senza andare al centro. */
+  function fila(c) { return c.matches && c.matches('nav .nvi') ? c.parentElement : null; }
+  function mostra(s, b, subito) {
+    if (!scorri(s)) return;
+    var r = b.getBoundingClientRect(), e = s.getBoundingClientRect(), m = 14, d = 0;
+    if (r.left < e.left + m) d = r.left - e.left - m; else if (r.right > e.right - m) d = r.right - e.right + m;
+    if (Math.abs(d) < 1) return;
+    var to = Math.max(0, Math.min(s.scrollWidth - s.clientWidth, s.scrollLeft + d));
+    if (subito || ridotto()) s.scrollLeft = to; else s.scrollTo({ left: to, behavior: 'smooth' });
+  }
   function contenuto(c) {   /* quello che sta sotto la fila: i fratelli che seguono (senza il ticker e la schedina di Totogirrr) */
     var out = [], el = c.closest('nav') || c;
     for (var x = el.nextElementSibling; x; x = x.nextElementSibling) {
@@ -60,8 +71,9 @@
       if (!n) return;
       /* 6.2.1: nelle file ferme (Albo, Carriera, Derby) la fila non viene riportata indietro e si sposta solo se la voce scelta
          è fuori vista: prima tre scorrimenti insieme (questo, l'app e il ritorno indietro) la fermavano a metà, con l'ultima voce tagliata */
-      var ferma = c2.matches && c2.matches(FERME);
-      if (ferma) { var _r = n.getBoundingClientRect(), _e = c2.getBoundingClientRect(); if (!c2.matches('.oro-scroll') && (_r.left < _e.left - 1 || _r.right > _e.right + 1)) centra(c2, n); }   /* 6.2.2: Albo e Carriera le sposta solo l'app */
+      var ferma = c2.matches && c2.matches(FERME), _nv = fila(c2);
+      if (_nv) mostra(_nv, n);   /* 6.2.3: Totogirrr, un solo codice muove la fila */
+      else if (ferma) { var _r = n.getBoundingClientRect(), _e = c2.getBoundingClientRect(); if (!c2.matches('.oro-scroll') && (_r.left < _e.left - 1 || _r.right > _e.right + 1)) centra(c2, n); }   /* 6.2.2: Albo e Carriera le sposta solo l'app */
       else {
       /* la fila non torna all'inizio */
       if (scorri(c2) && c2.scrollLeft < sl - 2) { var sb = c2.style.scrollBehavior; c2.style.scrollBehavior = 'auto'; c2.scrollLeft = sl; c2.style.scrollBehavior = sb; }
@@ -101,7 +113,7 @@
         var an = g.animate([
           { transform: 'translate(' + x0 + 'px,' + y0 + 'px)', width: r0.width + 'px', height: r0.height + 'px' },
           { transform: 'translate(' + x1 + 'px,' + y1 + 'px)', width: r1.width + 'px', height: r1.height + 'px' }
-        ], { duration: 380, easing: EASE });
+        ], { duration: _nv ? 220 : 380, easing: EASE });   /* 6.2.3: nel Totogirrr più corto (Gianluca) */
         an.onfinish = fine; an.oncancel = fine;
         setTimeout(fine, 900);
         /* se la pagina ridisegna di nuovo durante l'animazione e toglie la pillola fantasma, si chiude subito */
@@ -112,7 +124,8 @@
   /* all'apertura (anche da un collegamento che porta su una scheda in fondo alla fila) la pillola scelta è in vista */
   function inVista() {
     file().forEach(function (c) {
-      var a = attiva(c); if (!a || !scorri(c)) return;
+      var a = attiva(c), _s = fila(c); if (_s) { if (a) mostra(_s, a, true); return; }   /* 6.2.3: Totogirrr */
+      if (!a || !scorri(c)) return;
       var r = a.getBoundingClientRect(), e = c.getBoundingClientRect();
       if (r.left >= e.left - 1 && r.right <= e.right + 1) return;
       var sb = c.style.scrollBehavior; c.style.scrollBehavior = 'auto';

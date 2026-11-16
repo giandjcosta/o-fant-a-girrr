@@ -163,10 +163,43 @@
     a.onmouseleave = function () { a.style.opacity = '.8'; a.style.background = 'rgba(255,255,255,.06)'; };
     return a;
   }
+  /* 6.2.3 · «Esci» (Gianluca, 16 novembre 2026): prima si usciva solo dal Totogirrr. Ora in fondo alla Home, a sinistra,
+     sulla stessa riga della pillola della versione e con lo stesso aspetto. Si vede solo se sei entrato con la tua squadra
+     o come ospite. Primo tocco: «Tocca di nuovo per uscire» per 3 secondi; secondo tocco: esci (il nome della squadra resta
+     solo come proposta nella schermata di accesso, come faceva il Totogirrr) e la Home si ricarica. */
+  function esci() {
+    var fg = {}, osp = false;
+    try { fg = JSON.parse(localStorage.getItem('fg') || '{}') || {}; } catch (e) {}
+    try { osp = sessionStorage.getItem('ospite') === '1'; } catch (e) {}
+    if (!(fg.team && fg.code) && !osp) return null;
+    var b = document.createElement('button'); b.type = 'button'; b.className = 'vv-esci';
+    var testo = fg.team && fg.code ? 'Esci da ' + fg.team : 'Esci';
+    b.textContent = testo; b.setAttribute('aria-label', 'Esci da O Girrr');
+    b.style.cssText = 'display:block;max-width:62%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;padding:7px 13px;font:800 12px/1 Inter,system-ui,sans-serif;letter-spacing:.06em;color:inherit;opacity:.8;border:1px solid rgba(255,255,255,.35);border-radius:999px;background:rgba(255,255,255,.06);cursor:pointer;-webkit-tap-highlight-color:transparent;transition:opacity .25s,background-color .25s,border-color .25s';
+    var tm = 0;
+    b.onclick = function () {
+      if (!b.dataset.conferma) {
+        b.dataset.conferma = '1'; b.textContent = 'Tocca di nuovo per uscire'; b.style.opacity = '1'; b.style.borderColor = 'rgba(255,255,255,.7)';
+        clearTimeout(tm); tm = setTimeout(function () { delete b.dataset.conferma; b.textContent = testo; b.style.opacity = '.8'; b.style.borderColor = 'rgba(255,255,255,.35)'; }, 3000);
+        return;
+      }
+      try { var o = JSON.parse(localStorage.getItem('fg') || 'null'); if (o && o.code) { o.code = ''; localStorage.setItem('fg', JSON.stringify(o)); } } catch (e) {}
+      try { sessionStorage.removeItem('ospite'); } catch (e) {}
+      /* si riapre la Home senza ?squadra= (accesso di prova del Lab) e senza un codice nell'indirizzo, che farebbero rientrare */
+      try { var u = new URL(location.href); u.searchParams.delete('squadra'); u.hash = ''; location.replace(u.href); } catch (e) { location.reload(); }
+    };
+    return b;
+  }
   function inFondoHome(x) {
     if (document.querySelector('.vv-fondo')) return;
     var sp = document.querySelector('.wrap > .sp') || document.querySelector('.sp') || document.querySelector('.foot');
-    if (sp && sp.parentNode) sp.parentNode.insertBefore(pillola(x), sp);
+    if (!sp || !sp.parentNode) return;
+    var riga = document.createElement('div'); riga.className = 'vv-riga';
+    riga.style.cssText = 'display:flex;align-items:center;justify-content:space-between;gap:10px;margin:18px 0 10px';
+    var e = esci(), v = pillola(x); v.style.margin = '0 0 0 auto';
+    if (e) riga.appendChild(e);
+    riga.appendChild(v);
+    sp.parentNode.insertBefore(riga, sp);
   }
   function avvia() {
     var box = document.getElementById('versioni');

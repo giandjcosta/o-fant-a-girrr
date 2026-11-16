@@ -1,6 +1,6 @@
 <!doctype html>
 <html lang="it">
-<head><script src="../../tv.js?v=622"></script>
+<head><script src="../../tv.js?v=623"></script>
 <script src="../../nomi.js"></script>
 
 <script src="ospite.js?v=1"></script>
@@ -623,7 +623,7 @@ function navR(){
 function topR(titolo,sott,tabs){
  var back=(vista==='u'&&vprof!==meH)||vista==='info'||vista==='adm'||vista==='seg',m=nomeMio();
  morfaIn(document.getElementById('top'),'<div class="bar">'+(back?'<button class="ib" '+(vista==='seg'&&vseg&&vseg!==meH?'data-u="'+vseg+'"':'data-v="'+(vista==='seg'?'profilo':'home')+'"')+' aria-label="Indietro">'+I.back+'</button>':(m?AV(m,'sm me','data-v="profilo"'):'<span class="me"></span>'))+
-  '<div class="tt">'+(vista==='home'?'<span style="display:flex;align-items:center;gap:8px"><i class="lg" data-lega="1" style="width:28px;height:28px;cursor:pointer"></i>Curva</span>':esc(titolo)+(sott?'<small>'+esc(sott)+'</small>':''))+'</div>'+
+  '<div class="tt">'+(vista==='home'?'<span style="display:flex;align-items:center;gap:8px"><i class="lg" aria-hidden="true" style="width:28px;height:28px"></i>Curva</span>':esc(titolo)+(sott?'<small>'+esc(sott)+'</small>':''))+'</div>'+
   (me===ADMIN&&S.v>=5?'<button class="ib" data-v="adm" aria-label="Per Me" title="Per Me">'+I.adm+'</button>':'')+'<button class="ib" data-v="info" aria-label="Info" title="Come funziona">'+I.info+'</button><button class="ib" id="rfb" aria-label="Aggiorna" title="Aggiorna"><svg viewBox="0 0 24 24" '+S0+'><path d="M20 12a8 8 0 1 1-2.5-5.8"/><path d="M20 4v5h-5"/></svg></button><button class="ib" id="tg" aria-label="Cambia tema">'+(curTema()==='dark'?I.sun:I.moon)+'</button></div>'+(tabs?'<div class="tabs">'+tabs+'</div>':'')+(NET===false?'<div class="net">Non riesco a collegarmi ai cori: puoi leggere, ma non scrivere.</div>':''));
  document.getElementById('rfb').onclick=function(){rinfresca()};
  document.getElementById('tg').onclick=function(){cvImpostazioni()};document.getElementById('tg').setAttribute('aria-label','Impostazioni: aspetto e suoni');

@@ -18,3 +18,14 @@
 /* 6.2.2 · Niente alone al tocco (Gianluca): su telefono il browser colorava di azzurro o di grigio il riquadro
    di «‹ O Girrr» e degli altri link mentre si premono. tv.js è in tutte le pagine di Lega, Stadio e Spogliatoio. */
 (function () { try { var s = document.createElement('style'); s.textContent = 'a,button,summary,label,[role=button]{-webkit-tap-highlight-color:transparent}a:focus:not(:focus-visible),button:focus:not(:focus-visible){outline:none}.back:active{opacity:.7}'; (document.head || document.documentElement).appendChild(s); } catch (e) {} })();
+/* 6.2.3 · alone su «‹ O Girrr» (Gianluca): nell'app il link indietro si chiama .oback (la 6.2.2 copriva solo .back). Né evidenziazione
+   del tocco né contorno né anteprima del tocco lungo; dopo il tocco e al ritorno con «Indietro» il link non resta col fuoco. */
+(function () { try {
+  var s = document.createElement('style');
+  s.textContent = '.back,.oback{-webkit-tap-highlight-color:transparent!important;-webkit-touch-callout:none;outline:none!important;box-shadow:none!important}'
+    + '.back:focus,.oback:focus,.back:focus-visible,.oback:focus-visible{outline:none!important;box-shadow:none!important;background:transparent!important}.oback:active{opacity:.7}';
+  (document.head || document.documentElement).appendChild(s);
+  var giu = function () { var a = document.activeElement; if (a && a.matches && a.matches('.back,.oback')) a.blur(); };
+  document.addEventListener('click', function (e) { var a = e.target && e.target.closest && e.target.closest('.back,.oback'); if (a) a.blur(); }, true);
+  addEventListener('pageshow', giu); document.addEventListener('visibilitychange', giu);
+} catch (e) {} })();
