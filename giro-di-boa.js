@@ -150,7 +150,7 @@
 
   function stile() {
     if (document.getElementById('gb-stile')) return;
-    const l = document.createElement('link'); l.id='gb-stile';l.rel='stylesheet';l.href=new URL('giro-di-boa.css?v=61-periodi1',ROOT);document.head.append(l);
+    const l = document.createElement('link'); l.id='gb-stile';l.rel='stylesheet';l.href=new URL('giro-di-boa.css?v=621',ROOT);document.head.append(l);
   }
   function opzioni(j) {return Object.entries(j.periodi).map(([k,p])=>`<option value="${k}">${E(p.etichetta||k)}</option>`).join('');}
   function opzioniComp(){return Object.entries(COMP).map(([k,n])=>`<option value="${k}">${E(n)}</option>`).join('');}
@@ -168,10 +168,10 @@
         const k=q('[data-gb-periodo]').value,p=periodo(j,k),t=q('[data-gb-squadra]').value,comp=q('[data-gb-comp]').value,all=q('[data-gb-ambito]').value==='lega';
         q('[data-gb-tit]').textContent=titolo(j,k);q('[data-gb-scelta]').hidden=all;
         q('[data-gb-ambito] option[value=lega]').textContent=comp==='coppa'?'Tutta la Champions Cup':comp==='entrambe'?'La lega, nelle due competizioni':'Tutto il campionato';host.dataset.gbCompetizione=comp;q('[data-gb-fonte]').textContent=comp==='campionato'?'Classifica e punti del Campionato alla tappa scelta. I bilanci riguardano il periodo indicato.':comp==='coppa'?'Punti e posizioni restano quelli dei singoli gironi della Champions Cup. I risultati arrivano fino alla stessa data della tappa di Campionato.':'Classifiche del Campionato e dei gironi di Coppa distinte. I gol totali comprendono entrambe le competizioni; i punti non vengono sommati.';q('[data-gb-label]').innerHTML=fasciaComp(comp);q('[data-gb-contenuto]').innerHTML=all?legaComp(p,comp):squadreComp(p,t,comp);
-        const vista=viste.get(team)||'0';q('[data-gb-vista="'+vista+'"]')?.click();
+        const vista=viste.get(team)||'0';q('[data-gb-contenuto]').querySelectorAll('[data-gb-vista]').forEach(v=>v.setAttribute('aria-pressed',String(v.dataset.gbVista===vista)));q('[data-gb-contenuto]').querySelectorAll('[data-gb-pagina]').forEach(v=>v.hidden=v.dataset.gbPagina!==vista);
         scelte.set(team,{'[data-gb-periodo]':k,'[data-gb-squadra]':t,'[data-gb-ambito]':all?'lega':'squadra','[data-gb-comp]':comp});
       }
-      host.addEventListener('click',e=>{const b=e.target.closest('[data-gb-vista]');if(!b)return;const scope=b.closest('[data-gb-contenuto]');viste.set(team,b.dataset.gbVista);scope.querySelectorAll('[data-gb-vista]').forEach(v=>v.setAttribute('aria-pressed',String(v===b)));scope.querySelectorAll('[data-gb-pagina]').forEach(v=>v.hidden=v.dataset.gbPagina!==b.dataset.gbVista);});
+      host.addEventListener('click',e=>{const b=e.target.closest('[data-gb-vista]');if(!b)return;const scope=b.closest('[data-gb-contenuto]');if(!scope)return;viste.set(team,b.dataset.gbVista);scope.querySelectorAll('[data-gb-vista]').forEach(v=>v.setAttribute('aria-pressed',String(v===b)));scope.querySelectorAll('[data-gb-pagina]').forEach(v=>v.hidden=v.dataset.gbPagina!==b.dataset.gbVista);});
       host.querySelectorAll('select').forEach(s=>s.addEventListener('change',aggiorna));aggiorna();
       q('[data-gb-album]').onclick=()=>apri({j,root,squadra:q('[data-gb-squadra]').value,ambito:q('[data-gb-ambito]').value,k:q('[data-gb-periodo]').value,competizione:q('[data-gb-comp]').value});
       host.dataset.pronto='1';

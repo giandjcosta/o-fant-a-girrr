@@ -202,7 +202,7 @@
   function moduloBoa() {
     if (window.GirrrBoa) return Promise.resolve(window.GirrrBoa);
     return new Promise(function (ok, ko) {
-      var s = document.createElement('script'); s.src = ROOT + 'giro-di-boa.js?v=61-periodi1';
+      var s = document.createElement('script'); s.src = ROOT + 'giro-di-boa.js?v=621';
       s.onload = function () { ok(window.GirrrBoa); }; s.onerror = function () { ko(new Error('Bilancio non disponibile. Riprova più tardi.')); }; document.head.appendChild(s);
     });
   }

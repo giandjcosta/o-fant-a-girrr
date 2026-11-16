@@ -145,12 +145,12 @@ td small{color:var(--sub);font-weight:600;display:block;font-size:11px}
 <script src="storia.js?v=1"></script>
 <script>window.goatcounter={path:function(){return location.pathname},no_onload:/[?&]demo/.test(location.search)}</script>
 <script data-goatcounter="https://djcosta18.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
-<script src="novita.js?v=1793800000"></script>
+<script src="novita.js?v=621"></script>
 <script src="novita-dati.js?v=1792337985"></script>
 <script src="novita-badge.js?v=1792337985"></script>
 <script src="transizioni.js"></script>
 <style>@media(min-width:1500px){.wrap{max-width:1380px}}</style>
-<script src="../pillole.js?v=1" defer></script><script src="../offline.js" defer></script>
+<script src="../pillole.js?v=621" defer></script><script src="../offline.js" defer></script>
 <link rel="stylesheet" href="v60/tifosi.css" data-girrr-tifosi><script src="../albo62.js?v=62-1" defer></script></head>
 <body>
 <div class="wrap">
@@ -217,7 +217,7 @@ function recs(){
   h+=row('⚽','Più gol in una partita',esc(cap(gol.m.c))+' '+gol.m.gc+' - '+gol.m.gf+' '+esc(cap(gol.m.f)),dove(gol.m),gol.val);
   if(sf)h+=row('😭','La più sfortunata',sf.t,'ha perso con '+pt(sf.val)+' punti contro '+esc(cap(sf.o))+' · '+dove(sf.m),pt(sf.val));
   if(fo)h+=row('🍀','La più fortunata',fo.t,'ha vinto con soli '+pt(fo.val)+' punti su '+esc(cap(fo.o))+' · '+dove(fo.m),pt(fo.val));
-  if(se.best.n>=2)h+=row('🔥','Serie di vittorie più lunga',se.best.t,'tra campionato e coppa',se.best.n,true);
+  if(se.best.n>=2)h+=row('🔥','Serie di vittorie più lunga',se.best.t,'tra campionato e coppa',se.best.n);
   return '<div class="card"><h3>I record della lega</h3>'+h+'</div>';
 }
 /* Storico: nomi degli allenatori come su Leghe; alias confermati da Gianluca */
@@ -431,5 +431,5 @@ fetch('../data.json',{cache:'no-store'}).then(function(r){return r.json()}).then
 })();
 </script>
 <script src="../assets/app.js"></script>
-<script src="v60/model.js"></script><script src="v60/tifosi.js"></script><script src="derby.js?v=1793800000"></script></body>
+<script src="v60/model.js"></script><script src="v60/tifosi.js?v=621"></script><script src="derby.js?v=621"></script></body>
 </html>

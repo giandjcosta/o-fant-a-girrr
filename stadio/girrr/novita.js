@@ -72,8 +72,8 @@ function latSempre(){
   return h}
 function latAnno(){
   if(!LS.r||LS.r>LD.aw.length)LS.r=LD.aw.length;var a=LD.aw[LS.r-1];
-  var h='<p class="lnt" style="margin:0 0 10px">Ogni giornata si calcola da sola, senza votare: chi fa più punti, chi ne fa meno, la sconfitta più larga e la vittoria più fortunata. Un albo parallelo a quello dei trofei.</p>';
-  h+='<div class="lseg" role="group" aria-label="Giornata">'+LD.aw.map(function(x){return '<button data-lr="'+x.n+'" aria-pressed="'+(LS.r===x.n)+'">Giornata '+x.n+'</button>'}).join('')+'</div>';
+  var h='';
+
   h+='<div class="card"><div class="law"><div><div class="k">Re della giornata</div><b>'+esc(a.mvp[0])+'</b><span>'+f1(a.mvp[1])+' punti</span></div><div><div class="k b">Flop della giornata</div><b>'+esc(a.flop[0])+'</b><span>'+f1(a.flop[1])+' punti</span></div></div>';
   h+='<div class="law" style="margin-top:8px"><div><div class="k b">La mazzata</div><b>'+esc(a.maz[0])+'</b><span>battuta da '+esc(a.maz[3])+' di '+f1(a.maz[2])+' punti</span></div><div><div class="k">Il fortunato</div><b>'+esc(a.luck[0])+'</b><span>vince con soli '+f1(a.luck[1])+' punti</span></div></div></div>';
   var cnt={};LD.aw.forEach(function(x){[['m',x.mvp[0]],['f',x.flop[0]],['z',x.maz[0]]].forEach(function(p){cnt[p[1]]=cnt[p[1]]||{m:0,f:0,z:0};cnt[p[1]][p[0]]++})});
@@ -83,7 +83,17 @@ function latDraw(){var b=document.getElementById('latbox');if(!b)return;
   if(!LD){b.innerHTML='<div class="card"><p class="lnt" style="margin:0">Carico l\'Albo di Latta…</p></div>';return}
   var h='<div class="card" style="padding:18px 18px 14px"><h3 style="margin:0 0 8px">L\'Albo di Latta</h3><p style="margin:0;opacity:.85;line-height:1.45">L\'opposto dell\'oro: chi chiude in fondo, chi fa flop, chi prende le mazzate. Si calcola da solo ad ogni giornata e si accumula anno dopo anno.</p></div>';
   h+='<div class="lseg" role="group" aria-label="Periodo"><button data-lp="anno" aria-pressed="'+(LS.p==='anno')+'">Questa stagione</button><button data-lp="sempre" aria-pressed="'+(LS.p==='sempre')+'">Di sempre</button></div>';
-  b.innerHTML=h+(LS.p==='sempre'?latSempre():latAnno())}
+  /* 6.2.1: titolo, periodo e giornate persistenti; aggiorna soltanto le schede sottostanti. */
+  var giorni=LS.p==='anno'?'<div class="lat-giorni"><p class="lnt" style="margin:0 0 10px">Ogni giornata si calcola da sola, senza votare: chi fa più punti, chi ne fa meno, la sconfitta più larga e la vittoria più fortunata.</p><div class="lseg" role="group" aria-label="Giornata">'+LD.aw.map(function(x){return '<button data-lr="'+x.n+'" aria-pressed="'+(LS.r===x.n)+'">Giornata '+x.n+'</button>'}).join('')+'</div></div>':'';
+  var header=b.querySelector('.lat-giorni');
+  if(LS.p==='anno'&&!header){var seg=b.querySelector('.lseg [data-lp]')?.closest('.lseg');if(seg)seg.insertAdjacentHTML('afterend',giorni)}
+  else if(LS.p==='sempre'&&header)header.remove();
+  [].forEach.call(b.querySelectorAll('[data-lr]'),function(x){x.setAttribute('aria-pressed',String(+x.getAttribute('data-lr')===LS.r))});
+  /* 6.2.1: mantieni titolo e selettori, sfuma soltanto il contenuto */
+  var corpo=LS.p==='sempre'?latSempre():latAnno(),lb=b.querySelector('.lbody');
+  if(lb&&b.querySelector('.lseg [data-lp]')){[].forEach.call(b.querySelectorAll('.lseg [data-lp]'),function(x){x.setAttribute('aria-pressed',String(x.getAttribute('data-lp')===LS.p))});lb.innerHTML=corpo;
+   if(!(window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches))try{lb.animate([{opacity:.3,transform:'translateY(4px)'},{opacity:1,transform:'none'}],{duration:260,easing:'cubic-bezier(.22,.61,.36,1)'})}catch(e){}return}
+  b.innerHTML=h+giorni+'<div class="lbody">'+corpo+'</div>'}
 function latInit(){var b=document.getElementById('latbox');if(!b||b._l)return;b._l=1;latDraw();
   b.addEventListener('click',function(e){var x=e.target.closest&&e.target.closest('[data-lp],[data-lr]');if(!x)return;if(x.hasAttribute('data-lp'))LS.p=x.getAttribute('data-lp');else LS.r=+x.getAttribute('data-lr');latDraw()});
   (function prova(i){if(i>=LAB.length){b.innerHTML='<div class="card"><p class="lnt" style="margin:0">L\'Albo di Latta non si carica adesso: riprova tra un attimo.</p></div>';return}

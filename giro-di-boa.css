@@ -16,3 +16,6 @@
 
 .gb-controlli select{overflow:hidden;text-overflow:ellipsis}
 @media(max-width:700px){.gb-controlli{display:grid;grid-template-columns:minmax(0,1fr)}.gb-controlli label{width:100%}}
+
+/* Anteprima 6.2.1 · Transizioni Carriera: controlli stabili, pannelli animati senza salti */
+.gb-viste{flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none;scroll-snap-type:x proximity;overscroll-behavior-x:contain}.gb-viste::-webkit-scrollbar{display:none}.gb-viste button{flex:0 0 auto;scroll-snap-align:start;transition:background-color .2s ease,border-color .2s ease,color .2s ease,opacity .2s ease}.gb-tavola[hidden]{display:none!important}.gb-tavola:not([hidden]){animation:gb-appari .25s ease both}@media(prefers-reduced-motion:reduce){.gb-viste button{transition:none}.gb-tavola:not([hidden]){animation:none}}
