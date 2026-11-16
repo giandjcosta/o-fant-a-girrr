@@ -109,3 +109,10 @@ start().catch(()=>{console.info('Le novità dei tifosi non sono disponibili ades
 })();
 
 /* 6.2.1: «Giurie e criteri» resta aperta durante gli aggiornamenti automatici */document.addEventListener('toggle',function(e){var d=e.target;if(d&&d.matches&&d.matches('[data-pt-giurie]'))window.ptGiurieAperte=d.open},true);
+/* 6.2.2 · Campionato e Champions Cup dei Derby (Gianluca): due pulsanti affiancati anche su iPhone SE (andavano a capo per 1 px)
+   e, nella grafica Stadio, tutto oro anche in Champions Cup (regola del 15 novembre 2026); nella Lega restano rosso e azzurro. */
+(function () { try { var stadio = /\/stadio\//.test(location.pathname); var s = document.createElement('style');
+  s.textContent = '.pt-competition{flex-wrap:nowrap}.pt-competition button{flex:0 1 auto;min-width:0;white-space:nowrap}' + (stadio ?
+    '.pt-competition button[data-pt-comp][aria-pressed=true]{background:#ffd166!important;border-color:#ffd166!important;color:#182649!important}'
+    + '#pt-derby,#pt-derby[data-pt-competition=cup]{border-left-color:#ffd166!important}' : '');
+  (document.head || document.documentElement).appendChild(s); } catch (e) {} })();

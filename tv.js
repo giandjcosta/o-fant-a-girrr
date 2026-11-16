@@ -15,3 +15,6 @@
   (document.head || document.documentElement).appendChild(st);
   document.documentElement.classList.add('tv-grande');
 })();
+/* 6.2.2 · Niente alone al tocco (Gianluca): su telefono il browser colorava di azzurro o di grigio il riquadro
+   di «‹ O Girrr» e degli altri link mentre si premono. tv.js è in tutte le pagine di Lega, Stadio e Spogliatoio. */
+(function () { try { var s = document.createElement('style'); s.textContent = 'a,button,summary,label,[role=button]{-webkit-tap-highlight-color:transparent}a:focus:not(:focus-visible),button:focus:not(:focus-visible){outline:none}.back:active{opacity:.7}'; (document.head || document.documentElement).appendChild(s); } catch (e) {} })();

@@ -61,7 +61,7 @@
       /* 6.2.1: nelle file ferme (Albo, Carriera, Derby) la fila non viene riportata indietro e si sposta solo se la voce scelta
          è fuori vista: prima tre scorrimenti insieme (questo, l'app e il ritorno indietro) la fermavano a metà, con l'ultima voce tagliata */
       var ferma = c2.matches && c2.matches(FERME);
-      if (ferma) { var _r = n.getBoundingClientRect(), _e = c2.getBoundingClientRect(); if (_r.left < _e.left - 1 || _r.right > _e.right + 1) centra(c2, n); }
+      if (ferma) { var _r = n.getBoundingClientRect(), _e = c2.getBoundingClientRect(); if (!c2.matches('.oro-scroll') && (_r.left < _e.left - 1 || _r.right > _e.right + 1)) centra(c2, n); }   /* 6.2.2: Albo e Carriera le sposta solo l'app */
       else {
       /* la fila non torna all'inizio */
       if (scorri(c2) && c2.scrollLeft < sl - 2) { var sb = c2.style.scrollBehavior; c2.style.scrollBehavior = 'auto'; c2.scrollLeft = sl; c2.style.scrollBehavior = sb; }

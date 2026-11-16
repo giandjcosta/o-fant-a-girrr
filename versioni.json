@@ -2,6 +2,42 @@
   "nota": "Fonte unica della pagina Versioni (girrr/versioni.html e stadio/girrr/versioni.html). A ogni rilascio si aggiunge la versione in cima con rilascio/versioni/aggiungi.py. Numeri: correzione minore = terza cifra (5.6.1), aggiornamento medio = seconda cifra (5.7.0), aggiornamento grande = prima cifra (6.0). Dove manca la storia: «Dato non conservato». Le versioni 1.0-4.5 e il Mercato Scambi vengono dai messaggi recuperati da Claude chat (9 novembre 2026), date controllate con i commit del sito. Il campo «nota» e «altre_varianti» non si mostrano nella pagina.",
   "versioni": [
     {
+      "v": "6.2.2",
+      "data": "2026-11-16",
+      "tipo": "minore",
+      "titolo": "Carriera e Derby più fluidi",
+      "messaggio": "🔧 **O Girrr 6.2.2 è online!** In Carriera, sul telefono, la fila delle sezioni scorre una volta sola e si ferma sulla voce che tocchi. Il tabellone della fiducia del presidente riparte ogni volta che entri in Carriera. Nell’Albo d’oro le schede dei Derby stanno al centro e Campionato e Champions Cup stanno affiancati. Nelle Notifiche il logo è come nelle altre pagine e i link non si colorano più quando li tocchi. Buona giornata a tutti! ⚽",
+      "novita": [
+        {
+          "area": "Carriera",
+          "voci": [
+            "Sul telefono un tocco su una sezione fa scorrere la fila una volta sola, fino alla voce scelta, senza salti.",
+            "L’arco e i numeri a cartellini della Fiducia del presidente ripartono a ogni ingresso nella Carriera, non cambiando scheda."
+          ]
+        },
+        {
+          "area": "Albo d’oro",
+          "voci": [
+            "Nei Derby le schede «Derby della Lega», «Le rivalità» e «Classifica dei Derby» stanno al centro; sul telefono la scheda toccata si vede tutta.",
+            "Nella Classifica dei Derby, Campionato e Champions Cup stanno sulla stessa riga anche sui telefoni piccoli.",
+            "Nella grafica Stadio il pulsante scelto e la banda della Classifica dei Derby sono in oro anche in Champions Cup."
+          ]
+        },
+        {
+          "area": "Notifiche",
+          "voci": [
+            "«‹ O Girrr» sta sopra e il logo grande a fianco del titolo, con le stesse misure delle altre pagine."
+          ]
+        },
+        {
+          "area": "App",
+          "voci": [
+            "Sul telefono i link non si colorano più di azzurro o di grigio mentre li tocchi."
+          ]
+        }
+      ]
+    },
+    {
       "v": "6.2.1",
       "data": "2026-11-16",
       "tipo": "minore",
