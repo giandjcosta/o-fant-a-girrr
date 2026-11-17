@@ -69,22 +69,23 @@ Notizie pubbliche, senza indicare di chi e' ogni giocatore.
 | Raimondo | Frosinone | Lesione multilegamentosa contusivo-distorsiva della caviglia sinistra | Metà dicembre | Salta |
 | Bracaglia | Frosinone | Squalificato | Rientra dalla 13ª giornata | Salta |
 | Bonny | Inter | Risentimento muscolare ai flessori della coscia destra | Inizio dicembre | Salta |
-| Grabara | Juventus | Lesione al crociato anteriore del ginocchio destro | Da aprile | Salta |
 | Yildiz | Juventus | Problema al piede | Fine dicembre | Salta |
+| Grabara | Juventus | Lesione al crociato anteriore del ginocchio destro | Da aprile | Salta |
 | Kalulu | Juventus | Lesione ai muscoli ischiocrurali della gamba sinistra | Fine novembre | Salta |
-| Tavares N. | Lazio | Infortunio | Metà dicembre | Salta |
-| Marusic | Lazio | Fastidio muscolare alla gamba | Da valutare | Salta |
 | Sutalo J. | Lazio | Lesione muscolare di secondo grado al flessore | Fine dicembre | Salta |
-| Chukwueze | Milan | Rottura del tendine del muscolo tensore della | Da aprile | Salta |
+| Marusic | Lazio | Fastidio muscolare alla gamba | Da valutare | Salta |
+| Tavares N. | Lazio | Infortunio | Metà dicembre | Salta |
 | Saelemaekers | Milan | Problema alla caviglia destra e operata il | Da febbraio | Salta |
+| Chukwueze | Milan | Rottura del tendine del muscolo tensore della | Da aprile | Salta |
 | Birindelli | Monza | Problema fisico lamentato nella rifinitura | Prossimo turno | Salta |
-| Badiashile | Napoli | Lesione distrattiva di medio grado del retto | Fine novembre | Salta |
 | Santos A. | Napoli | Lesione distrattiva di medio grado del bicipite | Inizio dicembre | Salta |
+| Badiashile | Napoli | Lesione distrattiva di medio grado del retto | Fine novembre | Salta |
+| Di Lorenzo | Napoli | Lesione distrattiva del muscolo adduttore lungo della | Fine novembre | Salta |
 | Lobotka | Napoli | Lesione della sindesmosi tibio-peroneale senza instabilità | Metà dicembre | Salta |
 | Buongiorno | Napoli | Operato nella seconda metà di luglio al | Fine dicembre | Salta |
-| Di Lorenzo | Napoli | Lesione distrattiva del muscolo adduttore lungo della | Fine novembre | Salta |
 | Bernabè | Parma | Distrazione muscolare di basso grado al retto | Seconda metà di novembre | Salta |
-| Romero D. | Parma | Lussazione acromion-claveare della spalla destra | Da valutare | In dubbio |
+| Romero D. | Parma | Lussazione acromion-claveare della spalla destra | Fine dicembre | Salta |
+| Diego Carlos | Parma | Fastidio muscolare alla gamba e ora a | Da valutare | Salta |
 | Rensch | Roma | Lesione di primo grado dell'adduttore lungo di | Seconda metà di novembre | Salta |
 | Volpato | Sassuolo | Problema muscolare alla gamba | Prossimo turno | Salta |
 | Berardi | Sassuolo | Problema fisico | Prossimo turno | Salta |
