@@ -29,3 +29,19 @@
   document.addEventListener('click', function (e) { var a = e.target && e.target.closest && e.target.closest('.back,.oback'); if (a) a.blur(); }, true);
   addEventListener('pageshow', giu); document.addEventListener('visibilitychange', giu);
 } catch (e) {} })();
+/* 6.2.4 · «‹ O Girrr» senza fondo (Gianluca: «avevo detto che quell'alone non lo volevo più»). Nelle pagine con la testata v55
+   (Versioni, Notifiche…) il link indietro .v55-return prendeva un fondo grigio con gli angoli arrotondati al passaggio del mouse
+   e, sul telefono, dopo il tocco (.v55-header a:hover di v55/ui.css). Nessun link indietro ha più fondo, contorno o alone. */
+(function () { try {
+  var L = '.v55-return,.back,.oback', S = function (q) { return L.split(',').map(function (x) { return x + q; }).join(','); };
+  var s = document.createElement('style');
+  s.textContent = S('') + '{-webkit-tap-highlight-color:transparent!important;-webkit-touch-callout:none}'
+    + S(':hover') + ',' + S(':active') + ',' + S(':focus') + ',' + S(':focus-visible')
+    + ',.v55-header a.v55-return:hover,.v55-header a.v55-return:active,.v55-header a.v55-return:focus'
+    + '{background:transparent!important;background-color:transparent!important;box-shadow:none!important;outline:none!important}'
+    + '.v55-return:active{opacity:.7}';
+  (document.head || document.documentElement).appendChild(s);
+  var giu = function () { var a = document.activeElement; if (a && a.matches && a.matches(L)) a.blur(); };
+  document.addEventListener('click', function (e) { var a = e.target && e.target.closest && e.target.closest(L); if (a) setTimeout(function () { a.blur(); }, 0); }, true);
+  addEventListener('pageshow', giu);
+} catch (e) {} })();
