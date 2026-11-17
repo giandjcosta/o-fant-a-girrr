@@ -14,7 +14,9 @@
   var FILE = '.seg,.at,.dtab,nav .nvi,.chips,.ptabs,#tabs,.pt-competition';
   /* 6.2.1 (Gianluca): menu dell'Albo e della Carriera (.oro-scroll), sottomenu dei Derby e pulsanti Campionato / Champions Cup dei Derby: il colore passa
      dalla pillola di prima alla nuova senza scivolare; le pillole restano ferme (sul telefono la scelta resta in vista). */
-  var FERME = '.at,.dtab,.pt-competition,.oro-scroll';
+  /* 6.2.4 (Gianluca): anche le schede del Totogirrr (nav .nvi) sono pulsanti separati: il colore non scivola, passa con una
+     dissolvenza; lo scorrimento della fila resta quello della 6.2.3 (mostra). */
+  var FERME = '.at,.dtab,.pt-competition,.oro-scroll,nav .nvi';
   try { var _fs = document.createElement('style'); _fs.textContent = FERME + '{scroll-snap-type:none!important}'; (document.head || document.documentElement).appendChild(_fs); } catch (e) {}   /* l'aggancio riportava indietro la fila e l'ultima voce restava tagliata */
   var ridotto = function () { try { return matchMedia('(prefers-reduced-motion: reduce)').matches; } catch (e) { return false; } };
   var EASE = 'cubic-bezier(.22,.61,.36,1)';

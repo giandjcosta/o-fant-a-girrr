@@ -25,7 +25,7 @@
   }
   window.spgLazyWrap = function (original, readState) {
     if (typeof original !== 'function' || typeof readState !== 'function') return original;
-    var pending = 0, lastSig = null, lastData = null;
+    var pending = 0, lastSig = null, lastData = null, lastTab = null;   /* 6.2.4: il caricamento solo entrando in una scheda */
     if (!document.getElementById('spg-lazy-css')) {
       var style = document.createElement('style');
       style.id = 'spg-lazy-css';
@@ -37,7 +37,7 @@
       var id = ++pending; // ogni nuovo render, anche leggero o logout, annulla i precedenti
       var state = readState();
       if (!state || !state.authed) {
-        lastSig = null;
+        lastSig = null; lastTab = null;
         return original.apply(this, arguments);
       }
       if (state.data !== lastData) {
@@ -52,8 +52,8 @@
         state.filter,state.role,state.sortBy,state.open,state.mkV,state.mkT,
         state.calComp,state.calIdx].map(function (v) {return String(v == null ? '' : v)}).join('|');
       var target = document.getElementById('app');
-      if (!HEAVY[state.tab] || !target || signature === lastSig) {
-        lastSig = signature;
+      if (!HEAVY[state.tab] || !target || signature === lastSig || state.tab === lastTab) {
+        lastSig = signature; lastTab = state.tab;   /* 6.2.4: dentro la stessa scheda si ridisegna subito, senza «Carico…» */
         return original.apply(this, arguments);
       }
       var buttons = document.querySelectorAll('#tabs button');
@@ -66,7 +66,7 @@
       requestAnimationFrame(function () {
         requestAnimationFrame(function () {
           if (id !== pending) return;
-          lastSig = signature;
+          lastSig = signature; lastTab = state.tab;
           original.apply(context,args);
         });
       });
