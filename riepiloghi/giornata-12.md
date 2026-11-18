@@ -1,6 +1,6 @@
 # Riepilogo giornata 12 di Serie A
 
-Lega O FANT A GIRRR. Dati aggiornati al 2026-11-17.
+Lega O FANT A GIRRR. Dati aggiornati al 2026-11-18.
 
 ## Partite della giornata
 
@@ -65,7 +65,7 @@ Notizie pubbliche, senza indicare di chi e' ogni giocatore.
 | Holm | Bologna | Problema al tendine della coscia destra | Fine febbraio | Salta |
 | Miranda J. | Bologna | Lesione di primo grado al bicipite femorale | Fine novembre | Salta |
 | Rodriguez Je. | Como | Infortunio | Metà dicembre | In dubbio |
-| Kean | Como | Fastidio alla tibia che lo affligge da | Inizio dicembre | Salta |
+| Kean | Como | Fastidio alla tibia che lo affligge da | Fine dicembre | Salta |
 | Raimondo | Frosinone | Lesione multilegamentosa contusivo-distorsiva della caviglia sinistra | Metà dicembre | Salta |
 | Bracaglia | Frosinone | Squalificato | Rientra dalla 13ª giornata | Salta |
 | Bonny | Inter | Risentimento muscolare ai flessori della coscia destra | Inizio dicembre | Salta |
