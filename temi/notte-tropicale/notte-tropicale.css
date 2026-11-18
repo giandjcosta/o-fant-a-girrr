@@ -196,7 +196,7 @@
 :root[data-event-theme="notte-tropicale"][data-event-extra~="menu"] body[data-v53="home"] .wrap>header.hero{order:1}
 :root[data-event-theme="notte-tropicale"][data-event-extra~="menu"] body[data-v53="home"] .wrap::after{order:99}   /* la firma «Notte Tropicale» resta in fondo */
 :root[data-event-theme="notte-tropicale"][data-event-extra~="menu"] body[data-v53="home"] .wrap>.cards{order:2}
-:root[data-event-theme="notte-tropicale"][data-event-extra~="menu"] body[data-v53="home"] .wrap>.vv-avviso{order:3}
+:root[data-event-theme="notte-tropicale"][data-event-extra~="menu"] body[data-v53="home"] .wrap>.vv-avviso{order:1}
 :root[data-event-theme="notte-tropicale"][data-event-extra~="menu"] body[data-v53="home"] .wrap>#strip{order:4}
 :root[data-event-theme="notte-tropicale"][data-event-extra~="menu"] body[data-v53="home"] .wrap>#agg{order:5}
 :root[data-event-theme="notte-tropicale"][data-event-extra~="menu"] body[data-v53="home"] .wrap>.v53-home{order:6}
@@ -249,14 +249,14 @@
    sfogliare, poi novità, notifiche, Giornale e Curva. */
 :root[data-event-theme="notte-tropicale"] body[data-v53="home"] .wrap{display:flex;flex-direction:column}
 :root[data-event-theme="notte-tropicale"] body[data-v53="home"] .wrap>*{order:20}
-:root[data-event-theme="notte-tropicale"] body[data-v53="home"] .wrap>header.hero{order:1}
+:root[data-event-theme="notte-tropicale"] body[data-v53="home"] .wrap>header.hero{order:0}
 :root[data-event-theme="notte-tropicale"] body[data-v53="home"] .wrap>.lg-leghe{order:2}        /* Leghe Fantacalcio in alto (Gianluca, 17 novembre) */
 :root[data-event-theme="notte-tropicale"] body[data-v53="home"] .wrap>.nt-cruscotto{order:3}
 :root[data-event-theme="notte-tropicale"] body[data-v53="home"] .wrap>#strip{order:4}
 :root[data-event-theme="notte-tropicale"] body[data-v53="home"] .wrap>#agg{order:5}
 :root[data-event-theme="notte-tropicale"] body[data-v53="home"] .wrap>.cards{order:6}
 :root[data-event-theme="notte-tropicale"] body[data-v53="home"] .wrap>#cvw{order:7}             /* la Curva sotto le sei schede di «Tutto il Girrr» */
-:root[data-event-theme="notte-tropicale"] body[data-v53="home"] .wrap>.vv-avviso{order:8}
+:root[data-event-theme="notte-tropicale"] body[data-v53="home"] .wrap>.vv-avviso{order:1}             /* regola fissa: l'avviso della versione in cima, subito sotto il titolo */
 :root[data-event-theme="notte-tropicale"] body[data-v53="home"] .wrap>.v53-home{order:9}
 :root[data-event-theme="notte-tropicale"] body[data-v53="home"] .wrap>#big{order:10}
 :root[data-event-theme="notte-tropicale"] body[data-v53="home"] .wrap>.mini{order:11}           /* Notifiche e Statistiche sotto */

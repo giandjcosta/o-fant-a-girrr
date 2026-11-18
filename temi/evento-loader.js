@@ -74,6 +74,12 @@
     l.rel = 'stylesheet'; l.href = new URL(ev.css, base).href; l.setAttribute('data-evento', ev.id);
     l.onerror = function () { h.removeAttribute('data-event-theme'); };   /* senza CSS niente tema a metà */
     (document.head || h).appendChild(l);
+    /* Regola fissa di Gianluca (18 novembre 2026), per TUTTE le skin: l'avviso della nuova versione
+       («È uscita la …») sta sempre in cima alla Home, subito sotto il titolo e sopra ogni altro blocco. */
+    var r = document.createElement('style'); r.setAttribute('data-evento-regola', 'avviso-versione-in-cima');
+    r.textContent = 'html[data-event-theme] body[data-v53="home"] .wrap>header.hero{order:-2!important}' +
+      'html[data-event-theme] body[data-v53="home"] .wrap>.vv-avviso{order:-1!important;margin-top:0!important}';
+    (document.head || h).appendChild(r);
     /* script facoltativo del tema (per esempio la barra in basso di Notte Tropicale): parte dopo il CSS, se il CSS non arriva no */
     if (ev.js) {
       var s = document.createElement('script'); s.src = new URL(ev.js, base).href; s.async = true; s.setAttribute('data-evento', ev.id);
