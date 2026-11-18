@@ -6,7 +6,7 @@
 html{background:transparent!important}
 body{}html::before{content:'';position:fixed;top:0;left:0;right:0;bottom:0;z-index:-2;pointer-events:none;background:radial-gradient(1200px 700px at 80% -10%,#2c3f7c 0,#1d2a52 55%,#141d3d 100%)!important}body{background:transparent!important}
 body::after{content:'';position:fixed;inset:-120px;z-index:-1;pointer-events:none;background:repeating-linear-gradient(115deg,rgba(255,255,255,.04) 0 36px,transparent 36px 72px);animation:strisce 9s linear infinite}
-@keyframes strisce{to{transform:translate3d(79.45px,0,0)}}
+@keyframes strisce{from{transform:translate3d(-79.45px,0,0)}to{transform:none}}
 @media (prefers-reduced-motion:reduce){body::after{animation:none}}
 .top h1,h2,.derby .hd,.cov h3,.ch .vs{font-weight:900!important;letter-spacing:0}
 .top h1{font-size:26px}h2{font-size:22px}
