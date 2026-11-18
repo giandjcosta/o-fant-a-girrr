@@ -254,7 +254,7 @@
     var v = scelta || giornataVista(d); if (!v.g) return Promise.reject(new Error('Nessuna giornata da condividere'));
     var mio = squadra || chi(), mia = mio && mio === chi();   /* 6.0.2: si sceglie la squadra (anche l'ospite) */
     return Promise.all([caratteri(), img(ROOT + 'assets/loghi/logo-lega-o-fant-a-girrr.png')]).then(function (x) {
-      banda = v.coppa ? COPPA : '#d62839';
+      banda = v.coppa ? COPPA : '#d62839'; if (stadio) banda = ACC;
       var c = document.createElement('canvas'); c.width = W; c.height = H;
       var ctx = c.getContext('2d');
       var piede = 'O Fant A Girrr · ' + (v.coppa ? 'Champions Cup' : 'Campionato') + ' 2026/27';
@@ -276,7 +276,7 @@
       '.cd-velo.su{opacity:1}.cd-box{width:100%;max-width:520px;max-height:92vh;overflow:auto;background:#1d2a52;color:#fbf6ec;border-radius:22px 22px 0 0;padding:18px 16px calc(18px + env(safe-area-inset-bottom,0px));transform:translateY(30px);transition:transform .3s ease;font-family:Inter,system-ui,sans-serif;box-shadow:0 -10px 40px rgba(0,0,0,.4)}' +
       '.cd-velo.su .cd-box{transform:none}@media (min-width:700px){.cd-velo{align-items:center}.cd-box{border-radius:22px}}' +
       '.cd-box h3{margin:0 0 4px;font-size:18px;font-weight:900;letter-spacing:0;text-transform:none' + (stadio ? ';font-family:Lobster,cursive;font-weight:400;font-size:24px' : '') + '}.cd-box p{margin:0 0 12px;color:#bfe3ff;font-size:13px;font-weight:600}' +
-      '.cd-sc{display:grid;gap:8px}.cd-sc button{display:flex;flex-direction:column;align-items:flex-start;gap:2px;text-align:left;font:inherit;color:inherit;cursor:pointer;padding:12px 14px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.14);' + (stadio ? 'border-left:6px solid ' + ACC + ';border-radius:12px' : 'border-left:8px solid ' + ACC + ';border-radius:4px 14px 14px 4px') + '}' +
+      '.cd-sc{display:grid;gap:8px}.cd-sc button{display:flex;flex-direction:column;align-items:flex-start;gap:2px;text-align:left;font:inherit;color:inherit;cursor:pointer;padding:12px 14px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.14);' + (stadio ? 'border-left:6px solid var(--cd-banda,' + ACC + ');border-radius:12px' : 'border-left:8px solid var(--cd-banda,' + ACC + ');border-radius:4px 14px 14px 4px') + '}' +
       '.cd-sc b{font-weight:900;font-size:15px}.cd-sc small{color:#bfe3ff;font-weight:600;font-size:12.5px}' +
       '.cd-ant img{display:block;width:100%;max-width:360px;margin:0 auto;border-radius:14px;box-shadow:0 8px 24px rgba(0,0,0,.35)}' +
       '.cd-az{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-top:14px}.cd-az a,.cd-az button{font:inherit;font-weight:900;font-size:14px;padding:11px 18px;border-radius:999px;border:0;cursor:pointer;text-decoration:none}' +
@@ -355,6 +355,8 @@
     json('data.json').then(function (d) {
       if (window.CVPUB) d = window.CVPUB(d);
       var v = giornataVista(d); if (!v.g) throw new Error('Nessuna giornata da condividere');
+      /* 6.5 · Le bande dei sei pulsanti seguono il torneo. Nello Stadio restano oro. */
+      f.box.style.setProperty('--cd-banda',stadio ? ACC : (v.coppa ? COPPA : '#d62839'));
       var comp = v.coppa ? 'Champions Cup' : 'Campionato', due = function (x) { return (x < 10 ? '0' : '') + x; };
       var squadre = classifica(d, 99).map(function (x) { return x.n; }), sq = mio && squadre.indexOf(mio) >= 0 ? mio : squadre[0];
       var uff = 'riepiloghi/tabellone-' + (v.coppa ? 'coppa' : 'lega') + '-' + due(v.g.n) + '.png';

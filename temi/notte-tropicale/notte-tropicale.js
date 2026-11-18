@@ -189,7 +189,7 @@
       /* Totogirrr (dati e schede generate da JS) */
       '#app .card', '#app .feat > .fc', '#app .prize-corner', '#app .gate', '#app .bal',
       /* Carriera, Girrr Sport, Albo dell'app e Derby */
-      '#view .card', '#view .derby', '#view .rac', '#view .cov', '#view .ann-cell', '#view .ob', '#view .fidg', '#view .garch',
+      '#view .card', '#view .ms-c', '#view .gb-riquadro', '#view .pt-box', '#view .derby', '#view .rac', '#view .cov', '#view .ann-cell', '#view .ob', '#view .fidg', '#view .garch',
       /* Albo, Squadre, Derby, Giornale */
       '.swap .card', '.swap .sto', '.swap .sheet', '.swap .top5', '#ultimo .last', '#lista .it',
       /* Spogliatoio */
@@ -249,3 +249,46 @@
     if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', via); else via();
   }
 })();
+
+/* 6.5 · Easter egg del neon (Gianluca, 18 novembre 2026): tornando alla Home da un'altra pagina del Girrr, 4 volte su 10
+   «O GIRRR» sfarfalla come un neon mezzo rotto oppure si accende da sinistra a destra. Per provarlo: ?evento-neon=guasto|scia */
+(function () {
+  function via() {
+    try {
+      if (!document.body || document.body.getAttribute('data-v53') !== 'home') return;
+      var t = document.querySelector('.hero h1 span'); if (!t) return;
+      var forza = new URLSearchParams(location.search).get('evento-neon'), tipo = null;
+      if (forza === 'guasto' || forza === 'scia') tipo = forza;
+      else {
+        if (window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+        var r = document.referrer; if (!r) return;
+        var u = new URL(r); if (u.origin !== location.origin) return;
+        var casa = location.pathname.replace(/index\.html$/, '');
+        if (u.pathname.replace(/index\.html$/, '') === casa) return;   /* ricarica della Home: niente */
+        if (Math.random() >= 0.4) return;
+        tipo = Math.random() < 0.5 ? 'guasto' : 'scia';
+      }
+      setTimeout(function () {   /* dopo l'accensione normale del titolo */
+        var h1 = t.parentNode, prima = h1.innerHTML, n = 0;
+        function spezza(nodo, dentro) {   /* ogni lettera in un <i class="nt-l">, con il suo ritardo */
+          var f = document.createDocumentFragment();
+          nodo.textContent.split('').forEach(function (ch) {
+            if (!ch.trim()) { f.appendChild(document.createTextNode(ch)); return; }
+            var l = document.createElement('i'); l.className = 'nt-l'; l.textContent = ch;
+            l.style.animationDelay = tipo === 'scia' ? (n * 0.16) + 's' : (Math.random() * 0.35).toFixed(2) + 's';
+            n++; f.appendChild(l);
+          });
+          return f;
+        }
+        Array.prototype.slice.call(h1.childNodes).forEach(function (x) {
+          if (x === t) { var g = spezza(t, true); t.textContent = ''; t.appendChild(g); }
+          else if (x.nodeType === 3 && x.textContent.trim()) h1.replaceChild(spezza(x, false), x);
+        });
+        t.classList.add('nt-neon-on'); h1.classList.add('nt-neon-' + tipo);
+        setTimeout(function () { h1.classList.remove('nt-neon-' + tipo); h1.innerHTML = prima; }, tipo === 'scia' ? n * 160 + 1100 : 3000);
+      }, 1500);
+    } catch (e) {}
+  }
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', via); else via();
+})();
+;(function(){var source=document.currentScript&&document.currentScript.src;function load(){if(document.documentElement.getAttribute('data-event-theme')!=='notte-tropicale'||!document.body||document.body.getAttribute('data-v53')!=='home'||document.querySelector('script[data-nt-entrata]'))return;var ref=source||(document.querySelector('script[data-evento="notte-tropicale"]')||{}).src;if(!ref)return;var s=document.createElement('script');s.src=new URL('entrata.js',ref).href;s.async=true;s.setAttribute('data-nt-entrata','');document.head.appendChild(s)}if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',load,{once:true});else load()})();

@@ -790,3 +790,29 @@
   :root[data-event-theme="notte-tropicale"]::after{animation:none!important;transform:perspective(320px) rotateX(62deg)!important}
   :root[data-event-theme="notte-tropicale"] :is(.hero h1,.top h1,header h1){animation:none!important}
 }
+
+/* 6.5 · Girrr Sport e Carriera su PC (Gianluca, 18 novembre sera) */
+/* Giornale: la copertina resta dentro il riquadro obliquo, un po' più piccola e spostata a destra */
+:root[data-event-theme="notte-tropicale"] #view .cov.gcov.nt-obl{padding-left:30px!important}
+:root[data-event-theme="notte-tropicale"] #view .cov.gcov .gimg{max-width:200px!important;flex:0 0 auto!important}
+:root[data-event-theme="notte-tropicale"] #view .cov.gcov .gimg img{width:100%!important;height:auto!important}
+/* Radio, Video e Sfide: i riquadri non si allungano fino all'altezza della colonna accanto */
+:root[data-event-theme="notte-tropicale"] #view>.card{align-self:start}
+/* Squadra della settimana, La mia settimana, Stagione e Giro di boa: viola pieno come gli altri riquadri, niente banda rossa */
+:root[data-event-theme="notte-tropicale"] #view :is(.pt-box,.ms-c,.gb-riquadro).nt-obl{border-left:0!important;background-color:transparent!important}
+/* stesso margine interno degli altri riquadri obliqui: il testo non tocca il bordo */
+:root[data-event-theme="notte-tropicale"] #view :is(.pt-box,.ms-c,.gb-riquadro).nt-obl.nt-obl{padding-left:26px!important;padding-right:18px!important}
+
+/* 6.5 · Easter egg (Gianluca, 18 novembre): tornando alla Home da un'altra pagina, 4 volte su 10 «O GIRRR» fa il neon
+   mezzo rotto (le lettere sfarfallano) oppure si accende lettera per lettera come un LED, dalla O all'ultima R.
+   Durante l'effetto le lettere sono separate (i.nt-l) e ognuna ha la stessa sfumatura verticale, quindi l'aspetto non cambia. */
+:root[data-event-theme="notte-tropicale"] .hero h1 span.nt-neon-on{background:none!important}
+:root[data-event-theme="notte-tropicale"] .hero h1 i.nt-l{font-style:inherit;font-weight:inherit}
+:root[data-event-theme="notte-tropicale"] .hero h1 span i.nt-l{background:linear-gradient(180deg,#2b60da 0%,#ff4cb9 50%,#e6953e 100%);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;color:transparent}
+@keyframes nt-led{0%{filter:none}35%{filter:brightness(1.9) drop-shadow(0 0 12px rgba(255,225,248,.95))}100%{filter:none}}
+@keyframes nt-guasto{0%,100%{opacity:1;filter:drop-shadow(0 0 8px rgba(255,76,185,.85))}6%{opacity:.15;filter:none}9%{opacity:1}
+  18%{opacity:.3;filter:none}21%{opacity:1;filter:drop-shadow(0 0 16px rgba(255,76,185,.95))}40%{opacity:.08;filter:none}43%{opacity:.9}
+  46%{opacity:.2}50%{opacity:1;filter:drop-shadow(0 0 12px rgba(255,76,185,.9))}72%{opacity:.5}75%{opacity:1}}
+:root[data-event-theme="notte-tropicale"] .hero h1.nt-neon-scia i.nt-l{animation:nt-led .9s ease-in-out 1 both}
+:root[data-event-theme="notte-tropicale"] .hero h1.nt-neon-guasto i.nt-l{animation:nt-guasto 2.4s linear 1 both}
+@media (prefers-reduced-motion: reduce){:root[data-event-theme="notte-tropicale"] .hero h1 i.nt-l{animation:none!important}}

@@ -15,3 +15,6 @@
 
 ## Foto delle schede «Tutto il Girrr» (18 novembre, scelte da ChatGPT)
 - `tutto-1.jpg` … `tutto-6.jpg`: foto da Unsplash (licenza Unsplash, uso libero: https://unsplash.com/license), copie locali a 760 px. Codici originali: 1670349218709-1c246063c319 (palme e Ocean Dr), 1759171053149-d5cce4261405 (bar sportivo al neon), 1767397194546-c51509f4a715 (tabellone dello stadio di Miami), 1700085626695-6532f02cc961 (sala giochi al neon), 1637203727770-3fff478fb1ef (coppa sul campo), 1770237710424-7ffa780f68d1 (allenatore a bordo campo). Marchi e loghi visibili nelle foto appartengono ai loro proprietari: nessuna affiliazione.
+
+## Copertina d'ingresso 6.5
+- `gta6-lucia-jason-cover.webp`: locandina ufficiale fornita da Gianluca. Marchi, personaggi e artwork appartengono a Rockstar Games; O Fant A Girrr non è affiliato a Rockstar Games.

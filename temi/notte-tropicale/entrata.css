@@ -1,0 +1,75 @@
+/* O Girrr 6.5 · Ingresso Notte Tropicale. Solo Home durante l'evento.
+   La grafica generale non viene modificata. Uno splash al giorno, eliminato dal DOM. */
+.nt-ingresso {
+ position:fixed;inset:0;z-index:2147483200;
+ display:grid;place-items:center;box-sizing:border-box;
+ width:100vw;height:100vh;height:100dvh;overflow:hidden;
+ background:#140a2e;color:#fff;
+ opacity:0;visibility:visible;
+ pointer-events:auto;
+ transition:opacity .30s cubic-bezier(.22,.61,.36,1);
+ isolation:isolate;
+}
+.nt-ingresso.nt-ingresso-visibile{opacity:1}
+.nt-ingresso.nt-ingresso-uscita{
+ opacity:0;pointer-events:none;
+ transition:opacity .50s cubic-bezier(.22,.61,.36,1);
+}
+.nt-ingresso, .nt-ingresso *{box-sizing:border-box}
+.nt-ingresso .nt-ingresso-fondo{
+ position:absolute;inset:-2%;background-size:cover;background-position:center 38%;
+ filter:blur(14px) brightness(.38);transform:scale(1.07);
+ pointer-events:none;
+}
+.nt-ingresso::before{
+ content:"";position:absolute;inset:0;z-index:1;pointer-events:none;
+ background:linear-gradient(180deg,rgba(7,5,28,.40),transparent 22%,transparent 55%,rgba(12,5,35,.92) 100%);
+}
+.nt-ingresso .nt-ingresso-poster{
+ position:relative;z-index:0;width:min(100%,660px);height:100%;max-height:100dvh;
+ display:block;object-fit:cover;object-position:center 38%;
+ box-shadow:0 0 70px rgba(0,0,0,.5);
+}
+.nt-ingresso .nt-ingresso-titoli{
+ position:absolute;z-index:2;inset:0;display:flex;flex-direction:column;
+ align-items:center;justify-content:space-between;
+ padding:max(24px,env(safe-area-inset-top)) 12px max(32px,env(safe-area-inset-bottom));
+ gap:18px;text-align:center;pointer-events:none;
+}
+.nt-ingresso .nt-ingresso-titoli strong{
+ display:block;font:italic 1000 clamp(35px,8vw,94px)/.98 Impact,"Barlow Condensed",Inter,sans-serif;
+ letter-spacing:.055em;text-transform:uppercase;
+ background:linear-gradient(110deg,#2B60DA 5%,#FF4CB9 53%,#E6953E 100%);
+ -webkit-background-clip:text;background-clip:text;color:transparent;
+ -webkit-text-stroke:1px rgba(255,255,255,.15);
+ filter:drop-shadow(0 3px 10px rgba(0,0,0,.68));
+}
+.nt-ingresso .nt-ingresso-titoli em{
+ font:400 clamp(37px,7.4vw,82px)/1.05 "Mr Dafoe","Brush Script MT",cursive;
+ color:#ffd7f0;text-shadow:0 3px 14px rgba(0,0,0,.9),0 0 22px rgba(255,72,168,.7);
+}
+.nt-ingresso .nt-ingresso-titoli small{
+ display:block;margin-top:10px;font:800 clamp(12px,2.5vw,19px)/1.3 Inter,sans-serif;
+ letter-spacing:.11em;text-transform:uppercase;
+ text-shadow:0 2px 12px rgba(0,0,0,.9);
+}
+.nt-ingresso .nt-ingresso-salta{
+ position:absolute;z-index:3;bottom:max(12px,env(safe-area-inset-bottom));
+ right:max(12px,env(safe-area-inset-right));
+ padding:6px 10px;border:1px solid rgba(255,255,255,.48);
+ border-radius:99px;background:rgba(13,6,36,.67);color:#fff;
+ font:700 12px Inter,system-ui,sans-serif;cursor:pointer;
+}
+.nt-ingresso .nt-ingresso-salta:focus-visible{outline:2px solid #fff;outline-offset:3px}
+@media(max-width:480px){
+ .nt-ingresso .nt-ingresso-poster{width:100%;max-width:none;object-position:50% 39%}
+ .nt-ingresso .nt-ingresso-titoli{padding-top:max(18px,env(safe-area-inset-top));padding-bottom:max(48px,env(safe-area-inset-bottom))}
+ .nt-ingresso .nt-ingresso-titoli strong{font-size:clamp(35px,12vw,52px)}
+ .nt-ingresso .nt-ingresso-titoli em{font-size:clamp(37px,11vw,54px)}
+}
+@media(prefers-reduced-motion:reduce){
+ .nt-ingresso,.nt-ingresso.nt-ingresso-visibile,.nt-ingresso.nt-ingresso-uscita{
+  transition:none!important;transform:none!important;
+ }
+ .nt-ingresso .nt-ingresso-fondo{filter:none;transform:none}
+}
