@@ -816,3 +816,5 @@
 :root[data-event-theme="notte-tropicale"] .hero h1.nt-neon-scia i.nt-l{animation:nt-led .9s ease-in-out 1 both}
 :root[data-event-theme="notte-tropicale"] .hero h1.nt-neon-guasto i.nt-l{animation:nt-guasto 2.4s linear 1 both}
 @media (prefers-reduced-motion: reduce){:root[data-event-theme="notte-tropicale"] .hero h1 i.nt-l{animation:none!important}}
+/* Versioni: il riquadro interno del messaggio resta dentro quello obliquo (Gianluca, 18 novembre) */
+:root[data-event-theme="notte-tropicale"] .vv-v .vv-c{margin-left:22px!important;margin-right:22px!important;margin-bottom:16px!important;box-sizing:border-box;max-width:calc(100% - 44px)!important}
