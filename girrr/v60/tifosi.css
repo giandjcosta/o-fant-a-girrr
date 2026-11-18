@@ -50,3 +50,16 @@ body[data-v53=curva] .pt-revision{color:var(--tx);border-color:var(--mu);backgro
 html[data-pt-skin=stadio] .pt-box h3{font-family:Lobster,Inter,serif;font-weight:400;letter-spacing:0;text-transform:none}#pt-derby{border-left-color:#d62839}#pt-derby[data-pt-competition=cup]{border-left-color:#3d93d6}
 
 .pt-box .pt-status{color:var(--pt-sub)}.pt-box button[disabled]{cursor:wait;opacity:.6}
+
+/* 6.5 · Fix permanenti della Curva (Lega e Stadio, iPhone/Android, chiaro/scuro), non della skin evento. */
+body[data-v53=curva] #v53sondaggio{margin:12px 14px!important;padding:10px 0!important;background:var(--bg2)!important;border:1px solid var(--ln)!important;border-radius:16px!important;min-width:0}
+body[data-v53=curva] #v53sondaggio .v55-pollpost{padding:12px 14px}
+body[data-v53=curva] #pt-mvp details[data-pt-giurie] ul{padding-inline-start:1.6em;margin-inline:0;list-style-position:outside}
+body[data-v53=curva] #pt-mvp details[data-pt-giurie] li{overflow-wrap:anywhere;padding-inline-start:2px}
+body[data-v53=curva] #pt-mvp details[data-pt-giurie][open]>:not(summary){animation:none!important}
+body[data-v53=curva] #pt-mvp button.v62-cambia,
+body[data-v53=curva] .v55-pollpost button.v62-cambia{display:inline-flex;align-items:center;justify-content:center;border:0!important;border-radius:999px!important;min-height:36px;padding:9px 16px!important;margin:8px 0 0!important;background:#d62839!important;color:#fff!important;font:800 13px/1.2 Inter,system-ui,sans-serif!important}
+html[data-colori-sq] body[data-v53=curva] #pt-mvp button.v62-cambia,
+html[data-colori-sq] body[data-v53=curva] .v55-pollpost button.v62-cambia{background:var(--sq1)!important}
+@media(max-width:359px){body[data-v53=curva] #v53sondaggio{margin-inline:8px!important}}
+@media(prefers-reduced-motion:reduce){body[data-v53=curva] #pt-mvp details[data-pt-giurie] *{animation:none!important;transition:none!important}}

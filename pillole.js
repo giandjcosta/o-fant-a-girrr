@@ -17,6 +17,13 @@
   /* 6.2.4 (Gianluca): anche le schede del Totogirrr (nav .nvi) sono pulsanti separati: il colore non scivola, passa con una
      dissolvenza; lo scorrimento della fila resta quello della 6.2.3 (mostra). */
   var FERME = '.at,.dtab,.pt-competition,.oro-scroll,nav .nvi';
+  /* 6.5 (Gianluca): nella Carriera e nell'Albo (.oro-scroll) il colore torna a scivolare come nelle altre file; la fila resta
+     ferma come dalla 6.2.1 (la sposta solo l'app). Nelle altre file ferme il colore passa con una dissolvenza. */
+  var NOSCIVOLO = '.at,.dtab,.pt-competition,nav .nvi';
+  /* 6.5: un tocco su una pillola nuova lo segna subito (in cattura, prima che la pagina ridisegni): le altre animazioni
+     d'entrata (app.html, transizioni.js) per un attimo lasciano fare a pillole.js, così il contenuto non sparisce */
+  window.addEventListener('click', function (ev) { var b = ev.target && ev.target.closest && ev.target.closest('button'), c = b && b.parentElement;
+    if (c && c.matches && c.matches(FILE) && b.getAttribute('aria-pressed') !== 'true' && b.getAttribute('aria-selected') !== 'true' && !b.classList.contains('on')) window.__pilloleT = Date.now(); }, true);
   try { var _fs = document.createElement('style'); _fs.textContent = FERME + '{scroll-snap-type:none!important}'; (document.head || document.documentElement).appendChild(_fs); } catch (e) {}   /* l'aggancio riportava indietro la fila e l'ultima voce restava tagliata */
   var ridotto = function () { try { return matchMedia('(prefers-reduced-motion: reduce)').matches; } catch (e) { return false; } };
   var EASE = 'cubic-bezier(.22,.61,.36,1)';
@@ -84,9 +91,11 @@
       if (ridotto()) return;
       /* il contenuto sotto entra con una dissolvenza */
       contenuto(c2).forEach(function (el) {
-        try { el.animate([{ opacity: 0.25, transform: 'translateY(6px)' }, { opacity: 1, transform: 'none' }], { duration: 260, easing: EASE }); } catch (e) {}
+        /* 6.5 (Gianluca): fuori dal Totogirrr il contenuto entra con un rimbalzo morbido e più lungo, senza sparire */
+        try { if (_nv) el.animate([{ opacity: 0.25, transform: 'translateY(6px)' }, { opacity: 1, transform: 'none' }], { duration: 260, easing: EASE });
+          else el.animate([{ opacity: 0.6, transform: 'translateY(14px)' }, { opacity: 1, transform: 'translateY(-3px)', offset: 0.62 }, { opacity: 1, transform: 'none' }], { duration: 560, easing: 'cubic-bezier(.25,.8,.3,1)' }); } catch (e) {}
       });
-      if (c2.matches && c2.matches(FERME)) return;
+      if (c2.matches && c2.matches(NOSCIVOLO)) return;
       /* il colore scivola dalla pillola di prima a quella nuova */
       if (!bg || bg === 'rgba(0, 0, 0, 0)' || bg === 'transparent') return;
       var vecchia = c2.children[ai];

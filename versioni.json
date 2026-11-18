@@ -2,6 +2,55 @@
   "nota": "Fonte unica della pagina Versioni (girrr/versioni.html e stadio/girrr/versioni.html). A ogni rilascio si aggiunge la versione in cima con rilascio/versioni/aggiungi.py. Numeri: correzione minore = terza cifra (5.6.1), aggiornamento medio = seconda cifra (5.7.0), aggiornamento grande = prima cifra (6.0). Dove manca la storia: «Dato non conservato». Le versioni 1.0-4.5 e il Mercato Scambi vengono dai messaggi recuperati da Claude chat (9 novembre 2026), date controllate con i commit del sito. Il campo «nota» e «altre_varianti» non si mostrano nella pagina.",
   "versioni": [
     {
+      "v": "6.5",
+      "data": "2026-11-18",
+      "tipo": "medio",
+      "titolo": "Notte Tropicale",
+      "messaggio": "⚽ **O Girrr 6.5 è online!** Da mezzanotte e fino al 27 novembre il Girrr si veste da Notte Tropicale: palme, neon e tramonti di Miami per festeggiare l'uscita del gioco più atteso dell'anno. In Home trovi il big match della giornata, la classifica e tutto il Girrr a portata di dito. Nel Tabellone arriva la sezione Numeri e le immagini da condividere hanno i colori giusti di Campionato e Champions Cup. In Carriera e in Girrr Sport la pagina resta ferma quando cambi sezione, e anche in Curva si chiacchiera del nuovo gioco. Buona giornata a tutti! ⚽",
+      "novita": [
+        {
+          "area": "Home",
+          "voci": [
+            "Edizione speciale Notte Tropicale dal 19 al 27 novembre, grafica unica per tutti con big match, classifica, stagione e le schede di Tutto il Girrr",
+            "Il riepilogo La tua lega, oggi parte chiuso la prima volta e poi ricorda come l'hai lasciato"
+          ]
+        },
+        {
+          "area": "Tabellone",
+          "voci": [
+            "Nuova sezione Numeri con le statistiche del Campionato",
+            "Immagini di Condividi con il rosso del Campionato e l'azzurro della Champions Cup, classifica dei gironi giusta in Coppa e ultimo posto in rosso",
+            "Dentro la partita si apre e si chiude"
+          ]
+        },
+        {
+          "area": "Carriera",
+          "voci": [
+            "Cambiando sezione la pagina resta ferma e il contenuto entra con un rimbalzo morbido; le pillole scivolano",
+            "Fiducia del presidente senza il numero sbiadito sopra i cartellini"
+          ]
+        },
+        {
+          "area": "Albo d'oro",
+          "voci": [
+            "Le pillole scivolano come nelle altre pagine"
+          ]
+        },
+        {
+          "area": "Girrr Sport",
+          "voci": [
+            "Il contenuto non sparisce più per un attimo e Conferenze stampa non va in errore"
+          ]
+        },
+        {
+          "area": "Curva",
+          "voci": [
+            "I pareggi non diventano più vittorie, Giurie e criteri resta aperto, pulsanti del voto allineati e post dei personaggi sul nuovo gioco durante l'evento"
+          ]
+        }
+      ]
+    },
+    {
       "v": "6.2.4",
       "data": "2026-11-17",
       "tipo": "minore",

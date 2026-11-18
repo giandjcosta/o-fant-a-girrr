@@ -682,8 +682,8 @@ function ctxDi(D,SQ,ST,seed){
   var pos=ST.cls.map(function(t){return t.n}).indexOf(c.sq);c.pos=pos<0?'?':pos+1;
   var pt='?';if(ST.ult)ST.ult.m.forEach(function(m){if(m[0]===c.sq)pt=m[1];else if(m[3]===c.sq)pt=m[2]});
   c.pt=String(pt).replace('.',',');
-  var pool=(ST.ult?ST.ult.m:[]).concat(ST.ultC?ST.ultC.m:[]);var mm=pool.length?pool[Math.floor(r()*pool.length)]:null;
-  if(mm){var gc=mm[4].split('-').map(Number),w=mm[1]>=mm[2];c.vinc=w?mm[0]:mm[3];c.perd=w?mm[3]:mm[0];c.pv=String(Math.max(mm[1],mm[2])).replace('.',',');c.pp=String(Math.min(mm[1],mm[2])).replace('.',',');c.sc=(w?gc[0]+'-'+gc[1]:gc[1]+'-'+gc[0]);c.scarto=(Math.abs(mm[1]-mm[2])).toFixed(1).replace('.',',').replace(',0','')}
+  /* 6.5 (Gianluca: «perché dice che AFA SELECCION vince se ha pareggiato?»): niente pareggi, vincitore dai gol, coppa letta con il suo schema */var pool=(ST.ult?ST.ult.m:[]).concat((ST.ultC?ST.ultC.m:[]).map(function(x){return [x[1],x[2],x[3],x[4],x[5]]})).filter(function(x){var g=String(x[4]||'').split('-').map(Number);return g.length===2&&!isNaN(g[0])&&!isNaN(g[1])&&g[0]!==g[1]});var mm=pool.length?pool[Math.floor(r()*pool.length)]:null;
+  if(mm){var gc=mm[4].split('-').map(Number),w=gc[0]>gc[1];c.vinc=w?mm[0]:mm[3];c.perd=w?mm[3]:mm[0];c.pv=String(Math.max(mm[1],mm[2])).replace('.',',');c.pp=String(Math.min(mm[1],mm[2])).replace('.',',');c.sc=(w?gc[0]+'-'+gc[1]:gc[1]+'-'+gc[0]);c.scarto=(Math.abs(mm[1]-mm[2])).toFixed(1).replace('.',',').replace(',0','')}
   else{c.vinc=c.sq;c.perd=c.sq2;c.pv='70';c.pp='65';c.sc='2-1';c.scarto='5'}
   return c;
  };
@@ -938,6 +938,7 @@ function genera(D,SQ,ST,ms){
   }
  }
  (window.CVB&&CVB.PRS||[]).forEach(function(l){var pp=null;try{pp=prestitoPost(l,ms,SQ)}catch(e){}if(pp&&pp.ts>=WC)all.push(pp)});
+ postNotteTropicale(ms,SQ).forEach(function(p){all.push(p)});
  /* Lega e Giornale legati ai risultati */
 
  /* Post di Girrr Sport e Lega legati a una giornata: voti, risultato, sala stampa, MVP, moviola, record, big match */
@@ -1258,5 +1259,38 @@ var COMUNI_N=[['gianfra_77','Gianfra77','s'],['la_vale_tifa','LaValeTifa','g'],[
 function comuneG(r,g){return g>=TAGLIO_N?pick(r,COMUNI.concat(COMUNI_N)):comune(r)}
 /* Dati veri per le immagini nuove: risultati dell'ultima giornata, prime della classifica, prossimo turno */
 function cxPiu(cx,ST){try{if(ST.ult){cx.g=ST.ult.n;cx.ris=ST.ult.m.map(function(m){return [m[0],m[3],m[4]]})}if(ST.cls)cx.cls=ST.cls.slice(0,6).map(function(t){return [t.n,t.pt]});if(ST.next){cx.gn=ST.next.n;cx.prox=ST.next.m.map(function(m){return [m[0],m[3]]})}}catch(e){}}
+/* 6.5 · Edizione speciale nella Curva: 19–27 novembre 2026, ora italiana.
+   Sono post di PERSONAGGI, non degli account ufficiali. Si pubblicano una sola
+   volta all'ora stabilita e spariscono automaticamente alla scadenza dell'evento.
+   I normali post automatici mantengono invece la loro finestra di 14 giorni. */
+var NOTTE_INIZIO=ts(2026,11,19,0,0),NOTTE_FINE=ts(2026,11,28,0,0);
+var NOTTE_POST=[
+ ['il_barista',19,10,30,"Al bancone è arrivata Notte Tropicale: caffè freddo, luci rosa e la solita discussione sul 3-5-2."],
+ ['la_suocera',19,19,20,"Mio genero è chiuso in camera da stamattina. Dice che sta esplorando Miami, ma la formazione l'ha fatta?"],
+ ['telecronista_stanco',20,11,10,"Ho passato la notte al nuovo GTA 6. E adesso dovrei pure commentare il calcio: mi serve un supplementare di sonno."],
+ ['nonno_cesare',20,20,10,"Ai miei tempi si correva dietro a un pallone vero, non a un'auto sullo schermo. Però quella Miami ha delle belle palme."],
+ ['tifoso_arrabbiato',21,12,15,"Tutti sul nuovo gioco e nessuno a preparare la formazione! Poi la domenica vi lamentate dei risultati!"],
+ ['pizzeria_fuorigioco',21,19,30,"La pizza Notte Tropicale è in carta per questa settimana: sapori accesi e tanta voglia di calcio, anche dopo il gioco."],
+ ['il_romantico_del_pallone',22,10,55,"Neon, inseguimenti, clacson: a me GTA 6 sembra un po' caotico. Preferisco il silenzio prima di un calcio di rigore."],
+ ['il_filosofo_del_pallone',22,21,5,"Qualcuno chiama quel gioco buzzurro, qualcuno lo chiama libertà. Io chiamo libertà scegliere il modulo senza polemiche."],
+ ['il_super_tifoso',23,10,25,"GTA 6 avrà tutte le auto di Miami, ma il sorpasso più importante resta quello in classifica. Sempre che arrivi."],
+ ['fidanzata_stufa',23,18,35,"Ha detto: solo un'ultima missione. La stessa frase che usa quando manca un minuto alla chiusura delle formazioni."],
+ ['il_tassista',24,9,50,"Tutti vogliono correre per Miami in un videogioco. Io oggi ho fatto due chilometri nel traffico e non mi sono divertito."],
+ ['mister_divano',24,19,10,"Vi siete allenati a guidare tutta la settimana. Adesso vediamo chi sa mettere in campo undici giocatori."]
+];
+function postNotteTropicale(ms,SQ){
+ /* Si possono pubblicare nuovi messaggi solo fra il 19 e il 27 novembre.
+    Dopo il 27 gli stessi messaggi rimangono nello storico della Curva. */
+ var fuori=[],i,p,x,c,rs,j;
+ for(i=0;i<NOTTE_POST.length;i++){
+  x=NOTTE_POST[i];p={k:'v:notte-tropicale:'+i,a:x[0],x:x[4],ts:ts(2026,11,x[1],x[2],x[3]),r:[],cat:'gen'};
+  if(p.ts<NOTTE_INIZIO||p.ts>=NOTTE_FINE||p.ts>ms)continue;
+  c=conta(p.k,1);p.ap=c.ap;p.ril=c.ril;p.v=c.v;
+  rs=[];for(j=0;j<7;j++)rs=rs.concat(reazioni(p.k+'#'+j,p.ts,ms,SQ,p.x).r);
+  p.r=rs.filter(function(q){return q.ts<=ms}).sort(function(a,b){return a.ts-b.ts});
+  fuori.push(p);
+ }
+ return fuori;
+}
 window.CVB={MISTER:MISTER,COMUNI:COMUNI,COMUNI_N:COMUNI_N,NUOVI:NUOVI,cupUlt:cupUlt,ufficiale:ufficiale,anteprima:anteprima,reazioni:reazioni,ultimo:ultimo,genera:genera,tendenze:tendenze,PERS:PERS,RISP:RISP,CIRO:CIRO,roma:roma,giorno:giorno,h32:h32};
 })();

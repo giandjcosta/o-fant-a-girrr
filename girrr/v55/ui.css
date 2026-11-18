@@ -378,3 +378,16 @@ a.v55-logo-home:focus-visible{outline:2px solid #ffd166;outline-offset:3px}
 .v55-header .v55-return{white-space:nowrap!important;max-width:none!important}
 @media(max-width:360px){.v55-header .v55-return{letter-spacing:.08em}}
 .v55-arch{margin:12px 14px}.v55-arch>summary{display:flex;align-items:center;min-height:44px;cursor:pointer;color:var(--blu,#3d93d6);font:700 14px Inter,system-ui,sans-serif}.v55-arch-b{padding-top:4px}.v55-arch .v55-pollpost{padding-left:0;padding-right:0}.v55-pollpost:has(+.v55-arch){border-bottom:0}#v53sondaggio:has(.v55-arch){border-bottom:0!important}
+
+/* 6.5 · Correzione di sistema: gli approfondimenti cambiano competizione in Lega e Stadio. */
+body[data-v53=board] #v53board{border-left:8px solid #d62839!important;overflow:clip}
+body[data-v53=board][data-mode=coppa][data-v53-skin=lega] #v53board{border-left-color:#3d93d6!important}
+body[data-v53=board][data-v53-skin=stadio] #v53board{border-left-color:#ffd166!important}
+#v53board>summary{display:flex;align-items:center;justify-content:space-between;gap:14px;min-height:65px;cursor:pointer;list-style:none}
+#v53board>summary::-webkit-details-marker{display:none}
+#v53board>summary .v65-arrow{font-size:24px;flex:none;transition:transform .35s ease}
+#v53board[open]>summary .v65-arrow{transform:rotate(180deg)}
+#v53board .v65-last{color:#ff5d76!important;font-weight:900}
+body[data-v53=board] .panel tr.zona-last .numpos{color:#ff6578!important}
+@supports (interpolate-size:allow-keywords){#v53board{interpolate-size:allow-keywords}#v53board::details-content{block-size:0;opacity:0;overflow:hidden;transition:block-size .38s cubic-bezier(.2,.6,.35,1),opacity .3s;transition-behavior:allow-discrete}#v53board[open]::details-content{block-size:auto;opacity:1}}
+@media(prefers-reduced-motion:reduce){#v53board::details-content,#v53board>summary .v65-arrow{transition:none!important}}

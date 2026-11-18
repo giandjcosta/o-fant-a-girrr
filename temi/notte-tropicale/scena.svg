@@ -1,0 +1,121 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 1000" preserveAspectRatio="xMidYMax slice">
+  <!-- O Girrr · «Notte Tropicale», scena originale (Claude, 17 novembre 2026): cielo al tramonto, sole a bande, mare,
+       skyline con finestre accese e palme disegnate da zero. Nessun elemento preso da giochi o marchi esistenti. -->
+  <defs>
+    <linearGradient id="cielo" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#0b0624"/>
+      <stop offset=".34" stop-color="#2a0c52"/>
+      <stop offset=".55" stop-color="#6a1670"/>
+      <stop offset=".68" stop-color="#c2307a"/>
+      <stop offset=".76" stop-color="#ff6a5c"/>
+      <stop offset=".80" stop-color="#ffb35c"/>
+    </linearGradient>
+    <linearGradient id="sole" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#fff59a"/>
+      <stop offset=".45" stop-color="#ffb347"/>
+      <stop offset="1" stop-color="#ff3f9a"/>
+    </linearGradient>
+    <radialGradient id="alone" cx=".5" cy=".5" r=".5">
+      <stop offset="0" stop-color="#ff7ab8" stop-opacity=".55"/>
+      <stop offset=".55" stop-color="#ff4f9f" stop-opacity=".18"/>
+      <stop offset="1" stop-color="#ff4f9f" stop-opacity="0"/>
+    </radialGradient>
+    <mask id="bande">
+      <rect x="0" y="0" width="1600" height="1000" fill="#fff"/>
+      <g fill="#000">
+        <rect x="900" y="560" width="520" height="7"/><rect x="900" y="592" width="520" height="10"/>
+        <rect x="900" y="626" width="520" height="13"/><rect x="900" y="662" width="520" height="16"/>
+        <rect x="900" y="700" width="520" height="20"/>
+      </g>
+    </mask>
+    <linearGradient id="mare" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#3b1060"/>
+      <stop offset="1" stop-color="#120626"/>
+    </linearGradient>
+    <linearGradient id="riflesso" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#ffb347" stop-opacity=".75"/>
+      <stop offset="1" stop-color="#ff3f9a" stop-opacity="0"/>
+    </linearGradient>
+    <pattern id="finestre" width="22" height="26" patternUnits="userSpaceOnUse">
+      <rect x="4" y="5" width="6" height="8" fill="#ff8fd0" opacity=".85"/>
+      <rect x="13" y="5" width="6" height="8" fill="#1a0b33"/>
+      <rect x="4" y="16" width="6" height="8" fill="#1a0b33"/>
+      <rect x="13" y="16" width="6" height="8" fill="#7ff3ff" opacity=".7"/>
+    </pattern>
+    <pattern id="finestre2" width="30" height="34" patternUnits="userSpaceOnUse">
+      <rect x="5" y="6" width="8" height="10" fill="#ffd27a" opacity=".8"/>
+      <rect x="17" y="6" width="8" height="10" fill="#120626"/>
+      <rect x="5" y="20" width="8" height="10" fill="#120626"/>
+      <rect x="17" y="20" width="8" height="10" fill="#ff8fd0" opacity=".55"/>
+    </pattern>
+    <filter id="sfoca" x="-20%" y="-20%" width="140%" height="140%"><feGaussianBlur stdDeviation="6"/></filter>
+  </defs>
+
+  <rect width="1600" height="1000" fill="url(#cielo)"/>
+  <!-- stelle -->
+  <g fill="#fff" opacity=".8">
+    <circle cx="120" cy="80" r="1.6"/><circle cx="260" cy="150" r="1.1"/><circle cx="410" cy="60" r="1.4"/><circle cx="560" cy="190" r="1"/>
+    <circle cx="690" cy="95" r="1.7"/><circle cx="830" cy="40" r="1.2"/><circle cx="960" cy="140" r="1"/><circle cx="1090" cy="70" r="1.5"/>
+    <circle cx="1240" cy="170" r="1.1"/><circle cx="1390" cy="90" r="1.6"/><circle cx="1520" cy="200" r="1"/><circle cx="340" cy="250" r=".9"/>
+    <circle cx="760" cy="260" r=".9"/><circle cx="1180" cy="280" r=".9"/><circle cx="1470" cy="40" r="1.2"/><circle cx="60" cy="230" r="1"/>
+  </g>
+  <!-- alone e sole a bande -->
+  <circle cx="1160" cy="560" r="330" fill="url(#alone)"/>
+  <circle cx="1160" cy="560" r="200" fill="url(#sole)" mask="url(#bande)"/>
+  <!-- nuvole sottili -->
+  <g fill="#ff9ccd" opacity=".35">
+    <rect x="760" y="470" width="360" height="6" rx="3"/><rect x="820" y="490" width="250" height="4" rx="2"/>
+    <rect x="1250" y="430" width="300" height="5" rx="2.5"/><rect x="180" y="420" width="280" height="5" rx="2.5"/>
+  </g>
+  <!-- colline lontane -->
+  <path d="M0 700 C160 640 300 660 430 690 C560 720 640 650 780 670 C900 690 1000 720 1120 700 C1260 676 1420 640 1600 680 V760 H0Z" fill="#4a1468" opacity=".9"/>
+  <!-- skyline lontano -->
+  <g fill="#3a1158">
+    <rect x="40" y="560" width="70" height="200"/><rect x="120" y="600" width="50" height="160"/><rect x="180" y="520" width="80" height="240"/>
+    <rect x="270" y="590" width="55" height="170"/><rect x="335" y="540" width="65" height="220"/><rect x="560" y="580" width="60" height="180"/>
+    <rect x="630" y="530" width="90" height="230"/><rect x="730" y="600" width="50" height="160"/>
+  </g>
+  <!-- skyline vicino con finestre -->
+  <g>
+    <path d="M30 620 h90 v-40 h30 v40 h20 V760 H30Z" fill="#1d0a38"/>
+    <rect x="40" y="630" width="120" height="120" fill="url(#finestre)" opacity=".75"/>
+    <path d="M200 560 h40 v-30 h12 v30 h48 V760 H200Z" fill="#170830"/>
+    <rect x="208" y="575" width="84" height="175" fill="url(#finestre2)" opacity=".8"/>
+    <path d="M320 600 h110 V760 H320Z" fill="#1d0a38"/>
+    <rect x="328" y="610" width="96" height="140" fill="url(#finestre)" opacity=".7"/>
+    <path d="M450 500 l40 -40 l40 40 V760 h-80Z" fill="#150728"/>
+    <rect x="458" y="512" width="64" height="240" fill="url(#finestre2)" opacity=".75"/>
+    <path d="M550 590 h70 V760 h-70Z" fill="#1d0a38"/>
+    <rect x="556" y="600" width="58" height="150" fill="url(#finestre)" opacity=".6"/>
+    <path d="M640 545 h95 v215 h-95Z" fill="#170830"/>
+    <rect x="648" y="556" width="80" height="196" fill="url(#finestre2)" opacity=".7"/>
+    <rect x="455" y="458" width="2" height="22" fill="#ff8fd0"/><circle cx="456" cy="456" r="4" fill="#ff4f9f"/>
+  </g>
+  <!-- mare con riflesso del sole -->
+  <rect x="0" y="755" width="1600" height="245" fill="url(#mare)"/>
+  <rect x="0" y="754" width="1600" height="2" fill="#ff8fd0" opacity=".8"/>
+  <g fill="url(#riflesso)">
+    <rect x="1010" y="770" width="300" height="6" rx="3"/><rect x="1040" y="792" width="240" height="5" rx="2.5"/>
+    <rect x="1070" y="812" width="180" height="5" rx="2.5"/><rect x="1095" y="832" width="130" height="4" rx="2"/>
+    <rect x="1115" y="850" width="90" height="4" rx="2"/>
+  </g>
+  <!-- palme (silhouette originali) -->
+  <g fill="#0b0418">
+    <path d="M300 1000 C296 900 286 800 300 700 C312 610 342 540 368 480 L378 486 C356 548 330 620 320 706 C310 792 318 900 324 1000Z"/>
+    <path d="M372 482 C330 440 260 430 196 452 C240 444 300 452 352 488Z"/>
+    <path d="M372 482 C350 420 300 380 230 372 C286 392 330 430 360 488Z"/>
+    <path d="M374 480 C392 420 440 384 512 380 C456 402 414 438 384 490Z"/>
+    <path d="M376 484 C430 452 500 452 566 486 C506 474 444 478 386 494Z"/>
+    <path d="M370 486 C326 480 268 506 228 552 C276 520 320 504 364 498Z"/>
+    <path d="M378 488 C420 500 466 536 486 590 C454 548 420 520 376 500Z"/>
+    <path d="M1460 1000 C1468 896 1474 796 1452 706 C1434 630 1404 572 1376 520 L1366 526 C1392 580 1420 640 1434 712 C1450 800 1444 900 1436 1000Z"/>
+    <path d="M1370 522 C1404 470 1466 448 1536 456 C1478 462 1424 486 1380 530Z"/>
+    <path d="M1370 520 C1380 460 1418 418 1480 398 C1432 426 1398 466 1380 528Z"/>
+    <path d="M1368 522 C1340 466 1290 440 1220 440 C1280 452 1328 484 1360 530Z"/>
+    <path d="M1366 526 C1316 506 1252 512 1196 548 C1256 528 1310 524 1358 536Z"/>
+    <path d="M1372 528 C1420 536 1468 568 1500 618 C1460 582 1418 556 1374 540Z"/>
+    <path d="M1364 530 C1330 556 1306 600 1302 650 C1318 606 1340 572 1370 542Z"/>
+  </g>
+  <!-- foschia sul mare -->
+  <rect x="0" y="740" width="1600" height="40" fill="#ff6aa8" opacity=".12" filter="url(#sfoca)"/>
+</svg>
