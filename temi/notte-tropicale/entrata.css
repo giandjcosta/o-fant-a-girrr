@@ -7,13 +7,13 @@
  background:#140a2e;color:#fff;
  opacity:0;visibility:visible;
  pointer-events:auto;
- transition:opacity .30s cubic-bezier(.22,.61,.36,1);
+ transition:opacity .42s cubic-bezier(.22,.61,.36,1);
  isolation:isolate;
 }
 .nt-ingresso.nt-ingresso-visibile{opacity:1}
 .nt-ingresso.nt-ingresso-uscita{
- opacity:0;pointer-events:none;
- transition:opacity .50s cubic-bezier(.22,.61,.36,1);
+ opacity:0!important;pointer-events:none;
+ transition:opacity .55s cubic-bezier(.22,.61,.36,1);
 }
 .nt-ingresso, .nt-ingresso *{box-sizing:border-box}
 .nt-ingresso .nt-ingresso-fondo{
@@ -53,14 +53,13 @@
  letter-spacing:.11em;text-transform:uppercase;
  text-shadow:0 2px 12px rgba(0,0,0,.9);
 }
-.nt-ingresso .nt-ingresso-salta{
- position:absolute;z-index:3;bottom:max(12px,env(safe-area-inset-bottom));
- right:max(12px,env(safe-area-inset-right));
- padding:6px 10px;border:1px solid rgba(255,255,255,.48);
- border-radius:99px;background:rgba(13,6,36,.67);color:#fff;
- font:700 12px Inter,system-ui,sans-serif;cursor:pointer;
+.nt-ingresso .nt-ingresso-continua{
+ pointer-events:auto;display:inline-block;margin-top:18px;padding:13px 30px;border:0;border-radius:6px 16px 6px 16px;
+ background:linear-gradient(110deg,#2B60DA,#FF4CB9 55%,#E6953E);color:#fff;font:900 17px/1 Inter,system-ui,sans-serif;
+ letter-spacing:.04em;cursor:pointer;box-shadow:0 0 0 2px rgba(255,255,255,.35),0 10px 30px rgba(255,76,185,.45);
+ transform:skewX(-8deg);transition:transform .2s ease,box-shadow .2s ease;
 }
-.nt-ingresso .nt-ingresso-salta:focus-visible{outline:2px solid #fff;outline-offset:3px}
+.nt-ingresso .nt-ingresso-continua:hover,.nt-ingresso .nt-ingresso-continua:focus-visible{transform:skewX(-8deg) scale(1.05);box-shadow:0 0 0 2px #fff,0 12px 36px rgba(255,76,185,.7);outline:none}
 @media(max-width:480px){
  .nt-ingresso .nt-ingresso-poster{width:100%;max-width:none;object-position:50% 39%}
  .nt-ingresso .nt-ingresso-titoli{padding-top:max(18px,env(safe-area-inset-top));padding-bottom:max(48px,env(safe-area-inset-bottom))}
@@ -73,3 +72,12 @@
  }
  .nt-ingresso .nt-ingresso-fondo{filter:none;transform:none}
 }
+
+/* Claude, 18 novembre: tra «Continua» e la nuova grafica si vede il Girrr di sempre; le parti aggiunte dalla skin restano nascoste */
+html[data-nt-prima] :is(.nt-cruscotto,.nt-barra,.nt-schede,.nt-tutto-titolo){display:none!important}
+/* La nuova grafica entra con una tendina in diagonale, con un filo di neon sul bordo */
+@keyframes nt-tendina{from{clip-path:polygon(0 0,0 0,-35% 100%,-35% 100%)}to{clip-path:polygon(0 0,135% 0,100% 100%,-35% 100%)}}
+@keyframes nt-tendina-vecchia{from{filter:none}to{filter:brightness(.7)}}
+html.nt-tendina::view-transition-old(root){animation:nt-tendina-vecchia 1.15s ease both}
+html.nt-tendina::view-transition-new(root){animation:nt-tendina 1.15s cubic-bezier(.65,0,.35,1) both;filter:drop-shadow(-6px 0 10px rgba(255,76,185,.9))}
+@media(prefers-reduced-motion:reduce){html.nt-tendina::view-transition-old(root),html.nt-tendina::view-transition-new(root){animation:none!important}}

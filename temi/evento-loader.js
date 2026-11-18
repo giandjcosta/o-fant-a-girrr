@@ -13,6 +13,8 @@
     /* 18 novembre: tolta la voce «vice-city» (prova di ChatGPT, non scelta): era prima nell'elenco, avrebbe vinto per data e senza il suo
        file la skin non si sarebbe accesa. Resta una sola skin: dal 18 novembre (uscita del gioco) alla fine della giornata 8 (Monza–Fiorentina, 23 novembre 20:45), decisione di Gianluca. */
     { id: 'notte-tropicale', inizio: '2026-11-19T00:00:00+01:00', fine: '2026-11-28T00:00:00+01:00', css: 'notte-tropicale/notte-tropicale.css', js: 'notte-tropicale/notte-tropicale.js',
+      /* copertina del primo ingresso nella Home (Gianluca, 18 novembre: resta finché non si tocca «Continua») */
+      copertina: 'notte-tropicale/gta6-lucia-jason-cover.webp',
       /* la Curva ha la sua grafica chiara/scura da app (iPhone e Android): il tema non la tocca, lì il testo diventava illeggibile */
       escludi: /\/curva\.html$/,
       /* grafica unica (Gianluca, 17 novembre: «non ci sarà Lega o Stadio, sarà una grafica unica») */
@@ -82,6 +84,22 @@
     (document.head || h).appendChild(cop);
     var pronto = function () { if (!h.classList.contains('evento-pronto')) requestAnimationFrame(function () { h.classList.add('evento-pronto'); }); };
     setTimeout(pronto, 3000);
+    /* Primo ingresso nella Home con questa skin: la pagina resta coperta dal viola della copertina finché la copertina
+       (temi/<skin>/entrata.js) non è pronta, così non si vedono schermi neri o bianchi. Sicurezza: al massimo 8 s. */
+    if (ev.copertina && /\/girrr\/(index\.html)?$/.test(location.pathname)) {
+      var prova = /(?:localhost|127\.0\.0\.1)$/.test(location.hostname) && q.get('entrata-prova') === '1', vista = false;
+      try { vista = localStorage.getItem('nt_entrata_vista') === '1'; } catch (e) {}
+      if (!vista || prova) {
+        h.setAttribute('data-evento-primo', ev.id);
+        var pre = document.createElement('link'); pre.rel = 'preload'; pre.as = 'image'; pre.href = new URL(ev.copertina, base).href;
+        (document.head || h).appendChild(pre);
+        var vel = document.createElement('style'); vel.setAttribute('data-evento-regola', 'velo-copertina');
+        vel.textContent = 'html[data-evento-primo]{background:#140a2e!important}html[data-evento-primo] body{visibility:hidden!important}' +
+          'html[data-evento-primo] body>.nt-ingresso{visibility:visible!important}';
+        (document.head || h).appendChild(vel);
+        setTimeout(function () { if (!document.querySelector('.nt-ingresso')) h.removeAttribute('data-evento-primo'); }, 8000);
+      }
+    }
     var l = document.createElement('link');
     l.rel = 'stylesheet'; l.href = new URL(ev.css, base).href; l.setAttribute('data-evento', ev.id);
     l.onerror = function () { h.removeAttribute('data-event-theme'); pronto(); };

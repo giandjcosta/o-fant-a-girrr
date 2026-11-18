@@ -1,100 +1,93 @@
-/* O Girrr 6.5 · Copertina di ingresso solo la prima volta che si entra nel Girrr da un dispositivo (Gianluca, 18 novembre), soltanto sulla Home
-   con Notte Tropicale attiva. Non altera la grafica normale né la navigazione. */
-(function(){
- 'use strict';
- var h=document.documentElement;
- function avvia(){
-  if(!document.body || document.body.getAttribute('data-v53')!=='home' ||
-     h.getAttribute('data-event-theme')!=='notte-tropicale' ||
-     h.getAttribute('data-nt-entrata-avviata'))return;
-  h.setAttribute('data-nt-entrata-avviata','1');
-  var q=new URLSearchParams(location.search);
-  /* Ripetizione SOLO sul Lab e localhost, per le prove. Mai sul sito reale. */
-  var debug=/(?:localhost|127\.0\.0\.1)$/.test(location.hostname) ||
-            /\/o-girrr-registro\//.test(location.pathname);
-  var forza=debug && q.get('entrata-prova')==='1';
-  var giorno;
-  try{
-   giorno=new Intl.DateTimeFormat('sv-SE',{timeZone:'Europe/Rome',year:'numeric',month:'2-digit',day:'2-digit'}).format(new Date());
-  }catch(e){giorno=new Date().toISOString().slice(0,10);}
-  var chiave='nt_entrata_vista',gia=false;   /* una volta per dispositivo, non ogni giorno */
-  try{gia=localStorage.getItem(chiave)==='1';}catch(e){}
-  if(gia&&!forza)return;
-  var sorgente=document.currentScript;
-  /* Con script dinamici document.currentScript è presente; altrimenti ripiega
-     sul percorso del tema già caricato. */
-  var base;
-  try{base=new URL('./',sorgente&&sorgente.src?sorgente.src:
-        document.querySelector('script[src*="/notte-tropicale/entrata.js"]')?.src||location.href);}catch(e){return;}
-  var asset=new URL('gta6-lucia-jason-cover.webp',base).href;
-  var css=new URL('entrata.css',base).href;
-  if(!document.querySelector('link[data-nt-entrata-css]')){
-   var stile=document.createElement('link');stile.rel='stylesheet';stile.href=css;
-   stile.setAttribute('data-nt-entrata-css','');
-   document.head.appendChild(stile);
+/* O Girrr 6.5 · Copertina del primo ingresso con Notte Tropicale (ChatGPT, rifatta da Claude il 18 novembre 2026 su
+   richiesta di Gianluca: «copertina fissa, si preme Continua, poi la transizione dalla vecchia alla nuova grafica»).
+   - Solo nella Home, solo la prima volta che si entra nel Girrr da un dispositivo (localStorage nt_entrata_vista).
+   - Il caricatore delle skin tiene la pagina coperta di viola finché la copertina non è pronta: niente schermi neri o bianchi.
+   - La copertina compare con una dissolvenza quando l'immagine è decodificata e resta finché non si tocca «Continua».
+   - Dopo «Continua»: la copertina svanisce sul Girrr con la grafica di sempre, poi la nuova grafica entra con una tendina
+     in diagonale (View Transitions dove ci sono, altrimenti una dissolvenza). Con «riduci movimento»: cambi senza movimento.
+   - Prove sul computer: ?entrata-prova=1 su localhost la rimostra. */
+(function () {
+  'use strict';
+  var h = document.documentElement, ID = 'notte-tropicale', CHIAVE = 'nt_entrata_vista';
+  function avvia() {
+    if (!document.body || document.body.getAttribute('data-v53') !== 'home' || h.getAttribute('data-event-theme') !== ID ||
+        h.getAttribute('data-nt-entrata-avviata')) return;
+    var prova = /(?:localhost|127\.0\.0\.1)$/.test(location.hostname) && new URLSearchParams(location.search).get('entrata-prova') === '1';
+    var vista = false; try { vista = localStorage.getItem(CHIAVE) === '1'; } catch (e) {}
+    if (vista && !prova) { h.removeAttribute('data-evento-primo'); return; }
+    h.setAttribute('data-nt-entrata-avviata', '1');
+    var ridotto = false; try { ridotto = matchMedia('(prefers-reduced-motion: reduce)').matches; } catch (e) {}
+    var me = document.querySelector('script[data-nt-entrata]') || document.currentScript;
+    var base; try { base = new URL('./', me && me.src ? me.src : location.href); } catch (e) { h.removeAttribute('data-evento-primo'); return; }
+    var asset = new URL('gta6-lucia-jason-cover.webp', base).href;
+    if (!document.querySelector('link[data-nt-entrata-css]')) {
+      var st = document.createElement('link'); st.rel = 'stylesheet'; st.href = new URL('entrata.css', base).href;
+      st.setAttribute('data-nt-entrata-css', ''); document.head.appendChild(st);
+    }
+    var ov = document.createElement('div'); ov.className = 'nt-ingresso';
+    ov.style.visibility = 'visible';   /* resta visibile anche mentre il resto della pagina è nascosto dal caricatore */
+    ov.setAttribute('role', 'dialog'); ov.setAttribute('aria-modal', 'true');
+    ov.setAttribute('aria-label', 'Notte Tropicale, edizione speciale dal 19 al 27 novembre');
+    var fondo = document.createElement('div'); fondo.className = 'nt-ingresso-fondo'; fondo.style.backgroundImage = 'url("' + asset + '")';
+    var img = document.createElement('img'); img.className = 'nt-ingresso-poster'; img.alt = ''; img.decoding = 'async';
+    try { img.fetchPriority = 'high'; } catch (e) {}
+    var tit = document.createElement('div'); tit.className = 'nt-ingresso-titoli';
+    var nome = document.createElement('strong'); nome.textContent = 'O GIRRR';
+    var sotto = document.createElement('div'), scritta = document.createElement('em'), date = document.createElement('small');
+    scritta.textContent = 'Notte Tropicale'; date.textContent = '19–27 novembre 2026';
+    var vai = document.createElement('button'); vai.type = 'button'; vai.className = 'nt-ingresso-continua'; vai.textContent = 'Continua ›';
+    sotto.append(scritta, date, vai); tit.append(nome, sotto); ov.append(fondo, img, tit);
+    document.body.appendChild(ov);
+
+    var mostrata = false;
+    function mostra() {
+      if (mostrata) return; mostrata = true;
+      requestAnimationFrame(function () { requestAnimationFrame(function () {
+        ov.classList.add('nt-ingresso-visibile');
+        /* quando la copertina è piena si toglie il velo del caricatore */
+        setTimeout(function () { h.removeAttribute('data-evento-primo'); try { vai.focus({ preventScroll: true }); } catch (e) {} }, ridotto ? 0 : 420);
+      }); });
+    }
+    img.addEventListener('error', function () {
+      var alt = new URL('miami-tramonto.jpg', base).href;
+      if (img.src !== alt) { img.src = alt; fondo.style.backgroundImage = 'url("' + alt + '")'; } else mostra();
+    });
+    img.addEventListener('load', function () { (img.decode ? img.decode() : Promise.resolve()).then(mostra, mostra); });
+    img.src = asset;
+    setTimeout(mostra, 2500);   /* se l'immagine tarda, la copertina si mostra lo stesso (con lo sfondo viola) */
+
+    var chiusa = false;
+    function continua() {
+      if (chiusa) return; chiusa = true;
+      try { localStorage.setItem(CHIAVE, '1'); } catch (e) {}
+      document.removeEventListener('keydown', tasto);
+      /* 1. sotto la copertina torna la grafica di sempre */
+      h.removeAttribute('data-event-theme'); h.setAttribute('data-nt-prima', '1');
+      h.removeAttribute('data-evento-primo');
+      try { window.scrollTo(0, 0); } catch (e) {}
+      /* 2. la copertina svanisce */
+      ov.classList.add('nt-ingresso-uscita');
+      setTimeout(function () {
+        ov.remove();
+        /* 3. la nuova grafica entra con la tendina */
+        setTimeout(accendi, ridotto ? 0 : 650);
+      }, ridotto ? 0 : 600);
+    }
+    function accendi() {
+      function cambia() { h.setAttribute('data-event-theme', ID); h.removeAttribute('data-nt-prima'); }
+      if (!ridotto && document.startViewTransition) {
+        h.classList.add('nt-tendina');
+        var t = document.startViewTransition(cambia);
+        t.finished.then(fine, fine);
+      } else if (!ridotto) {
+        document.body.style.transition = 'opacity .35s ease'; document.body.style.opacity = '0';
+        setTimeout(function () { cambia(); document.body.style.opacity = '1'; setTimeout(fine, 400); }, 360);
+      } else { cambia(); fine(); }
+    }
+    function fine() { h.classList.remove('nt-tendina'); document.body.style.transition = ''; document.body.style.opacity = ''; }
+    function tasto(e) { if (e.key === 'Enter' || e.key === 'Escape') { e.preventDefault(); continua(); } }
+    vai.addEventListener('click', continua);
+    document.addEventListener('keydown', tasto);
   }
-  var overlay=document.createElement('div');
-  overlay.className='nt-ingresso';
-  overlay.setAttribute('role','dialog');
-  overlay.setAttribute('aria-label','Notte Tropicale, edizione speciale dal 19 al 27 novembre');
-  overlay.setAttribute('aria-modal','true');
-  overlay.style.cssText='position:fixed;inset:0;width:100vw;height:100vh;height:100dvh;z-index:2147483200;opacity:0;display:grid;place-items:center;overflow:hidden;background:#140a2e;pointer-events:auto;transition:opacity .3s ease';
-  var fondo=document.createElement('div');fondo.className='nt-ingresso-fondo';
-  fondo.style.backgroundImage='url("'+asset+'")';
-  var immagine=document.createElement('img');
-  immagine.className='nt-ingresso-poster';immagine.alt='';
-  immagine.loading='eager';immagine.decoding='async';immagine.fetchPriority='high';
-  immagine.src=asset;
-  immagine.addEventListener('error',function(){
-    var alternativa=new URL('miami-tramonto.jpg',base).href;
-    if(immagine.src!==alternativa){immagine.src=alternativa;fondo.style.backgroundImage='url("'+alternativa+'")';}
-  });
-  var titoli=document.createElement('div');titoli.className='nt-ingresso-titoli';
-  var nome=document.createElement('strong');nome.textContent='O GIRRR';
-  var sotto=document.createElement('div'),scritta=document.createElement('em');
-  scritta.textContent='Notte Tropicale';
-  var date=document.createElement('small');date.textContent='19–27 novembre 2026';
-  sotto.append(scritta,date);titoli.append(nome,sotto);
-  var salta=document.createElement('button');
-  salta.type='button';salta.className='nt-ingresso-salta';
-  salta.textContent='Salta ›';salta.setAttribute('aria-label',"Salta l'introduzione");
-  overlay.append(fondo,immagine,titoli,salta);
-  var chiuso=false,timers=[];
-  function timer(fn,ms){timers.push(setTimeout(fn,ms));}
-  function pulisci(){
-   if(chiuso)return;chiuso=true;
-   timers.forEach(clearTimeout);
-   document.removeEventListener('keydown',tasto);
-   overlay.remove();
-  }
-  function tasto(e){if(e.key==='Escape'||e.key==='Enter'||e.key===' '){e.preventDefault();pulisci();}}
-  overlay.addEventListener('click',pulisci);
-  document.addEventListener('keydown',tasto);
-  document.body.appendChild(overlay);
-  try{localStorage.setItem(chiave,'1');}catch(e){}
-  var ridotto=false;
-  try{ridotto=matchMedia('(prefers-reduced-motion: reduce)').matches;}catch(e){}
-  /* Due frame permettono al browser di disegnare davvero lo splash iniziale. */
-  requestAnimationFrame(function(){requestAnimationFrame(function(){
-   if(chiuso)return;
-   overlay.style.opacity='1';overlay.classList.add('nt-ingresso-visibile');
-  });});
-  if(ridotto){
-   overlay.style.transition='none';
-   overlay.style.opacity='1';overlay.classList.add('nt-ingresso-visibile');
-   timer(pulisci,1000);
-  }else{
-   /* 0,3 s ingresso + 1,6 s fermo + 0,5 s uscita; watchdog ≤4 s. */
-   timer(function(){
-    if(chiuso)return;
-    overlay.classList.add('nt-ingresso-uscita');
-    overlay.style.transition='opacity .5s cubic-bezier(.22,.61,.36,1)';
-    overlay.style.opacity='0';overlay.style.pointerEvents='none';
-   },1900);
-   timer(pulisci,2450);
-  }
-  timer(pulisci,4000);
- }
- if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',avvia,{once:true});
- else avvia();
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', avvia, { once: true }); else avvia();
 })();
