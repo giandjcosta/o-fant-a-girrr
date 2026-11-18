@@ -70,13 +70,13 @@ function ok(n){return n.nodeType===1&&!/^(SCRIPT|STYLE|LINK|AUDIO|VIDEO|OPTION|I
 function anim(n,i){n.style.setProperty('--fxd',Math.min(i,6));n.classList.add('fx-in');n.addEventListener('animationend',function f(e){if(e.target!==n)return;n.classList.remove('fx-in');n.style.removeProperty('--fxd');n.removeEventListener('animationend',f)})}
 function avvia(){
 new MutationObserver(function(ms){
-  if(Date.now()-last>800)return;
+  if(Date.now()-last>800||Date.now()-(window.__pilloleT||0)<900)return;   /* 6.5: il cambio lo anima già pillole.js */
   var i=0;
   ms.forEach(function(m){m.addedNodes.forEach(function(n){if(ok(n)&&n.getBoundingClientRect().height>12)anim(n,i++)})})
 }).observe(document.body,{childList:true,subtree:true});
 /* pannelli mostrati/nascosti con l'attributo hidden (es. tab dell'Albo d'oro) */
 new MutationObserver(function(ms){
-  if(Date.now()-last>800)return;
+  if(Date.now()-last>800||Date.now()-(window.__pilloleT||0)<900)return;   /* 6.5: il cambio lo anima già pillole.js */
   ms.forEach(function(m){var n=m.target;if(m.attributeName==='hidden'&&!n.hidden&&ok(n))anim(n,0)})
 }).observe(document.body,{attributes:true,subtree:true,attributeFilter:['hidden']});
 }

@@ -1,0 +1,83 @@
+/* O Girrr 6.5 · Ingresso Notte Tropicale. Solo Home durante l'evento.
+   La grafica generale non viene modificata. Uno splash al giorno, eliminato dal DOM. */
+.nt-ingresso {
+ position:fixed;inset:0;z-index:2147483200;
+ display:grid;place-items:center;box-sizing:border-box;
+ width:100vw;height:100vh;height:100dvh;overflow:hidden;
+ background:#140a2e;color:#fff;
+ opacity:0;visibility:visible;
+ pointer-events:auto;
+ transition:opacity .42s cubic-bezier(.22,.61,.36,1);
+ isolation:isolate;
+}
+.nt-ingresso.nt-ingresso-visibile{opacity:1}
+.nt-ingresso.nt-ingresso-uscita{
+ opacity:0!important;pointer-events:none;
+ transition:opacity .55s cubic-bezier(.22,.61,.36,1);
+}
+.nt-ingresso, .nt-ingresso *{box-sizing:border-box}
+.nt-ingresso .nt-ingresso-fondo{
+ position:absolute;inset:-2%;background-size:cover;background-position:center 38%;
+ filter:blur(14px) brightness(.38);transform:scale(1.07);
+ pointer-events:none;
+}
+.nt-ingresso::before{
+ content:"";position:absolute;inset:0;z-index:1;pointer-events:none;
+ background:linear-gradient(180deg,rgba(7,5,28,.40),transparent 22%,transparent 55%,rgba(12,5,35,.92) 100%);
+}
+.nt-ingresso .nt-ingresso-poster{
+ position:relative;z-index:0;width:min(100%,660px);height:100%;max-height:100dvh;
+ display:block;object-fit:cover;object-position:center 38%;
+ box-shadow:0 0 70px rgba(0,0,0,.5);
+}
+.nt-ingresso .nt-ingresso-titoli{
+ position:absolute;z-index:2;inset:0;display:flex;flex-direction:column;
+ align-items:center;justify-content:space-between;
+ padding:max(24px,env(safe-area-inset-top)) 12px max(32px,env(safe-area-inset-bottom));
+ gap:18px;text-align:center;pointer-events:none;
+}
+.nt-ingresso .nt-ingresso-titoli strong{
+ display:block;font:italic 1000 clamp(35px,8vw,94px)/.98 Impact,"Barlow Condensed",Inter,sans-serif;
+ letter-spacing:.055em;text-transform:uppercase;
+ background:linear-gradient(110deg,#2B60DA 5%,#FF4CB9 53%,#E6953E 100%);
+ -webkit-background-clip:text;background-clip:text;color:transparent;
+ -webkit-text-stroke:1px rgba(255,255,255,.15);
+ filter:drop-shadow(0 3px 10px rgba(0,0,0,.68));
+}
+.nt-ingresso .nt-ingresso-titoli em{
+ font:400 clamp(37px,7.4vw,82px)/1.05 "Mr Dafoe","Brush Script MT",cursive;
+ color:#ffd7f0;text-shadow:0 3px 14px rgba(0,0,0,.9),0 0 22px rgba(255,72,168,.7);
+}
+.nt-ingresso .nt-ingresso-titoli small{
+ display:block;margin-top:10px;font:800 clamp(12px,2.5vw,19px)/1.3 Inter,sans-serif;
+ letter-spacing:.11em;text-transform:uppercase;
+ text-shadow:0 2px 12px rgba(0,0,0,.9);
+}
+.nt-ingresso .nt-ingresso-continua{
+ pointer-events:auto;display:inline-block;margin-top:18px;padding:13px 30px;border:0;border-radius:6px 16px 6px 16px;
+ background:linear-gradient(110deg,#2B60DA,#FF4CB9 55%,#E6953E);color:#fff;font:900 17px/1 Inter,system-ui,sans-serif;
+ letter-spacing:.04em;cursor:pointer;box-shadow:0 0 0 2px rgba(255,255,255,.35),0 10px 30px rgba(255,76,185,.45);
+ transform:skewX(-8deg);transition:transform .2s ease,box-shadow .2s ease;
+}
+.nt-ingresso .nt-ingresso-continua:hover,.nt-ingresso .nt-ingresso-continua:focus-visible{transform:skewX(-8deg) scale(1.05);box-shadow:0 0 0 2px #fff,0 12px 36px rgba(255,76,185,.7);outline:none}
+@media(max-width:480px){
+ .nt-ingresso .nt-ingresso-poster{width:100%;max-width:none;object-position:50% 39%}
+ .nt-ingresso .nt-ingresso-titoli{padding-top:max(18px,env(safe-area-inset-top));padding-bottom:max(48px,env(safe-area-inset-bottom))}
+ .nt-ingresso .nt-ingresso-titoli strong{font-size:clamp(35px,12vw,52px)}
+ .nt-ingresso .nt-ingresso-titoli em{font-size:clamp(37px,11vw,54px)}
+}
+@media(prefers-reduced-motion:reduce){
+ .nt-ingresso,.nt-ingresso.nt-ingresso-visibile,.nt-ingresso.nt-ingresso-uscita{
+  transition:none!important;transform:none!important;
+ }
+ .nt-ingresso .nt-ingresso-fondo{filter:none;transform:none}
+}
+
+/* Claude, 18 novembre: tra «Continua» e la nuova grafica si vede il Girrr di sempre; le parti aggiunte dalla skin restano nascoste */
+html[data-nt-prima] :is(.nt-cruscotto,.nt-barra,.nt-schede,.nt-tutto-titolo){display:none!important}
+/* La nuova grafica entra con una tendina in diagonale, con un filo di neon sul bordo */
+@keyframes nt-tendina{from{clip-path:polygon(0 0,0 0,-35% 100%,-35% 100%)}to{clip-path:polygon(0 0,135% 0,100% 100%,-35% 100%)}}
+@keyframes nt-tendina-vecchia{from{filter:none}to{filter:brightness(.7)}}
+html.nt-tendina::view-transition-old(root){animation:nt-tendina-vecchia 1.15s ease both}
+html.nt-tendina::view-transition-new(root){animation:nt-tendina 1.15s cubic-bezier(.65,0,.35,1) both;filter:drop-shadow(-6px 0 10px rgba(255,76,185,.9))}
+@media(prefers-reduced-motion:reduce){html.nt-tendina::view-transition-old(root),html.nt-tendina::view-transition-new(root){animation:none!important}}

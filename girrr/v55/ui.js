@@ -108,7 +108,7 @@ function home(){
  var header=document.createElement('div');header.className='v55-notice-head';
  header.innerHTML='<h3><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M18 8a6 6 0 0 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9M10 21h4"/></svg> Notifiche <span id="v55unread" aria-live="polite"></span></h3><a href="'+href('notifiche')+'">Tutte ›</a>';
  var panel=document.querySelector('.v53-home');live.prepend(header);header.append(el('v53read'));panel.prepend(live);
- var dashboard=document.createElement('details');dashboard.id='v55dashboard';dashboard.className='v55-dashboard';dashboard.open=get('home-open',true)!==false;
+ var dashboard=document.createElement('details');dashboard.id='v55dashboard';dashboard.className='v55-dashboard';dashboard.open=get('home-open',false)===true;   /* 6.5 (Gianluca): «La tua lega, oggi» parte chiuso, poi ricorda l'ultimo tocco */
  var summary=document.createElement('summary'),heading=document.querySelector('.v53-homehead');
  summary.append(heading.firstElementChild);
  var compact=document.createElement('span');compact.id='v55compact';compact.className='v55-compact';summary.firstElementChild.append(compact);
@@ -146,26 +146,50 @@ function home(){
  });
 }
 function board(){
-if(window.OGDest55)window.OGDest55.board({eventi:cronacheValide()});
-var holder=el('v53boardcontent'),rounds=completeRounds(false),sets=ranks((latest()||{}).n||0);
-if(!holder)return;
-var buttons=el('v53boardtabs');
-function switchTo(part){buttons.querySelectorAll('button').forEach(function(b){b.setAttribute('aria-selected',b.dataset.view===part?'true':'false')});if(part==='compare')compare();else matchCenter()}
-buttons.addEventListener('click',function(e){var b=e.target.closest('button[data-view]');if(b)switchTo(b.dataset.view)});
-function compare(){
- var opts=rounds.map(function(g){return '<option value="'+g.n+'">'+g.n+'ª giornata</option>'}).join('');
- if(rounds.length<2){holder.innerHTML=note('Servono due giornate complete per confrontare i movimenti in classifica.');return}
- holder.innerHTML='<div class="v53-field"><label for="v53from">Dalla</label><select class="v53-select" id="v53from">'+opts+'</select><label for="v53to">Alla</label><select class="v53-select" id="v53to">'+opts+'</select></div><div id="v53delta" class="v53-row"></div><p class="v53-muted">Movimenti della classifica tra le due giornate selezionate.</p>';
- var a=el('v53from'),b=el('v53to');a.value=String(rounds[Math.max(0,rounds.length-3)].n);b.value=String(rounds[rounds.length-1].n);
- function update(){var x=ranks(n(a.value)),y=ranks(n(b.value));el('v53delta').innerHTML=y.map(function(t,i){var p=x.findIndex(function(v){return v.team===t.team})+1,d=p-(i+1);return '<div class="v53-box"><small>'+(i+1)+'º posto · '+esc(t.team)+'</small><strong>'+(d>0?'↑ '+d+(d===1?' posizione':' posizioni'):d<0?'↓ '+(-d)+(d===-1?' posizione':' posizioni'):'= Stessa posizione')+'</strong><small>'+t.pt+' punti · '+dec(t.fp)+' Fantapunti · DR '+(t.gf-t.gs)+'</small></div>'}).join('')}
- a.onchange=update;b.onchange=update;update();
-}
-function matchCenter(){
-var matches=allFinished();if(!matches.length){holder.innerHTML=note('Il centro partita si aprirà dopo il primo incontro concluso.');return}
- holder.innerHTML='<div class="v53-field"><label for="v53match">Scegli la partita</label><select class="v53-select" id="v53match" style="flex:1;min-width:160px">'+matches.slice(0,70).map(function(x){return '<option value="'+esc(x.id)+'">'+x.g.n+'ª · '+esc(x.m[0]+' '+x.m[4]+' '+x.m[3])+'</option>'}).join('')+'</select></div><div id="v53matchstats"></div>';
- var select=el('v53match');function draw(){var x=matches.find(function(v){return v.id===select.value})||matches[0],m=x.m,gol=m[4].split('-').map(Number),assegnati=gol[0]===gol[1]?[1,1]:gol[0]>gol[1]?[3,0]:[0,3];el('v53matchstats').innerHTML='<div class="v53-row"><div class="v53-box"><span class="v53-mini-title">RISULTATO UFFICIALE</span><div class="score">'+esc(m[0]+' '+m[4]+' '+m[3])+'</div><small>Campionato · '+x.g.n+'ª giornata</small></div><div class="v53-box"><span class="v53-mini-title">DATI LEGHE FANTACALCIO</span><div class="score">'+dec(m[1])+' <em>–</em> '+dec(m[2])+'</div><small>Fantapunti · Fonte Leghe Fantacalcio</small></div></div><p class="v53-muted">Punti in classifica assegnati nel turno: '+esc(m[0])+' '+assegnati[0]+' · '+esc(m[3])+' '+assegnati[1]+'.</p>'}select.onchange=draw;draw()
-}
-switchTo('compare');
+ if(window.OGDest55)window.OGDest55.board({eventi:cronacheValide()});
+ var holder=el('v53boardcontent'),buttons=el('v53boardtabs');
+ if(!holder||!buttons)return;
+ var active='compare';
+ function cup(){return document.body.getAttribute('data-mode')==='coppa'}
+ function rounds(){return completeRounds(cup())}
+ function cupRanks(to){
+  var T={};
+  function row(g,n){var k=g+'|'+n;return T[k]||(T[k]={team:n,gir:g,pt:0,fp:0,gf:0,gs:0,g:0,v:0,nn:0,p:0})}
+  games(true).forEach(function(g){(g.m||[]).forEach(function(m){row(m[0],m[1]);row(m[0],m[4])});(g.rest||[]).forEach(function(r){row(r[0],r[1])})});
+  completeRounds(true).filter(function(g){return g.n<=to}).forEach(function(g){g.m.forEach(function(m){var score=String(m[5]).split('-').map(Number);if(score.length!==2||!Number.isFinite(score[0])||!Number.isFinite(score[1]))return;
+   var a=row(m[0],m[1]),b=row(m[0],m[4]);a.g++;b.g++;a.fp+=n(m[2]);b.fp+=n(m[3]);a.gf+=score[0];a.gs+=score[1];b.gf+=score[1];b.gs+=score[0];
+   if(score[0]>score[1]){a.v++;b.p++;a.pt+=3}else if(score[0]<score[1]){b.v++;a.p++;b.pt+=3}else{a.nn++;b.nn++;a.pt++;b.pt++}
+  })});
+  return Object.values(T).sort(function(a,b){return a.gir.localeCompare(b.gir)||b.pt-a.pt||b.fp-a.fp||(b.gf-b.gs)-(a.gf-a.gs)||b.gf-a.gf||a.team.localeCompare(b.team)});
+ }
+ function table(to){return cup()?cupRanks(to):ranks(to)}
+ function compare(){
+  var rr=rounds();
+  if(rr.length<2){holder.innerHTML=note('Servono almeno due giornate concluse di '+(cup()?'Champions Cup':'Campionato')+' per confrontare la classifica.');return}
+  var ops=rr.map(function(g){return '<option value="'+g.n+'">'+g.n+'ª giornata</option>'}).join('');
+  holder.innerHTML='<div class="v53-field"><label for="v53from">Dalla</label><select class="v53-select" id="v53from">'+ops+'</select><label for="v53to">Alla</label><select class="v53-select" id="v53to">'+ops+'</select></div><div id="v53delta" class="v53-row"></div><p class="v53-muted">'+(cup()?'Champions Cup · Classifiche separate dei gironi A e B. Le prime quattro per girone accedono ai quarti solo dopo la conclusione dei gironi.':'Campionato · Movimenti tra due giornate concluse.')+'</p>';
+  var a=el('v53from'),b=el('v53to');a.value=String(rr[Math.max(0,rr.length-3)].n);b.value=String(rr[rr.length-1].n);
+  function draw(){var before=table(n(a.value)),after=table(n(b.value));el('v53delta').innerHTML=after.map(function(t){
+    var x=before.filter(function(q){return !cup()||q.gir===t.gir}),y=after.filter(function(q){return !cup()||q.gir===t.gir});
+    var old=x.findIndex(function(q){return q.team===t.team})+1,pos=y.findIndex(function(q){return q.team===t.team})+1,d=old-pos;
+    var last=y.length>1&&pos===y.length;
+    return '<div class="v53-box"><small>'+(cup()?'Girone '+esc(t.gir)+' · ':'')+'<span class="'+(last?'v65-last':'')+'">'+pos+'º posto</span> · '+esc(t.team)+'</small><strong>'+(d>0?'↑ '+d+(d===1?' posizione':' posizioni'):d<0?'↓ '+(-d)+(d===-1?' posizione':' posizioni'):'= Stessa posizione')+'</strong><small>'+t.pt+' punti · '+dec(t.fp)+' Fantapunti · DR '+(t.gf-t.gs)+'</small></div>';
+   }).join('')}
+  a.onchange=draw;b.onchange=draw;draw();
+ }
+ function center(){
+  var cop=cup(),gamesPlayed=cop?completeRounds(true).flatMap(function(g){return g.m.map(function(m,i){return {id:'c'+g.n+'-'+i,day:g.n,gir:m[0],a:m[1],b:m[4],s:m[5],fp1:m[2],fp2:m[3]}})}):allFinished().map(function(x){return {id:x.id,day:x.g.n,a:x.m[0],b:x.m[3],s:x.m[4],fp1:x.m[1],fp2:x.m[2]}});
+  if(!gamesPlayed.length){holder.innerHTML=note('Nessuna partita conclusa di '+(cop?'Champions Cup':'Campionato')+'.');return}
+  gamesPlayed.reverse();
+  holder.innerHTML='<div class="v53-field"><label for="v53match">Scegli la partita</label><select class="v53-select" id="v53match" style="flex:1;min-width:0">'+gamesPlayed.slice(0,70).map(function(x){return '<option value="'+esc(x.id)+'">'+x.day+'ª · '+(cop?'Girone '+esc(x.gir)+' · ':'')+esc(x.a+' '+x.s+' '+x.b)+'</option>'}).join('')+'</select></div><div id="v53matchstats"></div>';
+  var sel=el('v53match');function draw(){var x=gamesPlayed.find(function(m){return m.id===sel.value})||gamesPlayed[0],go=x.s.split('-').map(Number),pts=go[0]===go[1]?[1,1]:go[0]>go[1]?[3,0]:[0,3];
+   el('v53matchstats').innerHTML='<div class="v53-row"><div class="v53-box"><span class="v53-mini-title">RISULTATO UFFICIALE</span><div class="score">'+esc(x.a+' '+x.s+' '+x.b)+'</div><small>'+(cop?'Champions Cup · Girone '+esc(x.gir):'Campionato')+' · '+x.day+'ª giornata</small></div><div class="v53-box"><span class="v53-mini-title">DATI LEGHE FANTACALCIO</span><div class="score">'+dec(x.fp1)+' <em>–</em> '+dec(x.fp2)+'</div><small>Fantapunti · Fonte Leghe Fantacalcio</small></div></div><p class="v53-muted">'+(cop?'Punti assegnati nel girone: ':'Punti in classifica: ')+esc(x.a)+' '+pts[0]+' · '+esc(x.b)+' '+pts[1]+'.</p>';
+  }sel.onchange=draw;draw();
+ }
+ function switchTo(part){active=part;buttons.querySelectorAll('button').forEach(function(b){b.setAttribute('aria-selected',String(b.dataset.view===part))});if(part==='compare')compare();else center()}
+ buttons.addEventListener('click',function(e){var b=e.target.closest('button[data-view]');if(b)switchTo(b.dataset.view)});
+ new MutationObserver(function(){switchTo(active)}).observe(document.body,{attributes:true,attributeFilter:['data-mode']});
+ switchTo('compare');
 }
 function annual(){
 var tgt=el('v53annual');if(!tgt)return;var g=latest(),r=ranks(g&&g.n||0),gamesPlayed=allFinished(),teams=D.teams||[];
@@ -359,9 +383,12 @@ render();
 function sigla(t){var w=String(t).replace(/^the\s+/i,'').split(/\s+/);return (w[0]||'').slice(0,3).toUpperCase()}
 function schede(){var nav=document.querySelector('.giornata-nav'),panel=document.querySelector('.grid>aside.panel'),board=document.querySelector('.grid>section');if(!nav||!panel||!board)return;
  var campo=el('campo-link'),q=new URLSearchParams(location.search),sez=q.get('sezione')==='risultati'?'risultati':'classifica';
+  if(q.get('sezione')==='numeri')return; /* 6.5: mantiene la barra originale con Numeri; v65/numeri.js gestisce il contenuto */
+  var numeri=nav.querySelector('a[data-v65-numeri]');
  nav.innerHTML='';nav.className='giornata-nav v55-schede';nav.setAttribute('role','tablist');nav.setAttribute('aria-label','Sezioni del Tabellone');
  [['classifica','Classifica'],['risultati','Risultati']].forEach(function(x){var b=document.createElement('button');b.type='button';b.dataset.sez=x[0];b.textContent=x[1];b.setAttribute('role','tab');nav.appendChild(b)});
  if(campo){campo.textContent='Campo';campo.removeAttribute('aria-current');nav.appendChild(campo)}
+  if(numeri)nav.appendChild(numeri);
  var striscia=document.createElement('button');striscia.type='button';striscia.className='v55-striscia';striscia.setAttribute('aria-label','Risultati della giornata: apri i Risultati');panel.insertBefore(striscia,panel.firstChild);
  function riempi(){var ms=[].slice.call(document.querySelectorAll('#board>.m:not(.ko)'));striscia.hidden=!ms.length;striscia.innerHTML='<span class="v55-st-tit">'+esc(((document.querySelector('#board>.nota')||{}).textContent||'Risultati'))+'</span>'+ms.map(function(m){var t=m.querySelectorAll('.t span'),sc=m.querySelectorAll('.sc b');return '<span class="v55-st-m"><b>'+esc(sigla(t[0]?t[0].textContent:''))+'</b><i>'+esc(sc[0]?sc[0].textContent:'–')+'–'+esc(sc[1]?sc[1].textContent:'–')+'</i><b>'+esc(sigla(t[1]?t[1].textContent:''))+'</b></span>'}).join('')+'<span class="v55-st-vai">Risultati ›</span>'}
  riempi();var bd=el('board');if(bd&&window.MutationObserver)new MutationObserver(riempi).observe(bd,{childList:true});

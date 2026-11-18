@@ -1,6 +1,6 @@
 <!doctype html>
 <html lang="it">
-<head><script src="../../tv.js?v=624"></script>
+<head><script src="../../temi/evento-loader.js?v=65"></script><script src="../../tv.js?v=624"></script>
 <script src="../../nomi.js"></script><script>document.documentElement.classList.add("v55-attesa");setTimeout(function(){document.documentElement.classList.remove("v55-attesa")},1500)</script>
 
 <script src="ospite.js?v=1"></script>
@@ -86,7 +86,7 @@ body[data-mode=coppa] .sw i{transform:translateX(100%)}
 .rip{font-weight:700;font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:var(--sub);margin:4px 2px 0}
 .nota{font-weight:700;font-size:13px;letter-spacing:.12em;text-transform:uppercase;color:var(--sub);margin:0 2px 12px}
 .panel h3{font-weight:900;font-size:15px;letter-spacing:.34em;color:var(--hi);margin:0 0 8px}
-.panel h3:not(:first-child){margin-top:22px}
+.panel h3:not(:first-child){margin-top:22px}.panel .swap h3{letter-spacing:.015em}
 table{width:100%;border-collapse:collapse;font-size:clamp(14px,2vw,19px);font-weight:700}
 th{font-size:11px;letter-spacing:.16em;color:var(--sub);text-align:right;padding:0 6px 6px;font-weight:800}
 th:nth-child(2){text-align:left}
@@ -109,7 +109,7 @@ tr{animation:in .45s both}
 .err{padding:30px;text-align:center;font-weight:700}
 .foot{margin-top:14px;text-align:center;font-size:12px;color:var(--sub);opacity:.8}
 body::before{content:'';position:fixed;inset:-120px;z-index:-1;pointer-events:none;background:repeating-linear-gradient(115deg,rgba(255,255,255,.04) 0 36px,transparent 36px 72px);animation:strisce 9s linear infinite}
-@keyframes strisce{to{transform:translate3d(79.45px,0,0)}}
+@keyframes strisce{from{transform:translate3d(-79.45px,0,0)}to{transform:none}}
 @media (prefers-reduced-motion:reduce){body::before{animation:none}}
 
 /* ChatGPT: forma nelle ultime cinque partite */
@@ -192,7 +192,7 @@ body::before{content:'';position:fixed;inset:-120px;z-index:-1;pointer-events:no
 <script src="pub.js"></script>
 <style>img.shield[alt="O Fant A Girrr"]{cursor:pointer}</style><script>document.addEventListener("click",function(e){var i=e.target.closest&&e.target.closest('img.shield[alt="O Fant A Girrr"]');if(i&&!i.closest("a"))location.href="index.html"})</script>
 <script src="novita-dati.js?v=1792337985"></script>
-<script src="transizioni.js"></script>
+<script src="transizioni.js?v=65"></script>
 <style>.sqb{display:flex;align-items:center;gap:10px;margin:14px 0 0;max-width:440px;padding:11px 16px;border-radius:16px;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.16);color:inherit;text-decoration:none}.sqb span{font-size:20px}.sqb b{font-weight:800}.sqb i{font-style:normal;font-size:12px;opacity:.75;margin-left:auto}</style>
 <style>@media(min-width:1500px){.wrap{max-width:1380px}}</style>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lobster&display=swap" media="print" onload="this.media='all'"><noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lobster&display=swap"></noscript>
@@ -239,8 +239,8 @@ h1{font-size:clamp(30px,6vw,48px)!important}
 
 </style>
 <script>window.goatcounter={path:function(){return location.pathname},no_onload:/[?&]demo/.test(location.search)}</script>
-<script data-goatcounter="https://djcosta18.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script><link rel="stylesheet" href="../../girrr/v55/ui.css?v=55r10"><script src="../../girrr/v55/destinazioni55.js?v=55r8" defer></script><script src="../../girrr/v55/ui.js?v=621" defer></script><script src="../../offline.js" defer></script>
-<script src="../../condividi.js?v=623" defer></script>
+<script data-goatcounter="https://djcosta18.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script><link rel="stylesheet" href="../../girrr/v55/ui.css?v=65fix"><script src="../../girrr/v55/destinazioni55.js?v=65" defer></script><script src="../../girrr/v55/ui.js?v=65" defer></script><script src="../../offline.js" defer></script>
+<script src="../../condividi.js?v=65fix" defer></script>
 <style>/* 6.2: la tua partita con un leggero velo oro */#board>.m.tua{position:relative;background-image:linear-gradient(90deg,rgba(255,209,102,.17),rgba(255,209,102,.05))!important}#board>.m.tua::before{content:'La tua partita';position:absolute;top:6px;left:18px;font:900 9px/1 Inter,system-ui,sans-serif;letter-spacing:.12em;text-transform:uppercase;color:#ffd166}</style><style>/* 6.2 · Stadio tutto oro (Gianluca, 15 novembre): accento oro in Campionato e Coppa, sfondi azzurrati e rosati invariati; testo scuro sull'oro */body,body[data-mode]{--acc:#ffd166;--hi:#ffd166}.sw button[aria-selected=true],.chips button.sel,tr.pod td.p{color:#1d2a52;transition:color .3s ease .15s}body .v55-schede>button[aria-selected=true],body[data-mode=coppa] .v55-schede>button[aria-selected=true]{background:#ffd166;color:#1d2a52}</style></head>
 <body data-mode="lega" data-v53="board" data-v53-skin="stadio">
 <div class="wrap">
@@ -251,14 +251,14 @@ h1{font-size:clamp(30px,6vw,48px)!important}
     <div class="crossfade"><img class="tv" src="../../assets/loghi/logo-tv-girrr-sport-live.png" alt=""><img class="tv" src="../../assets/loghi/logo-tv-cup-girrr-live.png" alt=""><i class="rec r1"></i><i class="rec r2"></i></div>
   </header>
   <a class="sqb" href="squadre.html"><span>🛡️</span><b>Le squadre</b><i>Rosa, risultati e forma di ognuno ›</i></a>
-  <nav class="giornata-nav" aria-label="Giornata"><a aria-current="page" href="tabellone.html">Risultati e classifica</a><a id="campo-link" href="campo.html">Campo · Centro della giornata ›</a></nav><div class="sw" role="tablist"><i></i><button data-m="lega" role="tab">Campionato</button><button data-m="coppa" role="tab">Champions Cup</button></div>
+  <nav class="giornata-nav" aria-label="Sezioni del Tabellone"><a href="tabellone.html?sezione=risultati">Risultati</a><a href="tabellone.html?sezione=classifica">Classifica</a><a id="campo-link" href="campo.html">Campo</a><a href="tabellone.html?sezione=numeri" data-v65-numeri>Numeri</a></nav><div class="sw" role="tablist"><i></i><button data-m="lega" role="tab">Campionato</button><button data-m="coppa" role="tab">Champions Cup</button></div>
   <div class="gs"><button class="ar" id="prev" aria-label="Giornata precedente">‹</button><div class="chips" id="chips"></div><button class="ar" id="next" aria-label="Giornata successiva">›</button></div>
   <div class="grid">
-    <section><div class="swap" id="board"></div><section class="v53 v53-extras v53-panel" id="v53board">
- <div class="v53-sectionhead"><div><div class="v53-kicker">APPROFONDIMENTI</div><h2>Dentro la partita</h2><div class="v53-sub">Il Tabellone sopra resta identico, con le sue giornate e statistiche.</div></div></div>
- <div id="v53boardtabs" class="v53-pills" role="tablist" aria-label="Approfondimenti del Tabellone"><button class="v53-pill" data-view="compare" aria-selected="true">Confronta le giornate</button><button class="v53-pill" data-view="center" aria-selected="false">Centro partita</button></div>
- <div id="v53boardcontent" class="v53-board"><div class="v53-empty">Carico gli approfondimenti…</div></div>
-</section></section>
+    <section><div class="swap" id="board"></div><details class="v53 v53-extras v53-panel" id="v53board">
+ <summary class="v53-sectionhead"><span><span class="v53-kicker">APPROFONDIMENTI</span><strong style="display:block;font-size:21px">Dentro la partita</strong><span class="v53-sub">Statistiche e confronto della competizione scelta.</span></span><span class="v65-arrow" aria-hidden="true">⌄</span></summary>
+ <div class="v65-body"><div id="v53boardtabs" class="v53-pills" role="tablist" aria-label="Approfondimenti"><button class="v53-pill" data-view="compare" aria-selected="true">Confronta le giornate</button><button class="v53-pill" data-view="center" aria-selected="false">Centro partita</button></div>
+ <div id="v53boardcontent" class="v53-board"><div class="v53-empty">Carico gli approfondimenti…</div></div></div>
+</details></section>
     <aside class="panel"><div class="swap" id="tab"></div><details class="reg"><summary>Regole</summary><h4>Punti e classifica</h4><p>Vittoria 3 punti, pareggio 1, sconfitta 0. In classifica contano prima i punti, poi i Fantapunti totali.</p><h4>I gol</h4><p>Il primo gol arriva a 66 punti, poi uno in più ogni 5 punti: 71 vale due gol, 76 tre e così via. Al punteggio si aggiunge il modificatore della difesa.</p><h4>Le colonne</h4><p>G giocate, V vittorie, N pareggi, P sconfitte, GF gol fatti, GS gol subiti, DR differenza reti, Pt punti. Sul telefono in verticale si vedono DR, Pt e Fantapunti; girando il telefono o da computer si vede tutto.</p><h4>Champions Cup</h4><p>Due gironi da cinque squadre: ogni giornata una squadra per girone riposa. Dieci giornate, otto partite a testa. Le prime quattro di ogni girone vanno ai quarti (11ª giornata), poi semifinali (12ª) e finale (13ª). I gol si contano come in campionato.</p><h4>Derby e sfide</h4><p>«Derby» sopra una partita vuol dire Derby ufficiale: votato dai più o nato da una sfida accettata in conferenza stampa. Nelle ultime dieci giornate compaiono anche «Sfida scudetto» (1ª contro 2ª), «Sfida podio» (3ª contro 4ª) e «Sfida retrocessione» (le ultime due).</p></details></aside>
   </div>
   <div class="sp"><span>Gentilmente offerto da</span><div class="lg"><img src="../../assets/loghi/sponsor-birra-contropiede.png" alt=""><img src="../../assets/loghi/sponsor-pizzeria-fuorigioco.png" alt=""><img src="../../assets/loghi/sponsor-bomber-gym-club.png" alt=""><img src="../../assets/loghi/sponsor-amaro-del-mister.png" alt=""></div></div>
@@ -420,5 +420,6 @@ var a=L.slice();for(var i=a.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+
 var e=document.querySelector('.sp .lg');if(e)e.innerHTML=a.slice(0,4).map(function(n){return '<img src="../../assets/loghi/'+n+'.png" alt="">'}).join('')})();
 </script>
 <script src="../../assets/app.js"></script>
+<script src="../../girrr/v65/numeri.js?v=65fix" defer></script>
 </body>
 </html>
