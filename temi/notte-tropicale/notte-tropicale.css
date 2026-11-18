@@ -818,3 +818,20 @@
 @media (prefers-reduced-motion: reduce){:root[data-event-theme="notte-tropicale"] .hero h1 i.nt-l{animation:none!important}}
 /* Versioni: il riquadro interno del messaggio resta dentro quello obliquo (Gianluca, 18 novembre) */
 :root[data-event-theme="notte-tropicale"] .vv-v .vv-c{margin-left:22px!important;margin-right:22px!important;margin-bottom:16px!important;box-sizing:border-box;max-width:calc(100% - 44px)!important}
+
+/* 6.5.1 · Campo: le due competizioni seguono la forma squadrata/obliqua della 6.5,
+   senza cambiare la scelta Campionato/Champions Cup e i relativi colori. */
+:root[data-event-theme="notte-tropicale"] body[data-v53="campo"] .comp-sw.comp-sw {
+  border-radius:12px!important;padding:5px!important;
+  transform:skewX(-10deg);
+  background:var(--nt-fila)!important;
+  box-shadow:inset 0 0 0 1px var(--nt-bordo)!important;
+}
+:root[data-event-theme="notte-tropicale"] body[data-v53="campo"] .comp-sw.comp-sw i {
+  top:5px;bottom:5px;left:5px;width:calc(50% - 5px);
+  border-radius:5px!important;
+}
+:root[data-event-theme="notte-tropicale"] body[data-v53="campo"] .comp-sw.comp-sw button {
+  border-radius:5px!important;transform:skewX(10deg);
+  font-style:italic!important;
+}
