@@ -65,7 +65,10 @@
     }
     if (ev.escludi && ev.escludi.test(location.pathname)) { window.OGirrrEvento = Object.freeze({ attivo: null, modo: modo || 'auto', ora: ora.toISOString(), escluso: ev.id }); return; }
     var h = document.documentElement;
-    h.setAttribute('data-event-theme', ev.id);
+    /* 6.5: solamente la Home della Lega entra con la Nuvola. Le altre pagine non cambiano. */
+    var homeB = ev.id === 'notte-tropicale' && /\/girrr\/(?:index\.html)?$/.test(path);
+    if (homeB) h.classList.add('girrr-b-senza-barra');
+    else h.setAttribute('data-event-theme', ev.id);
     /* variante dello sfondo (Notte Tropicale): ?evento-sfondo=notte|tramonto|scena; senza, la foto predefinita del tema, ricordata per la sessione */
     var sf = q.get('evento-sfondo');
     if (sf) { try { sessionStorage.setItem(K + '-sfondo', sf); } catch (e) {} } else { try { sf = sessionStorage.getItem(K + '-sfondo'); } catch (e) {} }
@@ -102,8 +105,9 @@
     }
     var l = document.createElement('link');
     l.rel = 'stylesheet'; l.href = new URL(ev.css, base).href; l.setAttribute('data-evento', ev.id);
-    l.onerror = function () { h.removeAttribute('data-event-theme'); pronto(); };
-    l.addEventListener('load', pronto);   /* senza CSS niente tema a metà */
+    var cssTemaOK = false, cssTemaFallito = false;
+    l.onerror = function () { cssTemaFallito = true; h.removeAttribute('data-event-theme'); h.removeAttribute('data-evento-primo'); h.classList.remove('girrr-b-senza-barra'); pronto(); };
+    l.addEventListener('load', function () { cssTemaOK = true; pronto(); });   /* senza CSS niente tema a metà */
     (document.head || h).appendChild(l);
     /* Regola fissa di Gianluca (18 novembre 2026), per TUTTE le skin: l'avviso della nuova versione
        («È uscita la …») sta sempre in cima alla Home, subito sotto il titolo e sopra ogni altro blocco. */
@@ -112,9 +116,65 @@
       'html[data-event-theme] body[data-v53="home"] .wrap>.vv-avviso{order:-1!important;margin-top:0!important}';
     (document.head || h).appendChild(r);
     /* script facoltativo del tema (per esempio la barra in basso di Notte Tropicale): parte dopo il CSS, se il CSS non arriva no */
-    if (ev.js) {
-      var s = document.createElement('script'); s.src = new URL(ev.js, base).href; s.async = true; s.setAttribute('data-evento', ev.id);
-      l.addEventListener('load', function () { (document.head || h).appendChild(s); });
+    function caricaScriptTema(fine) {
+      if (!ev.js) { if (fine) fine(); return; }
+      var s = document.createElement('script'); s.src = new URL(ev.js, base).href;
+      s.async = true; s.setAttribute('data-evento', ev.id);
+      if (fine) { s.onload = fine; s.onerror = fine; }
+      (document.head || h).appendChild(s);
+    }
+    if (!homeB) {
+      if (ev.js) l.addEventListener('load', function () { caricaScriptTema(); });
+    } else {
+      var bPronto = false, bFunziona = true, domPronto = document.readyState !== 'loading';
+      var haCopertina = false, copertinaChiusa = true, partito = false;
+      try { haCopertina = localStorage.getItem('nt_entrata_vista') !== '1'; } catch (e) { haCopertina = true; }
+      copertinaChiusa = !haCopertina;
+      document.addEventListener('nt-copertina-chiusa', function () {
+        copertinaChiusa = true; verifica();
+      }, { once: true });
+      function verifica() {
+        if (partito || !cssTemaOK || cssTemaFallito || !bPronto || !domPronto || !copertinaChiusa) return;
+        partito = true;
+        h.setAttribute('data-intro-state', 'grafica-originale');
+        var ridotto = false;
+        try { ridotto = matchMedia('(prefers-reduced-motion: reduce)').matches; } catch (err) {}
+        function accendi(prontoB) {
+          h.setAttribute('data-event-theme', ev.id);
+          caricaScriptTema(prontoB);
+        }
+        function completo() { h.setAttribute('data-intro-state', 'completo'); }
+        if (ridotto || !bFunziona || !window.OGirrrEntrataB) {
+          accendi(); h.classList.remove('girrr-b-senza-barra'); completo(); return;
+        }
+        setTimeout(function () {
+          if (!window.OGirrrEntrataB) { accendi(); h.classList.remove('girrr-b-senza-barra'); completo(); return; }
+          h.setAttribute('data-intro-state', 'transizione');
+          try {
+            window.OGirrrEntrataB.avvia('nuvola', function (prontoB) {
+              accendi(prontoB);
+            }, completo);
+          } catch (err) { accendi(); h.classList.remove('girrr-b-senza-barra'); completo(); }
+        }, 1000);
+      }
+      if (!domPronto) document.addEventListener('DOMContentLoaded', function () { domPronto = true; verifica(); }, { once: true });
+      l.addEventListener('load', verifica);
+      var bCss = document.createElement('link'); bCss.rel = 'stylesheet';
+      bCss.href = new URL('notte-tropicale/entrata-b/entrata-b.css', base).href;
+      bCss.onerror = function () { bFunziona = false; };
+      (document.head || h).appendChild(bCss);
+      var bJs = document.createElement('script'); bJs.src = new URL('notte-tropicale/entrata-b/entrata-b.js', base).href;
+      bJs.async = true;
+      bJs.onload = function () { bPronto = true; verifica(); };
+      bJs.onerror = function () { bFunziona = false; bPronto = true; verifica(); };
+      (document.head || h).appendChild(bJs);
+      if (haCopertina) {
+        var ingresso = document.createElement('script');
+        ingresso.src = new URL('notte-tropicale/entrata.js', base).href;
+        ingresso.async = true; ingresso.setAttribute('data-nt-entrata', '');
+        ingresso.onerror = function () { copertinaChiusa = true; h.removeAttribute('data-evento-primo'); verifica(); };
+        (document.head || h).appendChild(ingresso);
+      }
     }
   } catch (err) { try { document.documentElement.removeAttribute('data-event-theme'); } catch (e2) {} }
 })();

@@ -10,7 +10,7 @@
   'use strict';
   var h = document.documentElement, ID = 'notte-tropicale', CHIAVE = 'nt_entrata_vista';
   function avvia() {
-    if (!document.body || document.body.getAttribute('data-v53') !== 'home' || h.getAttribute('data-event-theme') !== ID ||
+    if (!document.body || document.body.getAttribute('data-v53') !== 'home' || (h.getAttribute('data-event-theme') !== ID && !h.classList.contains('girrr-b-senza-barra')) ||
         h.getAttribute('data-nt-entrata-avviata')) return;
     var prova = /(?:localhost|127\.0\.0\.1)$/.test(location.hostname) && new URLSearchParams(location.search).get('entrata-prova') === '1';
     var vista = false; try { vista = localStorage.getItem(CHIAVE) === '1'; } catch (e) {}
@@ -61,30 +61,15 @@
       if (chiusa) return; chiusa = true;
       try { localStorage.setItem(CHIAVE, '1'); } catch (e) {}
       document.removeEventListener('keydown', tasto);
-      /* 1. sotto la copertina torna la grafica di sempre */
-      h.removeAttribute('data-event-theme'); h.setAttribute('data-nt-prima', '1');
+      /* 6.5: la copertina lascia la Home originale; il caricatore accende la skin con la Nuvola. */
       h.removeAttribute('data-evento-primo');
-      try { window.scrollTo(0, 0); } catch (e) {}
-      /* 2. la copertina svanisce */
+      try { window.scrollTo(0, 0); } catch (err) {}
       ov.classList.add('nt-ingresso-uscita');
       setTimeout(function () {
         ov.remove();
-        /* 3. la nuova grafica entra con la tendina */
-        setTimeout(accendi, ridotto ? 0 : 650);
+        document.dispatchEvent(new Event('nt-copertina-chiusa'));
       }, ridotto ? 0 : 600);
     }
-    function accendi() {
-      function cambia() { h.setAttribute('data-event-theme', ID); h.removeAttribute('data-nt-prima'); }
-      if (!ridotto && document.startViewTransition) {
-        h.classList.add('nt-tendina');
-        var t = document.startViewTransition(cambia);
-        t.finished.then(fine, fine);
-      } else if (!ridotto) {
-        document.body.style.transition = 'opacity .35s ease'; document.body.style.opacity = '0';
-        setTimeout(function () { cambia(); document.body.style.opacity = '1'; setTimeout(fine, 400); }, 360);
-      } else { cambia(); fine(); }
-    }
-    function fine() { h.classList.remove('nt-tendina'); document.body.style.transition = ''; document.body.style.opacity = ''; }
     function tasto(e) { if (e.key === 'Enter' || e.key === 'Escape') { e.preventDefault(); continua(); } }
     vai.addEventListener('click', continua);
     document.addEventListener('keydown', tasto);
