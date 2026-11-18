@@ -835,3 +835,9 @@
   border-radius:5px!important;transform:skewX(10deg);
   font-style:italic!important;
 }
+
+/* Changelog di Versioni: riquadri viola più piccoli, il titolo dell'area non tocca il bordo (Gianluca, 19 novembre) */
+:root[data-event-theme="notte-tropicale"] .vv-v .vv-area.nt-obl.nt-obl{padding:12px 14px 10px 24px!important;margin:0 0 10px!important}
+:root[data-event-theme="notte-tropicale"] .vv-v .vv-area h4{margin:0 0 6px!important}
+:root[data-event-theme="notte-tropicale"] .vv-v .vv-area :is(li,p){font-size:13px!important;line-height:1.45!important;margin:0 0 4px!important}
+:root[data-event-theme="notte-tropicale"] .vv-v .vv-area ul{margin:0!important;padding-left:18px!important}
