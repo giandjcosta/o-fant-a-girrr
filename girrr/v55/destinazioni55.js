@@ -2,7 +2,7 @@
 (function(){
 'use strict';
 /* Claude, rilascio 5.5: indirizzi delle pagine. Nell'Anteprima «tabellone-lega.html»; sul sito vero (/o-fant-a-girrr/) «girrr/tabellone.html» e «stadio/girrr/tabellone.html». */
-window.OG55=window.OG55||(function(){var sito=/^\/o-fant-a-girrr\//.test(location.pathname),base=new URL('/o-fant-a-girrr/',location.href).href,
+window.OG55=window.OG55||(function(){/* 6.5 (Claude): la base degli indirizzi si ricava anche dalla posizione di questo file (girrr/v55/), così i link funzionano anche in una copia di prova fuori da /o-fant-a-girrr/. Sul sito vero il risultato è identico a prima. */var cs65=document.currentScript,vero65=/^\/o-fant-a-girrr\//.test(location.pathname),sb65=cs65&&/\/girrr\/v55\/destinazioni55\.js/.test(cs65.src)?new URL('../../',cs65.src):null,sito=vero65||!!(sb65&&location.pathname.indexOf(sb65.pathname)===0&&/^(stadio\/)?girrr\/[^\/]*$/.test(location.pathname.slice(sb65.pathname.length))),base=vero65||!sb65?new URL('/o-fant-a-girrr/',location.href).href:sb65.href,
  file={index:'index.html',tabellone:'tabellone.html',campo:'campo.html',curva:'curva.html',notifiche:'notifiche.html',albo:'app.html',app:'app.html',totogirrr:'totogirrr.html'};
  function dir(sk){return base+(sk==='lega'?'girrr/':'stadio/girrr/')}
  return {sito:sito,dir:dir,pagina:function(which,sk,root){if(sito)return dir(sk)+(file[which]||which+'.html');

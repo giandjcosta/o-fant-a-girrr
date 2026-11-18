@@ -49,15 +49,17 @@
     /* Grafica unica: durante l'evento tutti vedono le pagine della Lega con il tema sopra, e l'interruttore Lega/Stadio sparisce.
        Chi aveva scelto Stadio (orr_gv = n) se lo ritrova da solo quando l'evento finisce: la scelta è messa da parte, non persa. */
     var GV = 'orr_gv', GVP = 'orr_gv_prima_evento', path = location.pathname;
+    /* Mentre si passa da una pagina all'altra (Stadio → Lega) non si deve vedere la grafica di prima */
+    function nascondi() { try { document.documentElement.style.visibility = 'hidden'; } catch (e) {} }
     function ls(k, v) { try { if (v === undefined) return localStorage.getItem(k); if (v === null) localStorage.removeItem(k); else localStorage.setItem(k, v); } catch (e) {} return null; }
     if (!ev || modo === 'off') {
       var prima = ls(GVP);
-      if (prima) { ls(GV, prima); ls(GVP, null); if (prima === 'n' && /\/girrr\//.test(path) && !/\/stadio\/girrr\//.test(path)) { location.replace(path.replace('/girrr/', '/stadio/girrr/') + location.search + location.hash); } }
+      if (prima) { ls(GV, prima); ls(GVP, null); if (prima === 'n' && /\/girrr\//.test(path) && !/\/stadio\/girrr\//.test(path)) { nascondi(); location.replace(path.replace('/girrr/', '/stadio/girrr/') + location.search + location.hash); } }
       return;
     }
     if (ev.unica) {
       if (ls(GV) === 'n') { ls(GVP, 'n'); ls(GV, 'a'); }
-      if (/\/stadio\/girrr\//.test(path)) { location.replace(path.replace('/stadio/girrr/', '/girrr/') + location.search + location.hash); return; }
+      if (/\/stadio\/girrr\//.test(path)) { nascondi(); location.replace(path.replace('/stadio/girrr/', '/girrr/') + location.search + location.hash); return; }
     }
     if (ev.escludi && ev.escludi.test(location.pathname)) { window.OGirrrEvento = Object.freeze({ attivo: null, modo: modo || 'auto', ora: ora.toISOString(), escluso: ev.id }); return; }
     var h = document.documentElement;
@@ -70,9 +72,20 @@
     var ex = q.get('evento-extra');
     if (ex) { try { sessionStorage.setItem(K + '-extra', ex); } catch (e) {} } else { try { ex = sessionStorage.getItem(K + '-extra'); } catch (e) {} }
     if (ex && ex !== 'no') h.setAttribute('data-event-extra', ex.split(',').filter(function (v) { return /^[a-z-]{1,20}$/.test(v); }).join(' '));
+    /* Niente grafica vecchia mentre arriva la skin (Gianluca, 18 novembre 2026): finché il suo CSS non è caricato la pagina
+       resta coperta dal colore della skin, poi compare con una dissolvenza breve. Al massimo 3 s, poi si mostra comunque. */
+    var cop = document.createElement('style'); cop.setAttribute('data-evento-regola', 'copri-mentre-carica');
+    cop.textContent = 'html[data-event-theme]:not(.evento-pronto){background:' + (ev.colore || '#120626') + '!important}' +
+      'html[data-event-theme]:not(.evento-pronto) body{opacity:0!important}' +
+      'html.evento-pronto body{transition:opacity .22s ease}' +
+      '@media (prefers-reduced-motion: reduce){html.evento-pronto body{transition:none}}';
+    (document.head || h).appendChild(cop);
+    var pronto = function () { if (!h.classList.contains('evento-pronto')) requestAnimationFrame(function () { h.classList.add('evento-pronto'); }); };
+    setTimeout(pronto, 3000);
     var l = document.createElement('link');
     l.rel = 'stylesheet'; l.href = new URL(ev.css, base).href; l.setAttribute('data-evento', ev.id);
-    l.onerror = function () { h.removeAttribute('data-event-theme'); };   /* senza CSS niente tema a metà */
+    l.onerror = function () { h.removeAttribute('data-event-theme'); pronto(); };
+    l.addEventListener('load', pronto);   /* senza CSS niente tema a metà */
     (document.head || h).appendChild(l);
     /* Regola fissa di Gianluca (18 novembre 2026), per TUTTE le skin: l'avviso della nuova versione
        («È uscita la …») sta sempre in cima alla Home, subito sotto il titolo e sopra ogni altro blocco. */
