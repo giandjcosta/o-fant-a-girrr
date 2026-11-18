@@ -41,7 +41,7 @@ h3{font-weight:900;font-size:14px;letter-spacing:.34em;color:var(--hi);margin-bo
 .it small{display:block;margin-top:4px;color:var(--sub);font-size:12px}
 .empty{padding:30px;text-align:center;color:var(--sub);font-weight:700}
 body::before{content:'';position:fixed;inset:-120px;z-index:-1;pointer-events:none;background:repeating-linear-gradient(115deg,rgba(255,255,255,.04) 0 36px,transparent 36px 72px);animation:strisce 9s linear infinite}
-@keyframes strisce{to{transform:translate3d(79.45px,0,0)}}
+@keyframes strisce{from{transform:translate3d(-79.45px,0,0)}to{transform:none}}
 @media (prefers-reduced-motion:reduce){body::before{animation:none}}
 </style>
 <link rel="manifest" href="../../manifest.webmanifest">
