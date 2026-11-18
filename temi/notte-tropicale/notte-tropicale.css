@@ -818,10 +818,6 @@
 @media (prefers-reduced-motion: reduce){:root[data-event-theme="notte-tropicale"] .hero h1 i.nt-l{animation:none!important}}
 /* Versioni: il riquadro interno del messaggio resta dentro quello obliquo (Gianluca, 18 novembre) */
 :root[data-event-theme="notte-tropicale"] .vv-v .vv-c{margin-left:22px!important;margin-right:22px!important;margin-bottom:16px!important;box-sizing:border-box;max-width:calc(100% - 44px)!important}
-/* Versioni · Changelog: riquadri viola più piccoli, il titolo dell'area non tocca il bordo (Gianluca, 19 novembre) */
-:root[data-event-theme="notte-tropicale"] .vv-v .vv-area.nt-obl.nt-obl{padding:12px 14px 10px 24px!important;margin:0 0 10px!important}
-:root[data-event-theme="notte-tropicale"] .vv-v .vv-area h4{margin:0 0 6px!important}
-:root[data-event-theme="notte-tropicale"] .vv-v .vv-area :is(li,p){font-size:13px!important;line-height:1.45!important;margin:0 0 4px!important}
-:root[data-event-theme="notte-tropicale"] .vv-v .vv-area ul{margin:0!important;padding-left:18px!important}
+/* Versioni · Messaggio: testo e margini proporzionati al riquadro del 6.5 (Gianluca, 19 novembre) */
 :root[data-event-theme="notte-tropicale"] .vv-v .vv-c,:root[data-event-theme="notte-tropicale"] .vv-v .vv-c :is(p,span,b,strong,div){font-size:14px!important}
 :root[data-event-theme="notte-tropicale"] .vv-v .vv-c{line-height:1.5!important;padding-top:14px!important;padding-bottom:14px!important}
