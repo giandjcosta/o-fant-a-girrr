@@ -791,6 +791,11 @@
   :root[data-event-theme="notte-tropicale"] :is(.hero h1,.top h1,header h1){animation:none!important}
 }
 
+/* Tabellone: le quattro schede (Classifica, Risultati, Campo, Numeri) su una riga; Numeri accesa quando ci sei (Gianluca, 19 novembre) */
+:root[data-event-theme="notte-tropicale"] body .giornata-nav.giornata-nav.giornata-nav:has(> :nth-child(4)){flex-wrap:nowrap!important;gap:6px!important;overflow:hidden!important}
+:root[data-event-theme="notte-tropicale"] body .giornata-nav.giornata-nav.giornata-nav:has(> :nth-child(4)) > :is(button,a){flex:1 1 0!important;min-width:0!important;padding:12px 4px!important;white-space:nowrap!important;justify-content:center!important;text-align:center!important}
+@media (max-width:480px){:root[data-event-theme="notte-tropicale"] body .giornata-nav.giornata-nav.giornata-nav:has(> :nth-child(4)) > :is(button,a){font-size:13px!important}}
+:root[data-event-theme="notte-tropicale"] body .giornata-nav.giornata-nav.giornata-nav > a[aria-current]{--nt-tab-bg:linear-gradient(100deg,#ffb86b,#ff5ca8 55%,#e8364f)!important;color:#22052e!important}
 /* 6.5 · Girrr Sport e Carriera su PC (Gianluca, 18 novembre sera) */
 /* Giornale: la copertina resta dentro il riquadro obliquo, un po' più piccola e spostata a destra */
 :root[data-event-theme="notte-tropicale"] #view .cov.gcov.nt-obl{padding-left:30px!important}

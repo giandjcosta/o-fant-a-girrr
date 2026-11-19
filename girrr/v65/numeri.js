@@ -10,12 +10,17 @@ var style=document.createElement('style');style.textContent=
 '#v65numeri{padding:18px;margin:12px 0;background:rgba(20,32,65,.7);color:#fbf6ec;border:1px solid #ffffff35;border-left:8px solid #d62839;border-radius:16px;overflow-wrap:anywhere}'
 +'body[data-mode=coppa] #v65numeri{border-left-color:#3d93d6}body[data-v53-skin=stadio] #v65numeri{border-left-color:#ffd166}'
 +'#v65numeri h2{font-size:clamp(21px,4vw,30px);margin:0 0 8px}#v65numeri p{font-size:13px;color:#bfe3ff}'
-+'.v65-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,220px),1fr));gap:10px}'
-+'.v65-metric{background:#ffffff0a;border:1px solid #ffffff30;border-radius:12px;padding:14px;min-width:0}'
-+'.v65-metric small{font-size:12px;color:#bfe3ff;display:block}.v65-metric b{font-size:clamp(18px,3vw,25px);display:block;overflow-wrap:anywhere}'
++'.v65-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,150px),1fr));gap:8px}'+'.giornata-nav:has(>[data-v65-numeri]){flex-wrap:nowrap!important;overflow:hidden}.giornata-nav:has(>[data-v65-numeri])>*{flex:1 1 0;min-width:0;white-space:nowrap;text-align:center;padding-left:4px!important;padding-right:4px!important}@media(max-width:480px){.giornata-nav:has(>[data-v65-numeri])>*{font-size:13px!important}}'+'#v65numeri~.grid,body:has(#v65numeri) :is(#v53board,.v55-striscia),body:has(#v65numeri) .wrap>.gs{display:none!important}'
++'.v65-metric{background:#ffffff0a;border:1px solid #ffffff30;border-radius:12px;padding:10px 12px;min-width:0}'
++'.v65-metric small{font-size:11px;color:#bfe3ff;display:block}.v65-metric b{font-size:clamp(15px,2.6vw,22px);line-height:1.2;display:block;overflow-wrap:anywhere;margin:2px 0}'
 +'.v65-metric em{font-size:11px;color:#c9d8ec;font-style:normal}'
 +'@media(max-width:359px){#v65numeri{padding:10px}}@media(prefers-reduced-motion:reduce){#v65numeri *{transition:none!important;animation:none!important}}';
 document.head.appendChild(style);
+/* 6.5 (Claude): la scheda Numeri risulta scelta; Classifica e Risultati riportano alla loro sezione */
+function schede(){var lk=nav.querySelector('a[href*="sezione=numeri"]');if(lk)lk.setAttribute('aria-current','page');
+ nav.querySelectorAll('button[data-sez]').forEach(function(b){b.setAttribute('aria-selected','false');if(b.dataset.v65)return;b.dataset.v65='1';
+  b.addEventListener('click',function(e){e.preventDefault();e.stopImmediatePropagation();location.href='tabellone.html?sezione='+b.dataset.sez},true)})}
+schede();setTimeout(schede,400);
 function E(s){return String(s).replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})}
 function F(n){return Number(n).toLocaleString('it-IT',{maximumFractionDigits:2})}
 function numeri(d,coppa){
@@ -56,6 +61,10 @@ return [
 ['Imbattute fuori',never('fuori'),'Con almeno una trasferta']
 ];
 }
+/* 6.5 (Claude): l'intestazione della pagina dice Numeri, non Risultati della giornata */
+function testa(){var coppa=document.body.getAttribute('data-mode')==='coppa',k=document.getElementById('kick'),t=document.getElementById('tit'),tt=(coppa?'Champions Cup':'Campionato')+' · Stagione 2026/27';
+ if(k&&k.textContent!=='NUMERI')k.textContent='NUMERI';if(t&&t.textContent!==tt)t.textContent=tt}
+(function(){var k=document.getElementById('kick'),t=document.getElementById('tit');testa();if(window.MutationObserver)[k,t].forEach(function(x){if(x)new MutationObserver(testa).observe(x,{childList:true,characterData:true,subtree:true})})})();
 function mostra(d){var coppa=document.body.getAttribute('data-mode')==='coppa',m=numeri(d,coppa);
 box.innerHTML='<h2>Numeri · '+(coppa?'Champions Cup':'Campionato')+'</h2><p>Stagione 2026/27 · Solo incontri conclusi. Gol del risultato, punti in classifica e Fantapunti sono dati differenti.</p><div class="v65-grid">'+m.map(function(x){return '<div class="v65-metric"><small>'+E(x[0])+'</small><b>'+E(x[1])+'</b><em>'+E(x[2])+'</em></div>'}).join('')+'</div>'}
 box.innerHTML='<h2>Numeri della stagione</h2><p>Caricamento dei risultati…</p>';
