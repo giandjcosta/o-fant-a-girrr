@@ -139,6 +139,16 @@
   transition:background-color .18s ease,color .18s ease,box-shadow .25s ease!important}
 :root[data-event-theme="notte-tropicale"] nav > .nvi button.on{background:var(--hi)!important;color:var(--bg)!important;
   box-shadow:0 0 0 2px #fff inset,0 0 18px rgba(255,79,163,.7),0 0 34px rgba(255,79,163,.3)!important}
+/* Albo d'oro: le pillole (La Storia, Le Ere, Titoli…) come le altre schede della skin, in una fila che scorre (Gianluca, 19 novembre) */
+:root[data-event-theme="notte-tropicale"] .at[role=tablist]{background:#1b0a39!important;border:1px solid var(--nt-bordo)!important;border-radius:13px!important;
+  padding:6px 8px!important;gap:8px!important;flex-wrap:nowrap!important;overflow-x:auto!important;scrollbar-width:none}
+:root[data-event-theme="notte-tropicale"] .at[role=tablist]::-webkit-scrollbar{display:none}
+:root[data-event-theme="notte-tropicale"] .at[role=tablist] > button[role=tab]{opacity:1!important;flex:0 0 auto;min-height:40px;padding:9px 16px!important;white-space:nowrap!important;
+  border:0!important;border-radius:4px!important;transform:skewX(-10deg);font-style:italic;font-weight:800!important;color:#ffeefd!important;
+  background:linear-gradient(180deg,rgba(60,22,104,.95),rgba(24,8,52,.95))!important;box-shadow:0 0 0 1px var(--nt-bordo) inset!important;
+  transition:background-color .18s ease,color .18s ease,box-shadow .25s ease!important}
+:root[data-event-theme="notte-tropicale"] .at[role=tablist] > button[role=tab][aria-selected=true]{background:linear-gradient(100deg,#ff5ca8,#bc6cff)!important;color:#fff!important;
+  box-shadow:0 0 0 2px #fff inset,0 0 18px rgba(255,79,163,.6)!important}
 /* Tabellone: Campionato/Champions Cup e Classifica/Risultati/Campo diventano tasti più alti e inclinati, con gli angoli vivi.
    Selettori rinforzati (.sw.sw) perché v55/ui.css arrotonda schede e interruttori con !important. */
 :root[data-event-theme="notte-tropicale"] body .sw.sw.sw{--g-tab:9px;--g-tabbox:12px;transform:skewX(-10deg);border-radius:12px!important;padding:5px!important;max-width:520px!important;
