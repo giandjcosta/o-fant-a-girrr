@@ -842,5 +842,7 @@
 :root[data-event-theme="notte-tropicale"] .vv-v .vv-area :is(li,p){font-size:13px!important;line-height:1.45!important;margin:0 0 4px!important}
 :root[data-event-theme="notte-tropicale"] .vv-v .vv-area ul{margin:0!important;padding-left:18px!important}
 
-/* 6.5 · Squadre / Champions Cup: i punteggi restano dentro le righe oblique su iPhone. */
-:root[data-event-theme="notte-tropicale"] #sch .card > .top5 > .g > b{margin-right:18px!important}
+/* 6.5 · Squadre: punteggi rientrati di 18px sia nei risultati del Campionato
+   (e delle partite di Coppa) sia nella classifica gironi Champions Cup. */
+:root[data-event-theme="notte-tropicale"] #sch .card > .top5 > .g > b,
+:root[data-event-theme="notte-tropicale"] #sch .card > .ris > .s{margin-right:18px!important}
