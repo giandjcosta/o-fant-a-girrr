@@ -464,7 +464,7 @@ var last=0;
 function mark(){last=Date.now()}
 document.addEventListener('pointerdown',mark,true);document.addEventListener('keydown',mark,true);document.addEventListener('click',mark,true);
 function ok(n){return n.nodeType===1&&!/^(SCRIPT|STYLE|LINK|AUDIO|VIDEO|OPTION|INPUT|SELECT|TEXTAREA)$/.test(n.tagName)&&!n.closest('.fx-in')&&!n.closest('.tabs,.seg,.at,.chips,.sw,.ptabs,select,input,textarea,button')}
-function anim(n,i){n.style.setProperty('--fxd',Math.min(i,6));n.classList.add('fx-in');n.addEventListener('animationend',function f(e){if(e.target!==n)return;n.classList.remove('fx-in');n.style.removeProperty('--fxd');n.removeEventListener('animationend',f)})}
+function anim(n,i){/* 6.5 (Claude): un elemento che ha già la sua animazione d'entrata non ne riceve una seconda: prima entrava, spariva e rientrava */if(getComputedStyle(n).animationName!=='none')return;n.style.setProperty('--fxd',Math.min(i,6));n.classList.add('fx-in');n.addEventListener('animationend',function f(e){if(e.target!==n)return;n.classList.remove('fx-in');n.style.removeProperty('--fxd');n.removeEventListener('animationend',f)})}
 function avvia(){
 new MutationObserver(function(ms){
   if(Date.now()-last>800||Date.now()-(window.__pilloleT||0)<900)return;   /* 6.5: il cambio lo anima già pillole.js */
