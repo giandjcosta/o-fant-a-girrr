@@ -2,7 +2,7 @@
 
 App web della nostra lega di fantacalcio (Classic League e Champions Cup, stagione 2026/27). Si apre dal browser e si può installare come app su PC, Android e iPhone. È un progetto tra amici: i contenuti satirici, i personaggi e le notizie sono inventati.
 
-**Apri il sito:** https://giandjcosta.github.io/o-fant-a-girrr/
+**Apri il sito:** https://giandjcosta.github.io/o-fant-a-girrr/girrr/
 
 Questo è il repository del **sito vero**. Le idee nuove si provano prima nel repository di prova [o-girrr-registro](https://github.com/giandjcosta/o-girrr-registro) (Laboratorio e Anteprima) e arrivano qui solo quando sono pronte.
 
