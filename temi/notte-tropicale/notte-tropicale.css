@@ -587,6 +587,8 @@
 :root[data-event-theme="notte-tropicale"] .v53-notifications .v53-btn.nt-tab:not(.nt-on){
   color:#fff!important;
 }
+/* Spogliatoio: il logo resta dentro la scheda obliqua dell'intestazione (Gianluca, 19 novembre) */
+:root[data-event-theme="notte-tropicale"] body:has(> .wrap > #tabs) > .wrap > header.nt-obl.nt-obl{padding-left:30px!important}
 /* Spogliatoio: nessuna alterazione dei campi e dei movimenti dei giocatori. */
 :root[data-event-theme="notte-tropicale"] #app .seg,
 :root[data-event-theme="notte-tropicale"] #app .calnav,
