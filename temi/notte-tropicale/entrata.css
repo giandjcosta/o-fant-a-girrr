@@ -81,3 +81,21 @@ html[data-nt-prima] :is(.nt-cruscotto,.nt-barra,.nt-schede,.nt-tutto-titolo){dis
 html.nt-tendina::view-transition-old(root){animation:nt-tendina-vecchia 1.15s ease both}
 html.nt-tendina::view-transition-new(root){animation:nt-tendina 1.15s cubic-bezier(.65,0,.35,1) both;filter:drop-shadow(-6px 0 10px rgba(255,76,185,.9))}
 @media(prefers-reduced-motion:reduce){html.nt-tendina::view-transition-old(root),html.nt-tendina::view-transition-new(root){animation:none!important}}
+/* PC, tablet orizzontale e TV (Gianluca, 19 novembre: «su PC non è ottimizzata»): locandina intera a sinistra,
+   titoli, date e «Continua» a destra; dietro la stessa locandina sfocata invece delle bande scure. */
+@media (min-aspect-ratio:5/4) and (min-width:760px){
+ .nt-ingresso{display:block!important}
+ .nt-ingresso .nt-ingresso-fondo{filter:blur(22px) brightness(.55) saturate(1.15)!important;transform:scale(1.12)!important}
+ .nt-ingresso::before{background:linear-gradient(90deg,rgba(7,5,28,.15) 0%,rgba(7,5,28,.35) 45%,rgba(12,5,35,.82) 100%)!important}
+ .nt-ingresso .nt-ingresso-poster{position:absolute!important;top:50%;left:max(4vw,calc(50vw - 640px));transform:translateY(-50%);
+  width:auto!important;height:min(92dvh,1100px)!important;max-height:none!important;max-width:46vw;aspect-ratio:auto;
+  object-fit:contain!important;border-radius:14px;box-shadow:0 0 0 2px rgba(255,140,205,.45),0 0 60px rgba(255,76,185,.45),0 30px 80px rgba(0,0,0,.6)!important}
+ .nt-ingresso .nt-ingresso-titoli{inset:0 0 0 auto!important;left:auto!important;width:min(52vw,1000px)!important;
+  justify-content:center!important;align-items:flex-start!important;text-align:left!important;gap:clamp(18px,3vh,40px)!important;
+  padding:0 4vw 0 2vw!important}
+ .nt-ingresso .nt-ingresso-titoli :is(strong,em){white-space:nowrap!important}
+ .nt-ingresso .nt-ingresso-titoli strong{font-size:clamp(64px,8.5vw,150px)!important;line-height:.95!important}
+ .nt-ingresso .nt-ingresso-titoli em{display:block;font-size:clamp(56px,6.5vw,124px)!important;line-height:1!important}
+ .nt-ingresso .nt-ingresso-titoli small{font-size:clamp(15px,1.3vw,24px)!important;margin-top:14px!important}
+ .nt-ingresso .nt-ingresso-continua{font-size:clamp(17px,1.4vw,26px)!important;padding:16px 38px!important;margin-top:clamp(20px,4vh,48px)!important}
+}
