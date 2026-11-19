@@ -92,7 +92,6 @@ Notizie pubbliche, senza indicare di chi e' ogni giocatore.
 | Rensch | Roma | Lesione di primo grado dell'adduttore lungo di | Seconda metà di novembre | Salta |
 | Volpato | Sassuolo | Problema muscolare alla gamba | Prossimo turno | Salta |
 | Berardi | Sassuolo | Problema fisico | Prossimo turno | Salta |
-| Fortini | Torino | Affaticamento muscolare all'adduttore | Seconda metà di novembre | In dubbio |
 | Gueye | Udinese | Problema alla caviglia a fine settembre | Fine gennaio | Salta |
 
 ## Migliori svincolati
@@ -137,7 +136,7 @@ Punteggio: piu' e' alto, piu' conviene. Unisce valore e probabilita' di giocare.
 | Robinson J. | Monza | In dubbio | Fiorentina (C) | 65 |
 | Lontani | Parma | Titolare, ballottaggio | Roma (C) | 52 |
 | Nzola | Cagliari | Fuori | Como (T) | 48 |
-| N'Dri | Lecce | Titolare, ballottaggio | Lazio (T) | 44 |
+| N'Dri | Lecce | Titolare | Lazio (T) | 44 |
 
 ## Correzioni da controllare
 
