@@ -129,20 +129,16 @@
 
 /* 4b. Schede da sala giochi (Gianluca: «non solo la grafica ma anche le tab, l'esperienza interattiva: grandezza e posizione»).
    Solo durante l'evento; dati, collegamenti e ordine delle schede restano quelli di sempre. */
-/* Totogirrr: le nove schede non scorrono più in una fila, si vedono tutte insieme in una griglia di tasti grandi
-   a parallelogramma (3 per riga sul telefono, una o due righe sul PC). La scheda scelta si accende al neon. */
-:root[data-event-theme="notte-tropicale"] nav:has(> .nvi){overflow:visible!important;padding:6px 0 10px!important;margin-bottom:16px!important}
-:root[data-event-theme="notte-tropicale"] nav > .nvi{display:grid!important;grid-template-columns:repeat(3,minmax(0,1fr));gap:9px 8px!important;
-  width:auto!important;min-width:0!important;transform:none!important;padding:0 6px}
-:root[data-event-theme="notte-tropicale"] nav > .nvi button{min-height:48px;padding:8px 6px!important;white-space:normal!important;line-height:1.15;
-  font-size:11.5px!important;letter-spacing:.06em!important;font-style:italic;text-wrap:balance;border-radius:4px!important;transform:skewX(-10deg)!important;
+/* Totogirrr: le nove schede in una sola fila che scorre di lato, come nella grafica di sempre (Gianluca, 19 novembre: «meglio in linea»),
+   con i tasti a parallelogramma della skin. La scheda scelta si accende al neon. */
+:root[data-event-theme="notte-tropicale"] nav:has(> .nvi){padding:6px 0 10px!important;margin-bottom:16px!important}
+:root[data-event-theme="notte-tropicale"] nav > .nvi{gap:8px!important;padding:0 8px}
+:root[data-event-theme="notte-tropicale"] nav > .nvi button{min-height:44px;padding:10px 16px!important;white-space:nowrap!important;line-height:1.15;flex:0 0 auto;
+  font-size:12px!important;letter-spacing:.06em!important;font-style:italic;border-radius:4px!important;transform:skewX(-10deg)!important;
   background:linear-gradient(180deg,rgba(60,22,104,.95),rgba(24,8,52,.95))!important;box-shadow:0 0 0 1px var(--nt-bordo) inset,0 6px 14px rgba(5,0,20,.45)!important;
   transition:background-color .18s ease,color .18s ease,box-shadow .25s ease!important}
 :root[data-event-theme="notte-tropicale"] nav > .nvi button.on{background:var(--hi)!important;color:var(--bg)!important;
   box-shadow:0 0 0 2px #fff inset,0 0 18px rgba(255,79,163,.7),0 0 34px rgba(255,79,163,.3)!important}
-@media (max-width:359px){:root[data-event-theme="notte-tropicale"] nav > .nvi button{font-size:10px!important;letter-spacing:.02em!important;padding:8px 3px!important}}
-@media (min-width:900px){:root[data-event-theme="notte-tropicale"] nav > .nvi{grid-template-columns:repeat(9,minmax(0,1fr))}
-  :root[data-event-theme="notte-tropicale"] nav > .nvi button{min-height:56px;font-size:12.5px!important}}
 /* Tabellone: Campionato/Champions Cup e Classifica/Risultati/Campo diventano tasti più alti e inclinati, con gli angoli vivi.
    Selettori rinforzati (.sw.sw) perché v55/ui.css arrotonda schede e interruttori con !important. */
 :root[data-event-theme="notte-tropicale"] body .sw.sw.sw{--g-tab:9px;--g-tabbox:12px;transform:skewX(-10deg);border-radius:12px!important;padding:5px!important;max-width:520px!important;
