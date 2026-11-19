@@ -398,6 +398,8 @@
 :root[data-event-theme="notte-tropicale"] .chips button.sel.nt-tab{--nt-tab-bg:linear-gradient(100deg,#ffb86b,#ff5ca8 55%,#e8364f)!important;color:#22052e!important}
 :root[data-event-theme="notte-tropicale"] body[data-mode="coppa"] .chips button.sel.nt-tab{--nt-tab-bg:linear-gradient(100deg,#00f0ff,#5aa8ff 55%,#bc6cff)!important}
 :root[data-event-theme="notte-tropicale"] .matches .gamebtn.nt-tab:is(.active,.on,[aria-pressed=true],[aria-selected=true]){--nt-tab-bg:linear-gradient(100deg,#ffb86b,#ff5ca8 55%,#e8364f)!important}
+/* Campo in Champions Cup: anche la partita scelta passa al ciano-lilla della Coppa (Gianluca, 19 novembre) */
+:root[data-event-theme="notte-tropicale"] :is(body[data-comp="coppa"],body[data-mode="coppa"]) .matches .gamebtn.nt-tab:is(.active,.on,[aria-pressed=true],[aria-selected=true]),:root[data-event-theme="notte-tropicale"] :is(body[data-comp="coppa"],body[data-mode="coppa"]) .chips button.sel.nt-tab{--nt-tab-bg:linear-gradient(100deg,#00f0ff,#5aa8ff 55%,#bc6cff)!important;color:#12062a!important;box-shadow:0 0 16px rgba(0,240,255,.45)!important}
 :root[data-event-theme="notte-tropicale"] body[data-v53="home"] :is(.vv-avviso,.v53-home,.lg-leghe,.mini .mn,#cvw,.sp).nt-obl{--nt-banda:var(--nt-rosa)!important}
 :root[data-event-theme="notte-tropicale"] body[data-v53="home"] .vv-avviso i{color:var(--nt-arancio)!important}
 :root[data-event-theme="notte-tropicale"] body[data-v53="home"] .pt-box{border-left-color:var(--nt-rosa)!important}
