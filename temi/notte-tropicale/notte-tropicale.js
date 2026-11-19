@@ -92,6 +92,16 @@
          (Curva, Notifiche, Statistiche, sponsor) senza clonarli o modificare contenuti,
          eventi e collegamenti. Il titolo è un fratello della fila, non scorre con essa. */
       var rail = document.querySelector('body[data-v53="home"] .wrap > .cards');
+      /* 6.5.1: intestazione separata dal contenitore orizzontalmente scorrevole. */
+      if (rail && !document.getElementById('nt-tutto-titolo')) {
+        var titoloFermo = document.createElement('h2');
+        titoloFermo.id = 'nt-tutto-titolo';
+        titoloFermo.className = 'nt-tutto-titolo';
+        titoloFermo.textContent = 'Tutto il Girrr';
+        rail.setAttribute('aria-labelledby', titoloFermo.id);
+        rail.parentNode.insertBefore(titoloFermo, rail);
+        document.documentElement.classList.add('nt-rail-integrata');
+      }
       /* Claude, 17 novembre sera: lo spostamento di Curva, Notifiche, Statistiche e sponsor dentro la fila è spento. Gianluca aveva
          chiesto la Curva SOTTO le sei schede e Notifiche/Statistiche più giù; dentro la fila finivano anche «Esci» e la versione
          (versioni.js li mette subito prima degli sponsor) e i marchi diventavano minuscoli. Il codice resta per un eventuale ripensamento. */
