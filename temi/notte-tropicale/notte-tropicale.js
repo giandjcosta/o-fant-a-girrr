@@ -181,7 +181,7 @@
         pl.forEach(function (g) { g.m.forEach(function (m) { if (m[4] === '-') return; var s = m[4].split('-').map(Number); gol += s[0] + s[1]; pp++; if (s[0] === s[1]) par++; }); });
         h += '<section class="nt-pannelli"><a class="nt-classifica" href="tabellone.html#lega-' + last.n + '"><header><b>Classifica</b><small>Dopo la ' + last.n + 'ª ›</small></header><ol>' +
           cl.slice(0, 4).map(function (x, i) { return '<li' + (i === 0 ? ' class="primo"' : '') + '><em>' + (i + 1) + '</em><span>' + ESC(CAP(x.n)) + '</span><b>' + x.pt + '<small>pt</small></b></li>'; }).join('') + '</ol></a>' +
-          '<a class="nt-stagione" href="tabellone.html#lega-' + last.n + '"><header><b>Stagione</b><small>Campionato ›</small></header><div>' +
+          '<a class="nt-stagione" href="tabellone.html?sezione=numeri"><header><b>Stagione</b><small>Numeri ›</small></header><div>' +
           '<p><b>' + pl.length + '</b><small>Giornate</small></p><p><b>' + gol + '</b><small>Gol</small></p>' +
           '<p><b>' + String(Math.round(gol / Math.max(pp, 1) * 10) / 10).replace('.', ',') + '</b><small>Gol a partita</small></p><p><b>' + par + '</b><small>Pareggi</small></p></div></a></section>';
         box.innerHTML = h;
