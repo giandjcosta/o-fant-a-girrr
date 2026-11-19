@@ -177,6 +177,11 @@
   box-shadow:0 0 0 1px var(--nt-bordo) inset!important;padding:5px!important}
 :root[data-event-theme="notte-tropicale"] body .giornata-nav.giornata-nav.giornata-nav > :is(button,a){border-radius:3px!important;font-style:italic;padding:13px 16px!important}
 :root[data-event-theme="notte-tropicale"] body .giornata-nav.giornata-nav.giornata-nav > :is(button[aria-selected=true],a[aria-current]){box-shadow:0 0 16px rgba(255,79,163,.55)!important}
+/* Tabellone: le quattro schede (Classifica, Risultati, Campo, Numeri) su una riga; Numeri accesa quando ci sei (Gianluca, 19 novembre) */
+:root[data-event-theme="notte-tropicale"] body .giornata-nav.giornata-nav.giornata-nav:has(> :nth-child(4)){flex-wrap:nowrap!important;gap:6px!important;overflow:hidden!important}
+:root[data-event-theme="notte-tropicale"] body .giornata-nav.giornata-nav.giornata-nav:has(> :nth-child(4)) > :is(button,a){flex:1 1 0!important;min-width:0!important;padding:12px 4px!important;white-space:nowrap!important;justify-content:center!important;text-align:center!important}
+@media (max-width:480px){:root[data-event-theme="notte-tropicale"] body .giornata-nav.giornata-nav.giornata-nav:has(> :nth-child(4)) > :is(button,a){font-size:13px!important}}
+:root[data-event-theme="notte-tropicale"] body .giornata-nav.giornata-nav.giornata-nav > a[aria-current]{--nt-tab-bg:linear-gradient(100deg,#ffb86b,#ff5ca8 55%,#e8364f)!important;color:#22052e!important}
 
 /* 4c. Riga con le date sotto il titolo della Home (idea di ChatGPT nella sua anteprima) */
 :root[data-event-theme="notte-tropicale"] body[data-v53="home"] .hero .tag::before{content:'Edizione speciale · 19–27 novembre';display:block;

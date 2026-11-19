@@ -41,6 +41,7 @@ function unavailable(host,what){
 function board(o){
  var part=q.get('sezione'),story=q.get('cronaca');
  if(!part&&!story)return;
+ if(part==='numeri'&&!story)return;   /* 6.5 (Claude): Numeri si apre dall'inizio, senza scorrere alla classifica */
  wait(function(){var e=document.getElementById(part==='risultati'?'board':'tab');return e&&e.querySelector(part==='risultati'?'.m, .nota':'table')?e:null},function(host){
   if(story){
    var ev=(o.eventi||[]).find(function(e){return e.chiave===story});
