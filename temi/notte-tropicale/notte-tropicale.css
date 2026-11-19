@@ -450,6 +450,10 @@
 :root[data-event-theme="notte-tropicale"] body[data-v53="home"] #strip>.st[href*="coppa"]{background-image:linear-gradient(180deg,#00f0ff,#5aa8ff 55%,#bc6cff),var(--nt-scheda)!important}
 /* niente rosso fuori dalle competizioni: pannelli e pillole generiche in rosa e lilla */
 :root[data-event-theme="notte-tropicale"] :is(#v53board,.turnoprossimo,.grid .panel).nt-obl{--nt-banda:var(--nt-rosa)!important}
+/* Tabellone: le partite hanno la barra laterale della competizione, rossa in Campionato e blu in Champions Cup; i fili sopra
+   e sotto restano alternati ciano e rosa (Gianluca, 19 novembre) */
+:root[data-event-theme="notte-tropicale"] #board > .m.nt-obl{--nt-banda:#ff2a45!important;--nt-banda2:#ff2a45!important}
+:root[data-event-theme="notte-tropicale"] body[data-mode="coppa"] #board > .m.nt-obl{--nt-banda:#2f7dff!important;--nt-banda2:#2f7dff!important}
 :root[data-event-theme="notte-tropicale"] body .turnoprossimo.turnoprossimo{--g-band:4px!important;--g-acc:var(--nt-rosa)!important;border-left-color:var(--nt-rosa)!important}
 :root[data-event-theme="notte-tropicale"] .card.nt-obl{--nt-banda:#ff5ca8!important}
 :root[data-event-theme="notte-tropicale"]:has(.comp-sw[data-on=coppa]) .card.nt-obl{--nt-banda:#00f0ff!important}
