@@ -6,46 +6,74 @@
       "data": "2026-11-18",
       "tipo": "medio",
       "titolo": "Notte Tropicale",
-      "messaggio": "⚽ **O Girrr 6.5 è online!** Dal 19 al 27 novembre il Girrr si veste da Notte Tropicale: palme, neon e tramonti di Miami per festeggiare l'uscita del gioco più atteso dell'anno. In Home trovi il big match della giornata, la classifica e tutto il Girrr a portata di dito. Nel Tabellone arriva la sezione Numeri e le immagini da condividere hanno i colori giusti di Campionato e Champions Cup. In Carriera e in Girrr Sport la pagina resta ferma quando cambi sezione, e anche in Curva si chiacchiera del nuovo gioco. Buona giornata a tutti! ⚽",
+      "messaggio": "⚽ **O Girrr 6.5 è online!** Dal 19 al 27 novembre il Girrr si veste da Notte Tropicale: palme, neon e tramonti di Miami per festeggiare l'uscita del gioco più atteso dell'anno. Al primo ingresso ti accoglie la copertina speciale, poi la nuvola ti porta nella nuova Home con il big match della giornata, la classifica e tutto il Girrr. Nel Tabellone arriva la sezione Numeri, e passando dal Campionato alla Champions Cup i risultati non saltano più. Totogirrr, Albo d'oro, Derby e Spogliatoio hanno schede nuove che scorrono in linea. Dopo la giornata 8, in Girrr Sport arriva il video della giornata con la colonna sonora di Vice City. Buona giornata a tutti! ⚽",
       "novita": [
         {
           "area": "Home",
           "voci": [
-            "Edizione speciale Notte Tropicale dal 19 al 27 novembre, grafica unica per tutti con big match, classifica, stagione e le schede di Tutto il Girrr",
-            "Il riepilogo La tua lega, oggi parte chiuso la prima volta e poi ricorda come l'hai lasciato"
+            "Edizione speciale Notte Tropicale dal 19 al 27 novembre, con grafica unica, big match, classifica, stagione e le schede di Tutto il Girrr.",
+            "Al primo ingresso copertina speciale con «Continua» e passaggio alla nuova grafica; su PC e TV la locandina sta a sinistra e i titoli a destra.",
+            "Tornando alla Home, a volte la scritta O Girrr si accende come un neon.",
+            "Il riepilogo La tua lega, oggi parte chiuso la prima volta e poi ricorda come l'hai lasciato."
           ]
         },
         {
           "area": "Tabellone",
           "voci": [
-            "Nuova sezione Numeri con le statistiche del Campionato",
-            "Immagini di Condividi con il rosso del Campionato e l'azzurro della Champions Cup, classifica dei gironi giusta in Coppa e ultimo posto in rosso",
-            "Dentro la partita si apre e si chiude"
+            "Nuova sezione Numeri con le statistiche della stagione di Campionato e Champions Cup, con le quattro schede su una riga.",
+            "Passando dal Campionato alla Champions Cup i risultati entrano una sola volta, senza sparire e ricomparire.",
+            "Immagini di Condividi con il rosso del Campionato e l'azzurro della Champions Cup, classifica dei gironi giusta in Coppa e ultimo posto in rosso.",
+            "Dentro la partita si apre e si chiude."
+          ]
+        },
+        {
+          "area": "Campo",
+          "voci": [
+            "In Champions Cup l'interruttore e la partita scelta passano al ciano-lilla dell'edizione speciale."
           ]
         },
         {
           "area": "Carriera",
           "voci": [
-            "Cambiando sezione la pagina resta ferma e il contenuto entra con un rimbalzo morbido; le pillole scivolano",
-            "Fiducia del presidente senza il numero sbiadito sopra i cartellini"
+            "Cambiando sezione la pagina resta ferma e il contenuto entra con un rimbalzo morbido; le pillole scivolano.",
+            "Fiducia del presidente senza il numero sbiadito sopra i cartellini."
           ]
         },
         {
           "area": "Albo d'oro",
           "voci": [
-            "Le pillole scivolano come nelle altre pagine"
+            "Pillole e sottoschede del Derby nello stile dell'edizione speciale, in una fila che scorre."
+          ]
+        },
+        {
+          "area": "Totogirrr",
+          "voci": [
+            "Le schede stanno in una fila che scorre invece che in una griglia."
+          ]
+        },
+        {
+          "area": "Spogliatoio",
+          "voci": [
+            "La scheda che tocchi scorre al centro della fila e si vede intera, in tutte le grafiche."
           ]
         },
         {
           "area": "Girrr Sport",
           "voci": [
-            "Il contenuto non sparisce più per un attimo e Conferenze stampa non va in errore"
+            "Il contenuto non sparisce più per un attimo e Conferenze stampa non va in errore.",
+            "Il video della giornata 8 avrà la grafica e la colonna sonora dell'edizione speciale."
           ]
         },
         {
           "area": "Curva",
           "voci": [
-            "I pareggi non diventano più vittorie, Giurie e criteri resta aperto, pulsanti del voto allineati e post dei personaggi sul nuovo gioco durante l'evento"
+            "I pareggi non diventano più vittorie, Giurie e criteri resta aperto, i pulsanti del voto sono allineati e i personaggi parlano del nuovo gioco durante l'evento."
+          ]
+        },
+        {
+          "area": "Versioni",
+          "voci": [
+            "Riquadri delle versioni più compatti, con il titolo al centro della scheda."
           ]
         }
       ]
