@@ -129,20 +129,44 @@
 
 /* 4b. Schede da sala giochi (Gianluca: «non solo la grafica ma anche le tab, l'esperienza interattiva: grandezza e posizione»).
    Solo durante l'evento; dati, collegamenti e ordine delle schede restano quelli di sempre. */
-/* Totogirrr: le nove schede non scorrono più in una fila, si vedono tutte insieme in una griglia di tasti grandi
-   a parallelogramma (3 per riga sul telefono, una o due righe sul PC). La scheda scelta si accende al neon. */
-:root[data-event-theme="notte-tropicale"] nav:has(> .nvi){overflow:visible!important;padding:6px 0 10px!important;margin-bottom:16px!important}
-:root[data-event-theme="notte-tropicale"] nav > .nvi{display:grid!important;grid-template-columns:repeat(3,minmax(0,1fr));gap:9px 8px!important;
-  width:auto!important;min-width:0!important;transform:none!important;padding:0 6px}
-:root[data-event-theme="notte-tropicale"] nav > .nvi button{min-height:48px;padding:8px 6px!important;white-space:normal!important;line-height:1.15;
-  font-size:11.5px!important;letter-spacing:.06em!important;font-style:italic;text-wrap:balance;border-radius:4px!important;transform:skewX(-10deg)!important;
+/* Totogirrr: le nove schede in una sola fila che scorre di lato, come nella grafica di sempre (Gianluca, 19 novembre: «meglio in linea»),
+   con i tasti a parallelogramma della skin. La scheda scelta si accende al neon. */
+:root[data-event-theme="notte-tropicale"] nav:has(> .nvi){padding:6px 0 10px!important;margin-bottom:16px!important}
+:root[data-event-theme="notte-tropicale"] nav > .nvi{gap:8px!important;padding:0 8px}
+:root[data-event-theme="notte-tropicale"] nav > .nvi button{min-height:44px;padding:10px 16px!important;white-space:nowrap!important;line-height:1.15;flex:0 0 auto;
+  font-size:12px!important;letter-spacing:.06em!important;font-style:italic;border-radius:4px!important;transform:skewX(-10deg)!important;
   background:linear-gradient(180deg,rgba(60,22,104,.95),rgba(24,8,52,.95))!important;box-shadow:0 0 0 1px var(--nt-bordo) inset,0 6px 14px rgba(5,0,20,.45)!important;
   transition:background-color .18s ease,color .18s ease,box-shadow .25s ease!important}
 :root[data-event-theme="notte-tropicale"] nav > .nvi button.on{background:var(--hi)!important;color:var(--bg)!important;
   box-shadow:0 0 0 2px #fff inset,0 0 18px rgba(255,79,163,.7),0 0 34px rgba(255,79,163,.3)!important}
-@media (max-width:359px){:root[data-event-theme="notte-tropicale"] nav > .nvi button{font-size:10px!important;letter-spacing:.02em!important;padding:8px 3px!important}}
-@media (min-width:900px){:root[data-event-theme="notte-tropicale"] nav > .nvi{grid-template-columns:repeat(9,minmax(0,1fr))}
-  :root[data-event-theme="notte-tropicale"] nav > .nvi button{min-height:56px;font-size:12.5px!important}}
+/* Albo d'oro: le pillole (La Storia, Le Ere, Titoli…) come le altre schede della skin, in una fila che scorre (Gianluca, 19 novembre) */
+:root[data-event-theme="notte-tropicale"] .at[role=tablist]{background:#1b0a39!important;border:1px solid var(--nt-bordo)!important;border-radius:13px!important;
+  padding:6px 8px!important;gap:8px!important;flex-wrap:nowrap!important;overflow-x:auto!important;scrollbar-width:none}
+:root[data-event-theme="notte-tropicale"] .at[role=tablist]::-webkit-scrollbar{display:none}
+:root[data-event-theme="notte-tropicale"] .at[role=tablist] > button[role=tab]{opacity:1!important;flex:0 0 auto;min-height:40px;padding:9px 16px!important;white-space:nowrap!important;
+  border:0!important;border-radius:4px!important;transform:skewX(-10deg);font-style:italic;font-weight:800!important;color:#ffeefd!important;
+  background:linear-gradient(180deg,rgba(60,22,104,.95),rgba(24,8,52,.95))!important;box-shadow:0 0 0 1px var(--nt-bordo) inset!important;
+  transition:background-color .18s ease,color .18s ease,box-shadow .25s ease!important}
+:root[data-event-theme="notte-tropicale"] .at[role=tablist] > button[role=tab][aria-selected=true]{background:linear-gradient(100deg,#ff5ca8,#bc6cff)!important;color:#fff!important;
+  box-shadow:0 0 0 2px #fff inset,0 0 18px rgba(255,79,163,.6)!important}
+/* Albo d'oro › Derby: sottoschede, riquadro e Campionato/Champions Cup nello stile della skin (Gianluca, 19 novembre) */
+:root[data-event-theme="notte-tropicale"] .dtab[role=tablist]{display:flex!important;gap:8px!important;flex-wrap:nowrap!important;overflow-x:auto!important;scrollbar-width:none;
+  background:#1b0a39!important;border:1px solid var(--nt-bordo)!important;border-radius:13px!important;padding:6px 8px!important;margin:12px 0!important}
+:root[data-event-theme="notte-tropicale"] .dtab[role=tablist]::-webkit-scrollbar{display:none}
+:root[data-event-theme="notte-tropicale"] .dtab[role=tablist] > button[role=tab]{flex:0 0 auto;min-height:38px;padding:8px 14px!important;white-space:nowrap!important;border:0!important;border-radius:4px!important;
+  transform:skewX(-10deg);font-style:italic;font-weight:800!important;color:#ffeefd!important;opacity:1!important;
+  background:linear-gradient(180deg,rgba(60,22,104,.95),rgba(24,8,52,.95))!important;box-shadow:0 0 0 1px var(--nt-bordo) inset!important}
+:root[data-event-theme="notte-tropicale"] .dtab[role=tablist] > button[role=tab][aria-selected=true]{background:linear-gradient(100deg,#ff5ca8,#bc6cff)!important;color:#fff!important;
+  box-shadow:0 0 0 2px #fff inset,0 0 18px rgba(255,79,163,.6)!important}
+:root[data-event-theme="notte-tropicale"] .swap .pt-box{background:linear-gradient(160deg,#2a0f52,#16072e)!important;border:0!important;border-radius:6px 16px 16px 6px!important;
+  box-shadow:inset 0 3px 0 var(--nt-ciano),inset 5px 0 0 var(--nt-rosa),inset 0 0 0 1px rgba(255,140,205,.35),0 10px 24px #07031766!important}
+:root[data-event-theme="notte-tropicale"] .seg.pt-competition{background:#1b0a39!important;border:1px solid var(--nt-bordo)!important;border-radius:13px!important;padding:5px!important;gap:6px!important;display:flex!important}
+:root[data-event-theme="notte-tropicale"] .seg.pt-competition > button[data-pt-comp]{flex:1 1 0;min-width:0;border:0!important;border-radius:4px!important;transform:skewX(-10deg);font-style:italic;font-weight:900!important;
+  color:#e9dcff!important;background:transparent!important;box-shadow:none!important;padding:10px 8px!important}
+:root[data-event-theme="notte-tropicale"] .seg.pt-competition > button[data-pt-comp][aria-pressed=true]{background:linear-gradient(100deg,#ffb86b,#ff5ca8 55%,#e8364f)!important;color:#22052e!important;box-shadow:0 0 16px rgba(255,92,168,.5)!important}
+:root[data-event-theme="notte-tropicale"] .seg.pt-competition > button[data-pt-comp=cup][aria-pressed=true]{background:linear-gradient(100deg,#00f0ff,#5aa8ff 55%,#bc6cff)!important;color:#12062a!important;box-shadow:0 0 16px rgba(0,240,255,.45)!important}
+:root[data-event-theme="notte-tropicale"] .dtab[role=tablist] > .dline{display:none!important}
+:root[data-event-theme="notte-tropicale"] .swap .pt-box summary::marker{color:var(--nt-rosa)!important}
 /* Tabellone: Campionato/Champions Cup e Classifica/Risultati/Campo diventano tasti più alti e inclinati, con gli angoli vivi.
    Selettori rinforzati (.sw.sw) perché v55/ui.css arrotonda schede e interruttori con !important. */
 :root[data-event-theme="notte-tropicale"] body .sw.sw.sw{--g-tab:9px;--g-tabbox:12px;transform:skewX(-10deg);border-radius:12px!important;padding:5px!important;max-width:520px!important;
@@ -398,6 +422,8 @@
 :root[data-event-theme="notte-tropicale"] .chips button.sel.nt-tab{--nt-tab-bg:linear-gradient(100deg,#ffb86b,#ff5ca8 55%,#e8364f)!important;color:#22052e!important}
 :root[data-event-theme="notte-tropicale"] body[data-mode="coppa"] .chips button.sel.nt-tab{--nt-tab-bg:linear-gradient(100deg,#00f0ff,#5aa8ff 55%,#bc6cff)!important}
 :root[data-event-theme="notte-tropicale"] .matches .gamebtn.nt-tab:is(.active,.on,[aria-pressed=true],[aria-selected=true]){--nt-tab-bg:linear-gradient(100deg,#ffb86b,#ff5ca8 55%,#e8364f)!important}
+/* Campo in Champions Cup: anche la partita scelta passa al ciano-lilla della Coppa (Gianluca, 19 novembre) */
+:root[data-event-theme="notte-tropicale"] :is(body[data-comp="coppa"],body[data-mode="coppa"]) .matches .gamebtn.nt-tab:is(.active,.on,[aria-pressed=true],[aria-selected=true]),:root[data-event-theme="notte-tropicale"] :is(body[data-comp="coppa"],body[data-mode="coppa"]) .chips button.sel.nt-tab{--nt-tab-bg:linear-gradient(100deg,#00f0ff,#5aa8ff 55%,#bc6cff)!important;color:#12062a!important;box-shadow:0 0 16px rgba(0,240,255,.45)!important}
 :root[data-event-theme="notte-tropicale"] body[data-v53="home"] :is(.vv-avviso,.v53-home,.lg-leghe,.mini .mn,#cvw,.sp).nt-obl{--nt-banda:var(--nt-rosa)!important}
 :root[data-event-theme="notte-tropicale"] body[data-v53="home"] .vv-avviso i{color:var(--nt-arancio)!important}
 :root[data-event-theme="notte-tropicale"] body[data-v53="home"] .pt-box{border-left-color:var(--nt-rosa)!important}
@@ -791,6 +817,10 @@
   :root[data-event-theme="notte-tropicale"] :is(.hero h1,.top h1,header h1){animation:none!important}
 }
 
+/* Versioni · Messaggio: testo e margini proporzionati al riquadro del 6.5 (Gianluca, 19 novembre) */
+:root[data-event-theme="notte-tropicale"] .vv-v .vv-c,:root[data-event-theme="notte-tropicale"] .vv-v .vv-c :is(p,span,b,strong,div){font-size:14px!important}
+:root[data-event-theme="notte-tropicale"] .vv-v .vv-c{line-height:1.5!important;padding-top:12px!important;padding-bottom:0!important}
+:root[data-event-theme="notte-tropicale"] .vv-v .vv-c.vv-c{margin-left:5px!important;max-width:calc(100% - 27px)!important}   /* centrato: stesso spazio a sinistra (dopo la banda) e a destra */
 /* 6.5 · Girrr Sport e Carriera su PC (Gianluca, 18 novembre sera) */
 /* Giornale: la copertina resta dentro il riquadro obliquo, un po' più piccola e spostata a destra */
 :root[data-event-theme="notte-tropicale"] #view .cov.gcov.nt-obl{padding-left:30px!important}
@@ -818,3 +848,30 @@
 @media (prefers-reduced-motion: reduce){:root[data-event-theme="notte-tropicale"] .hero h1 i.nt-l{animation:none!important}}
 /* Versioni: il riquadro interno del messaggio resta dentro quello obliquo (Gianluca, 18 novembre) */
 :root[data-event-theme="notte-tropicale"] .vv-v .vv-c{margin-left:22px!important;margin-right:22px!important;margin-bottom:16px!important;box-sizing:border-box;max-width:calc(100% - 44px)!important}
+
+/* 6.5.1 · Campo: le due competizioni seguono la forma squadrata/obliqua della 6.5,
+   senza cambiare la scelta Campionato/Champions Cup e i relativi colori. */
+:root[data-event-theme="notte-tropicale"] body[data-v53="campo"] .comp-sw.comp-sw {
+  border-radius:12px!important;padding:5px!important;
+  transform:skewX(-10deg);
+  background:var(--nt-fila)!important;
+  box-shadow:inset 0 0 0 1px var(--nt-bordo)!important;
+}
+:root[data-event-theme="notte-tropicale"] body[data-v53="campo"] .comp-sw.comp-sw i {
+  top:5px;bottom:5px;left:5px;width:calc(50% - 5px);
+  border-radius:5px!important;
+}
+:root[data-event-theme="notte-tropicale"] body[data-v53="campo"] .comp-sw.comp-sw button {
+  border-radius:5px!important;transform:skewX(10deg);
+  font-style:italic!important;
+}
+
+/* Changelog di Versioni: riquadri viola più piccoli, il titolo dell'area non tocca il bordo (Gianluca, 19 novembre) */
+:root[data-event-theme="notte-tropicale"] .vv-v .vv-area.nt-obl.nt-obl{padding:12px 14px 10px 24px!important;margin:0 0 10px!important}
+:root[data-event-theme="notte-tropicale"] .vv-v .vv-area h4{margin:0 0 6px!important}
+:root[data-event-theme="notte-tropicale"] .vv-v .vv-area :is(li,p){font-size:13px!important;line-height:1.45!important;margin:0 0 4px!important}
+:root[data-event-theme="notte-tropicale"] .vv-v .vv-area ul{margin:0!important;padding-left:18px!important}
+
+/* 6.5 · Squadre: i punteggi rientrano di 18px sia nei risultati recenti sia nella classifica girone Champions Cup. */
+:root[data-event-theme="notte-tropicale"] #sch .card > .top5 > .g > b,
+:root[data-event-theme="notte-tropicale"] #sch .card > .ris > .s{margin-right:18px!important}
