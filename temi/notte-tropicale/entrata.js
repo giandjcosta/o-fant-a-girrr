@@ -1,6 +1,6 @@
 /* O Girrr 6.5 · Copertina del primo ingresso con Notte Tropicale (ChatGPT, rifatta da Claude il 18 novembre 2026 su
    richiesta di Gianluca: «copertina fissa, si preme Continua, poi la transizione dalla vecchia alla nuova grafica»).
-   - Solo nella Home, solo la prima volta che si entra nel Girrr da un dispositivo (localStorage nt_entrata_vista).
+   - Solo nella Home, solo la prima volta che si entra nel Girrr da un dispositivo (localStorage nt_entrata_vista_2: la chiave è stata rinnovata il 19 novembre per rimostrare l'ingresso una volta a tutti).
    - Il caricatore delle skin tiene la pagina coperta di viola finché la copertina non è pronta: niente schermi neri o bianchi.
    - La copertina compare con una dissolvenza quando l'immagine è decodificata e resta finché non si tocca «Continua».
    - Dopo «Continua»: la copertina svanisce sul Girrr con la grafica di sempre, poi la nuova grafica entra con una tendina
@@ -8,7 +8,7 @@
    - Prove sul computer: ?entrata-prova=1 su localhost la rimostra. */
 (function () {
   'use strict';
-  var h = document.documentElement, ID = 'notte-tropicale', CHIAVE = 'nt_entrata_vista';
+  var h = document.documentElement, ID = 'notte-tropicale', CHIAVE = 'nt_entrata_vista_2';
   function avvia() {
     if (!document.body || document.body.getAttribute('data-v53') !== 'home' || (h.getAttribute('data-event-theme') !== ID && !h.classList.contains('girrr-b-senza-barra')) ||
         h.getAttribute('data-nt-entrata-avviata')) return;

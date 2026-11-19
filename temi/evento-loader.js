@@ -71,7 +71,7 @@
        Al ritorno in Home la skin è già attiva nel <head>, senza flash della grafica classica. */
     var primaVisitaHome = false;
     if (homeB) {
-      try { primaVisitaHome = localStorage.getItem('nt_entrata_vista') !== '1'; }
+      try { primaVisitaHome = localStorage.getItem('nt_entrata_vista_2') !== '1'; }
       catch (err) { primaVisitaHome = true; }
     }
     var introHome = homeB && primaVisitaHome;
@@ -99,7 +99,7 @@
        (temi/<skin>/entrata.js) non è pronta, così non si vedono schermi neri o bianchi. Sicurezza: al massimo 8 s. */
     if (ev.copertina && /\/girrr\/(index\.html)?$/.test(location.pathname)) {
       var prova = /(?:localhost|127\.0\.0\.1)$/.test(location.hostname) && q.get('entrata-prova') === '1', vista = false;
-      try { vista = localStorage.getItem('nt_entrata_vista') === '1'; } catch (e) {}
+      try { vista = localStorage.getItem('nt_entrata_vista_2') === '1'; } catch (e) {}
       if (!vista || prova) {
         h.setAttribute('data-evento-primo', ev.id);
         var pre = document.createElement('link'); pre.rel = 'preload'; pre.as = 'image'; pre.href = new URL(ev.copertina, base).href;
@@ -136,7 +136,7 @@
     } else {
       var bPronto = false, bFunziona = true, domPronto = document.readyState !== 'loading';
       var haCopertina = false, copertinaChiusa = true, partito = false;
-      try { haCopertina = localStorage.getItem('nt_entrata_vista') !== '1'; } catch (e) { haCopertina = true; }
+      try { haCopertina = localStorage.getItem('nt_entrata_vista_2') !== '1'; } catch (e) { haCopertina = true; }
       copertinaChiusa = !haCopertina;
       document.addEventListener('nt-copertina-chiusa', function () {
         copertinaChiusa = true; verifica();
