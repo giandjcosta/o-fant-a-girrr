@@ -848,3 +848,30 @@
 @media (prefers-reduced-motion: reduce){:root[data-event-theme="notte-tropicale"] .hero h1 i.nt-l{animation:none!important}}
 /* Versioni: il riquadro interno del messaggio resta dentro quello obliquo (Gianluca, 18 novembre) */
 :root[data-event-theme="notte-tropicale"] .vv-v .vv-c{margin-left:22px!important;margin-right:22px!important;margin-bottom:16px!important;box-sizing:border-box;max-width:calc(100% - 44px)!important}
+
+/* 6.5.1 · Campo: le due competizioni seguono la forma squadrata/obliqua della 6.5,
+   senza cambiare la scelta Campionato/Champions Cup e i relativi colori. */
+:root[data-event-theme="notte-tropicale"] body[data-v53="campo"] .comp-sw.comp-sw {
+  border-radius:12px!important;padding:5px!important;
+  transform:skewX(-10deg);
+  background:var(--nt-fila)!important;
+  box-shadow:inset 0 0 0 1px var(--nt-bordo)!important;
+}
+:root[data-event-theme="notte-tropicale"] body[data-v53="campo"] .comp-sw.comp-sw i {
+  top:5px;bottom:5px;left:5px;width:calc(50% - 5px);
+  border-radius:5px!important;
+}
+:root[data-event-theme="notte-tropicale"] body[data-v53="campo"] .comp-sw.comp-sw button {
+  border-radius:5px!important;transform:skewX(10deg);
+  font-style:italic!important;
+}
+
+/* Changelog di Versioni: riquadri viola più piccoli, il titolo dell'area non tocca il bordo (Gianluca, 19 novembre) */
+:root[data-event-theme="notte-tropicale"] .vv-v .vv-area.nt-obl.nt-obl{padding:12px 14px 10px 24px!important;margin:0 0 10px!important}
+:root[data-event-theme="notte-tropicale"] .vv-v .vv-area h4{margin:0 0 6px!important}
+:root[data-event-theme="notte-tropicale"] .vv-v .vv-area :is(li,p){font-size:13px!important;line-height:1.45!important;margin:0 0 4px!important}
+:root[data-event-theme="notte-tropicale"] .vv-v .vv-area ul{margin:0!important;padding-left:18px!important}
+
+/* 6.5 · Squadre: i punteggi rientrano di 18px sia nei risultati recenti sia nella classifica girone Champions Cup. */
+:root[data-event-theme="notte-tropicale"] #sch .card > .top5 > .g > b,
+:root[data-event-theme="notte-tropicale"] #sch .card > .ris > .s{margin-right:18px!important}
