@@ -149,6 +149,24 @@
   transition:background-color .18s ease,color .18s ease,box-shadow .25s ease!important}
 :root[data-event-theme="notte-tropicale"] .at[role=tablist] > button[role=tab][aria-selected=true]{background:linear-gradient(100deg,#ff5ca8,#bc6cff)!important;color:#fff!important;
   box-shadow:0 0 0 2px #fff inset,0 0 18px rgba(255,79,163,.6)!important}
+/* Albo d'oro › Derby: sottoschede, riquadro e Campionato/Champions Cup nello stile della skin (Gianluca, 19 novembre) */
+:root[data-event-theme="notte-tropicale"] .dtab[role=tablist]{display:flex!important;gap:8px!important;flex-wrap:nowrap!important;overflow-x:auto!important;scrollbar-width:none;
+  background:#1b0a39!important;border:1px solid var(--nt-bordo)!important;border-radius:13px!important;padding:6px 8px!important;margin:12px 0!important}
+:root[data-event-theme="notte-tropicale"] .dtab[role=tablist]::-webkit-scrollbar{display:none}
+:root[data-event-theme="notte-tropicale"] .dtab[role=tablist] > button[role=tab]{flex:0 0 auto;min-height:38px;padding:8px 14px!important;white-space:nowrap!important;border:0!important;border-radius:4px!important;
+  transform:skewX(-10deg);font-style:italic;font-weight:800!important;color:#ffeefd!important;opacity:1!important;
+  background:linear-gradient(180deg,rgba(60,22,104,.95),rgba(24,8,52,.95))!important;box-shadow:0 0 0 1px var(--nt-bordo) inset!important}
+:root[data-event-theme="notte-tropicale"] .dtab[role=tablist] > button[role=tab][aria-selected=true]{background:linear-gradient(100deg,#ff5ca8,#bc6cff)!important;color:#fff!important;
+  box-shadow:0 0 0 2px #fff inset,0 0 18px rgba(255,79,163,.6)!important}
+:root[data-event-theme="notte-tropicale"] .swap .pt-box{background:linear-gradient(160deg,#2a0f52,#16072e)!important;border:0!important;border-radius:6px 16px 16px 6px!important;
+  box-shadow:inset 0 3px 0 var(--nt-ciano),inset 5px 0 0 var(--nt-rosa),inset 0 0 0 1px rgba(255,140,205,.35),0 10px 24px #07031766!important}
+:root[data-event-theme="notte-tropicale"] .seg.pt-competition{background:#1b0a39!important;border:1px solid var(--nt-bordo)!important;border-radius:13px!important;padding:5px!important;gap:6px!important;display:flex!important}
+:root[data-event-theme="notte-tropicale"] .seg.pt-competition > button[data-pt-comp]{flex:1 1 0;min-width:0;border:0!important;border-radius:4px!important;transform:skewX(-10deg);font-style:italic;font-weight:900!important;
+  color:#e9dcff!important;background:transparent!important;box-shadow:none!important;padding:10px 8px!important}
+:root[data-event-theme="notte-tropicale"] .seg.pt-competition > button[data-pt-comp][aria-pressed=true]{background:linear-gradient(100deg,#ffb86b,#ff5ca8 55%,#e8364f)!important;color:#22052e!important;box-shadow:0 0 16px rgba(255,92,168,.5)!important}
+:root[data-event-theme="notte-tropicale"] .seg.pt-competition > button[data-pt-comp=cup][aria-pressed=true]{background:linear-gradient(100deg,#00f0ff,#5aa8ff 55%,#bc6cff)!important;color:#12062a!important;box-shadow:0 0 16px rgba(0,240,255,.45)!important}
+:root[data-event-theme="notte-tropicale"] .dtab[role=tablist] > .dline{display:none!important}
+:root[data-event-theme="notte-tropicale"] .swap .pt-box summary::marker{color:var(--nt-rosa)!important}
 /* Tabellone: Campionato/Champions Cup e Classifica/Risultati/Campo diventano tasti più alti e inclinati, con gli angoli vivi.
    Selettori rinforzati (.sw.sw) perché v55/ui.css arrotonda schede e interruttori con !important. */
 :root[data-event-theme="notte-tropicale"] body .sw.sw.sw{--g-tab:9px;--g-tabbox:12px;transform:skewX(-10deg);border-radius:12px!important;padding:5px!important;max-width:520px!important;
