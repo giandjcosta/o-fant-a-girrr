@@ -824,6 +824,11 @@
   :root[data-event-theme="notte-tropicale"] :is(.hero h1,.top h1,header h1){animation:none!important}
 }
 
+/* Versioni: il titolo della versione sta al centro della scheda, con lo stesso spazio sopra e sotto; da chiusa niente fascia vuota (Gianluca, 19 novembre) */
+:root[data-event-theme="notte-tropicale"] .vv-v > .vv-h{margin:9px 10px 9px 0!important}
+:root[data-event-theme="notte-tropicale"] .vv-v:not(.aperta) > .vv-c.vv-c{padding-top:0!important;padding-bottom:0!important;margin-bottom:0!important}
+:root[data-event-theme="notte-tropicale"] .vv-v > .vv-c{transition:padding .32s ease,margin .32s ease}
+@media (prefers-reduced-motion:reduce){:root[data-event-theme="notte-tropicale"] .vv-v > .vv-c{transition:none}}
 /* Versioni · Messaggio: testo e margini proporzionati al riquadro del 6.5 (Gianluca, 19 novembre) */
 :root[data-event-theme="notte-tropicale"] .vv-v .vv-c,:root[data-event-theme="notte-tropicale"] .vv-v .vv-c :is(p,span,b,strong,div){font-size:14px!important}
 :root[data-event-theme="notte-tropicale"] .vv-v .vv-c{line-height:1.5!important;padding-top:12px!important;padding-bottom:0!important}
