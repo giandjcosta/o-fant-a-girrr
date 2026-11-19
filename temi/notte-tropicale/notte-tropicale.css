@@ -793,7 +793,7 @@
 
 /* Versioni · Messaggio: testo e margini proporzionati al riquadro del 6.5 (Gianluca, 19 novembre) */
 :root[data-event-theme="notte-tropicale"] .vv-v .vv-c,:root[data-event-theme="notte-tropicale"] .vv-v .vv-c :is(p,span,b,strong,div){font-size:14px!important}
-:root[data-event-theme="notte-tropicale"] .vv-v .vv-c{line-height:1.5!important;padding-top:14px!important;padding-bottom:14px!important}
+:root[data-event-theme="notte-tropicale"] .vv-v .vv-c{line-height:1.5!important;padding-top:12px!important;padding-bottom:0!important}
 /* 6.5 · Girrr Sport e Carriera su PC (Gianluca, 18 novembre sera) */
 /* Giornale: la copertina resta dentro il riquadro obliquo, un po' più piccola e spostata a destra */
 :root[data-event-theme="notte-tropicale"] #view .cov.gcov.nt-obl{padding-left:30px!important}
@@ -820,4 +820,4 @@
 :root[data-event-theme="notte-tropicale"] .hero h1.nt-neon-guasto i.nt-l{animation:nt-guasto 2.4s linear 1 both}
 @media (prefers-reduced-motion: reduce){:root[data-event-theme="notte-tropicale"] .hero h1 i.nt-l{animation:none!important}}
 /* Versioni: il riquadro interno del messaggio resta dentro quello obliquo (Gianluca, 18 novembre) */
-:root[data-event-theme="notte-tropicale"] .vv-v .vv-c{margin-left:22px!important;margin-right:22px!important;margin-bottom:16px!important;box-sizing:border-box;max-width:calc(100% - 44px)!important}
+:root[data-event-theme="notte-tropicale"] .vv-v .vv-c{margin-left:5px!important;margin-right:22px!important;margin-bottom:16px!important;box-sizing:border-box;max-width:calc(100% - 27px)!important}   /* centrato: stesso spazio a sinistra (dopo la banda) e a destra */
