@@ -28,7 +28,9 @@ def server_auth():
 def call(url,headers,name,args):
     req=urllib.request.Request(url+'/rest/v1/rpc/'+name,json.dumps(args).encode(),headers,method='POST')
     try:
-        with urllib.request.urlopen(req,timeout=40) as r:return json.load(r)
+        with urllib.request.urlopen(req,timeout=40) as r:corpo=r.read()
+        # Le funzioni SQL che restituiscono void rispondono 204 senza corpo: non è un errore.
+        return json.loads(corpo) if corpo.strip() else None
     except urllib.error.HTTPError as e:
         raise RuntimeError(f'{name}: risposta HTTP {e.code}. Nessun segreto viene incluso nel messaggio.') from None
 
