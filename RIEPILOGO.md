@@ -63,30 +63,30 @@ Notizie pubbliche, senza indicare di chi e' ogni giocatore.
 | Giocatore | Squadra | Motivo | Rientro | Giornata |
 |---|---|---|---|---|
 | Kristensen T. | Atalanta | Distrazione di basso grado ai muscoli flessori | Seconda metà di novembre | Salta |
-| Miranda J. | Bologna | Lesione di primo grado al bicipite femorale | Fine novembre | Salta |
 | Holm | Bologna | Problema al tendine della coscia destra | Fine febbraio | Salta |
-| Rodriguez Je. | Como | Infortunio | Metà dicembre | In dubbio |
+| Miranda J. | Bologna | Lesione di primo grado al bicipite femorale | Fine novembre | Salta |
+| Rodriguez Je. | Como | Problema muscolare al quadricipite alto | Metà dicembre | In dubbio |
 | Diao | Como | Lesione muscolare al flessore della gamba | Seconda metà di novembre | Salta |
-| Kean | Como | Fastidio alla tibia che lo affligge da | Fine dicembre | Salta |
+| Kean | Como | Problema osseo alla gamba destra | Da valutare | In dubbio |
 | Raimondo | Frosinone | Lesione multilegamentosa contusivo-distorsiva della caviglia sinistra | Metà dicembre | Salta |
 | Bracaglia | Frosinone | Squalificato | Rientra dalla 13ª giornata | Salta |
 | Bonny | Inter | Risentimento muscolare ai flessori della coscia destra | Inizio dicembre | Salta |
+| Kalulu | Juventus | Lesione ai muscoli ischiocrurali della gamba sinistra | Fine novembre | Salta |
 | Gonzalez N. | Juventus | Problema muscolare al polpaccio destro che lo | Da valutare | In dubbio |
 | Grabara | Juventus | Lesione al crociato anteriore del ginocchio destro | Da aprile | Salta |
-| Kalulu | Juventus | Lesione ai muscoli ischiocrurali della gamba sinistra | Fine novembre | Salta |
 | Yildiz | Juventus | Problema al piede | Fine dicembre | Salta |
 | Tavares N. | Lazio | Infortunio | Metà dicembre | Salta |
 | Marusic | Lazio | Fastidio muscolare alla gamba | Da valutare | Salta |
-| Zaccagni | Lazio | Lesione del quadricipite femorale sinistro | Da valutare | In dubbio |
+| Zaccagni | Lazio | Lesione del quadricipite femorale sinistro | Da valutare | Salta |
 | Sutalo J. | Lazio | Lesione muscolare di secondo grado al flessore | Fine dicembre | Salta |
 | Chukwueze | Milan | Rottura del tendine del muscolo tensore della | Da aprile | Salta |
 | Saelemaekers | Milan | Problema alla caviglia destra e operata il | Da febbraio | Salta |
 | Badiashile | Napoli | Lesione distrattiva di medio grado del retto | Fine novembre | Salta |
-| Santos A. | Napoli | Lesione distrattiva di medio grado del bicipite | Inizio dicembre | Salta |
-| Lobotka | Napoli | Lesione della sindesmosi tibio-peroneale senza instabilità | Metà dicembre | Salta |
 | Buongiorno | Napoli | Operato nella seconda metà di luglio al | Fine dicembre | Salta |
-| Meret | Napoli | Frattura della quinta vertebra lombare e ipotizziamo | Da gennaio | Salta |
+| Santos A. | Napoli | Lesione distrattiva di medio grado del bicipite | Inizio dicembre | Salta |
 | Di Lorenzo | Napoli | Lesione distrattiva del muscolo adduttore lungo della | Fine novembre | Salta |
+| Meret | Napoli | Frattura della quinta vertebra lombare e ipotizziamo | Da gennaio | Salta |
+| Lobotka | Napoli | Lesione della sindesmosi tibio-peroneale senza instabilità | Metà dicembre | Salta |
 | Romero D. | Parma | Lussazione acromion-claveare della spalla destra | Metà dicembre | Salta |
 | Diego Carlos | Parma | Fastidio muscolare alla gamba e ora a | Da valutare | Salta |
 | Rensch | Roma | Lesione di primo grado dell'adduttore lungo di | Seconda metà di novembre | Salta |
@@ -133,7 +133,7 @@ Punteggio: piu' e' alto, piu' conviene. Unisce valore e probabilita' di giocare.
 | Giocatore | Squadra | Stato | Avversario | Punteggio |
 |---|---|---|---|---|
 | Ghedjemis | Frosinone | Titolare | Milan (T) | 72 |
-| Robinson J. | Monza | In dubbio | Fiorentina (C) | 65 |
+| Robinson J. | Monza | Titolare, ballottaggio | Fiorentina (C) | 65 |
 | Lontani | Parma | Titolare, ballottaggio | Roma (C) | 52 |
 | Nzola | Cagliari | Panchina | Como (T) | 48 |
 | N'Dri | Lecce | Titolare | Lazio (T) | 44 |
