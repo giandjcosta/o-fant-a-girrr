@@ -1,0 +1,89 @@
+{
+  "archivio": [],
+  "votazione": {
+    "chiude": "2026-11-21T14:00:00+00:00",
+    "chiusa": null,
+    "classifica": [
+      {
+        "away": true,
+        "gf": 2,
+        "gs": 1,
+        "humanCount": 2,
+        "op": "Grodah",
+        "opPos": 2,
+        "personaggi": 2,
+        "red": 1,
+        "score": 14.8,
+        "team": "stif dc",
+        "total": 56.0,
+        "umani": 0
+      },
+      {
+        "away": true,
+        "gf": 2,
+        "gs": 1,
+        "humanCount": 2,
+        "op": "WOA",
+        "opPos": 10,
+        "personaggi": 2,
+        "red": 0,
+        "score": 14,
+        "team": "Oranje VC",
+        "total": 26.0,
+        "umani": 1
+      },
+      {
+        "away": false,
+        "gf": 3,
+        "gs": 2,
+        "humanCount": 2,
+        "op": "Apo team",
+        "opPos": 8,
+        "personaggi": 1,
+        "red": 0,
+        "score": 13.2,
+        "team": "Mariana Coneja",
+        "total": 18.0,
+        "umani": 1
+      }
+    ],
+    "firma": "fbc05b270c505129f6d63c85f0d781ab403b27349fe16d8a31723fb585e154af",
+    "giornata": 7,
+    "personaggi": [
+      {
+        "autore": "Nonno Cesare",
+        "motivo": "Nonno Cesare premia la solidità del risultato: 2–1 contro WOA.",
+        "scelta": "Oranje VC"
+      },
+      {
+        "autore": "Statistico Folle",
+        "motivo": "Statistico Folle considera margine, trasferta e posizione dell’avversario: 2–1 contro Grodah.",
+        "scelta": "stif dc"
+      },
+      {
+        "autore": "Il Romantico del Pallone",
+        "motivo": "Il Romantico del Pallone premia il ritorno alla vittoria: 2–1 contro WOA.",
+        "scelta": "Oranje VC"
+      },
+      {
+        "autore": "Tifoso Arrabbiato",
+        "motivo": "Tifoso Arrabbiato premia una risposta dopo una sconfitta: 2–1 contro Grodah.",
+        "scelta": "stif dc"
+      },
+      {
+        "autore": "Telecronista Stanco",
+        "motivo": "Telecronista Stanco premia i gol della vincitrice, poi la trasferta: 3–2 contro Apo team.",
+        "scelta": "Mariana Coneja"
+      }
+    ],
+    "personaggi_totali": 5,
+    "redazione": [
+      {
+        "autore": "Redazione di Girrr Sport",
+        "motivo": "Vince 2–1 in trasferta sulla Grodah e sale al secondo posto: una risposta immediata alla sconfitta con l’Atletico.",
+        "scelta": "stif dc"
+      }
+    ],
+    "stagione": "2026/27"
+  }
+}
