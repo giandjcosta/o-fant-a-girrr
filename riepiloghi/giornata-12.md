@@ -63,17 +63,17 @@ Notizie pubbliche, senza indicare di chi e' ogni giocatore.
 | Giocatore | Squadra | Motivo | Rientro | Giornata |
 |---|---|---|---|---|
 | Kristensen T. | Atalanta | Distrazione di basso grado ai muscoli flessori | Seconda metà di novembre | Salta |
-| Holm | Bologna | Problema al tendine della coscia destra | Fine febbraio | Salta |
 | Miranda J. | Bologna | Lesione di primo grado al bicipite femorale | Fine novembre | Salta |
+| Holm | Bologna | Problema al tendine della coscia destra | Fine febbraio | Salta |
 | Rodriguez Je. | Como | Infortunio | Metà dicembre | In dubbio |
 | Diao | Como | Lesione muscolare al flessore della gamba | Seconda metà di novembre | Salta |
 | Kean | Como | Fastidio alla tibia che lo affligge da | Fine dicembre | Salta |
 | Raimondo | Frosinone | Lesione multilegamentosa contusivo-distorsiva della caviglia sinistra | Metà dicembre | Salta |
 | Bracaglia | Frosinone | Squalificato | Rientra dalla 13ª giornata | Salta |
 | Bonny | Inter | Risentimento muscolare ai flessori della coscia destra | Inizio dicembre | Salta |
-| Kalulu | Juventus | Lesione ai muscoli ischiocrurali della gamba sinistra | Fine novembre | Salta |
 | Gonzalez N. | Juventus | Problema muscolare al polpaccio destro che lo | Da valutare | In dubbio |
 | Grabara | Juventus | Lesione al crociato anteriore del ginocchio destro | Da aprile | Salta |
+| Kalulu | Juventus | Lesione ai muscoli ischiocrurali della gamba sinistra | Fine novembre | Salta |
 | Yildiz | Juventus | Problema al piede | Fine dicembre | Salta |
 | Tavares N. | Lazio | Infortunio | Metà dicembre | Salta |
 | Marusic | Lazio | Fastidio muscolare alla gamba | Da valutare | Salta |
@@ -85,12 +85,12 @@ Notizie pubbliche, senza indicare di chi e' ogni giocatore.
 | Santos A. | Napoli | Lesione distrattiva di medio grado del bicipite | Inizio dicembre | Salta |
 | Lobotka | Napoli | Lesione della sindesmosi tibio-peroneale senza instabilità | Metà dicembre | Salta |
 | Buongiorno | Napoli | Operato nella seconda metà di luglio al | Fine dicembre | Salta |
-| Di Lorenzo | Napoli | Lesione distrattiva del muscolo adduttore lungo della | Fine novembre | Salta |
 | Meret | Napoli | Frattura della quinta vertebra lombare e ipotizziamo | Da gennaio | Salta |
-| Bernabè | Parma | Distrazione muscolare di basso grado al retto | Seconda metà di novembre | Salta |
-| Romero D. | Parma | Lussazione acromion-claveare della spalla destra | Fine dicembre | Salta |
+| Di Lorenzo | Napoli | Lesione distrattiva del muscolo adduttore lungo della | Fine novembre | Salta |
+| Romero D. | Parma | Lussazione acromion-claveare della spalla destra | Metà dicembre | Salta |
 | Diego Carlos | Parma | Fastidio muscolare alla gamba e ora a | Da valutare | Salta |
 | Rensch | Roma | Lesione di primo grado dell'adduttore lungo di | Seconda metà di novembre | Salta |
+| Volpato | Sassuolo | Problema muscolare alla gamba | Prossimo turno | Salta |
 | Adzic | Sassuolo | Fastidio al ginocchio e non ci sarà | Da valutare | Salta |
 | Gueye | Udinese | Problema alla caviglia a fine settembre | Fine gennaio | Salta |
 
@@ -106,7 +106,7 @@ Punteggio: piu' e' alto, piu' conviene. Unisce valore e probabilita' di giocare.
 | Tornqvist | Monza | Titolare | Fiorentina (C) | 42 |
 | Daffara | Parma | Titolare | Roma (C) | 29 |
 | Thiam | Monza | Panchina | Fiorentina (C) | 21 |
-| Turati | Sassuolo | Riserva, ballottaggio | Genoa (C) | 21 |
+| Turati | Sassuolo | Panchina | Genoa (C) | 21 |
 
 ### Difensori
 
@@ -116,7 +116,7 @@ Punteggio: piu' e' alto, piu' conviene. Unisce valore e probabilita' di giocare.
 | Veiga D. | Lecce | Titolare | Lazio (T) | 75 |
 | Troilo | Parma | Titolare | Roma (C) | 73 |
 | Zè Pedro | Cagliari | Titolare | Como (T) | 73 |
-| Rodriguez Ju. | Cagliari | Titolare | Como (T) | 72 |
+| Rodriguez Ju. | Cagliari | Titolare, ballottaggio | Como (T) | 72 |
 
 ### Centrocampisti
 
@@ -135,7 +135,7 @@ Punteggio: piu' e' alto, piu' conviene. Unisce valore e probabilita' di giocare.
 | Ghedjemis | Frosinone | Titolare | Milan (T) | 72 |
 | Robinson J. | Monza | In dubbio | Fiorentina (C) | 65 |
 | Lontani | Parma | Titolare, ballottaggio | Roma (C) | 52 |
-| Nzola | Cagliari | Fuori | Como (T) | 48 |
+| Nzola | Cagliari | Panchina | Como (T) | 48 |
 | N'Dri | Lecce | Titolare | Lazio (T) | 44 |
 
 ## Correzioni da controllare
