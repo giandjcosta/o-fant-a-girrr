@@ -35,8 +35,13 @@ problemi = []
 # 1) workflow falliti nelle ultime 26 ore
 da = (ORA - timedelta(hours=26)).strftime("%Y-%m-%dT%H:%M:%SZ")
 runs = api("actions/runs?per_page=100&created=>=" + da)["workflow_runs"]
+# Conta solo i workflow ancora rotti: se l'ultima esecuzione conclusa e' riuscita, il guasto e' gia' risolto.
+ultimo = {}
+for r in sorted(runs, key=lambda x: x["created_at"], reverse=True):
+    if r["status"] == "completed" and r["conclusion"] not in ("cancelled", "skipped"):
+        ultimo.setdefault(r["name"], r)
 for r in runs:
-    if r["name"] != TITOLO and r["conclusion"] in ("failure", "timed_out", "startup_failure"):
+    if r["name"] != TITOLO and r["conclusion"] in ("failure", "timed_out", "startup_failure") and ultimo.get(r["name"], r)["conclusion"] != "success":
         problemi.append("Workflow fallito: %s (%s) %s" % (r["name"], r["conclusion"], r["html_url"]))
 # 2a) l'Action dei voti deve aver girato con successo negli ultimi 2 giorni
 ok = [r for r in api("actions/runs?per_page=100&status=success")["workflow_runs"] if "statistiche e voti" in r["name"].lower() and "prima prova" not in r["name"].lower()]
