@@ -1,6 +1,6 @@
 # Riepilogo giornata 12 di Serie A
 
-Lega O FANT A GIRRR. Dati aggiornati al 2026-11-20.
+Lega O FANT A GIRRR. Dati aggiornati al 2026-11-21.
 
 ## Partite della giornata
 
@@ -89,8 +89,8 @@ Notizie pubbliche, senza indicare di chi e' ogni giocatore.
 | Lobotka | Napoli | Lesione della sindesmosi tibio-peroneale senza instabilità | Metà dicembre | Salta |
 | Romero D. | Parma | Lussazione acromion-claveare della spalla destra | Metà dicembre | Salta |
 | Rensch | Roma | Lesione di primo grado dell'adduttore lungo di | Seconda metà di novembre | Salta |
-| Volpato | Sassuolo | Problema muscolare alla gamba | Prossimo turno | Salta |
 | Adzic | Sassuolo | Fastidio al ginocchio e non ci sarà | Da valutare | Salta |
+| Volpato | Sassuolo | Problema muscolare alla gamba | Prossimo turno | Salta |
 | Gueye | Udinese | Problema alla caviglia a fine settembre | Fine gennaio | Salta |
 
 ## Migliori svincolati
@@ -133,7 +133,7 @@ Punteggio: piu' e' alto, piu' conviene. Unisce valore e probabilita' di giocare.
 |---|---|---|---|---|
 | Ghedjemis | Frosinone | Titolare | Milan (T) | 72 |
 | Robinson J. | Monza | Titolare, ballottaggio | Fiorentina (C) | 65 |
-| Lontani | Parma | Titolare, ballottaggio | Roma (C) | 52 |
+| Lontani | Parma | Riserva, ballottaggio | Roma (C) | 52 |
 | Nzola | Cagliari | Panchina | Como (T) | 48 |
 | N'Dri | Lecce | Riserva, ballottaggio | Lazio (T) | 44 |
 
