@@ -1,8 +1,65 @@
 {
-  "archivio": [],
+  "archivio": [
+    {
+      "chiusa": "2026-11-21T19:40:18.609652+00:00",
+      "classifica": [
+        {
+          "away": true,
+          "gf": 2,
+          "gs": 1,
+          "humanCount": 2,
+          "op": "Grodah",
+          "opPos": 2,
+          "personaggi": 2,
+          "red": 1,
+          "score": 14.8,
+          "team": "stif dc",
+          "total": 56.0,
+          "umani": 0
+        },
+        {
+          "away": true,
+          "gf": 2,
+          "gs": 1,
+          "humanCount": 2,
+          "op": "WOA",
+          "opPos": 10,
+          "personaggi": 2,
+          "red": 0,
+          "score": 14,
+          "team": "Oranje VC",
+          "total": 26.0,
+          "umani": 1
+        },
+        {
+          "away": false,
+          "gf": 3,
+          "gs": 2,
+          "humanCount": 2,
+          "op": "Apo team",
+          "opPos": 8,
+          "personaggi": 1,
+          "red": 0,
+          "score": 13.2,
+          "team": "Mariana Coneja",
+          "total": 18.0,
+          "umani": 1
+        }
+      ],
+      "giornata": 7,
+      "redazione": [
+        {
+          "autore": "Redazione di Girrr Sport",
+          "motivo": "Vince 2–1 in trasferta sulla Grodah e sale al secondo posto: una risposta immediata alla sconfitta con l’Atletico.",
+          "scelta": "stif dc"
+        }
+      ],
+      "stagione": "2026/27"
+    }
+  ],
   "votazione": {
     "chiude": "2026-11-21T14:00:00+00:00",
-    "chiusa": null,
+    "chiusa": "2026-11-21T19:40:18.609652+00:00",
     "classifica": [
       {
         "away": true,
