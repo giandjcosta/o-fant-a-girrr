@@ -81,16 +81,16 @@ Notizie pubbliche, senza indicare di chi e' ogni giocatore.
 | Sutalo J. | Lazio | Lesione muscolare di secondo grado al flessore | Fine dicembre | Salta |
 | Chukwueze | Milan | Rottura del tendine del muscolo tensore della | Da aprile | Salta |
 | Saelemaekers | Milan | Problema alla caviglia destra e operata il | Da febbraio | Salta |
+| Meret | Napoli | Frattura della quinta vertebra lombare e ipotizziamo | Da gennaio | Salta |
 | Badiashile | Napoli | Lesione distrattiva di medio grado del retto | Fine novembre | Salta |
-| Buongiorno | Napoli | Operato nella seconda metà di luglio al | Fine dicembre | Salta |
 | Santos A. | Napoli | Lesione distrattiva di medio grado del bicipite | Inizio dicembre | Salta |
 | Di Lorenzo | Napoli | Lesione distrattiva del muscolo adduttore lungo della | Fine novembre | Salta |
-| Meret | Napoli | Frattura della quinta vertebra lombare e ipotizziamo | Da gennaio | Salta |
+| Buongiorno | Napoli | Operato nella seconda metà di luglio al | Fine dicembre | Salta |
 | Lobotka | Napoli | Lesione della sindesmosi tibio-peroneale senza instabilità | Metà dicembre | Salta |
 | Romero D. | Parma | Lussazione acromion-claveare della spalla destra | Metà dicembre | Salta |
 | Rensch | Roma | Lesione di primo grado dell'adduttore lungo di | Seconda metà di novembre | Salta |
-| Adzic | Sassuolo | Fastidio al ginocchio e non ci sarà | Da valutare | Salta |
 | Volpato | Sassuolo | Problema muscolare alla gamba | Prossimo turno | Salta |
+| Adzic | Sassuolo | Fastidio al ginocchio e non ci sarà | Da valutare | Salta |
 | Gueye | Udinese | Problema alla caviglia a fine settembre | Fine gennaio | Salta |
 
 ## Migliori svincolati
@@ -103,7 +103,7 @@ Punteggio: piu' e' alto, piu' conviene. Unisce valore e probabilita' di giocare.
 |---|---|---|---|---|
 | Perri | Torino | Titolare | Napoli (T) | 56 |
 | Tornqvist | Monza | Titolare | Fiorentina (C) | 42 |
-| Daffara | Parma | Titolare | Roma (C) | 29 |
+| Daffara | Parma | Titolare | Roma (C) | 21 |
 | Thiam | Monza | Panchina | Fiorentina (C) | 21 |
 | Turati | Sassuolo | Panchina | Genoa (C) | 21 |
 
@@ -112,18 +112,18 @@ Punteggio: piu' e' alto, piu' conviene. Unisce valore e probabilita' di giocare.
 | Giocatore | Squadra | Stato | Avversario | Punteggio |
 |---|---|---|---|---|
 | Hainaut | Venezia | Titolare | Juventus (T) | 85 |
-| Veiga D. | Lecce | Titolare | Lazio (T) | 75 |
-| Troilo | Parma | Titolare | Roma (C) | 73 |
+| Veiga D. | Lecce | Titolare | Lazio (T) | 73 |
 | Zè Pedro | Cagliari | Titolare | Como (T) | 73 |
-| Rodriguez Ju. | Cagliari | Panchina | Como (T) | 72 |
+| Abankwah | Udinese | Titolare, ballottaggio | Bologna (T) | 71 |
+| Troilo | Parma | Titolare | Roma (C) | 71 |
 
 ### Centrocampisti
 
 | Giocatore | Squadra | Stato | Avversario | Punteggio |
 |---|---|---|---|---|
 | Schmid | Frosinone | Titolare | Milan (T) | 92 |
-| Romano | Cagliari | Titolare | Como (T) | 80 |
 | Pobega | Bologna | Titolare | Udinese (C) | 79 |
+| Romano | Cagliari | Titolare | Como (T) | 79 |
 | Matic | Sassuolo | Titolare | Genoa (C) | 74 |
 | Perez K. | Venezia | Titolare | Juventus (T) | 72 |
 
@@ -133,9 +133,9 @@ Punteggio: piu' e' alto, piu' conviene. Unisce valore e probabilita' di giocare.
 |---|---|---|---|---|
 | Ghedjemis | Frosinone | Titolare | Milan (T) | 72 |
 | Robinson J. | Monza | Titolare, ballottaggio | Fiorentina (C) | 65 |
-| Lontani | Parma | Riserva, ballottaggio | Roma (C) | 52 |
-| Nzola | Cagliari | Panchina | Como (T) | 48 |
+| Lontani | Parma | Panchina | Roma (C) | 50 |
 | N'Dri | Lecce | Titolare | Lazio (T) | 44 |
+| Birligea | Frosinone | Titolare, ballottaggio | Milan (T) | 37 |
 
 ## Correzioni da controllare
 
