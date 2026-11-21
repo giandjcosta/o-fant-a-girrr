@@ -115,7 +115,7 @@ Punteggio: piu' e' alto, piu' conviene. Unisce valore e probabilita' di giocare.
 | Veiga D. | Lecce | Titolare | Lazio (T) | 75 |
 | Troilo | Parma | Titolare | Roma (C) | 73 |
 | Zè Pedro | Cagliari | Titolare | Como (T) | 73 |
-| Rodriguez Ju. | Cagliari | Titolare, ballottaggio | Como (T) | 72 |
+| Rodriguez Ju. | Cagliari | Panchina | Como (T) | 72 |
 
 ### Centrocampisti
 
@@ -135,7 +135,7 @@ Punteggio: piu' e' alto, piu' conviene. Unisce valore e probabilita' di giocare.
 | Robinson J. | Monza | Titolare, ballottaggio | Fiorentina (C) | 65 |
 | Lontani | Parma | Riserva, ballottaggio | Roma (C) | 52 |
 | Nzola | Cagliari | Panchina | Como (T) | 48 |
-| N'Dri | Lecce | Riserva, ballottaggio | Lazio (T) | 44 |
+| N'Dri | Lecce | Titolare | Lazio (T) | 44 |
 
 ## Correzioni da controllare
 
