@@ -105,7 +105,7 @@ Punteggio: piu' e' alto, piu' conviene. Unisce valore e probabilita' di giocare.
 | Tornqvist | Monza | Titolare | Fiorentina (C) | 42 |
 | Daffara | Parma | Titolare | Roma (C) | 21 |
 | Thiam | Monza | Panchina | Fiorentina (C) | 21 |
-| Turati | Sassuolo | Panchina | Genoa (C) | 21 |
+| Happonen | Bologna | Fuori | Udinese (C) | 15 |
 
 ### Difensori
 
@@ -121,21 +121,21 @@ Punteggio: piu' e' alto, piu' conviene. Unisce valore e probabilita' di giocare.
 
 | Giocatore | Squadra | Stato | Avversario | Punteggio |
 |---|---|---|---|---|
-| Schmid | Frosinone | Titolare | Milan (T) | 92 |
-| Pobega | Bologna | Titolare | Udinese (C) | 79 |
+| Schmid | Frosinone | Titolare | Milan (T) | 90 |
 | Romano | Cagliari | Titolare | Como (T) | 79 |
-| Matic | Sassuolo | Titolare | Genoa (C) | 74 |
+| Pobega | Bologna | Titolare | Udinese (C) | 77 |
+| Matic | Sassuolo | Titolare | Genoa (C) | 73 |
 | Perez K. | Venezia | Titolare | Juventus (T) | 70 |
 
 ### Attaccanti
 
 | Giocatore | Squadra | Stato | Avversario | Punteggio |
 |---|---|---|---|---|
-| Ghedjemis | Frosinone | Titolare | Milan (T) | 72 |
+| Ghedjemis | Frosinone | Titolare | Milan (T) | 76 |
 | Robinson J. | Monza | Titolare, ballottaggio | Fiorentina (C) | 65 |
 | Lontani | Parma | Panchina | Roma (C) | 50 |
 | N'Dri | Lecce | Titolare | Lazio (T) | 44 |
-| Birligea | Frosinone | Titolare, ballottaggio | Milan (T) | 37 |
+| Nzola | Cagliari | Panchina | Como (T) | 36 |
 
 ## Correzioni da controllare
 
