@@ -90,6 +90,7 @@ Notizie pubbliche, senza indicare di chi e' ogni giocatore.
 | Rensch | Roma | Lesione di primo grado dell'adduttore lungo di | Seconda metà di novembre | Salta |
 | Adzic | Sassuolo | Fastidio al ginocchio e non ci sarà | Da valutare | Salta |
 | Volpato | Sassuolo | Problema muscolare alla gamba | Prossimo turno | Salta |
+| Davis K. | Udinese | Noie muscolari e out a Bologna domenica | Prossimo turno | Salta |
 | Gueye | Udinese | Problema alla caviglia a fine settembre | Fine gennaio | Salta |
 
 ## Migliori svincolati
@@ -113,7 +114,7 @@ Punteggio: piu' e' alto, piu' conviene. Unisce valore e probabilita' di giocare.
 | Hainaut | Venezia | Titolare | Juventus (T) | 85 |
 | Veiga D. | Lecce | Titolare | Lazio (T) | 73 |
 | Zè Pedro | Cagliari | Titolare | Como (T) | 73 |
-| Abankwah | Udinese | Titolare, ballottaggio | Bologna (T) | 71 |
+| Abankwah | Udinese | Titolare | Bologna (T) | 71 |
 | Troilo | Parma | Titolare | Roma (C) | 71 |
 
 ### Centrocampisti
@@ -124,7 +125,7 @@ Punteggio: piu' e' alto, piu' conviene. Unisce valore e probabilita' di giocare.
 | Pobega | Bologna | Titolare | Udinese (C) | 79 |
 | Romano | Cagliari | Titolare | Como (T) | 79 |
 | Matic | Sassuolo | Titolare | Genoa (C) | 74 |
-| Perez K. | Venezia | Titolare | Juventus (T) | 72 |
+| Perez K. | Venezia | Titolare | Juventus (T) | 70 |
 
 ### Attaccanti
 
