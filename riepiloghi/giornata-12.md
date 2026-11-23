@@ -102,9 +102,9 @@ Punteggio: piu' e' alto, piu' conviene. Unisce valore e probabilita' di giocare.
 | Giocatore | Squadra | Stato | Avversario | Punteggio |
 |---|---|---|---|---|
 | Perri | Torino | Titolare | Napoli (T) | 56 |
-| Tornqvist | Monza | Titolare | Fiorentina (C) | 42 |
+| Tornqvist | Monza | Panchina | Fiorentina (C) | 42 |
 | Daffara | Parma | Titolare | Roma (C) | 21 |
-| Thiam | Monza | Panchina | Fiorentina (C) | 21 |
+| Thiam | Monza | Titolare | Fiorentina (C) | 21 |
 | Happonen | Bologna | Fuori | Udinese (C) | 15 |
 
 ### Difensori
@@ -132,7 +132,7 @@ Punteggio: piu' e' alto, piu' conviene. Unisce valore e probabilita' di giocare.
 | Giocatore | Squadra | Stato | Avversario | Punteggio |
 |---|---|---|---|---|
 | Ghedjemis | Frosinone | Titolare | Milan (T) | 76 |
-| Robinson J. | Monza | Titolare, ballottaggio | Fiorentina (C) | 65 |
+| Robinson J. | Monza | Titolare | Fiorentina (C) | 65 |
 | Lontani | Parma | Panchina | Roma (C) | 50 |
 | N'Dri | Lecce | Titolare | Lazio (T) | 44 |
 | Nzola | Cagliari | Panchina | Como (T) | 36 |
