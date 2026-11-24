@@ -494,7 +494,8 @@ def costruisci(t, tema="classico"):
     h = [f"<style>{CSS}{css_tema(tema)}</style>"]
     # ---------- prima pagina
     h.append(f'<section class="pg">{testata(1)}<div class="mast"><img class="lg" style="left:0" src="{logo_uri("logo-lega-o-fant-a-girrr")}"><img class="lg" style="right:0" src="{logo_uri("logo-lega-o-fant-a-girrr")}"><h1>O Giornale del <span>Girrr</span></h1>{NEON if tema == "tropicale" else ""}</div>'
-             '<div class="tag">Il settimanale sportivo della lega O Fant A Girrr</div>')
+             + ('<div class="tag">Il settimanale sportivo della lega O Fant A Girrr · Questa settimana da Vice City</div>' if tema == "tropicale"
+                else '<div class="tag">Il settimanale sportivo della lega O Fant A Girrr</div>'))
     h.append(f'<div class="mini occ">{esc(t.get("occhiello") or f"Campionato · {n}ª giornata")}</div>')
     h.append(f'<div class="tit">{esc(t.get("titolone") or t.get("titolo") or "Si comincia")}</div>')
     if t.get("sommario"):
