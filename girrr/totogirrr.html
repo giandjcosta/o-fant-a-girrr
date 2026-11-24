@@ -364,6 +364,9 @@ function premioWidget(){
  /* 6.5.1: gli obiettivi del presidente danno solo reputazione (0 FC): non si riscattano, si mostrano come raggiunti */
  var entries=(PREMI&&PREMI.premi)||[],solorep=function(x){return x.sponsor==='Presidente'||!(+x.crediti>0)},
   p=entries.find(function(x){return x.stato==='pending'&&!solorep(x)}),claimed=entries.find(function(x){return x.stato==='claimed'}),pres=entries.find(function(x){return x.stato==='pending'&&solorep(x)});
+ /* 6.5.1: i riquadri «raggiunto» e «riscattato» restano 3 giorni dalla prima volta che si vedono, poi spariscono */
+ var fresco=function(x){var k='toto_visto_'+(x.obiettivo||x.sponsor||'')+'_'+x.stato,t=Date.now(),v;try{v=+localStorage.getItem(k);if(!v){localStorage.setItem(k,String(t));v=t}}catch(e){return true}return t-v<3*864e5};
+ if(pres&&!fresco(pres))pres=null;if(claimed&&!fresco(claimed))claimed=null;
  if(!p&&pres)return '<aside class="prize-corner claimed"><div><strong>✓ Obiettivo del presidente raggiunto</strong><small>'+esc(pres.sponsor)+' · Reputazione permanente +'+f0(pres.reputazione)+'</small></div></aside>';
  if(!p&&!claimed)return '';
  if(p)return '<aside class="prize-corner" aria-label="Premio sponsor da riscuotere"><div><strong>🎁 Premio sponsor da riscuotere · +'+f0(p.crediti)+' FC</strong><small>'+esc(p.sponsor)+' · Reputazione permanente +'+f0(p.reputazione)+'</small></div><button class="go" id="riscatta-sponsor" data-obiettivo="'+esc(p.obiettivo)+'">Riscatta</button></aside>';
