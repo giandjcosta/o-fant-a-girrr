@@ -31,6 +31,7 @@
  },
  "coro": {
   "squadra": "WOA",
+  "autore": {"nome": "Gufo Professionista", "handle": "@gufo_professionista", "colore": "#7b2cbf", "sigla": "GP"},
   "testo": "GTA 6 è uscito: a Vice City i colpi riescono al primo tentativo. Alla WOA una sola vittoria in otto giornate, il colpo grosso resta nel piano."
  },
  "bufala": {

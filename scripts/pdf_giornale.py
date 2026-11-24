@@ -26,7 +26,7 @@ TEMI = {
     # Il Giornale ha un solo aspetto ufficiale.
     # carta, inchiostro, accento, grigio, fascia, testo fascia, font titoli, peso, font testata, peso testata, dimensione titolo, dimensione testata
     "classico": ("#f3eee1", "#16130e", "#c8102e", "#6a6254", "#c8102e", "#ffffff", "'Inter Display','Inter',sans-serif", 900, "'DejaVu Serif',serif", 700, "35pt", "43pt"),
-    # Edizione speciale «Notte Tropicale» (colori della grafica dell'app dal 19 novembre 2026, a richiesta di Gianluca per il n. 8):
+    # Edizione speciale «Notte Tropicale» / Vice City: SOLO il n. 8 (Gianluca, 24 novembre 2026). Dal n. 9 il Giornale torna classico, senza menzioni a Vice City.
     # Carta chiara rosa e pesca, rosa corallo come accento, arancio per le linee (Gianluca, 24 novembre: «più rosato, non così scuro»).
     # Niente bagliori né ombre: alcuni lettori PDF li mostrano come blocchi pieni sopra la testata. Si sceglie con --tema tropicale.
     "tropicale": ("linear-gradient(170deg,#fff4ec 0%,#ffe8de 55%,#ffdccf 100%)", "#2b1622", "#d92f68", "#86606c", "#e8506f", "#ffffff", "'Inter Display','Inter',sans-serif", 900, "'DejaVu Serif',serif", 700, "35pt", "43pt"),
@@ -356,8 +356,9 @@ def post_social(coro, n):
     import random
     r = random.Random(n * 7919)
     sq = coro.get("squadra", "")
-    nome = cap(sq)
-    handle = "@" + re.sub(r"[^a-z0-9]+", "_", sq.lower()).strip("_")
+    au = coro.get("autore") or {}  # personaggio della Curva al posto della squadra (Gianluca, 24 novembre 2026)
+    nome = au.get("nome") or cap(sq)
+    handle = au.get("handle") or "@" + re.sub(r"[^a-z0-9]+", "_", sq.lower()).strip("_")
     risposte = r.randint(12, 140)
     rilanci = r.randint(30, 600)
     applausi = rilanci * r.randint(3, 6) + r.randint(0, 99)
@@ -371,8 +372,8 @@ def post_social(coro, n):
     testo = esc(coro.get("testo", "")).replace("\n", "<br>")
     return (
         '<div class="social"><div class="sh"><div class="sl"><i></i>Curva</div><span>Il coro della settimana</span></div>'
-        f'<div class="post"><div class="av" style="background:{colore_squadra(sq)}">{esc(sigla(sq))}</div><div class="pb">'
-        f'<div class="pn"><b>{esc(nome)}</b><svg class="ver" viewBox="0 0 24 24" width="3.5mm" height="3.5mm"><circle cx="12" cy="12" r="11" fill="#1d9bf0"/><path d="M7 12.5l3.2 3.2L17 8.8" fill="none" stroke="#fff" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg>'
+        f'<div class="post"><div class="av" style="background:{au.get("colore") or colore_squadra(sq)}">{esc(au.get("sigla") or sigla(sq))}</div><div class="pb">'
+        f'<div class="pn"><b>{esc(nome)}</b>' + ('' if au else '<svg class="ver" viewBox="0 0 24 24" width="3.5mm" height="3.5mm"><circle cx="12" cy="12" r="11" fill="#1d9bf0"/><path d="M7 12.5l3.2 3.2L17 8.8" fill="none" stroke="#fff" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg>') +
         f'<span>{esc(handle)}</span></div><div class="pt">{testo}</div>'
         f'<div class="pq">{ora} · Curva per smartphone · <b>{cifra(viste)}</b> visualizzazioni</div>'
         f'<div class="pm"><span>{bolla}{risposte}</span><span>{giro}{rilanci}</span><span>{cuore}{cifra(applausi)}</span><span>{barre}{cifra(viste)}</span></div>'
@@ -711,6 +712,10 @@ def main():
     if len(sys.argv) > 1 and Path(sys.argv[1]).exists():
         t = json.loads(Path(sys.argv[1]).read_text(encoding="utf-8"))
     pagina, n = costruisci(t, tema)
+    if tema == "tropicale" and n != 8:  # edizione specialissima: solo il n. 8 (Gianluca, 24 novembre 2026)
+        print("Il tema «tropicale» vale solo per il n. 8: uso il classico.")
+        tema = "classico"
+        pagina, n = costruisci(t, tema)
     uscita = Path(sys.argv[2]) if len(sys.argv) > 2 else ROOT / "riepiloghi" / f"settimana-{n:02d}.pdf"
     uscita.parent.mkdir(parents=True, exist_ok=True)
     tmp = uscita.with_suffix(".html")
