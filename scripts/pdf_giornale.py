@@ -36,13 +36,19 @@ CSS_TROPICALE = (".pg:before{background:radial-gradient(rgba(120,40,60,.045) .35
                  ".pg:after{content:\"\";position:absolute;left:0;right:0;bottom:0;height:3.2mm;background:linear-gradient(90deg,#ff8a3d,#ff5c7a 50%,#d92f68);pointer-events:none}"
                  ".mast{border-bottom-color:#f2843f}.bar,.box,.tab,.som,.spb{border-color:#f2843f}"
                  ".mini,.tit em{color:#c4521c}.box h3 b,.tab h2 b{color:#d92f68}.txt:first-letter{color:#c4521c}"
-                 ".mt .s{background:#d92f68;color:#ffffff}.st.s{color:#ffffff}")
+                 ".mt .s{background:#d92f68;color:#ffffff}.st.s{color:#ffffff}"
+                 # insegna «Speciale Vice City» (Gianluca, 24 novembre): neon disegnato con contorni pieni, senza sfocature
+                 ".neon{position:absolute;right:13mm;top:50%;transform:translateY(-50%) rotate(-8deg);text-align:center;line-height:.95;font-family:'Lobster','DejaVu Serif',serif;font-weight:400}"
+                 ".neon b{display:block;font-weight:400;color:#ff2d87;-webkit-text-stroke:.45pt #7a0f3d;text-shadow:.6mm .6mm 0 #ffb347}"
+                 ".neon .s1{font-size:13pt;letter-spacing:.02em}.neon .s2{font-size:20pt}")
 
 
 def css_tema(nome):
     c = TEMI.get(nome, TEMI["classico"])
     if nome == "tropicale":
-        return (f":root{{--paper:{c[0]};--ink:{c[1]};--rule:#f2843f;--red:{c[2]};--mute:{c[3]};--band:{c[4]};--bandink:{c[5]};"
+        f = Path(__file__).resolve().parent / "font" / "Lobster-Regular.ttf"
+        lob = ("@font-face{font-family:'Lobster';src:url(data:font/ttf;base64," + _b64.b64encode(f.read_bytes()).decode() + ") format('truetype')}") if f.exists() else ""
+        return lob + (f":root{{--paper:{c[0]};--ink:{c[1]};--rule:#f2843f;--red:{c[2]};--mute:{c[3]};--band:{c[4]};--bandink:{c[5]};"
                 f"--hd:{c[6]};--hw:{c[7]};--mh:{c[8]};--mhw:{c[9]};--tz:{c[10]};--mz:{c[11]};--soft:#f2843f55}}" + CSS_TROPICALE)
     return (f":root{{--paper:{c[0]};--ink:{c[1]};--rule:{c[1]};--red:{c[2]};--mute:{c[3]};--band:{c[4]};--bandink:{c[5]};"
             f"--hd:{c[6]};--hw:{c[7]};--mh:{c[8]};--mhw:{c[9]};--tz:{c[10]};--mz:{c[11]};--soft:{c[3]}66{";--ts:.15pt" if nome == "verde" else ""}}}")
@@ -456,6 +462,7 @@ def tab_cl(righe, completa=True):
 
 
 def costruisci(t, tema="classico"):
+    NEON = '<div class="neon"><b class="s1">Speciale</b><b class="s2">Vice City</b></div>'
     # 6.2: candidati MVP dei tifosi della giornata appena finita (solo se la votazione è aperta)
     from mvp_giornale62 import integra as integra_mvp
     dossier = ROOT / 'girrr/dati/mvp-editoriale.json'
@@ -486,7 +493,7 @@ def costruisci(t, tema="classico"):
 
     h = [f"<style>{CSS}{css_tema(tema)}</style>"]
     # ---------- prima pagina
-    h.append(f'<section class="pg">{testata(1)}<div class="mast"><img class="lg" style="left:0" src="{logo_uri("logo-lega-o-fant-a-girrr")}"><img class="lg" style="right:0" src="{logo_uri("logo-lega-o-fant-a-girrr")}"><h1>O Giornale del <span>Girrr</span></h1></div>'
+    h.append(f'<section class="pg">{testata(1)}<div class="mast"><img class="lg" style="left:0" src="{logo_uri("logo-lega-o-fant-a-girrr")}"><img class="lg" style="right:0" src="{logo_uri("logo-lega-o-fant-a-girrr")}"><h1>O Giornale del <span>Girrr</span></h1>{NEON if tema == "tropicale" else ""}</div>'
              '<div class="tag">Il settimanale sportivo della lega O Fant A Girrr</div>')
     h.append(f'<div class="mini occ">{esc(t.get("occhiello") or f"Campionato · {n}ª giornata")}</div>')
     h.append(f'<div class="tit">{esc(t.get("titolone") or t.get("titolo") or "Si comincia")}</div>')
