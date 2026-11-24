@@ -1,0 +1,70 @@
+{
+ "schema": 1,
+ "stagione": "2026/27",
+ "giornata": 8,
+ "serie_a": 12,
+ "rose": "ac0490cf1dbab18d",
+ "classifica": [
+  {
+   "squadra": "AFA SELECCION",
+   "valore": 77.69,
+   "pos": 1,
+   "completa": 88
+  },
+  {
+   "squadra": "The Blue brothers",
+   "valore": 77.39,
+   "pos": 2,
+   "completa": 99
+  },
+  {
+   "squadra": "Grodah",
+   "valore": 76.39,
+   "pos": 3,
+   "completa": 84
+  },
+  {
+   "squadra": "Mariana Coneja",
+   "valore": 75.2,
+   "pos": 4,
+   "completa": 77
+  },
+  {
+   "squadra": "WOA",
+   "valore": 74.92,
+   "pos": 5,
+   "completa": 81
+  },
+  {
+   "squadra": "stif dc",
+   "valore": 74.59,
+   "pos": 6,
+   "completa": 66
+  },
+  {
+   "squadra": "Oranje VC",
+   "valore": 73.75,
+   "pos": 7,
+   "completa": 94
+  },
+  {
+   "squadra": "Apo team",
+   "valore": 73.15,
+   "pos": 8,
+   "completa": 100
+  },
+  {
+   "squadra": "Real Madrink",
+   "valore": 72.84,
+   "pos": 9,
+   "completa": 86
+  },
+  {
+   "squadra": "Atletico ma non troppo",
+   "valore": 69.48,
+   "pos": 10,
+   "completa": 65
+  }
+ ],
+ "aggiornato": "2026-11-24T12:02:57+00:00"
+}

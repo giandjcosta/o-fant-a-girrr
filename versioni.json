@@ -2,6 +2,41 @@
   "nota": "Fonte unica della pagina Versioni (girrr/versioni.html e stadio/girrr/versioni.html). A ogni rilascio si aggiunge la versione in cima con rilascio/versioni/aggiungi.py. Numeri: correzione minore = terza cifra (5.6.1), aggiornamento medio = seconda cifra (5.7.0), aggiornamento grande = prima cifra (6.0). Dove manca la storia: «Dato non conservato». Le versioni 1.0-4.5 e il Mercato Scambi vengono dai messaggi recuperati da Claude chat (9 novembre 2026), date controllate con i commit del sito. Il campo «nota» e «altre_varianti» non si mostrano nella pagina.",
   "versioni": [
     {
+      "v": "6.5.1",
+      "data": "2026-11-24",
+      "tipo": "minore",
+      "titolo": "La classifica delle rose",
+      "messaggio": "🔧 **O Girrr 6.5.1 è online!** Nella scheda della tua squadra trovi la classifica delle rose, «3ª rosa su 10», che si aggiorna dopo ogni giornata o scambio, e sotto la forza della tua rosa al completo, quella di inizio stagione. La Squadra della settimana resta aperta fino al primo calcio d’inizio della giornata dopo: hai più tempo per votare. Radio Girrr pronuncia bene i nomi delle squadre, annuncia solo i Derby veri e non ripete le battute. Il Giornale dell’8ª giornata esce in edizione speciale Vice City. Buona settimana a tutti! ⚽",
+      "novita": [
+        {
+          "area": "Squadre",
+          "voci": [
+            "Forza della rosa con la posizione fra le dieci rose («7ª rosa su 10»), ricalcolata dopo ogni giornata di Campionato o scambio, e la forza al completo, ferma da inizio stagione.",
+            "La classifica delle rose unisce i voti della scorsa stagione, i fantavoti veri di quest’anno e i voti attesi per le giornate che mancano, corretti da quanto ha reso ogni giocatore."
+          ]
+        },
+        {
+          "area": "Girrr Sport",
+          "voci": [
+            "La votazione della Squadra della settimana resta aperta fino al primo calcio d’inizio della giornata successiva, dalla 9ª giornata."
+          ]
+        },
+        {
+          "area": "Radio",
+          "voci": [
+            "Oranje VC e MVP pronunciati in italiano, nome The Blues Brothers, nessuna battuta ripetuta nella stessa puntata e Derby annunciati solo se sono nel registro ufficiale.",
+            "Se la prima in classifica perde, la puntata lo dice anche quando resta in testa."
+          ]
+        },
+        {
+          "area": "Giornale",
+          "voci": [
+            "Edizione speciale Vice City per la 8ª giornata, solo per questo numero; il coro della settimana può essere firmato da un personaggio della Curva."
+          ]
+        }
+      ]
+    },
+    {
       "v": "6.5",
       "data": "2026-11-18",
       "tipo": "medio",

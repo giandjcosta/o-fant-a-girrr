@@ -91,6 +91,34 @@ if pdf.exists():
             if "Pag. %d di 4" % p not in tx: err("Piè di pagina «Pag. %d di 4» mancante nel PDF" % p)
         if "O Giornale del Girrr · O Fant A Girrr" not in tx: err("Piè di pagina «O Giornale del Girrr · O Fant A Girrr» mancante nel PDF")
 
+# 6. Tutto il resto della giornata (aggiunto da Claude il 24 novembre 2026).
+#    ERRORE = manca un dato che la pagina usa subito; AVVISO = arriva più tardi (Radio, video, MVP) o dipende dal database.
+def leggi(rel):
+    f = R / rel
+    try: return json.loads(f.read_text(encoding="utf-8")) if f.exists() else None
+    except Exception: return None
+fid, prob = leggi("girrr/dati/fiducia.json"), leggi("girrr/dati/probabilita.json")
+for nome, x in (("fiducia", fid), ("probabilita", prob)):
+    (ok if x and x.get("giornata") == n else err)("girrr/dati/%s.json alla giornata %s (serve %d)" % (nome, (x or {}).get("giornata", "MANCA"), n))
+mov = leggi("girrr/dati/moviola.json") or {}
+(ok if str(n) in (mov.get("giornate") or {}) else err)("Moviola della giornata %d" % n)
+cro = leggi("girrr/dati/cronache.json") or {}
+(ok if re.search(r'"n":\s*%d\b' % n, str(cro.get("firma", ""))) else err)("Cronache della Home (Oggi al Girrr) aggiornate alla giornata %d" % n)
+gdb = leggi("girrr/dati/giro-di-boa.json") or {}
+(ok if gdb.get("ultima_pubblicata") == n else avv)("Giro di boa e bilanci: ultima giornata %s (attesa %d)" % (gdb.get("ultima_pubblicata", "MANCA"), n))
+tif = leggi("girrr/dati/tifosi-settimane.json") or {}
+(ok if str(n) in (tif.get("giornate") or {}) else avv)("Settimane dei tifosi (La tua settimana, Derby) con la giornata %d" % n)
+mvp = leggi("girrr/dati/mvp-editoriale.json") or {}
+(ok if (mvp.get("votazione") or {}).get("giornata") == n else avv)("Squadra della settimana (MVP): votazione della giornata %s (attesa %d)" % ((mvp.get("votazione") or {}).get("giornata", "MANCA"), n))
+(ok if (R / ("girrr/voci/puntata-g%s.mp3" % NN)).exists() else avv)("Radio: girrr/voci/puntata-g%s.mp3 (esce circa 70 minuti dopo il Giornale)" % NN)
+(ok if (R / ("girrr/video/giornata-%s.mp4" % NN)).exists() else avv)("Video della giornata: girrr/video/giornata-%s.mp4" % NN)
+red = leggi("girrr/dati/redazione.json") or {}
+(ok if (red.get("giornata") or 0) > n else avv)("Domande della conferenza pronte per la giornata %d (ora: %s)" % (n + 1, red.get("giornata", "MANCA")))
+for g in (d.get("cal", {}).get("cup") or []):
+    if str(g.get("sa")) == sa and g.get("m") and all(m[-1] != "-" for m in g["m"]):
+        MM = "%02d" % g["n"]
+        (ok if (R / "riepiloghi" / ("tabellone-coppa-%s.png" % MM)).exists() else err)("riepiloghi/tabellone-coppa-%s.png (Champions Cup, turno %d)" % (MM, g["n"]))
+
 print("CONTROLLO GIORNATA %d" % n)
 for tag, L in (("OK    ", OK), ("AVVISO", AVV), ("ERRORE", ERR)):
     for m in L: print("%s %s" % (tag, m))

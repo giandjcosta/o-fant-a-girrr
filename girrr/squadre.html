@@ -150,6 +150,7 @@ function stima(id){
   var p=D.P[id];if(!p||!base()[p.r])return null;var l=(D.ly||{})[id],pres=l?l[0]:0,fm=l?l[2]:base()[p.r],cy=voti(id).map(function(x){return x.f});
   return {r:p.r,e:(pres*fm+2*cy.reduce(function(a,b){return a+b},0)+10*base()[p.r])/(pres+2*cy.length+10)};
 }
+var FR=null;/* forza-rose */
 var MOD=[[3,4,3],[3,5,2],[4,4,2],[4,3,3],[4,5,1],[5,3,2],[5,4,1]];
 function forza(t){
   var by={P:[],D:[],C:[],A:[]};t.pl.forEach(function(x){var e=stima(String(x.id));if(e)by[e.r].push(e.e)});
@@ -180,6 +181,12 @@ function render(){
   var fs=D.teams.map(function(t){return {n:t.name,f:forza(t)}}).filter(function(x){return x.f!==null}).sort(function(a,b){return b.f-a.f});
   var fi=fs.map(function(x){return x.n}).indexOf(sel),mx=fs.length?fs[0].f:1,mn=fs.length?fs[fs.length-1].f:0;
   var hf='<div class="card"><h3>Forza della rosa</h3>'+(fi>=0?'<div class="sub" style="margin:0">'+(fi+1)+'ª su '+fs.length+' per fantavoti attesi dei migliori undici</div><div class="bar"><i style="width:'+Math.round(25+75*(fs[fi].f-mn)/Math.max(0.01,mx-mn))+'%"></i></div>':'<div class="vuoto">Dati non disponibili.</div>')+'</div>';
+  /* forza-rose: classifica delle rose dalla fotografia del server (dopo ogni giornata o scambio); sotto la forza al completo, ferma */
+  var frc=FR&&FR.classifica||[],fr=frc.filter(function(x){return x.squadra===sel})[0];
+  if(fr){var fmx=frc[0].valore,fmn=frc[frc.length-1].valore;
+    hf='<div class="card"><h3>Forza della rosa</h3><div class="sub" style="margin:0"><b>'+fr.pos+'ª rosa su '+frc.length+'</b> · Dopo la '+FR.giornata+'ª giornata</div>'
+      +'<div class="bar"><i style="width:'+Math.round(25+75*(fr.valore-fmn)/Math.max(0.01,fmx-fmn))+'%"></i></div>'
+      +(fr.completa?'<div class="sub" style="margin:8px 0 0">Al completo: <b>'+fr.completa+'</b> su 100</div>':'')+'</div>'}
   /* migliori della rosa */
   var pl=T.pl.map(function(x){var id=String(x.id),p=D.P[id],v=voti(id),s=v.reduce(function(a,b){return a+b.f},0);return {id:id,p:p,c:x.c,n:v.length,m:v.length?s/v.length:null,e:stima(id),last:v.length?v[v.length-1].f:null}}).filter(function(x){return x.p});
   var top=pl.filter(function(x){return x.n>0}).sort(function(a,b){return b.m-a.m}).slice(0,5);
@@ -228,6 +235,7 @@ fetch('../data.json',{cache:'no-store'}).then(function(r){return r.json()}).then
   D=d;var h=decodeURIComponent((location.hash||'').replace('#',''));
   sel=D.teams.some(function(t){return t.name===h})?h:(D.teams.some(function(t){return t.name===ME})?ME:D.teams[0].name);
   chips();render();document.getElementById('foot').textContent='Dati aggiornati al '+(D.cal.date||'');
+  /* forza-rose */fetch('dati/forza-rose.json',{cache:'no-store'}).then(function(r){return r.ok?r.json():null}).then(function(f){if(f&&f.classifica){FR=f;render()}}).catch(function(){});
   centra();
 }).catch(function(){document.getElementById('sch').innerHTML='<div class="err">Non riesco a leggere i dati.</div>'});
 })();
