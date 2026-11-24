@@ -183,6 +183,98 @@
         }
       },
       "redazione": []
+    },
+    "8": {
+      "firma": "c3b25b66aef3590040062864dd8e84a5106c5c7da1c5dac5cd4c6b75734d2618",
+      "squadre": {
+        "The Blue brothers": {
+          "titolo": "Sette gol sul campo della seconda",
+          "paragrafi": [
+            "Sul campo della stif dc, che si presentava da seconda in classifica, i Blues Brothers vincono 7–1: il risultato più largo della giornata. Una settimana prima, in casa con l’AFA SELECCION, era arrivato un pareggio per 1–1.",
+            "I tre punti portano la squadra di Leanzino & Mario a quota undici e al sesto posto, il migliore della stagione: fino a questa giornata non era mai salita oltre il settimo. Il presidente chiede di chiudere tra le prime due, e la vetta resta a cinque punti.",
+            "Il prossimo capitolo si apre in casa con il Real Madrink, settimo a un punto e reduce dal 2–7 con la Grodah. Per i Blues Brothers la domanda è semplice: il 7–1 è stato una serata o l’inizio di una rincorsa?"
+          ]
+        },
+        "Apo team": {
+          "titolo": "Un altro pari, e adesso il Derby",
+          "paragrafi": [
+            "In casa con l’Atletico ma non troppo l’Apo team non va oltre il 2–2. È il quarto pareggio della stagione e arriva dopo il 2–3 sul campo di Mariana Coneja: un punto che muove la classifica, ma non la posizione.",
+            "L’Apo resta ottavo, con sette punti come l’Atletico. Dopo la seconda giornata guidava il campionato; da allora l’unica vittoria resta quella della prima, il 3–1 sui Blues Brothers. Alla vigilia dell’8ª apo aveva chiesto vicinanza: «Crediamo nei nostri ragazzi e abbiamo bisogno del supporto del nostro pubblico».",
+            "La prossima pagina è un Derby, in casa della Grodah seconda in classifica. Per l’Apo è l’occasione di trasformare i pareggi in una vittoria che manca dalla prima giornata."
+          ]
+        },
+        "Grodah": {
+          "titolo": "Sette gol per tornare a un passo dalla vetta",
+          "paragrafi": [
+            "Una settimana dopo l’1–2 in casa con la stif dc, la Grodah risponde con un 7–2 sul campo del Real Madrink. È la quinta vittoria in otto giornate e una delle due goleade del turno, insieme al 7–1 dei Blues Brothers.",
+            "Con quindici punti la Grodah torna seconda, a uno solo da Mariana Coneja. Il presidente chiedeva a RikyArma di entrare nella metà alta: la squadra che la scorsa stagione ha alzato la Coppa Campioni adesso guarda direttamente la vetta.",
+            "Il prossimo incrocio è il Derby con l’Apo team, in casa. Dopo una sconfitta e una goleada, la Grodah cerca la continuità che può portarla in cima."
+          ]
+        },
+        "WOA": {
+          "titolo": "Un gol di distanza, ancora una volta",
+          "paragrafi": [
+            "La WOA perde 3–2 sul campo dell’AFA SELECCION. Come una settimana fa con l’Oranje, finita 1–2, la sconfitta arriva con un solo gol di scarto: due partite combattute, nessun punto raccolto.",
+            "La classifica resta ferma a quattro punti e all’ultimo posto, dove la WOA si trova dalla quarta giornata. Il peso si sente di più per chi, nella scorsa stagione, ha vinto la Gioberti Cup e aveva come obiettivo ripetersi.",
+            "In casa arriva la stif dc, quinta ma reduce dall’1–7 con i Blues Brothers. Per la WOA è l’occasione di trasformare le sconfitte di misura in una vittoria che manca dalla sesta giornata."
+          ]
+        },
+        "Real Madrink": {
+          "titolo": "Dalla vittoria di misura alla serata più dura",
+          "paragrafi": [
+            "Una settimana dopo l’1–0 sul campo dell’Atletico ma non troppo, il Real Madrink incassa in casa un 2–7 dalla Grodah. Tra le due giornate la differenza è tutta nella difesa: da nessun gol subito a sette.",
+            "La sconfitta costa un posto: il Real scende al settimo, con dieci punti. I gol subiti diventano ventuno in otto giornate, il dato più alto del campionato dopo quello della WOA. La metà alta chiesta dal presidente resta a tre punti.",
+            "Il prossimo capitolo è sul campo dei Blues Brothers, sesti a un punto e reduci dal 7–1. Due squadre vicine in classifica e lontanissime nell’ultima giornata: il Real cerca la reazione per riprendersi il posto perso."
+          ]
+        },
+        "stif dc": {
+          "titolo": "Dal secondo posto alla serata da dimenticare",
+          "paragrafi": [
+            "Sette giorni fa il 2–1 sul campo della Grodah aveva portato la stif dc al secondo posto. Questa settimana, in casa, arriva un 1–7 contro i Blues Brothers: la sconfitta più larga della giornata.",
+            "La classifica scivola di tre posizioni: la squadra di stifson è quinta, con tredici punti, e il podio ora è a un punto. La parte alta chiesta dal presidente resta raggiungibile, ma la caduta pesa.",
+            "Il prossimo turno porta la stif dc sul campo della WOA, ultima in classifica ma vincitrice della Gioberti Cup nella scorsa stagione. Dopo un 1–7, la prima cosa da ritrovare è la tenuta che aveva fermato la Grodah."
+          ]
+        },
+        "Mariana Coneja": {
+          "titolo": "La prima resta prima, ma il margine si riduce",
+          "paragrafi": [
+            "Mariana Coneja perde in casa 3–4 con l’Oranje VC, una settimana dopo il 3–2 sull’Apo team. È la seconda sconfitta della stagione, ed è arrivata contro una squadra che inseguiva dalla quinta posizione.",
+            "Il primo posto non cambia: con sedici punti la squadra di Mark Lenders guida il campionato dalla sesta giornata. Ma la Grodah adesso è a un punto, e il vantaggio di tre lunghezze della settimana scorsa si è ridotto al minimo.",
+            "Il prossimo incrocio è sul campo dell’Atletico ma non troppo, nono. Per la capolista la domanda della settimana è una sola: risposta immediata o primo vero momento di difficoltà?"
+          ]
+        },
+        "AFA SELECCION": {
+          "titolo": "Di nuovo sul podio, con lo scontro diretto alle porte",
+          "paragrafi": [
+            "L’AFA SELECCION batte 3–2 la WOA e torna a vincere dopo una sconfitta e il pareggio per 1–1 sul campo dei Blues Brothers. Un solo gol di scarto, sufficiente a cambiare la classifica.",
+            "Con quattordici punti la squadra di Maria risale al terzo posto, dentro il podio che il presidente ha indicato come obiettivo. La vetta è a due punti, ma alle spalle c’è l’Oranje VC con lo stesso punteggio.",
+            "Ed è proprio l’Oranje il prossimo avversario, in trasferta. Uno scontro diretto tra squadre appaiate: chi vince resta sul podio, chi perde rischia di guardarlo da fuori."
+          ]
+        },
+        "Oranje VC": {
+          "titolo": "La capolista cade, l’Oranje entra tra le prime quattro",
+          "paragrafi": [
+            "Sul campo di Mariana Coneja, prima in classifica, l’Oranje vince 4–3. Dopo il 2–1 alla WOA arriva la seconda vittoria consecutiva, questa volta contro la squadra che guida il campionato.",
+            "I tre punti portano l’Oranje a quattordici e al quarto posto, la zona che il presidente ha indicato come obiettivo della stagione. Alla vigilia dell’8ª DJ Cst Brazil era stato netto: «Chi non crede in noi può restare a casa». Il campo gli ha dato ragione.",
+            "Adesso arriva in casa l’AFA SELECCION, terza con gli stessi punti. Per l’Oranje è il primo esame da squadra di vertice: confermarsi, o tornare a guardare il podio da fuori."
+          ]
+        },
+        "Atletico ma non troppo": {
+          "titolo": "Un punto e due gol per tornare a muoversi",
+          "paragrafi": [
+            "Dopo lo 0–1 in casa con il Real Madrink, l’Atletico ma non troppo torna a segnare e a muovere la classifica: 2–2 sul campo dell’Apo team.",
+            "Il punto lascia la squadra di Riccardo al nono posto, dove si trova dalla quarta giornata, ma la porta a sette punti, gli stessi dell’Apo. Il sesto posto indicato dal presidente è a quattro lunghezze: la salita resta graduale, come previsto.",
+            "Il prossimo avversario è la capolista Mariana Coneja, in casa, reduce dalla sconfitta con l’Oranje. Per l’Atletico è l’occasione di dare un seguito a un pareggio che ha restituito i gol."
+          ]
+        }
+      },
+      "redazione": [
+        {
+          "autore": "Redazione di Girrr Sport",
+          "scelta": "The Blue brothers",
+          "motivo": "Vince 7–1 sul campo della stif dc, che era seconda: il successo più largo della giornata vale il sesto posto, il migliore della stagione."
+        }
+      ]
     }
   },
   "avvioGiornata": 7
