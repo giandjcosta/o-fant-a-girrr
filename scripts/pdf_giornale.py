@@ -27,16 +27,17 @@ TEMI = {
     # carta, inchiostro, accento, grigio, fascia, testo fascia, font titoli, peso, font testata, peso testata, dimensione titolo, dimensione testata
     "classico": ("#f3eee1", "#16130e", "#c8102e", "#6a6254", "#c8102e", "#ffffff", "'Inter Display','Inter',sans-serif", 900, "'DejaVu Serif',serif", 700, "35pt", "43pt"),
     # Edizione speciale «Notte Tropicale» / Vice City: SOLO il n. 8 (Gianluca, 24 novembre 2026). Dal n. 9 il Giornale torna classico, senza menzioni a Vice City.
-    # Carta «Tramonto Miami» dal rosa alla pesca; colori di Vice City caldi e freddi insieme: rosa, arancio, pesca, giallo, ciano e viola (Gianluca, 24 novembre).
+    # Carta «Tramonto Miami» dal rosa alla pesca. Colori di Miami in punti diversi, mai tutti in una sfumatura (Gianluca, 24 novembre):
+    # rosa neon sotto la testata, fascia turchese, striscia del tramonto rosa-arancio in fondo, linee arancio, un tocco di viola nei titoletti.
     # Niente bagliori né ombre: alcuni lettori PDF li mostrano come blocchi pieni sopra la testata. Si sceglie con --tema tropicale.
     "tropicale": ("linear-gradient(180deg,#ffd0e2 0%,#ffd9cc 50%,#ffe2c2 100%)", "#2a1030", "#d42a74", "#6f5480", "#d42a74", "#ffffff", "'Inter Display','Inter',sans-serif", 900, "'DejaVu Serif',serif", 700, "35pt", "43pt"),
 }
 
 CSS_TROPICALE = (".pg:before{background:radial-gradient(rgba(90,30,90,.045) .35mm,transparent .4mm) 0 0/1.6mm 1.6mm}"
-                 ".pg:after{content:\"\";position:absolute;left:0;right:0;bottom:0;height:3.2mm;background:linear-gradient(90deg,#8f5bff,#ff5c9d 25%,#ff8a3d 45%,#ffc94a 60%,#ffad7a 72%,#2fd3e6 88%,#8f5bff);pointer-events:none}"
-                 ".mast{border-bottom-color:#2fd3e6}.bar,.box,.tab,.som,.spb{border-color:#ff8a3d}"
+                 ".pg:after{content:\"\";position:absolute;left:0;right:0;bottom:0;height:3.2mm;background:linear-gradient(90deg,#ff4f93,#ff8a3d);pointer-events:none}"
+                 ".mast{border-bottom-color:#ff4f93}.bar,.box,.tab,.som,.spb{border-color:#ff8a3d}"
                  ".mini,.tit em{color:#c4521c}.txt:first-letter{color:#7436c9}.box h3 b,.tab h2 b{color:#7436c9}"
-                 ".tag{background:linear-gradient(90deg,#7436c9,#d42a74 45%,#ff8a3d)!important;color:#ffffff}"
+                 ".tag{background:linear-gradient(90deg,#12a8c4,#36d6e8)!important;color:#0b3566}"
                  ".mt .s{background:#d42a74;color:#ffffff}.st.s{color:#ffffff}"
                  # insegna «Speciale Vice City» in azzurro neon (Gianluca, 24 novembre): contorni pieni, senza sfocature
                  ".neon{position:absolute;right:13mm;top:50%;transform:translateY(-50%) rotate(-8deg);text-align:center;line-height:.95;font-family:'Lobster','DejaVu Serif',serif;font-weight:400}"
