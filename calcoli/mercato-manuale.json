@@ -1,0 +1,30 @@
+{
+ "_come_si_usa": "Scambi confermati da Gianluca, uno per voce: k unico, quando (ora UTC), da/a squadre, cosa passa, e i post: il primo della Lega, gli altri commenti sotto. Il Curva li pubblica una volta sola (calcoli/post_curva.py).",
+ "scambi": [
+  {
+   "k": "2026-11-24-blues-real",
+   "quando": "2026-11-24T15:01:27+00:00",
+   "giornata": 8,
+   "da": "The Blue brothers",
+   "a": "Real Madrink",
+   "da_cede": [
+    "Colpani",
+    "Adams C."
+   ],
+   "a_cede": [
+    "Baldanzi",
+    "Kean"
+   ],
+   "post": [
+    [
+     "lega_ofantagirrr",
+     "MERCATO · Ufficiale\nThe Blues Brothers e Real Madrink chiudono uno scambio: Baldanzi e Kean vestono la maglia dei Blues Brothers, Colpani e Adams C. passano al Real Madrink. #Mercato"
+    ],
+    [
+     "ciro_trattativa",
+     "L'avevo sussurrato io al bar, eh. Due per due, un centrocampista e un attaccante per parte: adesso tocca al campo dire chi ci ha guadagnato. #CiroTrattativa"
+    ]
+   ]
+  }
+ ]
+}
