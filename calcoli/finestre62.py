@@ -18,7 +18,7 @@ def scadenza(tipo, *, apertura, inizio=None, risultati=None, esistente=None):
         fine = risultati + timedelta(hours=48)
     elif tipo == 'mvp':
         if inizio is None: raise ValueError('Inizio della prossima giornata necessario')
-        fine = min(apertura + timedelta(hours=48), inizio)
+        fine = inizio   # Gianluca, 24 novembre 2026: l'MVP della giornata N resta aperto fino al primo calcio d'inizio della N+1
     elif tipo == 'post': fine = apertura + timedelta(hours=24)
     else: raise ValueError('Tipo sconosciuto')
     if fine <= apertura: raise ValueError('Finestra già conclusa: non aprire')

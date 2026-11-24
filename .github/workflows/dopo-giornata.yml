@@ -104,6 +104,8 @@ jobs:
         run: |
           python3 code/calcoli/post_curva.py code/calcoli/eventi.json code/calcoli/post_curva.json code/calcoli/moviola.json site/data.json --cronache-classifica
           python3 code/calcoli/pubblica_curva.py --vai
+      - name: Classifica delle rose (dopo ogni giornata di Campionato o scambio)
+        run: python3 code/calcoli/forza_rose.py site
       - name: Salvo i dati del sito
         run: |
           cd site
