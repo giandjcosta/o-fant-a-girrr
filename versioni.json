@@ -33,6 +33,12 @@
           "voci": [
             "Edizione speciale Vice City per la 8ª giornata, solo per questo numero; il coro della settimana può essere firmato da un personaggio della Curva."
           ]
+        },
+        {
+          "area": "App",
+          "voci": [
+            "Aperto come app dalla schermata Home del telefono, il pulsante Aggiorna resta solo nella Home; nelle altre pagine si ricarica trascinando in giù dall'alto."
+          ]
         }
       ]
     },
