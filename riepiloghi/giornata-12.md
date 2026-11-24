@@ -1,6 +1,6 @@
 # Riepilogo giornata 12 di Serie A
 
-Lega O FANT A GIRRR. Dati aggiornati al 2026-11-23.
+Lega O FANT A GIRRR. Dati aggiornati al 2026-11-24.
 
 ## Partite della giornata
 
@@ -132,7 +132,7 @@ Punteggio: piu' e' alto, piu' conviene. Unisce valore e probabilita' di giocare.
 | Giocatore | Squadra | Stato | Avversario | Punteggio |
 |---|---|---|---|---|
 | Ghedjemis | Frosinone | Titolare | Milan (T) | 76 |
-| Robinson J. | Monza | Titolare | Fiorentina (C) | 65 |
+| Robinson J. | Monza | Titolare | Fiorentina (C) | 76 |
 | Lontani | Parma | Panchina | Roma (C) | 50 |
 | N'Dri | Lecce | Titolare | Lazio (T) | 44 |
 | Nzola | Cagliari | Panchina | Como (T) | 36 |
