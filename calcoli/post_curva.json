@@ -50,35 +50,22 @@
   "body": "PROMESSA TRADITA\nApo, allenatore di Apo team, in conferenza stampa: «Sarà sicuramente una bella partita, che vinca il migliore». Il campo ha risposto altro, e la dirigenza ha preso nota. @apo_team #ConferenzaStampa"
  },
  {
-  "chiave": "conferenza:C8-Apo team:0",
+  "chiave": "conferenza:C9-Oranje VC:0",
   "h": "girrr_sport",
-  "body": "CONFERENZA STAMPA · Apo team - Atletico ma non troppo\nApo, allenatore di Apo team: «Crediamo nei nostri ragazzi e abbiamo bisogno del supporto del nostro pubb…» Su Atletico ma non troppo: «Bisogna fargli il culo, niente paura» Alla dirigenza: «Torneremo tra le grandi» @apo_team"
+  "body": "CONFERENZA STAMPA · Oranje VC - AFA SELECCION\nDJ Cst Brazil, allenatore di Oranje VC: «L'obiettivo resta lo stesso: restare tra le p…» Su AFA SELECCION: «L'AFA è forte: serve la stessa partita fatta c…» Alla dirigenza: «Restiamo prudenti: si lavora come la settimana…» @oranje_vc"
  },
  {
-  "chiave": "conferenza:C8-Apo team:1",
+  "chiave": "conferenza:C9-Oranje VC:1",
   "h": "ciro_trattativa",
   "body": "Mi piace l'umiltà, ma in questa lega non basta.",
-  "re": "conferenza:C8-Apo team:0",
+  "re": "conferenza:C9-Oranje VC:0",
   "re_h": "girrr_sport",
-  "re_body": "CONFERENZA STAMPA · Apo team - Atletico ma non troppo\nApo, allenatore di Apo team: «Crediamo nei nostri ragazzi e abbiamo bisogno del supporto del nostro pubb…» Su Atletico ma non troppo: «Bisogna fargli il culo, niente paura» Alla dirigenza: «Torneremo tra le grandi» @apo_team"
+  "re_body": "CONFERENZA STAMPA · Oranje VC - AFA SELECCION\nDJ Cst Brazil, allenatore di Oranje VC: «L'obiettivo resta lo stesso: restare tra le p…» Su AFA SELECCION: «L'AFA è forte: serve la stessa partita fatta c…» Alla dirigenza: «Restiamo prudenti: si lavora come la settimana…» @oranje_vc"
  },
  {
-  "chiave": "conferenza:C8-Oranje VC:0",
+  "chiave": "dopo:D8-Oranje VC:0",
   "h": "girrr_sport",
-  "body": "CONFERENZA STAMPA · Mariana Coneja - Oranje VC\nDJ Cst Brazil, allenatore di Oranje VC: «Una partita alla volta, con umiltà.» Su Mariana Coneja: «Mariana Coneja è un ottimo avversario: serve attenzione.» Alla dirigenza: «Chi non crede in noi può restare a casa.» @oranje_vc"
- },
- {
-  "chiave": "conferenza:C8-Oranje VC:1",
-  "h": "ciro_trattativa",
-  "body": "Mi piace l'umiltà, ma in questa lega non basta.",
-  "re": "conferenza:C8-Oranje VC:0",
-  "re_h": "girrr_sport",
-  "re_body": "CONFERENZA STAMPA · Mariana Coneja - Oranje VC\nDJ Cst Brazil, allenatore di Oranje VC: «Una partita alla volta, con umiltà.» Su Mariana Coneja: «Mariana Coneja è un ottimo avversario: serve attenzione.» Alla dirigenza: «Chi non crede in noi può restare a casa.» @oranje_vc"
- },
- {
-  "chiave": "dopo:D7-Oranje VC:0",
-  "h": "girrr_sport",
-  "body": "DOPO LA PARTITA · WOA - Oranje VC 1-2\nDJ Cst Brazil, allenatore di Oranje VC: «Abbiamo fatto quello che avevamo detto: vittoria meritata.» @oranje_vc #ConferenzaStampa"
+  "body": "DOPO LA PARTITA · Mariana Coneja - Oranje VC 3-4\nDJ Cst Brazil, allenatore di Oranje VC: «Tre punti importanti, ma resta tanto da lavorare.» @oranje_vc #ConferenzaStampa"
  },
  {
   "chiave": "mvp:M2026/27-7:0",

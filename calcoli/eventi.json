@@ -46,45 +46,29 @@
  },
  {
   "tipo": "conferenza",
-  "k": "C8-Apo team",
-  "team": "Apo team",
-  "giornata": 8,
-  "avversario": "Atletico ma non troppo",
+  "k": "C9-Oranje VC",
+  "team": "Oranje VC",
+  "giornata": 9,
+  "avversario": "AFA SELECCION",
   "tono": 1,
-  "partita": "Apo team - Atletico ma non troppo",
-  "libera": "Crediamo nei nostri ragazzi e abbiamo bisogno del supporto del nostro pubblico",
+  "partita": "Oranje VC - AFA SELECCION",
+  "libera": "",
   "risposte": [
-   "Crediamo nei nostri ragazzi e abbiamo bisogno del supporto del nostro pubblico",
-   "Bisogna fargli il culo, niente paura",
-   "Torneremo tra le grandi"
+   "L'obiettivo resta lo stesso: restare tra le prime quattro.",
+   "L'AFA è forte: serve la stessa partita fatta con la capolista.",
+   "Restiamo prudenti: si lavora come la settimana scorsa."
   ],
   "promessa": ""
  },
  {
-  "tipo": "conferenza",
-  "k": "C8-Oranje VC",
+  "tipo": "dopo",
+  "k": "D8-Oranje VC",
   "team": "Oranje VC",
   "giornata": 8,
   "avversario": "Mariana Coneja",
-  "tono": 1,
   "partita": "Mariana Coneja - Oranje VC",
-  "libera": "",
-  "risposte": [
-   "Una partita alla volta, con umiltà.",
-   "Mariana Coneja è un ottimo avversario: serve attenzione.",
-   "Chi non crede in noi può restare a casa."
-  ],
-  "promessa": "Chi non crede in noi può restare a casa."
- },
- {
-  "tipo": "dopo",
-  "k": "D7-Oranje VC",
-  "team": "Oranje VC",
-  "giornata": 7,
-  "avversario": "WOA",
-  "partita": "WOA - Oranje VC",
-  "risultato": "1-2",
-  "risposta": "Abbiamo fatto quello che avevamo detto: vittoria meritata."
+  "risultato": "3-4",
+  "risposta": "Tre punti importanti, ma resta tanto da lavorare."
  },
  {
   "tipo": "mvp",
