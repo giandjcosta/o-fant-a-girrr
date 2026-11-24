@@ -361,7 +361,10 @@ function card(x,tag){
   return '<div class="fc"><div class="tg" style="display:flex;justify-content:space-between;gap:6px"><span>'+tag+'</span><span style="letter-spacing:.06em;color:var(--chiaro)">'+(x.p.comp==='coppa'?'COPPA':'CAMPIONATO')+'</span></div><div class="mm">'+esc(x.p.casa)+' – '+esc(x.p.trasf)+'</div><button class="q'+(on?' on':'')+'" data-p="'+x.p.id+'" data-m="'+x.m+'"><small>'+esc(x.n)+'</small><b>'+f2(x.q)+'</b></button></div>';
 }
 function premioWidget(){
- var entries=(PREMI&&PREMI.premi)||[],p=entries.find(function(x){return x.stato==='pending'}),claimed=entries.find(function(x){return x.stato==='claimed'});
+ /* 6.5.1: gli obiettivi del presidente danno solo reputazione (0 FC): non si riscattano, si mostrano come raggiunti */
+ var entries=(PREMI&&PREMI.premi)||[],solorep=function(x){return x.sponsor==='Presidente'||!(+x.crediti>0)},
+  p=entries.find(function(x){return x.stato==='pending'&&!solorep(x)}),claimed=entries.find(function(x){return x.stato==='claimed'}),pres=entries.find(function(x){return x.stato==='pending'&&solorep(x)});
+ if(!p&&pres)return '<aside class="prize-corner claimed"><div><strong>✓ Obiettivo del presidente raggiunto</strong><small>'+esc(pres.sponsor)+' · Reputazione permanente +'+f0(pres.reputazione)+'</small></div></aside>';
  if(!p&&!claimed)return '';
  if(p)return '<aside class="prize-corner" aria-label="Premio sponsor da riscuotere"><div><strong>🎁 Premio sponsor da riscuotere · +'+f0(p.crediti)+' FC</strong><small>'+esc(p.sponsor)+' · Reputazione permanente +'+f0(p.reputazione)+'</small></div><button class="go" id="riscatta-sponsor" data-obiettivo="'+esc(p.obiettivo)+'">Riscatta</button></aside>';
  return '<aside class="prize-corner claimed"><div><strong>✓ Premio sponsor riscattato</strong><small>'+esc(claimed.sponsor)+' · +'+f0(claimed.crediti)+' FC · Reputazione +'+f0(claimed.reputazione)+'</small></div></aside>';
