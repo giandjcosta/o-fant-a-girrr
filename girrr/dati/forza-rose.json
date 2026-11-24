@@ -3,19 +3,19 @@
  "stagione": "2026/27",
  "giornata": 8,
  "serie_a": 12,
- "rose": "ac0490cf1dbab18d",
+ "rose": "decf111167e06bdf",
  "classifica": [
+  {
+   "squadra": "The Blue brothers",
+   "valore": 77.81,
+   "pos": 1,
+   "completa": 99
+  },
   {
    "squadra": "AFA SELECCION",
    "valore": 77.69,
-   "pos": 1,
-   "completa": 88
-  },
-  {
-   "squadra": "The Blue brothers",
-   "valore": 77.39,
    "pos": 2,
-   "completa": 99
+   "completa": 88
   },
   {
    "squadra": "Grodah",
@@ -55,7 +55,7 @@
   },
   {
    "squadra": "Real Madrink",
-   "valore": 72.84,
+   "valore": 72.64,
    "pos": 9,
    "completa": 86
   },
@@ -66,5 +66,5 @@
    "completa": 65
   }
  ],
- "aggiornato": "2026-11-24T12:02:57+00:00"
+ "aggiornato": "2026-11-24T15:01:07+00:00"
 }
