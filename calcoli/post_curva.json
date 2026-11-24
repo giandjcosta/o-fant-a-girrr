@@ -40,81 +40,109 @@
   "body": "Novità dall'Albo d'oro: nasce «Derby dell'Emma», il Derby tra Leanzino & Mario e DJ Cst Brazil. Entra nella storia della Lega. #Derby #AlboDoro"
  },
  {
+  "chiave": "promessa:C8-Oranje VC:0",
+  "h": "giornale_girrr",
+  "body": "PAROLA MANTENUTA\nDJ Cst Brazil, allenatore di Oranje VC, l'aveva detto in conferenza stampa: «Chi non crede in noi può restare a casa.» Poi la squadra è andata in campo e l'ha fatto. @oranje_vc #ConferenzaStampa"
+ },
+ {
   "chiave": "promessa:C4-Apo team:0",
   "h": "giornale_girrr",
-  "body": "PROMESSA TRADITA\napo in conferenza stampa: «Sarà sicuramente una bella partita, che vinca il migliore». Il campo ha risposto altro, e la dirigenza ha preso nota. #ConferenzaStampa"
+  "body": "PROMESSA TRADITA\nApo, allenatore di Apo team, in conferenza stampa: «Sarà sicuramente una bella partita, che vinca il migliore». Il campo ha risposto altro, e la dirigenza ha preso nota. @apo_team #ConferenzaStampa"
  },
  {
-  "chiave": "conferenza:C7-Apo team:0",
+  "chiave": "conferenza:C8-Apo team:0",
   "h": "girrr_sport",
-  "body": "CONFERENZA STAMPA · apo, alla vigilia di apo - Mark Lenders: «Noi ci crediamo e non molliamo» Su Mark Lenders: «Sarà una partita difficile contro un avversario molto forte» E alla dirigenza: «Chi dubita di noi é gay» #ConferenzaStampa"
+  "body": "CONFERENZA STAMPA · Apo team - Atletico ma non troppo\nApo, allenatore di Apo team: «Crediamo nei nostri ragazzi e abbiamo bisogno del supporto del nostro pubb…» Su Atletico ma non troppo: «Bisogna fargli il culo, niente paura» Alla dirigenza: «Torneremo tra le grandi» @apo_team"
  },
  {
-  "chiave": "conferenza:C7-Apo team:1",
+  "chiave": "conferenza:C8-Apo team:1",
   "h": "ciro_trattativa",
   "body": "Mi piace l'umiltà, ma in questa lega non basta.",
-  "re": "conferenza:C7-Apo team:0",
+  "re": "conferenza:C8-Apo team:0",
   "re_h": "girrr_sport",
-  "re_body": "CONFERENZA STAMPA · apo, alla vigilia di apo - Mark Lenders: «Noi ci crediamo e non molliamo» Su Mark Lenders: «Sarà una partita difficile contro un avversario molto forte» E alla dirigenza: «Chi dubita di noi é gay» #ConferenzaStampa"
+  "re_body": "CONFERENZA STAMPA · Apo team - Atletico ma non troppo\nApo, allenatore di Apo team: «Crediamo nei nostri ragazzi e abbiamo bisogno del supporto del nostro pubb…» Su Atletico ma non troppo: «Bisogna fargli il culo, niente paura» Alla dirigenza: «Torneremo tra le grandi» @apo_team"
  },
  {
-  "chiave": "zona_classifica:zona:2026/27:G7:uscita_podio:AFA SELECCION:0",
+  "chiave": "conferenza:C8-Oranje VC:0",
   "h": "girrr_sport",
-  "body": "IL PODIO SFUGGE\nAFA SELECCION scende dalla 3ª alla 4ª posizione e lascia il podio dopo una serie di almeno tre giornate.",
-  "cronaca": "zona:2026/27:G7:uscita_podio:AFA SELECCION",
-  "giornata": 7,
+  "body": "CONFERENZA STAMPA · Mariana Coneja - Oranje VC\nDJ Cst Brazil, allenatore di Oranje VC: «Una partita alla volta, con umiltà.» Su Mariana Coneja: «Mariana Coneja è un ottimo avversario: serve attenzione.» Alla dirigenza: «Chi non crede in noi può restare a casa.» @oranje_vc"
+ },
+ {
+  "chiave": "conferenza:C8-Oranje VC:1",
+  "h": "ciro_trattativa",
+  "body": "Mi piace l'umiltà, ma in questa lega non basta.",
+  "re": "conferenza:C8-Oranje VC:0",
+  "re_h": "girrr_sport",
+  "re_body": "CONFERENZA STAMPA · Mariana Coneja - Oranje VC\nDJ Cst Brazil, allenatore di Oranje VC: «Una partita alla volta, con umiltà.» Su Mariana Coneja: «Mariana Coneja è un ottimo avversario: serve attenzione.» Alla dirigenza: «Chi non crede in noi può restare a casa.» @oranje_vc"
+ },
+ {
+  "chiave": "dopo:D7-Oranje VC:0",
+  "h": "girrr_sport",
+  "body": "DOPO LA PARTITA · WOA - Oranje VC 1-2\nDJ Cst Brazil, allenatore di Oranje VC: «Abbiamo fatto quello che avevamo detto: vittoria meritata.» @oranje_vc #ConferenzaStampa"
+ },
+ {
+  "chiave": "mvp:M2026/27-7:0",
+  "h": "girrr_sport",
+  "body": "🏆 MVP DEI TIFOSI · 7ª giornata\nStif dc @stif_dc è l'MVP dei tifosi della 7ª giornata. Vince 2–1 in trasferta sulla Grodah e sale al secondo posto: una risposta immediata alla sconfitta con l’Atletico. #GirrrSport #MVP"
+ },
+ {
+  "chiave": "zona_classifica:zona:2026/27:G8:rivelazione:Grodah:0",
+  "h": "girrr_sport",
+  "body": "LA RIVELAZIONE\nGrodah è sul podio da 3 giornate consecutive. Partiva con una posizione attesa di 5ª: ora è 2ª.",
+  "cronaca": "zona:2026/27:G8:rivelazione:Grodah",
+  "giornata": 8,
   "stagione": "2026/27",
-  "tema": "uscita_podio",
+  "tema": "rivelazione",
   "prova": {
-   "giornata": 7,
+   "giornata": 8,
    "posizione_precedente": 3,
-   "posizione": 4,
-   "attesa": 3,
-   "serie": 0,
+   "posizione": 2,
+   "attesa": 5,
+   "serie": 3,
    "altre_squadre": []
   }
  },
  {
-  "chiave": "zona_classifica:zona:2026/27:G7:uscita_podio:AFA SELECCION:1",
+  "chiave": "zona_classifica:zona:2026/27:G8:rivelazione:Grodah:1",
   "h": "giornale_girrr",
-  "body": "IL PUNTO DELLA CLASSIFICA\nAFA SELECCION scende dalla 3ª alla 4ª posizione e lascia il podio dopo una serie di almeno tre giornate.",
-  "cronaca": "zona:2026/27:G7:uscita_podio:AFA SELECCION",
-  "giornata": 7,
+  "body": "IL PUNTO DELLA CLASSIFICA\nGrodah è sul podio da 3 giornate consecutive. Partiva con una posizione attesa di 5ª: ora è 2ª.",
+  "cronaca": "zona:2026/27:G8:rivelazione:Grodah",
+  "giornata": 8,
   "stagione": "2026/27",
-  "tema": "uscita_podio",
+  "tema": "rivelazione",
   "prova": {
-   "giornata": 7,
+   "giornata": 8,
    "posizione_precedente": 3,
-   "posizione": 4,
-   "attesa": 3,
-   "serie": 0,
+   "posizione": 2,
+   "attesa": 5,
+   "serie": 3,
    "altre_squadre": []
   }
  },
  {
-  "chiave": "zona_classifica:zona:2026/27:G7:uscita_podio:AFA SELECCION:2",
+  "chiave": "zona_classifica:zona:2026/27:G8:rivelazione:Grodah:2",
   "h": "giornale_girrr",
-  "body": "Alla 7ª giornata: AFA SELECCION è 4ª. Il prossimo turno dirà se questa svolta avrà seguito.",
-  "cronaca": "zona:2026/27:G7:uscita_podio:AFA SELECCION",
-  "giornata": 7,
+  "body": "Alla 8ª giornata: Grodah è 2ª. Il prossimo turno dirà se questa svolta avrà seguito.",
+  "cronaca": "zona:2026/27:G8:rivelazione:Grodah",
+  "giornata": 8,
   "stagione": "2026/27",
-  "tema": "uscita_podio",
+  "tema": "rivelazione",
   "prova": {
-   "giornata": 7,
+   "giornata": 8,
    "posizione_precedente": 3,
-   "posizione": 4,
-   "attesa": 3,
-   "serie": 0,
+   "posizione": 2,
+   "attesa": 5,
+   "serie": 3,
    "altre_squadre": []
   },
-  "re": "zona_classifica:zona:2026/27:G7:uscita_podio:AFA SELECCION:0",
+  "re": "zona_classifica:zona:2026/27:G8:rivelazione:Grodah:0",
   "re_h": "girrr_sport",
-  "re_body": "IL PODIO SFUGGE\nAFA SELECCION scende dalla 3ª alla 4ª posizione e lascia il podio dopo una serie di almeno tre giornate."
+  "re_body": "LA RIVELAZIONE\nGrodah è sul podio da 3 giornate consecutive. Partiva con una posizione attesa di 5ª: ora è 2ª."
  },
  {
-  "chiave": "moviola:G7:0",
+  "chiave": "moviola:G8:0",
   "h": "girrr_sport",
-  "body": "MOVIOLA · Giornata 7\nGol decisivo. La moviola dice gol regolare, il tabellone dice WOA–Oranje VC 1‑2. Il gol di Frattesi vale il risultato: senza, Oranje VC avrebbe pareggiato. Verdetto: Ha deciso la partita. #GirrrSport #Moviola",
-  "quando": "2026-11-03T13:40:00+00:00"
+  "body": "MOVIOLA · Giornata 8\nGol decisivo. La moviola dice gol regolare, il tabellone dice AFA SELECCION–WOA 3‑2. La tripletta di Esposito F.P. vale il risultato: senza, AFA SELECCION avrebbe perso. Verdetto: Ha deciso la partita. #GirrrSport #Moviola",
+  "quando": "2026-11-24T13:40:00+00:00"
  }
 ]

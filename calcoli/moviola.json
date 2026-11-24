@@ -6,7 +6,8 @@
   4,
   5,
   6,
-  7
+  7,
+  8
  ],
  "giornate": {
   "1": {
@@ -1075,6 +1076,191 @@
      "avversario_reale": "Torino",
      "in_casa": false,
      "data_partita": "sab 7/11 15:00"
+    }
+   ]
+  },
+  "8": {
+   "sa": 12,
+   "scritta": "2026-11-24",
+   "episodi": [
+    {
+     "tipo": "gol",
+     "titolo": "Gol decisivo",
+     "verdetto": "Ha deciso la partita",
+     "testo": "La moviola dice gol regolare, il tabellone dice AFA SELECCION–WOA 3‑2. La tripletta di Esposito F.P. vale il risultato: senza, AFA SELECCION avrebbe perso.",
+     "giocatore": "Esposito F.P.",
+     "squadra": "AFA SELECCION",
+     "allenatori": [
+      "Maria"
+     ],
+     "id": "7071",
+     "squadra_reale": "Inter",
+     "avversario_reale": "Atalanta",
+     "in_casa": false,
+     "data_partita": "dom 22/11 20:45"
+    },
+    {
+     "tipo": "panchina",
+     "titolo": "Decisivo dalla panchina",
+     "verdetto": "Ha deciso la partita",
+     "testo": "Seduto in panchina all'inizio, decisivo alla fine. Wesley entra, lascia il segno e consegna Mariana Coneja–Oranje VC 3‑4 a Oranje VC: senza, Oranje VC avrebbe pareggiato.",
+     "giocatore": "Wesley",
+     "squadra": "Oranje VC",
+     "allenatori": [
+      "DJ Cst Brazil"
+     ],
+     "id": "7181",
+     "squadra_reale": "Roma",
+     "avversario_reale": "Parma",
+     "in_casa": false,
+     "data_partita": "sab 21/11 18:00"
+    },
+    {
+     "tipo": "autogol",
+     "titolo": "Autogol",
+     "verdetto": "Regolare",
+     "testo": "Sfortuna per Calvani: tocco decisivo nella sua porta. Nessun fallo prima, il gol è valido e Atletico ma non troppo lo paga caro.",
+     "giocatore": "Calvani",
+     "squadra": "Atletico ma non troppo",
+     "allenatori": [
+      "Riccardo"
+     ],
+     "id": "7467",
+     "squadra_reale": "Frosinone",
+     "avversario_reale": "Milan",
+     "in_casa": false,
+     "data_partita": "dom 22/11 18:00"
+    }
+   ],
+   "scartati": [],
+   "automatici": [
+    {
+     "tipo": "gol",
+     "titolo": "Gol decisivo",
+     "verdetto": "Ha deciso la partita",
+     "testo": "La moviola dice gol regolare, il tabellone dice AFA SELECCION–WOA 3‑2. La tripletta di Esposito F.P. vale il risultato: senza, AFA SELECCION avrebbe perso.",
+     "giocatore": "Esposito F.P.",
+     "squadra": "AFA SELECCION",
+     "allenatori": [
+      "Maria"
+     ],
+     "id": "7071",
+     "squadra_reale": "Inter",
+     "avversario_reale": "Atalanta",
+     "in_casa": false,
+     "data_partita": "dom 22/11 20:45"
+    },
+    {
+     "tipo": "panchina",
+     "titolo": "Decisivo dalla panchina",
+     "verdetto": "Ha deciso la partita",
+     "testo": "Seduto in panchina all'inizio, decisivo alla fine. Wesley entra, lascia il segno e consegna Mariana Coneja–Oranje VC 3‑4 a Oranje VC: senza, Oranje VC avrebbe pareggiato.",
+     "giocatore": "Wesley",
+     "squadra": "Oranje VC",
+     "allenatori": [
+      "DJ Cst Brazil"
+     ],
+     "id": "7181",
+     "squadra_reale": "Roma",
+     "avversario_reale": "Parma",
+     "in_casa": false,
+     "data_partita": "sab 21/11 18:00"
+    },
+    {
+     "tipo": "gol",
+     "titolo": "Gol decisivo",
+     "verdetto": "Ha deciso la partita",
+     "testo": "Tutto gira intorno a Frattesi: il gol decide Mariana Coneja–Oranje VC 3‑4. Nessun dubbio dalla moviola, e senza il gol Oranje VC avrebbe pareggiato.",
+     "giocatore": "Frattesi",
+     "squadra": "Oranje VC",
+     "allenatori": [
+      "DJ Cst Brazil"
+     ],
+     "id": "2848",
+     "squadra_reale": "Lazio",
+     "avversario_reale": "Lecce",
+     "in_casa": true,
+     "data_partita": "sab 21/11 15:00"
+    },
+    {
+     "tipo": "gol",
+     "titolo": "Gol decisivo",
+     "verdetto": "Ha deciso la partita",
+     "testo": "Il gol di Kolo Muani decide Apo team–Atletico ma non troppo 2‑2. Rivista l'azione, nessun fallo e nessun fuorigioco: tutto regolare. Senza il gol Atletico ma non troppo avrebbe perso.",
+     "giocatore": "Kolo Muani",
+     "squadra": "Atletico ma non troppo",
+     "allenatori": [
+      "Riccardo"
+     ],
+     "id": "5951",
+     "squadra_reale": "Juventus",
+     "avversario_reale": "Venezia",
+     "in_casa": true,
+     "data_partita": "dom 22/11 12:30"
+    },
+    {
+     "tipo": "gol",
+     "titolo": "Gol decisivo",
+     "verdetto": "Ha deciso la partita",
+     "testo": "Tutto gira intorno a Koopmeiners: il gol decide Apo team–Atletico ma non troppo 2‑2. Nessun dubbio dalla moviola, e senza il gol Atletico ma non troppo avrebbe perso.",
+     "giocatore": "Koopmeiners",
+     "squadra": "Atletico ma non troppo",
+     "allenatori": [
+      "Riccardo"
+     ],
+     "id": "5685",
+     "squadra_reale": "Juventus",
+     "avversario_reale": "Venezia",
+     "in_casa": true,
+     "data_partita": "dom 22/11 12:30"
+    },
+    {
+     "tipo": "gol",
+     "titolo": "Gol decisivo",
+     "verdetto": "Ha deciso la partita",
+     "testo": "Il gol di Zortea decide Mariana Coneja–Oranje VC 3‑4. Rivista l'azione, nessun fallo e nessun fuorigioco: tutto regolare. Senza il gol Oranje VC avrebbe pareggiato.",
+     "giocatore": "Zortea",
+     "squadra": "Oranje VC",
+     "allenatori": [
+      "DJ Cst Brazil"
+     ],
+     "id": "4433",
+     "squadra_reale": "Bologna",
+     "avversario_reale": "Udinese",
+     "in_casa": true,
+     "data_partita": "dom 22/11 15:00"
+    },
+    {
+     "tipo": "assist",
+     "titolo": "Assist decisivo",
+     "verdetto": "Ha deciso la partita",
+     "testo": "Il pallone giusto lo mette Couto: è l'assist che decide AFA SELECCION–WOA 3‑2. Al replay posizione regolare. Senza quel passaggio AFA SELECCION avrebbe pareggiato.",
+     "giocatore": "Couto",
+     "squadra": "AFA SELECCION",
+     "allenatori": [
+      "Maria"
+     ],
+     "id": "6727",
+     "squadra_reale": "Como",
+     "avversario_reale": "Cagliari",
+     "in_casa": true,
+     "data_partita": "sab 21/11 15:00"
+    },
+    {
+     "tipo": "autogol",
+     "titolo": "Autogol",
+     "verdetto": "Regolare",
+     "testo": "Sfortuna per Calvani: tocco decisivo nella sua porta. Nessun fallo prima, il gol è valido e Atletico ma non troppo lo paga caro.",
+     "giocatore": "Calvani",
+     "squadra": "Atletico ma non troppo",
+     "allenatori": [
+      "Riccardo"
+     ],
+     "id": "7467",
+     "squadra_reale": "Frosinone",
+     "avversario_reale": "Milan",
+     "in_casa": false,
+     "data_partita": "dom 22/11 18:00"
     }
    ]
   }

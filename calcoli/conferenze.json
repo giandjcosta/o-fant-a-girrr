@@ -1,23 +1,34 @@
 [
  {
+  "team": "Oranje VC",
+  "giornata": 8,
+  "promessa": "Chi non crede in noi può restare a casa.",
+  "pesa": 2,
+  "esito": "v",
+  "tono": 1
+ },
+ {
   "team": "Apo team",
   "giornata": 6,
   "promessa": "Se non dovessimo vincere questa giornata probabilmente salterà qualche testa",
   "pesa": 1,
-  "esito": "p"
+  "esito": "p",
+  "tono": 1
  },
  {
   "team": "Oranje VC",
   "giornata": 4,
   "promessa": "Chi parla di obiettivi guardi la classifica.",
   "pesa": 2,
-  "esito": "p"
+  "esito": "p",
+  "tono": 1
  },
  {
   "team": "Apo team",
   "giornata": 4,
   "promessa": "Sarà sicuramente una bella partita, che vinca il migliore",
   "pesa": 1,
-  "esito": "s"
+  "esito": "s",
+  "tono": 1
  }
 ]

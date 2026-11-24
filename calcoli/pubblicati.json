@@ -25,8 +25,10 @@
  "moviola:G5:0",
  "moviola:G6:0",
  "moviola:G7:0",
+ "moviola:G8:0",
  "mvp:M2026/27-7:0",
  "promessa:C4-Apo team:0",
+ "promessa:C8-Oranje VC:0",
  "sfida:S4:0",
  "sfida:S4:1",
  "sfida:S5:0",
@@ -36,5 +38,8 @@
  "zona_classifica:zona:2026/27:G6:rimonta:Grodah:2",
  "zona_classifica:zona:2026/27:G7:uscita_podio:AFA SELECCION:0",
  "zona_classifica:zona:2026/27:G7:uscita_podio:AFA SELECCION:1",
- "zona_classifica:zona:2026/27:G7:uscita_podio:AFA SELECCION:2"
+ "zona_classifica:zona:2026/27:G7:uscita_podio:AFA SELECCION:2",
+ "zona_classifica:zona:2026/27:G8:rivelazione:Grodah:0",
+ "zona_classifica:zona:2026/27:G8:rivelazione:Grodah:1",
+ "zona_classifica:zona:2026/27:G8:rivelazione:Grodah:2"
 ]
