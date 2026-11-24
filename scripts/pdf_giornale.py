@@ -39,7 +39,7 @@ CSS_TROPICALE = (".pg:before{background:radial-gradient(rgba(120,40,60,.045) .35
                  ".mt .s{background:#d92f68;color:#ffffff}.st.s{color:#ffffff}"
                  # insegna «Speciale Vice City» (Gianluca, 24 novembre): neon disegnato con contorni pieni, senza sfocature
                  ".neon{position:absolute;right:13mm;top:50%;transform:translateY(-50%) rotate(-8deg);text-align:center;line-height:.95;font-family:'Lobster','DejaVu Serif',serif;font-weight:400}"
-                 ".neon b{display:block;font-weight:400;color:#ff2d87;-webkit-text-stroke:.45pt #7a0f3d;text-shadow:.6mm .6mm 0 #ffb347}"
+                 ".neon b{display:block;font-weight:400;color:#2fe0f5;-webkit-text-stroke:.55pt #0b3566;text-shadow:.6mm .6mm 0 #ff5c9d}"
                  ".neon .s1{font-size:13pt;letter-spacing:.02em}.neon .s2{font-size:20pt}")
 
 
