@@ -58,87 +58,61 @@
     }
   ],
   "votazione": {
-    "chiude": "2026-11-21T14:00:00+00:00",
-    "chiusa": "2026-11-21T19:40:18.609652+00:00",
+    "chiude": "2026-11-26T10:24:32.319989+00:00",
+    "chiusa": null,
     "classifica": [
       {
         "away": true,
-        "gf": 2,
+        "gf": 7,
         "gs": 1,
-        "humanCount": 2,
-        "op": "Grodah",
+        "humanCount": 0,
+        "op": "stif dc",
         "opPos": 2,
-        "personaggi": 2,
+        "personaggi": 0,
         "red": 1,
-        "score": 14.8,
-        "team": "stif dc",
-        "total": 56.0,
+        "score": 69.8,
+        "team": "The Blue brothers",
+        "total": 50.0,
         "umani": 0
       },
       {
         "away": true,
-        "gf": 2,
-        "gs": 1,
-        "humanCount": 2,
-        "op": "WOA",
-        "opPos": 10,
-        "personaggi": 2,
-        "red": 0,
-        "score": 14,
-        "team": "Oranje VC",
-        "total": 26.0,
-        "umani": 1
-      },
-      {
-        "away": false,
-        "gf": 3,
+        "gf": 7,
         "gs": 2,
-        "humanCount": 2,
-        "op": "Apo team",
-        "opPos": 8,
-        "personaggi": 1,
+        "humanCount": 0,
+        "op": "Real Madrink",
+        "opPos": 6,
+        "personaggi": 0,
         "red": 0,
-        "score": 13.2,
-        "team": "Mariana Coneja",
-        "total": 18.0,
-        "umani": 1
+        "score": 59.4,
+        "team": "Grodah",
+        "total": 0.0,
+        "umani": 0
+      },
+      {
+        "away": true,
+        "gf": 4,
+        "gs": 3,
+        "humanCount": 0,
+        "op": "Mariana Coneja",
+        "opPos": 1,
+        "personaggi": 0,
+        "red": 0,
+        "score": 16.9,
+        "team": "Oranje VC",
+        "total": 0.0,
+        "umani": 0
       }
     ],
-    "firma": "fbc05b270c505129f6d63c85f0d781ab403b27349fe16d8a31723fb585e154af",
-    "giornata": 7,
-    "personaggi": [
-      {
-        "autore": "Nonno Cesare",
-        "motivo": "Nonno Cesare premia la solidità del risultato: 2–1 contro WOA.",
-        "scelta": "Oranje VC"
-      },
-      {
-        "autore": "Statistico Folle",
-        "motivo": "Statistico Folle considera margine, trasferta e posizione dell’avversario: 2–1 contro Grodah.",
-        "scelta": "stif dc"
-      },
-      {
-        "autore": "Il Romantico del Pallone",
-        "motivo": "Il Romantico del Pallone premia il ritorno alla vittoria: 2–1 contro WOA.",
-        "scelta": "Oranje VC"
-      },
-      {
-        "autore": "Tifoso Arrabbiato",
-        "motivo": "Tifoso Arrabbiato premia una risposta dopo una sconfitta: 2–1 contro Grodah.",
-        "scelta": "stif dc"
-      },
-      {
-        "autore": "Telecronista Stanco",
-        "motivo": "Telecronista Stanco premia i gol della vincitrice, poi la trasferta: 3–2 contro Apo team.",
-        "scelta": "Mariana Coneja"
-      }
-    ],
-    "personaggi_totali": 5,
+    "firma": "c3b25b66aef3590040062864dd8e84a5106c5c7da1c5dac5cd4c6b75734d2618",
+    "giornata": 8,
+    "personaggi": [],
+    "personaggi_totali": 11,
     "redazione": [
       {
         "autore": "Redazione di Girrr Sport",
-        "motivo": "Vince 2–1 in trasferta sulla Grodah e sale al secondo posto: una risposta immediata alla sconfitta con l’Atletico.",
-        "scelta": "stif dc"
+        "motivo": "Vince 7–1 sul campo della stif dc, che era seconda: il successo più largo della giornata vale il sesto posto, il migliore della stagione.",
+        "scelta": "The Blue brothers"
       }
     ],
     "stagione": "2026/27"
