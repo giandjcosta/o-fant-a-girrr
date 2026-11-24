@@ -27,17 +27,18 @@ TEMI = {
     # carta, inchiostro, accento, grigio, fascia, testo fascia, font titoli, peso, font testata, peso testata, dimensione titolo, dimensione testata
     "classico": ("#f3eee1", "#16130e", "#c8102e", "#6a6254", "#c8102e", "#ffffff", "'Inter Display','Inter',sans-serif", 900, "'DejaVu Serif',serif", 700, "35pt", "43pt"),
     # Edizione speciale «Notte Tropicale» / Vice City: SOLO il n. 8 (Gianluca, 24 novembre 2026). Dal n. 9 il Giornale torna classico, senza menzioni a Vice City.
-    # Carta chiara rosa e pesca, rosa corallo come accento, arancio per le linee (Gianluca, 24 novembre: «più rosato, non così scuro»).
+    # Carta lilla, rosa e pesca; colori di Vice City caldi e freddi insieme: rosa, arancio, pesca, giallo, ciano e viola (Gianluca, 24 novembre).
     # Niente bagliori né ombre: alcuni lettori PDF li mostrano come blocchi pieni sopra la testata. Si sceglie con --tema tropicale.
-    "tropicale": ("linear-gradient(170deg,#fff4ec 0%,#ffe8de 55%,#ffdccf 100%)", "#2b1622", "#d92f68", "#86606c", "#e8506f", "#ffffff", "'Inter Display','Inter',sans-serif", 900, "'DejaVu Serif',serif", 700, "35pt", "43pt"),
+    "tropicale": ("linear-gradient(170deg,#efe0ff 0%,#ffd6e6 50%,#ffdcc2 100%)", "#24112e", "#d42a74", "#6f5480", "#d42a74", "#ffffff", "'Inter Display','Inter',sans-serif", 900, "'DejaVu Serif',serif", 700, "35pt", "43pt"),
 }
 
-CSS_TROPICALE = (".pg:before{background:radial-gradient(rgba(120,40,60,.045) .35mm,transparent .4mm) 0 0/1.6mm 1.6mm}"
-                 ".pg:after{content:\"\";position:absolute;left:0;right:0;bottom:0;height:3.2mm;background:linear-gradient(90deg,#ff8a3d,#ff5c7a 50%,#d92f68);pointer-events:none}"
-                 ".mast{border-bottom-color:#f2843f}.bar,.box,.tab,.som,.spb{border-color:#f2843f}"
-                 ".mini,.tit em{color:#c4521c}.box h3 b,.tab h2 b{color:#d92f68}.txt:first-letter{color:#c4521c}"
-                 ".mt .s{background:#d92f68;color:#ffffff}.st.s{color:#ffffff}"
-                 # insegna «Speciale Vice City» (Gianluca, 24 novembre): neon disegnato con contorni pieni, senza sfocature
+CSS_TROPICALE = (".pg:before{background:radial-gradient(rgba(90,30,90,.045) .35mm,transparent .4mm) 0 0/1.6mm 1.6mm}"
+                 ".pg:after{content:\"\";position:absolute;left:0;right:0;bottom:0;height:3.2mm;background:linear-gradient(90deg,#8f5bff,#ff5c9d 25%,#ff8a3d 45%,#ffc94a 60%,#ffad7a 72%,#2fd3e6 88%,#8f5bff);pointer-events:none}"
+                 ".mast{border-bottom-color:#2fd3e6}.bar,.box,.tab,.som,.spb{border-color:#ff8a3d}"
+                 ".mini,.tit em{color:#c4521c}.txt:first-letter{color:#7436c9}.box h3 b,.tab h2 b{color:#7436c9}"
+                 ".tag{background:linear-gradient(90deg,#7436c9,#d42a74 45%,#ff8a3d)!important;color:#ffffff}"
+                 ".mt .s{background:#d42a74;color:#ffffff}.st.s{color:#ffffff}"
+                 # insegna «Speciale Vice City» in azzurro neon (Gianluca, 24 novembre): contorni pieni, senza sfocature
                  ".neon{position:absolute;right:13mm;top:50%;transform:translateY(-50%) rotate(-8deg);text-align:center;line-height:.95;font-family:'Lobster','DejaVu Serif',serif;font-weight:400}"
                  ".neon b{display:block;font-weight:400;color:#2fe0f5;-webkit-text-stroke:.55pt #0b3566;text-shadow:.6mm .6mm 0 #ff5c9d}"
                  ".neon .s1{font-size:13pt;letter-spacing:.02em}.neon .s2{font-size:20pt}")
@@ -48,8 +49,8 @@ def css_tema(nome):
     if nome == "tropicale":
         f = Path(__file__).resolve().parent / "font" / "Lobster-Regular.ttf"
         lob = ("@font-face{font-family:'Lobster';src:url(data:font/ttf;base64," + _b64.b64encode(f.read_bytes()).decode() + ") format('truetype')}") if f.exists() else ""
-        return lob + (f":root{{--paper:{c[0]};--ink:{c[1]};--rule:#f2843f;--red:{c[2]};--mute:{c[3]};--band:{c[4]};--bandink:{c[5]};"
-                f"--hd:{c[6]};--hw:{c[7]};--mh:{c[8]};--mhw:{c[9]};--tz:{c[10]};--mz:{c[11]};--soft:#f2843f55}}" + CSS_TROPICALE)
+        return lob + (f":root{{--paper:{c[0]};--ink:{c[1]};--rule:#ff8a3d;--red:{c[2]};--mute:{c[3]};--band:{c[4]};--bandink:{c[5]};"
+                f"--hd:{c[6]};--hw:{c[7]};--mh:{c[8]};--mhw:{c[9]};--tz:{c[10]};--mz:{c[11]};--soft:#ffc94a88}}" + CSS_TROPICALE)
     return (f":root{{--paper:{c[0]};--ink:{c[1]};--rule:{c[1]};--red:{c[2]};--mute:{c[3]};--band:{c[4]};--bandink:{c[5]};"
             f"--hd:{c[6]};--hw:{c[7]};--mh:{c[8]};--mhw:{c[9]};--tz:{c[10]};--mz:{c[11]};--soft:{c[3]}66{";--ts:.15pt" if nome == "verde" else ""}}}")
 
