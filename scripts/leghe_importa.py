@@ -24,7 +24,9 @@ def main():
         raise SystemExit(__doc__)
     L = json.loads(Path(sys.argv[1]).read_text(encoding="utf-8"))
     # Nomi su Leghe diversi dalla chiave del sito (Claude, 9 novembre 2026): si riportano alla chiave interna
-    DA_LEGHE = {"The Blues Brothers": "The Blue brothers"}
+    DA_LEGHE = {"The Blues Brothers": "The Blue brothers", "The Blues brothers": "The Blue brothers"}
+    # Giocatori scritti diversamente su Leghe rispetto alla rosa del sito (Claude, 24 novembre 2026)
+    GIOC_DA_LEGHE = {"Ndicka": "N'Dicka"}
     for parte in ("lega", "coppa"):
         for m in L.get(parte) or []:
             for lato in ("A", "B"):
@@ -55,6 +57,7 @@ def main():
             tit, pan, tot = [], [], 0.0
             for cat in ("tit", "pan"):
                 for n, v, f, entrato in s[cat]:
+                    n = GIOC_DA_LEGHE.get(n, n)
                     i = rosa[nome].get(n)
                     if not i:
                         errori.append(f"{nome}: giocatore non in rosa: {n}")
