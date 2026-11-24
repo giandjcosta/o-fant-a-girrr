@@ -1,19 +1,19 @@
-# Riepilogo giornata 12 di Serie A
+# Riepilogo giornata 13 di Serie A
 
 Lega O FANT A GIRRR. Dati aggiornati al 2026-11-24.
 
 ## Partite della giornata
 
-- Como - Cagliari (sab 21/11 15:00)
-- Lazio - Lecce (sab 21/11 15:00)
-- Parma - Roma (sab 21/11 18:00)
-- Napoli - Torino (sab 21/11 20:45)
-- Juventus - Venezia (dom 22/11 12:30)
-- Bologna - Udinese (dom 22/11 15:00)
-- Sassuolo - Genoa (dom 22/11 15:00)
-- Milan - Frosinone (dom 22/11 18:00)
-- Atalanta - Inter (dom 22/11 20:45)
-- Monza - Fiorentina (lun 23/11 20:45)
+- Venezia - Bologna (ven 27/11 20:45)
+- Frosinone - Parma (sab 28/11 15:00)
+- Torino - Lazio (sab 28/11 18:00)
+- Inter - Genoa (sab 28/11 20:45)
+- Udinese - Fiorentina (dom 29/11 12:30)
+- Sassuolo - Napoli (dom 29/11 15:00)
+- Roma - Monza (dom 29/11 18:00)
+- Como - Juventus (dom 29/11 20:45)
+- Lecce - Atalanta (lun 30/11 18:30)
+- Cagliari - Milan (lun 30/11 20:45)
 
 ## Classic League: ultima giornata (8ª, G12 di Serie A)
 
@@ -62,34 +62,43 @@ Notizie pubbliche, senza indicare di chi e' ogni giocatore.
 
 | Giocatore | Squadra | Motivo | Rientro | Giornata |
 |---|---|---|---|---|
-| Miranda J. | Bologna | Lesione di primo grado al bicipite femorale | Fine novembre | Salta |
+| Carnesecchi | Atalanta | Indisponibile | Da definire | Salta |
 | Holm | Bologna | Problema al tendine della coscia destra | Fine febbraio | Salta |
-| Rodriguez Je. | Como | Problema muscolare al quadricipite alto | Metà dicembre | In dubbio |
-| Diao | Como | Lesione muscolare al flessore della gamba | Seconda metà di novembre | Salta |
-| Kean | Como | Problema osseo alla gamba destra | Da valutare | In dubbio |
+| Miranda J. | Bologna | Lesione di primo grado al bicipite femorale | Fine novembre | Salta |
+| Mendy P. | Cagliari | Indisponibile | Da definire | Salta |
+| Rodriguez Je. | Como | Problema muscolare al quadricipite alto | Metà dicembre | Salta |
+| Kean | Como | Problema osseo alla gamba destra | Da valutare | Salta |
+| Diao | Como | Lesione muscolare al flessore della gamba | Seconda metà di novembre | In dubbio |
+| Viery | Fiorentina | Indisponibile | Da definire | Salta |
 | Raimondo | Frosinone | Lesione multilegamentosa contusivo-distorsiva della caviglia sinistra | Metà dicembre | Salta |
-| Bracaglia | Frosinone | Squalificato | Rientra dalla 13ª giornata | Salta |
+| Colombo | Genoa | Indisponibile | Da definire | Salta |
+| Calhanoglu | Inter | Indisponibile | Da definire | Salta |
 | Bonny | Inter | Risentimento muscolare ai flessori della coscia destra | Inizio dicembre | Salta |
-| Gonzalez N. | Juventus | Problema muscolare al polpaccio destro che lo | Da valutare | In dubbio |
-| Grabara | Juventus | Lesione al crociato anteriore del ginocchio destro | Da aprile | Salta |
-| Yildiz | Juventus | Problema al piede | Fine dicembre | Salta |
+| Zielinski | Inter | In dubbio | Da definire | In dubbio |
 | Kalulu | Juventus | Lesione ai muscoli ischiocrurali della gamba sinistra | Fine novembre | Salta |
+| Yildiz | Juventus | Problema al piede | Fine dicembre | Salta |
+| Grabara | Juventus | Lesione al crociato anteriore del ginocchio destro | Da aprile | Salta |
+| Alajbegovic | Juventus | In dubbio | Da definire | In dubbio |
+| Gonzalez N. | Juventus | Problema muscolare al polpaccio destro che lo | Da valutare | In dubbio |
 | Tavares N. | Lazio | Infortunio | Metà dicembre | Salta |
 | Marusic | Lazio | Fastidio muscolare alla gamba | Da valutare | Salta |
-| Zaccagni | Lazio | Lesione del quadricipite femorale sinistro | Da valutare | Salta |
 | Sutalo J. | Lazio | Lesione muscolare di secondo grado al flessore | Fine dicembre | Salta |
-| Chukwueze | Milan | Rottura del tendine del muscolo tensore della | Da aprile | Salta |
+| Zaccagni | Lazio | Lesione del quadricipite femorale sinistro | Da valutare | In dubbio |
 | Saelemaekers | Milan | Problema alla caviglia destra e operata il | Da febbraio | Salta |
-| Badiashile | Napoli | Lesione distrattiva di medio grado del retto | Fine novembre | Salta |
-| Santos A. | Napoli | Lesione distrattiva di medio grado del bicipite | Inizio dicembre | Salta |
-| Lobotka | Napoli | Lesione della sindesmosi tibio-peroneale senza instabilità | Metà dicembre | Salta |
+| Chukwueze | Milan | Rottura del tendine del muscolo tensore della | Da aprile | Salta |
+| Meret | Napoli | Frattura della quinta vertebra lombare e ipotizziamo | Da gennaio | Salta |
 | Buongiorno | Napoli | Operato nella seconda metà di luglio al | Fine dicembre | Salta |
 | Di Lorenzo | Napoli | Lesione distrattiva del muscolo adduttore lungo della | Fine novembre | Salta |
-| Meret | Napoli | Frattura della quinta vertebra lombare e ipotizziamo | Da gennaio | Salta |
+| Lobotka | Napoli | Lesione della sindesmosi tibio-peroneale senza instabilità | Metà dicembre | Salta |
+| Vergara | Napoli | Indisponibile | Da definire | Salta |
+| Santos A. | Napoli | Lesione distrattiva di medio grado del bicipite | Inizio dicembre | Salta |
+| Badiashile | Napoli | Lesione distrattiva di medio grado del retto | Fine novembre | Salta |
 | Romero D. | Parma | Lussazione acromion-claveare della spalla destra | Metà dicembre | Salta |
-| Rensch | Roma | Lesione di primo grado dell'adduttore lungo di | Seconda metà di novembre | Salta |
+| Rensch | Roma | Lesione di primo grado dell'adduttore lungo di | Seconda metà di novembre | In dubbio |
 | Adzic | Sassuolo | Fastidio al ginocchio e non ci sarà | Da valutare | Salta |
 | Volpato | Sassuolo | Problema muscolare alla gamba | Prossimo turno | Salta |
+| Ismajli | Torino | Indisponibile | Da definire | Salta |
+| Belghali | Torino | In dubbio | Da definire | In dubbio |
 | Davis K. | Udinese | Noie muscolari e out a Bologna domenica | Prossimo turno | Salta |
 | Gueye | Udinese | Problema alla caviglia a fine settembre | Fine gennaio | Salta |
 
@@ -101,47 +110,47 @@ Punteggio: piu' e' alto, piu' conviene. Unisce valore e probabilita' di giocare.
 
 | Giocatore | Squadra | Stato | Avversario | Punteggio |
 |---|---|---|---|---|
-| Perri | Torino | Titolare | Napoli (T) | 56 |
-| Tornqvist | Monza | Panchina | Fiorentina (C) | 42 |
-| Daffara | Parma | Titolare | Roma (C) | 21 |
-| Thiam | Monza | Titolare | Fiorentina (C) | 21 |
-| Happonen | Bologna | Fuori | Udinese (C) | 15 |
+| Perri | Torino | Titolare | Lazio (C) | 56 |
+| Tornqvist | Monza | Riserva, ballottaggio | Roma (T) | 42 |
+| Daffara | Parma | Titolare | Frosinone (T) | 21 |
+| Thiam | Monza | Titolare, ballottaggio | Roma (T) | 21 |
+| Happonen | Bologna | Fuori | Venezia (T) | 15 |
 
 ### Difensori
 
 | Giocatore | Squadra | Stato | Avversario | Punteggio |
 |---|---|---|---|---|
-| Hainaut | Venezia | Titolare | Juventus (T) | 85 |
-| Veiga D. | Lecce | Titolare | Lazio (T) | 73 |
-| Zè Pedro | Cagliari | Titolare | Como (T) | 73 |
-| Abankwah | Udinese | Titolare | Bologna (T) | 71 |
-| Troilo | Parma | Titolare | Roma (C) | 71 |
+| Hainaut | Venezia | Titolare | Bologna (C) | 85 |
+| Veiga D. | Lecce | Titolare | Atalanta (C) | 73 |
+| Zè Pedro | Cagliari | Titolare | Milan (C) | 73 |
+| Abankwah | Udinese | Titolare | Fiorentina (C) | 71 |
+| Troilo | Parma | Titolare | Frosinone (T) | 71 |
 
 ### Centrocampisti
 
 | Giocatore | Squadra | Stato | Avversario | Punteggio |
 |---|---|---|---|---|
-| Schmid | Frosinone | Titolare | Milan (T) | 90 |
-| Romano | Cagliari | Titolare | Como (T) | 79 |
-| Pobega | Bologna | Titolare | Udinese (C) | 77 |
-| Matic | Sassuolo | Titolare | Genoa (C) | 73 |
-| Perez K. | Venezia | Titolare | Juventus (T) | 70 |
+| Schmid | Frosinone | Titolare | Parma (C) | 90 |
+| Romano | Cagliari | Titolare | Milan (C) | 79 |
+| Pobega | Bologna | Titolare | Venezia (T) | 77 |
+| Matic | Sassuolo | Titolare | Napoli (C) | 73 |
+| Perez K. | Venezia | Titolare | Bologna (C) | 70 |
 
 ### Attaccanti
 
 | Giocatore | Squadra | Stato | Avversario | Punteggio |
 |---|---|---|---|---|
-| Ghedjemis | Frosinone | Titolare | Milan (T) | 76 |
-| Robinson J. | Monza | Titolare | Fiorentina (C) | 76 |
-| Lontani | Parma | Panchina | Roma (C) | 50 |
-| N'Dri | Lecce | Titolare | Lazio (T) | 44 |
-| Nzola | Cagliari | Panchina | Como (T) | 36 |
+| Ghedjemis | Frosinone | Titolare | Parma (C) | 76 |
+| Robinson J. | Monza | Titolare | Roma (T) | 76 |
+| Lontani | Parma | Panchina | Frosinone (T) | 50 |
+| N'Dri | Lecce | Titolare | Atalanta (C) | 44 |
+| Nzola | Cagliari | Titolare, ballottaggio | Milan (C) | 36 |
 
 ## Correzioni da controllare
 
-- Probabili G12 di Fantacalcio.it lette solo in sintesi (non parola per parola) per Juventus-Venezia, Bologna-Udinese, Sassuolo-Genoa, Milan-Frosinone e per i titolari dell'Atalanta: controllare percentuali e ballottaggi sulla pagina.
-- Probabili G12: le due fonti non coincidono su Napoli (Spinazzola o Olivera, Politano o Vergara), Monza (Birindelli o Tourè I., Foe Ondoa o Pessina), Inter (Akanji o Carlos Augusto, Mkhitaryan o Sucic P.), Venezia (Sohm o Busio), Lecce (difesa a 3 o a 4), Cagliari (difesa a 3 o a 4), Sassuolo (Bakola o Doig): controllare le formazioni ufficiali.
-- Napoli-Torino: Lega, Fantamaster e Napolike la danno sabato 21/11 alle 20:45, alcuni siti aggregatori domenica 22/11: verificare l'orario sul sito della Lega.
-- Dubbi dell'ultimo momento da controllare prima del fischio: Belghali e Vlasic (Torino), Berardi (Sassuolo), Frendrup (Genoa), Pavlovic (Milan), Zielinski (Inter), Njie (Fiorentina), Gollini (Roma).
-- Calendario G14 (4-7/12) preso da Calcio e Finanza e Calciodangolo (articoli di settembre): verificare eventuali cambi sul sito della Lega.
+- Probabili G13 lette da Fantamaster e Fantacalcio.it (di quest’ultima circa metà solo in sintesi, da Sassuolo-Napoli in poi): le fonti non coincidono su Inter (Calhanoglu e Bonny fuori, Martinez Jo. o Provedel, Thuram o Esposito F.P.), Torino (Ismajli fuori, Belghali in forte dubbio), Roma (Dybala o Soulè, Konè M. in mediana), Napoli (difesa a 3 o 4, Meret fuori per Fantacalcio.it), Monza (Thiam o Tornqvist) e Juventus (difesa a 3 o 4): controllare le formazioni ufficiali.
+- Fantamaster segnala senza dettagli i rientri dall’infortunio di Carnesecchi (Atalanta) e Yildiz (Juventus): entrambi risultano fuori in G13, servono entità e tempi di recupero.
+- Nuovi indisponibili G13 letti solo da Fantacalcio.it, senza motivo né data di rientro (inj segnala "Da definire"). Giocatori non più nell’elenco e quindi considerati recuperati: Scamacca e Kristensen T. (Atalanta), Gaetano (Atalanta), Winks (Cagliari) è invece ancora fuori: verificare.
+- Dubbi dell’ultimo momento da controllare prima del fischio: Belghali e Rodriguez R. (Torino), Zaccagni (Lazio), Zielinski (Inter), Frendrup (Genoa), Diao (Como), Alajbegovic e Gonzalez N. (Juventus), Rensch e Balerdi (Roma), Mina (Cagliari), Pavlovic (Milan).
+- Calendario G15 (11-14/12) non in fx: trovate solo le partite Udinese-Frosinone (ven 11/12) e Juventus-Monza (lun 14/12). G14 (4-7/12) da riverificare sul sito della Lega.
 - Statistiche degli svincolati (fas) non riverificate in questa esecuzione: restano quelle dell’ultimo aggiornamento automatico.
