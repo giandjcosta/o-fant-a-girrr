@@ -205,6 +205,7 @@ tr.pod td.pos{color:var(--red)}
 .pq{font-size:7.6pt;color:#71767b;padding-bottom:1.8mm;border-bottom:.25mm solid #2f3336}.pq b{color:#e7e9ea}
 .pm{display:flex;justify-content:space-between;color:#71767b;font-size:8pt;padding:1.8mm 2mm 0 0;max-width:120mm}
 .pm span{display:flex;align-items:center;gap:1.2mm}
+.merc66{border:.5mm solid var(--rule);border-left:2.2mm solid var(--red);padding:2mm 3.4mm 2.4mm;margin-top:3.4mm}.merc66 .bk{font-family:var(--hd);font-weight:700;text-transform:uppercase;font-size:8.2pt;letter-spacing:.16em;color:var(--red)}.merc66 p{font-size:9.4pt;line-height:1.38;margin:1mm 0 0}
 .bufala{border:.5mm solid var(--rule);border-top:2.2mm solid var(--red);padding:2.6mm 4mm 3mm;margin-top:4mm;position:relative;background:rgba(200,16,46,.04)}
 .bufala .bk{font-family:var(--hd);font-weight:700;text-transform:uppercase;font-size:8.2pt;letter-spacing:.16em;color:var(--red)}
 .bufala .bh{font-family:var(--hd);font-weight:var(--hw);text-transform:uppercase;font-size:17pt;line-height:1;letter-spacing:-.01em;margin:1.2mm 0 1.6mm}
@@ -464,6 +465,28 @@ def tab_cl(righe, completa=True):
     return "".join(h)
 
 
+def mercato66(t, n):
+    """6.6: righe del riquadro Mercato. testi.json «mercato» (lista di frasi) se c'è, altrimenti gli scambi ufficiali
+    arrivati dopo la giornata precedente (girrr/dati/mercato.json, scritto da calcoli/scambi_app.py). Livello editoriale."""
+    if t.get("mercato") is not None:
+        return [str(x) for x in t["mercato"] if str(x).strip()]
+    f = ROOT / "girrr" / "dati" / "mercato.json"
+    if not f.exists():
+        return []
+    import re
+    cog = lambda x: re.sub(r"(\s+(?:[A-ZÀ-Ý][a-zà-ý]{0,2}\.)+)+$", "", x).strip() or x   # «Adams C.» → «Adams»
+    e = lambda l: l[0] if len(l) == 1 else ", ".join(l[:-1]) + " e " + l[-1]
+    righe = []
+    for s in json.loads(f.read_text(encoding="utf-8")).get("scambi") or []:
+        if s.get("dopo_giornata") != n - 1:
+            continue
+        da, a = (x.replace("The Blue brothers", "The Blues Brothers") for x in (s["da"], s["a"]))
+        arr, par = [cog(x) for x in s["a_cede"]], [cog(x) for x in s["da_cede"]]
+        righe.append(f"Affare fatto tra {da} e {a}: {e(arr)} {'approda' if len(arr) == 1 else 'approdano'} in casa {re.sub(r'^The ', '', da)}, "
+                     f"mentre {e(par)} {'fa' if len(par) == 1 else 'fanno'} il percorso inverso, destinazione {a}.")
+    return righe
+
+
 def costruisci(t, tema="classico"):
     NEON = '<div class="neon"><b class="s1">Speciale</b><b class="s2">Vice City</b></div>'
     # 6.2: candidati MVP dei tifosi della giornata appena finita (solo se la votazione è aperta)
@@ -605,6 +628,9 @@ def costruisci(t, tema="classico"):
         h.append('</table><p class="nt">Il voto confronta i fantapunti della giornata con quelli che ci si aspettava dalla rosa (voti di quest\'anno e della scorsa stagione). Il 6 è «in linea con la rosa»: ogni 5 fantapunti in più o in meno vale un voto.</p></div>')
         if t.get("coro"):
             h.append('<div class="tab"><h2>Il coro <b>della settimana</b></h2>' + post_social(t["coro"], n) + '</div>')
+        merc = mercato66(t, n)   # 6.6: riquadro Mercato, solo se ci sono scambi ufficiali
+        if merc:
+            h.append('<div class="merc66"><div class="bk">Mercato · Ufficiale</div>' + "".join(f'<p>{esc(x)}</p>' for x in merc) + '</div>')
         if t.get("bufala"):
             b = t["bufala"]
             h.append(f'<div class="bufala"><div class="bk">Bufala di mercato</div><div class="bh">{esc(b.get("titolo", ""))}</div><p>{esc(b.get("testo", ""))}</p></div>')

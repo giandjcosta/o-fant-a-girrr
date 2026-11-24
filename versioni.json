@@ -2,6 +2,60 @@
   "nota": "Fonte unica della pagina Versioni (girrr/versioni.html e stadio/girrr/versioni.html). A ogni rilascio si aggiunge la versione in cima con rilascio/versioni/aggiungi.py. Numeri: correzione minore = terza cifra (5.6.1), aggiornamento medio = seconda cifra (5.7.0), aggiornamento grande = prima cifra (6.0). Dove manca la storia: «Dato non conservato». Le versioni 1.0-4.5 e il Mercato Scambi vengono dai messaggi recuperati da Claude chat (9 novembre 2026), date controllate con i commit del sito. Il campo «nota» e «altre_varianti» non si mostrano nella pagina.",
   "versioni": [
     {
+      "v": "6.6",
+      "data": "2026-11-24",
+      "tipo": "medio",
+      "titolo": "Gli scambi nell'app",
+      "messaggio": "⚽ **O Girrr 6.6 è online!** Adesso gli scambi passano dall'app: nello Spogliatoio, in Mercato Scambi, valuti lo scambio e lo registri con «Effettua lo scambio». Tutta la lega riceve la notifica e lo scambio diventa ufficiale alla prima conferma: dell'altra squadra, della Lega o di un altro allenatore come testimone. Il mattino dopo le rose sono aggiornate, la Lega annuncia l'affare in Curva e Ciro Trattativa lo racconta alla Radio. Arrivano anche i nuovi loghi: gli scudi della Lega e della Champions Cup e i simboli della stagione 2026 · 27. E in Notifiche scegli l'icona dell'app, scudo o simbolo. Buona settimana a tutti! ⚽",
+      "novita": [
+        {
+          "area": "Spogliatoio",
+          "voci": [
+            "In Mercato Scambi, dopo «Valuta uno scambio», il pulsante «Effettua lo scambio» registra uno scambio con gli stessi ruoli da tutte e due le parti, senza crediti.",
+            "Nuovo elenco «Richieste di scambio»: l'altra squadra conferma o rifiuta, la Lega o un altro allenatore può confermarlo come testimone, chi lo propone può annullarlo.",
+            "Vale la prima conferma, anche quella automatica quando le rose aggiornate da Leghe Fantacalcio risultano già scambiate."
+          ]
+        },
+        {
+          "area": "Squadre",
+          "voci": [
+            "Il mattino dopo uno scambio ufficiale le rose e la classifica delle rose sono aggiornate."
+          ]
+        },
+        {
+          "area": "Notifiche",
+          "voci": [
+            "Le richieste di scambio e gli scambi ufficiali arrivano a tutta la lega, con il filtro «Scambi» e la nuova voce «Scambi» per il telefono.",
+            "Nuovo riquadro «Icona dell'app» per scegliere tra scudo e simbolo; vale quando si aggiunge l'app alla schermata Home."
+          ]
+        },
+        {
+          "area": "Curva",
+          "voci": [
+            "A ogni scambio ufficiale la Lega pubblica l'annuncio il mattino dopo, con il commento di Ciro Trattativa."
+          ]
+        },
+        {
+          "area": "Radio",
+          "voci": [
+            "Ciro Trattativa racconta gli scambi ufficiali nella puntata della giornata dopo."
+          ]
+        },
+        {
+          "area": "Giornale",
+          "voci": [
+            "Riquadro «Mercato · Ufficiale» a pagina 3 con gli scambi arrivati dopo la giornata precedente."
+          ]
+        },
+        {
+          "area": "App",
+          "voci": [
+            "Nuovi loghi: scudi della Lega e della Champions Cup nelle pagine di sempre, simboli della stagione 2026 · 27 in Tabellone, Squadre, Statistiche, Giornale, Campo e Totogirrr."
+          ]
+        }
+      ]
+    },
+    {
       "v": "6.5.1",
       "data": "2026-11-24",
       "tipo": "minore",

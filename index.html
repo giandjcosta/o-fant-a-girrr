@@ -14,8 +14,8 @@
 <script>(function(){var s='';try{s=(JSON.parse(localStorage.getItem('fg')||'{}')||{}).skin||''}catch(e){}if(!s){var m=document.cookie.match(/(?:^|; )gskin=([a-z]+)/);if(m)s=m[1]}if(s==='diretta')s='seriea';if(['girrr','stadio','viola','azzurro','seriea','campo'].indexOf(s)<0)s='girrr';document.documentElement.setAttribute('data-skin',s)})()</script>
 <style>body{margin:0}[hidden]{display:none!important}img{max-width:100%}</style>
 <title>Spogliatoio · O Fant A Girrr</title>
-<link rel="icon" type="image/png" href="assets/favicon-64.png">
-<link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+<link rel="icon" type="image/png" href="assets/icone/scudo-64.png">
+<link rel="apple-touch-icon" href="assets/icone/scudo-180.png"><script src="icona66.js?v=66"></script>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@500;600;700&family=Lato:wght@400;700;900&family=Sora:wght@400;600;700;800&family=Archivo+Black&family=Archivo:wght@400;500;600;700&family=Lobster&family=Inter:wght@500;700;800;900&display=swap">
 <style>
 /* Layout: night-stadium app. Header + tile tabs, glowing violet cards, swap cards (cedi/prendi), ring gauges.
@@ -853,7 +853,7 @@ function mkValuta(){
   var dg=cnt(G,Ab),dr=cnt(R,Bb),ok=true;['P','D','C','A'].forEach(function(r){if(dg[r]!==dr[r])ok=false});
   if(!ok)return h+'<div class="note" style="margin-top:12px">La rosa deve restare valida: si cedono e si ricevono gli stessi ruoli. Ora dai '+['P','D','C','A'].map(function(r){return dg[r]+' '+r}).join(' · ')+' e ricevi '+['P','D','C','A'].map(function(r){return dr[r]+' '+r}).join(' · ')+'.</div>';
   var gb=mkGain(Ab,Bb,G,R),gl=mkGain(Al,Bl,G,R),cur=mkH==='b'?gb:gl,oth=mkH==='b'?gl:gb;
-  return h+'<div style="margin-top:12px">'+mkCard({G:G.map(function(i){return Ab.filter(function(v){return v.id===i})[0]}),R:R.map(function(i){return Bb.filter(function(v){return v.id===i})[0]}),k:G.length,gA:cur.gA,gB:cur.gB,o:oth},mkT)+'</div>';
+  return h+'<div style="margin-top:12px">'+mkCard({G:G.map(function(i){return Ab.filter(function(v){return v.id===i})[0]}),R:R.map(function(i){return Bb.filter(function(v){return v.id===i})[0]}),k:G.length,gA:cur.gA,gB:cur.gB,o:oth},mkT)+'</div>'+(window.SC66btn?window.SC66btn(mkT,G,R):'')/* 6.6 */;
 }
 function mkCard(x,tn){
   var a=mkConv(x.gA),b=mkConv(x.gB),a2=mkConv(x.o.gA),b2=mkConv(x.o.gB),cl=function(n){return n>=65?'var(--ok)':n>=50?'var(--warn)':'var(--bad)'},lab=mkLab(x.gA,x.gB),oh=mkH==='b'?'lungo':'breve';
@@ -875,6 +875,7 @@ function mkHtml(R){
 function vMkt(){
   var key=D.updated+'|'+D.round+'|'+team,ready=!!MKC[key];
   var h='<div class="note">'+(mkV==='c'?'Le proposte di scambio per la tua squadra, ricalcolate dopo ogni giornata. «Equilibrato» significa che l\'operazione conviene a entrambe le parti: l\'altro allenatore vede la stessa proposta. Con Breve e Lungo termine vedi come cambia la resa dello stesso scambio.':'Hai una proposta sul tavolo o un\'idea tua? Scegli la squadra, poi i giocatori che dai e quelli che ricevi: la pagina calcola subito quanto conviene a ciascuno.')+'</div>';
+  if(window.SC66box)h+=window.SC66box();/* 6.6: Richieste di scambio */
   h+='<div class="seg">'+[['c','Consigliati'],['v','Valuta uno scambio']].map(function(x){return '<button aria-pressed="'+(mkV===x[0])+'" data-mv="'+x[0]+'">'+x[1]+'</button>'}).join('')+'</div>';
   h+='<div class="seg">'+[['b','Breve termine'],['l','Lungo termine']].map(function(x){return '<button aria-pressed="'+(mkH===x[0])+'" data-mh="'+x[0]+'">'+x[1]+'</button>'}).join('')+'</div>';
   if(mkV==='v')return h+'<div id="mkres">'+mkValuta()+'</div>';
@@ -1082,11 +1083,13 @@ render = window.spgLazyWrap(render, function () {
     calIdx:typeof calIdx==='undefined'?'':calIdx,
     authed:authed(),setTab:function(t){tab=t}};
 });
+/* 6.6: scambi nell'app (assets/scambi66.js) */window.SC66={ctx:function(){return {team:team,code:LS.code||'',authed:authed(),D:D}},apri:function(){tab='mkt';mkV='c';render()},fatto:function(){mkSG=[];mkSR=[];mkV='c';render()}};
 byHash();render();
 fetch('data.json',{cache:'no-store'}).then(function(r){return r.ok?r.json():null}).then(function(j){if(j&&j.teams&&j.P&&(j.updated>=D.updated)){D=j;if(D.nx&&D.nx>D.round)D.round=D.nx;byHash();render()}trackOpen()}).catch(function(){trackOpen()});
 })();
 </script>
 
+<script src="assets/scambi66.js?v=66"></script>
 <script src="assets/app.js"></script>
 <script>/* 5.5: menu delle grafiche — si apre e si chiude con una dissolvenza, si chiude dopo la scelta o toccando fuori */
 (function(){var m=document.querySelector('.skin-menu');if(!m)return;var calmo=window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches;
