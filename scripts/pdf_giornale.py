@@ -26,11 +26,25 @@ TEMI = {
     # Il Giornale ha un solo aspetto ufficiale.
     # carta, inchiostro, accento, grigio, fascia, testo fascia, font titoli, peso, font testata, peso testata, dimensione titolo, dimensione testata
     "classico": ("#f3eee1", "#16130e", "#c8102e", "#6a6254", "#c8102e", "#ffffff", "'Inter Display','Inter',sans-serif", 900, "'DejaVu Serif',serif", 700, "35pt", "43pt"),
+    # Edizione speciale «Notte Tropicale» (colori della grafica dell'app dal 19 novembre 2026, a richiesta di Gianluca per il n. 8):
+    # notte e viola come sfondo, rosa come accento, ciano per le linee. Si sceglie con --tema tropicale; senza, resta il classico.
+    "tropicale": ("linear-gradient(160deg,#0b0f2b 0%,#1c0b45 55%,#2a0c52 100%)", "#fbf6ec", "#ff5ca8", "#c9bfe8", "#ff5ca8", "#0b0f2b", "'Inter Display','Inter',sans-serif", 900, "'DejaVu Serif',serif", 700, "35pt", "43pt"),
 }
+
+CSS_TROPICALE = (".pg:before{background:radial-gradient(rgba(255,255,255,.05) .35mm,transparent .4mm) 0 0/1.6mm 1.6mm}"
+                 ".pg:after{content:\"\";position:absolute;left:0;right:0;bottom:0;height:3.2mm;background:linear-gradient(90deg,#ff2a45,#ff5ca8 35%,#bc6cff 65%,#00f0ff);pointer-events:none}"
+                 ".mast{border-bottom-color:#00f0ff}.bar,.box,.tab,.som,.spb{border-color:#00f0ff}"
+                 ".mast h1{text-shadow:0 0 6mm rgba(255,92,168,.45)}.tit{text-shadow:0 0 5mm rgba(0,240,255,.25)}"
+                 ".mini,.tit em{color:#00f0ff}.box h3 b,.tab h2 b{color:#ff9ccd}.txt:first-letter{color:#00f0ff}"
+                 ".mast .lg,.spb img{filter:drop-shadow(0 0 1.2mm rgba(255,255,255,.55))}"
+                 ".mt .s{background:#ff5ca8;color:#0b0f2b}.st.s{color:#0b0f2b}")
 
 
 def css_tema(nome):
     c = TEMI.get(nome, TEMI["classico"])
+    if nome == "tropicale":
+        return (f":root{{--paper:{c[0]};--ink:{c[1]};--rule:#00f0ff;--red:{c[2]};--mute:{c[3]};--band:{c[4]};--bandink:{c[5]};"
+                f"--hd:{c[6]};--hw:{c[7]};--mh:{c[8]};--mhw:{c[9]};--tz:{c[10]};--mz:{c[11]};--soft:#00f0ff55}}" + CSS_TROPICALE)
     return (f":root{{--paper:{c[0]};--ink:{c[1]};--rule:{c[1]};--red:{c[2]};--mute:{c[3]};--band:{c[4]};--bandink:{c[5]};"
             f"--hd:{c[6]};--hw:{c[7]};--mh:{c[8]};--mhw:{c[9]};--tz:{c[10]};--mz:{c[11]};--soft:{c[3]}66{";--ts:.15pt" if nome == "verde" else ""}}}")
 
@@ -681,8 +695,10 @@ FIT_JS = """() => {
 
 def main():
     tema = "classico"
-    if "--tema" in sys.argv:  # ignorato: il Giornale ha un solo tema
+    if "--tema" in sys.argv:  # solo «tropicale» cambia l'aspetto; ogni altro valore resta il classico
         k = sys.argv.index("--tema")
+        if k + 1 < len(sys.argv) and sys.argv[k + 1] == "tropicale":
+            tema = "tropicale"
         del sys.argv[k:k + 2]
     t = {}
     if len(sys.argv) > 1 and Path(sys.argv[1]).exists():
