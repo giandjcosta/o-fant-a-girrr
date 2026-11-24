@@ -1,0 +1,4 @@
+{
+ "_come_si_usa": "Scritto da calcoli/scambi_app.py: uno per scambio confermato nell'app. «post» li pubblica post_curva.py (una volta sola), «radio» li legge la Radio della giornata indicata. Non si modifica a mano.",
+ "scambi": []
+}
