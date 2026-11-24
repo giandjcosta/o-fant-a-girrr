@@ -62,44 +62,37 @@ Notizie pubbliche, senza indicare di chi e' ogni giocatore.
 
 | Giocatore | Squadra | Motivo | Rientro | Giornata |
 |---|---|---|---|---|
-| Carnesecchi | Atalanta | Indisponibile | Da definire | Salta |
+| Carnesecchi | Atalanta | Lesione del menisco mediale del ginocchio sinistro | Da gennaio | Salta |
 | Holm | Bologna | Problema al tendine della coscia destra | Fine febbraio | Salta |
 | Miranda J. | Bologna | Lesione di primo grado al bicipite femorale | Fine novembre | Salta |
-| Mendy P. | Cagliari | Indisponibile | Da definire | Salta |
-| Rodriguez Je. | Como | Problema muscolare al quadricipite alto | Metà dicembre | Salta |
-| Kean | Como | Problema osseo alla gamba destra | Da valutare | Salta |
-| Diao | Como | Lesione muscolare al flessore della gamba | Seconda metà di novembre | In dubbio |
-| Viery | Fiorentina | Indisponibile | Da definire | Salta |
+| Mendy P. | Cagliari | Problema muscolare alla gamba accusato nel turno | Da valutare | In dubbio |
+| Rodriguez Je. | Como | Problema muscolare al quadricipite alto | Metà dicembre | In dubbio |
+| Kean | Como | Problema osseo alla gamba destra | Da valutare | In dubbio |
+| Viery | Fiorentina | Noie muscolari che restano da valutare | Prossimo turno | Salta |
 | Raimondo | Frosinone | Lesione multilegamentosa contusivo-distorsiva della caviglia sinistra | Metà dicembre | Salta |
-| Colombo | Genoa | Indisponibile | Da definire | Salta |
-| Calhanoglu | Inter | Indisponibile | Da definire | Salta |
+| Colombo | Genoa | Lesione del legamento crociato anteriore del ginocchio | Da valutare | Salta |
+| Calhanoglu | Inter | Risentimento muscolare ai flessori della coscia destra | Seconda metà di dicembre | Salta |
 | Bonny | Inter | Risentimento muscolare ai flessori della coscia destra | Inizio dicembre | Salta |
-| Zielinski | Inter | In dubbio | Da definire | In dubbio |
-| Kalulu | Juventus | Lesione ai muscoli ischiocrurali della gamba sinistra | Fine novembre | Salta |
-| Yildiz | Juventus | Problema al piede | Fine dicembre | Salta |
 | Grabara | Juventus | Lesione al crociato anteriore del ginocchio destro | Da aprile | Salta |
-| Alajbegovic | Juventus | In dubbio | Da definire | In dubbio |
-| Gonzalez N. | Juventus | Problema muscolare al polpaccio destro che lo | Da valutare | In dubbio |
+| Yildiz | Juventus | Problema al piede | Fine dicembre | Salta |
+| Kalulu | Juventus | Lesione ai muscoli ischiocrurali della gamba sinistra | Fine novembre | Salta |
 | Tavares N. | Lazio | Infortunio | Metà dicembre | Salta |
 | Marusic | Lazio | Fastidio muscolare alla gamba | Da valutare | Salta |
 | Sutalo J. | Lazio | Lesione muscolare di secondo grado al flessore | Fine dicembre | Salta |
-| Zaccagni | Lazio | Lesione del quadricipite femorale sinistro | Da valutare | In dubbio |
-| Saelemaekers | Milan | Problema alla caviglia destra e operata il | Da febbraio | Salta |
 | Chukwueze | Milan | Rottura del tendine del muscolo tensore della | Da aprile | Salta |
-| Meret | Napoli | Frattura della quinta vertebra lombare e ipotizziamo | Da gennaio | Salta |
-| Buongiorno | Napoli | Operato nella seconda metà di luglio al | Fine dicembre | Salta |
+| Saelemaekers | Milan | Problema alla caviglia destra e operata il | Da febbraio | Salta |
+| Badiashile | Napoli | Lesione distrattiva di medio grado del retto | Fine novembre | Salta |
+| Santos A. | Napoli | Lesione distrattiva di medio grado del bicipite | Inizio dicembre | Salta |
+| Vergara | Napoli | Lesione di alto grado del bicipite femorale | Da febbraio | Salta |
 | Di Lorenzo | Napoli | Lesione distrattiva del muscolo adduttore lungo della | Fine novembre | Salta |
 | Lobotka | Napoli | Lesione della sindesmosi tibio-peroneale senza instabilità | Metà dicembre | Salta |
-| Vergara | Napoli | Indisponibile | Da definire | Salta |
-| Santos A. | Napoli | Lesione distrattiva di medio grado del bicipite | Inizio dicembre | Salta |
-| Badiashile | Napoli | Lesione distrattiva di medio grado del retto | Fine novembre | Salta |
+| Meret | Napoli | Frattura della quinta vertebra lombare e ipotizziamo | Da gennaio | Salta |
+| Buongiorno | Napoli | Operato nella seconda metà di luglio al | Fine dicembre | Salta |
 | Romero D. | Parma | Lussazione acromion-claveare della spalla destra | Metà dicembre | Salta |
-| Rensch | Roma | Lesione di primo grado dell'adduttore lungo di | Seconda metà di novembre | In dubbio |
 | Adzic | Sassuolo | Fastidio al ginocchio e non ci sarà | Da valutare | Salta |
 | Volpato | Sassuolo | Problema muscolare alla gamba | Prossimo turno | Salta |
-| Ismajli | Torino | Indisponibile | Da definire | Salta |
-| Belghali | Torino | In dubbio | Da definire | In dubbio |
-| Davis K. | Udinese | Noie muscolari e out a Bologna domenica | Prossimo turno | Salta |
+| Ismajli | Torino | Distrazione di basso grado agli adduttori della | Seconda metà di dicembre | Salta |
+| Davis K. | Udinese | Noie muscolari all'adduttore e | Da valutare | In dubbio |
 | Gueye | Udinese | Problema alla caviglia a fine settembre | Fine gennaio | Salta |
 
 ## Migliori svincolati
