@@ -270,8 +270,12 @@ def main():
             out.append(d)
     # Mercato (Gianluca, 24 novembre 2026): scambi confermati, scritti a mano in mercato-manuale.json come la Moviola.
     # Ogni scambio è un post della Lega e, se c'è, un commento sotto (per esempio di Ciro Trattativa). Escono una volta sola.
-    mf = QUI / "mercato-manuale.json"
-    for sc in (json.loads(mf.read_text(encoding="utf-8")).get("scambi") or [] if mf.exists() else []):
+    # 6.6: anche gli scambi confermati nell'app (mercato-app.json, scritto da scambi_app.py), con le stesse regole.
+    scambi_ = []
+    for nome in ("mercato-manuale.json", "mercato-app.json"):
+        mf = QUI / nome
+        scambi_ += json.loads(mf.read_text(encoding="utf-8")).get("scambi") or [] if mf.exists() else []
+    for sc in scambi_:
         post_ = sc.get("post") or []
         for i, (h, body) in enumerate(post_):
             assert len(body) <= 280, (sc["k"], len(body))

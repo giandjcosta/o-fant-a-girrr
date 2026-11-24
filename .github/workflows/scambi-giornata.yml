@@ -1,0 +1,60 @@
+name: Scambi dell'app, una volta al giorno
+# 6.6 (Claude, 24 novembre 2026; Gianluca: «una volta al giorno è ok»). Ogni mattina verso le 7:40 ora italiana
+# (6:41 UTC; con l'ora legale le 8:41) passa dagli scambi registrati nell'app (calcoli/scambi_app.py):
+# - conferma automatica degli scambi in attesa quando le rose importate da Leghe sono già scambiate;
+# - per gli scambi confermati: rose di data.json, classifica delle rose e girrr/dati/mercato.json (Giornale) su gh-pages;
+# - post della Lega con Ciro e notizia per la Radio in calcoli/mercato-app.json su main: i post li pubblica
+#   «Curva, post quasi subito» al primo giro dopo (entro 5 minuti);
+# - alla fine segna nel database gli scambi applicati.
+# Prima dell'SQL della 6.6 (sql/scambi-66.sql del registro) non fa niente. Si può lanciare anche a mano.
+on:
+  schedule:
+    - cron: "41 6 * * *"
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: calcoli-giornata
+  cancel-in-progress: false
+env:
+  CURVA_URL: ${{ secrets.CURVA_URL }}
+  CURVA_KEY: ${{ secrets.CURVA_KEY }}
+  CURVA_TEAM: ${{ secrets.CURVA_TEAM }}
+  CURVA_CODE: ${{ secrets.CURVA_CODE }}
+jobs:
+  scambi:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+      - uses: actions/checkout@v4
+        with:
+          ref: gh-pages
+          path: site
+      - name: Rose del sito, classifica delle rose e Giornale
+        run: |
+          git -C site config user.name "github-actions[bot]"
+          git -C site config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          for i in 1 2 3; do
+            python3 calcoli/scambi_app.py site --vai
+            [ -z "$(git -C site status --porcelain -- data.json girrr/dati/mercato.json)" ] && break
+            python3 calcoli/forza_rose.py site
+            git -C site add data.json girrr/dati/forza-rose.json girrr/dati/mercato.json
+            git -C site commit -q -m "Scambio ufficiale dall'app: rose aggiornate"
+            git -C site pull -q --rebase origin gh-pages && git -C site push -q origin HEAD:gh-pages && break
+            # data.json cambiato nel frattempo da un altro workflow: si riparte dal sito vero e si rifà (lo script non duplica niente)
+            git -C site rebase --abort 2>/dev/null || true; git -C site fetch -q origin gh-pages; git -C site reset -q --hard origin/gh-pages
+            [ "$i" = 3 ] && exit 1
+          done
+      - name: Post della Lega e notizia per la Radio
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          [ -f calcoli/mercato-app.json ] && git add calcoli/mercato-app.json; true
+          git diff --cached --quiet || git commit -m "Scambi dell'app: post e notizia per la Radio"
+          git pull --rebase --autostash origin main
+          git push origin main
+      - name: Scambi applicati segnati nel database
+        run: python3 calcoli/scambi_app.py site --segna
