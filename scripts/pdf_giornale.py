@@ -27,9 +27,9 @@ TEMI = {
     # carta, inchiostro, accento, grigio, fascia, testo fascia, font titoli, peso, font testata, peso testata, dimensione titolo, dimensione testata
     "classico": ("#f3eee1", "#16130e", "#c8102e", "#6a6254", "#c8102e", "#ffffff", "'Inter Display','Inter',sans-serif", 900, "'DejaVu Serif',serif", 700, "35pt", "43pt"),
     # Edizione speciale «Notte Tropicale» / Vice City: SOLO il n. 8 (Gianluca, 24 novembre 2026). Dal n. 9 il Giornale torna classico, senza menzioni a Vice City.
-    # Carta lilla, rosa e pesca; colori di Vice City caldi e freddi insieme: rosa, arancio, pesca, giallo, ciano e viola (Gianluca, 24 novembre).
+    # Carta «Tramonto Miami» dal rosa alla pesca; colori di Vice City caldi e freddi insieme: rosa, arancio, pesca, giallo, ciano e viola (Gianluca, 24 novembre).
     # Niente bagliori né ombre: alcuni lettori PDF li mostrano come blocchi pieni sopra la testata. Si sceglie con --tema tropicale.
-    "tropicale": ("linear-gradient(170deg,#efe0ff 0%,#ffd6e6 50%,#ffdcc2 100%)", "#24112e", "#d42a74", "#6f5480", "#d42a74", "#ffffff", "'Inter Display','Inter',sans-serif", 900, "'DejaVu Serif',serif", 700, "35pt", "43pt"),
+    "tropicale": ("linear-gradient(180deg,#ffd0e2 0%,#ffd9cc 50%,#ffe2c2 100%)", "#2a1030", "#d42a74", "#6f5480", "#d42a74", "#ffffff", "'Inter Display','Inter',sans-serif", 900, "'DejaVu Serif',serif", 700, "35pt", "43pt"),
 }
 
 CSS_TROPICALE = (".pg:before{background:radial-gradient(rgba(90,30,90,.045) .35mm,transparent .4mm) 0 0/1.6mm 1.6mm}"
