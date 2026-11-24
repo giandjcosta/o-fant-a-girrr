@@ -15,30 +15,30 @@ Lega O FANT A GIRRR. Dati aggiornati al 2026-11-24.
 - Atalanta - Inter (dom 22/11 20:45)
 - Monza - Fiorentina (lun 23/11 20:45)
 
-## Classic League: ultima giornata (7ª, G11 di Serie A)
+## Classic League: ultima giornata (8ª, G12 di Serie A)
 
-- Mariana Coneja 3 - 2 Apo team (punteggi 77 - 73)
-- The Blue brothers 1 - 1 AFA SELECCION (punteggi 67 - 69)
-- Atletico ma non troppo 0 - 1 Real Madrink (punteggi 65 - 68)
-- Grodah 1 - 2 stif dc (punteggi 67.5 - 74)
-- WOA 1 - 2 Oranje VC (punteggi 66 - 71.5)
+- Mariana Coneja 3 - 4 Oranje VC (punteggi 79 - 82.5)
+- Apo team 2 - 2 Atletico ma non troppo (punteggi 75 - 72.5)
+- stif dc 1 - 7 The Blue brothers (punteggi 68.5 - 96.5)
+- AFA SELECCION 3 - 2 WOA (punteggi 76 - 73)
+- Real Madrink 2 - 7 Grodah (punteggi 73.5 - 99.5)
 
 ### Premi della giornata
 
-- Miglior formazione: Mariana Coneja con 77 punti
-- Cucchiaio di legno: Atletico ma non troppo con 65 punti
-- Vittoria più larga: stif dc su Grodah (74 - 67.5)
-- Vittoria più sofferta: AFA SELECCION su The Blue brothers (69 - 67)
-- Il più fortunato: Real Madrink ha vinto con soli 68 punti
-- Il più sfortunato: Apo team ha perso nonostante 73 punti
+- Miglior formazione: Grodah con 99.5 punti
+- Cucchiaio di legno: stif dc con 68.5 punti
+- Vittoria più larga: The Blue brothers su stif dc (96.5 - 68.5)
+- Vittoria più sofferta: Apo team su Atletico ma non troppo (75 - 72.5)
+- Il più fortunato: Apo team ha vinto con soli 75 punti
+- Il più sfortunato: Mariana Coneja ha perso nonostante 79 punti
 
-## Classic League: prossima giornata (8ª, G12 di Serie A)
+## Classic League: prossima giornata (9ª, G13 di Serie A)
 
-- Mariana Coneja - Oranje VC
-- Apo team - Atletico ma non troppo
-- stif dc - The Blue brothers
-- AFA SELECCION - WOA
-- Real Madrink - Grodah
+- The Blue brothers - Real Madrink
+- Atletico ma non troppo - Mariana Coneja
+- Oranje VC - AFA SELECCION
+- Grodah - Apo team
+- WOA - stif dc
 
 ## Champions Cup: ultima giornata (4ª, G11 di Serie A)
 
