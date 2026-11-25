@@ -82,8 +82,8 @@ Notizie pubbliche, senza indicare di chi e' ogni giocatore.
 | Saelemaekers | Milan | Problema alla caviglia destra e operata il | Da febbraio | Salta |
 | Chukwueze | Milan | Rottura del tendine del muscolo tensore della | Da aprile | Salta |
 | Vergara | Napoli | Lesione di alto grado del bicipite femorale | Da febbraio | Salta |
-| Badiashile | Napoli | Lesione distrattiva di medio grado del retto | Fine novembre | Salta |
 | Santos A. | Napoli | Lesione distrattiva di medio grado del bicipite | Inizio dicembre | Salta |
+| Badiashile | Napoli | Lesione distrattiva di medio grado del retto | Fine novembre | Salta |
 | Di Lorenzo | Napoli | Lesione distrattiva del muscolo adduttore lungo della | Fine novembre | Salta |
 | Lobotka | Napoli | Lesione della sindesmosi tibio-peroneale senza instabilità | Metà dicembre | Salta |
 | Meret | Napoli | Frattura della quinta vertebra lombare e ipotizziamo | Da gennaio | Salta |
