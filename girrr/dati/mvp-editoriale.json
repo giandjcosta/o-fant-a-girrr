@@ -72,7 +72,7 @@
         "red": 1,
         "score": 69.8,
         "team": "The Blue brothers",
-        "total": 76.66666666666667,
+        "total": 66.0,
         "umani": 1
       },
       {
@@ -82,11 +82,11 @@
         "humanCount": 2,
         "op": "Real Madrink",
         "opPos": 6,
-        "personaggi": 1,
+        "personaggi": 3,
         "red": 0,
         "score": 59.4,
         "team": "Grodah",
-        "total": 13.333333333333334,
+        "total": 24.0,
         "umani": 0
       },
       {
@@ -120,6 +120,16 @@
       {
         "autore": "Il Romantico del Pallone",
         "motivo": "Il Romantico del Pallone premia il ritorno alla vittoria: 7–2 contro Real Madrink.",
+        "scelta": "Grodah"
+      },
+      {
+        "autore": "Tifoso Arrabbiato",
+        "motivo": "Tifoso Arrabbiato premia una risposta dopo una sconfitta: 7–2 contro Real Madrink.",
+        "scelta": "Grodah"
+      },
+      {
+        "autore": "Telecronista Stanco",
+        "motivo": "Telecronista Stanco premia i gol della vincitrice, poi la trasferta: 7–2 contro Real Madrink.",
         "scelta": "Grodah"
       }
     ],
