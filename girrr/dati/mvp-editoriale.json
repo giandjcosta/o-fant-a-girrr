@@ -68,12 +68,26 @@
         "humanCount": 2,
         "op": "stif dc",
         "opPos": 2,
-        "personaggi": 1,
+        "personaggi": 2,
         "red": 1,
         "score": 69.8,
         "team": "The Blue brothers",
-        "total": 90.0,
+        "total": 76.66666666666667,
         "umani": 1
+      },
+      {
+        "away": true,
+        "gf": 7,
+        "gs": 2,
+        "humanCount": 2,
+        "op": "Real Madrink",
+        "opPos": 6,
+        "personaggi": 1,
+        "red": 0,
+        "score": 59.4,
+        "team": "Grodah",
+        "total": 13.333333333333334,
+        "umani": 0
       },
       {
         "away": true,
@@ -88,20 +102,6 @@
         "team": "Oranje VC",
         "total": 10.0,
         "umani": 1
-      },
-      {
-        "away": true,
-        "gf": 7,
-        "gs": 2,
-        "humanCount": 2,
-        "op": "Real Madrink",
-        "opPos": 6,
-        "personaggi": 0,
-        "red": 0,
-        "score": 59.4,
-        "team": "Grodah",
-        "total": 0.0,
-        "umani": 0
       }
     ],
     "firma": "c3b25b66aef3590040062864dd8e84a5106c5c7da1c5dac5cd4c6b75734d2618",
@@ -111,6 +111,16 @@
         "autore": "Nonno Cesare",
         "motivo": "Nonno Cesare premia la solidità del risultato: 7–1 contro stif dc.",
         "scelta": "The Blue brothers"
+      },
+      {
+        "autore": "Statistico Folle",
+        "motivo": "Statistico Folle considera margine, trasferta e posizione dell’avversario: 7–1 contro stif dc.",
+        "scelta": "The Blue brothers"
+      },
+      {
+        "autore": "Il Romantico del Pallone",
+        "motivo": "Il Romantico del Pallone premia il ritorno alla vittoria: 7–2 contro Real Madrink.",
+        "scelta": "Grodah"
       }
     ],
     "personaggi_totali": 11,
