@@ -1,6 +1,6 @@
 # Riepilogo giornata 13 di Serie A
 
-Lega O FANT A GIRRR. Dati aggiornati al 2026-11-24.
+Lega O FANT A GIRRR. Dati aggiornati al 2026-11-25.
 
 ## Partite della giornata
 
@@ -136,8 +136,8 @@ Punteggio: piu' e' alto, piu' conviene. Unisce valore e probabilita' di giocare.
 |---|---|---|---|---|
 | Ghedjemis | Frosinone | Titolare | Parma (C) | 76 |
 | Robinson J. | Monza | Titolare | Roma (T) | 76 |
-| Lontani | Parma | Panchina | Frosinone (T) | 50 |
-| N'Dri | Lecce | Titolare | Atalanta (C) | 44 |
+| Lontani | Parma | Riserva, ballottaggio | Frosinone (T) | 50 |
+| N'Dri | Lecce | Titolare, ballottaggio | Atalanta (C) | 44 |
 | Nzola | Cagliari | Titolare, ballottaggio | Milan (C) | 36 |
 
 ## Correzioni da controllare
