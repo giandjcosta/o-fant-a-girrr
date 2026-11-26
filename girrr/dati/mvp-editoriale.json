@@ -68,11 +68,11 @@
         "humanCount": 3,
         "op": "stif dc",
         "opPos": 2,
-        "personaggi": 2,
+        "personaggi": 3,
         "red": 1,
         "score": 69.8,
         "team": "The Blue brothers",
-        "total": 56.666666666666664,
+        "total": 60.0,
         "umani": 1
       },
       {
@@ -86,7 +86,7 @@
         "red": 0,
         "score": 16.9,
         "team": "Oranje VC",
-        "total": 23.333333333333332,
+        "total": 22.22222222222222,
         "umani": 2
       },
       {
@@ -100,7 +100,7 @@
         "red": 0,
         "score": 59.4,
         "team": "Grodah",
-        "total": 20.0,
+        "total": 17.77777777777778,
         "umani": 0
       }
     ],
@@ -146,6 +146,11 @@
         "autore": "Il Mago della Cabala",
         "motivo": "Il Mago della Cabala segue i numeri: premia la partita con più gol: 7–2 contro Real Madrink.",
         "scelta": "Grodah"
+      },
+      {
+        "autore": "Il Tassista",
+        "motivo": "Il Tassista premia la vittoria in trasferta, poi il margine: 7–1 contro stif dc.",
+        "scelta": "The Blue brothers"
       }
     ],
     "personaggi_totali": 11,
