@@ -65,10 +65,9 @@ Notizie pubbliche, senza indicare di chi e' ogni giocatore.
 | Carnesecchi | Atalanta | Lesione del menisco mediale del ginocchio sinistro | Da gennaio | Salta |
 | Holm | Bologna | Problema al tendine della coscia destra | Fine febbraio | Salta |
 | Miranda J. | Bologna | Lesione di primo grado al bicipite femorale | Fine novembre | Salta |
-| Mendy P. | Cagliari | Problema muscolare alla gamba accusato nel turno | Da valutare | In dubbio |
 | Rodriguez Je. | Como | Problema muscolare al quadricipite alto | Metà dicembre | In dubbio |
 | Kean | Como | Problema osseo alla gamba destra | Da valutare | In dubbio |
-| Viery | Fiorentina | Noie muscolari che restano da valutare | Prossimo turno | Salta |
+| Viery | Fiorentina | Infortunio | Fine dicembre | Salta |
 | Raimondo | Frosinone | Lesione multilegamentosa contusivo-distorsiva della caviglia sinistra | Metà dicembre | Salta |
 | Colombo | Genoa | Lesione del legamento crociato anteriore del ginocchio | Da valutare | Salta |
 | Bastoni | Inter | Fastidio muscolare alla gamba e andrà valutato | Prossimo turno | Salta |
@@ -79,20 +78,21 @@ Notizie pubbliche, senza indicare di chi e' ogni giocatore.
 | Yildiz | Juventus | Problema al piede | Fine dicembre | Salta |
 | Tavares N. | Lazio | Infortunio | Metà dicembre | Salta |
 | Marusic | Lazio | Fastidio muscolare alla gamba | Da valutare | Salta |
+| Taylor K. | Lazio | Fastidio muscolare alla gamba che rimane da | Prossimo turno | Salta |
 | Sutalo J. | Lazio | Lesione muscolare di secondo grado al flessore | Fine dicembre | Salta |
 | Chukwueze | Milan | Rottura del tendine del muscolo tensore della | Da aprile | Salta |
 | Saelemaekers | Milan | Problema alla caviglia destra e operata il | Da febbraio | Salta |
 | Badiashile | Napoli | Lesione distrattiva di medio grado del retto | Fine novembre | Salta |
 | Santos A. | Napoli | Lesione distrattiva di medio grado del bicipite | Inizio dicembre | Salta |
 | Vergara | Napoli | Lesione di alto grado del bicipite femorale | Da febbraio | Salta |
-| Di Lorenzo | Napoli | Lesione distrattiva del muscolo adduttore lungo della | Fine novembre | Salta |
 | Lobotka | Napoli | Lesione della sindesmosi tibio-peroneale senza instabilità | Metà dicembre | Salta |
-| Meret | Napoli | Frattura della quinta vertebra lombare e ipotizziamo | Da gennaio | Salta |
 | Buongiorno | Napoli | Operato nella seconda metà di luglio al | Fine dicembre | Salta |
+| Di Lorenzo | Napoli | Lesione distrattiva del muscolo adduttore lungo della | Fine novembre | Salta |
+| Meret | Napoli | Frattura della quinta vertebra lombare e ipotizziamo | Da gennaio | Salta |
 | Romero D. | Parma | Lussazione acromion-claveare della spalla destra | Metà dicembre | Salta |
 | Rensch | Roma | Lesione di primo grado dell'adduttore lungo di | Seconda metà di dicembre | Salta |
-| Adzic | Sassuolo | Fastidio al ginocchio e non ci sarà | Da valutare | Salta |
 | Volpato | Sassuolo | Problema muscolare alla gamba | Prossimo turno | Salta |
+| Adzic | Sassuolo | Fastidio al ginocchio e non ci sarà | Da valutare | Salta |
 | Ismajli | Torino | Distrazione di basso grado agli adduttori della | Seconda metà di dicembre | Salta |
 | Davis K. | Udinese | Noie muscolari all'adduttore e | Da valutare | In dubbio |
 | Gueye | Udinese | Problema alla caviglia a fine settembre | Fine gennaio | Salta |
@@ -106,9 +106,9 @@ Punteggio: piu' e' alto, piu' conviene. Unisce valore e probabilita' di giocare.
 | Giocatore | Squadra | Stato | Avversario | Punteggio |
 |---|---|---|---|---|
 | Perri | Torino | Titolare | Lazio (C) | 56 |
-| Tornqvist | Monza | Riserva, ballottaggio | Roma (T) | 42 |
+| Tornqvist | Monza | Titolare, ballottaggio | Roma (T) | 42 |
 | Daffara | Parma | Titolare | Frosinone (T) | 21 |
-| Thiam | Monza | Titolare, ballottaggio | Roma (T) | 21 |
+| Thiam | Monza | Riserva, ballottaggio | Roma (T) | 21 |
 | Happonen | Bologna | Fuori | Venezia (T) | 15 |
 
 ### Difensori
@@ -138,7 +138,7 @@ Punteggio: piu' e' alto, piu' conviene. Unisce valore e probabilita' di giocare.
 | Ghedjemis | Frosinone | Titolare | Parma (C) | 76 |
 | Robinson J. | Monza | Titolare | Roma (T) | 76 |
 | Lontani | Parma | Riserva, ballottaggio | Frosinone (T) | 50 |
-| N'Dri | Lecce | Titolare, ballottaggio | Atalanta (C) | 44 |
+| N'Dri | Lecce | Titolare | Atalanta (C) | 44 |
 | Nzola | Cagliari | Titolare, ballottaggio | Milan (C) | 36 |
 
 ## Correzioni da controllare
