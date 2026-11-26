@@ -1,6 +1,62 @@
 {
   "archivio": [
     {
+      "chiusa": "2026-11-26T10:56:14.297424+00:00",
+      "classifica": [
+        {
+          "away": true,
+          "gf": 7,
+          "gs": 1,
+          "humanCount": 3,
+          "op": "stif dc",
+          "opPos": 2,
+          "personaggi": 5,
+          "red": 1,
+          "score": 69.8,
+          "team": "The Blue brothers",
+          "total": 64.84848484848484,
+          "umani": 1
+        },
+        {
+          "away": true,
+          "gf": 4,
+          "gs": 3,
+          "humanCount": 3,
+          "op": "Mariana Coneja",
+          "opPos": 1,
+          "personaggi": 2,
+          "red": 0,
+          "score": 16.9,
+          "team": "Oranje VC",
+          "total": 20.606060606060606,
+          "umani": 2
+        },
+        {
+          "away": true,
+          "gf": 7,
+          "gs": 2,
+          "humanCount": 3,
+          "op": "Real Madrink",
+          "opPos": 6,
+          "personaggi": 4,
+          "red": 0,
+          "score": 59.4,
+          "team": "Grodah",
+          "total": 14.545454545454545,
+          "umani": 0
+        }
+      ],
+      "giornata": 8,
+      "redazione": [
+        {
+          "autore": "Redazione di Girrr Sport",
+          "motivo": "Vince 7–1 sul campo della stif dc, che era seconda: il successo più largo della giornata vale il sesto posto, il migliore della stagione.",
+          "scelta": "The Blue brothers"
+        }
+      ],
+      "stagione": "2026/27"
+    },
+    {
       "chiusa": "2026-11-21T19:40:18.609652+00:00",
       "classifica": [
         {
@@ -59,7 +115,7 @@
   ],
   "votazione": {
     "chiude": "2026-11-26T10:24:32.319989+00:00",
-    "chiusa": null,
+    "chiusa": "2026-11-26T10:56:14.297424+00:00",
     "classifica": [
       {
         "away": true,
@@ -68,11 +124,11 @@
         "humanCount": 3,
         "op": "stif dc",
         "opPos": 2,
-        "personaggi": 3,
+        "personaggi": 5,
         "red": 1,
         "score": 69.8,
         "team": "The Blue brothers",
-        "total": 60.0,
+        "total": 64.84848484848484,
         "umani": 1
       },
       {
@@ -86,7 +142,7 @@
         "red": 0,
         "score": 16.9,
         "team": "Oranje VC",
-        "total": 22.22222222222222,
+        "total": 20.606060606060606,
         "umani": 2
       },
       {
@@ -100,7 +156,7 @@
         "red": 0,
         "score": 59.4,
         "team": "Grodah",
-        "total": 17.77777777777778,
+        "total": 14.545454545454545,
         "umani": 0
       }
     ],
@@ -150,6 +206,16 @@
       {
         "autore": "Il Tassista",
         "motivo": "Il Tassista premia la vittoria in trasferta, poi il margine: 7–1 contro stif dc.",
+        "scelta": "The Blue brothers"
+      },
+      {
+        "autore": "Arbitro in Pensione",
+        "motivo": "Arbitro in Pensione premia il risultato più netto, poi la porta più pulita: 7–1 contro stif dc.",
+        "scelta": "The Blue brothers"
+      },
+      {
+        "autore": "Klaus Pünktlich",
+        "motivo": "Klaus Pünktlich premia l’ordine: vittoria in casa con pochi gol subiti: 7–1 contro stif dc.",
         "scelta": "The Blue brothers"
       }
     ],
