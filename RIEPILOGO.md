@@ -1,6 +1,6 @@
 # Riepilogo giornata 13 di Serie A
 
-Lega O FANT A GIRRR. Dati aggiornati al 2026-11-25.
+Lega O FANT A GIRRR. Dati aggiornati al 2026-11-26.
 
 ## Partite della giornata
 
@@ -73,17 +73,18 @@ Notizie pubbliche, senza indicare di chi e' ogni giocatore.
 | Colombo | Genoa | Lesione del legamento crociato anteriore del ginocchio | Da valutare | Salta |
 | Bonny | Inter | Risentimento muscolare ai flessori della coscia destra | Inizio dicembre | Salta |
 | Calhanoglu | Inter | Risentimento muscolare ai flessori della coscia destra | Seconda metà di dicembre | Salta |
+| Bastoni | Inter | Fastidio muscolare alla gamba e andrà valutato | Prossimo turno | Salta |
+| Kalulu | Juventus | Lesione ai muscoli ischiocrurali della gamba sinistra | Fine novembre | Salta |
 | Yildiz | Juventus | Problema al piede | Fine dicembre | Salta |
 | Grabara | Juventus | Lesione al crociato anteriore del ginocchio destro | Da aprile | Salta |
-| Kalulu | Juventus | Lesione ai muscoli ischiocrurali della gamba sinistra | Fine novembre | Salta |
 | Sutalo J. | Lazio | Lesione muscolare di secondo grado al flessore | Fine dicembre | Salta |
 | Marusic | Lazio | Fastidio muscolare alla gamba | Da valutare | Salta |
 | Tavares N. | Lazio | Infortunio | Metà dicembre | Salta |
 | Saelemaekers | Milan | Problema alla caviglia destra e operata il | Da febbraio | Salta |
 | Chukwueze | Milan | Rottura del tendine del muscolo tensore della | Da aprile | Salta |
-| Vergara | Napoli | Lesione di alto grado del bicipite femorale | Da febbraio | Salta |
 | Santos A. | Napoli | Lesione distrattiva di medio grado del bicipite | Inizio dicembre | Salta |
 | Badiashile | Napoli | Lesione distrattiva di medio grado del retto | Fine novembre | Salta |
+| Vergara | Napoli | Lesione di alto grado del bicipite femorale | Da febbraio | Salta |
 | Di Lorenzo | Napoli | Lesione distrattiva del muscolo adduttore lungo della | Fine novembre | Salta |
 | Lobotka | Napoli | Lesione della sindesmosi tibio-peroneale senza instabilità | Metà dicembre | Salta |
 | Meret | Napoli | Frattura della quinta vertebra lombare e ipotizziamo | Da gennaio | Salta |
