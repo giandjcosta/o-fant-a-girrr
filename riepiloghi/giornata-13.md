@@ -1,6 +1,6 @@
 # Riepilogo giornata 13 di Serie A
 
-Lega O FANT A GIRRR. Dati aggiornati al 2026-11-26.
+Lega O FANT A GIRRR. Dati aggiornati al 2026-11-27.
 
 ## Partite della giornata
 
