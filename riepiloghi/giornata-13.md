@@ -86,15 +86,17 @@ Notizie pubbliche, senza indicare di chi e' ogni giocatore.
 | Vergara | Napoli | Lesione di alto grado del bicipite femorale | Da febbraio | Salta |
 | Santos A. | Napoli | Lesione distrattiva di medio grado del bicipite | Prima metà di dicembre | Salta |
 | Badiashile | Napoli | Lesione distrattiva di medio grado del retto | Fine novembre | Salta |
+| De Bruyne | Napoli | Affaticamento muscolare alla gamba e verso il | Prossimo turno | Salta |
 | Di Lorenzo | Napoli | Lesione distrattiva del muscolo adduttore lungo della | Fine novembre | Salta |
-| Lobotka | Napoli | Lesione della sindesmosi tibio-peroneale senza instabilità | Metà dicembre | Salta |
-| Meret | Napoli | Frattura della quinta vertebra lombare e ipotizziamo | Da gennaio | Salta |
 | Buongiorno | Napoli | Operato nella seconda metà di luglio al | Fine dicembre | Salta |
+| Meret | Napoli | Frattura della quinta vertebra lombare e ipotizziamo | Da gennaio | Salta |
+| Lobotka | Napoli | Lesione della sindesmosi tibio-peroneale senza instabilità | Metà dicembre | Salta |
 | Romero D. | Parma | Lussazione acromion-claveare della spalla destra | Metà dicembre | Salta |
 | Rensch | Roma | Lesione di primo grado dell'adduttore lungo di | Seconda metà di dicembre | Salta |
-| Adzic | Sassuolo | Fastidio al ginocchio e operato il 27 | Da valutare | Salta |
 | Volpato | Sassuolo | Problema muscolare alla gamba | Prossimo turno | Salta |
+| Adzic | Sassuolo | Fastidio al ginocchio (gli accertamenti diagnostici hanno | Da valutare | Salta |
 | Ismajli | Torino | Distrazione di basso grado agli adduttori della | Seconda metà di dicembre | Salta |
+| Belghali | Torino | Infiammazione al ginocchio e fuori causa per | Da valutare | In dubbio |
 | Davis K. | Udinese | Noie muscolari all'adduttore e | Da valutare | In dubbio |
 | Gueye | Udinese | Problema alla caviglia a fine settembre | Fine gennaio | Salta |
 
