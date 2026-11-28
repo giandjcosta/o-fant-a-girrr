@@ -63,8 +63,8 @@ Notizie pubbliche, senza indicare di chi e' ogni giocatore.
 | Giocatore | Squadra | Motivo | Rientro | Giornata |
 |---|---|---|---|---|
 | Carnesecchi | Atalanta | Lesione del menisco mediale del ginocchio sinistro | Inizio gennaio | Salta |
-| Holm | Bologna | Problema al tendine della coscia destra | Fine febbraio | Salta |
 | Miranda J. | Bologna | Lesione di primo grado al bicipite femorale | Fine novembre | Salta |
+| Holm | Bologna | Problema al tendine della coscia destra | Fine febbraio | Salta |
 | Rodriguez Je. | Como | Problema muscolare al quadricipite alto | Seconda metà di dicembre | In dubbio |
 | Kean | Como | Problema osseo alla gamba destra | Da valutare | In dubbio |
 | Viery | Fiorentina | Infortunio | Seconda metà di dicembre | Salta |
@@ -74,6 +74,7 @@ Notizie pubbliche, senza indicare di chi e' ogni giocatore.
 | Bastoni | Inter | Risentimento al quadricipite della coscia sinistra | Metà dicembre | Salta |
 | Calhanoglu | Inter | Risentimento muscolare ai flessori della coscia destra | Seconda metà di dicembre | Salta |
 | Bonny | Inter | Risentimento muscolare ai flessori della coscia destra | Inizio dicembre | Salta |
+| Gonzalez N. | Juventus | Problema muscolare al polpaccio destro che lo | Da valutare | In dubbio |
 | Grabara | Juventus | Lesione al crociato anteriore del ginocchio destro | Da aprile | Salta |
 | Yildiz | Juventus | Problema al piede | Fine dicembre | Salta |
 | Tavares N. | Lazio | Infortunio | Metà dicembre | Salta |
@@ -88,14 +89,14 @@ Notizie pubbliche, senza indicare di chi e' ogni giocatore.
 | De Bruyne | Napoli | Affaticamento muscolare alla gamba e verso il | Prossimo turno | Salta |
 | Vergara | Napoli | Lesione di alto grado del bicipite femorale | Da febbraio | Salta |
 | Di Lorenzo | Napoli | Lesione distrattiva del muscolo adduttore lungo della | Fine novembre | Salta |
-| Lobotka | Napoli | Lesione della sindesmosi tibio-peroneale senza instabilità | Metà dicembre | Salta |
-| Meret | Napoli | Frattura della quinta vertebra lombare e ipotizziamo | Da gennaio | Salta |
 | Buongiorno | Napoli | Operato nella seconda metà di luglio al | Fine dicembre | Salta |
+| Meret | Napoli | Frattura della quinta vertebra lombare e ipotizziamo | Da gennaio | Salta |
+| Lobotka | Napoli | Lesione della sindesmosi tibio-peroneale senza instabilità | Metà dicembre | Salta |
 | Romero D. | Parma | Lussazione acromion-claveare della spalla destra | Metà dicembre | Salta |
 | Rensch | Roma | Lesione di primo grado dell'adduttore lungo di | Seconda metà di dicembre | Salta |
 | Adzic | Sassuolo | Fastidio al ginocchio (gli accertamenti diagnostici hanno | Da valutare | Salta |
-| Belghali | Torino | Infiammazione al ginocchio e fuori causa per | Da valutare | In dubbio |
 | Ismajli | Torino | Distrazione di basso grado agli adduttori della | Seconda metà di dicembre | Salta |
+| Belghali | Torino | Infiammazione al ginocchio e fuori causa per | Da valutare | In dubbio |
 | Davis K. | Udinese | Noie muscolari all'adduttore e | Da valutare | In dubbio |
 | Gueye | Udinese | Problema alla caviglia a fine settembre | Fine gennaio | Salta |
 
@@ -109,7 +110,7 @@ Punteggio: piu' e' alto, piu' conviene. Unisce valore e probabilita' di giocare.
 |---|---|---|---|---|
 | Perri | Torino | Titolare | Lazio (C) | 56 |
 | Tornqvist | Monza | Titolare, ballottaggio | Roma (T) | 42 |
-| Daffara | Parma | Titolare | Frosinone (T) | 21 |
+| Daffara | Parma | Titolare | Frosinone (T) | 28 |
 | Thiam | Monza | Riserva, ballottaggio | Roma (T) | 21 |
 | Happonen | Bologna | Fuori | Venezia (T) | 15 |
 
@@ -121,17 +122,17 @@ Punteggio: piu' e' alto, piu' conviene. Unisce valore e probabilita' di giocare.
 | Veiga D. | Lecce | Titolare | Atalanta (C) | 73 |
 | Zè Pedro | Cagliari | Titolare | Milan (C) | 73 |
 | Abankwah | Udinese | Titolare | Fiorentina (C) | 71 |
-| Troilo | Parma | Titolare | Frosinone (T) | 71 |
+| Troilo | Parma | Titolare | Frosinone (T) | 70 |
 
 ### Centrocampisti
 
 | Giocatore | Squadra | Stato | Avversario | Punteggio |
 |---|---|---|---|---|
-| Schmid | Frosinone | Titolare | Parma (C) | 90 |
+| Schmid | Frosinone | Titolare | Parma (C) | 89 |
 | Romano | Cagliari | Titolare | Milan (C) | 79 |
 | Pobega | Bologna | Titolare | Venezia (T) | 77 |
 | Matic | Sassuolo | Titolare | Napoli (C) | 73 |
-| Perez K. | Venezia | Titolare | Bologna (C) | 70 |
+| Masini | Frosinone | Titolare | Parma (C) | 70 |
 
 ### Attaccanti
 
@@ -139,9 +140,9 @@ Punteggio: piu' e' alto, piu' conviene. Unisce valore e probabilita' di giocare.
 |---|---|---|---|---|
 | Ghedjemis | Frosinone | Titolare | Parma (C) | 76 |
 | Robinson J. | Monza | Titolare | Roma (T) | 76 |
-| Lontani | Parma | Riserva, ballottaggio | Frosinone (T) | 50 |
+| Lontani | Parma | Panchina | Frosinone (T) | 50 |
 | N'Dri | Lecce | Titolare | Atalanta (C) | 44 |
-| Nzola | Cagliari | Titolare, ballottaggio | Milan (C) | 36 |
+| Bobcek | Frosinone | Titolare | Parma (C) | 37 |
 
 ## Correzioni da controllare
 
