@@ -9,6 +9,7 @@ Lo stato aggiornato del progetto, cosa è online e cosa resta da fare sono in `S
 - Le sorgenti delle pagine stanno nel registro (`o-girrr-registro`, cartella `ufficiale/src/sito/`). Se cambi una pagina su `gh-pages`, fai la stessa modifica anche lì, altrimenti il prossimo rilascio la cancella.
 
 ## Regole di questo repository
+- **Regole comuni di lavoro (Gianluca, 16 e 28 novembre 2026):** sono in `REGOLE-LAVORO.md` del registro (`o-girrr-registro`): come si scrive, si prova, si rilascia, cosa va in quale repository, librerie esterne (`LIBRERIE.md`), revisione obbligatoria delle PR del sito da parte di chi non le ha scritte, commit, rami, PR («Squash and merge», «merge commit» per i rilasci) e prove. Il modello di PR è in `.github/pull_request_template.md`.
 - I workflow scrivono su `main` e `gh-pages` da soli (Curva ogni 5-30 minuti, voti e calcoli dopo le giornate). Prima di ogni push: `git pull --rebase` sul ramo giusto. Mai push forzati.
 - Non modificare a mano i file che scrivono i workflow: `data.json`, `formazioni.json`, `toto-quote.json`, `riepiloghi/`, `calcoli/*.json` (salvo `calcoli/moviola-manuale.json`, che è a mano), `calcoli/pubblicati.json`, `girrr/dati/`.
 - Rilasci: prima `gh-pages`, poi controlla il sito vero (pagina aperta, console senza errori nuovi), solo dopo `main`. Tieni nota degli hash dei commit e di come tornare indietro (`git revert`).
