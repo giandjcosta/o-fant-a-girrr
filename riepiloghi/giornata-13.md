@@ -1,6 +1,6 @@
 # Riepilogo giornata 13 di Serie A
 
-Lega O FANT A GIRRR. Dati aggiornati al 2026-11-27.
+Lega O FANT A GIRRR. Dati aggiornati al 2026-11-28.
 
 ## Partite della giornata
 
@@ -68,25 +68,24 @@ Notizie pubbliche, senza indicare di chi e' ogni giocatore.
 | Rodriguez Je. | Como | Problema muscolare al quadricipite alto | Seconda metà di dicembre | In dubbio |
 | Kean | Como | Problema osseo alla gamba destra | Da valutare | In dubbio |
 | Viery | Fiorentina | Infortunio | Seconda metà di dicembre | Salta |
-| Raimondo | Frosinone | Lesione multilegamentosa contusivo-distorsiva della caviglia sinistra | Metà dicembre | Salta |
 | Ostigard | Genoa | Infortunio | Da valutare | In dubbio |
 | Colombo | Genoa | Lesione del legamento crociato anteriore del ginocchio | Da valutare | Salta |
-| Bonny | Inter | Risentimento muscolare ai flessori della coscia destra | Inizio dicembre | Salta |
-| Calhanoglu | Inter | Risentimento muscolare ai flessori della coscia destra | Seconda metà di dicembre | Salta |
 | Bastoni | Inter | Risentimento al quadricipite della coscia sinistra | Metà dicembre | Salta |
-| Yildiz | Juventus | Problema al piede | Fine dicembre | Salta |
+| Calhanoglu | Inter | Risentimento muscolare ai flessori della coscia destra | Seconda metà di dicembre | Salta |
+| Bonny | Inter | Risentimento muscolare ai flessori della coscia destra | Inizio dicembre | Salta |
 | Grabara | Juventus | Lesione al crociato anteriore del ginocchio destro | Da aprile | Salta |
+| Yildiz | Juventus | Problema al piede | Fine dicembre | Salta |
 | Tavares N. | Lazio | Infortunio | Metà dicembre | Salta |
 | Marusic | Lazio | Fastidio muscolare alla gamba | Da valutare | Salta |
 | Taylor K. | Lazio | Infortunio | Da valutare | In dubbio |
 | Sutalo J. | Lazio | Lesione muscolare di secondo grado al flessore | Fine dicembre | Salta |
+| Saelemaekers | Milan | Problema alla caviglia destra e operata il | Da febbraio | Salta |
 | Chukwueze | Milan | Rottura del tendine del muscolo tensore della | Da aprile | Salta |
 | Modric | Milan | Risentimento muscolare alla coscia e a forte | Da valutare | In dubbio |
-| Saelemaekers | Milan | Problema alla caviglia destra e operata il | Da febbraio | Salta |
-| Vergara | Napoli | Lesione di alto grado del bicipite femorale | Da febbraio | Salta |
-| Santos A. | Napoli | Lesione distrattiva di medio grado del bicipite | Prima metà di dicembre | Salta |
 | Badiashile | Napoli | Lesione distrattiva di medio grado del retto | Fine novembre | Salta |
+| Santos A. | Napoli | Lesione distrattiva di medio grado del bicipite | Prima metà di dicembre | Salta |
 | De Bruyne | Napoli | Affaticamento muscolare alla gamba e verso il | Prossimo turno | Salta |
+| Vergara | Napoli | Lesione di alto grado del bicipite femorale | Da febbraio | Salta |
 | Di Lorenzo | Napoli | Lesione distrattiva del muscolo adduttore lungo della | Fine novembre | Salta |
 | Buongiorno | Napoli | Operato nella seconda metà di luglio al | Fine dicembre | Salta |
 | Meret | Napoli | Frattura della quinta vertebra lombare e ipotizziamo | Da gennaio | Salta |
@@ -118,7 +117,7 @@ Punteggio: piu' e' alto, piu' conviene. Unisce valore e probabilita' di giocare.
 
 | Giocatore | Squadra | Stato | Avversario | Punteggio |
 |---|---|---|---|---|
-| Hainaut | Venezia | Titolare | Bologna (C) | 85 |
+| Hainaut | Venezia | Titolare | Bologna (C) | 84 |
 | Veiga D. | Lecce | Titolare | Atalanta (C) | 73 |
 | Zè Pedro | Cagliari | Titolare | Milan (C) | 73 |
 | Abankwah | Udinese | Titolare | Fiorentina (C) | 71 |
