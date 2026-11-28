@@ -2,6 +2,23 @@
   "nota": "Fonte unica della pagina Versioni (girrr/versioni.html e stadio/girrr/versioni.html). A ogni rilascio si aggiunge la versione in cima con rilascio/versioni/aggiungi.py. Numeri: correzione minore = terza cifra (5.6.1), aggiornamento medio = seconda cifra (5.7.0), aggiornamento grande = prima cifra (6.0). Dove manca la storia: «Dato non conservato». Le versioni 1.0-4.5 e il Mercato Scambi vengono dai messaggi recuperati da Claude chat (9 novembre 2026), date controllate con i commit del sito. Il campo «nota» e «altre_varianti» non si mostrano nella pagina.",
   "versioni": [
     {
+      "v": "6.7",
+      "data": "2026-11-28",
+      "tipo": "medio",
+      "titolo": "La partita da guardare",
+      "messaggio": "⚽ **O Girrr 6.7 è online!** Nella Home, sotto «Oggi al Girrr», trovi la partita da guardare del prossimo turno: un Derby, un sorpasso possibile o la sfida più equilibrata, con un tocco per aprirla nel Campo. Accanto c'è la classifica in breve: il podio e la tua squadra, sempre in evidenza. E poi i numeri della stagione: giornate, gol, media gol e pareggi. Buona giornata a tutti! ⚽",
+      "novita": [
+        {
+          "area": "Home",
+          "voci": [
+            "Nuovo riquadro «La partita da guardare» sotto «Oggi al Girrr»: prima un Derby, poi un sorpasso possibile, altrimenti la sfida più equilibrata; il tocco apre il Campo su quella partita.",
+            "Classifica breve sempre di quattro righe: dal podio alla quarta le prime quattro, dalla quinta in giù le prime tre e la tua squadra; la tua riga è evidenziata con «Tu».",
+            "Numeri della stagione di Campionato: giornate, gol, gol a partita e pareggi, con il collegamento a Tabellone › Numeri."
+          ]
+        }
+      ]
+    },
+    {
       "v": "6.6",
       "data": "2026-11-24",
       "tipo": "medio",
