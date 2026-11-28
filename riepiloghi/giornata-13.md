@@ -69,6 +69,7 @@ Notizie pubbliche, senza indicare di chi e' ogni giocatore.
 | Kean | Como | Problema osseo alla gamba destra | Da valutare | In dubbio |
 | Viery | Fiorentina | Infortunio | Seconda metà di dicembre | Salta |
 | Ostigard | Genoa | Infortunio | Da valutare | In dubbio |
+| Baldanzi | Genoa | Infortunio | Da valutare | In dubbio |
 | Colombo | Genoa | Lesione del legamento crociato anteriore del ginocchio | Da valutare | Salta |
 | Bastoni | Inter | Risentimento al quadricipite della coscia sinistra | Metà dicembre | Salta |
 | Calhanoglu | Inter | Risentimento muscolare ai flessori della coscia destra | Seconda metà di dicembre | Salta |
@@ -87,15 +88,14 @@ Notizie pubbliche, senza indicare di chi e' ogni giocatore.
 | De Bruyne | Napoli | Affaticamento muscolare alla gamba e verso il | Prossimo turno | Salta |
 | Vergara | Napoli | Lesione di alto grado del bicipite femorale | Da febbraio | Salta |
 | Di Lorenzo | Napoli | Lesione distrattiva del muscolo adduttore lungo della | Fine novembre | Salta |
-| Buongiorno | Napoli | Operato nella seconda metà di luglio al | Fine dicembre | Salta |
-| Meret | Napoli | Frattura della quinta vertebra lombare e ipotizziamo | Da gennaio | Salta |
 | Lobotka | Napoli | Lesione della sindesmosi tibio-peroneale senza instabilità | Metà dicembre | Salta |
+| Meret | Napoli | Frattura della quinta vertebra lombare e ipotizziamo | Da gennaio | Salta |
+| Buongiorno | Napoli | Operato nella seconda metà di luglio al | Fine dicembre | Salta |
 | Romero D. | Parma | Lussazione acromion-claveare della spalla destra | Metà dicembre | Salta |
 | Rensch | Roma | Lesione di primo grado dell'adduttore lungo di | Seconda metà di dicembre | Salta |
-| Volpato | Sassuolo | Problema muscolare alla gamba | Prossimo turno | Salta |
 | Adzic | Sassuolo | Fastidio al ginocchio (gli accertamenti diagnostici hanno | Da valutare | Salta |
-| Ismajli | Torino | Distrazione di basso grado agli adduttori della | Seconda metà di dicembre | Salta |
 | Belghali | Torino | Infiammazione al ginocchio e fuori causa per | Da valutare | In dubbio |
+| Ismajli | Torino | Distrazione di basso grado agli adduttori della | Seconda metà di dicembre | Salta |
 | Davis K. | Udinese | Noie muscolari all'adduttore e | Da valutare | In dubbio |
 | Gueye | Udinese | Problema alla caviglia a fine settembre | Fine gennaio | Salta |
 
